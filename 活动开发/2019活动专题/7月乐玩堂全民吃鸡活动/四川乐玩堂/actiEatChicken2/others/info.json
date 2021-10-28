@@ -1,0 +1,252 @@
+{
+	"moveDis": [
+		{
+			"num": -1,
+			"left": "-98px",
+			"top": "70px",
+			"category": "circle",
+			"name": ""
+		}, {
+			"num": -1,
+			"left": "-162px",
+			"top": "103px",
+			"category": "circle",
+			"name": ""
+		}, {
+			"num": 0,
+			"left": "-262px",
+			"top": "149px",
+			"category": "square",
+			"name": "",
+			"type": "activeRare"
+		}, {
+			"num": -1,
+			"left": "-199px",
+			"top": "250px",
+			"category": "circle",
+			"name": "changeOne"
+		}, {
+			"num": 1,
+			"left": "-97px",
+			"top": "297px",
+			"category": "square",
+			"name": "changeOne",
+			"type": "activeNormal"
+		}, {
+			"num": -1,
+			"left": "33px",
+			"top": "320px",
+			"category": "circle",
+			"name": "changeOne"
+		}, {
+			"num": -1,
+			"left": "125px",
+			"top": "323px",
+			"category": "circle",
+			"name": "changeOne"
+		}, {
+			"num": 2,
+			"left": "261px",
+			"top": "294px",
+			"category": "square",
+			"name": "changeOne",
+			"type": "activeRare"
+		}, {
+			"num": -1,
+			"left": "366px",
+			"top": "328px",
+			"category": "circle",
+			"name": "changeOne"
+		}, {
+			"num": 3,
+			"left": "487px",
+			"top": "321px",
+			"category": "square",
+			"name": "changeOne",
+			"type": "activeNormal"
+		}, {
+			"num": -1,
+			"left": "477px",
+			"top": "215px",
+			"category": "circle",
+			"name": "changeTwo"
+		}, {
+			"num": -1,
+			"left": "425px",
+			"top": "165px",
+			"category": "circle",
+			"name": "changeTwo"
+		}, {
+			"num": 4,
+			"left": "337px",
+			"top": "87px",
+			"category": "square",
+			"name": "changeTwo",
+			"type": "activeNormal"
+		}, {
+			"num": -1,
+			"left": "225px",
+			"top": "40px",
+			"category": "circle",
+			"name": "changeTwo"
+		}, {
+			"num": -1,
+			"left": "138px",
+			"top": "17px",
+			"category": "circle",
+			"name": "changeTwo"
+		}, {
+			"num": -1,
+			"left": "0",
+			"top": "0",
+			"category": "square",
+			"name": ""
+		}
+	],
+	"btnInfo": [
+		[
+			"hands_x0_y0_mainFocus0_",
+			"eatChicken.jumpUrl()",
+			"eatChicken.cursorEffect('sieves')",
+			"hands_x0_y0_mainFocus3_",
+			"hands_x0_y0_mainFocus4_",
+			"hands_x0_y0_mainFocus3_",
+			"disable"
+		],
+		[
+			"hands_x0_y0_mainFocus1_",
+			"eatChicken.showPop('rule',6)",
+			"eatChicken.cursorEffect('rule',0)",
+			"disable",
+			"hands_x0_y0_mainFocus0_",
+			"disable",
+			"hands_x0_y0_mainFocus2_"
+		],
+		[
+			"hands_x0_y0_mainFocus2_",
+			"eatChicken.showPop('prize',7)",
+			"eatChicken.cursorEffect('prize',1)",
+			"disable",
+			"hands_x0_y0_mainFocus0_",
+			"hands_x0_y0_mainFocus1_",
+			"hands_x0_y0_mainFocus3_"
+		],
+		[
+			"hands_x0_y0_mainFocus3_",
+			"eatChicken.showPop('exchange',12)",
+			"eatChicken.cursorEffect('exchange',2)",
+			"disable",
+			"hands_x0_y0_mainFocus0_",
+			"hands_x0_y0_mainFocus2_",
+			"hands_x0_y0_mainFocus0_"
+		],
+		[
+			"hands_x0_y0_mainFocus4_",
+			"backfunc()",
+			"eatChicken.cursorEffect('back')",
+			"hands_x0_y0_mainFocus0_",
+			"disable",
+			"disable",
+			"hands_x0_y0_mainFocus0_"
+		],
+		[
+			"hands_x0_y0_mainFocus5_",
+			"eatChicken.hideTips('openPop')",
+			"eatChicken.cursorEffect('openResult')",
+			"disable",
+			"disable",
+			"disable",
+			"disable"
+		],
+		[
+			"hands_x0_y0_mainFocus6_",
+			"eatChicken.hidePop('rule',1)",
+			"eatChicken.cursorEffect('ruleBack')",
+			"disable",
+			"disable",
+			"disable",
+			"disable"
+		],
+		[
+			"hands_x0_y0_mainFocus7_",
+			"eatChicken.getPrize(7)",
+			"eatChicken.cursorEffect('prizeOne','prizeArr',0)",
+			"disable",
+			"hands_x0_y0_mainFocus8_",
+			"hands_x0_y0_mainFocus11_",
+			"disable"
+		],
+		[
+			"hands_x0_y0_mainFocus8_",
+			"eatChicken.getPrize(8)",
+			"eatChicken.cursorEffect('prizeTwo','prizeArr',1)",
+			"hands_x0_y0_mainFocus7_",
+			"hands_x0_y0_mainFocus9_",
+			"hands_x0_y0_mainFocus11_",
+			"disable"
+		],
+		[
+			"hands_x0_y0_mainFocus9_",
+			"eatChicken.getPrize(9)",
+			"eatChicken.cursorEffect('prizeThree','prizeArr',2)",
+			"hands_x0_y0_mainFocus8_",
+			"disable",
+			"hands_x0_y0_mainFocus11_",
+			"disable"
+		],
+		[
+			"hands_x0_y0_mainFocus10_",
+			"eatChicken.getPrize(10)",
+			"eatChicken.cursorEffect('prizeFour','prizeArr',3)",
+			"disable",
+			"disable",
+			"disable",
+			"disable"
+		],
+		[
+			"hands_x0_y0_mainFocus11_",
+			"eatChicken.hidePop('prize',2)",
+			"eatChicken.cursorEffect('prizeBack','prizeArr',0)",
+			"hands_x0_y0_mainFocus8_",
+			"disable",
+			"disable",
+			"hands_x0_y0_mainFocus8_"
+		],
+		[
+			"hands_x0_y0_mainFocus12_",
+			"",
+			"eatChicken.cursorEffect('exchangePhone')",
+			"disable",
+			"hands_x0_y0_mainFocus13_",
+			"hands_x0_y0_mainFocus15_",
+			"disable"
+		],
+		[
+			"hands_x0_y0_mainFocus13_",
+			"eatChicken.upLoadPhone()",
+			"eatChicken.cursorEffect('exchangeConfirm')",
+			"hands_x0_y0_mainFocus12_",
+			"hands_x0_y0_mainFocus14_",
+			"hands_x0_y0_mainFocus15_",
+			"disable"
+		],
+		[
+			"hands_x0_y0_mainFocus14_",
+			"eatChicken.clearPhone()",
+			"eatChicken.cursorEffect('exchangeClear')",
+			"hands_x0_y0_mainFocus13_",
+			"hands_x0_y0_mainFocus15_",
+			"hands_x0_y0_mainFocus15_",
+			"disable"
+		],
+		[
+			"hands_x0_y0_mainFocus15_",
+			"eatChicken.hidePop('exchange',3)",
+			"eatChicken.cursorEffect('exchangeBack')",
+			"hands_x0_y0_mainFocus14_",
+			"disable",
+			"disable",
+			"hands_x0_y0_mainFocus14_"
+		]
+	]
+}

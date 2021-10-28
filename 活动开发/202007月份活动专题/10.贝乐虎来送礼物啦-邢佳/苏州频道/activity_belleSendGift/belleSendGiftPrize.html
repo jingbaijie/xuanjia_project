@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="page-view-size" content="1280*720"/>
+		<title>贝乐虎来送礼物啦获奖名单页</title>
+		<link rel="stylesheet" type="text/css" href="css/belleSendGift.css?V=2.666666"/>
+	</head>
+	<body>
+		<div id="prizeBox">
+			<!-- 返回按钮 -->
+			<div id="hands_x0_y0_prizeBackFocus_">
+				<img src="img/prizePage/backBtnFocus.png" alt="" id="prizeBackFocus" style="visibility:hidden;">
+			</div>
+			<!-- 用户信息 -->
+			<div id="userInfo"></div>
+			<!-- 中奖情况 -->
+			<div id="zhongJSituation"></div>
+			<!-- 联系手机 -->
+			<div id="telInput"></div>
+			<div id="hands_x0_y0_userPhoneFocus_">
+				<img src="img/prizePage/inputFocus.png" alt="" id="userPhoneFocus" style="visibility:hidden;">
+			</div>
+			<!-- 保存 -->
+			<div id="hands_x0_y0_saveFocus_">
+				<img src="img/prizePage/saveFocus.png" alt="" id="saveFocus" style="visibility:hidden;">
+			</div>
+			<!-- 清除 -->
+			<div id="hands_x0_y0_emptyFocus_">
+				<img src="img/prizePage/saveFocus.png" alt="" id="emptyFocus" style="visibility:hidden;">
+			</div>
+			<!-- 返回 -->
+			<div id="hands_x0_y0_prizeBackBtnFocus_">
+				<img src="img/rulePage/backFocus.png" alt="" id="prizeBackBtnFocus" style="visibility:hidden">
+			</div>
+			<!-- 提示 -->
+			<div id="savetips" style="position: absolute;left: 450px;color: #fff;top: 680px;font-size: 24px;"></div>
+			<!-- 奖品列表 -->
+			<div id="prizeListTitle">
+				<span>账号</span><span>奖品</span>
+			</div>
+			<div id="prizeListBox">
+				<ul id="prizeListUL" style="top: 0px;"></ul>
+			</div>
+		</div>
+		<!--引入公用JS-->
+		<script type="text/javascript" src="../../../../js/loadCommomJs.js"></script>
+		<script type="text/javascript" src="./js/actiComm.js?v=1.1"></script>
+		<!--引入结束-->
+		<script type="text/javascript">
+			var buttons = [
+				{
+					id: "hands_x0_y0_userPhoneFocus_",
+					otherFocusEvent:"javascript:getPrizePage.onFocus(1)",
+					otherBlurEvent:"javascript:getPrizePage.onFocus(0)",
+					left: "disable",
+					right: "hands_x0_y0_saveFocus_",
+					up: "hands_x0_y0_prizeBackBtnFocus_",
+					down: "disable",
+					focusType:7
+				},
+				{
+					id: "hands_x0_y0_saveFocus_",
+					clickHandler: "javascript:getPrizePage.saveFunc()",
+					otherBlurEvent:"javascript:getPrizePage.saveBlur()",
+					left: "hands_x0_y0_userPhoneFocus_",
+					right: "hands_x0_y0_emptyFocus_",
+					up: "hands_x0_y0_prizeBackBtnFocus_",
+					down: "disable",
+					focusType:7
+				},
+				{
+					id: "hands_x0_y0_emptyFocus_",
+					clickHandler: "javascript:getPrizePage.emptyFunc()",
+					left: "hands_x0_y0_saveFocus_",
+					right: "disable",
+					up: "hands_x0_y0_prizeBackBtnFocus_",
+					down: "disable",
+					focusType:7
+				},
+				{
+					id: "hands_x0_y0_prizeBackBtnFocus_",
+					clickHandler: "javascript:backfunc()",
+					left: "hands_x0_y0_userPhoneFocus_",
+					right: "disable",
+					up: "disable",
+					down: "hands_x0_y0_userPhoneFocus_",
+					focusType:7
+				}
+			]; 
+			//焦点初始化
+			PAGE.focusInit();
+			PAGE.changeFocus("hands_x0_y0_userPhoneFocus_");
+		</script>
+		<script type="text/javascript" src="js/belleSendGiftPrize.js?v=1.2666666"></script>
+	</body>
+</html>

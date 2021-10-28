@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name = "page-view-size" content = "1280*720">
+    <title>国庆七天乐首页</title>
+    <link rel="stylesheet" href="./css/7DayHappy.css">
+</head>
+<body>
+    <div class = "mainBg withScreen">
+        <!--    鸽子    -->
+        <div class = "gezi1"></div>
+        <!--    标题    -->
+        <div class = "title"></div>
+        <!--    两只鸽子    -->
+        <div class = "gezi2"></div>
+        <!--    IP人物    -->
+        <img id = "ipDom" src="./images/main/IP/0.png" alt="">
+        <!--    三只松鼠    -->
+        <img id = "ssDom" src="./images/main/sanzhisongshu.png" alt="">
+        <!--    气球    -->
+        <img id = "qqDom" src="./images/main/qiqiu.png" alt="">
+        <!--    布鲁克    -->
+        <img id = "blkDom" src="./images/main/buluke.png" alt="">
+        <!--    圆盘    -->
+        <div class = "yuanpan"></div>
+        <!--    一等奖    -->
+        <div class = "prize1"></div>
+        <!--    二等奖    -->
+        <div class = "prize2"></div>
+        <!--    三等奖    -->
+        <div class = "prize3"></div>
+        <!--    四等奖    -->
+        <div class = "prize4"></div>
+        <!--    空焦点    -->
+        <div id = "hands_x0_y0_emptyFocus_" style = "width: 2px;height: 2px;position: absolute;top: 245px;left: 130px;">
+            <img id = "emptyFocus" src="./images/empty.png" style = "visibility: hidden;" alt="">
+        </div>
+        <!--    开始焦点    -->
+        <img src = "./images/main/start.png" style = "width: 336px;height: 139px;position: absolute;top: 555px;left: 340px;" alt="">
+        <div id = "hands_x0_y0_startFocus_" style = "width: 336px;height: 139px;position: absolute;top: 555px;left: 340px;">
+            <img id = "startFocus" src="./images/main/strated.png" style = "visibility: hidden;" alt="">
+        </div>
+        <!--    规则焦点    -->
+        <img src = "./images/main/rule.png" style = "width: 211px;height: 74px;position: absolute;top: 630px;left: 865px;" alt="">
+        <div id = "hands_x0_y0_ruleFocus_" style = "width: 211px;height: 74px;position: absolute;top: 630px;left: 865px;">
+            <img id = "ruleFocus" src="./images/main/selected.png" style = "visibility: hidden;" alt="">
+        </div>
+        <!--    奖品焦点    -->
+        <img src = "./images/main/prize.png" style = "width: 211px;height: 74px;position: absolute;top: 630px;left: 1065px;" alt="">
+        <div id = "hands_x0_y0_prizeFocus_" style = "width: 211px;height: 74px;position: absolute;top: 630px;left: 1065px;">
+            <img id = "prizeFocus" src="./images/main/selected.png" style = "visibility: hidden;" alt="">
+        </div>
+        <!--    签到弹框    -->
+        <div id = "signConfirm" class = "withScreen" style = "visibility: hidden;">
+            <!--    置灰透明背景    -->
+            <div class = "withScreen" style = "background: black;opacity: 0.5;"></div>
+            <!--    签到背景图        -->
+            <div class = "signBg withScreen"></div>
+            <!--    灰色覆盖框        -->
+            <div id = "mainGray">
+                <img class = "mainGrayImg" style = "top: 32px;left: 52px;visibility: hidden;" src="./images/sign/gray.png" alt="">
+                <img class = "mainGrayImg" style = "top: 32px;left: 140px;visibility: hidden;" src="./images/sign/gray.png" alt="">
+                <img class = "mainGrayImg" style = "top: 32px;left: 228px;visibility: hidden;" src="./images/sign/gray.png" alt="">
+                <img class = "mainGrayImg" style = "top: 32px;left: 318px;visibility: hidden;" src="./images/sign/gray.png" alt="">
+                <img class = "mainGrayImg" style = "top: 115px;left: 91px;visibility: hidden;" src="./images/sign/gray.png" alt="">
+                <img class = "mainGrayImg" style = "top: 115px;left: 180px;visibility: hidden;" src="./images/sign/gray.png" alt="">
+                <img class = "mainGrayImg" style = "top: 115px;left: 267px;visibility: hidden;" src="./images/sign/gray.png" alt="">
+            </div>
+            <div id = "mainYes">
+                <img class = "mainYesImg" style = "top: 32px;left: 52px;visibility: hidden;" src="./images/sign/0.png" alt="">
+                <img class = "mainYesImg" style = "top: 32px;left: 140px;visibility: hidden;" src="./images/sign/0.png" alt="">
+                <img class = "mainYesImg" style = "top: 32px;left: 228px;visibility: hidden;" src="./images/sign/0.png" alt="">
+                <img class = "mainYesImg" style = "top: 32px;left: 318px;visibility: hidden;" src="./images/sign/0.png" alt="">
+                <img class = "mainYesImg" style = "top: 115px;left: 91px;visibility: hidden;" src="./images/sign/0.png" alt="">
+                <img class = "mainYesImg" style = "top: 115px;left: 180px;visibility: hidden;" src="./images/sign/0.png" alt="">
+                <img class = "mainYesImg" style = "top: 115px;left: 267px;visibility: hidden;" src="./images/sign/0.png" alt="">
+            </div>
+        </div>
+        <!--    弹窗    -->
+        <div id = "conFirm" class = "withScreen" style = "visibility: hidden;">
+            <!--      弹窗背景图      -->
+            <img id = "conBg" src="./images/confirm/signTomorrow.png" alt="">
+            <!--      弹窗确认焦点      -->
+            <img src="./images/confirm/sure.png" style = "width: 243px;height: 121px;position: absolute;top: 560px;left: 535px;" alt="">
+            <div id = "hands_x0_y0_conSureFocus_" style = "width: 243px;height: 121px;position: absolute;top: 560px;left: 535px;">
+                <img id = "conSureFocus" src="./images/confirm/selected.png" style = "visibility: hidden;" alt="">
+            </div>
+            <!--      弹窗去抽奖焦点      -->
+            <img src="./images/confirm/toChou.png" style = "width: 243px;height: 121px;position: absolute;top: 560px;left: 535px;visibility: hidden;" alt="">
+            <div id = "hands_x0_y0_conChouFocus_" style = "width: 243px;height: 121px;position: absolute;top: 560px;left: 535px;">
+                <img id = "conChouFocus" src="./images/confirm/selected.png" style = "visibility: hidden;" alt="">
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../../js/column.js"></script>
+<script src = "./js/actiComm.js"></script>
+<script>
+    var buttons = [
+        {
+            id: "hands_x0_y0_emptyFocus_",
+            clickHandler: "",
+            up: "disable",
+            down: "disable",
+            left: "disable",
+            right: "disable",
+            focusType: 7
+        },{
+            id: "hands_x0_y0_startFocus_",
+            clickHandler: "javascript: toSign()",
+            up: "disable",
+            down: "disable",
+            left: "disable",
+            right: "hands_x0_y0_ruleFocus_",
+            focusType: 7
+        },{
+            id: "hands_x0_y0_ruleFocus_",
+            clickHandler: "javascript: toRule()",
+            up: "disable",
+            down: "disable",
+            left: "hands_x0_y0_startFocus_",
+            right: "hands_x0_y0_prizeFocus_",
+            focusType: 7
+        },{
+            id: "hands_x0_y0_prizeFocus_",
+            clickHandler: "javascript: toPrize()",
+            up: "disable",
+            down: "disable",
+            left: "hands_x0_y0_ruleFocus_",
+            right: "disable",
+            focusType: 7
+        },{
+            id: "hands_x0_y0_conSureFocus_",
+            clickHandler: "javascript: backfunc()",
+            up: "disable",
+            down: "disable",
+            left: "hands_x0_y0_ruleFocus_",
+            right: "disable",
+            focusType: 7
+        }
+    ];
+    //签到页灰色覆盖物
+    var mainGrayImgs = document.getElementById("mainGray").getElementsByTagName("img");
+    //签到页勾选图
+    var mainYesImgs = document.getElementById("mainYes").getElementsByTagName("img");
+    //签到弹框
+    var signConfirm = document.getElementById("signConfirm");
+    //弹框
+    var conFirm = document.getElementById("conFirm");
+    //鉴权结果
+    var isOrder = 1;
+    //正在签到
+    var isSigning = false;
+    //"2019-09-05(签到日期)|true(是否连续签到)|false(是否已签到)|false(是否使用当天抽奖机会)_2019-09-06|false|true|false_2019-09-07|true|true|false"
+    var signData = null;
+    //天数为31天的月份
+    var day31Arr = [1,3,5,7,8,10,12];
+    //天数为30天的月份
+    var day30Arr = [4,6,9,11];
+    //今天日期
+    var nowDay = "1994-00-00";
+    //剩余机会，未使用
+    var chanceNum = 0;
+    //已使用机会，未使用
+    var isOrderNum = 0;
+    //获取用户签到信息，并通过getChance获取今日时间
+    actiObj.getChance(function(chanceRes){
+        isOrderNum = chanceRes.activityChance;
+        nowDay = chanceRes.createTime.substr(0,10);
+        actiObj.getUserDataList(function(res){
+            if(res && res.resultMsg == "success" && res.list){
+                signData = res.list[0].user_acti_data.split("_");
+                for(var i = 0; i < signData.length; i++){
+                    signData[i] = signData[i].split("|");
+                }
+            }else{
+                signData = [];
+            }
+			orderJs.columnGetAuth(function(data){
+				if(data == "0"){
+					isOrder = "0";
+				}else{
+					isOrder = "1";
+				}
+				if(actiUserId == "15579079375"){
+					isOrder  = "0";
+				}
+				setStatus();
+			});
+            
+        })
+    })
+    //计算签到日期并设置签到状态
+    function setStatus(){
+        if(signData.length <= 0){
+            signData.push([nowDay,"true","false","false"]);
+        }else if(signData.length >= 7){
+            if(signData[signData.length-1][0] != nowDay || (actiUserId == "15579079375" && CT.getCookie("actiLogin") == "yes")){
+                signData = [];
+                signData.push([nowDay,"true","false","false"]);
+            }
+        }else{
+			if(actiUserId == "15579079375" && CT.getCookie("actiLogin") == "yes"){
+				CT.delCookie("actiLogin");
+				if(signData.length >= 7){
+					signData = [];
+                    signData.push([nowDay,"true","false","false"]);
+				}else{
+                    signData.push([nowDay,"true","false","false"]);
+				}
+			}else if(signData[signData.length-1].indexOf(nowDay) == -1){
+                var firstDayDis = dayDis(signData[0][0],nowDay);
+                if(firstDayDis > 7){
+                    signData = [];
+                    signData.push([nowDay,"true","false","false"]);
+                }else{
+                    var lastDay = signData[signData.length-1];
+                    var nowSignLength = firstDayDis;
+                    if(lastDay.indexOf("null") != -1){
+                        for(var i = signData.length; i <= nowSignLength;i++){
+                            if(i = nowSignLength){
+                                signData.push([nowDay,"false","false","false"]);
+                            }else if(!signData[i]){
+                                signData.push(["null","false","false","false"]);
+                            }
+                        }
+                    }else{
+                        var lastDayDis = dayDis(lastDay[0],nowDay);
+                        for(var i = signData.length; i <= nowSignLength;i++){
+                            if(i == nowSignLength){
+                                if(lastDay[1]=="true" && lastDay[2]=="true" && lastDayDis == "1"){
+                                    signData.push([nowDay,"true","false","false"]);
+                                }else{
+                                    signData.push([nowDay,"false","false","false"]);
+                                }
+                            }else if(!signData[i]){
+                                signData.push(["null","false","false","false"]);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        for(var i = 0; i < signData.length; i++){
+            if(signData[i][0] != nowDay){
+                mainGrayImgs[i].style.visibility = "visible";
+                if(signData[i][2] == "true"){
+					mainYesImgs[i].src = "./images/sign/2.png";
+					mainYesImgs[i].style.visibility = "visible";
+                }
+            }else{
+                if(signData[i][2] == "true"){
+                    mainGrayImgs[i].style.visibility = "visible";
+					mainYesImgs[i].src = "./images/sign/2.png";
+                    mainYesImgs[i].style.visibility = "visible";
+                }
+            }
+        }
+		signConfirm.style.display = "none";
+		signConfirm.style.visibility = "visible";
+        getActiFocus();
+    }
+    //获取两个日期间的间隔天数
+    function dayDis(day1,day2){
+        day1 = day1.split("-");
+        day2 = day2.split("-");
+        if(day1[1] == day2[1]){
+            return parseInt(day2[2]-day1[2]);
+        }else{
+            if(parseInt(day1[1]) == 2){
+                if(parseInt(day1[0])%400 === 0){
+                    return ((29-parseInt(day1[2]))+(parseInt(day2[2]) - 0));
+                }else{
+                    return ((28-parseInt(day1[2]))+(parseInt(day2[2]) - 0));
+                }
+            }else if(day30Arr.indexOf(parseInt(day1)) != -1){
+                return ((30-parseInt(day1[2]))+(parseInt(day2[2]) - 0));
+            }else{
+                return ((31-parseInt(day1[2]))+(parseInt(day2[2]) - 0));
+            }
+        }
+    }
+    //获取焦点
+    function getActiFocus(){
+        focusInit();
+        curFocus.defaultBlur();
+        curFocus = getFocusModel6("hands_x0_y0_startFocus_");
+        curFocus.defaultFocus();
+    }
+    //参与签到，第一天签到免费
+    function toSign(){
+        if(!isSigning){
+            if(isOrder == "0" || (signData.length === 1 && signData[0][3] == "false")){
+                signConfirm.style.display = "block";
+                isSigning = true;
+                var dayNums = signData.length;
+                var signAniFlag = false;
+                if(signData[dayNums-1][2] != "true"){
+                    signData[dayNums-1][2] = "true"
+                    signAniFlag = true;
+
+                }
+                for(var i = 0; i < signData.length;i++){
+                    signData[i] = signData[i].join("|");
+                }
+                signData = signData.join("_");
+                actiObj.setUserDataList(signData,function () {
+                    if(signAniFlag){
+                        var yesFlag = 0;
+						mainYesImgs[dayNums-1].style.visibility = "visible";
+                        setInterval(function(){
+							if(yesFlag < 3){
+								mainYesImgs[dayNums-1].src = "./images/sign/"+ yesFlag +".png";
+							}
+                            yesFlag ++;
+                            if(yesFlag >= 6){
+                                if(dayNums == 1 || dayNums == 4 || dayNums == 7){
+                                    actiObj.toJumpUrl("acti7DayHappyVideo.html");
+                                }else if(dayNums == 2 || dayNums == 5){
+                                    actiObj.toJumpUrl("acti7DayHappyDelete.html");
+                                }else{
+                                    actiObj.toJumpUrl("acti7DayHappyQuestion.html");
+                                }
+                            }
+                        },400);
+                    }else{
+                        setTimeout(function(){
+                            if(dayNums == 1 || dayNums == 4 || dayNums == 7){
+                                actiObj.toJumpUrl("acti7DayHappyVideo.html");
+                            }else if(dayNums == 2 || dayNums == 5){
+                                actiObj.toJumpUrl("acti7DayHappyDelete.html");
+                            }else{
+                                actiObj.toJumpUrl("acti7DayHappyQuestion.html");
+                            }
+                        },600);
+                    }
+
+                })
+            }else{
+				orderJs.columnToOrderPage("acti7DayHappy");
+            }
+        }
+    }
+    //跳转规则页
+    function toRule(){
+        actiObj.toJumpUrl("./acti7DayHappyRule.html");
+    }
+    //跳转奖品页
+    function toPrize(){
+        actiObj.toJumpUrl("./acti7DayHappyPrize.html");
+    }
+    //返回方法
+    function backfunc(){
+        if(!isSigning){
+            if(CT.$("conFirm").style.visibility == "visible"){
+				BackPortalMainPage();
+            }else{
+                CT.$("conFirm").style.visibility = "visible";
+                actiObj.changeFocus("hands_x0_y0_conSureFocus_");
+            }
+        }
+    }
+</script>
+</html>

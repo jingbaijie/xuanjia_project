@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>打卡抽奖页</title>
+		<link rel="stylesheet" type="text/css" href="css/signLottery.css?v=3.522222222" />
+	</head>
+
+	<body>
+		<div class="bottomBG">
+			<!--导航条-->
+			<div class="navBar">
+				<img src="img/coin.png" class="coinImg" />
+				<div class="scoreText">累计积分：<span id="scoreNum">100</span>分</div>
+			</div>
+			<!--签到打卡-->
+			<div class="signLotteryBG">
+				<img src="img/speaker.png" class="speakerImg" />
+				<div class="speaker" id="speaker" style="left: 90px;top: 0px;line-height: 30px;">
+					<ul id="speakerTotal" style="top: 0px;position: absolute;">
+						<li>恭喜用户180***7710获得乐高玩具一套</li>
+					</ul>
+				</div>
+				<!--抽奖转盘-->
+				<img src="img/prize/aroundProduct.png" class="prize0" />
+				<img src="img/prize/score5.png" class="prize1" />
+				<img src="img/prize/experience15.png" class="prize2" />
+				<img src="img/prize/score10.png" class="prize3" />
+				<img src="img/prize/legao.png" class="prize4" />
+				<img src="img/prize/score20.png" class="prize5" />
+				<img src="img/prize/experience30.png" class="prize6" />
+				<img src="img/prize/score30.png" class="prize7	" />
+				<!--抽奖按钮-->
+				<img src="img/prize/lotteryBtn1.png" id="lotteryBtn" />
+				<div id="hands_x0_y0_lotteryBtnFocus_">
+					<img src="img/lotteryFocus.png" id="lotteryBtnFocus" style="visibility: hidden;" />
+				</div>
+				<div class="ruleText" id="ruleText">
+					<ul id="ruleText_ul" style="margin-bottom: 10px;">
+						<li>积分规则：</li>
+						<li>1、首次输入手机号登录可</li>
+						<li>获100积分。</li>
+						<li>2、每日签到打卡可获10</li>
+						<li>积分。</li>
+						<li>3、每周抽奖活动可获5积</li>
+						<li>分、10积分、20积分、</li>
+						<li>30积分。（随机抽取）</li>
+						<li>4、公益课程每节课完整播</li>
+						<li>放可获10积分，重复观看</li>
+						<li style="margin-bottom: 12px;">无额外积分。</li>
+						<li>积分兑换:</li>
+						<li>1、海选开始，凭积分可</li>
+						<li>兑换一次直通复赛机会，</li>
+						<li>名额不限。</li>
+						<li>2、复赛开始，凭积分可</li>
+						<li>兑换一次直通半决赛机会</li>
+						<li>，名额30名，兑完即止。</li>
+						<li>3、半决赛开始，凭积分</li>
+						<li>可兑换一次直通决赛机会</li>
+						<li>，名额30名，兑完即止。</li>
+						<li>4、决赛开始，凭积分可</li>
+						<li>兑换一次“牛娃来了”电</li>
+						<li>台节目录制机会，名额10</li>
+						<li>名，兑完即止。</li>
+					</ul>
+					<ul id="ruleText_ul2"></ul>
+				</div>
+				<!--签到-->
+				<!--今日签到按钮-->
+				<img src="img/signBtn.png" id="todaySignBtn" />
+				<div id="hands_x0_y0_todaySignFocus_">
+					<img src="img/chooseFocusBold.png" id="todaySignFocus" style="visibility: hidden;" />
+				</div>
+				<!--积分兑换按钮-->
+				<img src="img/exchanged.png" id="exchangeBtn" />
+				<div id="hands_x0_y0_exchangeBtnFocus_">
+					<img src="img/chooseFocusBold.png" id="exchangeBtnFocus" style="visibility: hidden;" />
+				</div>
+				<!--连续签到文字提示-->
+				<div class="continuousText">———&nbsp;已连续签到<span id="continuousNum">2</span>天&nbsp;———</div>
+				<!--签到图片提示-->
+				<div class="signIcon" id="signIcon">
+					<img src="img/sign/1.png" />
+					<img src="img/sign/2.png" />
+					<img src="img/sign/3.png" />
+					<img src="img/sign/4.png" />
+					<img src="img/sign/5.png" />
+					<img src="img/sign/6.png" />
+					<img src="img/sign/7.png" />
+				</div>
+				<!--签到恭喜获得10积分提示-->
+				<img src="img/get10Score.png" id="get10ScoreTip" style="visibility: hidden;" />
+				<!--空焦点-->
+				<div id="hands_x0_y0_emptyFocus_">
+					<img src="img/empty.png" id="emptyFocus" />
+				</div>
+				<!--抽奖中请勿做多余操作、该奖品数量不足-->
+				<div id="littleTips" style="top: 5px;left: 500px;"></div>
+				<!--底部备注文字-->
+				<div style="width: 650px;position: absolute;left: 50px;top: 446px;color: red;font-size: 18px;font-weight: bold;">
+					<div>注：实物奖品请于十天内前往江苏有线无锡分公司一楼市场部领取，逾期无效。</div>
+					<div>最终解释权归江苏有线无锡分公司所有。详询：96296。</div>
+				</div>
+			</div>
+			<!--积分兑换弹窗-->
+			<div id="exchangeTip" style="visibility: hidden;">
+				<!--文字-->
+				<div id="exchangeTip_text1" style="color: red;">晋级复赛</div>
+				<div id="exchangeTip_text2">晋级半决赛</div>
+				<div id="exchangeTip_text3">晋级决赛</div>
+				<div id="exchangeTip_text4">“牛娃来了”现场节目录制</div>
+				<!--图标-->
+				<img src="img/exchange/going1.png" alt="" id="exchangeIcon1" />
+				<img src="img/exchange/noStart2.png" alt="" id="exchangeIcon2" />
+				<img src="img/exchange/noStart2.png" alt="" id="exchangeIcon3" />
+				<img src="img/exchange/noStart2.png" alt="" id="exchangeIcon4" />
+				<!--积分兑换-->
+				<div id="exchangePageBtn" style="color: red;font-size: 20px;position: absolute;top: 472px;left: 540px;font-weight: bold;">110积分兑换</div>
+				<div id="hands_x0_y0_exchangePageBtnFocus_" style="color: red;font-size: 20px;position: absolute;top: 455px;left: 460px;">
+					<img src="img/exchange/chooseFocus.png" id="exchangePageBtnFocus" />
+				</div>
+				<!--提示文字-->
+				<div id="exchangeMessage" style="position: absolute;left: 310px;top: 140px;color: red;font-size: 35px;font-weight: bold;"></div>
+			</div>
+			<!--中奖弹窗-->
+			<div id="getprizeTipBG" style="visibility: hidden;">
+				<img src="img/empty.png" id="getprizeTip" />
+				<div id="hands_x0_y0_getprizeFocus_">
+					<img src="img/empty.png" id="getprizeFocus" />
+				</div>
+			</div>
+			<!-- 模态框 -->
+			<div class="modal-box" style="visibility: hidden;" id="modalBox">
+				<div class="modal-input-box" id="hands_x0_y0_inputX_">
+					<div id="inputDiv" class="input-div"></div>
+					<img id="inputX" src="./img/mobileCheck.png" style="visibility: hidden;" alt="">
+				</div>
+				<div id="phoneTips"></div>
+				<div id="hands_x0_y0_confirm_" class="modal-confirm" style="top: 530px;left: 760px;">
+					<img id="confirm" src="./img/checkModal.png" style="visibility: hidden;" alt="">
+				</div>
+			</div>
+		</div>
+		<!--引入公用js-->
+		<script type="text/javascript" src="../../../../js/loadCommomJs.js"></script>
+		<script type="text/javascript" src="js/actiComm.js?v=1"></script>
+		<!--<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>-->
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<!--公用js引入结束-->
+		<script type="text/javascript">
+			/*
+			 * 打卡签到页逻辑：
+			 * 签到一次获取10积分，连续签到一周才能参与抽奖，否则提示积分不足，无法参与抽奖
+			 * 抽奖随机抽取获得积分
+			 * 积分满足条件110积分（复赛）、500积分（半决赛）、800积分（决赛）、1000积分（现场录制）可以兑换对应的奖品
+			 */
+			//焦点数组
+			var buttons = [{
+					id: "hands_x0_y0_todaySignFocus_",
+					clickHandler: "javascript:signLotteryPS.todaySignFunc()",
+					left: "disable",
+					right: "disable",
+					up: "disable",
+					down: "hands_x0_y0_exchangeBtnFocus_",
+					focusType: 7
+				}, {
+					id: "hands_x0_y0_exchangeBtnFocus_",
+					clickHandler: "javascript:signLotteryPS.exchangeFunc()",
+					left: "disable",
+					right: "disable",
+					up: "hands_x0_y0_todaySignFocus_",
+					down: "disable",
+					focusType: 7
+				},
+				{
+					id: "hands_x0_y0_lotteryBtnFocus_",
+					clickHandler: "javascript:signLotteryPS.lotteryFunc()",
+					left: "disable",
+					right: "disable",
+					up: "disable",
+					down: "disable",
+					focusType: 7
+				}, {
+					id: "hands_x0_y0_emptyFocus_",
+					left: "disable",
+					right: "disable",
+					up: "disable",
+					down: "disable",
+					focusType: 7
+				}, {
+					id: "hands_x0_y0_exchangePageBtnFocus_",
+					clickHandler: "javascript:signLotteryPS.exchangePageBtnFunc()",
+					left: "disable",
+					right: "disable",
+					up: "disable",
+					down: "disable",
+					focusType: 7
+				},
+				{
+					id: "hands_x0_y0_getprizeFocus_",
+					clickHandler: "javascript:signLotteryPS.getprizeConfirm()",
+					left: "disable",
+					right: "disable",
+					up: "disable",
+					down: "disable",
+					focusType: 7
+				},
+				{
+					id: "hands_x0_y0_inputX_",
+					clickHandler: "",
+					otherFocusEvent: "javascript: onFocus(1)",
+					otherBlurEvent: "javascript: onFocus(1)",
+					left: "disable",
+					right: "hands_x0_y0_confirm_",
+					up: "disable",
+					down: "disable",
+					focusType: 7
+				},
+				{
+					id: "hands_x0_y0_confirm_",
+					clickHandler: "javascript: confirmHandle()",
+					left: "hands_x0_y0_inputX_",
+					right: "disable",
+					up: "disable",
+					down: "disable",
+					focusType: 7
+				}
+			]
+		</script>
+		<script type="text/javascript" src="js/signLottery.js?v=202001010203003"></script>
+	</body>
+
+</html>

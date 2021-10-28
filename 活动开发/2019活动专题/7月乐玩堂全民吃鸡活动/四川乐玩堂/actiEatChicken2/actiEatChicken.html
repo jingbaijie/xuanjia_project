@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta name="page-view-size" content="1280*720">
+    <title>吃鸡载具首页</title>
+    <link rel="stylesheet" href="./css/style.css?v=2019061301">
+</head>
+<body>
+    <div id="wrapper" data-info="0">
+        <!--背景动态元素-->
+        <div class="dynamic">
+            <!--图标-->
+            <div id="icon">
+                <i></i>
+                <i></i>
+                <i></i>
+            </div>
+            <!--方格子-->
+            <div id="squareRoad" class="active">
+                <i></i>
+                <i></i>
+                <i></i>
+                <i></i>
+                <i></i>
+            </div>
+            <!--原点效果
+            <div id="circleRoad">
+                <s></s>
+                <s></s>
+                <s></s>
+                <s></s>
+                <s></s>
+                <s></s>
+                <s></s>
+                <s></s>
+            </div>
+			-->
+            <!--筛子-->
+            <div id="sievesMove">
+                <i id="sieves"></i>
+                <img src="" alt="">
+            </div>
+        </div>
+        <!--宝箱-->
+        <div id="treasure">
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+        </div>
+        <!--车-->
+        <div id="car" class=""></div>
+        <!--弹框-->
+        <div id="pop" class="">
+            <!--规则弹框-->
+            <div id="rule">
+                <i></i>
+                <i></i>
+                <i></i>
+                <i style="display:none;"></i>
+            </div>
+            <!--奖品兑换弹框-->
+            <div id="prize" class="">
+                <i><s class="active"></s></i>
+                <i><s class="active"></s></i>
+                <i><s class="active"></s></i>
+                <!--<i><s class="active"></s></i>-->
+                <div id="prizeResult"></div>
+				<ul id="needCoins">
+					<li>×<span id="amount0">700</span></li>
+					<li>×<span id="amount1">500</span></li>
+					<li>×<span id="amount2">300</span></li>
+				</ul>
+            </div>
+            <!--兑换记录弹框-->
+            <div id="exchange" class="">
+                <!--获奖列表-->
+                <div id="exchangeList">
+                    <ul></ul>
+                </div>
+                <!--当前用户-->
+                <div id="currentUser"></div>
+                <!--手机号码-->
+                <div id="phoneText"></div>
+                <div id="phoneInfo"></div>
+            </div>
+            <!--开宝箱的弹框-->
+            <div id="openPop" class="">
+                <i id="openInfo"></i>
+            </div>
+        </div>
+        <!--选中图-->
+        <div id="cursorImg"></div>
+        <!--焦点-->
+        <div id="focusDiv" ></div>
+        <!--信息-->
+        <div id="exchangeError"
+             style="position: absolute;z-index:100;left: 100px;top: 30px;color:#fff;font-size: 40px;height:0;opacity:
+0;">05
+            --</div>
+		<!--打印信息-->
+		<ul id="print" style="position:absolute;left:400px;top:200px;color:red;font-size:20px;">
+		<li id="print1"></li>
+		<li id="print2"></li>
+		<li id="print3"></li>
+		<li id="print4"></li>
+		<li id="print5"></li>
+		<li id="print6"></li>
+		<li id="print7"></li>
+		<li id="print8"></li>
+		<li id="print9"></li>
+		<li id="print10"></li>
+		<li id="print11"></li>
+		<li id="print12"></li>
+		<li id="print13"></li>
+		<li id="print14"></li>
+		</ul>
+    </div>
+
+    <!--引用公共的js开始-->
+   <script type = "text/javascript" src = "../../../js/column.js"></script>
+    <!--引用公共的js结束-->
+    <script type="text/javascript" src="./js/interface.js?s=2018102202"></script>
+    <script type="text/javascript" src="./js/main.js?s=20190"></script>
+</body>
+</html>

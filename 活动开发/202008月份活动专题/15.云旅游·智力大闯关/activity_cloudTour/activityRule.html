@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="page-view-size" content="1280*720">
+    <title>活动规则页</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="mainContent" style="left:0px; top:0px; position: absolute;width: 1280px;height: 720px;overflow: hidden;">
+        <img src="./img/ruleTel.png">
+    </div>
+</body>
+<!-- 引入平台公共js开始 -->
+<script type="text/javascript" src="../../../js/column.js"></script>
+<!-- 引入平台公共js结束 -->
+<script src="js/actiComm.js"></script>
+<script>
+    // 获取url查询字符串
+    function getQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) {
+            return unescape(r[2]);
+        }
+        return null;
+    }
+    var remainChance = getQueryString("remainChance");
+    //返回方法
+    function backfunc() {
+        window.location.href = "cloudTour.html?vTime=" + new Date().getTime() + "&remainChance=" + remainChance;
+    }
+</script>
+
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="page-view-size" content="1280*720">
+		<link rel="stylesheet" href="./css/activity_ZJGNewYear.css">
+		<title>双十一限时优惠规则页</title>
+	</head>
+
+	<body>
+		<div class="withScreen mainBg">
+			<!--    规则页背景    -->
+			<img id="ruleBG" class="withScreen" src="./images/ruleBG.png" alt="">
+			<!--    返回按钮    -->
+			<div id="hands_x0_y0_backFocus_" style="width: 67px;height: 67px;position: absolute;top: 77px;left: 953px;">
+				<img id="backFocus" src="./images/back.png" style="width: 67px;height: 67px;" alt="">
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../../../js/loadCommomJs.js"></script>
+	<script type="text/javascript" src="../../../../js/actiComm.js"></script>
+	<script type="text/javascript" src="./js/music_11.js?v=2020010701"></script>
+	<script>
+		var actiPageCname = "";
+		var buttons = [{
+			id: "hands_x0_y0_backFocus_",
+			clickHandler: "javascript: backfunc()",
+			up: "disable",
+			down: "disable",
+			left: "disable",
+			right: "disable",
+			focusType: 7
+		}];
+		//焦点初始化
+		PAGE.focusInit();
+		PAGE.changeFocus("hands_x0_y0_backFocus_");
+
+		try {
+			startMp3();
+		} catch(e) {}
+
+		function backfunc() {
+			try {
+				stopMp3();
+			} catch(e) {}
+			actiObj.actiCommonJumpUrl("activity_ZJGMain.html");
+		}
+	</script>
+
+</html>

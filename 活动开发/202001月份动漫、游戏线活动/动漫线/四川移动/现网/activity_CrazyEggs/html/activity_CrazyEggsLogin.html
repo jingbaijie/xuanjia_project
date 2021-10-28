@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>疯狂扭蛋机登陆页</title>
+	</head>
+
+	<body>
+		<!--<div id="testdiv" style="font-size:20px;color:red;position:absolute;left:10px;top:100px;"></div>-->
+		<!--引入公用JS-->
+		<script type="text/javascript" src="../../../../js/column.js"></script>
+		<script type="text/javascript" src="../js/actiComm.js?v=2020010202"></script>
+		<!--引用结束-->
+		<script type="text/javascript">
+			var errorTip = {
+				isError: true,
+				isDebug: true,
+				writeErrorInfo: function(msg) {
+					var _this = this;
+					if(_this.isDebug) {
+						if(_this.isError) {
+							var elm = document.createElement("div");
+							elm.id = "errorText";
+							elm.style.cssText = "position: absolute;top:100px;left:100px;z-index:100;background-color:rgba(0,0,0,0.8);color:red;font-size:24px;";
+							elm.innerHTML = msg + "<br>";
+							document.body.appendChild(elm);
+							this.isError = false;
+							return;
+						} else {
+							var elm = document.getElementById("errorText");
+							elm.innerHTML += msg + "<br>";
+						}
+					}
+
+				},
+				init: function() {
+					var _this = this;
+					window.onerror = errorFun;
+
+					function errorFun(msg, url, line) {
+						//没有URL不上报！上报也不知道错误
+
+						var txt = "";
+						txt += "msg:" + msg + ":Line:" + line + ";<br>fileUrl:" + url;
+
+						_this.writeErrorInfo(txt);
+						return false;
+					};
+				}
+			};
+			//errorTip.init();
+			//document.getElementById("testdiv").innerHTML += "进入打印js---";
+			//获取眉头信息参数
+			function GetQueryString(name) {
+				//document.getElementById("testdiv").innerHTML += "进入取眉头方法---<br/>";
+				var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+				console.log(reg)
+				var r = window.location.search.substr(1).match(reg);
+				if(r != null) return unescape(r[2]);
+				return null;
+			}
+			(function() {
+				//document.getElementById("testdiv").innerHTML += "眉头地址:"+window.location.href+"---<br/>";
+				//document.getElementById("testdiv").innerHTML += "进入打印获取参数方法---<br/>";
+				//存取cookie
+				var userId = GetQueryString("userId"),
+					activityId = GetQueryString("activityId"),
+					userToken = GetQueryString("userToken"),
+					carrierId = GetQueryString("carrierId"),
+					pid = GetQueryString("pid"),
+					fromTVOrderPage = GetQueryString("fromTVOrderPage");
+				if(userId) {
+					//document.getElementById("testdiv").innerHTML += "获取actiUserId:"+userId+"---<br/>";
+					//CT.delCookie("userId");
+					CT.setCookie("actiUserId", userId);
+					//document.getElementById("testdiv").innerHTML += "setCookie之后actiUserId---<br/>";
+				}
+				if(activityId) {
+					//document.getElementById("testdiv").innerHTML += "获取activityId:"+activityId+"---<br/>";
+					CT.delCookie("activityId");
+					CT.setCookie("activityId", activityId);
+				}
+				if(userToken) {
+					//document.getElementById("testdiv").innerHTML += "获取userToken:"+userToken+"---<br/>";
+					CT.delCookie("userToken");
+					CT.setCookie("userToken", userToken);
+				}
+				if(carrierId) {
+					//document.getElementById("testdiv").innerHTML += "获取carrierId:"+carrierId+"---<br/>";
+					CT.delCookie("carrierId");
+					CT.setCookie("carrierId", carrierId);
+				}
+				if(pid) {
+					//document.getElementById("testdiv").innerHTML += "获取pid:"+pid+"---<br/>";
+					CT.delCookie("pid");
+					CT.setCookie("pid", pid);
+				}
+				var str = location.href.substr((location.href.indexOf("?")) + 1);
+				//document.getElementById("testdiv").innerHTML += "window.onload之前---<br/>";
+				window.onload = function() {
+					//document.getElementById("testdiv").innerHTML += "跳首页之前---<br/>";
+					window.location.href = "activity_CrazyEggsMain.html" + "?" + str;
+					//CT.$("testdiv").innerHTML += "activity_CrazyEggsMain.html" + "?" + str;
+				}
+			})();
+		</script>
+	</body>
+
+</html>

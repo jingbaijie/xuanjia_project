@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="page-view-size" content ="1280*720" />
+    <title>小P悠悠活动首页</title>
+    <style>
+        .main{
+            position: absolute;
+            width: 1280px;
+            height: 720px;
+            margin: 0;
+            padding: 0;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            text-align: center;
+            background : url("./images/mainPage/BG.jpg") no-repeat;
+        }
+        .bird1 {
+            animation: translatings 3s linear infinite;
+            -webkit-animation: translatings 3s linear infinite;
+        }
+        @keyframes translatings {
+            0%, 100% {
+                transform: translate(0);
+                -webkit-transform: translate(0);
+                -ms-transform: translate(0);
+            }
+            50% {
+                transform: translate(70px, -88px);
+                -webkit-transform: translate(70px, -88px);
+                -ms-transform: translate(70px, -88px);
+            }
+        }
+        @-webkit-keyframes translatings {
+            0%, 100% {
+                transform: translate(0);
+                -webkit-transform: translate(0);
+                -ms-transform: translate(0);
+            }
+            50% {
+                transform: translate(70px, -88px);
+                -webkit-transform: translate(70px, -88px);
+                -ms-transform: translate(70px, -88px);
+            }
+        }
+        .bird2 {
+            animation: translating 3s linear infinite;
+            -webkit-animation: translating 3s linear infinite;
+        }
+        @keyframes translating {
+            0%, 100% {
+                transform: translateY(0);
+                -webkit-transform: translateY(0);
+                -ms-transform: translateY(0);
+            }
+            50% {
+                transform: translateY(30px);
+                -webkit-transform: translateY(30px);
+                -ms-transform: translateY(30px);
+            }
+        }
+        @-webkit-keyframes translating {
+            0%, 100% {
+                transform: translateY(0);
+                -webkit-transform: translateY(0);
+                -ms-transform: translateY(0);
+            }
+            50% {
+                transform: translateY(30px);
+                -webkit-transform: translateY(30px);
+                -ms-transform: translateY(30px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <!-- 返回按钮 -->
+        <img src = "./images/mainPage/back.png" style = "width: 143px;height: 65px;position: absolute;top: 14px;left: 1117px;">
+        <div id = "hands_x0_y0_backFocus_" style = "width: 143px;height: 65px;position: absolute;top: 14px;left: 1117px;">
+            <img id = "backFocus" src = "./images/mainPage/backed.png" style = "width: 143px;height: 65px;visibility: hidden;">
+        </div>
+        <!--
+
+        <img src = "./images/mainPage/eyes.png" style = "width: 140px;height: 77px;position: absolute;top: 242px;left: 595px;">
+
+        <img src = "./images/mainPage/move.png" style = "width: 622px;height: 218px;position: absolute;top: -10px;left: 430px;">
+        -->
+        <!-- 开始游戏按钮 -->
+        <img src = "./images/mainPage/begin.png" style = "width: 155px;height: 156px;position: absolute;top: 548px;left: 526px;">
+        <div id = "hands_x0_y0_startFocus_" style = "width: 155px;height: 156px;position: absolute;top: 552px;left: 526px;">
+            <img id = "startFocus" src = "./images/mainPage/begined.png" style = "width: 155px;height: 156px;visibility: hidden;">
+        </div>
+
+        <!-- 剩余机会 -->
+        <!--<div id = "chanceLeft" style = "width: 70px;height: 40px;position:absolute;top: 645px;left: 1170px;font-size: 28px;line-height: 40px;font-weight: bold;color: blue;text-align: center;">
+            0
+        </div>-->
+
+        <!-- 胖鸟 -->
+        <img class="bird1" src = "./images/mainPage/bird1.png" style = "width: 111px;height: 103px;position: absolute;top: 368px;left: 702px;">
+        <!-- 瘦鸟 -->
+        <img class="bird2" src = "./images/mainPage/bird2.png" style = "width: 77px;height: 118px;position: absolute;top: 170px;left: 333px;">
+
+        <!-- 活动规则 -->
+        <img src = "./images/mainPage/rule.png" style = "width: 176px;height: 88px;position: absolute;top: 629px;left: 338px;">
+        <div id = "hands_x0_y0_ruleFocus_" style = "width: 176px;height: 88px;position: absolute;top: 629px;left: 338px;">
+            <img id = "ruleFocus" src = "./images/mainPage/ruleSelected.png" style = "width: 176px;height: 88px;visibility: hidden;">
+        </div>
+        <!-- 排行榜 -->
+        <img src = "./images/mainPage/rank.png" style = "width: 176px;height: 88px;position: absolute;top: 629px;left: 694px;">
+        <div id = "hands_x0_y0_prizeFocus_" style = "width: 176px;height: 88px;position: absolute;top: 629px;left: 694px;">
+            <img id = "prizeFocus" src = "./images/mainPage/ruleSelected.png" style = "width: 176px;height: 88px;visibility: hidden;">
+        </div>
+        <!-- 无机会弹框 -->
+        <img id="modal" src="images/window/noChance.png" style = "width: 1280px; height: 720px; position: absolute; top: 0; left: 0;visibility: hidden;">
+        <div id="hands_x0_y0_modalFocus_" class="modalFocus" style="width: 220px; height: 87px; position: absolute; top: 485px; left: 537px;">
+            <img id="modalFocus" src="./images/startGame/confirm.png" style="width: 220px; height: 87px;visibility: hidden;">
+        </div>
+    </div>
+</body>
+<script type = "text/javascript" src = "../../../js/column.js"></script>
+<script type="text/javascript" src="./js/actiComm.js"></script>
+<script>
+    //选中框
+    var buttons = [
+        {
+            id: "hands_x0_y0_backFocus_",
+            clickHandler:"javascript:backfunc()",
+            left:"hands_x0_y0_startFocus_",
+            right:"disable",
+            up:"disable",
+            down:"hands_x0_y0_startFocus_",
+            focusType:7
+        },
+        {
+            id: "hands_x0_y0_startFocus_",
+            clickHandler:"javascript:startGame()",
+            left:"hands_x0_y0_ruleFocus_",
+            right:"hands_x0_y0_prizeFocus_",
+            up:"hands_x0_y0_backFocus_",
+            down:"disable",
+            focusType:7
+        },
+        {
+            id: "hands_x0_y0_ruleFocus_",
+            clickHandler:"javascript:rule()",
+            left:"disable",
+            right:"hands_x0_y0_startFocus_",
+            up:"hands_x0_y0_startFocus_",
+            down:"disable",
+            focusType:7
+        },
+        {
+            id: "hands_x0_y0_prizeFocus_",
+            clickHandler:"javascript:list()",
+            left:"hands_x0_y0_startFocus_",
+            right:"disable",
+            up:"hands_x0_y0_startFocus_",
+            down:"disable",
+            focusType:7
+        },{
+            id: "hands_x0_y0_modalFocus_",
+            clickHandler: "javascript: hideConfirm()",
+            up: "disable",
+            down: "disable",
+            left: "disable",
+            leftEvent: "disable",
+            right: "disable",
+            focusType: 7
+        }
+    ];
+    //用户今日剩余机会
+    var chanceNum = 0;
+    //用户今日已使用机会
+    var isOrderNum = 0;
+    //用户鉴权结果
+    var isOrder = 1;
+    //用户点击进入游戏页多次点击拦截
+    var canGoGame = true;
+
+    // 初始化焦点并鉴权
+    function initAuth(){
+        //鉴权(data为0,鉴权通过,其余则未通过,需要跳转订购)
+        orderJs.columnGetAuth(function(data){
+            isOrder = data + "";
+            setActiFocus();
+        });
+    }
+    initAuth();
+
+    //获取用户今日剩余机会
+    function getActiChance(fn){
+        //获取用户今日已使用机会
+        actiObj.getChance(function(res){
+            if(res){
+                isOrderNum = res.activityChance;
+            }else{
+                isOrderNum = 3;
+            }
+            chanceNum = 3 - isOrderNum;
+            fn && fn();
+        });
+    }
+    //上传机会
+    function setActiChance(fn){
+        actiObj.setChance(function(){
+            fn && fn();
+        });
+    }
+    //初始化焦点
+    function setActiFocus(focusName){
+        focusInit();
+        curFocus.defaultBlur();
+        if(actiObj.checkFocusAble(focusName) === true){
+            curFocus = getFocusModel6(focusName);
+        }else{
+            var actiPreFocus = CT.getCookie("actiPreFocus") + "";
+            if(actiObj.checkFocusAble(actiPreFocus) === true){
+                curFocus = getFocusModel6(actiPreFocus);
+            }else{
+                curFocus = getFocusModel6("hands_x0_y0_startFocus_");
+            }
+        }
+        curFocus.defaultFocus();
+    }
+    //跳转规则页
+    function rule(){
+        window.location.href = "./actiYOYORule.html";
+    }
+    //跳转排行榜页面
+    function list(){
+        window.location.href = "./actiYOYORank.html";
+    }
+    //跳转游戏页
+    function startGame() {
+        if(canGoGame){
+            canGoGame = false;
+            //跳转前先获取用户今日是否拥有机会,无机会则显示无机会弹框
+            getActiChance(function(){
+                //机会次数大于0
+                if(chanceNum > 0){
+                    canGoGame = true;
+                    //用户已订购(鉴权通过)跳转游戏,未订购跳转订购
+                    if(isOrder == "0"){
+                        window.location.href = "./actiYOYOGame.html?actiChance=" + chanceNum + "&actiTime=" + new Date().getTime();
+                    }else{
+                        orderJs.columnToOrderPage("actiYOYO");
+                    }
+                }else{
+                    canGoGame = true;
+                    showNoChance();
+                }
+            });
+        }
+    }
+    //显示今日无机会弹框
+    function showNoChance(){
+        CT.$("modal").style.visibility = "visible";
+        actiObj.changeFocus("hands_x0_y0_modalFocus_");
+    }
+    //隐藏弹框
+    function hideConfirm(){
+        CT.$("modal").style.visibility = "hidden";
+        actiObj.changeFocus("hands_x0_y0_startFocus_");
+    }
+    /* 返回方法 返回平台首页*/
+    function backfunc(){
+        if(CT.$("modal").style.visibility == "visible"){
+            hideConfirm();
+        }else{
+            BackPortalMainPage();
+        }
+    }
+    //从订购失败回来,江苏江西安徽APK订购页是浮在前端页面之上的,本页面因为一进页面就获取鉴权结果,所以需要重新刷新
+    function orderFail(){
+        window.location.reload();
+    }
+    //从订购成功回来,江苏江西安徽APK订购页是浮在前端页面之上的,本页面因为一进页面就获取鉴权结果,所以需要重新刷新
+    function orderSuccess(){
+        window.location.reload();
+    }
+</script>
+</html>

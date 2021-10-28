@@ -1,0 +1,336 @@
+* {
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+
+#main {
+	width: 1280px;
+	height: 720px;
+	overflow: hidden;
+	background: url(../img/main/mainBJ.jpg) no-repeat;
+	position: relative;
+}
+
+
+/*进入游戏*/
+
+#hands_x0_y0_goGameFocus_ {
+	position: absolute;
+	left: 440px;
+	top: 120px;
+	visibility: hidden;
+	animation: goGameAni 500ms alternate infinite;
+	-webkit-animation: goGameAni 500ms alternate infinite;
+}
+
+
+/*四大IP*/
+
+#ip1 {
+	position: absolute;
+	left: 150px;
+	top: 0px;
+	animation: ip1Ani 500ms alternate infinite;
+	-webkit-animation: ip1Ani 500ms alternate infinite;
+}
+
+#hands_x0_y0_firstFocus_ {
+	position: absolute;
+	left: 150px;
+	top: 0px;
+	visibility: hidden;
+	animation: ip1Ani 500ms alternate infinite;
+	-webkit-animation: ip1Ani 500ms alternate infinite;
+}
+
+#ip2 {
+	position: absolute;
+	right: 60px;
+	top: 20px;
+	animation: ip2Ani 500ms alternate infinite;
+	-webkit-animation: ip2Ani 500ms alternate infinite;
+}
+
+#hands_x0_y0_secondFocus_ {
+	position: absolute;
+	right: 60px;
+	top: 20px;
+	visibility: hidden;
+	animation: ip2Ani 500ms alternate infinite;
+	-webkit-animation: ip2Ani 500ms alternate infinite;
+}
+
+#ip3 {
+	position: absolute;
+	right: 20px;
+	bottom: 10px;
+	animation: ip3Ani 500ms alternate infinite;
+	-webkit-animation: ip3Ani 500ms alternate infinite;
+}
+
+#hands_x0_y0_thirdFocus_ {
+	position: absolute;
+	right: 20px;
+	bottom: 10px;
+	visibility: hidden;
+	animation: ip3Ani 500ms alternate infinite;
+	-webkit-animation: ip3Ani 500ms alternate infinite;
+}
+
+#ip4 {
+	position: absolute;
+	left: 180px;
+	bottom: 10px;
+	animation: ip4Ani 500ms alternate infinite;
+	-webkit-animation: ip4Ani 500ms alternate infinite;
+}
+
+#hands_x0_y0_fourthFocus_ {
+	position: absolute;
+	left: 200px;
+	bottom: 10px;
+	visibility: hidden;
+	animation: ip4Ani 500ms alternate infinite;
+	-webkit-animation: ip4Ani 500ms alternate infinite;
+}
+
+
+/*左边三大按钮*/
+
+#prizeBtn {
+	position: absolute;
+	left: 20px;
+	top: 30px;
+}
+
+#hands_x0_y0_prizeBtnFocus_ {
+	position: absolute;
+	left: 20px;
+	top: 30px;
+	visibility: hidden;
+}
+
+#ruleBtn {
+	position: absolute;
+	left: 20px;
+	top: 100px;
+}
+
+#hands_x0_y0_ruleBtnFocus_ {
+	position: absolute;
+	left: 20px;
+	top: 100px;
+	visibility: hidden;
+}
+
+#lotteryBtn {
+	position: absolute;
+	left: 20px;
+	top: 170px;
+}
+
+#hands_x0_y0_lotteryBtnFocus_ {
+	position: absolute;
+	left: 20px;
+	top: 170px;
+	visibility: hidden;
+}
+
+
+/*标题*/
+
+#mainTitle {
+	position: absolute;
+	left: 360px;
+	top: -35px;
+}
+
+
+/*弹窗*/
+
+
+/*规则弹窗*/
+
+#ruleTanBG {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 1280px;
+	height: 720px;
+	background-color: rgba(0, 0, 0, 0.6);
+	visibility: hidden;
+}
+
+#hands_x0_y0_ruleBackFocus_ {
+	position: absolute;
+	right: 16px;
+	top: 168px;
+	visibility: hidden;
+}
+
+
+/*中奖用户弹窗*/
+
+#nameListTanBG {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 1280px;
+	height: 720px;
+	background-color: rgba(0, 0, 0, 0.6);
+	visibility: hidden;
+}
+
+#hands_x0_y0_nameListBackFocus_ {
+	position: absolute;
+	right: 120px;
+	top: 138px;
+	visibility: hidden;
+}
+
+#hands_x0_y0_inputFocus_ {
+	position: absolute;
+	left: 420px;
+	bottom: 20px;
+	visibility: hidden;
+}
+
+#hands_x0_y0_saveFocus_ {
+	position: absolute;
+	left: 720px;
+	bottom: 20px;
+	visibility: hidden;
+}
+
+#hands_x0_y0_emptyFocus_ {
+	position: absolute;
+	left: 830px;
+	bottom: 20px;
+	visibility: hidden;
+}
+
+
+/*名单列表*/
+
+#userPhone-prize {
+	position: absolute;
+	left: 400px;
+	top: 210px;
+	color: orange;
+	font-size: 20px;
+	font-weight: bold;
+	width: 500px;
+}
+
+#userPhone-prize li {
+	display: flex;
+	justify-content: space-between;
+	-webkit-justify-content: space-between;
+}
+
+
+
+
+
+/*首页动画*/
+
+@keyframes ip1Ani {
+	0,
+	100% {
+		transform: translateY(0);
+		-webkit-transform: translateY(0);
+		-ms-transform: translateY(0);
+	}
+	50% {
+		transform: translateY(8px);
+		-webkit-transform: translateY(8px);
+		-ms-transform: translateY(8px);
+	}
+}
+
+@keyframes ip2Ani {
+	0,
+	100% {
+		transform: translateY(0);
+		-webkit-transform: translateY(0);
+		-ms-transform: translateY(0);
+	}
+	50% {
+		transform: translateY(8px);
+		-webkit-transform: translateY(8px);
+		-ms-transform: translateY(8px);
+	}
+}
+
+@keyframes ip3Ani {
+	0,
+	100% {
+		transform: translateY(0);
+		-webkit-transform: translateY(0);
+		-ms-transform: translateY(0);
+	}
+	50% {
+		transform: translateY(-8px);
+		-webkit-transform: translateY(-8px);
+		-ms-transform: translateY(-8px);
+	}
+}
+
+@keyframes ip4Ani {
+	0,
+	100% {
+		transform: translateY(0);
+		-webkit-transform: translateY(0);
+		-ms-transform: translateY(0);
+	}
+	50% {
+		transform: translateY(-8px);
+		-webkit-transform: translateY(-8px);
+		-ms-transform: translateY(-8px);
+	}
+}
+
+@keyframes goGameAni {
+	0,
+	100% {
+		transform: translateY(0);
+		-webkit-transform: translateY(0);
+		-ms-transform: translateY(0);
+	}
+	50% {
+		transform: translateY(-8px);
+		-webkit-transform: translateY(-8px);
+		-ms-transform: translateY(-8px);
+	}
+}
+
+/*手机号输入框*/
+#userPhone{
+	position: absolute;
+    width: 200px;
+    height: 32px;
+    left: 500px;
+    bottom: 45px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+}
+
+/*手机号保存成功提示*/
+
+#savetips {
+	position: absolute;
+    bottom: 105px;
+    left: 650px;
+	font-size: 18px;
+	font-weight: bold;		
+}	
+
+#userInfo{
+	position: absolute;
+    bottom: 105px;
+    left: 450px;
+    font-size: 18px;
+    font-weight: bold;
+}

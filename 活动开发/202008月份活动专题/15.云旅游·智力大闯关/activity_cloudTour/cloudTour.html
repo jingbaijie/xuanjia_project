@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="page-view-size" content="1280*720" />
+    <title>云旅游.智力大闯关首页</title>
+    <style>
+      * {
+        margin: 0px;
+        padding: 0px;
+        list-style: none;
+      }
+      .pages {
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+      .mainContent,
+      .njz,
+      .szz,
+      .glz,
+      .xaz,
+      .cdz {
+        position: relative;
+        width: 1280px;
+        height: 720px;
+      }
+      .cdz .xaz .glz .szz {
+        width: 1280px;
+        height: 720px;
+        left: 0px;
+        top: 0px;
+      }
+      #userInfo {
+        position: absolute;
+        left: 235px;
+        top: 476px;
+        /* bottom: 225px; */
+        font-size: 16px;
+        color:black;
+      }
+      #prizeInfo {
+        position: absolute;
+        left: 226px;
+        top: 427px;
+        /* bottom: 227px; */
+        font-size: 16px;
+        color: black;
+      }
+      #nameList {
+        position: absolute;
+        left: 85px;
+        top: 170px;
+        width: 246px;
+        height: 186px;
+        color: black;
+        font-size: 20px;
+        overflow: hidden;
+        text-align: center;
+        font-size: 12px;
+      }
+      .listName{
+        display: block;
+        width: 123px;
+        height: 18px;
+        float: left;
+      }
+      .listPrize{
+        display: block;
+        width: 123px;
+        height: 18px;
+        float: right;
+      }
+    </style>
+  </head>
+  <body>
+    <div style="width: 1280px; height: 720px; position: relative; top: 0px; left: 0px; overflow: hidden;">
+      <div id="pages" class="pages" style = "top: 0;transition: all 0.6s ease 0s;">
+        <!-- 开始页面主题背景 -->
+        <div id="main" class="mainContent" style="background: url(./img/bg1.png) no-repeat;">
+          <!-- 开启云旅游 -->
+          <div id="hands_x0_y0_cloudTour0_">
+            <img id="cloudTour0" src="./img/kaiqi1.png" style="position: absolute; width: 388px; height: 165px; left: 462px; top: 551px;" />
+          </div>
+          <!-- 活动规则 -->
+          <img src="./img/gz.png" style="position: absolute; width: 129px; height: 129px; left: 1156px;" />
+          <div id="hands_x0_y0_cloudTour1_">
+            <img id="cloudTour1" src="./img/xuan1.png" style="position: absolute; width: 129px; height: 129px; left: 1156px; visibility: hidden;" />
+          </div>
+          <!-- 抽奖 -->
+          <img src="./img/cj.png" style="position: absolute; width: 129px; height: 129px; left: 1156px; top: 106px;" />
+          <div id="hands_x0_y0_cloudTour2_">
+            <img id="cloudTour2" src="./img/xuan1.png" style="position: absolute; width: 129px; height: 129px; left: 1156px; top: 106px; visibility: hidden;" />
+          </div>
+          <!-- 更多精彩 -->
+          <img src="./img/gd.png" style="position: absolute; width: 129px; height: 129px; left: 1156px; top: 212px;" />
+          <div id="hands_x0_y0_cloudTour3_">
+            <img id="cloudTour3" src="./img/xuan1.png" style="position: absolute; width: 129px; height: 129px; left: 1156px; top: 212px; visibility: hidden;" />
+          </div>
+          <!-- 剩余次数 -->
+          <div id="userInfo"></div>
+          <!-- 我的信息 -->
+          <div id="prizeInfo"></div>
+          <!-- 名单列表 -->
+          <div id="nameList">
+            <div id = "nameRoll" style = "position: absolute;top: 0;left: 0;"></div>
+          </div>
+        </div>
+
+        <!-- 南京站主背景 -->
+        <div class="njz" style="background: url(./img/bg2.png) no-repeat;">
+          <!-- 南京站图片 -->
+          <img src="./img/nj.png" style="position: absolute; width: 1280px; height: 720px; left: 0px; top: 0px;" />
+          <img id="njDone" class="nj" src="./img/empty.png" style="position: absolute; width: 318px; height: 105px; left: 910px;top: 505px;" />
+          <div id="hands_x0_y0_cloudTour4_" style="position: absolute; width: 334px; height: 118px; left: 905px;top: 498px;">
+            <img id="cloudTour4" class="nj" src="./img/xuan.png" style="visibility: hidden;" />
+          </div>
+        </div>
+        <!-- 苏州站 -->
+        <div class="szz" style="background: url(./img/bg2.png) no-repeat;">
+          <img src="./img/sz.png" style="position: absolute;" />
+          <img id="szDone" class="nj" src="./img/empty.png" style="position: absolute; width: 318px;height: 105px;left: 50px;top: 530px;" />
+          <div id="hands_x0_y0_cloudTour5_" style="position: absolute; width: 334px;height: 118px;left: 40px;top: 521px;" >
+            <img id="cloudTour5" class="sz" src="./img/xuan.png" style="visibility: hidden;" />
+          </div>
+        </div>
+        <!-- 桂林 -->
+        <div class="glz" style="background: url(./img/bg2.png) no-repeat;">
+          <img src="./img/gl.png" style="position: absolute;" />
+          <img id="glDone" class="nj" src="./img/empty.png" style="position: absolute;width: 318px;height: 105px;left: 910px;top: 500px;" />
+          <div id="hands_x0_y0_cloudTour6_" style="position: absolute;width: 334px;height: 118px;left: 905px;top: 492px;">
+            <img id="cloudTour6" class="gl" src="./img/xuan.png" style="visibility: hidden;" />
+          </div>
+        </div>
+        <!-- 西安 -->
+        <div class="xaz" style="background: url(./img/bg2.png) no-repeat;">
+          <img src="./img/xa.png" style="position: absolute;" />
+          <img id="xaDone" class="nj" src="./img/empty.png" style="position: absolute;width: 318px;height: 105px;left: 40px;top: 530px;" />
+          <div id="hands_x0_y0_cloudTour7_" style="position: absolute;width: 334px;height: 118px;left: 33px;top: 522px;" >
+            <img id="cloudTour7" class="xa" src="./img/xuan.png" style="visibility: hidden;" />
+          </div>
+        </div>
+        <!-- 成都 -->
+        <div class="cdz" style="background: url(./img/bg2.png) no-repeat;">
+          <img src="./img/cd.png" style="position: absolute;" />
+          <img id="cdDone" class="nj" src="./img/empty.png" style="position: absolute;width: 318px;height: 105px;left: 915px;top: 510px;" />
+          <div id="hands_x0_y0_cloudTour8_" style="position: absolute;width: 334px;height: 118px;left: 910px;top: 500px;">
+            <img id="cloudTour8" class="cd" src="./img/xuan.png" style="visibility: hidden;" />
+          </div>
+        </div>
+        <!-- 闯关弹框 -->
+        <img src="" id = "confirmModalImg" class="confirmModal" style="position: fixed;left: 0;top: 0;visibility: hidden;">
+        <div id="hands_x0_y0_confirmModal_">
+          <img id="confirmModal" src="./img/xuan.png" style="position: fixed;left: 548px;top: 502px;visibility: hidden;" >
+        </div>
+      </div>
+    </div>
+    <!-- 引入平台公共js开始 -->
+    <script type="text/javascript" src="../../../js/column.js"></script>
+    <!-- 引入平台公共js结束 -->
+    <script src="./js/actiComm.js"></script>
+  </body>
+  <script>
+    var buttons = [
+      {
+        // 开启云旅游
+        id: "hands_x0_y0_cloudTour0_",
+        clickHandler: "javascript:scrollDown()",
+        otherFocusEvent: "javascript: scrollToCity('start')",
+        left: "disable",
+        right: "hands_x0_y0_cloudTour1_",
+        up: "hands_x0_y0_cloudTour1_",
+        down: "hands_x0_y0_cloudTour4_",
+        focusType: 7,
+      },
+      {
+        // 活动规则
+        id: "hands_x0_y0_cloudTour1_",
+        clickHandler: "javascript:jumpToGz()",
+        left: "hands_x0_y0_cloudTour0_",
+        right: "disable",
+        up: "hands_x0_y0_cloudTour0_",
+        down: "hands_x0_y0_cloudTour2_",
+        focusType: 7,
+      },
+      {
+        // 抽奖
+        id: "hands_x0_y0_cloudTour2_",
+        clickHandler: "javascript:jumpToName()",
+        left: "disable",
+        right: "disable",
+        up: "hands_x0_y0_cloudTour1_",
+        down: "hands_x0_y0_cloudTour3_",
+        focusType: 7,
+      },
+      {
+        // 更多精彩
+        id: "hands_x0_y0_cloudTour3_",
+        clickHandler: "javascript:jumpCartoon()",
+        left: "disable",
+        right: "disable",
+        up: "hands_x0_y0_cloudTour2_",
+        down: "hands_x0_y0_cloudTour0_",
+        focusType: 7,
+      },
+      {
+        // 南京站
+        id: "hands_x0_y0_cloudTour4_",
+        clickHandler: "javascript:clockIn('nj')",
+        otherFocusEvent: "javascript: scrollToCity('nj')",
+        left: "disable",
+        right: "disable",
+        up: "hands_x0_y0_cloudTour0_",
+        down: "hands_x0_y0_cloudTour5_",
+        focusType: 7,
+      },
+      {
+        // 苏州站
+        id: "hands_x0_y0_cloudTour5_",
+        clickHandler: "javascript:clockIn('sz')",
+        otherFocusEvent: "javascript: scrollToCity('sz')",
+        left: "disable",
+        right: "disable",
+        up: "hands_x0_y0_cloudTour4_",
+        down: "hands_x0_y0_cloudTour6_",
+        focusType: 7,
+      },
+      {
+        // 桂林站
+        id: "hands_x0_y0_cloudTour6_",
+        clickHandler: "javascript:clockIn('gl')",
+        otherFocusEvent: "javascript: scrollToCity('gl')",
+        left: "disable",
+        right: "disable",
+        up: "hands_x0_y0_cloudTour5_",
+        down: "hands_x0_y0_cloudTour7_",
+        focusType: 7,
+      },
+      {
+        // 西安站
+        id: "hands_x0_y0_cloudTour7_",
+        clickHandler: "javascript:clockIn('xa')",
+        otherFocusEvent: "javascript: scrollToCity('xa')",
+        left: "disable",
+        right: "disable",
+        up: "hands_x0_y0_cloudTour6_",
+        down: "hands_x0_y0_cloudTour8_",
+        focusType: 7,
+      },
+      {
+        // 成都站
+        id: "hands_x0_y0_cloudTour8_",
+        clickHandler: "javascript:clockIn('cd')",
+        otherFocusEvent: "javascript: scrollToCity('cd')",
+        left: "disable",
+        right: "disable",
+        up: "hands_x0_y0_cloudTour7_",
+        down: "disable",
+        focusType: 7,
+      },
+      {
+        // 弹框
+        id: "hands_x0_y0_confirmModal_",
+        clickHandler: "javascript:confirmClick()",
+        left: "disable",
+        right: "disable",
+        up: "disable",
+        down: "disable",
+        focusType: 7,
+      },
+    ];
+  </script>
+  <script src="./js/cloudTour.js?v=08200122"></script>
+</html>

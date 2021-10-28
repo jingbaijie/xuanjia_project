@@ -1,0 +1,29 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+}
+#mainBG{
+    width: 1280px;
+    height: 720px;
+    position: relative;
+    left: 0px;
+    top: 0px;
+    overflow: hidden;
+    background: url(../img/game/gameBG.jpg) no-repeat;
+}
+
+/* 地图 */
+#map{
+    position: absolute;
+    width: 675px;
+    height: 635px;
+    /* border: 1px solid red; */
+    left: 60px;
+    top: 48px;
+    border-radius: 35px;
+}
+/* 蛇头 */
+#snakeHead{
+    z-index: 2;
+}

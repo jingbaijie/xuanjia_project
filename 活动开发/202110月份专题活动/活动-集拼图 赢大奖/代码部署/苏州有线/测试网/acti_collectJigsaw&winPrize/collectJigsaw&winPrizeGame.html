@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>集拼图赢大奖活动页</title>
+    <link rel="stylesheet" href="css/collectJigsawCommon.css">
+    <link rel="stylesheet" href="css/collectJigSaw&winPrizeGame.css?v=202108250122223">
+</head>
+
+<body>
+    <div id="mainBox">
+        <!-- 空焦点 -->
+        <div id="hands_x0_y0_blankFocus_">
+            <img src="img/empty.png" alt="" id="blankFocus">
+        </div>
+        <img src="img/gamePage/bg.png" alt="" id="mainBG">
+        <!-- 规则按钮 -->
+        <img src="img/gamePage/ruleBtn.png" alt="" id="ruleBtn">
+        <div id="hands_x0_y0_ruleBtnFocus_">
+            <img src="img/gamePage/ruleBtnFocus.png" alt="" id="ruleBtnFocus" style="visibility:hidden;">
+        </div>
+        <!-- 规则弹窗 -->
+        <img src="img/gamePage/rulePage.png" alt=""
+            style="position: absolute;left: 0px;top: 0px;visibility:hidden;z-index: 2;" id="ruleTip">
+        <!-- 左侧卡通 -->
+        <img src="img/gamePage/leftCartoon/1.png" alt="" id="leftCartoon">
+        <!-- 碎片进度条背景 -->
+        <div id="progressBG">
+            <!-- 碎片进度条动态 -->
+            <img src="img/gamePage/progress/2.png" alt="" id="progressdynamic">
+        </div>
+        <!-- 碎片进度文字 -->
+        <div id="progressText">0</div>
+        <!-- 右上角我的奖品 -->
+        <div id="myPrizeImg" style="background-image: url(img/mainPage/prize1.png);">
+            <img src="img/gamePage/myPrizeCover.png" alt="" id="myPrizeCover" style="visibility: hidden;">
+            <img src="img/gamePage/dialogue.png" alt="" id="dialogue">
+        </div>
+        <!-- 碎片线索进度提示 -->
+        <div id="clueProgress">
+            <div id="clueProgressText">0</div>
+        </div>
+        <!-- 下部推荐片单 -->
+        <ul id="recommendSheet">
+
+        </ul>
+        <!-- 推荐片单焦点 -->
+        <div id="hands_x0_y0_sheet1Focus_">
+            <img src="img/gamePage/sheetFocus.png" alt="" id="sheet1Focus" style="visibility: hidden;">
+        </div>
+        <div id="hands_x0_y0_sheet2Focus_">
+            <img src="img/gamePage/sheetFocus.png" alt="" id="sheet2Focus" style="visibility: hidden;">
+        </div>
+        <div id="hands_x0_y0_sheet3Focus_">
+            <img src="img/gamePage/sheetFocus.png" alt="" id="sheet3Focus" style="visibility: hidden;">
+        </div>
+        <div id="hands_x0_y0_sheet4Focus_">
+            <img src="img/gamePage/sheetFocus.png" alt="" id="sheet4Focus" style="visibility: hidden;">
+        </div>
+        <!-- 拼图区域 -->
+        <div id="puzzleArea">
+            <img src="img/gamePage/1.png" alt="" id="puzzleAreaImg">
+            <img src="img/gamePage/mask/9.png" alt="" id="puzzleAreaCover">
+        </div>
+        <!-- 我的奖品 -->
+        <div id="hands_x0_y0_myPrizeFocus_">
+            <img src="img/gamePage/myPrizeBtnFocus.png" alt="" id="myPrizeFocus" style="visibility: hidden;">
+        </div>
+        <div style="position: absolute;left: 0px;top: 0px;z-index: 2;width: 1280px;height: 720px;overflow: hidden;">
+            <div id="prizeUserInfo" style="visibility: hidden;position: absolute;left: 200px;top: 660px;z-index:2;">
+                <img src="img/gamePage/getprizeUserList.png" alt="" id="getPrizeUserBG"
+                    style="position: absolute;left: 0px;top: 0px;">
+                <div id="prizeUserInfoList"
+                    style="position: absolute;left: 10px;top: 0px;overflow: hidden;font-size: 24px;color: #fff;width: 900px;height: 46px;line-height: 46px;">
+
+                </div>
+            </div>
+            <!-- 锦鲤卡弹窗 -->
+            <img src="img/gamePage/tip/jlk.png" alt="" id="koiCard" style="visibility: hidden;">
+            <div id="hands_x0_y0_koiCardFocus_">
+                <img src="img/gamePage/tip/orderFocus.png" alt="" id="koiCardFocus" style="visibility: hidden;">
+            </div>
+            <!-- 好运卡 -->
+            <img src="img/gamePage/tip/hyk.png" alt="" id="goodLuckCard" style="visibility: hidden;">
+            <div id="hands_x0_y0_goodLuckCardFocus_">
+                <img src="img/gamePage/tip/orderFocus.png" alt="" id="goodLuckCardFocus" style="visibility: hidden;">
+            </div>
+            <!-- 看片单集线索 -->
+            <img src="img/gamePage/tip/toSheet.png" alt="" id="toSheetTip" style="visibility: hidden;">
+            <div id="hands_x0_y0_toSheetBtnFocus_">
+                <img src="img/gamePage/tip/orderFocus.png" alt="" id="toSheetBtnFocus" style="visibility: hidden;">
+            </div>
+            <!-- 被偷走5个碎片弹窗 -->
+            <img src="img/gamePage/tip/stolen5.png" alt="" id="stolen5Tip" style="visibility: hidden;">
+            <div id="hands_x0_y0_stolen5BtnFocus_">
+                <img src="img/gamePage/tip/orderFocus.png" alt="" id="stolen5BtnFocus" style="visibility: hidden;">
+            </div>
+            <!-- 退出挽留弹窗 -->
+            <img src="img/gamePage/tip/isGiveUp.png" alt="" id="isGiveUpTip" style="visibility: hidden;">
+            <div id="hands_x0_y0_continueBtnFocus_">
+                <img src="img/gamePage/tip/orderFocus.png" alt="" id="continueBtnFocus" style="visibility: hidden;">
+            </div>
+            <div id="hands_x0_y0_giveUpBtnFocus_">
+                <img src="img/gamePage/tip/orderFocus.png" alt="" id="giveUpBtnFocus" style="visibility: hidden;">
+            </div>
+            <!-- 获得碎片线索弹窗 -->
+            <img src="img/gamePage/tip/getClue.png" alt="" id="getClueTip" style="visibility: hidden;">
+            <div id="hands_x0_y0_getClueBtnFocus_">
+                <img src="img/gamePage/tip/orderFocus.png" alt="" id="getClueBtnFocus" style="visibility: hidden;">
+            </div>
+            <!-- 被老鼠偷走碎片线索 -->
+            <img src="img/gamePage/tip/pity.png" alt="" id="pityTip" style="visibility: hidden;">
+            <div id="hands_x0_y0_pityTipBtnFocus_">
+                <img src="img/gamePage/tip/orderFocus.png" alt="" id="pityTipBtnFocus" style="visibility: hidden;">
+            </div>
+            <!-- 未获得碎片线索 -->
+            <img src="img/gamePage/tip/noGetClue.png" alt="" id="noGetClue" style="visibility: hidden;">
+            <div id="hands_x0_y0_noGetClueBtnFocus_">
+                <img src="img/gamePage/tip/orderFocus.png" alt="" id="noGetClueBtnFocus" style="visibility: hidden;">
+            </div>
+            <!-- 奖品模块 -->
+            <div style="position: absolute;left: 0px;top: 0px;visibility: hidden;" id="prizeTip">
+                <!-- 我的奖品弹窗 -->
+                <img src="img/gamePage/myPrizePage/getPrize.png" alt="" style="position: absolute;left: 0px;top: 0px;">
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="../../../../js/loadCommomJs.js"></script>
+    <script type="text/javascript" src="../../../../js/actiComm.js"></script>
+    <script type="text/javascript" src="js/extraActiInterface.js?v=20210824012"></script>
+    <script type="text/javascript">
+        var prizeUserList = [];//获奖用户列表
+        var prizeUserHTML = "";//获奖列表滚动文字
+        var scrollPrizeAni = null;//获奖列表滚动定时器
+        var buttons = [
+            {
+                id: "hands_x0_y0_blankFocus_",
+                left: "disable",
+                up: "disable",
+                right: "disable",
+                down: "disable",
+                focusType: 7
+
+            },
+            {
+                id: "hands_x0_y0_ruleBtnFocus_",
+                clickHandler: "javascript:collectJigSawGameEG.goRule()",
+                left: "disable",
+                up: "disable",
+                right: "disable",
+                down: "hands_x0_y0_sheet1Focus_",
+                focusType: 7
+            }, {
+                id: "hands_x0_y0_sheet1Focus_",
+                clickHandler: "javascript:collectJigSawGameEG.jumpToSheet(0)",
+                left: "disable",
+                up: "hands_x0_y0_ruleBtnFocus_",
+                right: "hands_x0_y0_sheet2Focus_",
+                down: "disable",
+                focusType: 7
+            },
+            {
+                id: "hands_x0_y0_sheet2Focus_",
+                clickHandler: "javascript:collectJigSawGameEG.jumpToSheet(1)",
+                left: "hands_x0_y0_sheet1Focus_",
+                up: "disable",
+                right: "hands_x0_y0_sheet3Focus_",
+                down: "disable",
+                focusType: 7
+            },
+            {
+                id: "hands_x0_y0_sheet3Focus_",
+                clickHandler: "javascript:collectJigSawGameEG.jumpToSheet(2)",
+                left: "hands_x0_y0_sheet2Focus_",
+                up: "disable",
+                right: "hands_x0_y0_sheet4Focus_",
+                down: "disable",
+                focusType: 7
+            },
+            {
+                id: "hands_x0_y0_sheet4Focus_",
+                clickHandler: "javascript:collectJigSawGameEG.jumpToSheet(3)",
+                left: "hands_x0_y0_sheet3Focus_",
+                up: "disable",
+                upEvent: "javascript:collectJigSawGameEG.upSheet4()",
+                right: "disable",
+                down: "disable",
+                focusType: 7
+            },
+            {
+                id: "hands_x0_y0_myPrizeFocus_",
+                clickHandler: "javascript:collectJigSawGameEG.toMyPrize()",
+                left: "disable",
+                up: "disable",
+                right: "disable",
+                down: "hands_x0_y0_sheet4Focus_",
+                focusType: 7
+            }, {
+                id: "hands_x0_y0_koiCardFocus_",
+                clickHandler: "javascript:collectJigSawGameEG.toOrder()",
+                left: "disable",
+                up: "disable",
+                right: "disable",
+                down: "disable",
+                focusType: 7
+            }, {
+                id: "hands_x0_y0_goodLuckCardFocus_",
+                clickHandler: "javascript:backFunc()",
+                left: "disable",
+                up: "disable",
+                right: "disable",
+                down: "disable",
+                focusType: 7
+            }, {
+                id: "hands_x0_y0_toSheetBtnFocus_",
+                clickHandler: "javascript:backFunc()",
+                left: "disable",
+                up: "disable",
+                right: "disable",
+                down: "disable",
+                focusType: 7
+            }, {
+                id: "hands_x0_y0_stolen5BtnFocus_",
+                clickHandler: "javascript:collectJigSawGameEG.toOrder()",
+                left: "disable",
+                up: "disable",
+                right: "disable",
+                down: "disable",
+                focusType: 7
+            },
+            {
+                id: "hands_x0_y0_continueBtnFocus_",
+                clickHandler: "javascript:backFunc()",
+                left: "disable",
+                up: "disable",
+                right: "hands_x0_y0_giveUpBtnFocus_",
+                down: "disable",
+                focusType: 7
+            }, {
+                id: "hands_x0_y0_giveUpBtnFocus_",
+                clickHandler: "javascript:CT.backPage()",
+                left: "hands_x0_y0_continueBtnFocus_",
+                up: "disable",
+                right: "disable",
+                down: "disable",
+                focusType: 7
+            }, {
+                id: "hands_x0_y0_getClueBtnFocus_",
+                clickHandler: "javascript:backFunc()",
+                left: "disable",
+                up: "disable",
+                right: "disable",
+                down: "disable",
+                focusType: 7
+            }, {
+                id: "hands_x0_y0_pityTipBtnFocus_",
+                clickHandler: "javascript:backFunc()",
+                left: "disable",
+                up: "disable",
+                right: "disable",
+                down: "disable",
+                focusType: 7
+            }, {
+                id: "hands_x0_y0_noGetClueBtnFocus_",
+                clickHandler: "javascript:backFunc()",
+                left: "disable",
+                up: "disable",
+                right: "disable",
+                down: "disable",
+                focusType: 7
+            }
+        ]
+        var option = {
+            //非焦点元素展示
+            "textShowInfo": {
+                //输入框展示信息["textName":元素名称，"textSize":字体大小,"textColor":文字颜色,"textLeft":元素绝对定位的left值,"textTop",元素绝对定位的top值,"textWidth":元素的宽度，"textHeight":元素的高度]
+                "telInput": {
+                    "textLeft": "505px",
+                    "textTop": "590px"
+                },
+                //保存提示信息
+                "saveTip": {
+                    "textLeft": "515px",
+                    "textTop": "550px",
+                    "textWidth": "200px",
+                }
+            },
+            //焦点展示信息["focusName":焦点图片名称,"focusLeft":焦点绝对定位的left值,"focusTop":焦点绝对定位的Top值,"focusSrc":焦点图片路径,"clickEvent":点击方法名称,"otherFocusEvent":焦点聚焦事件名称,"otherBlurEvent":焦点失焦事件名称，"up","down","left","right":焦点移动方向]
+            "contactFocusInfo": {
+                //输入框焦点
+                "telInputFocus": {
+                    "focusLeft": "490px",
+                    "focusTop": "580px",
+                    "focusSrc": "img/gamePage/myPrizePage/inputFocus.png"
+                },
+                //保存按钮焦点
+                "saveBtnFocus": {
+                    "focusLeft": "785px",
+                    "focusTop": "570px",
+                    "focusSrc": "img/gamePage/myPrizePage/saveFocus.png",
+                    "clickEvent": "saveFunc()"
+                },
+                //清空按钮焦点
+                "emptyBtnFocus": {
+                    "focusName": "emptyBtnFocus",
+                    "focusLeft": "888px",
+                    "focusTop": "570px",
+                    "focusSrc": "img/gamePage/myPrizePage/saveFocus.png",
+                    "clickEvent": "emptyFunc()"
+                }
+            }
+        }
+    </script>
+    <script src="../actiCommonPage/js/telinput.js"></script>
+    <script type="text/javascript" src="js/collectJigsaw&winPrizeGame.js?v=202100901505136"></script>
+</body>
+
+</html>

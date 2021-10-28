@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>电竞争霸赛首页</title>
+		<link rel="stylesheet" type="text/css" href="css/actiElectricContestMain.css?v=2019091006" />
+	</head>
+
+	<body>
+		<div id="main">
+			<!--返回按钮-->
+			<img src="img/main/back.png" id="backBtn" />
+			<div id="hands_x0_y0_backFocus_">
+				<img src="img/main/backFocus.png" id="backFocus" style="visibility: hidden;" />
+			</div>
+			<!--活动规则按钮-->
+			<img src="img/main/rule.png" id="ruleBtn" style="position: absolute;left: 25px;top: 12px;width: 186px;height: 84px;"/>
+			<div id="hands_x0_y0_ruleFocus_" style="position: absolute;left: 25px;top: 12px;width: 186px;height: 84px;">
+				<img src="img/main/ruleFocus.png" id="ruleFocus" style="visibility: hidden;" />
+			</div>
+			<!--我选择的队伍-->
+			<img src="img/main/myTeam.png" id="myTeamBtn" style="position: absolute;left: 25px;top: 75px;width: 186px;height: 84px;"/>
+			<div id="hands_x0_y0_myTeamFocus_" style="position: absolute;left: 25px;top: 75px;width: 186px;height: 84px;">
+				<img src="img/main/myTeamFocus.png" id="myTeamFocus" style="visibility: hidden;" />
+			</div>
+			<!--开始按钮-->
+			<img src="img/main/start.png" id="startBtn" />
+			<div id="hands_x0_y0_startFocus_">
+				<img src="img/main/startFocus.png" id="startFocus" style="visibility: hidden;" />
+			</div>
+			<!--选择加入-->
+			<img src="img/empty.png" id="chooseTeamTan" />
+			<div id="hands_x0_y0_wangzheFocus_">
+				<img src="img/main/chooseFocus.png" id="wangzheFocus" style="visibility: hidden;" />
+			</div>
+			<div id="hands_x0_y0_chijiFocus_">
+				<img src="img/main/chooseFocus.png" id="chijiFocus" style="visibility: hidden;" />
+			</div>
+			<!--提示组队信息弹窗-->
+			<img src="img/empty.png" id="myTeamInfo" />
+			<div id="hands_x0_y0_confirmFocus_">
+				<img src="img/tips/chooseFocus.png" id="confirmFocus" style="visibility: hidden;" />
+			</div>
+			<div id="hands_x0_y0_cancelFocus_">
+				<img src="img/tips/chooseFocus.png" id="cancelFocus" style="visibility: hidden;" />
+			</div>
+			<!--没有游戏机会-->
+			<img src="img/empty.png" id="noChance" />
+			<div id="hands_x0_y0_noChanceConfirmFocus_">
+				<img src="img/tips/chooseFocus.png" id="noChanceConfirmFocus" style="visibility: hidden;" />
+			</div>
+			<div id="hands_x0_y0_noChanceCancelFocus_">
+				<img src="img/tips/chooseFocus.png" id="noChanceCancelFocus" style="visibility: hidden;" />
+			</div>
+			<!--我选择的队伍弹窗-->
+			<div id="myTeamTan">
+				<img src="img/empty.png" id="myTeamTanBG" />
+				<!--手机号输入框-->
+				<div id="telInput">13876567876</div>
+				<div id="hands_x0_y0_inputFocus_">
+					<img src="img/myTeam/inputFocus.png" id="inputFocus" style="visibility: hidden;" />
+				</div>
+				<!--保存提示-->
+				<div id="savetips"></div>
+				<!--确定-->
+				<div id="hands_x0_y0_saveFocus_">
+					<img src="img/tips/chooseFocus.png" id="saveFocus" style="visibility: hidden;" />
+				</div>
+				<!--清除-->
+				<div id="hands_x0_y0_emptyFocus_">
+					<img src="img/tips/chooseFocus.png" id="emptyFocus" style="visibility: hidden;" />
+				</div>
+				<!--计分-->
+				<div id="scoreNum">200</div>
+				<!--返回-->
+				<img src="img/main/back.png" id="myTeamBack" />
+				<div id="hands_x0_y0_myTeamBackFocus_">
+					<img src="img/main/backFocus.png" id="myTeamBackFocus" style="visibility: hidden;" />
+				</div>
+			</div>
+			<!--规则弹窗-->
+			<div id="ruleTan">
+				<img src="img/rule/rule.png" id="ruleTanBG" style="width: 100%;height: 100%;position:absolute;left: 0px;top: 0px;visibility:hidden;"/>
+				<!--规则返回-->
+				<div id="hands_x0_y0_ruleBackFocus_">
+					<img src="img/main/backFocus.png" id="ruleBackFocus" style="visibility: hidden;"/>
+				</div>
+			</div>
+		</div>
+		<!--引入公用JS-->		
+		<script type="text/javascript" src= "../../../js/column.js"></script>
+		<script type="text/javascript" src="./js/actiComm.js"></script>
+		<!--引入结束-->
+		<script type="text/javascript" src="js/scoreAjax.js?v=2019091002"></script>
+		<script type="text/javascript" src="js/contact.js"></script>
+
+		<script type="text/javascript">
+			/*
+			 * 鉴权
+			 * 存储选队信息（credit:0/1;）
+			 * 获取选队信息（存在选队信息，则直接进入游戏，否则弹出组队弹窗）
+			 * 获取选队信息（决定我选择的队伍弹窗，若没有选队，出现选择加入弹窗）
+			 * 获取游戏页存储的两个固定用户userdata,显示积分信息
+			 * 获取游戏次数（游戏次数超过三次，无法进入游戏，否则直接进入游戏）
+			 */
+
+			//焦点数组
+			var buttons = [{
+				id: "hands_x0_y0_backFocus_",
+				clickHandler: "javascript:backfunc()",
+				left: "hands_x0_y0_startFocus_",
+				right: "disable",
+				up: "disable",
+				down: "hands_x0_y0_startFocus_",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_startFocus_",
+				clickHandler: "javascript:startGame()",
+				left: "hands_x0_y0_myTeamFocus_",
+				right: "hands_x0_y0_backFocus_",
+				up: "hands_x0_y0_myTeamFocus_",
+				down: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_ruleFocus_",
+				clickHandler: "javascript:goRule()",
+				left: "disable",
+				right: "hands_x0_y0_startFocus_",
+				up: "disable",
+				down: "hands_x0_y0_myTeamFocus_",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_myTeamFocus_",
+				clickHandler: "javascript:goMyteam()",
+				left: "disable",
+				right: "hands_x0_y0_startFocus_",
+				up: "hands_x0_y0_ruleFocus_",
+				down: "hands_x0_y0_startFocus_",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_wangzheFocus_",
+				clickHandler: "javascript:chooseJoin(0)",
+				left: "disable",
+				right: "hands_x0_y0_chijiFocus_",
+				up: "disable",
+				down: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_chijiFocus_",
+				clickHandler: "javascript:chooseJoin(1)",
+				left: "hands_x0_y0_wangzheFocus_",
+				right: "disable",
+				up: "disable",
+				down: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_confirmFocus_",
+				clickHandler: "javascript:confirmFunc()",
+				left: "disable",
+				right: "hands_x0_y0_cancelFocus_",
+				up: "disable",
+				down: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_cancelFocus_",
+				clickHandler: "javascript:cancelFunc()",
+				left: "hands_x0_y0_confirmFocus_",
+				right: "disable",
+				up: "disable",
+				down: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_inputFocus_",
+				otherFocusEvent: "javascript:onFocus(1)",
+				otherBlurEvent: "javascript:onFocus(0)",
+				left: "disable",
+				right: "hands_x0_y0_saveFocus_",
+				up: "hands_x0_y0_myTeamBackFocus_",
+				down: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_saveFocus_",
+				clickHandler: "javascript:saveFunc()",
+				otherBlurEvent: 'javascript:saveBlur()',
+				left: "hands_x0_y0_inputFocus_",
+				right: "hands_x0_y0_emptyFocus_",
+				up: "hands_x0_y0_myTeamBackFocus_",
+				down: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_emptyFocus_",
+				clickHandler: "javascript:emptyFunc()",
+				left: "hands_x0_y0_saveFocus_",
+				right: "hands_x0_y0_emptyFocus_",
+				up: "hands_x0_y0_myTeamBackFocus_",
+				down: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_myTeamBackFocus_",
+				clickHandler: "javascript:backfunc()",
+				left: "hands_x0_y0_inputFocus_",
+				right: "disable",
+				up: "disable",
+				down: "hands_x0_y0_inputFocus_",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_ruleBackFocus_",
+				clickHandler: "javascript:backfunc()",
+				left: "disable",
+				right: "disable",
+				up: "disable",
+				down: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_noChanceConfirmFocus_",
+				clickHandler: "javascript:noChance()",
+				left: "disable",
+				right: "hands_x0_y0_noChanceCancelFocus_",
+				up: "disable",
+				down: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_noChanceCancelFocus_",
+				clickHandler: "javascript:noChance()",
+				left: "hands_x0_y0_noChanceConfirmFocus_",
+				right: "disable",
+				up: "disable",
+				down: "disable",
+				focusType: 7
+			}]
+
+			var isOrder = 1;
+			var chooseTeamShow = false; //组队弹窗是否显示
+			var ruleShow = false; //规则弹窗是否显示
+			var myTeamShow = false; //我选择得队伍弹窗
+			var myTeamInfoShow = false; //选择打call弹窗是否显示
+			var actiTime = new Date().getTime();
+			var chanceNum = 0; //游戏次数
+			var credit = 0; //组队信息，0为王者队，1为吃鸡队
+			var scoreDOM = CT.$("scoreNum"); //分数DOM
+			var scoreNum = 0; //分数值
+			var userId = 0; //两个固定用户账号,代表王者队和吃鸡队
+
+			//鉴权
+			orderJs.columnGetAuth(function(authRes) {
+				if(authRes == "0") {
+					isOrder = 0;
+				} else {
+					isOrder = 1;
+				}
+			});
+
+			//获取游戏次数
+			actiObj.getChance(function(res) {
+				chanceNum = res.activityChance;
+			});
+
+			//初始化焦点
+			focusInit();
+			curFocus = getFocusModel6("hands_x0_y0_startFocus_");
+			curFocus.defaultFocus();
+
+			//获取两队积分
+			function getScore() {
+				//王者荣耀队
+				if(credit == 0) {
+					userId = "18051987710";
+					//绝地求生队
+				} else if(credit == 1) {
+					userId = "13851506382";
+				}
+				gettotalScore(userId, actiActivityId, function(data) {
+					if(data && data.resultMsg == "success") {
+						scoreNum = parseInt(data.list[0].user_acti_data);
+						scoreDOM.innerHTML = scoreNum;
+					} else {
+						scoreNum = 0;
+						scoreDOM.innerHTML = scoreNum;
+					}
+				});
+			}
+
+			//开始游戏
+			function startGame() {
+				if(isOrder == 0) {
+					if(chanceNum >= 3) {
+						//没有游戏机会
+						CT.$("noChance").src = "img/tips/noChance.png";
+						//焦点切换
+						actiObj.changeFocus("hands_x0_y0_noChanceConfirmFocus_");
+					} else {
+						//点击开始按钮获取选队信息
+						actiObj.getUserCredit(function(res) {
+							//如果参加过组队(存在credit)，则出现提醒组队信息，点击确定进入游戏页面，如果没有组过队，则出现选择加入战队弹窗
+							if(res && res.resultMsg == "success") {
+								credit = res.creditNum;
+								//弹出组队提醒框
+								myTeamInfo(res.creditNum);
+							} else {
+								//组队弹窗弹出
+								CT.$("chooseTeamTan").src = "img/main/chooseTeam.png";
+								chooseTeamShow = true;
+								//切换焦点
+								actiObj.changeFocus("hands_x0_y0_wangzheFocus_");
+							}
+						});
+					}
+				} else {
+					//跳订购
+					CT.setCookie("columnBackUrl",window.location.href);
+					orderJs.columnToOrderPage("actiElectricContest");
+				}
+			}
+
+			//没有机会弹窗点击确定、取消按钮
+			function noChance() {
+				//焦点切换到开始按钮
+				actiObj.changeFocus("hands_x0_y0_startFocus_");
+				//没有机会弹窗消失
+				CT.$("noChance").src = "img/empty.png";
+			}
+
+			//进入规则页面
+			function goRule() {
+				ruleShow = true;
+				//规则弹窗显示
+				CT.$("ruleTan").style.visibility = "visible";
+				//规则背景图显示
+				CT.$("ruleTanBG").style.visibility="visible";
+				//焦点切换
+				actiObj.changeFocus("hands_x0_y0_ruleBackFocus_");
+			}
+
+			//我选择的队伍页面
+			function goMyteam() {
+				//点击我选择的队伍获取组队信息credit
+				actiObj.getUserCredit(function(res) {
+					//如果参加过组队(存在credit)，显示对应的组队信息弹窗、否则弹窗选择加入弹窗
+					if(res && res.resultMsg == "success") {
+						myTeamShow = true;
+						credit = res.creditNum;
+						//弹出我选择的队伍弹窗
+						CT.$("myTeamTan").style.visibility = "visible";
+						if(credit == 0) {
+							//王者荣耀弹窗背景显示
+							CT.$("myTeamTanBG").src = "img/myTeam/myTeamWZ.png";
+							//获取王者荣耀队伍积分
+							getScore();
+						} else if(credit == 1) {
+							//绝地求生弹窗背景显示
+							CT.$("myTeamTanBG").src = "img/myTeam/myTeamCJ.png";
+							//获取绝地求生队伍积分
+							getScore();
+						}
+						//焦点切换
+						actiObj.changeFocus("hands_x0_y0_inputFocus_");
+					} else {
+						if(isOrder == 0) {
+							//组队弹窗弹出
+							CT.$("chooseTeamTan").src = "img/main/chooseTeam.png";
+							chooseTeamShow = true;
+							//切换焦点
+							actiObj.changeFocus("hands_x0_y0_wangzheFocus_");
+						}else{
+							//跳订购
+							CT.setCookie("columnBackUrl",window.location.href);
+							orderJs.columnToOrderPage("actiElectricContest");
+						}						
+					}
+				});
+			}
+
+			//选择加入
+			function chooseJoin(ii) {
+				//存储选队信息
+				actiObj.setUserCredit(ii);
+				myTeamInfo(ii);
+			}
+
+			//加入战队信息
+			function myTeamInfo(kk) {
+				if(kk == 0) {
+					//选择加入王者荣耀战队
+					CT.$("myTeamInfo").src = "img/tips/chooseWZ.png";
+					myTeamInfoShow = true;
+					CT.$("chooseTeamTan").src = "img/empty.png";
+					chooseTeamShow = false;
+					//焦点切换
+					actiObj.changeFocus("hands_x0_y0_confirmFocus_");
+				} else if(kk == 1) {
+					//选择加入绝地求生战队
+					CT.$("myTeamInfo").src = "img/tips/chooseCJ.png";
+					myTeamInfoShow = true;
+					CT.$("chooseTeamTan").src = "img/empty.png";
+					chooseTeamShow = false;
+					//焦点切换
+					actiObj.changeFocus("hands_x0_y0_confirmFocus_");
+				}
+			}
+
+			//返回
+			function backfunc() {
+				if(chooseTeamShow == true) {
+					chooseTeamShow = false;
+					//组队弹窗消失
+					CT.$("chooseTeamTan").src = "img/empty.png";
+					//切换焦点
+					actiObj.changeFocus("hands_x0_y0_startFocus_");
+				} else if(ruleShow == true) {
+					ruleShow = false;
+					//规则弹窗显示
+					CT.$("ruleTan").style.visibility = "hidden";
+					//规则背景图显示
+					CT.$("ruleTanBG").style.visibility="hidden";
+					//焦点切换
+					actiObj.changeFocus("hands_x0_y0_ruleFocus_");
+				} else if(myTeamShow == true) {
+					//我选择的队伍弹窗消失
+					myTeamShow = false;
+					//弹窗隐藏
+					CT.$("myTeamTan").style.visibility = "hidden";
+					//弹窗背景消失
+					CT.$("myTeamTanBG").src = "img/empty.png";
+					//焦点切换
+					actiObj.changeFocus("hands_x0_y0_myTeamFocus_");
+				} else if(myTeamInfoShow == true) {
+					//打call弹窗消失
+					CT.$("myTeamInfo").src = "img/empty.png";
+					myTeamInfoShow = false;
+					//切换焦点
+					actiObj.changeFocus("hands_x0_y0_startFocus_");
+				}else{
+					//返回平台首页
+					BackPortalMainPage();
+				}
+			}
+
+			//点击弹窗确定方法
+			function confirmFunc() {
+				window.location.href = "actiElectricContestGame.html?actiTime=" + actiTime;
+			}
+			//点击弹窗取消方法
+			function cancelFunc() {
+				backfunc();
+			}
+
+			//loger埋点
+			var action = "actiElectricContestMain";
+			var OutJson = [{
+				pageInfo: {
+					commPageEname: "actiElectricContestMain"
+				}
+			}];
+		</script>
+	</body>
+
+</html>

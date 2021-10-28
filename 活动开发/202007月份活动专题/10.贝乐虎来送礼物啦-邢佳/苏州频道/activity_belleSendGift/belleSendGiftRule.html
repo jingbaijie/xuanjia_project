@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="page-view-size" content="1280*720" />
+	<title>贝乐虎来送礼物啦规则页</title>
+	<link rel="stylesheet" type="text/css" href="css/belleSendGift.css?v=3" />
+</head>
+
+<body>
+	<div id="ruleBox">
+		<div id="hands_x0_y0_ruleBackBtnFocus_">
+			<img src="img/rulePage/backFocus.png" alt="" id="ruleBackBtnFocus" style="visibility:hidden">
+		</div>
+	</div>
+	<!--引入公用JS-->
+	<script type="text/javascript" src="../../../../js/loadCommomJs.js"></script>
+	<!--引入结束-->
+	<script type="text/javascript">
+		var buttons = [
+			{
+				id: "hands_x0_y0_ruleBackBtnFocus_",
+				clickHandler: "javascript:backfunc()",
+				left: "disable",
+				top: "disable",
+				up: "disable",
+				down: "disable",
+				focusType:7
+			}
+		];
+		//焦点初始化
+		PAGE.focusInit();
+		PAGE.changeFocus("hands_x0_y0_ruleBackBtnFocus_");
+		function backfunc() {
+			window.location.href = "belleSendGiftMain.html";
+		}
+	</script>
+</body>
+
+</html>

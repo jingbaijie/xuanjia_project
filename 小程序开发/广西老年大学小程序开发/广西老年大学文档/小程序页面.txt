@@ -1,0 +1,12 @@
+493	风采展示WECHAT	fczsWECHAT
+492	兴趣课堂详情WECHAT	xqktlbWECHAT
+491	地区资源详情WECHAT	dqzyxqWECHAT
+489	底部导航推荐	dbdhtj
+487	个人信息WECHAT	grxxWECHAT
+485	地市资源WECHAT	dszyWECHAT
+484	先进人物详情页	xjrwxqy
+482	先进人物WECHAT	xjrwWECHAT
+480	兴趣课堂WECHAT	xqktWECHAT
+477	思政之窗WECHAT	szzcwechat		
+476	免费电影WECHAT	mfdywechat
+474	老年大学小程序首页	main_wechat

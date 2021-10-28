@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>奖品列表</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+            list-style: none;
+        }
+
+        #prizeBox {
+            position: relative;
+            left: 0px;
+            top: 0px;
+            overflow: hidden;
+            background: url(img/namelistBG.jpg) no-repeat;
+            width: 1280px;
+            height: 720px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="prizeBox">
+
+    </div>
+    <script type="text/javascript" src="../../../../../js/loadCommomJs.js"></script>
+    <script type="text/javascript" src="../../../../../js/actiComm.js?v=2020012001"></script>
+    <script type="text/javascript" src="js/prizeList.js?v=20210119011"></script>
+    <script>
+        var prizeListJson = {
+            "titleInfo": {
+                "title": [
+                    {
+                        "name": "",
+                    },
+                    {
+                        "name": "",
+                    }
+                ],
+            },
+            "rankLines": 8,
+            "prizeListBox": {
+                "width": "800px",
+                "height": "240px",
+                "left": "250px",
+                "top": "200px"
+            },
+            "prizeListBoxLi": {
+                "height": "30px",
+                "fontSize": "20px",
+                "color": "#fff"
+            }
+        }
+        getPrizePage.init("prizeBox",prizeListJson);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name = "page-view-size" content = "1280*720">
+    <title>排行榜</title>
+    <link rel="stylesheet" href="./css/lottery.css?v=202004">
+</head>
+<body>
+<div class="rank">
+    <div class="opacit"></div>
+    <div class="backG"></div>
+    <div class="content">
+        <ul class="userList">
+            <li id="userId0"></li>
+            <li id="userId1"></li>
+            <li id="userId2"></li>
+            <li id="userId3"></li>
+            <li id="userId4"></li>
+            <li id="userId5"></li>
+            <li id="userId6"></li>
+            <li id="userId7"></li>
+            <li id="userId8"></li>
+            <li id="userId9"></li>
+        </ul>
+        <ul class="userScore">
+            <li id="cname0"></li>
+            <li id="cname1"></li>
+            <li id="cname2"></li>
+            <li id="cname3"></li>
+            <li id="cname4"></li>
+            <li id="cname5"></li>
+            <li id="cname6"></li>
+            <li id="cname7"></li>
+            <li id="cname8"></li>
+            <li id="cname9"></li>
+        </ul>
+        <div class="self">
+            <p style="width: 406px;top: 0;left: 0;color: #000" id="userIdPerson"></p>
+        </div>
+        <div id="phoneText"></div>
+        <div id="phoneInfo" style=""></div>
+    </div>
+    <div id = "hands_x0_y0_phoneBtn_" class="scoreBtn" style="position: absolute;top: 567px;left: 436px">
+        <img id = "phoneBtn" src="./img/prizeList/phone.png" style = "visibility: hidden;width: 307px;">
+    </div>
+    <div id = "hands_x0_y0_saveBtn_" class="scoreBtn" style="position: absolute;top: 559px;left: 734px">
+        <img id = "saveBtn" src="./img/prizeList/save.png" style = "visibility: hidden">
+    </div>
+    <div id = "hands_x0_y0_delBtn_" class="scoreBtn" style="position: absolute;top: 559px;left: 837px">
+        <img id = "delBtn" src="./img/prizeList/save.png" style = "visibility: hidden">
+    </div>
+    <!--返回-->
+    <img src="./img/back.png" id="back" style="position:absolute;top: 0px;left: 1181px;">
+    <div id="hands_x0_y0_backFocus_" style="position: absolute;top: 0px;left: 1178px;">
+        <img src="./img/backSelect.png" id="backFocus" style="visibility: hidden" />
+    </div>
+    <!--光标-->
+    <div class='focus' id='hands_x0_y0_mainFocus_' style='top: 7px;left: 13px;'>
+        <img id='mainFocus' src='./img/btn.png' style='visibility: hidden'>
+    </div>
+    <div class='focus' id='hands_x0_y0_ruleFocus_' style='top: 75px;left: 13px;'>
+        <img id='ruleFocus' src='./img/btn.png' style='visibility: hidden'>
+    </div>
+    <div class='focus' id='hands_x0_y0_moreFocus_' style='top: 144px;left: 13px;'>
+        <img id='moreFocus' src='./img/btn.png' style='visibility: hidden'>
+    </div>
+</div>
+<!--引入公用JS-->
+<script type="text/javascript" src="../../../../js/loadCommomJs.js"></script>
+<script type="text/javascript" src="../../../../js/actiComm.js"></script>
+<script type="text/javascript" src="./js/key3_4.js"></script>
+<!--引用结束-->
+<script>
+    var buttons = [
+        {
+            id: "hands_x0_y0_mainFocus_",
+            clickHandler: "javascript:goSomeWhere(0)",
+            left: "disable",
+            //right: "hands_x0_y0_startFocus_",
+            rightEvent:'javascript:rightFocusFun()',
+            up: "disable",
+            down: "hands_x0_y0_ruleFocus_",
+            focusType: 7
+        },{
+            id: "hands_x0_y0_ruleFocus_",
+            clickHandler: "javascript:goSomeWhere(1)",
+            left: "disable",
+            //right: "hands_x0_y0_startFocus_",
+            rightEvent:'javascript:rightFocusFun()',
+            up: "hands_x0_y0_mainFocus_",
+            down: "hands_x0_y0_moreFocus_",
+            focusType: 7
+        },{
+            id: "hands_x0_y0_moreFocus_",
+            clickHandler: "javascript:goSomeWhere(2)",
+            left: "disable",
+            //right: "hands_x0_y0_startFocus_",
+            rightEvent:'javascript:rightFocusFun()',
+            up: "hands_x0_y0_ruleFocus_",
+            down: "disable",
+            focusType: 7
+        },
+        {
+            id: "hands_x0_y0_phoneBtn_",
+            clickHandler: "",
+            right:'hands_x0_y0_saveBtn_',
+            otherFocusEvent:'javascript:OnFocus(1)',
+            otherBlurEvent:'javascript:OnFocus(0)',
+            //left: "disable",
+            leftEvent:'javascript:leftFocusFun()',
+            up: "hands_x0_y0_backFocus_",
+            down:"disable",
+            focusType: 7
+        },
+        {
+            id: "hands_x0_y0_saveBtn_",
+            clickHandler: "javascript:savePhoneClick()",
+            right:'hands_x0_y0_delBtn_',
+            left: "hands_x0_y0_phoneBtn_",
+            up: "hands_x0_y0_backFocus_",
+            down:"disable",
+            focusType: 7
+        },
+        {
+            id: "hands_x0_y0_delBtn_",
+            clickHandler: "javascript:clearPhoneNum()",
+            right:'disable',
+            left: "hands_x0_y0_saveBtn_",
+            up: "hands_x0_y0_backFocus_",
+            down:"disable",
+            focusType: 7
+        },
+        {
+            id: "hands_x0_y0_backFocus_",
+            clickHandler: "javascript: backfunc()",
+            up: "disable",
+            down: "hands_x0_y0_phoneBtn_",
+            left: "hands_x0_y0_phoneBtn_",
+            right: "disable",
+            focusType: 7
+        },{
+            id: "hands_x0_y0_phoneFocus0_",
+            clickHandler: "javascript: inputNum(0)",
+            up: "hands_x0_y0_phoneFocus8_",
+            down: "disable",
+            left: "hands_x0_y0_phoneFocusDel_",
+            right: "hands_x0_y0_phoneFocusSure_",
+            focusType: 7
+        }, {
+            id: "hands_x0_y0_phoneFocus1_",
+            clickHandler: "javascript: inputNum(1)",
+            up: "disable",
+            down: "hands_x0_y0_phoneFocus4_",
+            left: "disable",
+            right: "hands_x0_y0_phoneFocus2_",
+            focusType: 7
+        }, {
+            id: "hands_x0_y0_phoneFocus2_",
+            clickHandler: "javascript: inputNum(2)",
+            up: "disable",
+            down: "hands_x0_y0_phoneFocus5_",
+            left: "hands_x0_y0_phoneFocus1_",
+            right: "hands_x0_y0_phoneFocus3_",
+            focusType: 7
+        }, {
+            id: "hands_x0_y0_phoneFocus3_",
+            clickHandler: "javascript: inputNum(3)",
+            up: "disable",
+            down: "hands_x0_y0_phoneFocus6_",
+            left: "hands_x0_y0_phoneFocus2_",
+            right: "disable",
+            focusType: 7
+        }, {
+            id: "hands_x0_y0_phoneFocus4_",
+            clickHandler: "javascript: inputNum(4)",
+            up: "hands_x0_y0_phoneFocus1_",
+            down: "hands_x0_y0_phoneFocus7_",
+            left: "disable",
+            right: "hands_x0_y0_phoneFocus5_",
+            focusType: 7
+        }, {
+            id: "hands_x0_y0_phoneFocus5_",
+            clickHandler: "javascript: inputNum(5)",
+            up: "hands_x0_y0_phoneFocus2_",
+            down: "hands_x0_y0_phoneFocus8_",
+            left: "hands_x0_y0_phoneFocus4_",
+            right: "hands_x0_y0_phoneFocus6_",
+            focusType: 7
+        }, {
+            id: "hands_x0_y0_phoneFocus6_",
+            clickHandler: "javascript: inputNum(6)",
+            up: "hands_x0_y0_phoneFocus3_",
+            down: "hands_x0_y0_phoneFocus9_",
+            left: "hands_x0_y0_phoneFocus5_",
+            right: "disable",
+            focusType: 7
+        }, {
+            id: "hands_x0_y0_phoneFocus7_",
+            clickHandler: "javascript: inputNum(7)",
+            up: "hands_x0_y0_phoneFocus4_",
+            down: "hands_x0_y0_phoneFocusDel_",
+            left: "disable",
+            right: "hands_x0_y0_phoneFocus8_",
+            focusType: 7
+        }, {
+            id: "hands_x0_y0_phoneFocus8_",
+            clickHandler: "javascript: inputNum(8)",
+            up: "hands_x0_y0_phoneFocus5_",
+            down: "hands_x0_y0_phoneFocus0_",
+            left: "hands_x0_y0_phoneFocus7_",
+            right: "hands_x0_y0_phoneFocus9_",
+            focusType: 7
+        }, {
+            id: "hands_x0_y0_phoneFocus9_",
+            clickHandler: "javascript: inputNum(9)",
+            up: "hands_x0_y0_phoneFocus6_",
+            down: "hands_x0_y0_phoneFocusSure_",
+            left: "hands_x0_y0_phoneFocus8_",
+            right: "disable",
+            focusType: 7
+        }, {
+            id: "hands_x0_y0_phoneFocusDel_",
+            clickHandler: "javascript: phoneDel()",
+            up: "hands_x0_y0_phoneFocus7_",
+            down: "disable",
+            left: "disable",
+            right: "hands_x0_y0_phoneFocus0_",
+            focusType: 7
+        }, {
+            id: "hands_x0_y0_phoneFocusSure_",
+            clickHandler: "javascript: phoneSure()",
+            up: "hands_x0_y0_phoneFocus9_",
+            down: "disable",
+            left: "hands_x0_y0_phoneFocus0_",
+            right: "disable",
+            focusType: 7
+        }
+    ];
+    var leftFocusRemember = CT.getCookie("leftFocusRemember") || "hands_x0_y0_moreFocus_";
+    var wuyipageFocusPrizeList = CT.getCookie("wuyipageFocusPrizeList") || "hands_x0_y0_phoneBtn_";
+    PAGE.focusInit();
+    curFocus = PAGE.getFocusModel6(wuyipageFocusPrizeList);
+    curFocus.defaultFocus();
+    getRnakList();
+    getPersonList();
+    function rightFocusFun(){
+        leftFocusRemember = curFocus.FocusID;
+        CT.setCookie("leftFocusRemember",curFocus.FocusID);
+        CT.delCookie("leftFocusRemember");
+        changeFocus("hands_x0_y0_phoneBtn_")
+    }
+    function leftFocusFun() {
+        changeFocus(leftFocusRemember);
+    }
+    var phoneText=document.getElementById("phoneText").innerHTML;
+    var  phoneNum=phoneText;
+
+    //监听用户遥控器输入的数字
+    var isOnFocus;
+    changeNumObj.changeNum = function(ids){
+        if(isOnFocus){
+            var size;
+            if(phoneNum==""){
+                size=0;
+            }else{
+                size= phoneNum.length;
+            }
+
+            if(size < 11||!size){
+                var addnum = phoneNum;
+                phoneNum = addnum + ids;
+            }
+            document.getElementById("phoneText").innerHTML=phoneNum;
+        }
+    }
+    //焦点获焦在输入框中执行的方法
+    function OnFocus(index){
+        isOnFocus = index==1?true:false;
+    }
+    function clearPhoneNum() {
+        phoneNum = "";
+        CT.$("phoneInfo").innerHTML="";
+        CT.$("phoneText").innerHTML="";
+
+    }
+    function savePhoneClick() {
+        var phoneNum = CT.$("phoneText").innerHTML;
+        var size = phoneNum.length;
+        if(size == 11){
+            userPhone = phoneNum;
+            actiObj.setUserPhone(userPhone,function (data) {
+                CT.$("phoneInfo").innerHTML="手机号码保存成功!";
+            });
+        }else{
+            CT.$("phoneInfo").innerHTML="您输入的手机号格式无效,请重新输入!";
+        }
+
+    }
+    function getPersonList() {//获取个人信息
+        actiObj.getUserRankList(function (data) {
+            if(data.successFlg == 1){
+                // CT.$("rankPerson").innerHTML = data.rankID;
+                CT.$("userIdPerson").innerHTML = data.data.userId;
+            }
+        });
+        actiObj.getUserPhone(function (data) {
+            CT.$("phoneText").innerHTML = data.data.userPhone;
+        });
+    }
+    function getRnakList() {//获取排行榜信息
+        var dataList = [];
+        actiObj.getPrizeUserInfo(function (data) {
+            if(data.successFlg == 1){
+                dataList = data.data.records;
+                for(var i = 0 ; i <dataList.length ;i++){
+                    CT.$("userId" + i).innerHTML = dataList[i].userId;
+                    CT.$("cname" + i).innerHTML = dataList[i].prizeCname;
+                }
+            }
+        });
+    }
+    function backfunc() {
+        window.location.href = "lotteryMain.html";
+
+    }
+    function changeFocus(focusId){
+        curFocus.defaultBlur();
+        curFocus = PAGE.getFocusModel6(focusId);
+        curFocus.defaultFocus();
+    }
+    function goSomeWhere(num) {
+        CT.setCookie("wuyipageFocusPrizeList",curFocus.FocusID);
+        if(num == 0){
+            window.location.href = "./lotteryMain.html"
+        }else if(num == 1){
+            window.location.href = "./lotteryRule.html"
+        }else if(num == 2){//跳更多详情
+            CT.backPage();
+        }
+    }
+</script>
+</body>
+</html>

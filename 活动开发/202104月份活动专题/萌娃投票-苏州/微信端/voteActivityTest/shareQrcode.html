@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8" />
+		<title>朋友圈分享页</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<script type="text/javascript" src="js/flexible.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/shareQrcode.css?v=1.25" />
+	</head>
+
+	<body>
+		<div class="mainBJ">
+			<!--江苏有线logo-->
+			<img src="img/logo@3x.png" class="logo" alt=""/>
+			<!--标题图片-->
+			<div class="titlePic">
+				<img src="img/titlePic@3x.png" alt=""/>
+			</div>
+			<!--报名介绍文案-->
+			<ul class="introduction">
+				<!--标题-->
+				<div class="title">萌宝档案</div>
+				<!--最萌宝贝照片展示-->
+				<div class="babyPic">
+					<img src="img/empty.png" id="babyPic" alt=""/>
+				</div>
+				<!--编号、姓名、介绍展示-->
+				<ul class="playerIdShow">
+					<li style="margin-right: 0.8rem;">ID:<span id="playerId">000160</span></li>
+					<li id="playerName">陈晓晓</li>
+				</ul>
+				<div id="introductionShow">爱哭鼻子的小鬼头</div>
+				<!--二维码展示-->
+				<div class="qrcodeShow">
+					<div id="qrcodePic" style="display: none;"></div>
+					<div id="qrcodeImg"></div> 
+				</div>
+				<!--文字介绍-->
+				<img src="img/shareQrcode/text@3x.png" class="textDescrible" alt=""/>
+			</ul>
+		</div>
+		<script src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+		<script type="text/javascript" src="js/weui/js/jquery-2.1.4.js"></script>
+		<script type="text/javascript" src="js/jquery.cookie.js"></script>
+		<script type="text/javascript" src="js/common.js?v=1.1"></script>
+		<script type="text/javascript" src="js/shareQrcode.js?v=1.211"></script>
+		<script type="text/javascript" src="js/qrcode.min.js"></script>
+	</body>
+
+</html>

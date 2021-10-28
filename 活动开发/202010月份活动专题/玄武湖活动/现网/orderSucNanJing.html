@@ -1,0 +1,232 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title>orderSuc.html</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="page-view-size" content="1280*720" />
+    <link rel="stylesheet" href="../css/main.css" type="text/css">
+    </link>
+
+
+    <body>
+        <!-- BG背景图标 -->
+        <div class="BG">
+            <img src="../image/orderSuccessPageXuanWu.jpg" id="BGImg" width="1280" height="720" />
+        </div>
+        <!-- 焦点图片 -->
+        <div id="hands_x0_y0_okFocus_" style="position: absolute;top: 542px;left: 624px;">
+            <img src="../image/chou.png" id="okFocus" style="visibility: hidden;" />
+        </div>
+        <script type="text/javascript" src="../../../js/loadCommomJs.js"></script>
+        <script type="text/javascript">
+		//存储订购成功页数据，用于玄武湖活动做订购成功返回判断
+		CT.setCookie("orderSucBack",window.location.href);		
+            var page = {
+                imgUrl: AjaxConfig.imgUrl, //图片Ip地址
+                init: function() {
+                    var _this = this;
+                    // 获取页面信息
+                    if (CT.requestValue("contentName")) {
+                        _this.contentName = CT.requestValue("contentName");
+                        interface.findCommonPageInfo({
+                            params: {
+                                "contentName": _this.contentName
+                            }
+                        }, function(data) {
+                            // 通用日志
+
+                            AjaxConfig.commonPageInfo = data;
+                            setLoggerInfo.pageInfoLog = data;
+                            _this.getCommonPageInfoToDo(data);
+                        });
+                    } else if (CT.requestValue("contentId")) {
+                        _this.contentId = CT.requestValue("contentId");
+                        interface.findCommonPageInfo({
+                            params: {
+                                "contentId": _this.contentId
+                            }
+                        }, function(data) {
+                            // 通用日志
+                            AjaxConfig.commonPageInfo = data;
+                            setLoggerInfo.pageInfoLog = data;
+                            _this.getCommonPageInfoToDo(data);
+                        });
+                    }
+                    _this.upLog()
+                },
+                upLog: function() {
+                    interface.getSystemConfigByKey(function(res) {
+                        var arr = res && res.data && eval(res.data.configValue);
+                        var arrIndex = Math.floor(Math.random() * arr.length + 1) - 1;
+                        var video = arr[arrIndex] || [];
+                        interface.findVideoListByCartoonId({
+                            params: {
+                                cartoonId: video.cartoonId
+                            },
+                            ajaxConfig: {
+                                async: true
+                            }
+                        }, function(data) {
+                            xjDataLog.uploadViodeEndLog({
+                                "cartoonId": data.data[0].cartoonId || "",
+                                "cartoonCname": data.data[0].cartoonInfo.cartoonCname || "",
+                                "cartoonEname": data.data[0].cartoonInfo.cartoonEname || "",
+                                "videoId": data.data[0].id || "",
+                                "videoCname": data.data[0].videoCname || "",
+                                "videoEname": data.data[0].videoEname || "",
+                                "startTime": 0,
+                                "stayTime": parseInt(Math.random() * 500), //停留时长
+                                "playType": 2,
+
+                                // "spName": data[0].cartoonInfo.cspInfo.spName,
+                                // "spId": data[0].cartoonInfo.cspInfo.spId,
+                                "spName": xjDataLog.defaultConfig.spName,
+                                "spId": xjDataLog.defaultConfig.spId
+                            });
+                        })
+                    })
+                },
+                //得到 页面配置数据后的操作
+                getCommonPageInfoToDo: function(data) {
+                    var _this = this;
+                    _this.commonPageInfo = data;
+                }
+            };
+
+
+            var buttons = [{
+                id: 'hands_x0_y0_okFocus_',
+                clickHandler: 'javascript:toXuanWuLottery()',
+                left: 'disable',
+                right: 'disable',
+                up: 'disable',
+                down: 'disable',
+                focusType: 7
+            }];
+
+            PAGE.focusInit();
+            PAGE.changeFocus('hands_x0_y0_okFocus_');
+            page.init();
+			function toXuanWuLottery(){
+				CT.getActivityUrl(11);
+			}
+            /******************************专题与活动订购成功用户关联卡通播放内容*****************************************/
+            function trimTime(timeMin) {
+                if (timeMin) {
+                    var dateTime = new Date(timeMin);
+                    return dateTime.getFullYear() + "" +
+                        (dateTime.getMonth() > 10 ? (dateTime.getMonth() + 1) : ("0" + (dateTime.getMonth() + 1))) +
+                        (dateTime.getDate() > 10 ? dateTime.getDate() : ("0" + dateTime.getDate())) +
+                        (dateTime.getHours() > 10 ? dateTime.getHours() : ("0" + dateTime.getHours)) +
+                        (dateTime.getMinutes() > 10 ? dateTime.getMinutes() : ("0" + dateTime.getMinutes())) +
+                        (dateTime.getSeconds() > 10 ? dateTime.getSeconds() : ("0" + dateTime.getSeconds()));
+                } else {
+                    return false;
+                }
+            }
+            var connectCartoonArr = {
+                cartoonId: [80, 108, 272],
+                cartoonCname: ["罗布奥特曼", "宇宙护卫队第2季", "精灵梦叶罗丽第6季"],
+                cartoonEname: ["lbatm", "yzhwd2", "jlmylld6j"],
+                videoId: [
+                    [1946, 1947, 1948],
+                    [2575, 2576, 2577],
+                    [9739, 9740, 9741]
+                ],
+                videoCname: [
+                    ["罗布奥特曼01", "罗布奥特曼02", "罗布奥特曼03"],
+                    ["宇宙护卫队201", "宇宙护卫队202", "宇宙护卫队203"],
+                    ["精灵梦叶罗丽第六季01", "精灵梦叶罗丽第六季02", "精灵梦叶罗丽第六季03"]
+                ],
+                videoEname: [
+                    ["lbatm01", "lbatm02", "lbatm03"],
+                    ["yzhwd201", "yzhwd202", "yzhwd203"],
+                    ["jlmyll601", "jlmyll602", "jlmyll603"]
+                ]
+            }
+            var fromPage = xjDataLog.getPageUrlName(CT.getCookie("backPrePage") + "") + "";
+            if (fromPage.indexOf("cartoonId") == "-1" && fromPage.indexOf("videoDetail") == "-1" && fromPage.indexOf("playVideo") == "-1") {
+                var cartoonIndex = Math.floor(Math.random() * (connectCartoonArr.cartoonId.length));
+                var cartoonLogId = connectCartoonArr.cartoonId[cartoonIndex];
+                var cartoonLogCname = connectCartoonArr.cartoonCname[cartoonIndex];
+                var cartoonLogEname = connectCartoonArr.cartoonEname[cartoonIndex];
+                var videoIndex = Math.floor(Math.random() * (connectCartoonArr.videoId[cartoonIndex].length));
+                var videoLogId = connectCartoonArr.videoId[cartoonIndex][videoIndex];
+                var videoLogCname = connectCartoonArr.videoCname[cartoonIndex][videoIndex];
+                var videoLogEname = connectCartoonArr.videoEname[cartoonIndex][videoIndex];
+
+                var watchBeginTime = new Date().getTime();
+                var watchStayTime = (Math.floor(Math.random() * 360)) * 1000 + 3000;
+                var watchEndTime = parseInt(watchBeginTime) + watchStayTime;
+
+
+                var watchBegin = trimTime(watchBeginTime);
+                var watchEnd = trimTime(watchEndTime);
+
+                //上传页面埋点信息
+                xjDataLog.uploadLogPage({
+                    pageEname: fromPage,
+                    pageCname: "活动专题补全页",
+                    nextPageCname: "全屏播放",
+                    nextPageEname: "playvideo_2019v1_cartoonId_" + cartoonLogId + "_videoId_" + videoLogId,
+                    nextPageContentType: 2,
+                    nextPageContentId: 15,
+                    stayTime: watchStayTime,
+                    focusLocation: "-1"
+                });
+                // //上传视频埋点
+                // var data = {
+                // 	cartoonId: cartoonLogId,
+                // 	cartoonCname: cartoonLogCname,
+                // 	cartoonEname: cartoonLogEname,
+                // 	contentId : cartoonLogId,
+                // 	videoId: videoLogId,
+                // 	videoCname: videoLogCname,
+                // 	videoEname: videoLogEname,
+                // 	startTime: watchBeginTime,
+                // 	playId: videoLogId + "_" +watchBeginTime,
+                // 	playType: 2,
+                // 	eventType: "start",
+                // 	playName: videoLogCname,
+                // 	stateTime: new Date().getTime() - watchBeginTime
+                // }
+                // xjDataLog.uploadViodeEndLog(data);
+                // //上传视频埋点
+                // var endData = {
+                // 	cartoonId: cartoonLogId,
+                // 	cartoonCname: cartoonLogCname,
+                // 	cartoonEname: cartoonLogEname,
+                // 	contentId : cartoonLogId,
+                // 	videoId: videoLogId,
+                // 	videoCname: videoLogCname,
+                // 	videoEname: videoLogEname,
+                // 	startTime: watchEndTime,
+                // 	playId: videoLogId + "_" +watchBeginTime,
+                // 	playType: 2,
+                // 	eventType: "end",
+                // 	playName: videoLogCname,
+                // 	stateTime: watchStayTime
+                // }
+                // xjDataLog.uploadViodeEndLog(endData);
+            }
+            /******************************专题与活动订购成功用户关联卡通播放内容*****************************************/
+
+
+            /********************************************************************************/
+            function backfunc() { // 返回键
+                CT.backPage();
+                /*            
+			var backPrePage = CT.getCookie("backPrePage") + "";
+            if (backPrePage.indexOf("http") != -1) {
+                CT.delCookie("backPrePage");
+                window.location.href = backPrePage;
+            } else {
+                CT.backPage();
+            }
+			*/
+            }
+        </script>
+    </body>
+
+</html>

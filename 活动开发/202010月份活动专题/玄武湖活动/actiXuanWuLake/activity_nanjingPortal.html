@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="page-view-size" content="1280*720" />
+    <title>活动区分南京前置页</title>
+    <style>
+        .mainContentDom {
+            width: 1280px;
+            height: 720px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="mainDom" class="mainContentDom">
+        <!-- 背景图 -->
+        <img class="mainContentDom" src="./img/portalJudge/BG.jpg" alt="">
+
+        <!-- 确定按钮 -->
+        <img src="./img/portalJudge/sure.png"
+            style="width: 237px;height: 110px;position: absolute;top: 495px;left: 520px;" alt="">
+        <div id="hands_x0_y0_sureJumpFocus_"
+            style="width: 237px;height: 110px;position: absolute;top: 495px;left: 520px;">
+            <img id="sureJumpFocus" src="./img/portalJudge/sureS.png"
+                style="width: 237px;height: 110px;visibility: hidden;" alt="">
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../../../js/loadCommomJs.js"></script>
+<script>
+    var buttons = [
+        {
+            id: "hands_x0_y0_sureJumpFocus_",
+            clickHandler: "javascript: backfunc()",
+            up: "disable",
+            down: "disable",
+            left: "disable",
+            right: "disable",
+            focusType: 7
+        }
+    ];
+    PAGE.focusInit();
+    PAGE.changeFocus("hands_x0_y0_sureJumpFocus_");
+
+    function backfunc() {
+        CT.backPage();
+    }
+</script>
+
+</html>

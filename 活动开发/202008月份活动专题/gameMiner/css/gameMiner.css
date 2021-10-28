@@ -1,0 +1,39 @@
+.posDiv{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.withScreen{
+    width: 1280px;
+    height: 720px;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    text-align: center;
+}
+.mainBg{
+    background: url("../images/mainBG.jpg")no-repeat;
+    background-size: 100% 100%;
+}
+#miner{
+    width: 195px;
+    height: 238px;
+    background: url("../images/car0.png")no-repeat;
+    background-size: 100% 100%;
+}
+#rope{
+    background: url("../images/rope.png")no-repeat;
+    background-size: 100% 100%;
+}
+#conText{
+    width: 325px;
+    height: 100px;
+    position: absolute;
+    top: 285px;
+    left: 475px;
+    line-height: 100px;
+    color: #d85415;
+    font-weight: bold;
+    font-size: 42px;
+}

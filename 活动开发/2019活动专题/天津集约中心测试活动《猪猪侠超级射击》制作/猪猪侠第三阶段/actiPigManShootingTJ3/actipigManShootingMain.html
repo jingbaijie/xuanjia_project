@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>猪猪侠超级射击主页</title>
+		<meta name = "page-view-size" content = "1280*720">
+		<link rel="stylesheet" type="text/css" href="css/actipigManShootingMain.css?v=2019110502" />
+	</head>
+
+	<body>
+		<div id="main">
+			<!--三大按鈕-->
+			<!--规则-->
+			<img src="img/mainNew/rule.png" id="ruleBtn" />
+			<div id="hands_x0_y0_ruleBtnFocus_">
+				<img src="img/mainNew/btnFocus.png" id="ruleBtnFocus" />
+			</div>
+			<!--中奖名单-->
+			<img src="img/mainNew/nameList.png" id="nameListBtn" />
+			<div id="hands_x0_y0_nameListBtnFocus_">
+				<img src="img/mainNew/btnFocus.png" id="nameListBtnFocus" />
+			</div>
+			<!--抽奖-->
+			<img src="img/mainNew/chouJ.png" id="lotteryBtn" />
+			<div id="hands_x0_y0_lotteryBtnFocus_">
+				<img src="img/mainNew/btnFocus.png" id="lotteryBtnFocus" />
+			</div>
+			<!--开始游戏按钮-->			
+			<div id="hands_x0_y0_startBtnFocus_" style="z-index:1;">
+				<img src="img/mainNew/startFocus.png" id="startBtnFocus" />
+			</div>	
+
+			<!--规则弹窗-->
+			<div id="ruleTan">
+				<img src="img/back1.png" id="ruleBack" />
+				<div id="hands_x0_y0_ruleBackFocus_">
+					<img src="img/back2.png" id="ruleBackFocus" />
+				</div>
+			</div>
+			<!--中奖名单弹窗-->
+			<div id="nameListTan">
+				<!--返回-->
+				<img src="img/back1.png" id="nameListBack" />
+				<div id="hands_x0_y0_nameListBackFocus_">
+					<img src="img/back2.png" id="nameListBackFocus" />
+				</div>
+				<!--手机号输入框-->
+				<div id="telInput"></div>
+				<div id="hands_x0_y0_inputFocus_">
+					<img src="img/rule-nameList/phoneFocus.png" id="inputFocus" />
+				</div>
+				<!--保存-->
+				<div id="hands_x0_y0_saveFocus_">
+					<img src="img/rule-nameList/saveFocus.png" id="saveFocus" />
+				</div>
+				<!--保存提示-->
+				<div id="savetips" style="position: absolute;left: 500px;top: 675px;color: #fff;font-size: 20px;"></div>
+				<!--清除-->
+				<div id="hands_x0_y0_emptyFocus_">
+					<img src="img/rule-nameList/saveFocus.png" id="emptyFocus" />
+				</div>
+				<!--用户信息-->
+				<div id="userInfo"></div>
+				<!--中奖情况-->
+				<div id="prizeInfo"></div>
+				<!--名单列表-->
+				<ul id="nameList">
+					<li><span>189****7710</span><span>20元话费</span></li>
+					<li><span>138****7880</span><span>20元话费</span></li>
+					<li><span>139****6382</span><span>萌鸡儿童水杯</span></li>
+					<li><span>137****2292</span><span>20元话费</span></li>
+				</ul>
+			</div>
+
+			<!--提示弹窗-->
+			<img src="img/empty.png" id="tanchuangTip" style="position: absolute;left: 0px;top: 0px;z-index: 2;" />
+			<div id="hands_x0_y0_noChanceConfirmFocus_">
+				<img src="img/tanChuang/confirmFocus.png" id="noChanceConfirmFocus" style="position: absolute;left: 445px;top: 380px;z-index: 2;visibility: hidden;" />
+			</div>
+			<div id="hands_x0_y0_noChanceCancelFocus_">
+				<img src="img/tanChuang/cancelFocus.png" id="noChanceCancelFocus" style="position: absolute;left: 655px;top: 380px;z-index: 2;visibility: hidden;" />
+			</div>
+			
+			<!--四大圆圈-->
+			<div id="circleImg">
+				<img src="img/mainNew/circle1.png" id="circle1"/>
+				<img src="img/mainNew/circle1.png" id="circle2"/>
+				<img src="img/mainNew/circle1.png" id="circle3"/>
+				<img src="img/mainNew/circle1.png" id="circle4"/>
+			</div>
+
+			<!--四大IP-->
+			<img src = "img/mainNew/wjjy.png" style = "position:absolute;left: 250px;top: 464px;z-index:1;" />
+			<div id="hands_x0_y0_ip1Focus_" style="position:absolute;left: 25px;top: 400px;z-index:2;">
+				<img src="img/mainNew/wjjyFocus.png" id="ip1Focus" style="visibility:hidden;" />
+			</div>
+			<img src = "img/mainNew/zc2.png" style = "position:absolute;left:450px;top:464px;z-index:1;">
+			<div id="hands_x0_y0_ip2Focus_" style="position:absolute;left:240px;top:380px;z-index:2;">
+				<img src="img/mainNew/zc1.png" id="ip2Focus" style="visibility:hidden;" />
+			</div>
+			<img src = "img/mainNew/xjly.png" style = "position:absolute;left:650px;top:464px;z-index:1;">
+			<div id="hands_x0_y0_ip3Focus_" style="position:absolute;left:418px;top:360px;z-index:2;">
+				<img src="img/mainNew/xjlyFocus.png" id="ip3Focus" style="visibility:hidden;" />
+			</div>
+			<img src = "img/mainNew/klxq.png" style = "position:absolute;left:855px;top:464px;">
+			<div id="hands_x0_y0_ip4Focus_" style="position:absolute;left:640px;top:385px;z-index:2;">
+				<img src="img/mainNew/klxqFocus.png" id="ip4Focus" style="visibility:hidden;" />
+			</div>
+
+			<!--打印-->
+			<div id="print" style="position:absolute;left:25px;top:350px;font-size:20px;color:red;"></div>
+
+			<!-- 退订 -->
+			<img src = "img/tanChuang/backOrder.png" style = "width: 150px; height: 60px;position: absolute; top: 650px;left: 1120px;">
+			<div id="hands_x0_y0_unsubscribeFocus_" style="width: 150px; height: 60px; position: absolute; top: 642px;left: 1120px;">
+				<img id="unsubscribeFocus" src="img/tanChuang/confirmFocus.png" style="width: 150px; height: 60px;visibility: hidden;">
+			</div>
+
+			<!--游戏次数显示-->
+			<div style="position:absolute;left:925px;top:30px;color:#F38009;font-size:30px;font-weight:bold;">游戏次数：<span id="chanceNumShow"></span></div>
+
+		</div>
+		<!-- 引入公共的js开始 -->
+		<script type="text/javascript" src="../../js/comm.js?v=2019072"></script>
+		<script type="text/javascript" src="../../js/common1_1.js?v=2019072"></script>
+		<script type="text/javascript" src="../../js/key1_3.js?v=2019072"></script>
+		<!-- 引入公共的js结束 -->
+		<script type="text/javascript" src="js/actiComm.js?v=2019111501"></script>
+		<script type="text/javascript" src="js/nameList.js"></script>
+		<script type="text/javascript">
+			//焦点数组
+			var buttons = [{
+				id: "hands_x0_y0_ruleBtnFocus_",
+				clickHandler: "javascript:jumpUrl(1)",
+				left: "hands_x0_y0_startBtnFocus_",
+				right: "disable",
+				up: "disable",
+				down: "hands_x0_y0_nameListBtnFocus_",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_nameListBtnFocus_",
+				clickHandler: "javascript:jumpUrl(2)",
+				left: "hands_x0_y0_startBtnFocus_",
+				right: "disable",
+				up: "hands_x0_y0_ruleBtnFocus_",
+				down: "hands_x0_y0_lotteryBtnFocus_",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_lotteryBtnFocus_",
+				clickHandler: "javascript:jumpUrl(3)",
+				left: "hands_x0_y0_startBtnFocus_",
+				right: "disable",
+				up: "hands_x0_y0_nameListBtnFocus_",
+				down: "hands_x0_y0_startBtnFocus_",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_startBtnFocus_",
+				clickHandler: "javascript:jumpUrl(4)",
+				left: "hands_x0_y0_ruleBtnFocus_",
+				right: "hands_x0_y0_lotteryBtnFocus_",
+				up: "hands_x0_y0_lotteryBtnFocus_",
+				down: "hands_x0_y0_ip3Focus_",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_ruleBackFocus_",
+				clickHandler: "javascript:tanHide(1)",
+				left: "disable",
+				right: "disable",
+				up: "disable",
+				down: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_nameListBackFocus_",
+				clickHandler: "javascript:tanHide(2)",
+				left: "disable",
+				right: "disable",
+				up: "disable",
+				down: "hands_x0_y0_inputFocus_",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_inputFocus_",
+				otherFocusEvent: "javascript:onFocus(1)",
+				otherBlurEvent: "javascript:onFocus(0)",
+				left: "disable",
+				right: "hands_x0_y0_emptyFocus_",
+				up: "hands_x0_y0_nameListBackFocus_",
+				down: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_saveFocus_",
+				clickHandler: "javascript:saveFunc()",
+				otherBlurEvent: 'javascript:saveBlur()',
+				left: "hands_x0_y0_emptyFocus_",
+				right: "disable",
+				up: "hands_x0_y0_nameListBackFocus_",
+				down: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_emptyFocus_",
+				clickHandler: "javascript:emptyFunc()",
+				left: "hands_x0_y0_inputFocus_",
+				right: "hands_x0_y0_saveFocus_",
+				up: "hands_x0_y0_nameListBackFocus_",
+				down: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_noChanceConfirmFocus_",
+				clickHandler: "javascript:noChanceConfirm()",
+				left: "disable",
+				right: "hands_x0_y0_noChanceCancelFocus_",
+				up: "disable",
+				down: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_noChanceCancelFocus_",
+				clickHandler: "javascript:noChanceCancel()",
+				left: "hands_x0_y0_noChanceConfirmFocus_",
+				right: "disable",
+				up: "disable",
+				down: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_ip1Focus_",
+				clickHandler: "javascript:goIpUrl(0)",
+				left: "disable",
+				right: "hands_x0_y0_ip2Focus_",
+				up: "hands_x0_y0_startBtnFocus_",
+				down: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_ip2Focus_",
+				clickHandler: "javascript:goIpUrl(1)",
+				left: "hands_x0_y0_ip1Focus_",
+				right: "hands_x0_y0_ip3Focus_",
+				up: "hands_x0_y0_startBtnFocus_",
+				down: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_ip3Focus_",
+				clickHandler: "javascript:goIpUrl(2)",
+				left: "hands_x0_y0_ip2Focus_",
+				right: "hands_x0_y0_ip4Focus_",
+				up: "hands_x0_y0_startBtnFocus_",
+				down: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_ip4Focus_",
+				clickHandler: "javascript:goIpUrl(3)",
+				left: "hands_x0_y0_ip3Focus_",
+				right: "hands_x0_y0_unsubscribeFocus_",
+				up: "hands_x0_y0_startBtnFocus_",
+				down: "disable",
+				focusType: 7
+			}
+			,{
+				id: "hands_x0_y0_unsubscribeFocus_",
+				clickHandler: "javascript: backOrder()",	
+				left:"hands_x0_y0_ip4Focus_",
+				right: "disable",
+				up: "hands_x0_y0_ip4Focus_",
+				down: "disable",
+				focusType: 7
+			}]
+
+			var ruleShow = false; //规则弹窗默认不显示	
+			var nameListShow = false; //中奖名单默认不显示	
+			var chanceNum = 0;	
+			var randomIP = Math.floor(Math.random() * 3);//[0,2]
+			var vTime = new Date().getTime();//时间戳
+			
+
+			// 鉴权值
+			var isOrder0 = 0;
+			var isOrder1 = 0;
+			var isOrder2 = 0;
+			var isOrder3 = 0;
+			var orderType = 1;			
+			var tryPlay = 0; //试玩
+			var isOrder = [];//订购产品数量=游戏机会
+			var totalChanceNum = 0;//总的游戏机会
+
+			//获取用户试玩机会
+			actiObj.getUserDataList(function(res) {
+				if(res.resultMsg == "success") {
+					tryPlay = parseInt(res.list[0].user_acti_data);
+				} else {
+					tryPlay = 0;
+				}					
+			})
+
+			//页面埋点
+			actiObj.setLogForActivityBySelf("actipigManShootingMainTJ3");
+			
+			
+			/* 鉴权并初始化 根据actiComm中的allParams数组中的四个厂家的计费进行鉴权*/
+			function authInit() {
+				actiObj.getTJAuthResult(allParams[0], function(data0) {				
+					if(data0.indexOf("OK") > -1) {
+						isOrder0 = 0;
+						isOrder.push(0);
+					} else {
+						isOrder0 = 1;
+						isOrder.push(1);
+					}
+					actiObj.getTJAuthResult(allParams[1], function(data1) {
+						if(data1.indexOf("OK") > -1) {
+							isOrder1 = 0;
+							isOrder.push(0);
+						} else {
+							isOrder1 = 1;
+							isOrder.push(1);
+						}
+						actiObj.getTJAuthResult(allParams[2], function(data2) {
+							if(data2.indexOf("OK") > -1) {
+								isOrder2 = 0;
+								isOrder.push(0);
+							} else {
+								isOrder2 = 1;
+								isOrder.push(1);
+							}							
+						})
+						actiObj.getTJAuthResult(allParams[3], function(data3) {
+							if(data3.indexOf("OK") > -1) {
+								isOrder3 = 0;
+								isOrder.push(0);
+							} else {
+								isOrder3 = 1;
+								isOrder.push(1);
+							}							
+						})
+					})
+					//获取机会次数
+					actiObj.getChance(function(res) {
+						chanceNum = res.activityChance;					
+						focusInit();
+						curFocus = getFocusModel6("hands_x0_y0_startBtnFocus_");
+						curFocus.defaultFocus();
+						setTimeout(function(){
+							showChanceNum();
+						},800)
+					})					
+				})											
+			}
+			authInit();
+
+			function showChanceNum (){
+				for(var i = 0;i < isOrder.length;i++){
+					if(isOrder[i]==0){
+						totalChanceNum += 1; 
+					}
+				};
+				//页面显示剩余游戏次数
+				if(isOrder0 == 0 || isOrder1 == 0 || isOrder2 == 0 || isOrder3 == 0) {						
+					if(totalChanceNum>=chanceNum){
+						CT.$("chanceNumShow").innerHTML=totalChanceNum-chanceNum;
+					}else{
+						CT.$("chanceNumShow").innerHTML=0;
+					}	
+				}else{	
+					if(tryPlay >= 1) {
+						CT.$("chanceNumShow").innerHTML=0;
+					}else{
+						CT.$("chanceNumShow").innerHTML=1;
+					}										
+				}
+			}			
+
+			//活动跳转链接，用于跳转其余厂家平台后返回至本活动用
+			var activityLoginPortal = "http://202.99.114.152:25436/xjcartoon_FrontEndWeb/index.jsp?action=loginPortal_actiPigManShootingTJ3";
+			//跳转链接拼接参数，用于传递给各厂家平台以及厂家平台返回至活动中的时候活动需要重新获取用户信息用
+			var houzui = "UserID=" + actiUserId + "&UserToken=" + actiUserToken + "&CarrierId=" + actiCarrierId +
+				"&userID=" + actiUserId + "&userToken=" + actiUserToken + "&carrierId=" + actiCarrierId +
+				"&ReturnUrl=" + activityLoginPortal +
+				encodeURIComponent("&UserID=" + actiUserId + "&UserToken=" + actiUserToken + "&CarrierId=" + actiCarrierId +
+					"&userID=" + actiUserId + "&userToken=" + actiUserToken + "&carrierId=" + actiCarrierId + "&fromOtherIPTV=1");
+			//跳转其余厂家平台或者跳转订购
+			function goIpUrl(ii) {
+				switch(parseInt(ii)){
+					case 0:
+						if(isOrder0 == 0 || isOrder1==0 || isOrder2==0 || isOrder3 == 0){
+							actiObj.setLogForActivityBySelf("actipigManShootingMainTJ3_" + allParams[0].contentID);
+							window.location.href = "http://202.99.114.152:29400/frontend/welcome/home.htm?welcome=2&carrierId=201&" + houzui;
+						}else{
+							actiObj.setLogForActivityBySelf("actipigManShootingTJ3order_" + allParams[0].contentID);
+							toOrder(0);
+						}
+						break;
+					case 1:
+						if(isOrder0 == 0 || isOrder1==0 || isOrder2==0 || isOrder3 == 0){
+							actiObj.setLogForActivityBySelf("actipigManShootingMainTJ3_" + allParams[1].contentID);
+							window.location.href = "http://202.99.114.152:32209/html/welcome.html?" + houzui;
+						}else{
+							actiObj.setLogForActivityBySelf("actipigManShootingTJ3order_" + allParams[1].contentID);
+							toOrder(1);
+						}
+					 break;
+					 case 2:
+						if(isOrder0 == 0 || isOrder1==0 || isOrder2==0 || isOrder3 == 0){
+							actiObj.setLogForActivityBySelf("actipigManShootingMainTJ3_" + allParams[2].contentID);							
+							window.location.href = "http://202.99.114.152:25436/xjcartoon_FrontEndWeb/index.jsp?" + houzui;
+						}else{
+							actiObj.setLogForActivityBySelf("actipigManShootingTJ3order_" + allParams[2].contentID);
+							toOrder(2);
+						}
+						break;	
+					case 3:
+						if(isOrder0 == 0 || isOrder1==0 || isOrder2==0 || isOrder3 == 0){
+							actiObj.setLogForActivityBySelf("actipigManShootingMainTJ3_" + allParams[3].contentID);							
+							window.location.href = "http://202.99.114.152:31400/kidbus/welcome/home.htm?welcome=shouye&" + houzui;
+						}else{
+							actiObj.setLogForActivityBySelf("actipigManShootingTJ3order_" + allParams[3].contentID);
+							toOrder(3);
+						}
+						break;
+					 default:
+						break;
+				}				
+			}
+
+			//直接订购(由活动的订购页发起订购)或联通(由联通的订购方式发起订购)统一订购			
+			function toOrder(ii) {
+				if(orderType === 0) {
+					window.location.href = "pigShootOrderPage.html?IdCard=" + ii;
+				} else {
+					var args = actiObj.trimArgs(allParams[parseInt(ii)]);
+					window.location.href = actiObj.TJOutOrderUrl + "&" + args+ "&activityCodeType=1&timeStamp=" + vTime;
+				}
+			}
+
+			//返回地址，在平台的index.jsp页面中会进行存储
+			var backfuncUrl = CT.getCookie('mainBackUrl');
+			var returnUrl = CT.getCookie('returnUrl');
+			if(!returnUrl) {
+				CT.setCookie('returnUrl', backfuncUrl);
+			}
+			returnUrl = CT.getCookie('returnUrl');
+
+			//跳转以及弹窗显示
+			function jumpUrl(index) {
+				if(index == 1) {
+					//规则弹窗显示、切换焦点
+					CT.$("ruleTan").style.visibility = "visible";
+					actiObj.changeFocus("hands_x0_y0_ruleBackFocus_");
+					ruleShow = true;
+				} else if(index == 2) {
+					//中奖名单弹窗显示、切换焦点
+					CT.$("nameListTan").style.visibility = "visible";
+					actiObj.changeFocus("hands_x0_y0_inputFocus_");
+					nameListShow = true;
+				} else if(index == 3) {
+					window.location.href = "actipigManShootingLottery.html";
+				} else if(index == 4) {
+					if(isOrder0 == 0 || isOrder1==0 || isOrder2==0 || isOrder3 == 0) {						
+						if(chanceNum >= totalChanceNum) {							
+							CT.$("tanchuangTip").src = "img/tanChuang/noChance.png";
+							actiObj.changeFocus("hands_x0_y0_noChanceConfirmFocus_");
+						} else {
+							window.location.href = "actipigManShootingGame.html?totalChanceNum="+totalChanceNum;							
+						}
+					} else {							
+						tryPlay++;
+						actiObj.setUserDataList(tryPlay);						
+						setTimeout(function() {
+							if(tryPlay > 1) {
+								//跳订购
+								toOrder(randomIP);								
+							} else {								
+								window.location.href = "actipigManShootingGame.html?tryPlay=" + tryPlay + "&vTime=" + vTime;								
+							}
+						}, 1000)
+					}
+				}
+			}
+
+			//点击返回按钮弹窗隐藏
+			function tanHide(ii) {
+				if(ii == 1) {
+					//规则弹窗关闭、切换焦点
+					CT.$("ruleTan").style.visibility = "hidden";
+					actiObj.changeFocus("hands_x0_y0_ruleBtnFocus_");
+					ruleShow = false;
+				} else if(ii == 2) {
+					//规则弹窗关闭、切换焦点
+					CT.$("nameListTan").style.visibility = "hidden";
+					actiObj.changeFocus("hands_x0_y0_nameListBtnFocus_");
+					nameListShow = false;
+				}
+			}
+
+			//按遥控器返回键
+			function backfunc() {
+				if(ruleShow == true) {
+					tanHide(1);
+				} else if(nameListShow == true) {
+					tanHide(2);
+				} else {
+					if(returnUrl.indexOf("http")>-1) {
+						getLogOrderLog();
+						window.location.href = returnUrl;
+					} else {
+						getLogOrderLog();
+						actiBackPortalMainPage();
+					}
+				}
+			}
+
+			//点击提示弹窗确定按钮
+			function noChanceConfirm() {
+				CT.$("tanchuangTip").src = "img/empty.png";
+				actiObj.changeFocus("hands_x0_y0_startBtnFocus_");
+			}
+
+			//点击提示弹窗取消按钮
+			function noChanceCancel() {
+				CT.$("tanchuangTip").src = "img/empty.png";
+				actiObj.changeFocus("hands_x0_y0_startBtnFocus_");
+			}
+
+
+			//退订
+			function backOrder(){
+				window.location.href = "http://202.99.114.27:35806/epg_uc/home.action?entranceType=1&menuType=9&myExpensesSwitch=1&" + houzui;
+			}
+
+			//数据埋点
+			function getLogInfoImg(url) {
+				var img = new Image(1, 1);
+				img.src = url;
+			}
+
+			function getLogOrderLog() {
+				var orderUrlAction = "userId=" + actiUserId + "&pid=" + actiPid + "&userToken=" + actiUserToken + "&carrierId=" + actiCarrierId + "&epgType=GQ"
+				var logUrl = "http://202.99.114.152:25436/xjcartoon_FrontEndWeb/setJILINLogOrderController?" + orderUrlAction;
+				getLogInfoImg(logUrl);
+			}
+		</script>
+	</body>
+
+</html>

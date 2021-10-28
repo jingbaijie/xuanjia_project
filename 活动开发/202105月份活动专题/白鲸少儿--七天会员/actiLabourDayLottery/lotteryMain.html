@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="page-view-size" content="1280*720"/>
+    <title>main</title>
+    <link rel="stylesheet" href="./css/lottery.css">
+</head>
+<body>
+    <div class="main">
+        <div class="ip">
+            <img src="./img/5.png" style="position: absolute;top: 209px;left: 340px;">
+            <img src="./img/j1.png" style="position: absolute;top: 209px;left: 530px;">
+            <img src="./img/4.png" style="position: absolute;top: 209px;left: 723px;">
+            <img src="./img/3.png" style="position: absolute;top: 344px;left: 340px;">
+            <img src="./img/j2.png" style="position: absolute;top: 344px;left: 723px;">
+            <img src="./img/1.png" style="position: absolute;top: 476px;left: 340px;">
+            <img src="./img/j3.png" style="position: absolute;top: 476px;left: 530px;">
+            <img src="./img/2.png" style="position: absolute;top: 476px;left: 723px;">
+        </div>
+        <div class="start">
+            <img id="start1" src="./img/start1.png" style="position: absolute;top: 343px;left: 520px;">
+            <div class='focus' id='hands_x0_y0_startFocus_' style='top: 343px;left: 520px;'>
+                <img id='startFocus' src='' style='visibility: hidden'>
+            </div>
+        </div>
+        <img id="select" src="./img/select/1.png" style="position: absolute;top: 305px;left: 493px;">
+        <div id="chanceNum"></div>
+        <!--光标-->
+        <div class='focus' id='hands_x0_y0_ruleFocus_' style='top: 7px;left: 13px;'>
+            <img id='ruleFocus' src='./img/btn.png' style='visibility: hidden'>
+        </div>
+        <div class='focus' id='hands_x0_y0_giftFocus_' style='top: 75px;left: 13px;'>
+            <img id='giftFocus' src='./img/btn.png' style='visibility: hidden'>
+        </div>
+        <div class='focus' id='hands_x0_y0_moreFocus_' style='top: 144px;left: 13px;'>
+            <img id='moreFocus' src='./img/btn.png' style='visibility: hidden'>
+        </div>
+        <!--返回-->
+        <img src="./img/back.png" style="position: absolute;top: 8px;left: 1178px;">
+        <div class='focus' id='hands_x0_y0_backFocus_' style='top: 8px;left: 1178px;'>
+            <img id='backFocus' src='./img/backSelect.png' style='visibility: hidden'>
+        </div>
+        <!--空焦点-->
+        <div class='focus' id='hands_x0_y0_emptyFocus_' style='top: 8px;left: 1178px;'>
+            <img id='emptyFocus' src='./img/none.png' style='visibility: hidden'>
+        </div>
+
+        <!--弹窗-->
+        <img id="tipImg" src="./img/none.png" style="position: absolute;top: 0;left: 0;visibility: hidden">
+        <div class='focus' id='hands_x0_y0_tipsFocus0_' style='top: 478px;left: 454px;'>
+            <img id='tipsFocus0' src='./img/tips/select.png' style='visibility: hidden'>
+        </div>
+        <div class='focus' id='hands_x0_y0_tipsFocus1_' style='top: 478px;left: 635px;'>
+            <img id='tipsFocus1' src='./img/tips/select.png' style='visibility: hidden'>
+        </div>
+
+        <!--中奖弹窗保存电话焦点-->
+        <div id="phoneText" style="width: 235px;height: 36px;position: absolute;bottom: 118px;left: 463px;line-height: 36px;font-size: 20px;font-weight: bolder;text-align: left;color: #000;visibility: hidden"></div>
+        <div id="phoneInfo" style="position: absolute;top: 530px;left: 490px;text-align: center;color: red;visibility: hidden"></div>
+        <div id = "hands_x0_y0_phoneBtn_" class="scoreBtn" style="position: absolute;top: 550px;left: 436px">
+            <img id = "phoneBtn" src="./img/prizeList/phone.png" style = "visibility: hidden;width: 307px;">
+        </div>
+        <div id = "hands_x0_y0_saveBtn_" class="scoreBtn" style="position: absolute;top: 542px;left: 734px">
+            <img id = "saveBtn" src="./img/prizeList/save.png" style = "visibility: hidden">
+        </div>
+        <div id = "hands_x0_y0_delBtn_" class="scoreBtn" style="position: absolute;top: 542px;left: 837px">
+            <img id = "delBtn" src="./img/prizeList/save.png" style = "visibility: hidden">
+        </div>
+
+    </div>
+    <!--引入公用JS-->
+    <script type="text/javascript" src="../../../../js/loadCommomJs.js"></script>
+    <script type="text/javascript" src="../../../../js/actiComm.js"></script>
+    <script type="text/javascript" src="./js/key3_4.js"></script>
+    <!--引用结束-->
+    <script type="text/javascript" src="./js/lotteryMain.js?v=2020042411"></script>
+</body>
+</html>

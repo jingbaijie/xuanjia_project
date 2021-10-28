@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name = "page-view-size" content = "1280*720">
+    <title>国庆七天乐视频播放页</title>
+    <link rel="stylesheet" href="./css/7DayHappy.css">
+</head>
+<body>
+    <div class = "videoBg withScreen">
+        <!--    布鲁克    -->
+        <div class = "vBlkDom"></div>
+        <!--    三只松鼠    -->
+        <div class = "vSsDom"></div>
+        <!--    全屏按钮    -->
+        <img src="./images/fangying/start.png" style = "width: 439px;height: 186px;position: absolute;top: 540px;left: 420px;" alt="">
+        <div id = "hands_x0_y0_videoFocus_" style = "width: 439px;height: 186px;position: absolute;top: 540px;left: 420px;">
+            <img id = "videoFocus" src="./images/fangying/started.png" style = "visibility: hidden;" alt="">
+        </div>
+        <!--    弹框    -->
+        <div id = "conFirm" class = "withScreen" style = "visibility: hidden;">
+            <!--      弹窗背景图      -->
+            <img id = "conBg" src="./images/confirm/canChou.png" alt="">
+            <!--      弹窗确认焦点      -->
+            <img src="./images/confirm/sure.png" style = "width: 243px;height: 121px;position: absolute;top: 560px;left: 535px;visibility: hidden;" alt="">
+            <div id = "hands_x0_y0_conSureFocus_" style = "width: 243px;height: 121px;position: absolute;top: 560px;left: 535px;">
+                <img id = "conSureFocus" src="./images/confirm/selected.png" style = "visibility: hidden;" alt="">
+            </div>
+            <!--      弹窗去抽奖焦点      -->
+            <img src="./images/confirm/toChou.png" style = "width: 243px;height: 121px;position: absolute;top: 560px;left: 535px;" alt="">
+            <div id = "hands_x0_y0_conChouFocus_" style = "width: 243px;height: 121px;position: absolute;top: 560px;left: 535px;">
+                <img id = "conChouFocus" src="./images/confirm/selected.png" style = "visibility: hidden;" alt="">
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../../js/column.js"></script>
+<script src = "./js/actiComm.js"></script>
+<script>
+    var buttons = [
+        {
+            id: "hands_x0_y0_videoFocus_",
+            clickHandler: "javascript: toScreen()",
+            left: "disable",
+            right: "disable",
+            up: "disable",
+            down: "disable",
+            focusType: 7
+        },{
+            id: "hands_x0_y0_conChouFocus_",
+            clickHandler: "javascript: hideConfirm()",
+            up: "disable",
+            down: "disable",
+            left: "disable",
+            right: "disable",
+            focusType: 7
+        }
+    ]
+    focusInit();
+    actiObj.changeFocus("hands_x0_y0_videoFocus_");
+
+    function hideConfirm(){
+        actiObj.toJumpUrl("./acti7DayHappyLuckDraw.html")
+    }
+	setInterval(function(){
+		if(CT.$("videoFocus").style.visibility == "visible"){
+			CT.$("videoFocus").style.visibility = "hidden";
+		}else{
+			CT.$("videoFocus").style.visibility = "visible";
+		}
+	},300);
+	//随机播放卡通
+	var OUT_LIST_JSON = null;
+	var cartoonArr = [649,791];//894,
+	var cartoonId = cartoonArr[Math.floor(Math.random()*cartoonArr.length)];
+	//页面视频框播放位置
+	try {
+		if(window.androidjs){
+			window.androidjs.getVideoDetailVideoSize(195,357,575,325);
+		}
+	} catch (e) {}
+	//小视频播放
+	ajax.init({
+        url: ajaxActionUrl + "videoList",
+        method: "get",
+        params: {
+            "action": "videoList",
+            "cartoonId": cartoonId
+        },
+        async: false,
+        ContentType: "json",
+        success: function (data) {
+            //ajax获取数据进行对号入座
+            OUT_LIST_JSON = data;
+			if(OUT_LIST_JSON){
+				var averageTime = 30*60000;
+				var movieCode = OUT_LIST_JSON.list[0].movieCode;
+				var ProgramID =  OUT_LIST_JSON.list[0].cartoonId+"";
+				
+				var programListIDs = OUT_LIST_JSON.list[0].videoId+"";
+				var programIDLenght = 20 - ProgramID.length/1 - programListIDs.length/1;
+				for(var i=0;i<programIDLenght;i++){//programListIDs 不足不足20位0补足20位
+					ProgramID +="0";
+				} 
+				ProgramID +=programListIDs;
+				playVideoUrl ="http://njxjjxydcdn20170526.a010.ottcn.com:8080/140000000117/"+movieCode+"/filename.ts"+","+ProgramID+","+programListIDs+","+averageTime; 	
+				var cartoonId = OUT_LIST_JSON.list[0].cartoonId ;
+				var arr = [711,714,722,369];
+				var videoArr = playVideoUrl.split(",");
+				if(/**arr.indexOf(cartoonId)> -1**/ true  ){
+					videoArr[1] = "37400000000000005507";
+					videoArr[2] = "5507";
+					playVideoUrl = videoArr.join(",");
+				}
+				try {
+					if(window.androidjs){
+						window.androidjs.videoDetailVideoPlay(trim(playVideoUrl));
+				   }
+				} catch (e) {
+				}	
+			}
+		},
+		fail: function(data){
+			
+		}
+    });
+
+	//跳转全屏
+    function toScreen(){
+        CT.setCookie("day7Video","yes");
+		var averageTime = 30;
+		var ProgramID =  OUT_LIST_JSON.list[0].cartoonId+"";
+
+		var programListIDs= OUT_LIST_JSON.list[0].videoId+"";
+		var programIDLenght = 20 - ProgramID.length/1 - programListIDs.length/1;
+		for(var i=0;i<programIDLenght;i++){//长度不足20 不足20
+				ProgramID +="0";
+		} 
+		ProgramID +=programListIDs;
+		var movieCodeDrn=OUT_LIST_JSON.list[0].movieCode;
+		playFullScreenUrl ="http://njxjjxydcdn20170526.a010.ottcn.com:8080/140000000117/"+movieCodeDrn+"/filename.ts"+","+ProgramID+","+programListIDs+","+averageTime; 
+		var cartoonId = OUT_LIST_JSON.list[0].cartoonId;
+		var arr = [711,714,722,369];
+		var videoArr = playFullScreenUrl.split(",");
+		if(/**arr.indexOf(cartoonId)> -1**/true ){
+			videoArr[1] = "37400000000000005507";
+			videoArr[2] = "5507";
+			playFullScreenUrl = videoArr.join(",");
+        }
+		 /****************************上传移动视频播放日志**********************************************************/
+		try{
+			setLoggerInfo.uploadLogYDUserVod({
+                videoId : programListIDs + new Date().getTime(),
+			})
+		}catch(e){}
+	    ///////////
+		try {
+			if(window.androidjs){
+					window.androidjs.fullScreenPlayVideo(trim(playFullScreenUrl),programListIDs);	 
+			}	
+		} catch (e) {
+				
+		}
+		
+    }
+    function backfunc(){
+        var day7video = CT.getCookie("day7Video");
+        if(day7video == "yes" && document.getElementById("conFirm").style.visibility == "hidden"){
+            CT.delCookie("day7Video");
+            document.getElementById("conFirm").style.visibility = "visible";
+            actiObj.changeFocus("hands_x0_y0_conChouFocus_");
+        }else{
+            actiObj.toJumpUrl("./acti7DayHappyMain.html");
+        }
+    }
+</script>
+</html>

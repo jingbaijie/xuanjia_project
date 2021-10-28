@@ -1,0 +1,238 @@
+<%- include ('../../components/header') %>
+<link rel="stylesheet" href="<%= basePageUrl %>/css/columnLargeScreenSwith.css?v=2020120801">
+<title>大屏切换通用专题</title>
+</head>
+
+<body style="overflow: hidden;background: transparent;">
+    <div class="main" style="overflow: hidden;">
+        <!--   专题内容     -->
+        <div id="columnContent" class="withScreen" style="top: 0px;left: 0;">
+
+            <!--     背景图       -->
+            <div id="columnBG" class="withScreen" style="top: 0px;left: 0;"></div>
+            <!--     页面内容       -->
+            <div id="columnInfo" class="withScreen" style="top: 0px;left: 0;">
+
+            </div>
+        </div>
+        <!--   空焦点，页面切换时使用     -->
+        <div id="hands_x0_y0_emptyFocus_" style="width: 2px;height: 2px;position: absolute;top: -2px;left: -2px;">
+            <img id="emptyFocus" src="<%= basePageUrl %>/img/empty.png" style="visibility: hidden;" alt="">
+        </div>
+    </div>
+</body>
+<!-- 引入公共js开始 -->
+<%- include('../../components/commJs') %>
+<!-- 引入公共js结束 -->
+<script src="<%= basePageUrl %>/js/general.js?v=20201206"></script>
+<script src="<%= basePageUrl %>/js/columnLargeScreenSwitch.js?v=20201205"></script>
+<script type="text/javascript">
+    //图片地址
+    var columnImgUrl = AjaxConfig.imgUrl;
+    //焦点名称
+    var columnGeneralFocusName = "generalFocus";
+    //column对象,包含创建Dom元素与专题跳转等基本功能(columnLargeScrenSwitch.js)
+    var column = new GeneralColumn();
+    //页面数组，存储重新解析后的各页面数据newOutJson
+    var pageJsonArr = [];
+    //页面原始数组OutJson
+    var pageMsgArr = [];
+    //当前页面信息在数组中的下标
+    var curPageNum = 0;
+    //卡通剧集信息
+    var OUT_LIST_JSON = [];
+    //当前页面视频是否正在播放
+    var curVideoPlaying = false;
+    //当前视频总时长,秒
+    var curVideoTotalTime = 10 * 10;
+    //从眉头获取当前页面信息
+    var curPageEName = CT.getCookie("columnBackAction") || basePageInfo.commonPageInfo.pageInfo.commPageEname || getGeneralAction();
+    CT.delCookie("columnBackAction");
+    //所有焦点信息
+    var buttons = [];
+    var videoAni = null;//定时器
+    var videoMsg = null;
+
+    /**
+ * 获取当前页面英文名
+ * @returns {string|null}
+ */
+    function getGeneralAction() {
+        var reg = new RegExp("(^|&)contentName=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) {
+            return unescape(r[2]);
+        } else {
+            return null;
+        }
+    }
+
+    /**
+   * 页面开始渲染
+   */
+    function setAllPage() {
+        allForStart(curPageEName);
+    }
+    setAllPage();
+
+    /**
+* 获取焦点时(除返回焦点),对应的推荐图片放大动画，显示焦点选中显示详情图(对应卡通的全屏背景图),打开新的视频
+**/
+    function getFocusNow(ii) {
+        var recommendMsg = pageJsonArr[curPageNum].allMsg.recommendMsg;
+        //对应的推荐图片放大动画
+        CT.addClass(CT.$("focusPic" + recommendMsg[ii].recommendId), "biggerAni");
+        //显示焦点选中显示详情图(对应卡通的全屏背景图),2秒结束
+        CT.addClass(CT.$("focusShowPic" + recommendMsg[ii].recommendId), "easeInOut");
+        //打开当前卡通对应视频
+        openSmallVideoPlay(ii);
+
+    }
+    /**
+* 失去焦点时(除返回焦点),对应的推荐图片取消放大动画，关闭当前卡通播放的视频
+* */
+    function loseFocusNow(ii) {
+        var recommendMsg = pageJsonArr[curPageNum].allMsg.recommendMsg;
+        //对应的推荐图片取消放大动画
+        CT.removeClass(CT.$("focusPic" + recommendMsg[ii].recommendId), "biggerAni");
+        //失去焦点移除背景大图样式
+        CT.removeClass(CT.$("focusShowPic" + recommendMsg[ii].recommendId), "easeInOut");
+        //关闭当前卡通对应视频
+        closeSmallVideoPlay();
+    }
+
+    /**
+     * 打开小视频
+     * */
+    function openSmallVideoPlay(ii) {
+        videoMsg = pageJsonArr[curPageNum].allMsg.otherDetailMsg[ii].videoType;
+        var cartoonId = videoMsg[5];
+        clearInterval(videoAni);
+        var curTime = 0;//当前时间
+        var replayCartoon;//重新播放卡通数据
+        //所有集数信息
+        interface.findVideoListByCartoonId({
+            params: {
+                cartoonId: cartoonId
+            },
+            ajaxConfig: {
+                async: true
+            }
+        }, function (cartoonData) {
+            replayCartoon = cartoonData;
+            //当前视频播放结束，从头开始播放当前视频
+            videoAni = setInterval(function () {
+                //获取视频总时长，单位秒
+                curVideoTotalTime = replayCartoon.data[0].videoSumtime;
+                try {
+                    curTime = media.AV.elapsed;//当前时间
+                } catch (error) {
+                    curTime = 0;
+                }
+                if (curTime >= curVideoTotalTime) {
+                    try {
+                        //机顶盒API(从媒体的某个时间点开始播放)
+                        media.AV.seek("00:00:01");
+                    } catch (error) {
+
+                    }
+                }
+            }, 1000);
+            try {
+                //播放视频
+                playSmallVideo(cartoonData, videoMsg);
+                //CT.writeInfo("当前视频首次打开");
+            } catch (e) { }
+        });
+    }
+
+
+
+    /**
+ *  播放小视频
+ */
+    function playSmallVideo(cartoonData, videoMsg) {
+        var mediaCode = cartoonData.data[0].movieDetails[0].playUrl;
+        videoPlayer.SmallPlay({
+            width: videoMsg[1],
+            height: videoMsg[2],
+            top: videoMsg[3],
+            left: videoMsg[4],
+            playUrl: mediaCode, //合集媒资
+            videoIndex: 0, //当前集数下标
+            //大数据 小视频播放数据
+            collParam: {
+                contentCname: cartoonData.data[0].cartoonInfo.cartoonCname,
+                contentEname: cartoonData.data[0].cartoonInfo.cartoonEname,
+                contentId: videoMsg[5] + "_" + cartoonData.data[0].isFree,
+                playId: cartoonData.data[0].movieDetails[0].videoId + "_" + new Date().getTime(),
+                playType: 1,
+                eventType: "start",
+                playName: cartoonData.data[0].videoCname,
+                spName: cartoonData.data[0].cartoonInfo.cspInfo.cpCname,
+                spId: cartoonData.data[0].cartoonInfo.cspInfo.cpCode
+            }
+        });
+    }
+
+    /**
+     * 关闭小视频
+     * */
+    function closeSmallVideoPlay() {
+        videoPlayer.exitPage();
+    }
+
+
+    /**
+ * 按数字免费鉴权,测试用
+* */
+    var freeAddr = "";
+    var testNumber = "";
+    function changeNum(num) {
+        testNumber = testNumber + num;
+        if (testNumber == "1024") {
+            freeAddr = pageJsonArr[curPageNum].actionName;
+        }
+    }
+
+    /**
+* 焦点点击确认跳转
+* */
+    function goSomeWhere(ii) {
+        closeSmallVideoPlay();
+        var OutJson = pageMsgArr[curPageNum];
+        CT.setCookie("columnBackFocus", curFocus.FocusID);//记住焦点
+        CT.setCookie("columnBackAction", OutJson.pageInfo.commPageEname);
+        CT.setCookie("firstRecommendPicLeft", CT.$("focusPic" + OutJson.recommend_1[0].id).style.left);
+        PAGE.otherPageParam = "&contentId=" + CT.requestValue("contentId") + "&contentEName=" + CT.requestValue("contentEName") + "&contentCName=" + CT.requestValue("contentCName") + "&curFocusId=" + curFocus.FocusID;
+        CT.goPage();
+        if (OutJson.pageInfo.isFree == "0" || OutJson.recommend_1[ii].isFree == "0" || freeAddr == pageJsonArr[curPageNum].actionName) {
+            CT.toAnterRecommendUrl(OutJson, "recommend_1", ii);
+        } else {
+            orderJs.columnGetAuth(function (data) {
+                if (data == "0") {
+                    CT.toAnterRecommendUrl(OutJson, "recommend_1", ii);
+                } else {
+                    orderJs.columnToOrderPage(OutJson.pageInfo.commPageEname);
+                }
+            });
+        }
+    }
+
+    /**
+*  返回方法
+* */
+    function backFunc() {
+        CT.delCookie("columnBackFocus");
+        CT.delCookie("columnBackAction");
+        closeSmallVideoPlay();
+        var OutJson = pageMsgArr[curPageNum];
+        if (OutJson.recommend_2 && OutJson.recommend_2[0] && OutJson.recommend_2[0].recommendDisplayType != "88") {
+            CT.toAnterRecommendUrl(OutJson, "recommend_2", 0);
+        } else {
+            CT.backPage();
+        }
+    }
+</script>
+
+</html>

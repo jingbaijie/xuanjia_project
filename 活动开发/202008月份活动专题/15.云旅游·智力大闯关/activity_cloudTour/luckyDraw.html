@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="page-view-size" content="1280*720" />
+    <title>抽奖页</title>
+    <link rel="stylesheet" type="text/css" href="css/luckyDraw.css?v=1" />
+    <style>
+      * {
+        margin: 0px;
+        padding: 0px;
+      }
+      #tipImg {
+        position: absolute;
+        left: 0;
+        top: -1px;
+        width: 1280px;
+        height: 720px;
+      }
+      #tipImgFocus {
+        visibility: hidden;
+        position: absolute;
+        left: 478px;
+        top: 523px;
+      }
+      .fastRow {
+        transition: all 0.2s ease 0s;
+        -webkit-transition: all 0.2s ease 0s;
+        -moz-transition: all 0.2s ease 0s;
+        -o-transition: all 0.2s ease 0s;
+      }
+      .slowRow {
+        transition: all 0.5s ease 0s;
+        -webkit-transition: all 0.5s ease 0s;
+        -moz-transition: all 0.5s ease 0s;
+        -o-transition: all 0.5s ease 0s;
+      }
+      /*手机号输入框*/
+      #userPhone{
+        position: absolute;
+        position: absolute;
+        width: 200px;
+        height: 32px;
+        left: 570px;
+        top: 510px;
+        font-size: 20px;
+        font-weight: bold;
+        color: black;
+      }
+      /*手机号保存成功提示*/
+      #savetips {
+        position: absolute;
+        top: 465px;
+        left: 515px;
+        font-size: 18px;
+        font-weight: bold;
+        color: red;
+      }	
+	  #mainBox{
+		background:url(img/bg2.png) no-repeat;
+		background-size:100% 100%;
+	  }
+    </style>
+  </head>
+
+  <body>
+    <div id="mainBox" style="position: relative;width: 1280px;height: 720px;left: 0;top: 0;">
+      <!--贝乐虎动画-->
+      <img src="img/LuckyD/bg.png" id="cartoonImg" style="position: relative;" />
+      <!-- 抽奖图片 -->
+      <img src="./img/LuckyD/5.png" style="position: absolute; left: 387px; top: 156px;" />
+      <div>
+        <img src="./img/LuckyD/xuanzhong.png" style="position: absolute; left: 367px; top: 141px; visibility: hidden;" />
+      </div>
+      <img src="./img/LuckyD/1.png" style="position: absolute; left: 569px; top: 161px;" />
+      <div>
+        <img src="./img/LuckyD/xuanzhong.png" style="position: absolute; left: 546px; top: 141px; visibility: hidden;" />
+      </div>
+      <img src="./img/LuckyD/5.png" style="position: absolute; left: 743px; top: 156px;" />
+      <div>
+        <img src="./img/LuckyD/xuanzhong.png" style="position: absolute; left: 726px; top: 140px; visibility: hidden;" />
+      </div>
+      <img src="./img/LuckyD/2.png" style="position: absolute; left: 736px; top: 304px;" />
+      <div>
+        <img src="./img/LuckyD/xuanzhong.png" style="position: absolute; left: 725px; top: 289px; visibility: hidden;" />
+      </div>
+      <img src="./img/LuckyD/5.png" style="position: absolute; left: 745px; top: 456px;" />
+      <div>
+        <img src="./img/LuckyD/xuanzhong.png" style="position: absolute; left: 722px; top: 440px; visibility: hidden;" />
+      </div>
+      <img src="./img/LuckyD/3.png" style="position: absolute; left: 567px; top: 449px;" />
+      <div>
+        <img src="./img/LuckyD/xuanzhong.png" style="position: absolute; left: 546px; top: 441px; visibility: hidden;" />
+      </div>
+      <img src="./img/LuckyD/5.png" style="position: absolute; left: 388px; top: 457px;" />
+      <div>
+        <img src="./img/LuckyD/xuanzhong.png" style="position: absolute; left: 365px; top: 440px; visibility: hidden;" />
+      </div>
+      <img src="./img/LuckyD/4.png" style="position: absolute; left: 391px; top: 308px;" />
+      <div>
+        <img src="./img/LuckyD/xuanzhong.png" style="position: absolute; left: 366px; top: 289px; visibility: hidden;" />
+      </div>
+      <!-- 抽奖按钮 -->
+      <div id="hands_x0_y0_lotteryBtnFocus_" class="fastRow" style="position: absolute; left: 540px; top: 288px;">
+        <img id="lotteryBtnFocus" src="./img/LuckyD/xuanzhong.png" style="visibility: hidden;" />
+      </div>
+      <div id="littleTips" style="position: absolute;left:455px;top:150px;color: red;font-size: 40px;font-weight: bolder;visibility: hidden;"></div>
+      <!-- 弹窗 -->
+      <div id="tipBG" style="visibility: hidden;">
+        <img src="./img/empty.png" alt="" id="tipImg" />
+        <div id="hands_x0_y0_tipImgFocus_">
+          <img src="./img/xuan.png" id="tipImgFocus" />
+        </div>
+        <div id = "hands_x0_y0_phoneFocus_" style = "position: absolute;top: 490px;left: 520px;">
+          <img id = "phoneFocus" src = "./img/alertT/phone.png" style = "visibility: hidden;width: 310px;height: 70px;" alt="">
+        </div>
+        <!--手机号输入框-->
+        <div id="userPhone"></div>
+        <!--保存手机号成功提示-->
+        <div id="savetips"></div>
+        <div id = "hands_x0_y0_saveFocus_" style = "position: absolute;top: 550px;left: 600px;">
+          <img id = "saveFocus" src = "./img/alertT/save.png" style = "visibility: hidden;" alt="">
+        </div>
+        <div id = "hands_x0_y0_clearFocus_" style = "position: absolute;top: 550px;left: 705px;">
+          <img id = "clearFocus" src = "./img/alertT/save.png" style = "visibility: hidden;" alt="">
+        </div>
+      </div>
+    </div>
+    <!-- 引入平台公共js开始 -->
+  <script type="text/javascript" src="../../../js/column.js"></script>
+  <!-- 引入平台公共js结束 -->
+    <script src="./js/actiComm.js"></script>
+    <script type="text/javascript" src="./js/luckyDraw.js?v=1234567"></script>
+    <!--引入结束-->
+    <script>
+      // 焦点数组
+      var buttons = [
+        {
+          id: "hands_x0_y0_lotteryBtnFocus_",
+          clickHandler: "javascript:LotteryPageMain.lottery()",
+          otherFocusEvent: "javascript: ringFocusBack()",
+          left: "hands_x0_y0_poemIPFocus_",
+          right: "hands_x0_y0_ruleBtnFocus_",
+          up: "disable",
+          down: "disable",
+          focusType: 7
+        },
+        {
+          id: "hands_x0_y0_tipImgFocus_",
+          clickHandler: "javascript:LotteryPageMain.clickOn()",
+          left: "disable",
+          right: "disable",
+          up: "disable",
+          down: "disable",
+          focusType: 7
+        },
+        {
+          id: "hands_x0_y0_phoneFocus_",
+          clickHandler: "",
+          otherFocusEvent: "javascript:onFocus(1)",
+					otherBlurEvent: "javascript:onFocus(0)",
+					left: "hands_x0_y0_saveFocus_",
+					right: "disable",
+					up: "disable",
+					down: "hands_x0_y0_saveFocus_",
+					focusType: 7
+        },{
+					id: "hands_x0_y0_saveFocus_",
+					clickHandler: "javascript:saveFunc()",
+					left: "hands_x0_y0_phoneFocus_",
+					right: "hands_x0_y0_clearFocus_",
+					up: "hands_x0_y0_phoneFocus_",
+					down: "disable",
+					focusType: 7
+				},{
+					id: "hands_x0_y0_clearFocus_",
+					clickHandler: "javascript:emptyFunc()",
+					left: "hands_x0_y0_saveFocus_",
+					right: "disable",
+					up: "hands_x0_y0_phoneFocus_",
+					down: "disable",
+					focusType: 7
+				}
+      ];
+
+      //焦点是否在输入框上
+    var isOnFocus;
+
+    //获取手机号输入框
+    var userPhone = document.getElementById("userPhone").innerHTML.replace(/\s*/g, "");
+
+    //判断焦点在输入框上获焦
+    function onFocus(index) {
+      isOnfocus = index == 1 ? true : false;
+    }
+
+    //监听用户遥控器输入的数字
+    function changeNum(num) {
+      if(isOnfocus) {
+        var size;
+        if(userPhone == "") {
+          size = 0;
+        } else {
+          size = userPhone.length;
+        }
+        if(size < 11 || !size) {
+          var addnum = userPhone;
+          userPhone = addnum + num;
+        }
+        document.getElementById("userPhone").innerHTML = userPhone;
+      }
+    }
+
+    //保存手机号
+    function saveFunc() {
+      var userPhone = document.getElementById("userPhone").innerHTML;
+      if(userPhone.length != 11) {
+        document.getElementById("userPhone").innerHTML = "请输入11位手机号码";
+      } else {
+        actiObj.setUserPhone(userPhone, function(res) {
+          document.getElementById("savetips").innerHTML = "手机号保存成功";
+        })
+        
+      }
+    }
+    //清除手机号
+    function emptyFunc() {
+      document.getElementById("userPhone").innerHTML = "";
+    }
+    </script>
+  </body>
+</html>

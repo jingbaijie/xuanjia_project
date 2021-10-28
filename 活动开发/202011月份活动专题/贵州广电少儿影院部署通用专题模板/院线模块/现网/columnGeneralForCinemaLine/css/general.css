@@ -1,0 +1,139 @@
+.main{
+    width: 1280px;
+    height: 720px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+#columnContent{
+    transition: all 1s ease 0s;
+    -webkit-transition: all 1s ease 0s;
+    -moz-transition: all 1s ease 0s;
+    -o-transition: all 1s ease 0s;
+}
+.withScreen{
+    width: 1280px;
+    height: 720px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+}
+/*渐渐*/
+.littleByLittle{
+    transition: opacity 1s ease-in-out;
+    -o-transition: opacity 1s ease-in-out;
+    -webkit-transition: opacity 1s ease-in-out;
+    -moz-transition: opacity 1s ease-in-out;
+}
+@keyframes reRing {
+    from{
+        transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+    }
+}
+@keyframes bigger{
+    0% {
+        -webkit-transform: scaleX(1);
+        -moz-transform: scaleX(1);
+        -o-transform: scaleX(1);
+        transform: scaleX(1);
+    }
+    to {
+        -webkit-transform: scale3d(1.35, 1.35, 1.35);
+        -moz-transform: scale3d(1.35, 1.35, 1.35);
+        -o-transform: scale3d(1.35, 1.35, 1.35);
+        transform: scale3d(1.35, 1.35, 1.35);
+    }
+}
+@-webkit-keyframes bigger{
+    0% {
+        -webkit-transform: scaleX(1);
+        -moz-transform: scaleX(1);
+        -o-transform: scaleX(1);
+        transform: scaleX(1);
+    }
+    to {
+        -webkit-transform: scale3d(1.35, 1.35, 1.35);
+        -moz-transform: scale3d(1.35, 1.35, 1.35);
+        -o-transform: scale3d(1.35, 1.35, 1.35);
+        transform: scale3d(1.35, 1.35, 1.35);
+    }
+}
+@-moz-keyframes bigger{
+    0% {
+        -webkit-transform: scaleX(1);
+        -moz-transform: scaleX(1);
+        -o-transform: scaleX(1);
+        transform: scaleX(1);
+    }
+    to {
+        -webkit-transform: scale3d(1.35, 1.35, 1.35);
+        -moz-transform: scale3d(1.35, 1.35, 1.35);
+        -o-transform: scale3d(1.35, 1.35, 1.35);
+        transform: scale3d(1.35, 1.35, 1.35);
+    }
+}
+@-o-keyframes bigger{
+    0% {
+        -webkit-transform: scaleX(1);
+        -moz-transform: scaleX(1);
+        -o-transform: scaleX(1);
+        transform: scaleX(1);
+    }
+    to {
+        -webkit-transform: scale3d(1.35, 1.35, 1.35);
+        -moz-transform: scale3d(1.35, 1.35, 1.35);
+        -o-transform: scale3d(1.35, 1.35, 1.35);
+        transform: scale3d(1.35, 1.35, 1.35);
+    }
+}
+/*************** 所有循环执行CSS动画 *******************/
+.ringImg{
+    animation: reRing 3s linear infinite;
+    -webkit-animation: reRing 3s linear infinite;
+    -moz-animation: reRing 3s linear infinite;
+    -o-animation: reRing 3s linear infinite;
+}
+.rePulse {
+    animation: pulse 2s infinite linear;
+    -webkit-animation: pulse 2s linear infinite;
+    -moz-animation: pulse 2s linear infinite;
+    -o-animation: pulse 2s linear infinite;
+}
+.reShake{
+    animation: shake 2s infinite linear;
+    -webkit-animation: shake 2s linear infinite;
+    -moz-animation: shake 2s linear infinite;
+    -o-animation: shake 2s linear infinite;
+}
+.reFlash{
+    animation: flash 2s infinite linear;
+    -webkit-animation: flash 2s linear infinite;
+    -moz-animation: flash 2s linear infinite;
+    -o-animation: flash 2s linear infinite;
+}
+.reSwing{
+    animation: swing 2s infinite linear;
+    -webkit-animation: swing 2s linear infinite;
+    -moz-animation: swing 2s linear infinite;
+    -o-animation: swing 2s linear infinite;
+}
+.bigger{
+	animation: bigger 2s linear 1;
+    -webkit-animation: bigger 2s linear 1;
+    -moz-animation: bigger 2s linear 1;
+    -o-animation: bigger 2s linear 1;
+}

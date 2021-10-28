@@ -1,0 +1,53 @@
+* {
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+
+#main {
+	width: 1280px;
+	height: 720px;
+	overflow: hidden;
+	background-color: rgba(0, 0, 0, 0.6);
+	position: relative;
+}
+
+
+/*抽奖*/
+
+#turnTable {
+	position: absolute;
+	left: 350px;
+	bottom: 50px;
+}
+
+#chicken {
+	position: absolute;
+	right: 65px;
+	bottom: 80px;
+}
+
+#mickey {
+	position: absolute;
+	left: 30px;
+	bottom: 70px;
+}
+
+#lotterytitle {
+	position: absolute;
+	left: 280px;
+	top: -30px;
+}
+
+#pointer {
+	position: absolute;
+	left: 535px;
+	top: 260px;
+}
+
+#hands_x0_y0_lotteryFocus_ {
+	position: absolute;
+	left: 535px;
+	top: 260px;
+	visibility: hidden;
+}

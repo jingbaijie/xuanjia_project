@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>玄武湖订炫力少儿会员送好礼奖品页</title>
+    <link rel="stylesheet" href="css/xuanwuLakePrize.css?v=2020092602">
+</head>
+
+<body>
+    <div id="main">
+        <!-- 返回按钮 -->
+        <img src="img/mainPage/closeBtn.png" alt="" id="closeBtn">
+        <div id="hands_x0_y0_closeBtnFocus_">
+            <img src="img/mainPage/closeBtnFocus.png" alt="" id="closeBtnFocus" style="visibility:hidden;">
+        </div>
+        <!-- 用户信息 -->
+        <div id="userInfo"></div>
+        <!-- 中奖情况 -->
+        <div id="zhongJSituation"></div>
+        <!-- 联系手机 -->
+        <div id="telInput"></div>
+        <div id="hands_x0_y0_userPhoneFocus_">
+            <img src="img/inputFocus.png" alt="" id="userPhoneFocus" style="visibility:hidden;width:300px;">
+        </div>
+        <!-- 保存 -->
+        <div id="hands_x0_y0_saveFocus_">
+            <img src="img/saveFocus.png" alt="" id="saveFocus" style="visibility:hidden;">
+        </div>
+        <!-- 清除 -->
+        <div id="hands_x0_y0_emptyFocus_">
+            <img src="img/saveFocus.png" alt="" id="emptyFocus" style="visibility:hidden;">
+        </div>
+        <!-- 提示 -->
+        <div id="savetips" style="position: absolute;left: 490px;color: #fff;top: 668px;font-size: 24px;"></div>
+        <!-- 奖品列表 -->
+        <div id="prizeListBox">
+            <ul id="prizeListUL" style="top: 0px;"></ul>
+        </div>
+    </div>
+    <!--引入公用JS-->
+    <script type="text/javascript" src="../../../../js/loadCommomJs.js?v=202009240201"></script>
+    <script type="text/javascript" src="../../../../js/actiComm.js"></script>
+    <!--引入结束-->
+    <script type="text/javascript">
+        var buttons = [
+            {
+                id: "hands_x0_y0_userPhoneFocus_",
+                otherFocusEvent: "javascript:onFocus(1)",
+                otherBlurEvent: "javascript:onFocus(0)",
+                left: "disable",
+                right: "hands_x0_y0_saveFocus_",
+                up: "hands_x0_y0_closeBtnFocus_",
+                down: "disable",
+                focusType: 7
+            },
+            {
+                id: "hands_x0_y0_saveFocus_",
+                clickHandler: "javascript:saveFunc()",
+                otherBlurEvent: "javascript:saveBlur()",
+                left: "hands_x0_y0_userPhoneFocus_",
+                right: "hands_x0_y0_emptyFocus_",
+                up: "hands_x0_y0_closeBtnFocus_",
+                down: "disable",
+                focusType: 7
+            },
+            {
+                id: "hands_x0_y0_emptyFocus_",
+                clickHandler: "javascript:emptyFunc()",
+                left: "hands_x0_y0_saveFocus_",
+                right: "disable",
+                up: "hands_x0_y0_closeBtnFocus_",
+                down: "disable",
+                focusType: 7
+            },
+            {
+                id: "hands_x0_y0_closeBtnFocus_",
+                clickHandler: "javascript:backfunc()",
+                left: "hands_x0_y0_userPhoneFocus_",
+                right: "disable",
+                up: "disable",
+                down: "hands_x0_y0_userPhoneFocus_",
+                focusType: 7
+            }
+        ];
+        //焦点初始化
+        PAGE.focusInit();
+        PAGE.changeFocus("hands_x0_y0_userPhoneFocus_");
+    </script>
+    <script type="text/javascript">
+        var getPrizeList = [];//中奖名单列表
+        var listHTML = "";
+        var rankInterval = null;
+        var maxUp = 0;
+        //获取用户信息：userId和手机号 
+        actiObj.getUserPhone(function (userInfoData) {
+            if (userInfoData.successFlg == 1) {
+                if (userInfoData.data.userPhone) {
+                    CT.$("telInput").innerHTML = userInfoData.data.userPhone;
+                }
+            }
+        });
+        //获取用户中奖信息
+        actiObj.getUserPrizeInfo(function (userPrizeData) {
+            if (userPrizeData.successFlg == 1) {
+                for (var i = 0; i < userPrizeData.data.length; i++) {
+                    var length = userPrizeData.data[i].prizeCname.length;
+					if(i==0){
+						CT.$("zhongJSituation").innerHTML=userPrizeData.data[0].prizeCname.substring(0,length-5);
+					}
+                    if(userPrizeData.data.length>1 && i>0 && CT.$("zhongJSituation").innerHTML.indexOf(userPrizeData.data[i].prizeCname.substring(0,length-5))<=-1){
+                        CT.$("zhongJSituation").innerHTML += ","+userPrizeData.data[i].prizeCname.substring(0,length-5);
+                    }                    
+                }
+            } else {
+                CT.$("zhongJSituation").innerHTML = "未中奖";
+            }
+        });
+
+        getNameList();
+        /*
+	 * 设置奖品榜，超过8人开始向下滚动
+	 */
+        function getNameList() {
+            if (rankInterval) {
+                clearInterval(rankInterval);
+            }
+            actiObj.getPrizeUserInfo(function (getPrizeData) {
+                CT.$("prizeListUL").innerHTML = "";
+                getPrizeList = getPrizeData.data.records;
+                if (getPrizeData && getPrizeData.successFlg == 1 && getPrizeList.length > 0) {
+					for (var i = 0; i < getPrizeList.length; i++) {
+						listHTML += "<li><span style='display: block;width: 390px;float: left;text-align: center;'>" + getPrizeList[i].userId + "</span><span style='display: block;width: 390px;float: left;text-align: center;'>" + getPrizeList[i].prizeCname.substring(0,getPrizeList[i].prizeCname.length-5) + "</span></li>";
+					}
+					CT.$("prizeListUL").innerHTML = listHTML;
+                } else {
+                    listHTML = "<li><span>19087675567</span><span>电影院线单次点播</span></li>"
+                    CT.$("prizeListUL").innerHTML = listHTML;
+                }
+                if (getPrizeList.length >= 10) {
+                    listHTML += listHTML;
+                    CT.$("prizeListUL").innerHTML = listHTML;
+                    setRankUp();
+                } else {
+                    CT.$("prizeListUL").innerHTML = listHTML;
+                }
+            });
+        }
+        /*
+         * 奖品榜滚动
+         */
+        function setRankUp() {
+            var rankLines = CT.$("prizeListUL").getElementsByTagName("li");
+            if (rankLines && rankLines.length >= 10) {
+                maxUp = 0 - (rankLines.length / 2) * 30;
+                rankInterval = setInterval(function () {
+                    if (parseInt(CT.$("prizeListUL").style.top) > maxUp) {
+                        CT.$("prizeListUL").style.top = parseInt(CT.$("prizeListUL").style.top) - 10 + "px";
+                    } else {
+                        CT.$("prizeListUL").style.top = "0px";
+                    }
+                    document.querySelector('#prizeListUL>li:nth-child(' + rankLines.length / 2 + ')').style.marginBottom = "30px";
+                    document.querySelector('#prizeListUL>li:nth-child(' + rankLines.length + ')').style.marginBottom = "30px";
+                }, 200);
+            }
+        }
+
+        function backfunc() {
+            CT.commonJumpUrl("xuanwuLakeMain.html");
+        }
+    </script>
+    <script type="text/javascript" src="js/fillContactInfo.js"></script>
+</body>
+
+</html>

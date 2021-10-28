@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name = "page-view-size" content = "1280*720">
+
+    <link rel="stylesheet" href="./css/superFly.css?v=2.422">
+
+    <title>超级飞侠8首页</title>
+
+</head>
+
+<body>
+
+    <div class = "main">
+
+        <!--眼睛-->
+
+        <div id = "eyesDiv">
+            <div id="firstEye"></div>  
+            <div id="secondEye"></div> 
+        </div>
+
+        <!--规则-->
+
+        <div id = "rulePng">
+
+
+
+        </div>
+
+        <!--排行榜-->
+
+        <div style = "width: 267px;height: 180px;position: absolute;top: 490px;left: 100px;overflow: hidden;">
+
+            <div id = "rankList"></div>
+
+        </div>
+
+
+
+        <!--返回-->
+
+        <div class = "backImg"></div>
+
+        <div id = "hands_x0_y0_backFocus_" style = "width: 100px;height: 100px;position: absolute;top: 15px;left: 1150px;">
+
+            <img id = "backFocus" src = "./images/main/backed.png" style = "width: 100px;height: 100px;visibility: hidden;" alt="">
+
+        </div>
+
+        <!--看视频-->
+
+        <div id = "videoPng"></div>
+
+        <div id = "hands_x0_y0_videoFocus_" style = "width: 124px;height: 124px;position: absolute;top: 455px;left: 570px;">
+
+            <img id = "videoFocus" src="./images/main/watched.png" style = "width: 124px;height: 124px;visibility: hidden;" alt="">
+
+        </div>
+
+        <!--我的奖品-->
+
+        <div class = "myPrize"></div>
+
+        <div id = "hands_x0_y0_myPrizeFocus_" style = "width: 90px;height: 168px;position: absolute;top: 400px;left: 0;">
+
+            <img id = "myPrizeFocus" src="./images/main/prized.png" style = "width: 90px;height: 168px;visibility: hidden;" alt="">
+
+        </div>
+
+        <!--开始-->
+
+        <div id = "startPng"></div>
+
+        <div id = "hands_x0_y0_startFocus_" style = "width: 340px;height: 250px;position: absolute;top: 445px;left: 660px;">
+
+            <img id = "startFocus" src="./images/main/started.png" style = "width: 340px;height: 250px;visibility: hidden;" alt="">
+
+        </div>
+
+        <!--抽奖机会-->
+
+        <div id = "chanceDiv">0</div>
+
+        <!--屏幕抽奖滚动-->
+
+        <div id = "screenDiv">
+
+            <div id = "leftScreen"></div>
+
+            <div id = "midScreen"></div>
+
+            <div id = "rightScreen"></div>
+
+        </div>
+
+        <!-- 图片地址 -->
+        <div id="imgSrcBox">
+            <img src="./images/main/IP/move/0.png" alt="" style="visibility: hidden;">
+            <img src="./images/main/IP/move/1.png" alt="" style="visibility: hidden;">
+            <img src="./images/main/IP/move/2.png" alt="" style="visibility: hidden;">
+            <img src="./images/main/IP/move/3.png" alt="" style="visibility: hidden;">
+        </div>
+
+        <!--弹窗-->
+
+        <div id = "confirmDiv" style = "visibility: hidden;"></div>
+
+        <!--弹窗确认焦点-->
+
+        <div id = "hands_x0_y0_sureFocus_" style = "width: 226px;height: 72px;position: absolute;top: 463px;left: 532px;">
+
+            <img id = "sureFocus" src="./images/confirm/selected.png" style = "width: 226px;height: 72px;visibility: hidden;" alt="">
+
+        </div>
+
+        <!--空焦点-->
+
+        <div id = "hands_x0_y0_emptyFocus_" style = "width: 2px;height: 2px;position: absolute;top: 10px;left: 10px;">
+
+            <img id = "emptyFocus" src="./images/empty.png" alt="">
+
+        </div>
+
+        <!--Tips提示-->
+
+        <div id = "littleTips"></div>
+
+    </div>
+
+</body>
+
+<script type = "text/javascript" src = "../../../../js/loadCommomJs.js"></script>
+
+<script type = "text/javascript" src = "../../../../js/actiComm.js"></script>
+
+<script>
+    var actiPageCname = "超8首播活动《超级飞侠来袭》";
+    var buttons = [
+
+        {
+
+            id: "hands_x0_y0_backFocus_",
+
+            clickHandler: "javascript: backfunc()",
+
+            up: "disable",
+
+            down: "hands_x0_y0_startFocus_",
+
+            left: "hands_x0_y0_startFocus_",
+
+            right: "disable",
+
+            focusType: 7
+
+        },{
+
+            id: "hands_x0_y0_videoFocus_",
+
+            clickHandler: "javascript: actiMain.toSeeVideo()",
+
+            up: "hands_x0_y0_backFocus_",
+
+            down: "disable",
+
+            left: "hands_x0_y0_myPrizeFocus_",
+
+            right: "hands_x0_y0_startFocus_",
+
+            focusType: 7
+
+        },{
+
+            id: "hands_x0_y0_startFocus_",
+
+            clickHandler: "javascript: actiMain.startGame()",
+
+            up: "hands_x0_y0_backFocus_",
+
+            down: "disable",
+
+            left: "hands_x0_y0_videoFocus_",
+
+            right: "hands_x0_y0_backFocus_",
+
+            focusType: 7
+
+        },{
+
+            id: "hands_x0_y0_myPrizeFocus_",
+
+            clickHandler: "javascript: actiMain.toPrize()",
+
+            up: "disable",
+
+            down: "disable",
+
+            left: "disable",
+
+            right: "hands_x0_y0_videoFocus_",
+
+            focusType: 7
+
+        },{
+
+            id: "hands_x0_y0_sureFocus_",
+
+            clickHandler: "javascript: actiMain.hideConfirm()",
+
+            up: "disable",
+
+            down: "disable",
+
+            left: "disable",
+
+            right: "disable",
+
+            focusType: 7
+
+        },{
+
+            id: "hands_x0_y0_emptyFocus_",
+
+            clickHandler: "",
+
+            up: "disable",
+
+            down: "disable",
+
+            left: "disable",
+
+            right: "disable",
+
+            focusType: 7
+
+        }
+
+    ];
+
+
+
+    function PageGame(){
+
+        //用户鉴权信息: 0 已订购, 1 未订购
+
+        this.isOrder = 1;
+
+        //今日剩余机会
+
+        this.chanceNum = 0;
+
+        //今日已使用机会
+
+        this.isOrderNum = 0;
+
+        //当前用户是否已获取过奖品
+
+        this.havePrize = true;
+
+        //今日已观看视频
+
+        this.haveSeen = false;
+
+        //活动奖品列表
+
+        this.actiPrizeList = [];
+
+		//获奖奖品ID
+
+		this.prizeId = 0;
+
+        //奖品列表滚动
+
+        this.prizeFlag = 0;
+
+        //三个滚动框
+
+        this.rollScreens = document.getElementById("screenDiv").getElementsByTagName("div");
+
+        //三个滚动框滚动状态
+
+        this.rollStatus = [1,1,1];
+
+        //三个滚动框切换图片标识
+
+        this.rollImgs = [0,0,0];
+        this.rollFlag = 0;
+        //开始游戏可被点击
+
+        this.canBeClick = true;
+
+        //滚动定时器
+
+        this.rollInterval = null;
+
+        //图片地址数组
+        this.imgSrcArr = [];
+
+        //获取用户鉴权信息
+
+        this.getAuth = function(fn){
+            var _this = this;
+            //CT.writeInfo("进入鉴权方法");
+			orderJs.columnGetAuth(function(data){
+                // data = 0;
+                if(actiUserId=="8851004071598812"){
+                    CT.writeInfo("鉴权结果"+data);
+                }               
+				if(data == "0"){
+                    _this.isOrder = 0;   
+                    if(actiUserId=="8851004071598812"){                 
+                        CT.writeInfo("isOrder"+_this.isOrder);
+                    }
+                    _this.getChance();
+				}                
+                _this.createPrizeList();
+                _this.statusInit();
+            });   
+            // orderJs.getAuth({
+            //     callback: function (res) {
+            //         if (res && res.data && res.data.result && res.data.result.state == "0") {
+            //             _this.isOrder = 0;
+			// 		    _this.chanceNum = 3;
+            //         } else {
+            //             _this.isOrder = 1;
+            //         }
+            //     },
+            //     failCallback: function(res){
+            //         _this.isOrder = 1;
+            //     }                
+            // });  
+            // this.getChance();
+            // this.createPrizeList();
+            // this.statusInit();
+
+        };
+
+        this.toOrder = function(){
+            CT.goPage();
+            orderJs.columnToOrderPage("actiSuperFly8");
+        };
+
+		//眼睛动画
+
+		this.eyeFlag = 0;
+
+		this.eyeFlash = function(){
+			var eye = document.getElementById("eyesDiv");
+            var firstEye = document.getElementById("firstEye");
+            var secondEye = document.getElementById("secondEye");
+            if(this.eyeFlag%2==0){
+                firstEye.style.visibility = "visible";
+                secondEye.style.visibility = "hidden";
+            }else if(this.eyeFlag%2==1){
+                secondEye.style.visibility = "visible";
+                firstEye.style.visibility = "hidden";
+            }
+			this.eyeFlag++;
+		}
+
+        //获取用户今日已使用机会
+
+        this.getChance = function(fn){
+
+            var _this = this;
+            _this.chanceNum = 3;
+            //CT.writeInfo("进入getChance方法，chancenum初始值"+_this.chanceNum);
+            actiObj.getChance(function(data){
+
+                if(data && data.successFlg == "1"){
+
+                    _this.isOrderNum = parseInt(data.data.activityChance,10) || 0;
+
+                }
+                if(actiUserId=="8851004071598812"){ 
+                    CT.writeInfo("chancenum值"+_this.chanceNum+"isOrderNum值"+_this.isOrderNum);
+                }
+                _this.chanceNum = _this.chanceNum - _this.isOrderNum;
+                if(actiUserId=="8851004071598812"){ 
+                    CT.writeInfo("获取机会chancenum值"+_this.chanceNum);
+                }
+                _this.getHaveSeen(fn);
+
+                actiObj.getActivityPrize(function(res){
+
+					actiObj.getUserPrizeInfo(function(data){
+
+						if(data && data.successFlg == "0"){
+
+							_this.havePrize = false;
+
+						}
+
+					})
+
+                    if(res && res.successFlg == "1" && res.data.records){
+
+                        _this.actiPrizeList = res.data.records;
+
+                    }
+                    //CT.writeInfo("进入定时器之前");
+                    _this.startInterval();
+
+                });
+
+
+
+            })
+
+        };
+
+        //获取用户今日是否已观看视频
+
+        this.getHaveSeen = function(fn){
+
+            var _this = this;
+
+            actiObj.getUserDataList(function(data){
+
+                if(data && data.successFlg == "1" && data.data){
+
+                    var signDate = data.data.userActiData;
+
+                    var nowDate = new Date().getMonth() + "" + new Date().getDate();
+
+                    if(signDate == nowDate){
+
+                        _this.haveSeen = true;
+
+                        _this.chanceNum = _this.chanceNum + 1;
+
+                    }
+
+                }
+
+				fn && fn();
+
+				if(_this.chanceNum <= 0){
+
+					_this.chanceNum = 0;
+
+                }
+                if(actiUserId=="8851004071598812"){ 
+                    CT.writeInfo("chanceDiv:"+_this.chanceNum);
+                }
+				document.getElementById("chanceDiv").innerHTML = _this.chanceNum;
+
+            });
+
+        };
+
+        //设置焦点状态
+
+        this.statusInit = function(){
+           PAGE.focusInit();
+            var actiPreFocus = CT.getCookie("actiPreFocus");
+            //CT.writeInfo("actiPreFocus"+actiPreFocus);
+            var focusID = null;
+            if(actiObj.checkFocusAble(actiPreFocus)){
+                focusID = actiPreFocus;
+            }else{
+                focusID = "hands_x0_y0_startFocus_";
+            } 
+            //CT.writeInfo("focusID"+focusID);          
+            PAGE.changeFocus(focusID);  
+            //获取图片地址
+            this.imgSrcArr =  document.getElementById("imgSrcBox").getElementsByTagName("img"); 
+
+        };
+
+        this.toSeeVideo = function(){
+
+            var _this = this;
+
+            if(!this.haveSeen){
+
+                this.haveSeen = true;
+
+                var nowDate = new Date().getMonth() + "" + new Date().getDate();
+
+				if(this.isOrder == "0"){
+
+					actiObj.setUserDataList(nowDate,function(){
+
+						_this.showTips("获得一次机会",function(){
+
+							_this.toVideo();
+
+						});
+
+					})
+
+				}else{
+
+					this.toOrder();
+
+				}
+
+            }else{
+
+				_this.showTips("您今天已获取此次机会",function(){
+
+					_this.toVideo();
+
+				});
+
+			}
+
+        };
+
+		/**
+
+		 *  recommendDisplayType ：0 游戏 1 卡通 2视频 3 跳转指定地址 4 通用页面id 5 活动id 6专题 7分类内容 8其它
+
+		 *  recommendDisplayValue ： 对应的值，例如recommendDisplayType=1表示卡通，则recommendDisplayValue表示卡通ID
+
+		 *  commpageId ： 跳转到对应去的页面ID
+
+		 */
+
+        this.toVideo = function(){
+
+			//详情页返回时使用
+
+			CT.setCookie("columnBackUrl",window.location.href);
+
+			//跳转
+
+			var cartoonId = 900;
+
+			var commpageId = 3;
+
+			var cartoonData={recommendDisplayType:1,recommendDisplayValue:cartoonId,commpageId:commpageId};
+
+			CT.toAnterRecommendUrl(cartoonData);
+
+        };
+
+        this.toPrize = function(){
+
+			var url = "./superFly8Prize.html";
+
+			actiObj.actiCommonJumpUrl(url);
+
+        };
+
+        this.startGame = function(){
+
+            var _this = this;
+            if(actiUserId=="8851004071598812"){
+                CT.writeInfo("点击开始chanceNum"+this.chanceNum);
+            }            
+            if(this.chanceNum > 0 && this.canBeClick){
+
+                actiObj.changeFocus("hands_x0_y0_emptyFocus_");
+
+                this.canBeClick = false;
+
+                this.chanceNum --;
+
+				document.getElementById("chanceDiv").innerHTML = _this.chanceNum;
+
+                actiObj.setChance();
+
+                this.rollImgs = [0,0,0];
+
+                this.rollTimes = Math.ceil(Math.random()*5) + 3;
+
+                this.rollFlag = 0;
+
+                this.ringFlag = 0;
+
+                this.noPrizeRoll = [[0,1,2],[1,2,3],[2,1,0],[3,0,1],[2,3,1],[2,1,3],[0,0,3],[2,2,3],[3,3,1]];
+
+                this.stopRollImg = this.noPrizeRoll[Math.floor(Math.random()*this.noPrizeRoll.length)];
+
+                this.prizePercent = Math.ceil(Math.random()*10000);
+
+                if(this.havePrize){
+
+                    this.prizePercent = 100000001;
+
+                }
+
+                this.canPrize = false;
+
+                if(this.actiPrizeList.length >= 3){
+
+                    if(this.prizePercent <= this.actiPrizeList[0].prizePercentage){
+
+
+
+                    }else if(this.prizePercent <= this.actiPrizeList[0].prizePercentage + this.actiPrizeList[1].prizePercentage){
+
+                        this.canPrize = true;
+
+						this.prizeId = this.actiPrizeList[1].id;
+
+                        this.stopRollImg = [1,1,1];
+
+                    }else if(this.prizePercent <= this.actiPrizeList[0].prizePercentage + this.actiPrizeList[1].prizePercentage + this.actiPrizeList[2].prizePercentage){
+
+						this.prizeId = this.actiPrizeList[2].id;
+
+                        this.canPrize = true;
+
+                        this.stopRollImg = [2,2,2];
+                    }
+                }
+				//CT.writeInfo("计算概率结束---");
+                this.rollStatus = [0,0,0];
+                // 执行抽奖动画
+                setInterval(function(){
+                    //CT.writeInfo("rollFlag"+_this.rollFlag);                
+                    if(_this.rollStatus[2] === 0){
+
+                    if(_this.rollStatus[0] === 0){
+
+                        _this.rollScreens[0].style.background = "url("+_this.imgSrcArr[Math.floor(Math.random()*4)].src+")";
+						
+                    }
+
+                    if(_this.rollStatus[1] === 0){
+
+                        _this.rollScreens[1].style.background = "url("+_this.imgSrcArr[Math.floor(Math.random()*4)].src+")";
+						
+                    }
+
+                    if(_this.rollStatus[2] === 0){
+
+                        _this.rollScreens[2].style.background = "url("+_this.imgSrcArr[Math.floor(Math.random()*4)].src+")";
+						
+                    }
+
+                    _this.rollFlag++;
+
+                    if(_this.rollFlag%4 === 0) {
+
+                        _this.ringFlag++;
+
+                        if (_this.ringFlag >= _this.rollTimes - 2 && _this.rollStatus[0] !== 1) {
+
+                            _this.rollScreens[0].style.background = "url('./images/main/IP/static/" + _this.stopRollImg[0] + ".png')";
+
+                            _this.rollStatus[0] = 1;
+
+                        }
+
+                        if (_this.ringFlag >= _this.rollTimes && _this.rollStatus[1] !== 1) {
+
+                            _this.rollScreens[1].style.background = "url('./images/main/IP/static/" + _this.stopRollImg[1] + ".png')";
+
+                            _this.rollStatus[1] = 1;
+
+                        }
+
+                        if (_this.ringFlag >= _this.rollTimes + 2 && _this.rollStatus[2] !== 1) {
+
+                            _this.rollScreens[2].style.background = "url('./images/main/IP/static/" + _this.stopRollImg[2] + ".png')";
+
+                            _this.rollStatus[2] = 1;
+							// CT.writeInfo(_this.rollScreens[0].style.background);
+							// CT.writeInfo(_this.rollScreens[1].style.background);
+							// CT.writeInfo(_this.rollScreens[2].style.background);
+
+                            if (_this.canPrize && _this.prizeId != "0") {
+
+								actiObj.setPrize(_this.prizeId,function(){
+
+									_this.getPrize();
+
+								});
+
+                            } else {
+
+                                _this.noPrize();
+
+                                }
+                            }
+                        }
+                    } 
+                },300);  
+            }else{
+
+                if(this.isOrder === 0){
+                    if(actiUserId=="8851004071598812"){
+                        CT.writeInfo("haveseen:"+this.haveSeen);
+                    }
+                    if(!this.haveSeen){
+
+                        this.showTips("点击观看视频再来一次机会");
+
+                    }else{
+
+                        this.showTips("今日机会已用完,明天再来吧");
+
+                    }
+
+                }else{
+
+                    this.toOrder();
+
+                }
+
+                }
+
+        };
+
+
+        this.startInterval = function(){
+            var _this = this;
+            // var randomIndex = Math.floor(Math.random()*4);
+            //CT.writeInfo("进入定时器");
+            _this.rollInterval = setInterval(function(){
+                // CT.writeInfo("进入rollInterval");
+                _this.prizeListRun();
+
+				_this.eyeFlash();
+
+            },300);
+
+        };
+
+        this.createPrizeList = function(){
+
+            var _this = this;
+
+            actiObj.getPrizeUserInfo(function(data){
+
+				var rankList = document.getElementById("rankList");
+
+                var rankListHTML = "";
+
+                var userId = "";
+
+                if(data && data.successFlg == "1" && data.data.records){
+
+                    var rankListArr = data.data.records || [];
+
+                    if(rankListArr.length > 0){
+
+                        for(var i = 0; i < rankListArr.length; i++){
+
+                            userId = rankListArr[i].userId+"";
+
+                            userId = userId.substr(0,3) + "****" + userId.substr(userId.length-4);
+
+                            rankListHTML += "<div class = 'listDiv'><span class = 'nameSpan'>"+ userId +"</span><span class = 'prizeSpan'>"+ rankListArr[i].prizeCname +"</span></div>"
+
+                        }
+
+                        if(rankListArr.length > 9){
+
+                            rankListHTML += rankListHTML;
+
+                        }
+
+                        rankList.innerHTML = rankListHTML;
+
+                    }else{
+
+                        rankListHTML += "<div class = 'listDiv'>点击开始,赢取大奖</div>";
+
+                        rankList.innerHTML = rankListHTML;
+
+                    }
+
+                }else{
+
+                        rankListHTML += "<div class = 'listDiv'>点击开始,赢取大奖</div>";
+
+                        rankList.innerHTML = rankListHTML;
+
+                }
+
+            });
+
+        };
+
+        this.prizeListRun = function(){
+
+            var rankList = document.getElementById("rankList");
+
+            var rankListNum = rankList.getElementsByTagName("div");
+
+            if(rankListNum.length > 9){
+
+                this.prizeFlag++;
+
+                if(this.prizeFlag >= rankListNum.length){
+
+                    rankList.style.top = "0";
+
+                    this.prizeFlag = 0;
+
+                }else{
+
+                    rankList.style.top = 0 - this.prizeFlag*10 + "px";
+
+                }
+
+            }
+
+        };
+
+        this.getPrize = function(){
+
+            var confirm = document.getElementById("confirmDiv");
+
+            confirm.style.background = "url('./images/confirm/getPrize.png')";
+
+            confirm.style.visibility = "visible";
+
+            actiObj.changeFocus("hands_x0_y0_sureFocus_");
+
+        };
+
+        this.noPrize = function(){
+
+            var confirm = document.getElementById("confirmDiv");
+
+            confirm.style.background = "url('./images/confirm/noPrize.png')";
+
+            confirm.style.visibility = "visible";
+
+            actiObj.changeFocus("hands_x0_y0_sureFocus_");
+
+        };
+
+        this.hideConfirm = function(){
+
+            var confirm = document.getElementById("confirmDiv");
+
+			if(confirm.style.background.indexOf("getPrize") != -1){
+
+				this.toPrize();
+
+			}else{
+
+				confirm.style.background = "url()";
+
+				confirm.style.visibility = "hidden";
+
+				actiObj.changeFocus("hands_x0_y0_startFocus_");
+
+				this.canBeClick = true;
+
+			}
+
+            
+
+        };
+
+        this.showTips = function(str,fn){
+
+            var tips = document.getElementById("littleTips");
+
+            tips.innerHTML = str;
+
+            tips.style.visibility = "visible";
+
+            setTimeout(function(){
+
+                tips.style.visibility = "hidden";
+
+                tips.innerHTML = "";
+
+                fn && fn();
+
+            },1000);
+
+        }
+
+    }
+
+    var actiMain = new PageGame();
+
+    actiMain.getAuth();
+
+
+
+	function backfunc(){
+
+		var confirm = document.getElementById("confirmDiv");
+
+		if(!actiMain.canBeClick && confirm.style.visibility == "hidden"){
+
+			actiMain.showTips("抽奖期间请勿操作");
+
+		}else if(confirm.style.visibility == "visible"){
+
+			actiMain.hideConfirm();
+
+		}else{
+
+			CT.delCookie("columnBackUrl");
+
+			CT.backPage();
+
+		}
+
+	}
+
+	function orderSuccess(){
+
+		window.location.reload();
+
+	}
+
+	function orderFail(){
+
+		window.location.reload();
+
+	}
+
+</script>
+
+</html>

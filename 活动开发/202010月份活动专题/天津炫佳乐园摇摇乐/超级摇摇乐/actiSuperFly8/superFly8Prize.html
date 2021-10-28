@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name = "page-view-size" content = "1280*720">
+
+    <title>超级飞侠8中奖页</title>
+
+    <link rel="stylesheet" href="./css/superFly.css?v=2">
+
+</head>
+
+<body>
+
+    <div class = "prizeMain">
+
+        <!-- 返回 -->
+
+        <div class = "backImg"></div>
+
+        <div id = "hands_x0_y0_backFocus_" style = "width: 100px;height: 100px;position: absolute;top: 15px;left: 1150px;">
+
+            <img id = "backFocus" src = "./images/main/backed.png" style = "width: 100px;height: 100px;visibility: hidden;" alt="">
+
+        </div>
+
+        <div id = "prizeDiv">
+
+        </div>
+
+        <!-- 输入选中框 -->
+
+        <div id="hands_x0_y0_textFocus_" style="position: absolute;left: 585px;top: 525px;">
+
+            <img id="textFocus" src="./images/prize/phoneText.png" style="visibility: hidden;"  alt=""/>
+
+        </div>
+
+        <!-- 保存 -->
+
+        <div id="hands_x0_y0_saveFocus_" style="position: absolute; left:910px;top: 530px;">
+
+            <img id="saveFocus" src="./images/prize/selecte.png" style="visibility: hidden;" alt=""/>
+
+        </div>
+
+        <!-- 清除 -->
+
+        <div id="hands_x0_y0_clearFocus_" style="position: absolute;left: 310px;top: 535px;">
+
+            <img id="clearFocus" src="./images/prize/selecte.png"  style="visibility: hidden;"  alt=""/>
+
+        </div>
+
+        <!--输入框-->
+
+        <div id="phoneText"></div>
+
+        <!--输入提示信息-->
+
+        <div id="phoneInfo"></div>
+
+    </div>
+
+</body>
+
+<script type = "text/javascript" src = "../../../../js/loadCommomJs.js"></script>
+
+<script type = "text/javascript" src = "../../../../js/actiComm.js"></script>
+
+<script>
+    var actiPageCname = "超8首播活动《超级飞侠来袭》";
+    var buttons = [
+
+        {
+
+            id: "hands_x0_y0_backFocus_",
+
+            clickHandler: "javascript: backfunc()",
+
+            up: "disable",
+
+            down: "hands_x0_y0_saveFocus_",
+
+            left: "hands_x0_y0_saveFocus_",
+
+            right: "disable",
+
+            focusType: 7
+
+        },{
+
+            id: "hands_x0_y0_saveFocus_",
+
+            clickHandler: "javascript: savePhone()",
+
+            up: "hands_x0_y0_backFocus_",
+
+            down: "disable",
+
+            left: "hands_x0_y0_textFocus_",
+
+            right: "hands_x0_y0_backFocus_",
+
+            focusType: 7
+
+        },{
+
+            id: "hands_x0_y0_textFocus_",
+
+            clickHandler: "",
+
+            otherFocusEvent: "javascript: textGetFocus()",
+
+            otherBlurEvent: "javascript: textLoseFocus()",
+
+            up: "disable",
+
+            down: "disable",
+
+            left: "hands_x0_y0_clearFocus_",
+
+            right: "hands_x0_y0_saveFocus_",
+
+            focusType: 7
+
+        },{
+
+            id: "hands_x0_y0_clearFocus_",
+
+            clickHandler: "javascript: clearPhone()",
+
+            up: "disable",
+
+            down: "disable",
+
+            left: "disable",
+
+            right: "hands_x0_y0_textFocus_",
+
+            focusType: 7
+
+        }
+
+    ];
+
+    PAGE.focusInit();
+
+    PAGE.changeFocus("hands_x0_y0_textFocus_");
+
+    var textOnFocus;
+
+    var phoneText = document.getElementById("phoneText");
+
+    var phoneInfo = document.getElementById("phoneInfo");
+
+    phoneNum = "";
+
+
+
+    //获取当前用户是否拥有奖品
+
+    actiObj.getUserPrizeInfo(function(data){
+
+        if(data && data.successFlg == "1"){
+
+            var prizeImg = '<img id = "prizeImg" src="./images/prize/prize'+ data.data[0].prizePrice +'.png" alt="">';
+
+            document.getElementById("prizeDiv").innerHTML = prizeImg;
+
+        }
+
+    });
+
+    //获取用户手机号
+
+    actiObj.getUserPhone(function(data){
+
+        if(data.successFlg == "1" && data.data.userPhone){
+
+			phoneNum = data.data.userPhone;
+
+            phoneText.innerHTML = data.data.userPhone;
+
+        }
+
+    });
+
+    function textGetFocus(){
+
+        textOnFocus = true;
+
+    }
+
+    function textLoseFocus(){
+
+        textOnFocus = false;
+
+    }
+
+    //监听用户遥控器输入的数字
+
+    changeNumObj.changeNum = function(ids){
+        if(textOnFocus){
+            ids = parseInt(ids);
+            if(curFocus.FocusID == "hands_x0_y0_textFocus_" && ids != NaN){
+                var size;
+                if(phoneNum==""){
+                    size=0;
+                }else{
+                    size= phoneNum.length;
+                }
+                if(size < 11||!size){
+                    var addnum = phoneNum;
+                    phoneNum = addnum + ids;
+                }
+                phoneText.innerHTML=phoneNum;
+            }
+        }
+    }
+
+    function clearPhone(){
+
+        phoneNum = "";
+
+        phoneText.innerHTML=phoneNum;
+
+    }
+
+    function savePhone(){
+
+        if(phoneNum.length === 11){
+
+            actiObj.setUserPhone(phoneNum,function(data){
+
+                if(data.successFlg == "1"){
+
+                    phoneInfo.innerHTML="手机号码保存成功";
+
+                }
+
+            });
+
+        }else{
+
+            phoneInfo.innerHTML="您输入的手机号格式无效,请重新输入!";
+
+        }
+
+    }
+
+	function backfunc(){
+
+		var url = "./superFly8Main.html";
+
+		actiObj.actiCommonJumpUrl(url);
+
+		//window.location.href = "./superFlyMain.html?actiTime=" + new Date().getTime();
+
+	}
+
+</script>
+
+</html>

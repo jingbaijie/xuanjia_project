@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>猪猪侠超级射击抽奖页</title>
+		<style type="text/css">
+			* {
+				margin: 0px;
+				padding: 0px;
+				list-style: none;
+			}
+			
+			#main {
+				width: 1280px;
+				height: 720px;
+				overflow: hidden;
+				position: relative;
+				left: 0px;
+				top: 0px;
+				background: url(img/lottery/lotteryBG.jpg) no-repeat;
+			}
+			
+			#hands_x0_y0_lotteryBtnFocus_ img {
+				position: absolute;
+				left: 550px;
+				top: 350px;
+				visibility: hidden;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="main">
+			<!--立即抽奖按钮-->
+			<div id="hands_x0_y0_lotteryBtnFocus_">
+				<img src="img/lottery/focus.png" id="lotteryBtnFocus" />
+			</div>
+			<!--抽奖-->
+			<img src="img/lottery/focus.png" class="moveLottery" style="position: absolute;left: 385px;top: 210px;opacity: 0;" />
+			<img src="img/lottery/focus.png" class="moveLottery" style="position: absolute;left: 550px;top: 210px;opacity: 0;" />
+			<img src="img/lottery/focus.png" class="moveLottery" style="position: absolute;left: 710px;top: 210px;opacity: 0;" />
+			<img src="img/lottery/focus.png" class="moveLottery" style="position: absolute;left: 710px;top: 350px;opacity: 0;" />
+			<img src="img/lottery/focus.png" class="moveLottery" style="position: absolute;left: 710px;top: 480px;opacity: 0;" />
+			<img src="img/lottery/focus.png" class="moveLottery" style="position: absolute;left: 550px;top: 480px;opacity: 0;" />
+			<img src="img/lottery/focus.png" class="moveLottery" style="position: absolute;left: 385px;top: 480px;opacity: 0;" />
+			<img src="img/lottery/focus.png" class="moveLottery" style="position: absolute;left: 385px;;top: 350px;opacity: 0;" />
+
+			<!--空选中-->
+			<div id="hands_x0_y0_emptyFocus_" style="width: 2px;height: 2px;position: absolute;top: 310px;left: 787px;">
+				<img id="emptyFocus" src="img/empty.png" style="width: 2px;height: 2px;visibility: hidden;" alt="">
+			</div>
+			<!--抽奖中请勿做多余操作-->
+			<div id="littleTips" style="position: absolute;left:500px;top:150px;color: red;font-size: 40px;font-weight: bolder;visibility: hidden;">转盘转动中,请勿做多余操作</div>
+
+			<!--弹窗-->
+			<img src="img/empty.png" id="lotteryTan" style="position: absolute;left: 0px;top: 0px;" />
+			<div id="hands_x0_y0_lotteryTanFocus_">
+				<img src="img/tanChuang/confirmFocus.png" id="lotteryTanFocus" style="position: absolute;left: 450px;top: 378px;visibility: hidden;" />
+			</div>
+			<div id="hands_x0_y0_lotteryCancelFocus_">
+				<img src="img/tanChuang/cancelFocus.png" id="lotteryCancelFocus" style="position: absolute;left: 660px;top: 378px;visibility: hidden;" />
+			</div>
+		</div>
+		<!--引入公用JS-->
+		<script type="text/javascript" src="../../js/column.js"></script>
+		<script type="text/javascript" src="./js/actiComm.js"></script>
+		<!--引入结束-->
+		<script type="text/javascript" src="js/lottery.js"></script>
+		<script type="text/javascript">
+			//焦点数组
+			var buttons = [{
+				id: "hands_x0_y0_lotteryBtnFocus_",
+				clickHandler: "javascript:startLottery()",
+				left: "disable",
+				right: "disable",
+				up: "disable",
+				down: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_emptyFocus_",
+				clickHandler: "javascript: notTips()",
+				upEvent: "javascript: notTips()",
+				downEvent: "javascript: notTips()",
+				leftEvent: "javascript: notTips()",
+				rightEvent: "javascript: notTips()",
+				up: "disable",
+				down: "disable",
+				left: "disable",
+				right: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_lotteryTanFocus_",
+				clickHandler: "javascript: backMain()",
+				up: "disable",
+				down: "disable",
+				left: "disable",
+				right: "hands_x0_y0_lotteryCancelFocus_",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_lotteryCancelFocus_",
+				clickHandler: "javascript: backMain()",
+				up: "disable",
+				down: "disable",
+				left: "hands_x0_y0_lotteryTanFocus_",
+				right: "disable",
+				focusType: 7
+			}]
+
+			//焦点初始化
+			focusInit();
+			curFocus = getFocusModel6("hands_x0_y0_lotteryBtnFocus_");
+			curFocus.defaultFocus();
+
+			//返回
+			function backfunc() {
+				if(isRinging == true) {
+					//转盘转动禁止多余操作
+					notTips();
+				} else {
+					window.location.href = "actipigManShootingMain.html";
+				}
+			}
+
+			function backMain() {
+				backfunc();
+			}
+		</script>
+	</body>
+
+</html>

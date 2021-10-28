@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name = "page-view-size" content = "1280*720">
+    <title>orderSuccess.html</title>
+    <style>
+        .main{
+            position: absolute;
+            width: 1280px;
+            height: 720px;
+            margin: 0px;
+            padding: 0px;
+            top: 0px;
+            left: 0px;
+            text-align: center;
+            background: url(img/main/mainBG.jpg) no-repeat;
+        }
+        div{
+            position: absolute;
+        } div{
+            position: absolute;
+        }
+		p{
+			width: 280px;
+			height: 50px;
+			margin: 0;
+			padding: 0;
+			line-height: 50px;
+			text-align: left;
+			font-size: 28px;
+			font-weight: bold;
+			color: #e6da97;
+		}
+		p span{
+			font-size: 38px;
+			color: #e6c50c;
+		}
+    </style>
+</head>
+<body>
+    <div class="main">
+        <img id = "bgImg" src="./img/orderPage/orderSuccess.png" style = "width: 1280px;height: 720px;position: absolute;top: 0;left: 0;" alt="">
+        <div id="hands_x0_y0_postFocus0_" style="width:185px;height:65px;left:550px;top:385px;">
+            <img id="postFocus0" src="img/tanChuang/confirmFocus.png"  style="visibility: hidden;width:185px;height:65px;"   alt=""/>
+        </div>
+		
+    </div>
+</body>
+<script type = "text/javascript" src = "../../js/comm.js"></script>
+<script type = "text/javascript" src = "../../js/common1_1.js"></script>
+<script type = "text/javascript" src = "../../js/key1_3.js"></script>
+<script type = "text/javascript" src = "./js/actiComm.js"></script>
+<script>
+	actiObj.setLogForActivityBySelf("orderSuccessPIGTJ3");
+    var buttons=[
+        {
+            id: 'hands_x0_y0_postFocus0_',
+            clickHandler: 'javascript:toOtherIp()',
+            left: 'disable',
+            right: 'disable',
+            up: 'disable',
+            down:  'disable',
+            focusType: 7
+        }
+    ];
+    focusInit();
+    var start=getFocusModel6("hands_x0_y0_postFocus0_");
+    start.defaultFocus();
+    function backfunc(){
+        window.location.href = "actipigManShootingMain.html";
+    }
+
+	//活动loginPortal
+    var activityLoginPortal = "http://202.99.114.27:35806/xjcartoon_FrontEndWeb/index.jsp?action=loginPortal_actiPigManShooting";
+    //跳转链接拼接参数
+    var houzui = "UserID="+ actiUserId +"&UserToken="+ actiUserToken +"&CarrierId="+ actiCarrierId +
+        "&userID="+ actiUserId +"&userToken="+ actiUserToken +"&carrierId="+ actiCarrierId +
+        "&ReturnUrl=" + activityLoginPortal +
+        encodeURIComponent ("&UserID="+ actiUserId +"&UserToken="+ actiUserToken +"&CarrierId="+ actiCarrierId +
+            "&userID="+ actiUserId +"&userToken="+ actiUserToken +"&carrierId="+ actiCarrierId + "&fromOtherIPTV=1");
+    //厂家跳转
+    function goOtherIp(ii){
+       switch(parseInt(ii)){
+			case 0:
+				window.location.href = "http://202.99.114.74:58906/xjcartoon_FrontEndWeb/index.jsp?" + houzui;
+				break;
+			case 1:
+				window.location.href = "http://202.99.114.74:58104/czdm/iptv/BookActionTJ.do?method=login&bid=1&" + houzui;
+				break;
+			 break;
+			 case 2:
+				window.location.href = "http://202.99.114.74:59417/ttd_cucc_tj/index.jsp?ac=login&" + houzui;
+				break;
+			 case 3:
+				window.location.href = "http://202.99.114.74:53892/HaoleConcert/jsp/loginTJLT.jsp?enterType=sc&" + houzui;
+				break;
+			 default:
+				break;
+		}
+    }
+	function toOtherIp(){
+		/*var IdCard = CT.getCookie("IdCard");
+		if(parseInt(IdCard,10) > 0){
+			CT.delCookie("IdCard");
+			goOtherIp(parseInt(IdCard,10));
+		}else{*/
+			backfunc();
+		//}
+	}
+</script>
+</html>

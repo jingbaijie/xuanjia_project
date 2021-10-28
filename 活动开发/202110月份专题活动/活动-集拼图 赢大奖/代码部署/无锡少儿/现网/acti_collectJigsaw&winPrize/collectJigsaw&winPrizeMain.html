@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>集拼图赢大奖首页</title>
+    <link rel="stylesheet" href="css/collectJigsawCommon.css">
+    <link rel="stylesheet" href="css/collectJigSaw&winPrizeMain.css?2021091001">
+</head>
+
+<body>
+    <div id="mainBox">
+        <img src="img/mainPage/mainBG.png" alt="" id="mainBG">
+        <img src="img/mainPage/prizebox1.png" alt="" id="prize1"
+            style="position: absolute;left: 100px;top: 245px;width: 358px;height: 352px;">
+        <img src="img/mainPage/prizebox2.png" alt="" id="prize2"
+            style="position: absolute;left: 480px;top: 245px;width: 358px;height: 352px;">
+        <img src="img/mainPage/prizebox3_1.png" alt="" id="prize3"
+            style="position: absolute;left: 850px;top: 245px;width: 358px;height: 352px;">
+        <div id="hands_x0_y0_choosePrize1Focus_">
+            <img src="img/mainPage/chaiFocus.png" alt="" id="choosePrize1Focus" style="visibility: hidden;">
+        </div>
+        <div id="hands_x0_y0_choosePrize2Focus_">
+            <img src="img/mainPage/chaiFocus.png" alt="" id="choosePrize2Focus" style="visibility: hidden;">
+        </div>
+        <div id="hands_x0_y0_choosePrize3Focus_">
+            <img src="img/mainPage/chaiFocus.png" alt="" id="choosePrize3Focus" style="visibility: hidden;">
+        </div>
+        <img src="img/empty.png" alt="" id="boom" style="position: absolute;left: 375px;top: 20px;">
+        <!-- 空焦点 -->
+        <div id="hands_x0_y0_blankFocus_">
+            <img src="img/empty.png" alt="" id="blankFocus">
+        </div>
+        <!-- 规则按钮 -->
+        <img src="img/gamePage/ruleBtn.png" alt="" id="ruleBtn">
+        <div id="hands_x0_y0_ruleBtnFocus_">
+            <img src="img/gamePage/ruleBtnFocus.png" alt="" id="ruleBtnFocus" style="visibility: hidden;">
+        </div>
+        <!-- 规则弹窗 -->
+        <img src="img/gamePage/rulePage.png" alt="" style="position: absolute;left: 0px;top: 0px;visibility: hidden;"
+            id="ruleTip">
+    </div>
+    <script type="text/javascript" src="../../../../js/loadCommomJs.js"></script>
+    <script type="text/javascript" src="../../../../js/actiComm.js"></script>
+    <script type="text/javascript" src="js/extraActiInterface.js?v=2021082401"></script>
+    <script type="text/javascript" src="js/collectJisaw&winPrizeMain.js?v=20210830043"></script>
+    <script type="text/javascript">
+        /** 1、初始化页面判断
+         * 活动内订购&&在三天有效期内：展示游戏页；
+         * 未订购&&在三天有效期内：展示游戏页；
+         * 未订购&&领取奖品不在三天有效期内：数据清除，展示活动首页；
+         * 未订购&&未领取奖品：展示活动首页；
+         * 活动内订购&&超过三天&&未中奖&&三天之后第一次进入首页：不展示活动，展示权益中心礼包（二维码页面）；
+         * 活动内订购&&超过三天&&未中奖&&已经弹出过二维码权益弹窗：不展示活动；
+         * 活动内订购&&超过三天&&中奖：不展示活动；
+        **/
+        var isOrder = 0;//是否订购活动，0未订购；1已订购
+        var oldOrder = 1;//是否是老订购用户，0订购；1未订购
+        var isValid = 0;//是否在三天有效期，0否；1是
+        var isPrize = false;//是否中奖（集齐碎片）
+        var interestsRights = false;//是否弹出过权益中心弹窗（已订购活动&&未中奖&&不在有效期）
+        var prizeIndex = 1;//领取的奖品
+        var userDataArr = {};
+        CT.isDebug = false;
+        CT.isMsg = false;
+        orderJs.columnGetAuth(function (data) {
+            if (data == "0") {
+                oldOrder = "0";
+            } else {
+                oldOrder = "1";
+            }
+            CT.writeInfo("oldOrder" + oldOrder);
+            // 鉴权通过&&是活动订购，正常活动流程
+            //鉴权通过&&不是从活动订购，留在首页/跳转其他地方
+            // 鉴权不通过，正常活动流程            
+            queryUserOrderActivity({ contentId: actiActivityId, userId: actiUserId }, function (orderRes) {
+                if (orderRes.errorCode == 1000) {
+                    isOrder = orderRes.data.isOrder;
+                }
+                CT.writeInfo("isOrder" + isOrder);
+                // if (xjDataLog.getUserId() == "51548635") {
+                //     oldOrder=0;
+                //     isOrder=1;
+                // }
+                if (oldOrder == 1 || (oldOrder == 0 && isOrder == 1)) {
+                    querySetIsValid({ contentId: actiActivityId, userId: actiUserId }, function (validRes) {
+                        if (validRes.errorCode == 1000) {
+                            isValid = validRes.data.isValid;
+                        }
+                        CT.writeInfo("isValid" + isValid);
+                        actiObj.getUserDataList(function (userData) {
+                            if (userData.errorCode == 1000) {
+                                userDataArr = JSON.parse(userData.data.userActiData);
+                                prizeIndex = userDataArr["prizeIndex"] || 1;//领取的奖品  
+                                interestsRights=  userDataArr["interestsRights"] || false;
+                            }
+                            actiObj.getUserPrizeInfo(function (userPrizeData) {//用户是否获奖
+                                if (userPrizeData.errorCode == 1000 && userPrizeData.data.length > 0) {
+                                    isPrize = true;
+                                }
+                                // 判断初始化页面
+                                if (isValid == 1) {//用户领取奖品在三天有效期内都是展示游戏页
+                                    actiObj.actiCommonJumpUrl("collectJigsaw&winPrizeGame.html?prizeIndex=" + prizeIndex + "");
+                                } else if ((isOrder == 0 && isValid == 0)) {//未订购用户不在三天有效期内（领取奖品超过三天的||未领取奖品的）的展示活动首页
+                                    // 留在当前页面,执行当前页面代码
+                                    collectJigSawMainEG.initCollectPuzzleMain();// 初始化页面奖品位置 
+                                } else if (isOrder == 1 && isValid == 0 && !isPrize && !interestsRights) {//活动内订购&&不在三天有效期&&未中奖&&没出现过二维码弹窗，展示权益中心礼包（二维码页面）
+                                    userDataArr["interestsRights"] = true;
+                                    actiObj.setUserDataList(JSON.stringify(userDataArr), function (res) {
+                                        // 权益中心弹窗
+                                        var params = {
+                                            contentId: 703,
+                                            contentType: "page",
+                                            contentName: "权益中心礼品中心"
+                                        };
+                                        CT.getAnterByIdOrAction(params);
+                                    });
+                                } else if (isOrder == 1 && isValid == 0 && (isPrize || interestsRights)) {//活动内订购&&不在三天有效期&&中奖/活动内订购&&不在三天有效期&&已经弹出过二维码权益弹窗），不展示当前活动
+                                    // 跳转其他页面/首页
+                                    CT.backPage();
+                                }
+                            });
+                        })
+                    })
+                }else{
+				CT.backPage();
+                 }
+            });
+        })
+    </script>
+</body>
+
+</html>

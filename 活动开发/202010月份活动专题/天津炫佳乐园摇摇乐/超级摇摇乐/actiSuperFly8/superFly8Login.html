@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name = "page-view-size" content = "1280*720">
+    <title>超级飞侠8登录页</title>
+</head>
+<body>
+</body>
+<!--引入公用JS-->
+		<script type = "text/javascript" src = "../../js/comm.js"></script>
+		<script type = "text/javascript" src = "../../js/common1_1.js"></script>
+		<script type = "text/javascript" src = "../../js/key1_3.js"></script>
+		<!--引入结束-->
+<script>
+    var actiPageCname = "超8首播活动《超级飞侠来袭》";
+	//获取眉头信息参数
+	function GetQueryString(name){
+		 var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+		 var r = window.location.search.substr(1).match(reg);
+		 if(r!=null)return  unescape(r[2]); return null;
+	}
+    (function () {
+        //存取cookie
+        var userId = GetQueryString("userId"),
+            activityId = GetQueryString("activityId"),
+            userToken = GetQueryString("userToken"),
+            carrierId = GetQueryString("carrierId"),
+            pid = GetQueryString("pid"),
+			fromTVOrderPage = GetQueryString("fromTVOrderPage");
+        if(userId){
+			//CT.delCookie("userId");
+            CT.setCookie("actiUserId", userId);
+        }
+        if(activityId){
+			CT.delCookie("activityId");
+            CT.setCookie("activityId", activityId);
+        }
+        if(userToken){
+			CT.delCookie("userToken");
+            CT.setCookie("userToken", userToken);
+        }
+        if(carrierId){
+			CT.delCookie("carrierId");
+            CT.setCookie("carrierId", carrierId);
+        }
+        if(pid){
+			CT.delCookie("pid");
+            CT.setCookie("pid", pid);
+        }
+        window.onload = function() {
+			var url = "./superFly8Main.html";
+			actiObj.actiCommonJumpUrl(url);
+        }
+    })();
+</script>
+</html>

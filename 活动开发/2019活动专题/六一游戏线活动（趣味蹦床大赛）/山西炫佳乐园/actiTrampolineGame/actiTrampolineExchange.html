@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>趣味蹦床大赛兑换页面</title>
+		<link rel="stylesheet" type="text/css" href="css/actiTrampolineExchange.css" />
+		<style type="text/css">
+			.main {
+				width: 1280px;
+				height: 720px;
+				position: absolute;
+				top: 0;
+				left: 0;
+				text-align: center;
+				overflow: hidden;
+				background: url(img/exchange/exchangePage.jpg) no-repeat;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!--引入公用JS-->
+		<script type="text/javascript" src="../../js/column.js"></script>
+		<script type="text/javascript" src="./js/actiComm.js"></script>
+		<!--引用结束-->
+		<div class="main">
+			<!--用户积分数-->
+			<div id="creditNum">0</div>
+			<!--需要积分数-->
+			<ul>
+				<li id="amount0">2000</li>
+				<li id="amount1">1600</li>
+				<li id="amount2">1200</li>
+			</ul>
+			<!--兑换-->
+			<div id="hands_x0_y0_exchangeFocus1_">
+				<img src="img/exchange/exchangeFocus.png" id="exchangeFocus1" />
+			</div>
+			<div id="hands_x0_y0_exchangeFocus2_">
+				<img src="img/exchange/exchangeFocus.png" id="exchangeFocus2" />
+			</div>
+			<div id="hands_x0_y0_exchangeFocus3_">
+				<img src="img/exchange/exchangeFocus.png" id="exchangeFocus3" />
+			</div>
+			<!--手机号输入框-->
+			<div id="userPhone"></div>
+			<div id="hands_x0_y0_inputFocus_">
+				<img src="img/exchange/inputFocus.png" id="inputFocus" />
+			</div>
+			<!--保存-->
+			<div id="hands_x0_y0_saveFocus_">
+				<img src="img/exchange/saveFocus.png" id="saveFocus" />
+			</div>
+			<!--保存手机号成功提示-->
+			<div id="savetips"></div>
+			<!--清除-->
+			<div id="hands_x0_y0_emptyFocus_">
+				<img src="img/exchange/saveFocus.png" id="emptyFocus" />
+			</div>
+			<!-- 兑换弹窗提示 -->
+			<img id="tipsTan" src="" />
+			<div id="hands_x0_y0_tipsTanFocus_">
+				<img src="img/exchange/tanFocus.png" id="tipsTanFocus" />
+			</div>
+		</div>
+		<!--引入公用JS-->
+		<script type="text/javascript" src="../../js/column.js"></script>
+		<script type="text/javascript" src="./js/actiComm.js"></script>
+		<!--引入结束-->
+
+		<script type="text/javascript">
+			var buttons = [{
+				id: "hands_x0_y0_exchangeFocus1_",
+				clickHandler: "javascript:exchangeFunc(0)",
+				left: "disable",
+				right: "hands_x0_y0_exchangeFocus2_",
+				up: "disable",
+				down: "hands_x0_y0_inputFocus_",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_exchangeFocus2_",
+				clickHandler: "javascript:exchangeFunc(1)",
+				left: "hands_x0_y0_exchangeFocus1_",
+				right: "hands_x0_y0_exchangeFocus3_",
+				up: "disable",
+				down: "hands_x0_y0_inputFocus_",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_exchangeFocus3_",
+				clickHandler: "javascript:exchangeFunc(2)",
+				left: "hands_x0_y0_exchangeFocus2_",
+				right: "disable",
+				up: "disable",
+				down: "hands_x0_y0_saveFocus_",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_inputFocus_",				
+				otherFocusEvent: "javascript:onFocus(1)",
+				otherBlurEvent: "javascript:onFocus(0)",
+				left: "disable",
+				right: "hands_x0_y0_saveFocus_",
+				up: "hands_x0_y0_exchangeFocus2_",
+				down: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_saveFocus_",
+				clickHandler: "javascript:saveFunc()",
+				otherBlurEvent: 'javascript:saveBlurFunc()',
+				left: "hands_x0_y0_inputFocus_",
+				right: "hands_x0_y0_emptyFocus_",
+				up: "hands_x0_y0_exchangeFocus3_",
+				down: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_emptyFocus_",
+				clickHandler: "javascript:emptyFunc()",
+				left: "hands_x0_y0_saveFocus_",
+				right: "disable",
+				up: "hands_x0_y0_exchangeFocus3_",
+				down: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_tipsTanFocus_",
+				clickHandler: "javascript:tipsTanFocusFunc()",
+				left: "disable",
+				right: "disable",
+				up: "disable",
+				down: "disable",
+				focusType: 7
+			}];
+
+			//获取奖品信息列表
+			var prizeId;
+			var prizeNum;
+			var prizeInfoArr = [];
+			actiObj.getActivityPrize(function(res) {
+				var list = res.list;
+				for(var i = 0; i < list.length; i++) {
+					var prizeInfo = {
+						prizeId: list[i].prize_id,
+						prizeNum: list[i].prize_num
+					}
+					prizeInfoArr.push(prizeInfo);
+				}
+			})
+
+			//获取用户当前积分	
+			var totalCredit;
+			actiObj.getUserCredit(function(res) {
+				if(res.resultMsg == "success") {
+					document.getElementById("creditNum").innerHTML = res.creditNum;
+					totalCredit = parseInt(res.creditNum, 10) || 0;
+					//焦掉初始化
+					focusInit();
+					// 根据focusID获取对应node
+					curFocus = getFocusModel6("hands_x0_y0_exchangeFocus1_");
+					// 默认获得焦点事件
+					curFocus.defaultFocus();
+				}
+			})
+
+			//兑奖
+			var amount0 = document.getElementById("amount0");
+			var amount1 = document.getElementById("amount1");
+			var amount2 = document.getElementById("amount2");
+			var amounts = [amount0, amount1, amount2];
+
+			function exchangeFunc(index) {
+				var tipsTan = document.getElementById("tipsTan");
+				//该用户是否兑过奖
+				actiObj.getUserPrizeInfo(function(res) {
+					if(res && res.resultMsg == "success") {
+						//该用户已经兑过奖
+						tipsTan.src = "img/exchange/duiguoTip.png";
+						//切换焦点
+						actiObj.changeFocus("hands_x0_y0_tipsTanFocus_");
+					} else {
+						//该用户没有兑过奖
+						//积分够
+						if(totalCredit >= parseInt(amounts[index].innerHTML)) {
+							//奖品是否被兑完
+							if(prizeInfoArr[index].prizeNum < 1) {
+								//奖品被兑完
+								tipsTan.src = "img/exchange/duiwanTip.png";
+								//切换焦点
+								actiObj.changeFocus("hands_x0_y0_tipsTanFocus_");
+							} else {
+								totalCredit -= parseInt(amounts[index].innerHTML);
+								actiObj.setUserCredit(totalCredit, function() {
+									actiObj.setPrize(prizeInfoArr[index].prizeId, function() {
+										//兑换成功
+										tipsTan.src = "img/exchange/successTip.png";
+										//切换焦点
+										actiObj.changeFocus("hands_x0_y0_tipsTanFocus_");
+										document.getElementById("creditNum").innerHTML=totalCredit;
+									})
+								});
+							}
+						} else {
+							//积分不够
+							tipsTan.src = "img/exchange/buzuTip.png";
+							//切换焦点
+							actiObj.changeFocus("hands_x0_y0_tipsTanFocus_");
+						}
+					}
+				})
+							
+			}
+
+			//点击弹窗确定按钮执行方法
+			function tipsTanFocusFunc() {
+				document.getElementById("tipsTan").src = "img/change.png";
+				//切换焦点
+				actiObj.changeFocus("hands_x0_y0_exchangeFocus1_");
+			}
+
+			//获取手机号输入框
+			var userPhone = document.getElementById("userPhone").innerHTML.replace(/\s*/g, "");
+			//获取用户手机号
+			actiObj.getUserPhone(function(res) {
+				if(res.userPhone != null) {
+					document.getElementById("userPhone").innerHTML = res.userPhone;
+				}
+			})
+
+			//判断焦点在输入框上获焦
+			function onFocus(index) {
+				isOnfocus = index == 1 ? true : false;
+			}
+
+			//监听用户遥控器输入的数字
+			function changeNum(num) {
+				if(isOnfocus) {
+					var size;
+					if(userPhone == "") {
+						size = 0;
+					} else {
+						size = userPhone.length;
+					}
+					if(size < 11 || !size) {
+						var addnum = userPhone;
+						userPhone = addnum + num;
+					}
+					document.getElementById("userPhone").innerHTML = userPhone;
+				}
+			}
+
+			//保存手机号
+			function saveFunc() {
+				var userPhone = document.getElementById("userPhone").innerHTML;
+				if(userPhone.length != 11) {
+					document.getElementById("userPhone").innerHTML = "请输入11位手机号码";
+				} else {
+					actiObj.setUserPhone(userPhone, function(res) {
+						document.getElementById("savetips").innerHTML = "手机号保存成功";
+					})
+				}
+			}
+
+			//保存按钮失去焦点
+			function saveBlurFunc() {
+				document.getElementById("savetips").innerHTML = "";
+			}
+
+			//清除手机号
+			function emptyFunc() {
+				document.getElementById("userPhone").innerHTML = "";
+			}
+
+			//返回跳转主页面
+			var actiTime = new Date().getTime();
+
+			function backfunc() {
+				window.location.href = "actiTrampolineMain.html?actiTime=" + actiTime;
+			}
+		</script>
+
+	</body>
+
+</html>

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name = "page-view-size" content = "1280*720">
+    <title>国庆七天乐中奖名单页</title>
+    <link rel="stylesheet" href="./css/7DayHappy.css">
+</head>
+<body>
+<div class = "mainBg withScreen">
+    <!--    鸽子    -->
+    <div class = "gezi1"></div>
+    <!--    标题    -->
+    <div class = "title"></div>
+    <!--    两只鸽子    -->
+    <div class = "gezi2"></div>
+    <!--    IP人物    -->
+    <img id = "ipDom" src="./images/main/IP/0.png" alt="">
+    <!--    三只松鼠    -->
+    <img id = "ssDom" src="./images/main/sanzhisongshu.png" alt="">
+    <!--    气球    -->
+    <img id = "qqDom" src="./images/main/qiqiu.png" alt="">
+    <!--    布鲁克    -->
+    <img id = "blkDom" src="./images/main/buluke.png" alt="">
+    <!--    圆盘    -->
+    <div class = "yuanpan"></div>
+    <!--    一等奖    -->
+    <div class = "prize1"></div>
+    <!--    二等奖    -->
+    <div class = "prize2"></div>
+    <!--    三等奖    -->
+    <div class = "prize3"></div>
+    <!--    四等奖    -->
+    <div class = "prize4"></div>
+    <!--    置灰透明背景    -->
+    <div class = "withScreen" style = "background: black;opacity: 0.5;"></div>
+    <!--    背景图     -->
+    <img class = "withScreen" src="./images/prize/BG.png" alt="">
+    <!--    排行版    -->
+    <div class = rankList>
+        <div id = "rankList" style = "top: 0;">
+        </div>
+    </div>
+
+    <!--     返回焦点       -->
+    <div id = "hands_x0_y0_backFocus_" style = "width: 67px;height: 67px;position: absolute;top: 75px;left: 950px;">
+        <img id = "backFocus" src="./images/prize/backed.png" style = "visibility: hidden;" alt="">
+    </div>
+    <!--     我的ID   -->
+    <div id = "myUserId" class = "showSize">
+
+    </div>
+    <!--     我的奖品   -->
+    <div id = "myPrize" class = "showSize">
+
+    </div>
+    <!--     输入款焦点       -->
+    <div id = "hands_x0_y0_phoneFocus_" style = "width: 327px;height: 70px;position: absolute;top: 570px;left: 405px;">
+        <img id = "phoneFocus" src="./images/prize/phoneText.png" style = "visibility: hidden;" alt="">
+    </div>
+    <!--     保存焦点       -->
+    <div id = "hands_x0_y0_saveFocus_" style = "width: 120px;height: 62px;position: absolute;top: 570px;left: 718px;">
+        <img id = "saveFocus" src="./images/prize/save.png" style = "visibility: hidden;" alt="">
+    </div>
+    <!--     删除焦点       -->
+    <div id = "hands_x0_y0_clearFocus_" style = "width: 120px;height: 62px;position: absolute;top: 570px;left: 820px;">
+        <img id = "clearFocus" src="./images/prize/save.png" style = "visibility: hidden;" alt="">
+    </div>
+
+    <div id = "phoneText"></div>
+    <div id = "phoneTips"></div>
+</div>
+</body>
+<script type="text/javascript" src="../../../js/column.js"></script>
+<script src = "./js/actiComm.js"></script>
+<script>
+    var buttons = [
+        {
+            id: "hands_x0_y0_backFocus_",
+            clickHandler: "javascript: backfunc()",
+            up: "disable",
+            down: "hands_x0_y0_clearFocus_",
+            left: "hands_x0_y0_clearFocus_",
+            right: "disable",
+            focusType: 7
+        },{
+            id: "hands_x0_y0_phoneFocus_",
+            clickHandler: "",
+            otherFocusEvent: "javascript: phoneOnFocus()",
+            otherBlurEvent: "javascript: phoneLoseFocus()",
+            up: "disable",
+            down: "disable",
+            left: "disable",
+            right: "hands_x0_y0_saveFocus_",
+            focusType: 7
+        },{
+            id: "hands_x0_y0_saveFocus_",
+            clickHandler: "javascript: savePhone()",
+            up: "disable",
+            down: "disable",
+            left: "hands_x0_y0_phoneFocus_",
+            right: "hands_x0_y0_clearFocus_",
+            focusType: 7
+        },{
+            id: "hands_x0_y0_clearFocus_",
+            clickHandler: "javascript: clearPhone()",
+            up: "hands_x0_y0_backFocus_",
+            down: "disable",
+            left: "hands_x0_y0_saveFocus_",
+            right: "hands_x0_y0_backFocus_",
+            focusType: 7
+        }
+    ];
+    //我的用户名
+    var myUserId = document.getElementById("myUserId");
+    //我的奖品
+    var myPrize = document.getElementById("myPrize");
+    //手机输入框
+    var phoneText = document.getElementById("phoneText");
+    //手机输入提示框
+    var phoneTips = document.getElementById("phoneTips");
+    //奖品名单
+    var rankList = document.getElementById("rankList");
+    var rankLines = null;
+    var isPhoneFocus = false;
+    var phoneNums = "";
+    var rankInterval = null;
+    var maxUp = 0;
+
+    //获取当前用户手机号,奖品
+    actiObj.getUserPhone(function(data){
+        if(data && data.userPhone && data.userPhone != "undefined"){
+            phoneNums = data.userPhone;
+            phoneText.innerHTML= data.userPhone;
+        }else{
+            phoneText.innerHTML="";
+        }
+        actiObj.getUserPrizeInfo(function(param){
+            if(param && param.resultMsg == "success" && param.list){
+                 myPrize.innerHTML = param.list.PRIZE_CNAME;
+            }else{
+                myPrize.innerHTML = "暂未获奖";
+            }
+        });
+
+        myUserId.innerHTML = actiUserId;
+        getActiFous();
+        setTopList();
+    });
+    //获取焦点
+    function getActiFous(){
+        focusInit();
+        actiObj.changeFocus("hands_x0_y0_phoneFocus_");
+    }
+    //选中框获得焦点
+    function phoneOnFocus(){
+        isPhoneFocus = true;
+    }
+    //选中框失去焦点
+    function phoneLoseFocus(){
+        isPhoneFocus = false;
+
+    }
+    //保存手机号
+    function savePhone(){
+        var TEL_REGEXP = /^(13[0-9]|14[579]|15[0-3,5-9]|16[6]|17[0135678]|18[0-9]|19[89])\d{8}$/;
+        if(phoneNums.length >= 11 && TEL_REGEXP.test(phoneNums)){
+            actiObj.setUserPhone(phoneNums,function(data){
+                if(data){
+                    phoneTips.innerHTML="手机号码保存成功";
+                }else{
+                    phoneTips.innerHTML="手机号码保存失败";
+                }
+            });
+        }else{
+            phoneTips.innerHTML = "您输入的手机号格式无效,请重新输入!"
+        }
+    }
+    //清除手机号
+    function clearPhone(){
+        phoneNums = "";
+        phoneText.innerHTML = phoneNums;
+        phoneTips.innerHTML = "";
+    }
+    //输入手机号
+    function changeNum(nums){
+        if(isPhoneFocus){
+            if(parseInt(nums) < 10 && phoneNums.length < 11){
+                phoneNums += nums;
+                phoneText.innerHTML = phoneNums;
+            }
+        }
+
+    }
+    //设置奖品榜，超过7人开始想下滚动
+    function setTopList(){
+        var topListhtml = "";
+        if(rankInterval){
+            clearInterval(rankInterval);
+        }
+        actiObj.getPrizeUserInfo(function(data){
+            if(data && data.resultMsg == "success" && data.list && data.list.length > 0){
+                var topList = data.data.records;
+            }else{
+                var topList=[];
+            };
+            for(var i = 0; i < topList.length; i++){
+                if(topList[i]){
+                    topListhtml += '<div class = "rankLine">'+
+                       // '<span class="line1">'+ (i+1) +'</span>'+
+                        '<span class = "line2">'+ topList[i].USERID.substr(0,3) + "****" + topList[i].USERID.substr((topList[i].userId.length - 4),4) +'</span>'+
+                        '<span class = "line3">'+ topList[i].PRIZE_CNAME +'</span>'+
+                        '</div>';
+                }
+            }
+            if(topList.length >= 7){
+                topListhtml += topListhtml;
+                rankList.innerHTML = topListhtml;
+                setRankUp();
+            }else{
+                rankList.innerHTML = topListhtml;
+            }
+        });
+    }
+    //奖品榜滚动
+    function setRankUp(){
+        rankLines = rankList.getElementsByTagName("div");
+        if(rankLines && rankLines.length >= 7){
+            maxUp = 0 - (rankLines.length/2) * 30;
+            rankInterval = setInterval(function(){
+                if(parseInt(rankList.style.top) > maxUp){
+                    rankList.style.top = parseInt(rankList.style.top) - 10 + "px";
+                }else{
+                    rankList.style.top = "0px";
+                }
+            },200);
+        }
+    }
+    function backfunc(){
+        actiObj.toJumpUrl("./acti7DayHappyMain.html");
+    }
+</script>
+</html>

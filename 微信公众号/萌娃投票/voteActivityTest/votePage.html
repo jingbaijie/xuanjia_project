@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>投票入口</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" data-dpr="1">
+	<script type="text/javascript" src="js/flexible.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/votePage.css?v=20210421011" />
+	<link rel="stylesheet" type="text/css" href="js/layer/need/layer.css?v=1" />
+</head>
+
+<body>
+	<!--江苏有线logo-->
+	<img src="img/logo@3x.png" class="logo" alt="" />
+	<div class="votePageBG">
+		<!--顶部图片-->
+		<div class="titlePic">
+			<img src="img/titlePic@3x.png" alt="" />
+		</div>
+		<!--搜索框-->
+		<div class="searchBox">
+			<input type="text" placeholder="输入选手ID" id="searchInput" />
+			<img src="img/votePage/search@3x.png" id="searchBtn" alt="" />
+		</div>
+		<!--剩余票数展示-->
+		<div class="currentSurplus" style="display: none;">今日剩余票数：<span id="surplusVotes">1</span></div>
+		<!--展示列表-->
+		<ul class="voteList">
+			
+		</ul>
+	</div>
+	<script src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+	<script type="text/javascript" src="js/weui/js/jquery-2.1.4.js"></script>
+	<script type="text/javascript" src="js/jquery.cookie.js"></script>
+	<script type="text/javascript" src="js/base64.js"></script>
+	<script type="text/javascript" src="js/md5.js"></script>
+	<script type="text/javascript" src="js/common.js?v=1.27"></script>
+	<script type="text/javascript" src="js/votePage.js?v=202104210111"></script>
+	<script type="text/javascript" src="js/wechat_server.js?v=1.65"></script>
+	<script type="text/javascript" src="js/layer/layer.js?v=1"></script>
+
+</body>
+
+</html>

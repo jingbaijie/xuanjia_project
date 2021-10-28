@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name = "page-view-size" content = "1280*720">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>地球的故事</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/earthStyle.css?v=20190410">
+</head>
+<body>
+    <div class="mainContent">
+        <!-- 轮播图 -->
+        <div id="box" class="wrap">
+            <ul id='navs' class="navs" style="left: -1280px">
+                <!-- 向左移动至此图片后迅速切换到真正的最后一张图片 -->
+                <!-- 海洋 -->
+                <li>
+                    <a href="javascript:;"><img src="images/sea/bg_sea.jpg"/></a>
+                    <img class="fish" src="images/sea/fish.png">
+                    <!-- 深海探险 -->
+                    <img class="dog" src="images/sea/bear.png" style="width: 402px; height: 292px; position: absolute; top: 376px; left: 43px;">
+                    <div id="hands_x0_y0_bearFocus1_" style="width: 402px; height: 292px; position: absolute; top: 376px; left: 43px;">
+                        <img id="bearFocus1" src="images/sea/bearFocus.png" style="width: 402px; height: 292px; visibility: hidden;">
+                    </div>
+                </li>
+                <!-- 生命 -->
+                <li>
+                    <a href="javascript:;"><img src="images/life/bg_life.jpg"/></a>
+                    <img class="ball" src="images/life/ball.png">
+                    <img class="mountain" src="images/life/mountain.png">
+                    <img class="mountRight" src="images/life/mountRight.png">
+                    <!-- 生命起源 -->
+                    <img class="dog" src="images/life/dog.png" style="width: 561px; height: 240px; position: absolute; top: 436px; left: 43px;">
+                    <div id="hands_x0_y0_dogFocus1_" style="width: 561px; height: 240px; position: absolute; top: 436px; left: 43px;">
+                        <img id="dogFocus1" src="images/life/dogFocus.png" style="width: 561px; height: 240px; visibility: hidden;">
+                    </div>
+                </li>
+                <!-- 时间 -->
+                <li>
+                    <a href="javascript:;"><img src="images/time/bg_time.jpg"/></a>
+                    <img class="ring" src="images/time/ring.png" alt="">
+                    <img class="circle" src="images/time/circle.png" alt="">
+                    <!-- 时光旅行 -->
+                    <img class="plane" src="images/time/plane.png" style="width: 500px; height: 252px; position: absolute; top: 426px; left: 43px;">
+                    <div id="hands_x0_y0_planeFocus_" style="width: 500px; height: 252px; position: absolute; top: 426px; left: 43px;">
+                        <img id="planeFocus" src="images/time/planeFocus.png" style="width: 500px; height: 252px; visibility: hidden;">
+                    </div>
+                </li>
+                <!-- 海洋 -->
+                <li>
+                    <a href="javascript:;"><img src="images/sea/bg_sea.jpg"/></a>
+                    <img class="fish" src="images/sea/fish.png" alt="">
+                    <!-- 深海探险 -->
+                    <img class="dog" src="images/sea/bear.png" style="width: 402px; height: 292px; position: absolute; top: 376px; left: 43px;">
+                    <div id="hands_x0_y0_bearFocus_" style="width: 402px; height: 292px; position: absolute; top: 376px; left: 43px;">
+                        <img id="bearFocus" src="images/sea/bearFocus.png" style="width: 402px; height: 292px; visibility: hidden;">
+                    </div>
+                </li>
+                <!-- 向右移动至此图片后迅速切换到真正的第一张图片 -->
+                <!-- 生命 -->
+                <li>
+                    <a href="javascript:;"><img src="images/life/bg_life.jpg"/></a>
+                    <img class="ball" src="images/life/ball.png">
+                    <img class="mountain" src="images/life/mountain.png">
+                    <img class="mountRight" src="images/life/mountRight.png">
+                    <!-- 生命起源 -->
+                    <img class="dog" src="images/life/dog.png" style="width: 561px; height: 240px; position: absolute; top: 436px; left: 43px;">
+                    <div id="hands_x0_y0_dogFocus_" style="width: 561px; height: 240px; position: absolute; top: 436px; left: 43px;">
+                        <img id="dogFocus" src="images/life/dogFocus.png" style="width: 561px; height: 240px; visibility: hidden;">
+                    </div>
+                </li>
+            </ul>
+            <a id="pre" class="left">
+                <img src="images/left.png" style="width: 44px; height: 71px; position: absolute; top: 310px; left: 50px;"/>
+            </a>
+            <div id="hands_x0_y0_leftArrowFocus_" style="width: 30px; height: 59px; position: absolute; top: 316px; left: 56px;">
+                <img id="leftArrowFocus" src="images/leftFocus.png" style="width: 30px; height: 59px; position: absolute; visibility: hidden;">
+            </div>
+            <a id="nex" class="right">
+                <img src="images/right.png" style="width: 44px; height: 71px; position: absolute; top: 310px; right: 50px;"/>
+            </a>
+            <div id="hands_x0_y0_rightArrowFocus_" style="width: 30px; height: 59px; position: absolute; top: 316px; right: 56px;">
+                <img id="rightArrowFocus" src="images/rightFocus.png" style="width: 30px; height: 59px; position: absolute; visibility: hidden;">
+            </div>
+        </div>
+        <!-- logo 按钮 -->
+        <img src="images/logo.png" style="width: 362px; height: 99px; position: absolute; top: 64px; left: 456px;">
+        <!-- 列表按钮 -->
+        <img src="images/btn.png" style="width: 180px; height: 300px; position: absolute; top: 405px; right: 50px;">
+        <!-- 返回焦点 -->
+        <div id="hands_x0_y0_returnFocus_" style="width: 70px; height: 30px; position: absolute; top: 593px; right: 110px;">
+            <img id="returnFocus" src="images/btns/focus1.png" style="width: 70px; height: 30px; position: absolute; visibility: hidden;">
+        </div>
+        <!-- 兑换焦点 -->
+        <div id="hands_x0_y0_exchangeFocus_" style="width: 70px; height: 30px; position: absolute; top: 557px; right: 110px;">
+            <img id="exchangeFocus" src="images/btns/focus2.png" style="width: 70px; height: 30px; position: absolute; visibility: hidden;">
+        </div>
+        <!-- 中奖名单焦点 -->
+        <div id="hands_x0_y0_prizeListFocus_" style="width: 70px; height: 30px; position: absolute; top: 521px; right: 111px;">
+            <img id="prizeListFocus" src="images/btns/focus3.png" style="width: 70px; height: 30px; position: absolute; visibility: hidden;">
+        </div>
+        <!-- 活动规则焦点 -->
+        <div id="hands_x0_y0_ruleFocus_" style="width: 70px; height: 30px; position: absolute; top: 486px; right: 110px;">
+            <img id="ruleFocus" src="images/btns/focus4.png" style="width: 70px; height: 30px; position: absolute; visibility: hidden;">
+        </div>
+        <!-------- 弹框 -------->
+        <div id = "modalDiv" style = "width: 1280px;height: 720px;position: absolute;top: 0;left: 0;visibility: hidden;z-index: 20">
+            <!--弹框背景-->
+            <img id = "bgImg" src="./images/modal.png" style = "width: 1280px;height: 720px;position: absolute;top: 0;left: 0;">
+            <!--弹框内容-->
+            <div id = "content"></div>
+            <!--确认按钮-->
+            <div id = "hands_x0_y0_confirmModalFocus_" style = "width: 124px;height: 55px;position: absolute;top: 426px;left: 527px;">
+                <img id = "confirmModalFocus" src="./images/modalFocus.png" style = "width: 200px;height: 70px;visibility: hidden;">
+            </div>
+        </div>
+    </div>
+</body>
+<!-- 引入公共的样式开始 -->
+<script type = "text/javascript" src = "./js/common1_1.js"></script>
+<script type = "text/javascript" src = "./js/key1_3.js"></script>
+<script type = "text/javascript" src = "./js/comm.js"></script>
+<script type = "text/javascript" src = "./js/actiComm.js?v=20190404"></script>
+<!-- 引入公共的样式结束 -->
+<script type = "text/javascript" src = "./js/utils.js?v=2019040912"></script>
+<script type = "text/javascript" src = "./js/earthMain.js?v=2019040912"></script>
+</html>

@@ -1,0 +1,697 @@
+* {
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+
+#main {
+	width: 1280px;
+	height: 720px;
+	position: relative;
+	left: 0px;
+	top: 0px;
+	overflow: hidden;
+	background: url(../img/BJ.jpg) no-repeat;
+}
+
+
+/*扭蛋机*/
+
+#smallBall {
+	width: 1200px;
+	height: 100%;
+	position: absolute;
+	left: 33px;
+}
+
+#smallBallUp {
+	position: absolute;
+	left: 10px;
+	top: 147px;
+}
+
+#smallBallDown {
+	position: absolute;
+	left: 10px;
+	top: 436px;
+}
+
+
+/*抽奖按键*/
+
+#pressKeyUp {
+	position: absolute;
+	left: 68px;
+	top: 277px;
+}
+
+#pressKeyUp>img,
+#pressKeyDown>img {
+	margin-right: 123px;
+	width: 75px;
+	height: 75px;
+}
+
+#pressKeyDown {
+	position: absolute;
+	left: 68px;
+	top: 566px;
+}
+
+
+/*流光*/
+
+#meteor0 {
+	position: absolute;
+	left: 805px;
+	top: 385px;
+}
+
+#meteor1 {
+	position: absolute;
+	left: 1005px;
+	top: 98px;
+}
+
+#meteor2 {
+	position: absolute;
+	left: 410px;
+	top: 98px;
+}
+
+#meteor3 {
+	position: absolute;
+	left: 15px;
+	top: 385px;
+}
+
+
+/*首页正式界面展示*/
+
+#mainShow {
+	width: 100%;
+	height: 100%;
+	background:url(../img/grayBG.png) no-repeat;
+	position: absolute;
+	z-index: 1;
+}
+
+#tipTanchuang {
+	width: 100%;
+	height: 100%;
+	background:url(../img/grayBG.png) no-repeat;
+	position: absolute;
+	z-index: 1;
+}
+
+#bigBall {
+	position: absolute;
+	z-index: 2;
+}
+
+#bigBall1 {
+	position: absolute;
+	left: 480px;
+	top: -300px;
+}
+
+#bigBall2 {
+	position: absolute;
+	left: 480px;
+	top: 200px;
+}
+
+
+/*小球下落*/
+
+.dropAni {
+	transition: all 200ms;
+	transform: translateY(500px);
+}
+
+
+/*中间大球停止晃动时红色半球动画*/
+
+.redBallAni {
+	animation: redBallAni 200ms alternate;
+	-webkit-animation: redBallAni 200ms alternate;
+	/*规定动画执行次数*/
+	animation-iteration-count: 3;
+	-webkit-animation-iteration-count: 3;
+	-ms-animation-iteration-count: 3;
+	/*让动画停留在最后一帧*/
+	animation-fill-mode: forwards;
+	-webkit-animation-fill-mode: forwards;
+	-ms-animation-fill-mode: forwards;
+}
+
+@keyframes redBallAni {
+	0%,
+	100% {
+		transform: translateY(0);
+		-webkit-transform: translateY(0);
+		-ms-transform: translateY(0);
+	}
+	50% {
+		transform: translateY(-12px);
+		-webkit-transform: translateY(-12px);
+		-ms-transform: translateY(-12px);
+	}
+}
+
+@-webkit-keyframes redBallAni {
+	0%,
+	100% {
+		transform: translateY(0);
+		-webkit-transform: translateY(0);
+		-ms-transform: translateY(0);
+	}
+	50% {
+		transform: translateY(-12px);
+		-webkit-transform: translateY(-12px);
+		-ms-transform: translateY(-12px);
+	}
+}
+
+
+/*标题、灯光、礼品*/
+
+#title_lamp_prize #title {
+	position: absolute;
+	left: 437px;
+	top: 20px;
+	z-index: 2;
+}
+
+#title_lamp_prize #light {
+	position: absolute;
+	left: 205px;
+	top: 60px;
+	z-index: 1;
+}
+
+#title_lamp_prize #prize {
+	position: absolute;
+	left: 410px;
+	top: 220px;
+	z-index: 2;
+}
+
+.prizeAni {
+	animation: prizeAni 200ms alternate;
+	-webkit-animation: prizeAni 200ms alternate;
+	/*规定动画执行次数*/
+	animation-iteration-count: 2;
+	-webkit-animation-iteration-count: 2;
+	-ms-animation-iteration-count: 2;
+	/*让动画停留在最后一帧*/
+	animation-fill-mode: forwards;
+	-webkit-animation-fill-mode: forwards;
+	-ms-animation-fill-mode: forwards;
+}
+
+@keyframes prizeAni {
+	0%,
+	100% {
+		transform: scale(1);
+		-webkit-transform: scale(1);
+		-ms-transform: scale(1);
+	}
+	50% {
+		transform: scale(1.2);
+		-webkit-transform: scale(1.2);
+		-ms-transform: scale(1.2);
+	}
+}
+
+@-webkit-keyframes prizeAni {
+	0%,
+	100% {
+		transform: scale(1);
+		-webkit-transform: scale(1);
+		-ms-transform: scale(1);
+	}
+	50% {
+		transform: scale(1.2);
+		-webkit-transform: scale(1.2);
+		-ms-transform: scale(1.2);
+	}
+}
+
+
+/*左侧按钮*/
+
+#ruleBtn {
+	position: absolute;
+	top: 95px;
+	left: -240px;
+}
+
+#hands_x0_y0_ruleBtnFocus_ {
+	position: absolute;
+	left: 0px;
+	top: 95px;
+}
+
+#nameListBtn {
+	position: absolute;
+	top: 200px;
+	left: -280px;
+}
+
+#hands_x0_y0_nameListBtnFocus_ {
+	position: absolute;
+	left: 0px;
+	top: 200px;
+}
+
+.ruleAni {
+	animation: ruleAni 500ms alternate;
+	-webkit-animation: ruleAni 500ms alternate;
+	-ms-animation: ruleAni 500ms alternate;
+	/*规定动画执行次数*/
+	animation-iteration-count: 1;
+	-webkit-animation-iteration-count: 1;
+	-ms-animation-iteration-count: 1;
+	/*让动画停留在最后一帧*/
+	animation-fill-mode: forwards;
+	-webkit-animation-fill-mode: forwards;
+	-ms-animation-fill-mode: forwards;
+}
+
+@keyframes ruleAni {
+	0% {
+		left: -240px;
+	}
+	50% {
+		left: 40px;
+	}
+	100% {
+		left: 0px;
+	}
+}
+
+@-webkit-keyframes ruleAni {
+	0% {
+		left: -240px;
+	}
+	50% {
+		left: 40px;
+	}
+	100% {
+		left: 0px;
+	}
+}
+
+.nameListAni {
+	animation: nameListAni 600ms alternate;
+	-webkit-animation: nameListAni 600ms alternate;
+	-ms-animation: nameListAni 600ms alternate;
+	/*规定动画执行次数*/
+	animation-iteration-count: 1;
+	-webkit-animation-iteration-count: 1;
+	-ms-animation-iteration-count: 1;
+	/*让动画停留在最后一帧*/
+	animation-fill-mode: forwards;
+	-webkit-animation-fill-mode: forwards;
+	-ms-animation-fill-mode: forwards;
+}
+
+@keyframes nameListAni {
+	0% {
+		left: -240px;
+	}
+	50% {
+		left: 80px;
+	}
+	100% {
+		left: 0px;
+	}
+}
+
+@-webkit-keyframes nameListAni {
+	0% {
+		left: -240px;
+	}
+	50% {
+		left: 80px;
+	}
+	100% {
+		left: 0px;
+	}
+}
+
+
+/*右侧元素*/
+
+.rightCartoon {
+	position: absolute;
+	left: 745px;
+	top: 140px;
+	z-index: 1;
+	transform: scale(0);
+}
+
+.seeVideo {
+	position: absolute;
+	left: 1085px;
+	top: -175px;
+}
+
+#hands_x0_y0_seeVideoBtnFocus_ {
+	position: absolute;
+	left: 1085px;
+	top: 35px;
+}
+
+#startBTn {
+	position: absolute;
+	left: 495px;
+	top: 715px;
+	z-index: 2;
+}
+
+#hands_x0_y0_startBTnFocus_ {
+	position: absolute;
+	left: 495px;
+	top: 535px;
+	z-index: 2;
+}
+
+.rightCartoonAni {
+	transition: all 1s;
+	transform: scale(1);
+}
+
+.seeVideoAni {
+	transition: all 500ms;
+	top: 35px;
+	animation-delay: 500ms;
+	animation: seeVideoAni 200ms alternate;
+	-webkit-animation: seeVideoAni 200ms alternate;
+	-ms-animation: seeVideoAni 200ms alternate;
+	/*规定动画执行次数*/
+	animation-iteration-count: 6;
+	-webkit-animation-iteration-count: 6;
+	-ms-animation-iteration-count: 6;
+	/*让动画停留在最后一帧*/
+	animation-fill-mode: forwards;
+	-webkit-animation-fill-mode: forwards;
+	-ms-animation-fill-mode: forwards;
+}
+
+@keyframes seeVideoAni {
+	0%,
+	100% {
+		transform: translateY(0px);
+		-webkit-transform: translateY(0px);
+		-ms-transform: translateY(0px);
+	}
+	50% {
+		transform: translateY(8px);
+		-webkit-transform: translateY(8px);
+		-ms-transform: translateY(8px);
+	}
+}
+
+@-webkit-keyframes seeVideoAni {
+	0%,
+	100% {
+		transform: translateY(0px);
+		-webkit-transform: translateY(0px);
+		-ms-transform: translateY(0px);
+	}
+	50% {
+		transform: translateY(8px);
+		-webkit-transform: translateY(8px);
+		-ms-transform: translateY(8px);
+	}
+}
+
+.startBTnAni {
+	animation: startBTnAni 600ms alternate;
+	-webkit-animation: startBTnAni 600ms alternate;
+	-ms-animation: startBTnAni 600ms alternate;
+	/*规定动画执行次数*/
+	animation-iteration-count: 1;
+	-webkit-animation-iteration-count: 1;
+	-ms-animation-iteration-count: 1;
+	/*让动画停留在最后一帧*/
+	animation-fill-mode: forwards;
+	-webkit-animation-fill-mode: forwards;
+	-ms-animation-fill-mode: forwards;
+}
+
+@keyframes startBTnAni {
+	0% {
+		top: 715px;
+	}
+	50% {
+		top: 510px;
+	}
+	100% {
+		top: 535px;
+	}
+}
+
+@-webkit-keyframes startBTnAni {
+	0% {
+		top: 715px;
+	}
+	50% {
+		top: 510px;
+	}
+	100% {
+		top: 535px;
+	}
+}
+
+#tipTitle {
+	position: absolute;
+	left: 400px;
+	top: 80px;
+	z-index: 2;
+	transform: scale(0);
+}
+
+.tipAni {
+	animation: tipAni 500ms alternate;
+	-webkit-animation: tipAni 500ms alternate;
+	-ms-animation: tipAni 500ms alternate;
+	/*规定动画执行次数*/
+	animation-iteration-count: 1;
+	-webkit-animation-iteration-count: 1;
+	-ms-animation-iteration-count: 1;
+	/*让动画停留在最后一帧*/
+	animation-fill-mode: forwards;
+	-webkit-animation-fill-mode: forwards;
+	-ms-animation-fill-mode: forwards;
+}
+
+@keyframes tipAni {
+	0% {
+		transform: scale(0);
+	}
+	50% {
+		transform: scale(1.5);
+	}
+	100% {
+		transform: scale(1);
+	}
+}
+
+@-webkit-keyframes tipAni {
+	0% {
+		transform: scale(0);
+	}
+	50% {
+		transform: scale(1.5);
+	}
+	100% {
+		transform: scale(1);
+	}
+}
+
+#tipCenter {
+	position: absolute;
+	z-index: 2;
+}
+
+#tipCenter #getPrize {
+	position: absolute;
+	left: 500px;
+	top: 245px;
+	transform: scale(0);
+}
+
+#tipCenter #decoration {
+	position: absolute;
+	left: 760px;
+	top: 300px;
+	transform: scale(0);
+}
+
+#tipCenter #tipText {
+	position: absolute;
+	left: 520px;
+	top: 515px;
+	transform: scale(0);
+}
+
+#confirmBtn {
+	position: absolute;
+	left: 520px;
+	top: 540px;
+}
+
+#hands_x0_y0_confirmBtnFocus_ {
+	position: absolute;
+	left: 520px;
+	top: 547px;
+}
+
+#blingbling {
+	position: absolute;
+	left: 370px;
+	top: 135px;
+}
+
+
+/*规则页*/
+
+#rulePage,
+#nameListPage {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+}
+
+#hands_x0_y0_ruleCloseFocus_ {
+	position: absolute;
+	left: 1140px;
+	top: 90px;
+}
+
+
+/*中奖名单页*/
+
+#telInput {
+	position: absolute;
+	left: 582px;
+	top: 562px;
+	font-size: 22px;
+	color: #fff;
+}
+
+#hands_x0_y0_inputFocus_ {
+	position: absolute;
+	left: 515px;
+	top: 540px;
+}
+
+#hands_x0_y0_saveBtnFocus_ {
+	position: absolute;
+	left: 815px;
+	top: 540px;
+}
+
+#savetips {
+	position: absolute;
+	left: 605px;
+	top: 625px;
+	color: #fff;
+	font-size: 20px;
+}
+
+#hands_x0_y0_emptyBtnFocus_ {
+	position: absolute;
+	left: 915px;
+	top: 540px;
+}
+
+#hands_x0_y0_nameListCloseFocus_ {
+	position: absolute;
+	left: 1140px;
+	top: 90px;
+}
+
+#userInfo {
+	position: absolute;
+	left: 540px;
+	bottom: 185px;
+	font-size: 22px;
+	color: #fff;
+}
+
+#prizeInfo {
+	position: absolute;
+	left: 950px;
+	bottom: 188px;
+	font-size: 18px;
+	color: #fff;
+}
+
+
+#nameListTitle {
+	position: absolute;
+	left: 460px;
+	top: 200px;
+	width: 600px;
+	color: #FFFFFF;
+	font-size: 20px;
+}
+#nameList{
+	position: absolute;
+	left: 460px;
+	top: 225px;
+	width: 600px;
+	color: #FFFFFF;
+	font-size: 20px;
+}
+
+#nameList>li span:nth-child(1),
+#nameListTitle>span:nth-child(1) {
+	float: left;
+	width: 50%;
+	text-align: center;
+}
+
+#nameList>li span:nth-child(2),
+#nameListTitle>span:nth-child(2) {
+	float: left;
+	width: 50%;
+	text-align: center;
+}
+
+#hands_x0_y0_seeVideoTipBtnFocus_ {
+	position: absolute;
+	left: 350px;
+	top: 547px;
+}
+
+#seeVideoTipBtn {
+	position: absolute;
+	left: 350px;
+	top: 540px;
+}
+
+#continueBtn {
+	position: absolute;
+	left: 690px;
+	top: 540px;
+}
+
+#hands_x0_y0_continueBtnFocus_ {
+	position: absolute;
+	left: 690px;
+	top: 547px;
+}
+
+
+/*记得回来抽奖*/
+
+#hands_x0_y0_rememberFocus_ {
+	position: absolute;
+	left: 520px;
+	top: 547px;
+}

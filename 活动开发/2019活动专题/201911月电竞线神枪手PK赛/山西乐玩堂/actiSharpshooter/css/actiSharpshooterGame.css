@@ -1,0 +1,156 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+}
+#main{
+    width: 1280px;
+    height: 720px;
+    position: relative;
+    left: 0px;
+    top: 0px;
+    overflow: hidden;
+    background: url(../img/game/gameBG.jpg) no-repeat;
+}
+/* 三个枪靶 */
+#targetLeft{
+    position: absolute;
+    left: 140px;
+    top: 20px;
+}
+#targetRight{
+    position: absolute;
+    left: 920px;
+    top: 60px;
+}
+#targetMiddle{
+    position: absolute;
+    left: 590px;
+    top: 20px;
+}
+/* 射击手 */
+#hands_x0_y0_shootFocus0_{
+    position: absolute;
+    left: 105px;
+    top: 420px;
+    width: 450px;
+    height: 306px;
+}
+#hands_x0_y0_shootFocus1_{
+    position: absolute;
+    left: 480px;
+    top: 420px;
+    width: 450px;
+    height: 306px;
+}
+#hands_x0_y0_shootFocus2_{
+    position: absolute;
+    left: 870px;
+    top: 420px;
+    width: 450px;
+    height: 306px;
+}
+
+/* 打枪爆炸点 */
+#boomLeft{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 97px;
+    height: 103px;
+}
+#boomMiddle{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    height: 50px;
+}
+#boomRight{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    height: 75px;
+}
+/* 弹窗 */
+#tanchuang{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 1280px;
+    height: 720px;
+    background-color: rgba(0, 0, 0, 0.45);
+    visibility: hidden;
+    z-index: 1;
+}
+#zhong,
+#nozhong{
+	 position: absolute;
+    left: 365px;
+    top: 155px;
+}
+#circleNum{
+    position: absolute;
+    left: 565px;
+    top: 375px;
+    width: 50px;
+    height: 40px;
+    line-height: 40px;
+    color: #ffffff;
+    text-align: center;
+    font-size: 26px;
+    font-weight: bold;
+}
+#scoreNum{
+    position: absolute;
+    left: 702px;
+    top: 375px;
+    width: 50px;
+    height: 40px;
+    line-height: 40px;
+    color: #ffffff;
+    text-align: center;
+    font-size: 26px;
+    font-weight: bold;
+}
+#hands_x0_y0_shootFocus3_{
+    position: absolute;
+    left: 559px;
+    top: 451px;
+}
+/* 页面总计分 */
+#totalScore{
+    position: absolute;
+    left: 455px;
+    top: 28px;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;   
+    font-size: 28px;
+    color: #ffffff;
+    font-weight: bold;
+    text-align: center;
+}
+/*看视频弹窗*/
+#seeVideoTip{
+	position:absolute;
+	left:0px;
+	top:0px;
+	width:1280px;
+	height:720px;
+	z-index:1;
+	visibility:hidden;
+}
+#hands_x0_y0_shootFocus4_{
+	position: absolute;
+    left: 586px;
+    top: 424px;
+    z-index: 1;
+}
+#hands_x0_y0_shootFocus5_{
+	position: absolute;
+    left: 924px;
+    top: 130px;
+	z-index: 1;
+}
+
+

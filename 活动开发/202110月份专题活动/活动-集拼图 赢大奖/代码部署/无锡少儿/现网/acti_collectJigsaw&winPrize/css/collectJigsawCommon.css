@@ -1,0 +1,23 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+}
+#mainBox{
+    position: relative;
+    left: 0px;
+    top: 0px;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: url(../img/wuxiBG.png) no-repeat;
+    background-size: 100% 100%;
+}
+#mainBG{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 1280px;
+    height: 720px;
+}
+

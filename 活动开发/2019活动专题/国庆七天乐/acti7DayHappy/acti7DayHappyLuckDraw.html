@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name = "page-view-size" content = "1280*720">
+    <title>国庆七天乐抽奖页</title>
+    <link rel="stylesheet" href="./css/7DayHappy.css">
+</head>
+<body>
+    <div class = "mainBg withScreen">
+        <!--    鸽子    -->
+        <div class = "gezi1"></div>
+        <!--    标题    -->
+        <div class = "title"></div>
+        <!--    两只鸽子    -->
+        <div class = "gezi2"></div>
+        <!--    IP人物    -->
+        <img id = "ipDom" src="./images/main/IP/0.png" alt="">
+        <!--    三只松鼠    -->
+        <img id = "ssDom" src="./images/main/sanzhisongshu.png" alt="">
+        <!--    气球    -->
+        <img id = "qqDom" src="./images/main/qiqiu.png" alt="">
+        <!--    布鲁克    -->
+        <img id = "blkDom" src="./images/main/buluke.png" alt="">
+        <!--    圆盘    -->
+        <div class = "yuanpan"></div>
+        <!--    一等奖    -->
+        <div class = "prize1"></div>
+        <!--    二等奖    -->
+        <div class = "prize2"></div>
+        <!--    三等奖    -->
+        <div class = "prize3"></div>
+        <!--    四等奖    -->
+        <div class = "prize4"></div>
+        <!--    置灰透明背景    -->
+        <div class = "withScreen" style = "background: black;opacity: 0.5;"></div>
+        <!--    抽奖页背景    -->
+        <img class = "withScreen" src="./images/choujiang/BG.png" alt="">
+        <!--    剩余机会    -->
+        <div id = "lwChanceDom">0</div>
+        <!--    奖品选框    -->
+        <div id = "selectBorder" style = "top: 242px;left: 564px;visibility: hidden;"></div>
+        <!--    空焦点    -->
+        <div id = "hands_x0_y0_emptyFocus_" style = "width: 2px;height: 2px;position: absolute;top: 245px;left: 130px;">
+            <img id = "emptyFocus" src="./images/empty.png" style = "visibility: hidden;" alt="">
+        </div>
+        <!--    开始选中框    -->
+        <div id = "hands_x0_y0_lwStartFocus_" style = "width: 142px;height: 123px;position: absolute;top: 370px;left: 564px;">
+            <img id = "lwStartFocus" src="./images/choujiang/started.png" alt="">
+        </div>
+        <div id = "conFirm" class = "withScreen" style = "visibility: hidden;">
+            <!--      弹窗背景图      -->
+            <img id = "conBg" src="./images/empty.png" alt="">
+            <!--      弹窗确认焦点      -->
+            <img src="./images/confirm/sure.png" style = "width: 243px;height: 121px;position: absolute;top: 560px;left: 535px;" alt="">
+            <div id = "hands_x0_y0_conSureFocus_" style = "width: 243px;height: 121px;position: absolute;top: 560px;left: 535px;">
+                <img id = "conSureFocus" src="./images/confirm/selected.png" style = "visibility: hidden;" alt="">
+            </div>
+            <!--      弹窗去抽奖焦点      -->
+            <img src="./images/confirm/toChou.png" style = "width: 243px;height: 121px;position: absolute;top: 560px;left: 535px;visibility: hidden;" alt="">
+            <div id = "hands_x0_y0_conChouFocus_" style = "width: 243px;height: 121px;position: absolute;top: 560px;left: 535px;">
+                <img id = "conChouFocus" src="./images/confirm/selected.png" style = "visibility: hidden;" alt="">
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../../js/column.js"></script>
+<script src = "./js/actiComm.js"></script>
+<script>
+    var buttons = [
+        {
+            id: "hands_x0_y0_emptyFocus_",
+            clickHandler: "",
+            up: "disable",
+            down: "disable",
+            left: "disable",
+            right: "disable",
+            focusType: 7
+        },
+        {
+            id: "hands_x0_y0_lwStartFocus_",
+            clickHandler: "javascript: runStart()",
+            otherFocusEvent: "javascript: startBling()",
+            otherBlurEvent: "javascript: startStay()",
+            up: "disable",
+            down: "disable",
+            left: "disable",
+            right: "disable",
+            focusType: 7
+        },
+        {
+            id: "hands_x0_y0_conSureFocus_",
+            clickHandler: "javascript: hideConfirm()",
+            up: "disable",
+            down: "disable",
+            left: "disable",
+            right: "disable",
+            focusType: 7
+        }
+    ];
+    //是否点击抽奖，用于判断当前的状态，抽奖中不被允许离开页面
+    var canClick = true;
+    //c抽奖焦点选中闪烁定时器
+    var blingInter = null;
+    //九个奖品方格定位，从最上方一行中间这个开始
+    var luckDrawArr = [[242,564],[242,713],[370,713],[497,713],[497,564],[497,420],[371,420],[243,420]];
+    //奖品框
+    var selectBorder = document.getElementById("selectBorder");
+    //弹框
+    var conFirm = document.getElementById("conFirm");
+    //弹框背景
+    var conBg = document.getElementById("conBg");
+    //剩余机会显示
+    var lwChanceDom = document.getElementById("lwChanceDom");
+    //抽奖定时器
+    var ringInter = null;
+    //旋转圈数
+    var ringCircles = 0;
+    //最终奖品框停止下标
+    var targetNums = 0;
+    //没有奖品的下标数组
+    var noPrizeArr = [0,2,4,6];
+    //有奖品的下标数组
+    var prizeArr = [1,3,5,7];
+    //旋转标志，累加
+    var ringFlag = 0;
+    //活动奖品列表，未使用
+    var prizeList = [];
+    //获奖的奖品ID 未使用
+    var prizeId = 0;
+    //判断用户是否已拥有奖品
+    var havePrize = true;
+    //今日剩余机会
+    var chanceNum = 0;
+    //签到信息
+    var signData = [];
+    //获取签到信息
+    actiObj.getUserDataList(function(res){
+        if(res && res.resultMsg == "success" && res.list){
+            signData = res.list[0].user_acti_data.split("_");
+            for(var i = 0; i < signData.length; i++){
+                signData[i] = signData[i].split("|");
+            }
+        }else{
+            signData = [];
+        }
+        if(signData && signData.length > 0){
+            actiObj.getChance(function(data){
+                var isOrderNum = data.activityChance;
+                var yizhi = true;
+                for(var i = 0; i < signData.length;i++){
+                    if(signData[i][1] == "false"){
+                        yizhi = false;
+                    }
+                }
+				if(actiUserId == "15579079375"){
+					isOrderNum = 0;
+				}
+                if(signData.length === 7 && yizhi){//7天连续签到，而外获得2次机会
+                    chanceNum = 3 - isOrderNum;
+					if(chanceNum < 0){
+						chanceNum = 0;
+					}
+					if(isOrderNum == "0"){
+						conBg.src = "./images/confirm/sign7Day.png";
+						conFirm.style.visibility = "visible";
+						setActiFocus("hands_x0_y0_conSureFocus_");
+					}else{
+						setActiFocus();
+					}
+                }else{
+					if(chanceNum < 0){
+						chanceNum = 0;
+					}
+                    chanceNum = 1 - isOrderNum;
+					setActiFocus();
+                }
+				lwChanceDom.innerHTML = chanceNum;
+            });
+        }else{
+            chanceNum = 0;
+			lwChanceDom.innerHTML = chanceNum;
+			setActiFocus();
+        }
+    });
+    //获取奖品列表与用户获奖信息
+    actiObj.getActivityPrize(function(res){
+        if(res && res.resultMsg == "success"){
+            prizeList = res.list;
+        }
+        actiObj.getUserPrizeInfo(function(prizeData){
+            if(prizeData && prizeData.resultMsg == "success"){
+                havePrize = true;
+            }else{
+                havePrize = false;
+            }
+        })
+    });
+    //抽奖按钮选中闪烁
+    function startBling(){
+        clearInterval(blingInter);
+        blingInter = setInterval(function(){
+            if(CT.$("lwStartFocus").style.visibility == "visible"){
+                CT.$("lwStartFocus").style.visibility = "hidden";
+            }else{
+                CT.$("lwStartFocus").style.visibility = "visible";
+            }
+        },200);
+    }
+    //抽奖按钮未选中不闪烁
+    function startStay(){
+        clearInterval(blingInter);
+        CT.$("lwStartFocus").style.visibility = "hidden";
+    }
+    //初始化焦点
+    function setActiFocus(focusName){
+        focusInit();
+        curFocus.defaultBlur();
+		if(focusName){
+			curFocus = getFocusModel6(focusName);
+		}else{
+			curFocus = getFocusModel6("hands_x0_y0_lwStartFocus_");
+		}
+        curFocus.defaultFocus();
+    }
+    //开始抽奖
+    function runStart(){
+        if(canClick){
+            if(chanceNum > 0){
+				var setSignData = "";
+                signData[signData.length-1][3] = "true";
+                for(var i = 0; i < signData.length;i++){
+                    signData[i] = signData[i].join("|");
+                }
+                setSignData = signData.join("_");
+				for(var i = 0; i < signData.length; i++){
+					signData[i] = signData[i].split("|");
+				}
+                canClick = false;
+                actiObj.setUserDataList(setSignData,function () {
+                    chanceNum --;
+                    lwChanceDom.innerHTML = chanceNum;
+                    actiObj.setChance(function(){
+                        actiObj.changeFocus("hands_x0_y0_emptyFocus_");
+                        ringStart();
+                    })
+                })
+            }else{
+                noChance();
+            }
+        }
+    }
+    //随机旋转，不中奖
+    function ringStart(){
+        selectBorder.style.top = luckDrawArr[0][0] + "px";
+        selectBorder.style.left = luckDrawArr[0][1] + "px";
+        selectBorder.style.visibility = "visible";
+        ringCircles = 0;
+        ringFlag = 0;
+        ringCircles = Math.ceil(Math.random()*3)+3;
+        targetNums = noPrizeArr[Math.floor(Math.random()*noPrizeArr.length)]
+        ringInter = setInterval(function(){
+            ringFlag ++;
+            if(ringCircles <= 0 && ringFlag%8 === targetNums){
+                clearInterval(ringInter);
+                selectBorder.style.top = luckDrawArr[targetNums][0] + "px";
+                selectBorder.style.left = luckDrawArr[targetNums][1] + "px";
+                if(prizeArr.indexOf(targetNums) != -1){
+                    getPrize(targetNums);
+                    canClick = true;
+                }else{
+                    canClick = true;
+                    noPrize();
+                }
+            }else{
+                selectBorder.style.top = luckDrawArr[ringFlag%8][0] + "px";
+                selectBorder.style.left = luckDrawArr[ringFlag%8][1] + "px";
+                if(ringFlag%8 === 0){
+                    ringCircles --;
+                }
+            }
+
+        },100);
+    }
+    //中奖弹框
+    function getPrize() {
+        conBg.src = "./images/confirm/getPrize.png";
+        conFirm.style.visibility = "visible";
+        actiObj.changeFocus("hands_x0_y0_conSureFocus_");
+    }
+    //未中奖弹框
+    function noPrize(){
+        conBg.src = "./images/confirm/noPrize.png";
+        conFirm.style.visibility = "visible";
+        actiObj.changeFocus("hands_x0_y0_conSureFocus_");
+    }
+    //无机会弹框
+    function noChance(){
+        conBg.src = "./images/confirm/noChance.png";
+        conFirm.style.visibility = "visible";
+        actiObj.changeFocus("hands_x0_y0_conSureFocus_");
+    }
+    //隐藏弹框
+    function hideConfirm(){
+        if(conBg.src.indexOf("getPrize") != -1){
+            actiObj.toJumpUrl("./acti7DayHappyPrize.html");
+        }else{
+            conBg.src ="./images/empty.png";
+            conFirm.style.visibility = "hidden";
+            selectBorder.style.visibility = "hidden";
+            actiObj.changeFocus("hands_x0_y0_lwStartFocus_");
+        }
+    }
+    function backfunc(){
+        if(canClick){
+            if(conFirm.style.visibility == "visible"){
+                conBg.src ="./images/empty.png";
+                conFirm.style.visibility = "hidden";
+                selectBorder.style.visibility = "hidden";
+                actiObj.changeFocus("hands_x0_y0_lwStartFocus_");
+            }else{
+                actiObj.toJumpUrl("./acti7DayHappyMain.html");
+            }
+        }
+    }
+</script>
+</html>

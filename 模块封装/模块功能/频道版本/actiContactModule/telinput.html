@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>填写联系方式功能模块</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+            list-style: none;
+        }
+
+        /* 获奖名单页 */
+        #prizeBox {
+            position: relative;
+            left: 0px;
+            top: 0px;
+            overflow: hidden;
+            background: url(img/prizeBeiJ.png) no-repeat;
+            width: 1280px;
+            height: 720px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="prizeBox">
+    </div>
+    <div id="prizeBox2">
+    </div>
+    <script type="text/javascript" src="../../../../../js/loadCommomJs.js"></script>
+    <script type="text/javascript" src="../../../../../js/actiComm.js"></script>
+    <script type="text/javascript" src="js/telinput.js"></script>
+    <script>
+        var option = {
+            //非焦点元素展示
+            "textShowInfo": {
+                //输入框展示信息
+                "telInput": {
+                    "textName": "telInput",
+                    "textSize": "24px",
+                    "textColor": "#333",
+                    "textLeft": "405px",
+                    "textTop": "632px",
+                    "textWidth": "265px",
+                    "textHeight": "40px"
+                },
+                //保存提示信息
+                "saveTip": {
+                    "textName": "saveTip",
+                    "textSize": "24px",
+                    "textColor": "#fff",
+                    "textLeft": "450px",
+                    "textTop": "680px",
+                    "textWidth": "",
+                    "textHeight": ""
+                }
+            },
+            //焦点展示信息
+            "contactFocusInfo": {
+                "telInputFocus": {
+                    "focusName": "telInputFocus",
+                    "focusLeft": "380px",
+                    "focusTop": "612px",
+                    "focusSrc": "img/inputFocus.png",
+                    "clickEvent": "",
+                    "otherFocusEvent": "inputFocusEvent()",
+                    "otherBlurEvent": "inputBlurEvent()",
+                    "up": "disable",
+                    "down": "disable",
+                    "left": "disable",
+                    "right": "saveBtnFocus"
+                },
+                "saveBtnFocus": {
+                    "focusName": "saveBtnFocus",
+                    "focusLeft": "685px",
+                    "focusTop": "612px",
+                    "focusSrc": "img/saveFocus.png",
+                    "clickEvent": "saveFunc()",
+                    "otherFocusEvent": "",
+                    "otherBlurEvent": "saveBtnBlur()",
+                    "up": "disable",
+                    "down": "disable",
+                    "left": "telInputFocus",
+                    "right": "emptyBtnFocus"
+                },
+                "emptyBtnFocus": {
+                    "focusName": "emptyBtnFocus",
+                    "focusLeft": "790px",
+                    "focusTop": "612px",
+                    "focusSrc": "img/saveFocus.png",
+                    "clickEvent": "emptyFunc()",
+                    "otherFocusEvent": "",
+                    "otherBlurEvent": "",
+                    "up": "disable",
+                    "down": "disable",
+                    "left": "saveBtnFocus",
+                    "right": "disable"
+                }
+            }
+        }
+        var option2 = {
+            //非焦点元素展示
+            "textShowInfo": {
+                //输入框展示信息
+                "telInput": {
+                    "textName": "telInput1",
+                    "textSize": "24px",
+                    "textColor": "#333",
+                    "textLeft": "405px",
+                    "textTop": "232px",
+                    "textWidth": "265px",
+                    "textHeight": "40px"
+                },
+                //保存提示信息
+                "saveTip": {
+                    "textName": "saveTip1",
+                    "textSize": "24px",
+                    "textColor": "#fff",
+                    "textLeft": "450px",
+                    "textTop": "380px",
+                    "textWidth": "",
+                    "textHeight": ""
+                }
+            },
+            //焦点展示信息
+            "contactFocusInfo": {
+                "telInputFocus": {
+                    "focusName": "telInput1Focus",
+                    "focusLeft": "380px",
+                    "focusTop": "212px",
+                    "focusSrc": "img/inputFocus.png",
+                    "clickEvent": "",
+                    "otherFocusEvent": "inputFocusEvent()",
+                    "otherBlurEvent": "inputBlurEvent()",
+                    "up": "disable",
+                    "down": "disable",
+                    "left": "disable",
+                    "right": "saveBtn1Focus"
+                },
+                "saveBtnFocus": {
+                    "focusName": "saveBtn1Focus",
+                    "focusLeft": "685px",
+                    "focusTop": "212px",
+                    "focusSrc": "img/saveFocus.png",
+                    "clickEvent": "saveFunc()",
+                    "otherFocusEvent": "",
+                    "otherBlurEvent": "saveBtnBlur()",
+                    "up": "disable",
+                    "down": "disable",
+                    "left": "telInput1Focus",
+                    "right": "emptyBtn1Focus"
+                },
+                "emptyBtnFocus": {
+                    "focusName": "emptyBtn1Focus",
+                    "focusLeft": "790px",
+                    "focusTop": "212px",
+                    "focusSrc": "img/saveFocus.png",
+                    "clickEvent": "emptyFunc()",
+                    "otherFocusEvent": "",
+                    "otherBlurEvent": "",
+                    "up": "disable",
+                    "down": "disable",
+                    "left": "saveBtn1Focus",
+                    "right": "disable"
+                }
+            }
+        }
+        var actiContact = new actiContactModule("actiContact");
+        var actiContact1 = new actiContactModule("actiContact1");
+        actiContact.init("prizeBox", option, function () {
+            actiContact1.init("prizeBox2", option2, function () {
+                PAGE.focusInit();
+                PAGE.changeFocus("hands_x0_y0_telInputFocus_");
+            });
+        });
+
+    </script>
+</body>
+
+</html>

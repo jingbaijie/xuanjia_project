@@ -1,0 +1,14 @@
+{
+  "main_BG":"./images/main_BG.jpg",
+  "largePic":[
+            "./images/1_large.png","./images/2_large.png","./images/3_large.png","./images/4_large.png","./images/5_large.png",
+            "./images/6_large.png","./images/7_large.png","./images/8_large.png","./images/9_large.png","./images/10_large.png",
+            "./images/11_large.png", "./images/12_large.png","./images/13_large.png","./images/14_large.png","./images/15_large.png"
+          ],
+  "liPic":[
+    "./images/1.png","./images/2.png","./images/3.png","./images/4.png","./images/5.png",
+    "./images/6.png","./images/7.png","./images/8.png","./images/9.png","./images/10.png",
+    "./images/11.png", "./images/12.png","./images/13.png","./images/14.png","./images/15.png"
+  ],
+  "lightNum": 15
+}

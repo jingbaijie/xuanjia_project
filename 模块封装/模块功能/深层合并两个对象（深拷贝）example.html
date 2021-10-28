@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ECharts实例</title>
+</head>
+
+<body>
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div id="main" style="width: 600px;height:400px;"></div>
+    <script type="text/javascript">
+        var person1 = {
+            //非焦点元素展示
+            "textShowInfo": {
+                //输入框展示信息
+                "telInput": {
+                    "textName": "telInput",
+                    "textSize": "24px",
+                    "textColor": "#333",
+                    "textLeft": "405px",
+                    "textTop": "632px",
+                    "textWidth": "265px",
+                    "textHeight": "40px",
+                },
+                //保存提示信息
+                "saveTip": {
+                    "textName": "saveTip",
+                    "textSize": "24px",
+                    "textColor": "#fff",
+                    "textLeft": "450px",
+                    "textTop": "680px",
+                    "textWidth": "",
+                    "textHeight": ""
+                }
+            },
+            //按钮显示
+            "btnShow": {
+                "saveBtn": {
+                    "btnName": "saveBtn",
+                    "btnSrc": "",
+                    "btnLeft": "",
+                    "btnTop": "",
+                    "btnWidth": "",
+                    "btnHeight": ""
+                },
+                "emptyBtn": {
+                    "btnName": "emptyBtn",
+                    "btnSrc": "",
+                    "btnLeft": "",
+                    "btnTop": "",
+                    "btnWidth": "",
+                    "btnHeight": ""
+                }
+            },
+            //焦点展示信息
+            "contactFocusInfo": {
+                "telInputFocus": {
+                    "focusName": "telInputFocus",
+                    "focusLeft": "380px",
+                    "focusTop": "612px",
+                    "focusSrc": "img/inputFocus.png",
+                    "clickEvent": "",
+                    "otherFocusEvent": "inputFocusEvent",
+                    "otherBlurEvent": "inputBlurEvent",
+                    "up": "disable",
+                    "down": "disable",
+                    "left": "disable",
+                    "right": "saveBtnFocus"
+                },
+                "saveBtnFocus": {
+                    "focusName": "saveBtnFocus",
+                    "focusLeft": "685px",
+                    "focusTop": "612px",
+                    "focusSrc": "img/saveFocus.png",
+                    "clickEvent": "saveFunc",
+                    "otherFocusEvent": "",
+                    "otherBlurEvent": "saveBtnBlur",
+                    "up": "disable",
+                    "down": "disable",
+                    "left": "telInputFocus",
+                    "right": "emptyBtnFocus"
+                },
+                "emptyBtnFocus": {
+                    "focusName": "emptyBtnFocus",
+                    "focusLeft": "790px",
+                    "focusTop": "612px",
+                    "focusSrc": "img/saveFocus.png",
+                    "clickEvent": "emptyFunc",
+                    "otherFocusEvent": "",
+                    "otherBlurEvent": "",
+                    "up": "disable",
+                    "down": "disable",
+                    "left": "saveBtnFocus",
+                    "right": "disable"
+                }
+            }
+        }
+        var person2 = {
+            "textShowInfo": {
+                //输入框展示信息
+                "telInput": {
+                    "textSize": "25px",
+                    "textColor": "#333",
+                    "textLeft": "405px",
+                    "textTop": "632px",
+                    "textWidth": "265px",
+                    "textHeight": "70px"
+                },
+                //保存提示信息
+                "saveTip": {
+                    "textSize": "24px",
+                    "textColor": "#fff",
+                    "textLeft": "450px",
+                    "textTop": "780px",
+                }
+            },
+            //焦点展示信息
+            "contactFocusInfo": {
+                "telInputFocus": {
+                    "focusLeft": "480px",
+                    "focusTop": "620px",
+                    "focusSrc": "img/inputNewFocus.png",
+                },
+                "saveBtnFocus": {
+                    "focusLeft": "685px",
+                    "focusTop": "612px",
+                    "focusSrc": "img/saveFocus.png",
+                },
+                "emptyBtnFocus": {
+                    "focusLeft": "790px",
+                    "focusTop": "612px",
+                    "focusSrc": "img/saveNewFocus.png",
+                }
+            }
+        }
+        function deepCopy(person1, person2) {
+            for (var key in person2) {
+                if (person2.hasOwnProperty(key)) {
+                    if (typeof person2[key] == "object" && person2[key] != null) {
+                        person1[key] = deepCopy(person1[key], person2[key]);
+                    } else {
+                        person1[key] = person2[key];
+                    }
+                }
+            }
+            return person1;
+        }
+        deepCopy(person1, person2);
+    </script>
+</body>
+
+</html>

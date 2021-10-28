@@ -1,0 +1,289 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+}
+#mainBox{
+    position: relative;
+    left: 0px;
+    top: 0px;
+    width: 1280px;
+    height: 720px;
+    background: url(../img/mainBG.jpg) no-repeat;
+    overflow: hidden;
+}
+#logoImg{
+    position: absolute;
+    left: 48px;
+    top: 35px;
+}
+#titleImg{
+    position: absolute;
+    left: 280px;
+    top: 45px;
+}
+#qrcodeImg{
+    position: absolute;
+    left:995px;
+    top: 30px;
+}
+#ruleBtn{
+    position: absolute;
+    left:210px;
+    top: 90px;
+}
+#secondRoundBtn{
+    position: absolute;
+    left: 45px;
+    top: 90px;
+}
+#searchBG{
+    position: absolute;
+    left: 945px;
+    top: 145px;
+}
+#searchInput{
+    width:175px;
+    height: 30px; 
+    /* border: 1px solid red; */
+    position: absolute;
+    /* left: 950px; */
+    top: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 30px;
+    padding-left: 5px;
+    padding-right: 5px;
+    box-sizing: border-box;
+    font-size: 18px;
+    color: #3aa4ab;
+}
+#emptyBtn{
+    position: absolute;
+    left: 1185px;
+    top: 145px;
+}
+/* 左侧排行榜 */
+#rankList{
+    position: absolute;
+    left: 22px;
+    top: 62px;
+}
+#listBG{
+    width: 935px;
+    height: 486px;
+    position: absolute;
+    left:312px;
+    top: 194px;    
+    border-radius: 5px;    
+    padding: 15px 15px;
+    box-sizing: border-box;
+}
+.listBG{
+    background: #fff;
+    border: 2px solid #3aa4ab;
+    opacity: 0.5;
+    width: 914px;
+    height: 486px;
+    position: absolute;
+    left:312px;
+    top: 194px;    
+    border-radius: 5px;    
+}
+#listUl>li{
+    position: relative;
+    width:206px;
+    height:200px;
+    float: left;
+    margin-right: 20px;
+    margin-bottom: 25px;
+}
+.videoPart{
+    width:206px;
+    height:156px;    
+}
+.videoIcon{
+    position: absolute;
+    left: 2px;
+    top: 0px;
+}
+.videokuang{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+.hands_x0_y0_videoFocus_{
+    position: absolute;
+    left: -17px;
+    top: -15px;
+    z-index: 2;
+}
+.videoText{
+    position: absolute;
+    top: 82px;
+    left: 15px;
+    color: #fff;
+    font-size: 20px;
+}
+.playerInfo{
+    position: absolute;
+    left: 15px;
+    top: 124px;
+    color: #fff;
+    font-size: 20px;
+}
+.playerInfo>.playerNumber{
+    margin-right: 20px;
+}
+.votePart{
+    position: absolute;
+    left: 0px;
+    top: 165px;
+    /* border: 1px solid red; */
+    width: 100%;
+}
+.voteNUmBtn{
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+}
+.voteNum{
+    float: left;
+    margin-right: 40px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #333333;
+}
+.votePart .voteBtn{
+    margin-top: 4px;
+    position: absolute;
+    right: 0px;
+}
+.hands_x0_y0_voteBtnFocus_{
+    position: absolute;
+    left: 92px;
+    top: -12px;
+}
+.voteBtnText{
+    font-size: 20px;
+    color: #fff;
+    position: absolute;
+    left: 114px;
+    top: 0px;
+}
+.rankVoteBtnText{
+    font-size: 20px;
+    color: #fff;
+    position: absolute;
+    left: 152px;
+    top: 0px;
+}
+#hands_x0_y0_ruleBtnFocus_{
+    position: absolute;
+    left: 190px;
+    top: 78px;
+}
+#hands_x0_y0_secondRoundBtnFocus_{
+    position: absolute;
+    left: 25px;
+    top: 75px;
+}
+.keydownTip{
+    position: absolute;
+    left: 235px;
+    top: 455px;
+    color: #1d6879;
+    font-size: 20px;
+}
+/* 排行榜 */
+#rankListParent{
+    background: url(../img/rankList.png) no-repeat;
+    width:250px;
+    height: 560px; 
+    position: absolute;
+    left: 45px;
+    top: 125px;
+    padding-top: 70px;
+    box-sizing: border-box;
+}
+#rankListParent>li{
+    width: 252px;
+    height: 48px;
+    line-height: 48px;
+    padding-left: 7px;
+    box-sizing: border-box;
+    position: relative;
+}
+#rankListParent .voteBtn{
+    float: left;
+    margin-top: 10px;
+}
+#rankListParent .rankIcon{
+    float: left;
+    margin-top: 7px;
+    margin-right: 10px;
+    width: 30px;
+    height: 39px;
+}
+#rankListParent .playerName{
+    float: left;
+    width: 100px;
+    font-size: 20px;
+    color: #333333;
+}
+.hands_x0_y0_rankVoteBtnFocus_{
+    position: absolute;
+    left: 130px;
+    top: -6px;
+}
+/* 名次 */
+.rankIconGeneral{
+    color: #3aa4ab;
+    font-size: 20px;
+    float: left;
+    margin-top: 10px;
+    margin-right: 10px;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;   
+}
+/* 输入框焦点 */
+#hands_x0_y0_searchFocus_{
+    position: absolute;
+    left: 928px;
+    top: 128px;
+}
+#hands_x0_y0_emptyBtnFocus_{
+    position: absolute;
+    left: 1168px;
+    top: 128px;
+}
+/* 键盘 */
+#keyBoardBG{
+    background: url(../img/keyBoard/keyBoardBG.png) no-repeat;
+    background-size: 100% 100%;
+    width: 1280px;
+    height: 308px;
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    z-index: 2;
+    visibility: hidden;
+}
+
+/* 弹窗 */
+#tipBG{
+    width:1280px;
+    height:720px;
+    background:rgba(0,0,0,0.6);
+    position:absolute;
+    left:0px;
+    top:0px;
+}
+#tipImg{
+    position: absolute;
+    left: 450px;
+    top: 250px;
+}

@@ -1,0 +1,174 @@
+* {
+	margin: 0rem;
+	padding: 0rem;
+	list-style: none;
+	text-decoration: none;
+}
+
+html,
+body {
+	height: 100%;
+	width: 100%;
+	background: url(../img/mainPage/pureBG@3x.png) no-repeat center;
+	background-size: 100% 100%;
+	background-attachment: fixed;
+}
+
+.mainBJ {
+	height: 100%;
+	width: 100%;
+	padding-top: 0.95rem;
+	padding-left: 0.3333rem;
+	padding-right: 0.3333rem;
+	box-sizing: border-box;
+	position: relative;
+}
+
+.titlePic {
+	width: 100%;
+	height: 3.4666rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 0.2rem;
+}
+
+.titlePic img {
+	width: 7.68rem;
+	height: 100%;
+}
+
+.introduction {
+	width: 100%;
+	height: 8.6rem;
+	padding-left: 1rem;
+	padding-right: 1rem;
+	padding-top: 0.5rem;
+	box-sizing: border-box;
+	background: url(../img/shareQrcode/textArea@3x.png) no-repeat;
+	background-size: 100% 100%;
+	margin-top: 0.32rem;
+	position: relative;
+}
+
+.mainBtn {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+}
+
+#signUpBtn,
+#voteBtn,
+#agreementBtn {
+	width: 2.9333rem;
+	height: 0.6933rem;
+	cursor: pointer;
+	-webkit-tap-highlight-color: transparent;
+}
+
+#signUpBtn img,
+#voteBtn img,
+#agreementBtn img {
+	width: 100%;
+	height: 100%;
+}
+
+.introduction .title {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 0.64rem;
+	font-family: "微软雅黑";
+	font-weight: bold;
+	color: #32247c;
+}
+
+.babyPic {
+	margin-top: 0.5rem;
+	padding-right: 0.5rem;
+	box-sizing: border-box;
+	height: 4rem;
+}
+
+.babyPic img {
+	width: 100%;
+	height: 100%;
+}
+
+.logo {
+	position: absolute;
+	left: 0.3rem;
+	top: 0.2rem;
+	width: 2.16rem;
+	height: 0.8rem;
+}
+
+.playerIdShow {
+	display: flex;
+	color: #32247c;
+	font-size: 0.4rem;
+	font-weight: 600;
+	margin-top: 0.4rem;
+}
+
+#introductionShow {
+	color: #32247c;
+	font-size: 0.4rem;
+	font-weight: 600;
+	margin-top: 0.1rem;
+}
+
+.qrcodeShow {
+	position: absolute;
+	width: 3rem;
+	height: 3rem;
+	left: 0.8rem;
+	bottom: -2.3rem;
+	background: url(../img/shareQrcode/qrcodeKuang@3x.png) no-repeat;
+	background-size: 100% 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.textDescrible {
+	width: 4.0666rem;
+	height: 1.8133rem;
+	position: absolute;
+	left: 4.2rem;
+	top: 8.7rem;
+}
+
+#qrcodePic {
+	width: 2.6rem;
+	height: 2.55rem;
+}
+
+.qrcodeShow img {
+	width: 2.6rem;
+	height: 2.55rem;
+}
+
+
+/*导入字体*/
+
+
+/*@font-face {
+	font-family: myFirstFont;
+	src: url(../fonts/hkytW3.TTF);
+}
+
+@font-face {
+	font-family: mySecondFont;
+	src: url(../fonts/hkytW5.TTF);
+}
+
+@font-face {
+	font-family: myThirdFont;
+	src: url(../fonts/hkytW7.TTF);
+}
+
+@font-face {
+	font-family: myFourthFont;
+	src: url(../fonts/hkytW9.TTF);
+}*/

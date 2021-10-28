@@ -1,0 +1,114 @@
+*{
+    margin: 0px;
+    padding:0px;
+    list-style: none;
+}
+#main{
+    position: relative;
+    left: 0px;
+    top: 0px;
+    width: 1280px;
+    height:720px;
+    background: url(../img/mainPage/bg.jpg) no-repeat;
+    overflow: hidden;
+}
+#ruleBtn{
+    position: absolute;
+    left: 35px;
+    top: 35px;
+}
+#hands_x0_y0_ruleBtnFocus_{
+    position: absolute;
+    left: 18px;
+    top: 18px;
+}
+#myPrizeBtn{
+    position: absolute;
+    left: 35px;
+    top: 110px;
+}
+#hands_x0_y0_myPrizeBtnFocus_{
+    position: absolute;
+    left: 18px;
+    top: 92px;
+}
+#moreExcellent{
+    position: absolute;
+    left: 35px;
+    top: 183px;
+}
+#hands_x0_y0_moreExcellentFocus_{
+    position: absolute;
+    left: 18px;
+    top: 165px;
+}
+/* 返回 */
+#closeBtn{
+    position: absolute;
+    left: 1150px;
+    top: 20px;
+}
+#hands_x0_y0_closeBtnFocus_{
+    position: absolute;
+    left: 1150px;
+    top: 20px;
+}
+/* 抽奖按钮 */
+#hands_x0_y0_startBtnFocus_{
+    position: absolute;
+    left: 760px;
+    top: 345px;
+}
+#telInput{
+    position: absolute;
+    width: 260px;
+    height: 40px;
+    left: 458px;
+    top: 562px;
+    /* border: 1px solid red; */
+    line-height: 40px;
+    text-align: center;
+    font-size: 24px;
+}
+#hands_x0_y0_toOrderFocus_{
+    position: absolute;
+    left: 460px;
+    top: 445px;    
+    z-index: 2;
+}
+#hands_x0_y0_cancelFocus_{
+    position: absolute;
+    left: 635px;
+    top: 445px;    
+    z-index: 2;
+}
+#hands_x0_y0_confirmFocus_{
+    position: absolute;
+    left: 460px;
+    top: 472px;    
+    z-index: 2;
+}
+#hands_x0_y0_tipMoreExcellentFocus_{
+    position: absolute;
+    left: 630px;
+    top: 472px;    
+    z-index: 2;
+}
+#hands_x0_y0_inputFocus_{
+    position: absolute;
+    left: 440px;
+    top: 550px;
+}
+#inputFocus{
+    width: 300px;
+}
+#hands_x0_y0_saveBtnFocus_{
+    position: absolute;
+    left: 735px;
+    top: 545px;
+}
+#hands_x0_y0_emptyBtnFocus_{
+    position: absolute;
+    left: 835px;
+    top: 545px;
+}

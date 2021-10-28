@@ -1,0 +1,256 @@
+* {
+	margin: 0rem;
+	padding: 0rem;
+	list-style: none;
+	text-decoration: none;
+}
+
+html,
+body {
+	width: 100%;
+	height: 100%;
+}
+
+body {
+	background: url(../img/votePage/pureBG@3x.png) no-repeat;
+	background-size: 100% 100%;
+	padding-left: 0.56rem;
+	padding-right: 0.56rem;
+	/*padding-top: 4.6666rem;*/
+	padding-bottom: 0.6rem;
+	box-sizing: border-box;
+	background-attachment: fixed;
+	position: relative;
+}
+
+.votePageBG {
+	height: 100%;
+	padding-top: 1rem;
+	box-sizing: border-box;
+}
+
+.logo {
+	position: absolute;
+	left: 0.3rem;
+	top: 0.2rem;
+	width: 2.16rem;
+	height: 0.8rem;
+}
+
+.titlePic {
+	width: 100%;
+	height: 3.4666rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 0.25rem;
+}
+
+.titlePic img {
+	width: 7.68rem;
+	height: 100%;
+}
+
+.searchBox {
+	width: 8.8266rem;
+	height: 1.1333rem;
+	border-radius: 0.3333rem;
+	background: linear-gradient(to top, #74b1f5, #81c3d6);
+	-webkit-background: linear-gradient(to top, #74b1f5, #81c3d6);
+	padding-left: 0.1866rem;
+	padding-right: 0.1866rem;
+	padding-top: 0.16rem;
+	padding-bottom: 0.16rem;
+	box-sizing: border-box;
+	display: flex;
+	align-items: center;
+	margin-bottom: 0.4rem;
+}
+
+.searchBox #searchInput {
+	padding-left: 0.2666rem;
+	padding-right: 0.2666rem;
+	box-sizing: border-box;
+	width: 80%;
+	height: 100%;
+	border: none;
+	outline: none;
+	border-radius: 0.2rem;
+	font-size: 0.4rem;
+	color: #333;
+	font-style: italic;
+}
+
+.searchBox #searchBtn {
+	width: 0.8rem;
+	height: 0.8rem;
+	margin-left: 0.5rem;
+}
+
+
+/*今日剩余票数*/
+
+.currentSurplus {
+	display: flex;
+	align-items: center;
+	color: #FFFFFF;
+	font-size: 0.4533rem;
+	font-weight: bold;
+	margin-top: 0.2rem;
+	margin-bottom: 0.2rem;
+}
+
+.currentSurplus #surplusVotes {
+	font-size: 0.5333rem;
+	color: #fead04;
+}
+
+
+/*投票列表*/
+
+.voteList {
+	width: 100%;
+	height: 62%;
+	display: flex;
+	flex-direction: column;
+	/*justify-content: space-between;*/
+	overflow: scroll;
+}
+
+.voteList li {
+	width: 100%;
+	height: 32%;
+	background: #FFFFFF;
+	border-radius: 0.1333rem;
+	padding: 0.1333rem;
+	padding-left: 0.05rem;
+	box-sizing: border-box;
+	position: relative;
+	margin-bottom: 0.1333rem;
+}
+
+.voteList .innerBox {
+	width: 100%;
+	height: 100%;
+	border: 0.0133rem dashed #4a8ff7;
+	border-radius: 0.1333rem;
+	display: flex;
+}
+
+.innerBox .headPic {
+	width: 41.5%;
+	height: 100%;
+	padding-top: 0.1066rem;
+	padding-bottom: 0.1066rem;
+	padding-left: 0.16rem;
+	box-sizing: border-box;
+}
+
+.headPic img {
+	width: 100%;
+	height: 100%;
+	border-radius: 0.1333rem;
+}
+
+.innerBox .babyInfo {
+	width: 58.5%;
+	height: 100%;
+	padding-left: 0.2rem;
+	padding-top: 0.12rem;
+	padding-bottom: 0.16rem;
+	padding-right: 0.1333rem;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.babyInfo .showId_name {
+	font-size: 0.4rem;
+	color: #425fe9;
+	font-weight: bold;
+	display: flex;
+	align-items: center;
+}
+
+.babyInfo .showId_name>span:nth-child(1) {
+	margin-right: 0.2rem;
+}
+
+.babyInfo .showId_name>span:nth-child(2) {
+	width: 1.8rem;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.showIntroduction {
+	font-size: 0.4rem;
+	color: #000;
+}
+
+.showVotes {
+	width: 90%;
+	display: flex;
+	justify-content: space-between;
+	font-size: 0.3466rem;
+	color: #333;
+}
+
+.showVotes>span:nth-child(2) {
+	display: none;
+}
+
+.voteBtn {
+	width: 95%;
+	height: 0.6133rem;
+	display: flex;
+	justify-content: flex-end;
+}
+
+.voteBtn img {
+	width: 2.4266rem;
+	height: 100%;
+	cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.levelIcon {
+	position: absolute;
+	right: -0.1rem;
+	top: -0.05rem;
+	width: 1.1333rem;
+	height: 1.2rem;
+	background: url(../img/votePage/general@3x.png) no-repeat;
+	background-size: 100% 100%;
+	text-align: center;
+	line-height: 1.2rem;
+	font-size: 0.4266rem;
+	font-weight: bold;
+	color: #FFFFFF;
+}
+
+.voteList li:nth-child(1)>.levelIcon {
+	background: url(../img/votePage/first@3x.png) no-repeat;
+	background-size: 100% 100%;
+}
+
+.voteList li:nth-child(2)>.levelIcon {
+	background: url(../img/votePage/second@3x.png) no-repeat;
+	background-size: 100% 100%;
+}
+
+.voteList li:nth-child(3)>.levelIcon {
+	background: url(../img/votePage/third@3x.png) no-repeat;
+	background-size: 100% 100%;
+}
+
+
+/*pixel2 XL适配*/
+
+@media screen and (min-device-width: 411px) and (device-height: 823px) {}
+
+
+/*iphoneX适配*/
+
+@media screen and (min-device-width: 375px) and (device-height: 812px) {}

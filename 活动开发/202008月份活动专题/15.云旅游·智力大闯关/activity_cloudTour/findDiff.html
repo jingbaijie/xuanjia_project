@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	<link rel="stylesheet" href="./css/main.css" type="text/css">
+	</link>
+	<meta name="page-view-size" content="1280*720" />
+	<title>找茬游戏</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		.main {
+			position: absolute;
+			width: 1280px;
+			height: 720px;
+			top: 0px;
+			left: 0px;
+			overflow: hidden;
+		}
+
+		.logo {
+			position: absolute;
+			left: 82px;
+			top: 27px;
+		}
+
+		.logo img {
+			width: 260px;
+			height: auto;
+		}
+
+		.content img {
+			position: absolute;
+		}
+
+		.show {
+			background: url("./img/grayEmpty.png");
+		}
+
+		.result {
+			position: absolute;
+			left: 0;
+			top: 0;
+			height: 720px;
+			width: 1280px;
+			background: url("./img/grayEmpty.png");
+			text-align: center;
+			visibility: hidden;
+		}
+
+		.result>img {
+			position: absolute;
+			left: 465px;
+			top: 168px;
+			visibility: hidden;
+		}
+	</style>
+</head>
+
+<body style="background-color: #000;overflow: hidden;position: absolute;left: 0;top: 0;">
+	<div class="main">
+		<img id="BGpic" src="./img/BG.jpg" alt="">
+	</div>
+	<div class="logo">
+		<img src="./img/LPGO.png" alt="">
+	</div>
+	<div class="content">
+		<img style="left: 106px; top: 219px;" id="origin" src="">
+		<img style="left: 686px; top: 219px;" id="target" src="">
+	</div>
+	<div class="btn_box">
+		<div id="hands_x0_y0_choose0_" style="position:absolute;left: 688px; top: 219px;">
+			<img id="choose0" src="./img/select.png" style="visibility: hidden;" />
+			<div id="result0" style="position:absolute;left:0;top:0;visibility:hidden;"></div>
+		</div>
+		<div id="hands_x0_y0_choose1_" style="position:absolute;left: 849px; top: 219px;">
+			<img id="choose1" src="./img/select.png" style="visibility: hidden;" />
+			<div id="result1" style="position:absolute;left:0;top:0;visibility:hidden;"></div>
+		</div>
+		<div id="hands_x0_y0_choose2_" style="position:absolute;left:1015px; top: 219px;">
+			<img id="choose2" src="./img/select.png" style="visibility: hidden;" />
+			<div id="result2" style="position:absolute;left:0;top:0;visibility:hidden;"></div>
+		</div>
+		<div id="hands_x0_y0_choose3_" style="position:absolute;left:688px; top: 348px;">
+			<img id="choose3" src="./img/select.png" style="visibility: hidden;" />
+			<div id="result3" style="position:absolute;left:0;top:0;visibility:hidden;"></div>
+		</div>
+		<div id="hands_x0_y0_choose4_" style="position:absolute;left:849px; top: 348px;">
+			<img id="choose4" src="./img/select.png" style="visibility: hidden;" />
+			<div id="result4" style="position:absolute;left:0;top:0;visibility:hidden;"></div>
+		</div>
+		<div id="hands_x0_y0_choose5_" style="position:absolute;left:1015px; top: 348px;">
+			<img id="choose5" src="./img/select.png" style="visibility: hidden;" />
+			<div id="result5" style="position:absolute;left:0;top:0;visibility:hidden;"></div>
+
+		</div>
+		<div id="hands_x0_y0_choose6_" style="position:absolute;left:688px; top: 484px;">
+			<img id="choose6" src="./img/select.png" style="visibility: hidden;" />
+			<div id="result6" style="position:absolute;left:0;top:0;visibility:hidden;"></div>
+
+		</div>
+		<div id="hands_x0_y0_choose7_" style="position:absolute;left:849px ;top: 484px;">
+			<img id="choose7" src="./img/select.png" style="visibility: hidden;" />
+			<div id="result7" style="position:absolute;left:0;top:0;visibility:hidden;"></div>
+
+		</div>
+		<div id="hands_x0_y0_choose8_" style="position:absolute;left:1015px ;top: 484px;">
+			<img id="choose8" src="./img/select.png" style="visibility: hidden;" />
+			<div id="result8" style="position:absolute;left:0;top:0;visibility:hidden;"></div>
+		</div>
+	</div>
+	<div class="result" id="result">
+		<img id="resultWinPic" src="./img/win.png">
+		<img id="resultLowPic" src="./img/lower.png">
+	</div>
+	<div id="hands_x0_y0_resultSe_">
+		<img id="resultSe" src="./img/select.png" style="visibility: hidden;" />
+	</div>
+	<img class="chance" src="./img/alertT/noChance.png"
+		style="position: absolute;visibility: hidden;top: 0px;left: 0px;">
+	<div id="hands_x0_y0_noChance_">
+		<img id="noChance" src="./img/xuan.png" style="position: absolute;visibility: hidden;left: 543px;top: 505px;">
+	</div>
+	<!-- 引入平台公共js开始 -->
+	<script type="text/javascript" src="../../../js/column.js"></script>
+	<!-- 引入平台公共js结束 -->
+	<script src="./js/actiComm.js"></script>
+	<script>
+		// 获取url查询字符串
+		function getQueryString(name) {
+		var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+		var r = window.location.search.substr(1).match(reg);
+		if (r != null) {
+			return unescape(r[2]);
+		}
+		return null;
+		}
+		var buttons = [];
+		var passedNum = 3; // 订购用户闯关机会
+		var cityName = getQueryString("cityName");//获取城市内容
+		var isPassedList = JSON.parse(CT.getCookie("isPassedList"));//用户当前闯关信息
+		var answerChance = (passedNum - parseInt(isPassedList[1]))>0?(passedNum - parseInt(isPassedList[1])):1;//每位订购用户每天三次答题机会，去掉已使用答题机会,为当前剩余答题机会
+		/**
+		         * 判断元素属否含有指定的class元素
+		         * @method CT.hasClass
+		         * @param obj  dom元素
+		         * @param cls  是否存在className
+		         * @returns {boolean}
+		         * @example
+		         *   if(CT.hasClass(obj,'classname')){
+		         *
+		         *   }
+		         *
+		         */
+		CT.hasClass = function (obj, cls) {//是否含有该class
+			return obj.className.match(new RegExp('(\\s+|^)' + cls + '(\\s+|$)'));
+		};
+		/**
+		 * 给元素添加class
+		 * @method CT.addClass
+		 * @param obj  dom元素
+		 * @param cls   要添加的classname
+		 * @example
+		 *   var div = CT.$('id');
+		 *   CT.addClass(div,'classname')
+		 */
+		CT.addClass = function (obj, cls) {//添加class
+			if (!this.hasClass(obj, cls)) obj.className += " " + cls;
+		};
+		/**
+		 * 删除元素class属性
+		 * @method CT.removeClass
+		 * @param obj  dom元素
+		 * @param cls  要删除的classname
+		 * @example
+		 *   var div = CT.$('id');
+		 *   CT.removeClass(div,'classname')
+		 */
+		CT.removeClass = function (obj, cls) {//删除class
+			if (this.hasClass(obj, cls)) obj.className = obj.className.replace(new RegExp('(\\s+|^)' + cls + '(\\s+|$)'), '');
+		};
+		
+		var findDiff = {
+			gameTheme: null,	//没局游戏的数据
+			expectArr: [], //防止用户一局重复选择
+			tempDiff: [],	//每一局的正确答案
+			guessTime: 0,	//每一局选择的次数，三次显示结果
+			examResult: null,	//游戏成功或失败
+			isOrder: "1",
+			cityName: null,
+			category: [
+				{ originImgUrl: "./img/topic/ATM.png", targetImgUrl: "./img/topic/diffATM.png", diff: [0, 4, 6], cartoonId: 967, isPassed: false },
+				{ originImgUrl: "./img/topic/BLL.png", targetImgUrl: "./img/topic/diffBLL.png", diff: [1, 4, 8], cartoonId: 924, isPassed: false },
+				{ originImgUrl: "./img/topic/CJFX.png", targetImgUrl: "./img/topic/diffCJFX.png", diff: [0, 2, 6], cartoonId: 976, isPassed: false },
+				{ originImgUrl: "./img/topic/GTFL.png", targetImgUrl: "./img/topic/diffGTFL.png", diff: [1, 2, 6], cartoonId: 2025, isPassed: false }
+			],
+			categoryArr: [0, 1, 2, 3], //游戏的个数
+			/*
+			*	深拷贝
+			*/
+			deepClone: function (obj) {
+				var newObj = obj instanceof Array ? [] : {};
+				if (typeof obj !== 'object') {
+					return obj;
+				} else {
+					for (var i in obj) {
+						newObj[i] = typeof obj[i] === 'object' ? this.deepClone(obj[i]) : obj[i];
+					};
+				};
+				return newObj;
+			},
+			/*
+			*	填充原始图片和找茬图片
+			*/
+			chooseTopic: function () {
+				var tempCateGory = this.deepClone(this.category);
+				this.chooseCateFn();
+				this.gameTheme = tempCateGory[this.tempNum];
+				CT.$("origin").src = this.gameTheme.originImgUrl;
+				CT.$("target").src = this.gameTheme.targetImgUrl;
+				this.tempDiff = this.gameTheme.diff;
+			},
+			/*
+			*	随机选择一组数据，但不重复，如果数组为空，重置
+			*/
+			chooseCateFn: function () {
+				var temp = parseInt(Math.random() * this.categoryArr.length);
+				if (this.categoryArr.length > 0) {
+					this.tempNum = this.categoryArr[temp];
+					this.categoryArr.splice(temp, 1);
+				} else {
+					this.categoryArr = [0, 1, 2, 3];
+					this.chooseCateFn();
+				};
+			},
+			/*
+			*	添加页面所有按钮
+			*/
+			buttonsPushFn: function () {
+				for (var i = 0; i < 9; i++) {
+					buttons.push({
+						id: "hands_x0_y0_choose" + i + "_",
+						clickHandler: "javascript:findDiff.guess(" + i + ")",
+						left: (i % 3 == 0) ? "disable" : "hands_x0_y0_choose" + (i - 1) + "_",
+						right: (i % 3 == 2) ? "disable" : "hands_x0_y0_choose" + (i + 1) + "_",
+						focusType: 7
+					});
+				};
+				buttons.push({
+					id: "hands_x0_y0_resultSe_",
+					clickHandler: "javascript:findDiff.resultFn()",
+					left: "disable",
+					right: "disable",
+					top: "disable",
+					buttom: "disable",
+					focusType: 7
+				});
+				buttons.push({
+					id: "hands_x0_y0_noChance_",
+					clickHandler: "javascript:findDiff.confirm()",
+					left: "disable",
+					right: "disable",
+					top: "disable",
+					buttom: "disable",
+					focusType: 7
+				});
+			},
+			/*
+			*	添加每个标签的成功和失败的蒙版
+			*/
+			resultLogoPush: function () {
+				for (var i = 0; i < 9; i++) {
+					var logoContent = "";
+					logoContent += '<img id="successFailShow' + i + '" style="width: 153px; height: 124px;"/>'
+					CT.$("result" + i).style.background = "url('./img/grayEmpty.png')";
+					CT.$("result" + i).innerHTML = logoContent;
+				};
+			},
+			/*
+			*	点击事件
+			*	@param expect 点击的位置
+			*/
+			guess: function (expect) {
+				var _this = this;
+				_this.expectNoReapetFn(expect, function (data) {
+					if (data) {
+						// return;
+					} else {
+						if (typeof expect == "number" && _this.tempDiff) {
+							_this.guessTime++;
+							if (_this.guessTime == 4 && _this.isOrder != 0) {
+								CT.addClass(CT.$("hands_x0_y0_choose" + expect + "_"), "show")
+								if (_this.tempDiff.indexOf(expect) > -1) {
+									_this.tempDiff.splice(_this.tempDiff.indexOf(expect), 1);
+									if (_this.tempDiff.length == 0) {
+										_this.toResultFn(function () {
+											CT.$("resultWinPic").style.visibility = "visible";//.src = "./img/win.png";
+											_this.examResult = "succ";
+											CT.$("result").style.visibility = "visible";
+											_this.setIsPassed(cityName, true);
+										});
+									} else if (_this.guessTime == 3 || _this.guessTime == 6) {
+										_this.toResultFn();
+									} else if (_this.guessTime == 9) {
+										// 机会用完
+										var chance = document.getElementsByClassName("chance")[0]
+										var noChance = document.getElementById("noChance");
+										noChance.style.visibility = "visible";
+										curFocus = getFocusModel6("hands_x0_y0_noChance_");
+										curFocus.defaultFocus();
+										chance.style.visibility = "visible";
+									}
+								} else {
+									if (_this.guessTime == 3 || _this.guessTime == 6) {
+										_this.toResultFn();
+									} else if (_this.guessTime == 9) {
+										// 机会用完
+										var chance = document.getElementsByClassName("chance")[0]
+										var noChance = document.getElementById("noChance");
+										noChance.style.visibility = "visible";
+										curFocus = getFocusModel6("hands_x0_y0_noChance_");
+										curFocus.defaultFocus();
+										chance.style.visibility = "visible";
+									}
+								};
+							} else {
+								CT.addClass(CT.$("hands_x0_y0_choose" + expect + "_"), "show")
+								if (_this.tempDiff.indexOf(expect) > -1) {
+									_this.tempDiff.splice(_this.tempDiff.indexOf(expect), 1);
+									if (_this.tempDiff.length == 0) {
+										_this.toResultFn(function () {
+											CT.$("resultWinPic").style.visibility = "visible";;
+											_this.examResult = "succ";
+											CT.$("result").style.visibility = "visible";
+											_this.setIsPassed(cityName, true);
+										});
+									} else if (_this.guessTime == 3 || _this.guessTime == 6) {
+										_this.toResultFn();
+									} else if (_this.guessTime == 9) {
+										// 机会用完
+										var chance = document.getElementsByClassName("chance")[0]
+										var noChance = document.getElementById("noChance");
+										noChance.style.visibility = "visible";
+										curFocus = getFocusModel6("hands_x0_y0_noChance_");
+										curFocus.defaultFocus();
+										chance.style.visibility = "visible";
+									}
+								} else {
+									if (_this.guessTime == 3 || _this.guessTime == 6) {
+										_this.toResultFn();
+									} else if (_this.guessTime == 9) {
+										var chance = document.getElementsByClassName("chance")[0]
+										var noChance = document.getElementById("noChance");
+										noChance.style.visibility = "visible";
+										curFocus = getFocusModel6("hands_x0_y0_noChance_");
+										curFocus.defaultFocus();
+										chance.style.visibility = "visible";
+									}
+								};
+							}
+						};
+					};
+				});
+			},
+			/*
+			*	结果函数，执行成功或失败后的操作
+			*	@param	fn 如果游戏成功了执行成功回调，失败省略
+			*/
+			toResultFn: function (fn) {
+				var _this = this;
+				var start = getFocusModel6("hands_x0_y0_resultSe_");
+				start.defaultFocus();
+				_this.showResylt();
+				_this.timer = setTimeout(function () {
+					if (fn && (typeof fn == "function")) {
+						fn()
+					} else {
+						CT.$("resultLowPic").style.visibility = "visible";
+						CT.$("result").style.visibility = "visible";
+						_this.examResult = "fail";
+						_this.setIsPassed(cityName, false);
+					}
+				}, 1000);
+			},
+			/*
+			*	防止用户同一位置多次点击
+			*/
+			expectNoReapetFn: function (expect, fn) {
+				if (this.expectArr.indexOf(expect) > -1) {
+					fn(true);
+				} else {
+					this.expectArr.push(expect);
+					fn(false);
+				}
+			},
+
+			/*
+			*	点击三次以后显示成果
+			*/
+			showResylt: function () {
+				for (var i = 0; i < this.expectArr.length; i++) {
+					var tempNum = this.expectArr[i];
+					CT.removeClass(CT.$("hands_x0_y0_choose" + tempNum + "_"), "show");
+					if (this.category[this.tempNum].diff.indexOf(tempNum) > -1) {
+						CT.$("result" + tempNum).style.visibility = "visible";
+						CT.$("successFailShow" + tempNum).src = "./img/succ.png";						
+
+					} else {
+						CT.$("result" + tempNum).style.visibility = "visible";						
+					};
+				};
+			},
+			// 获取闯关数据
+			setIsPassed: function (cityName, isPassed) {
+				if(!isPassed){//错误消耗一次游戏机会
+					isPassedList[1] = parseInt(isPassedList[1])+1;
+				}
+				var haveSetCurCity = false;
+				for(var i = 2; i < isPassedList.length; i++){
+					if(isPassedList[i].cityName == cityName){
+					haveSetCurCity = true;
+					isPassedList[i].isPassed = isPassed;
+					}
+				}
+				if(!haveSetCurCity){
+					isPassedList.push({ cityName: cityName,isPassed: isPassed});
+				}
+				actiObj.setUserDataList(JSON.stringify(isPassedList),function(){
+					
+				});
+			},
+			/*
+			*	成功和失败按钮
+			*/
+			resultFn: function () {
+				window.location.href = "./cloudTour.html?vTime=" + new Date().getTime() + "&fromgCity=" + cityName;
+			},
+			/*
+			*	游戏失败后继续游戏的渲染
+			*/
+			removeClass: function () {
+				for (var i = 0; i < this.expectArr.length; i++) {
+					CT.$("result" + this.expectArr[i]).style.visibility = "hidden";
+				};
+			},
+			/*
+			*	页面初始函数
+			*/
+			init: function () {
+				CT.$("resultLowPic").style.visibility = "hidden";
+				CT.$("resultWinPic").style.visibility = "hidden";
+				clearTimeout(this.timer)
+				this.gameTheme = null;
+				this.expectArr = [];
+				this.tempDiff = [];
+				this.examResult = null;
+				this.chooseTopic();
+				this.buttonsPushFn();
+				focusInit();
+				var start = getFocusModel6("hands_x0_y0_choose0_");
+				start.defaultFocus();
+			},
+			// 机会用完显示弹框
+			confirm: function () {
+				// 机会用完
+				CT.setCookie("getChance", true);
+				var chance = document.getElementsByClassName("chance")[0];
+				var noChance = document.getElementById("noChance");
+				chance.style.visibility = "hidden";
+				noChance.style.visibility = "hidden";
+				window.location.href = "./cloudTour.html?vTime=" + new Date().getTime() + "&fromgCity=" + cityName;
+			},
+		}
+		findDiff.resultLogoPush();
+		findDiff.init();
+		function backfunc() {
+			window.location.href = "./cloudTour.html?vTime=" + new Date().getTime() + "&fromgCity=" + cityName;
+		}
+	</script>
+</body>
+</html>

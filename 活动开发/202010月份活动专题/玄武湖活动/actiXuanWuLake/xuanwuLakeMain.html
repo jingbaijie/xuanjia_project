@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="page-view-size" content="1280*720">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../actiXuanWuLake/css/xuanwuLakeMain.css?v=2020092401">
+    <title>玄武湖订炫力少儿会员送好礼首页</title>
+</head>
+
+<body>
+    <div id="main">
+        <!-- 规则按钮 -->
+        <img src="img/mainPage/ruleBtn.png" alt="" id="ruleBtn">
+        <div id="hands_x0_y0_ruleBtnFocus_">
+            <img src="img/mainPage/mainBtnFocus.png" alt="" id="ruleBtnFocus" style="visibility:hidden;">
+        </div>
+        <!-- 我的奖品 -->
+        <img src="img/mainPage/myPrizeBtn.png" alt="" id="myPrizeBtn">
+        <div id="hands_x0_y0_myPrizeBtnFocus_">
+            <img src="img/mainPage/mainBtnFocus.png" alt="" id="myPrizeBtnFocus" style="visibility:hidden;">
+        </div>
+        <!-- 更多精彩 -->
+        <img src="img/mainPage/moreExcellent.png" alt="" id="moreExcellent">
+        <div id="hands_x0_y0_moreExcellentFocus_">
+            <img src="img/mainPage/mainBtnFocus.png" alt="" id="moreExcellentFocus" style="visibility:hidden;">
+        </div>
+        <!-- 返回按钮 -->
+        <img src="img/mainPage/closeBtn.png" alt="" id="closeBtn">
+        <div id="hands_x0_y0_closeBtnFocus_">
+            <img src="img/mainPage/closeBtnFocus.png" alt="" id="closeBtnFocus" style="visibility:hidden;">
+        </div>
+        <!-- 抽奖次数显示 -->
+        <div id="lotteryNum" style="position:absolute;left:490px;top:668px;font-size:26px;font-weight:bold;">3</div>
+        <!-- 活动时间 -->
+        <img src="img/mainPage/time.png" alt="" id="time" style="position: absolute;left: 415px;top: 615px;">
+        <!-- 抽奖转盘 -->
+        <div id="turnable">
+            <div id="littleTips" style="position:absolute;left:500px;top:200px;font-size:40px;font-weight:bold;"></div>
+            <img src="img/mainPage/prize6.png" alt="" id="prize1" style="position:absolute;left:620px;top:240px;">
+            <img src="img/mainPage/prize1.png" alt="" id="prize2" style="position:absolute;left:790px;top:240px;">
+            <img src="img/mainPage/prize4.png" alt="" id="prize3" style="position:absolute;left:970px;top:240px;">
+            <img src="img/mainPage/prize2.png" alt="" id="prize4" style="position:absolute;left:970px;top:372px;">
+            <img src="img/mainPage/prize7.png" alt="" id="prize5" style="position:absolute;left:970px;top:504px;">
+            <img src="img/mainPage/prize8.png" alt="" id="prize6" style="position:absolute;left:790px;top:504px;">
+            <img src="img/mainPage/prize3.png" alt="" id="prize7" style="position:absolute;left:620px;top:504px;">
+            <img src="img/mainPage/prize5.png" alt="" id="prize8" style="position:absolute;left:620px;top:372px;">
+            <img src="img/mainPage/startBtn1.png" alt="" style="position:absolute;left: 785px;top: 375px;" id="startBtn">
+            <div id="hands_x0_y0_startBtnFocus_">
+                <img src="img/mainPage/choose/1.png" alt="" id="startBtnFocus" style="visibility:hidden;">
+            </div>
+        </div>
+        <!-- 弹窗 -->
+        <div id="tipBG" style="visibility:hidden;position: absolute;left: 0px;top: 0px;z-index: 2;">
+            <img src="img/empty.png" alt="" id="tipImg">
+			<!--恭喜抽中***-->
+			<div id="getPrizeText" style="position: absolute;left: 458px;top: 284px;width: 380px;font-size: 20px;text-align: center;color: #42230F;font-weight: bold;visibility:hidden"></div>
+            <!-- 跳订购弹窗焦点 -->
+            <div id="hands_x0_y0_toOrderFocus_">
+                <img src="img/tip/chooseFocus.png" alt="" id="toOrderFocus" style="visibility:hidden;">
+            </div>
+            <div id="hands_x0_y0_cancelFocus_">
+                <img src="img/tip/chooseFocus.png" alt="" id="cancelFocus" style="visibility:hidden;">
+            </div>
+            <!-- 次数用完弹窗焦点、没抽中弹窗焦点 -->
+            <div id="hands_x0_y0_confirmFocus_">
+                <img src="img/tip/chooseFocus.png" alt="" id="confirmFocus" style="visibility:hidden;">
+            </div>
+            <div id="hands_x0_y0_tipMoreExcellentFocus_">
+                <img src="img/tip/chooseFocus.png" alt="" id="tipMoreExcellentFocus" style="visibility:hidden;">
+            </div>
+            <!-- 奖品抽完弹窗焦点 -->
+            <div id="hands_x0_y0_pityExcellentFocus_">
+                <img src="img/tip/chooseFocus.png" alt="" id="pityExcellentFocus" style="visibility:hidden;">
+            </div>
+            <!-- 中奖弹窗 -->
+            <!-- 联系手机 -->
+            <div id="telInput" style="visibility:hidden;"></div>
+            <!-- 提示 -->
+			<div id="savetips" style="position: absolute;left: 490px;color: #fff;top: 520px;font-size: 24px;"></div>
+            <div id="hands_x0_y0_inputFocus_">
+                <img src="img/inputFocus.png" alt="" id="inputFocus" style="visibility:hidden;">
+            </div>
+            <div id="hands_x0_y0_saveBtnFocus_">
+                <img src="img/saveFocus.png" alt="" id="saveBtnFocus" style="visibility:hidden;">
+            </div>
+            <div id="hands_x0_y0_emptyBtnFocus_">
+                <img src="img/saveFocus.png" alt="" id="emptyBtnFocus" style="visibility:hidden;">
+            </div>
+        </div>
+    </div>
+    <!--引入公用JS-->
+    <script type="text/javascript" src="../../../../js/loadCommomJs.js?v=202009240201"></script>
+    <script type="text/javascript" src="../../../../js/actiComm.js"></script>
+    <!--引入结束-->
+    <script type="text/javascript">
+        // 焦点数组
+        var buttons = [{
+            id: "hands_x0_y0_ruleBtnFocus_",
+            clickHandler: "javascript:xuanwuLakeLottery.btnJump(0)",
+            left: "disable",
+            right: "hands_x0_y0_startBtnFocus_",
+            up: "disable",
+            down: "hands_x0_y0_myPrizeBtnFocus_",
+            focusType: 7
+        },
+        {
+            id: "hands_x0_y0_myPrizeBtnFocus_",
+            clickHandler: "javascript:xuanwuLakeLottery.btnJump(1)",
+            left: "disable",
+            right: "hands_x0_y0_startBtnFocus_",
+            up: "hands_x0_y0_ruleBtnFocus_",
+            down: "hands_x0_y0_moreExcellentFocus_",
+            focusType: 7
+        },
+        {
+            id: "hands_x0_y0_moreExcellentFocus_",
+            clickHandler: "javascript:xuanwuLakeLottery.btnJump(2)",
+            left: "disable",
+            right: "hands_x0_y0_startBtnFocus_",
+            up: "hands_x0_y0_myPrizeBtnFocus_",
+            down: "disable",
+            focusType: 7
+        },
+        {
+            id: "hands_x0_y0_startBtnFocus_",
+            otherFocusEvent:"javascript:startFocusEvent()",
+            otherBlurEvent:"javascript:startBlurEvent()",
+            clickHandler: "javascript:xuanwuLakeLottery.startLottery()",
+            left: "hands_x0_y0_ruleBtnFocus_",
+            right: "hands_x0_y0_closeBtnFocus_",
+            up: "hands_x0_y0_closeBtnFocus_",
+            down: "disable",
+            focusType: 7
+        },
+        {
+            id: "hands_x0_y0_closeBtnFocus_",
+            clickHandler: "javascript:backfunc()",
+            left: "hands_x0_y0_startBtnFocus_",
+            right: "disable",
+            up: "disable",
+            down: "hands_x0_y0_startBtnFocus_",
+            focusType: 7
+        },
+        {
+            id: "hands_x0_y0_toOrderFocus_",
+            clickHandler: "javascript:xuanwuLakeLottery.toOrder()",
+            left: "disable",
+            right: "hands_x0_y0_cancelFocus_",
+            up: "disable",
+            down: "disable",
+            focusType: 7
+        },
+        {
+            id: "hands_x0_y0_cancelFocus_",
+            clickHandler: "javascript:backfunc()",
+            left: "hands_x0_y0_toOrderFocus_",
+            right: "disable",
+            up: "disable",
+            down: "disable",
+            focusType: 7
+        },
+        {
+            id: "hands_x0_y0_confirmFocus_",
+            clickHandler: "javascript:backfunc()",
+            left: "disable",
+            right: "hands_x0_y0_tipMoreExcellentFocus_",
+            up: "disable",
+            down: "disable",
+            focusType: 7
+        },
+        {
+            id: "hands_x0_y0_tipMoreExcellentFocus_",
+            clickHandler: "javascript:xuanwuLakeLottery.btnJump(2)",
+            left: "hands_x0_y0_confirmFocus_",
+            right: "disable",
+            up: "disable",
+            down: "disable",
+            focusType: 7
+        },
+        {
+            id: "hands_x0_y0_pityExcellentFocus_",
+            clickHandler: "javascript:xuanwuLakeLottery.btnJump(2)",
+            left: "disable",
+            right: "disable",
+            up: "disable",
+            down: "disable",
+            focusType: 7
+        },
+        {
+            id: "hands_x0_y0_inputFocus_",
+            otherFocusEvent: "javascript:onFocus(1)",
+            otherBlurEvent: "javascript:onFocus(0)",
+            left: "disable",
+            right: "hands_x0_y0_saveBtnFocus_",
+            up: "disable",
+            down: "disable",
+            focusType: 7
+        }, {
+            id: "hands_x0_y0_saveBtnFocus_",
+            clickHandler: "javascript:saveFunc()",
+            otherBlurEvent: "javascript:saveBlur()",
+            left: "hands_x0_y0_inputFocus_",
+            right: "hands_x0_y0_emptyBtnFocus_",
+            up: "disable",
+            down: "disable",
+            focusType: 7
+        },
+        {
+            id: "hands_x0_y0_emptyBtnFocus_",
+            clickHandler: "javascript:emptyFunc()",
+            left: "hands_x0_y0_saveBtnFocus_",
+            right: "disable",
+            up: "disable",
+            down: "disable",
+            focusType: 7
+        }
+        ]    
+
+    </script>
+    <script type="text/javascript" src="js/xuanwuLakeMain.js?v=2020092401024"></script>
+    <script type="text/javascript" src="js/fillContactInfo.js?v=2020092501"></script>
+</body>
+
+</html>

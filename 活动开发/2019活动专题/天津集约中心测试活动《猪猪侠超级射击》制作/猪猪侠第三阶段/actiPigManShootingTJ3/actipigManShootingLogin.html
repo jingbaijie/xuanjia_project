@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>猪猪侠超级射击登陆页</title>
+	</head>
+
+	<body>
+		<!--引入公用JS-->
+		<script type = "text/javascript" src = "../../js/comm.js?v=20190418"></script>
+		<script type = "text/javascript" src = "../../js/common1_1.js?v=20190418"></script>
+		<script type = "text/javascript" src = "../../js/key1_3.js?v=20190418"></script>
+		<script type = "text/javascript" src = "./js/actiComm.js?v=20190418"></script>
+		<!--引入结束-->
+		<script type="text/javascript">
+			//获取眉头信息参数
+			function GetQueryString(name) {
+				var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+				console.log(reg)
+				var r = window.location.search.substr(1).match(reg);
+				if(r != null) return unescape(r[2]);
+				return null;
+			}
+			(function() {
+				//存取cookie
+				var userId = GetQueryString("userId"),
+					activityId = GetQueryString("activityId"),
+					userToken = GetQueryString("userToken"),
+					carrierId = GetQueryString("carrierId"),
+					pid = GetQueryString("pid"),
+					fromTVOrderPage = GetQueryString("fromTVOrderPage");
+				if(carrierId) {
+					CT.delCookie("carrierId");
+					CT.setCookie("carrierId", carrierId);
+				}
+				if(userId) {
+					//CT.delCookie("userId");
+					if((userId+"").indexOf("_") != -1 || carrierId == "201"){
+						if(userId.indexOf("_201") != -1){
+							userId = userId.substr(0,userId.lastIndexOf("_"));
+						}
+						CT.setCookie("actiUserId", userId);
+					}else{
+						userId = userId+"_"+carrierId;
+						CT.setCookie("actiUserId", userId);
+					}
+				}
+				if(activityId) {
+					CT.delCookie("activityId");
+					CT.setCookie("activityId", activityId);
+				}
+				if(userToken) {
+					CT.delCookie("userToken");
+					CT.setCookie("userToken", userToken);
+				}
+				if(pid) {
+					CT.delCookie("pid");
+					CT.setCookie("pid", pid);
+				}
+				var str = location.href.substr((location.href.indexOf("?")) + 1);
+				window.onload = function() {
+					window.location.href = "actipigManShootingMain.html" + "?" + str;
+				}
+			})();
+		</script>
+	</body>
+
+</html>

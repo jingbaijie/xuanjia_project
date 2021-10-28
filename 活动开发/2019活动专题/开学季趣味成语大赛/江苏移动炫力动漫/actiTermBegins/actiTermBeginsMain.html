@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>开学季-趣味成语大赛首页</title>
+		<link rel="stylesheet" type="text/css" href="css/actiTermBeginsMain.css?v=2019081401" />
+	</head>
+
+	<body>
+		<div id="main">
+			<!--布鲁克-->
+			<img id="leftIP" src="img/main/brooke.png"></img>
+			<!--开始按钮-->
+			<img src="img/main/start1.png" id="startBtn" />
+			<div id="hands_x0_y0_startBtnFocus_">
+				<img src="img/main/start2.png" id="startBtnFocus" />
+			</div>
+			<!--抽奖按钮-->
+			<img src="img/main/lottery1.png" id="lotteryBtn" />
+			<div id="hands_x0_y0_lotteryBtnFocus_">
+				<img src="img/main/lottery2.png" id="lotteryBtnFocus" />
+			</div>
+			<!--中奖名单按钮-->
+			<img src="img/main/namelist1.png" id="namelistBtn" />
+			<div id="hands_x0_y0_namelistBtnFocus_">
+				<img src="img/main/namelist2.png" id="namelistBtnFocus" />
+			</div>
+			<!--规则按钮-->
+			<img src="img/main/rule1.png" id="ruleBtn" />
+			<div id="hands_x0_y0_ruleBtnFocus_">
+				<img src="img/main/rule2.png" id="ruleBtnFocus" />
+			</div>
+			<!--返回按钮-->
+			<img src="img/main/back1.png" id="backBtn" />
+			<div id="hands_x0_y0_backBtnFocus_">
+				<img src="img/main/back2.png" id="backBtnFocus" />
+			</div>
+			<!--没有机会弹窗-->
+			<img src="img/empty.png" id="noChance" />
+			<div id="hands_x0_y0_confirmFocus_">
+				<img src="img/tips/focus.png" id="confirmFocus" />
+			</div>
+			<div id="hands_x0_y0_cancelFocus_">
+				<img src="img/tips/focus.png" id="cancelFocus" />
+			</div>
+		</div>
+		<!--引入公用JS-->
+		<script type="text/javascript" src="../../../js/column.js"></script>
+		<script type="text/javascript" src="./js/actiComm.js"></script>
+		<!--引用结束-->
+		<script type="text/javascript">
+			/*
+			 * 鉴权
+			 * 获取游戏次数
+			 */
+
+			//焦点数组
+			var buttons = [{
+				id: "hands_x0_y0_startBtnFocus_",
+				clickHandler: "javascript:jumpUrl(1)",
+				left: "disable",
+				right: "hands_x0_y0_lotteryBtnFocus_",
+				up: "disable",
+				down: "hands_x0_y0_lotteryBtnFocus_",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_lotteryBtnFocus_",
+				clickHandler: "javascript:jumpUrl(2)",
+				left: "hands_x0_y0_startBtnFocus_",
+				right: "hands_x0_y0_namelistBtnFocus_",
+				up: "hands_x0_y0_startBtnFocus_",
+				down: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_namelistBtnFocus_",
+				clickHandler: "javascript:jumpUrl(3)",
+				left: "hands_x0_y0_lotteryBtnFocus_",
+				right: "hands_x0_y0_ruleBtnFocus_",
+				up: "hands_x0_y0_startBtnFocus_",
+				down: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_ruleBtnFocus_",
+				clickHandler: "javascript:jumpUrl(4)",
+				left: "hands_x0_y0_namelistBtnFocus_",
+				right: "hands_x0_y0_backBtnFocus_",
+				up: "hands_x0_y0_startBtnFocus_",
+				down: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_backBtnFocus_",
+				clickHandler: "javascript:backfunc()",
+				left: "hands_x0_y0_ruleBtnFocus_",
+				right: "disable",
+				up: "hands_x0_y0_startBtnFocus_",
+				down: "disable",
+				focusType: 7
+			},{
+				id: "hands_x0_y0_confirmFocus_",
+				clickHandler: "javascript:confirm()",
+				left: "disable",
+				right: "hands_x0_y0_cancelFocus_",
+				up: "disable",
+				down: "disable",
+				focusType: 7
+			},{
+				id: "hands_x0_y0_cancelFocus_",
+				clickHandler: "javascript:cancel()",
+				left: "hands_x0_y0_confirmFocus_",
+				right: "disable",
+				up: "disable",
+				down: "disable",
+				focusType: 7
+			}]
+
+			//用户鉴权结果
+			var isOrder = 1;
+
+			// 初始化焦点并鉴权
+			function initAuth() {
+				//鉴权(data为0,鉴权通过,其余则未通过,需要跳转订购)
+				orderJs.columnGetAuth(function(data) {
+					isOrder = data + "";
+					//初始化焦点
+					focusInit();
+					curFocus = getFocusModel6("hands_x0_y0_startBtnFocus_");
+					curFocus.defaultFocus();
+				});
+			}
+			initAuth();
+			
+			
+
+			//获取游戏次数
+			var chanceNum = 0;
+			actiObj.getChance(function(res) {
+				chanceNum = res.activityChance;
+			})
+
+			
+			//跳转
+			function jumpUrl(index){
+				if(index==1){
+					if(isOrder === "0") {
+						if(chanceNum>=3){
+							CT.$("noChance").src="img/tips/noChance.png";
+							//切换焦点
+							actiObj.changeFocus("hands_x0_y0_confirmFocus_");						
+						}else{
+							window.location.href="actiTermBeginsGame.html";
+						}
+					}else{
+						//跳订购
+						orderJs.columnToOrderPage("actiTermBegins");
+					}
+				}else if(index==2){
+					window.location.href="actiTermBeginsLottery.html";
+				}else if(index==3){
+					window.location.href="actiTermBeginsNamelist.html";
+				}else if(index==4){
+					window.location.href="actiTermBeginsRule.html";
+				}
+			}
+			
+			//返回
+			function backfunc(){
+				BackPortalMainPage();
+			}
+
+			//确认
+			function confirm(){
+				actiObj.changeFocus("hands_x0_y0_startBtnFocus_");
+				CT.$("noChance").src="img/empty.png";
+			}
+
+			//取消
+			function cancel(){
+				actiObj.changeFocus("hands_x0_y0_startBtnFocus_");
+				CT.$("noChance").src="img/empty.png";
+			}
+			
+			
+			
+			
+		</script>
+	</body>
+
+</html>

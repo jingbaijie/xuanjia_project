@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="page-view-size" content="1280*720">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>活动登录页</title>
+</head>
+
+<body>    
+    <!--引入公用JS-->
+    <script type="text/javascript" src="../../../../js/loadCommomJs.js?v=2020101601"></script>
+    <!--引入结束-->
+    <script type="text/javascript">
+	//获取眉头信息参数
+	function GetQueryString(name){
+		var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+		console.log(reg)
+		var r = window.location.search.substr(1).match(reg);
+		if(r!=null)return  unescape(r[2]); return null;
+	}	
+
+	//存取cookie requestValue
+	var userId = GetQueryString("userId"),
+		activityId = GetQueryString("activityId"),
+		userToken = GetQueryString("userToken"),
+		carrierId = GetQueryString("carrierId"),
+		pid = GetQueryString("pid"),
+		fromTVOrderPage = GetQueryString("fromTVOrderPage");
+	if(userId){
+		//CT.delCookie("userId");
+		CT.setCookie("actiUserId", userId);
+	}
+	if(activityId){
+		CT.delCookie("activityId");
+		CT.setCookie("activityId", activityId);
+	}
+	if(pid){
+		CT.delCookie("pid");
+		CT.setCookie("pid", pid);
+	}
+	if(userToken){
+		CT.delCookie("userToken");
+		CT.setCookie("userToken", userToken);
+	}
+	if(carrierId){
+		CT.delCookie("carrierId");
+		CT.setCookie("carrierId", carrierId);
+	}	
+	//跳转后台管理系统配置地址
+	window.onload = function() {
+		interface.findActivityDetailById({
+			contentId: activityId
+		}, function (e) {
+			var url = e.data.activityUrl;
+			var userId = xjDataLog.getUserId("userId");
+			var pid = xjDataLog.getFromPortal("pid");
+			url += "?userId=" + userId + "&pid=" + pid + "&activityId=" + activityId + "&contentId=" + activityId + "&contentCName=" + e.data.activityCname + "&contentEName=" + e.data.activityEname + "&actiTime=" + new Date().getTime();
+			CT.commonJumpUrl(url);
+		});
+	}
+ 
+    </script>
+</body>
+
+</html>

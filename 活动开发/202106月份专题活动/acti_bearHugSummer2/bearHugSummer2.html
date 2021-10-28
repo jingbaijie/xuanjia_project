@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="page-view-size" content="1280*720">
+    <title>扑哧一夏,熊抱暑假领奖页面</title>
+    <link rel="stylesheet" href="css/bearHugSummer2.css">
+</head>
+
+<body>
+    <div id="main">
+        <!-- 中奖弹窗 -->
+        <div id="getPrizeTip" style="visibility: hidden;">
+            <img src="img/getFilmTicket.png" alt="" id="prizeBG">
+            <img src="img/input.png" alt="" id="inputImg">
+        </div>
+        <!-- 机会用完 -->
+        <img src="img/todayNoChance.png" alt="" id="todayNoChance" style="visibility: hidden;">
+        <!-- 未抽中 -->
+        <img src="img/pityTip.png" alt="" id="pityTip" style="visibility: hidden;">
+        <!-- 关闭页面按钮 -->
+        <img src="img/closeBtn.png" alt="" id="closeBtn">
+        <div id="hands_x0_y0_closeBtnFocus_">
+            <img src="img/closeBtnFocus.png" alt="" id="closeBtnFocus" style="visibility: hidden;">
+        </div>
+    </div>
+    <!-- 引用公共js -->
+    <script type="text/javascript" src="../../../../js/loadCommomJs.js"></script>
+    <script type="text/javascript" src="../../../../js/actiComm.js"></script>
+    <script src="../actiCommonPage/js/telinput.js"></script>
+    <!-- 引用公共js结束 -->
+    <script type="text/javascript">
+        var buttons = [{
+            id: "hands_x0_y0_closeBtnFocus_",
+            clickHandler: "javascript:backFunc()",
+            left: "disable",
+            right: "disable",
+            up: "disable",
+            down: "disable",
+            downEvent: "javascript:bearHugSummer2.closeDownEvent()"
+        }]
+        var actiContactModuleJson = {
+            //非焦点元素展示
+            "textShowInfo": {
+                //输入框展示信息["textName":元素名称，"textSize":字体大小,"textColor":文字颜色,"textLeft":元素绝对定位的left值,"textTop",元素绝对定位的top值,"textWidth":元素的宽度，"textHeight":元素的高度]
+                "telInput": {
+                    "textName": "telInput",
+                    "textSize": "30px",
+                    "textColor": "#333",
+                    "textLeft": "315px",
+                    "textTop": "575px",
+                    "textWidth": "330px",
+                    "textHeight": "65px"
+                },
+                //保存提示信息
+                "saveTip": {
+                    "textName": "saveTip",
+                    "textSize": "24px",
+                    "textColor": "#fff",
+                    "textLeft": "450px",
+                    "textTop": "680px",
+                    "textWidth": "",
+                    "textHeight": ""
+                }
+            },
+            //按钮显示["btnName":按钮名称，"btnSrc":按钮图片路径,"btnLeft":按钮绝对定位的left值,"btnTop",按钮绝对定位的top值,"btnWidth":按钮的宽度，"btnHeight":按钮的高度]
+            "btnShow": {
+                //保存按钮
+                "saveBtn": {
+                    "btnSrc": "img/confirm.png",
+                    "btnLeft": "680px",
+                    "btnTop": "580px",
+                    "btnWidth": "137px",
+                    "btnHeight": "62px"
+                },
+                //清空按钮
+                "emptyBtn": {
+                    "btnSrc": "img/cancel.png",
+                    "btnLeft": "840px",
+                    "btnTop": "580px",
+                    "btnWidth": "137px",
+                    "btnHeight": "62px"
+                }
+            },
+            //焦点展示信息["focusName":焦点图片名称,"focusLeft":焦点绝对定位的left值,"focusTop":焦点绝对定位的Top值,"focusSrc":焦点图片路径,"clickEvent":点击方法名称,"otherFocusEvent":焦点聚焦事件名称,"otherBlurEvent":焦点失焦事件名称，"up","down","left","right":焦点移动方向]
+            "contactFocusInfo": {
+                //输入框焦点
+                "telInputFocus": {
+                    "focusLeft": "295px",
+                    "focusTop": "560px",
+                    "otherFocusEvent": "inputFocusEvent()",
+                    "otherBlurEvent": "inputBlurEvent()",
+                    "up": "closeBtnFocus"
+                },
+                //保存按钮焦点
+                "saveBtnFocus": {
+                    "focusLeft": "662px",
+                    "focusTop": "559px",
+                    "focusSrc": "img/btnFocus.png",
+                    "clickEvent": "saveFunc()",
+                    "otherBlurEvent": "saveBtnBlur()",
+                    "up": "closeBtnFocus"
+                },
+                //清空按钮焦点
+                "emptyBtnFocus": {
+                    "focusLeft": "822px",
+                    "focusTop": "559px",
+                    "focusSrc": "img/btnFocus.png",
+                    "clickEvent": "emptyFunc()",
+                    "up": "closeBtnFocus"
+                }
+            }
+        }
+        var actiContact = new actiContactModule("actiContact");
+        actiContact.init("getPrizeTip", actiContactModuleJson);     
+    </script>
+    <script type="text/javascript" src="js/bearHugSummer2.js"></script>
+</body>
+
+</html>

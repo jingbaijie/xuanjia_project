@@ -1,0 +1,135 @@
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+#main{
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    position: relative;
+    left: 0px;
+    top: 0px;
+    background: url(../img/main/mainBG.jpg) no-repeat;
+}
+/* 按钮 */
+#hands_x0_y0_ruleBtnFocus_, #ruleBtn{
+    position: absolute;
+    left: 1110px;
+    top: 10px;
+}
+#hands_x0_y0_rankBtnFocus_, #rankBtn{
+    position: absolute;
+    left: 1110px;
+    top: 65px;
+}
+#hands_x0_y0_backBtnFocus_, #backBtn{
+    position: absolute;
+    left: 1110px;
+    top: 125px;
+}
+#hands_x0_y0_leftCartoonFocus_{
+    position: absolute;
+    left: 172px;
+    top: 108px;
+}
+#hands_x0_y0_rightCartoonFocus_{
+    position: absolute;
+    left: 724px;
+    top: 108px;
+}
+/* 弹窗 */
+#tanchuangBG{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: 1;
+}
+#rulePage, #rankPage{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+#hands_x0_y0_ruleBackBtn_{
+    position: absolute;
+    left: 995px;
+    top: 67px;
+    
+}
+#hands_x0_y0_rankBackBtn_{
+    position: absolute;
+    left: 1051px;
+    top: 32px;    
+}
+#telInput{
+    position: absolute;
+    left: 408px;
+    top: 550px;
+    width: 325px;
+    height: 25px;
+    /* border: 1px solid red; */
+    text-align: center;
+    line-height: 25px;
+    color: #fff;
+}
+#hands_x0_y0_inputFocus_{
+    position: absolute;
+    left: 394px;
+    top: 538px;
+}
+#hands_x0_y0_confirmFocus_{
+    position: absolute;
+    left: 745px;
+    top: 537px; 
+}
+#hands_x0_y0_cancelFocus_{
+    position: absolute;
+    left: 820px;
+    top: 537px;
+}
+.rankList{
+    position: absolute;
+    left: 300px;
+    top: 190px;
+    width: 675px;
+    height: 270px;
+    /* border: 1px solid red; */
+    font-size: 20px;
+    color: #fff;
+    overflow: hidden;
+}
+#rankList>li{
+    height: 30px;
+}
+#rankList>li span:nth-child(1){
+    display: block;
+    width: 35%;
+    height: 100%;
+    line-height: 30px;
+    /* border: 1px solid red; */
+    text-align: center;
+    float: left;
+}
+#rankList>li span:nth-child(2){
+    display: block;
+    width: 32%;
+    height: 100%;
+    line-height: 30px;
+    /* border: 1px solid red; */
+    text-align: center;
+    float: right;
+}
+#userInfo{
+    position: absolute;
+    left: 415px;
+    top: 510px;
+    color: #fff;
+    font-size: 20px;
+}
+#saveTip{
+    position: absolute;
+    left: 420px;
+    top: 585px;
+    color: #fff;
+    font-size: 20px;
+}

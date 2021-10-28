@@ -1,0 +1,255 @@
+* {
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+
+.main {
+	position: relative;
+	width: 1280px;
+	height: 720px;
+	top: 0;
+	left: 0;
+	overflow: hidden;
+	background: url(../img/mainsichuan.jpg) no-repeat;
+}
+
+
+/*规则*/
+
+#rule {
+	position: absolute;
+	left: 10px;
+	top: 140px;
+}
+
+#hands_x0_y0_ruleFocus_ img {
+	position: absolute;
+	left: -2px;
+	top: 128px;
+	visibility: hidden;
+}
+
+
+/*我的粽子*/
+
+#mine {
+	position: absolute;
+	left: 10px;
+	top: 200px;
+}
+
+#hands_x0_y0_mineFocus_ img {
+	position: absolute;
+	left: -2px;
+	top: 188px;
+	visibility: hidden;
+}
+
+
+/*兑换*/
+
+#exchange {
+	position: absolute;
+	left: 10px;
+	top: 260px;
+}
+
+#hands_x0_y0_exchangeFocus_ img {
+	position: absolute;
+	left: -2px;
+	top: 248px;
+	visibility: hidden;
+}
+
+
+/*四种材料*/
+
+#leaves,
+#leavesFocus {
+	position: absolute;
+	left: 185px;
+	top: 280px;
+}
+
+#rice,
+#riceFocus {
+	position: absolute;
+	left: 440px;
+	top: 310px;
+}
+
+#fillings,
+#fillingsFocus {
+	position: absolute;
+	left: 650px;
+	top: 300px;
+}
+
+#string,
+#stringFocus {
+	position: absolute;
+	left: 860px;
+	top: 290px;
+}
+
+#shou1 {
+	position: absolute;
+	left: 320px;
+	top: 380px;
+	z-index: 9;
+	visibility: hidden;
+}
+
+#shou2 {
+	position: absolute;
+	left: 520px;
+	top: 380px;
+	visibility: hidden;
+	z-index: 9;
+}
+
+#shou3 {
+	position: absolute;
+	left: 730px;
+	top: 380px;
+	visibility: hidden;
+	z-index: 9;
+}
+
+#shou4 {
+	position: absolute;
+	left: 940px;
+	top: 380px;
+	visibility: hidden;
+	z-index: 9;
+}
+
+
+/*返回按钮*/
+
+#back {
+	position: absolute;
+	right: 20px;
+	top: 20px;
+}
+
+#hands_x0_y0_backFocus_ img {
+	position: absolute;
+	left: 1135px;
+	top: 8px;
+	visibility: hidden;
+}
+
+
+/*铺在桌上的材料*/
+
+#addLeaves img {
+	position: absolute;
+	bottom: 90px;
+	left: 350px;
+}
+
+#addRice img,
+#addFillings img {
+	position: absolute;
+	bottom: 120px;
+	left: 500px;
+}
+
+#addString img {
+	position: absolute;
+	bottom: 180px;
+	left: 350px;
+}
+
+#start,
+#hands_x0_y0_startFocus_ img {
+	position: absolute;
+	bottom: 5px;
+	left: 500px;
+}
+
+#timer {
+	position: absolute;
+	top: 15px;
+	left: 40px;
+	width: 160px;
+	height: 65px;
+	background: url(../img/timer.png) no-repeat;
+	text-align: center;
+	padding-top: 16px;
+	padding-left: 38px;
+	box-sizing: border-box;
+	font-size: 20px;
+	font-weight: bold;
+	color: #FFF3DD;
+}
+
+
+/*空焦点*/
+
+#blankFocus {
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+.whole {
+	position: absolute;
+	left: 380px;
+	bottom: 110px;
+}
+
+
+/*粽子飞出动画*/
+
+.wholeAni {
+	position: absolute;
+	bottom: 110px;
+	left: 870px;
+	transition: all 1s;
+	transform: scale(0.45);
+}
+
+
+/*提示信息*/
+
+#tips {
+	position: absolute;
+	left: 480px;
+	bottom: 180px;
+	z-index: 10;
+	font-size: 30px;
+	color: #721F02;
+	font-weight: bold;
+}
+
+
+/*一次30秒继续包粽子弹窗*/
+
+.continueTan img,
+.outTimes img {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	visibility: hidden;
+	z-index: 10;
+}
+
+#continueFocus {
+	position: absolute;
+	left: 518px;
+	bottom: 240px;
+	z-index: 12;
+}
+
+
+/*超过次数结束游戏*/
+
+#hands_x0_y0_outTimesFocus_ img {
+	position: absolute;
+	left: 520px;
+	top: 400px;
+	z-index: 12;
+}

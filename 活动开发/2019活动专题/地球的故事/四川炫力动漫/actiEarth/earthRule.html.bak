@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name = "page-view-size" content = "1280*720">
+    <title>地球的故事规则页</title>
+    <script type = "text/javascript" src = "./js/common1_1.js"></script>
+<script type = "text/javascript" src = "./js/key1_3.js"></script>
+<script type = "text/javascript" src = "./js/comm.js"></script>
+    <style>
+        .main{
+            position: absolute;
+            width: 1280px;
+            height: 720px;
+            margin: 0;
+            padding: 0;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            text-align: center;
+            background: url("images/life/bg_life.jpg") no-repeat;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <!-- 背景 -->
+        <img src="./images/rule/anhuiyidong.png" style = "width: 1280px;height: 720px;position: absolute;top: 0;left: 0;">
+        <!-- 返回按钮 -->
+		<img src="./images/back.png" style = "width: 82px;height: 93px;position: absolute;top: 36px;left: 1129px;">
+        <div id = "hands_x0_y0_backFocus_" style = "width: 82px;height: 93px;position: absolute;top: 36px;left: 1129px;">
+            <img id = "backFocus" src="./images/backFocus.png" style = "width: 82px;height: 93px;visibility: hidden;" alt="">
+        </div>
+    </div>
+</body>
+<script type = "text/javascript" src = "./js/actiComm.js?v=2018"></script>
+<script>
+    var buttons = [
+        {
+            id: "hands_x0_y0_backFocus_",
+            clickHandler:"javascript:goSomeWhere(0)",
+            left:"hands_x0_y0_prizeListFocus_",
+            right:"disable",
+            up:"disable",
+            down:"disable",
+            focusType:7
+        }
+    ];
+    focusInit();
+    curFocus = getFocusModel6("hands_x0_y0_backFocus_");
+    curFocus.defaultFocus();
+    function backfunc(){
+        var actiTime = new Date().getTime();
+        window.location.href = "earthMain.html?actiTime=" + actiTime;
+    }
+	//页面跳转
+	function goSomeWhere(n){
+		CT.setCookie("actiLeaveFocus",curFocus.FocusID);
+		var actiTime = new Date().getTime();
+		switch (n){
+			case 0:
+				window.location.href = "earthMain.html?actiTime=" + actiTime;
+				break;
+			case 1:
+				window.location.href = "quizPrizeList.html?actiTime=" + actiTime;
+				break;
+			case 2:
+				window.location.href = "quizExchange.html?actiTime=" + actiTime;
+				break;  
+			default:
+				break;
+		}
+	}
+</script>
+</html>

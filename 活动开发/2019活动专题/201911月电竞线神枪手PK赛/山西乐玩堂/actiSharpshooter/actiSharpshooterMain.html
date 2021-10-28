@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="page-view-size" content="1280*720">
+    <link rel="stylesheet" href="./css/actiSharpshooterMain.css?V=2019111301">
+    <title>神枪手首页</title>
+</head>
+
+<body>
+    <div id="main">
+        <!-- 活动规则 -->
+        <div id="hands_x0_y0_mainBtnFocus0_">
+            <img src="./img/main/rank-ruleFocus.png" alt="" id="mainBtnFocus0" style="visibility:hidden;">
+        </div>
+        <!-- 开始游戏 -->
+        <div id="hands_x0_y0_mainBtnFocus1_">
+            <img src="./img/main/startFocus.png" alt="" id="mainBtnFocus1" style="visibility:hidden;">
+        </div>
+        <!-- 排行榜 -->
+        <div id="hands_x0_y0_mainBtnFocus2_">
+            <img src="./img/main/rank-ruleFocus.png" alt="" id="mainBtnFocus2" style="visibility:hidden;">
+        </div>
+        <!-- 返回 -->
+        <img src="./img/main/backBtn.png" alt="" id="backBtn">
+        <div id="hands_x0_y0_mainBtnFocus3_">
+            <img src="./img/main/backFocus.png" alt="" id="mainBtnFocus3" style="visibility:hidden;">
+        </div>
+        <!-- 规则弹窗、排行榜弹窗 -->
+        <div id="tanchaungBG" style="visibility:hidden;">
+            <img src="./img/empty.png" alt="" id="tanchaungImg">
+            <!-- 规则弹窗返回按钮 -->
+            <div id="hands_x0_y0_mainBtnFocus4_">
+                <img src="./img/main/backFocus.png" alt="" id="mainBtnFocus4" style="visibility:hidden;">
+            </div>
+            <div id="rankBG" style="visibility:hidden;">
+				<!-- 手机号输入框 -->
+				<div id="telInput"></div>
+				<div id="hands_x0_y0_mainBtnFocus5_">
+					<img src="./img/rank/inputFocus.png" alt="" id="mainBtnFocus5" style="visibility:hidden;">
+				</div>
+				<!-- 手机号保存 -->
+				<div id="hands_x0_y0_mainBtnFocus6_">
+					<img src="./img/rank/saveFocus.png" alt="" id="mainBtnFocus6" style="visibility:hidden;">
+				</div>
+				<!--保存提示-->
+				<div id="savetips"></div>
+				<!-- 手机号修改 -->
+				<div id="hands_x0_y0_mainBtnFocus7_">
+					<img src="./img/rank/saveFocus.png" alt="" id="mainBtnFocus7" style="visibility:hidden;">
+				</div>
+				<!-- 排行榜返回 -->
+				<div id="hands_x0_y0_mainBtnFocus8_">
+					<img src="./img/rank/backFocus.png" alt="" id="mainBtnFocus8" style="visibility:hidden;">
+				</div>
+				<!--用户信息-->
+				<div id="userInfo"></div>
+				<!--当前排名-->
+				<div id="userRank"></div>
+				<!--排行榜-->
+				<ul id="rankList">
+					<li><span>189****7710</span><span>20元话费</span></li>
+				</ul>
+			</div>
+        </div>
+
+        <!--提醒观看视频弹窗-->
+        <img id="seeVideoTip" src="./img/rank/seeVideo/seeVideoTip.png" />
+        <!--确认按钮-->
+        <div id="hands_x0_y0_mainBtnFocus9_">
+            <img id="mainBtnFocus9" src="./img/rank/seeVideo/confirmFocus.png" style="visibility:hidden;" />
+        </div>
+        <!--右上角返回按钮-->
+        <div id="hands_x0_y0_mainBtnFocus10_">
+            <img id="mainBtnFocus10" src="./img/rank/seeVideo/backFocus.png" style="visibility:hidden;" />
+        </div>
+
+        <!-- 提醒今天没有机会弹窗 -->
+        <img id="noChanceTip" src="./img/main/noChance.png" />
+        <div id="hands_x0_y0_mainBtnFocus11_">
+            <img id="mainBtnFocus11" src="./img/main/confirmFocus.png" style="visibility:hidden;" />
+        </div>
+
+    </div>
+    <!-- 引用公用js -->
+    <script type="text/javascript" src="../../../js/column.js"></script>
+    <script type="text/javascript" src="./js/common/actiComm.js"></script>
+    <script type="text/javascript" src="js/actiJS/rankList.js"></script>
+    <!-- 引用公用js结束 -->
+    <script type="text/javascript" src="./js/actiJS/actiSharpshooterMain.js?V=2019111301"></script>
+</body>
+
+</html>

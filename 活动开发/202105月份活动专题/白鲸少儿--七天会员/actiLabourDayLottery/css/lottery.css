@@ -1,0 +1,124 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+ul li {
+    list-style: none;
+}
+.main{
+    width: 1280px;
+    height: 720px;
+    position: relative;
+    background: url(../img/bg.jpg);
+}
+.focus{
+    position: absolute;
+}
+#chanceNum{
+    position: absolute;
+    top: 661px;
+    left: 125px;
+    width: 100px;
+    height: 36px;
+    line-height: 36px;
+    text-align: center;
+    font-size: 26px;
+    font-weight: bold;
+    color: #fff;
+
+}
+#word{
+    position: absolute;
+}
+/*.................................排行榜...............................*/
+.rank{
+    width: 1280px;
+    height: 720px;
+    position: relative;
+    background: url(../img/prizeList/bg.jpg);
+}
+.rank .backG{
+    width: 1280px;
+    height: 720px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: url(../img/prizeList/bg.jpg);
+}
+.rank .content .userList{
+    width: 283px;
+    height: 287px;
+    position: absolute;
+    top: 190px;
+    left: 300px;
+    color: #000;
+}
+.rank .content .userList li{
+    height: 27px;
+    margin-bottom: 2px;
+    text-align: center;
+}
+.rank .content .userScore{
+    width: 375px;
+    height: 287px;
+    position: absolute;
+    top: 190px;
+    left: 675px;
+    color: #000;
+    text-align: center;
+}
+.rank .content .userScore li{
+    height: 27px;
+    margin-bottom: 2px;
+    text-align: center;
+}
+.rank .content .self{
+    width: 406px;
+    height: 27px;
+    position: absolute;
+    bottom: 155px;
+    left: 424px;
+}
+.rank .content .self p{
+    position: absolute;
+    height: 27px;
+}
+.rank .content #phoneText{
+    width: 235px;
+    height: 36px;
+    position: absolute;
+    bottom: 104px;
+    left: 463px;
+    line-height: 36px;
+    font-size: 20px;
+    font-weight: bolder;
+    text-align: left;
+    color: #fff;
+
+}
+.rank .content #phoneInfo{
+    width: 386px;
+    height: 25px;
+    position: absolute;
+    top: 670px;
+    left: 460px;
+    line-height: 30px;
+    font-size: 21px;
+    font-weight: bolder;
+    text-align: center;
+    color: red;
+}
+/*..................规则..................*/
+.rule{
+    width: 1280px;
+    height: 720px;
+    position: relative;
+}
+.rule .backG{
+    width: 1280px;
+    height: 720px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: url(../img/rule/rule.jpg);
+}

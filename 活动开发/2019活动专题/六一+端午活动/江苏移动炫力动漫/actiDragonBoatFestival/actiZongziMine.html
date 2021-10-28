@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>我的粽子页面</title>
+		<style type="text/css">
+			* {
+				margin: 0px;
+				padding: 0px;
+				list-style: none;
+			}
+			
+			.main {
+				position: relative;
+				width: 1280px;
+				height: 720px;
+				top: 0;
+				left: 0;
+				overflow: hidden;
+				background: url(img/minePage.png) no-repeat;
+			}
+			
+			#hands_x0_y0_goExchangeFocus_ img {
+				position: absolute;
+				left: 510px;
+				bottom: 122px;
+			}
+			/*粽子数量*/
+			
+			.amount {
+				position: absolute;
+				left: 522px;
+				bottom: 292px;
+				font-size: 30px;
+				font-weight: bold;
+				color: #952104;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="main">
+			<!--去兑换-->
+			<div id="hands_x0_y0_goExchangeFocus_">
+				<img src="img/go-exchangeFocus.png" id="goExchangeFocus" />
+			</div>
+			<!--粽子数量-->
+			<div class="amount" id="totalAmount"></div>
+		</div>
+		<!--引入公用JS-->
+		<script type="text/javascript" src="../../../js/column.js"></script>
+		<script type="text/javascript" src="./js/actiComm.js"></script>
+		<!--引入结束-->
+		<script type="text/javascript">
+			var buttons = [{
+				id: "hands_x0_y0_goExchangeFocus_",
+				clickHandler: "javascript:goExchangeFunc()",
+				left: "disable",
+				right: "disable",
+				up: "disable",
+				down: "disable",
+				focusType: 7
+			}]
+
+			focusInit();
+			//获取当前焦点对象
+			curFocus = getFocusModel6("hands_x0_y0_goExchangeFocus_");
+			curFocus.defaultFocus();
+			//跳转
+			var actiTime = new Date().getTime();
+			function goExchangeFunc() {
+				window.location.href = "actiZongziPrize.html?actiTime=" + actiTime;
+			}
+			//获取粽子数量
+			var totalAmount = document.getElementById("totalAmount");
+			actiObj.getUserCredit(function(res) {
+				if(res.creditNum!=undefined) {
+					totalAmount.innerHTML = res.creditNum;
+				} else {
+					totalAmount.innerHTML = 0;
+				}
+			})
+
+			//返回
+			/* 返回方法 返回平台首页*/
+			function backfunc() {
+				window.location.href="actiZongziMain.html?actiTime=" + actiTime;
+			}
+		</script>
+	</body>
+
+</html>

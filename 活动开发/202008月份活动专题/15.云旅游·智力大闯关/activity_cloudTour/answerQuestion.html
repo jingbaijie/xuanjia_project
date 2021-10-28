@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="page-view-size" content="1280*720" />
+    <title>答题页</title>
+    <style>
+      * {
+        margin: 0px;
+        padding: 0px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 选项题 -->
+    <div class="njOp" style="width: 1280px; height: 720px; position: relative; top: 0px; left: 0px; background: url(./img/bg2.png) no-repeat; overflow: hidden;">
+      <!-- 1.选项内容1 -->
+      <img id="randomQuestion" src="img/empty.png" style="position: absolute; width: 695px; height: 542px; left: 274px; top: 62px;" />
+      <div id="hands_x0_y0_opContent1_">
+        <img id="opContent1" src="./img/answerQ/xuan.png" style="position: absolute; width: 448px; height: 59px; left: 410px; top: 330px; visibility: hidden;" />
+      </div>
+      <div id="hands_x0_y0_opContent2_">
+        <img id="opContent2" src="./img/answerQ/xuan.png" style="position: absolute; width: 448px; height: 59px; left: 410px; top: 400px; visibility: hidden;" />
+      </div>
+      <div id="hands_x0_y0_opContent3_">
+        <img id="opContent3" src="./img/answerQ/xuan.png" style="position: absolute; width: 448px; height: 59px; left: 410px; top: 471px; visibility: hidden;" />
+      </div>
+      <!-- 正确图片 -->
+      <img id="correct" src="./img/answerQ/right.png" style="width: 251px; height: 256px; left: 500px; top: 300px; position: absolute; visibility: hidden;" />
+      <!-- 错误图片 -->
+      <img id="error" src="./img/answerQ/wrong.png" style="width: 251px; height: 256px; left: 500px; top: 300px; position: absolute; visibility: hidden;" />
+      <!-- 再来一次弹框 -->
+      <img id = "gameAgainImg" class="again" src="./img/alertT/failAndAgain.png" style="position: absolute; visibility: hidden;">
+      <div id="hands_x0_y0_failAndAgain_">
+        <img id="failAndAgain" src="./img/xuan.png" style="position: absolute; visibility: hidden;left: 543px;top: 501px;">
+      </div>
+      <!-- 没有机会弹框 -->
+      <img id = "noChanceImg" class="chance" src="./img/alertT/noChance.png" style="position: absolute; visibility: hidden;">
+      <div id="hands_x0_y0_noChance_">
+        <img id="noChance" src="./img/xuan.png" style="position: absolute; visibility: hidden;left: 543px;top: 501px;">
+      </div>
+      <!-- 获得抽奖机会弹框 -->
+      <img id = "luckImg" class="Lucky" src="./img/alertT/goToLucky.png" style="position: absolute; visibility: hidden;">
+      <div id="hands_x0_y0_goToLucky_">
+        <img id="goToLucky" src="./img/xuan.png" style="position: absolute; visibility: hidden;left: 543px;top: 501px;">
+      </div>
+	  <!-- 闯关成功，提醒下一关弹框 -->
+      <img id = "nextLevel" class="nextLevel" src="./img/alertT/next.png" style="position: absolute; visibility: hidden;left:0px;top:0px;">
+      <div id="hands_x0_y0_nextLevelFocus_">
+        <img id="nextLevelFocus" src="./img/xuan.png" style="position: absolute; visibility: hidden;left: 575px;top: 485px;">
+      </div>
+    </div>
+  </body>
+  <!-- 引入平台公共js开始 -->
+  <script type="text/javascript" src="../../../js/column.js"></script>
+  <!-- 引入平台公共js结束 -->
+  <script src="./js/actiComm.js"></script>
+  <script>
+    var buttons = [
+      {
+        // 选项1
+        id: "hands_x0_y0_opContent1_",
+        clickHandler: "javascript:chooseAnswer(1)",
+        left: "disable",
+        right: "disable",
+        up: "disable",
+        down: "hands_x0_y0_opContent2_",
+        focusType: 7,
+      },
+      {
+        // 选项2
+        id: "hands_x0_y0_opContent2_",
+        clickHandler: "javascript:chooseAnswer(2)",
+        left: "disable",
+        right: "disable",
+        up: "hands_x0_y0_opContent1_",
+        down: "hands_x0_y0_opContent3_",
+        focusType: 7,
+      },
+      {
+        // 选项3
+        id: "hands_x0_y0_opContent3_",
+        clickHandler: "javascript:chooseAnswer(3)",
+        left: "disable",
+        right: "disable",
+        up: "hands_x0_y0_opContent2_",
+        down: "disable",
+        focusType: 7,
+      },
+      {
+        // 再来一次弹框
+        id: "hands_x0_y0_failAndAgain_",
+        clickHandler: "javascript:confirmClick('gameAgain')",
+        left: "disable",
+        right: "disable",
+        up: "disable",
+        down: "disable",
+        focusType: 7,
+      },
+      {
+        // 没有机会弹框
+        id: "hands_x0_y0_noChance_",
+        clickHandler: "javascript:confirmClick('noChance')",
+        left: "disable",
+        right: "disable",
+        up: "disable",
+        down: "disable",
+        focusType: 7,
+      },
+      {
+        // 获得抽奖机会弹框
+        id: "hands_x0_y0_goToLucky_",
+        clickHandler: "javascript:confirmClick('goToLucky')",
+        left: "disable",
+        right: "disable",
+        up: "disable",
+        down: "disable",
+        focusType: 7,
+      },{
+		id: "hands_x0_y0_nextLevelFocus_",
+        clickHandler: "javascript:confirmClick('nextLevel')",
+        left: "disable",
+        right: "disable",
+        up: "disable",
+        down: "disable",
+        focusType: 7
+	  }
+    ];
+  </script>
+  <script src="./js/answerQuestion.js?v=2020080301"></script>
+</html>

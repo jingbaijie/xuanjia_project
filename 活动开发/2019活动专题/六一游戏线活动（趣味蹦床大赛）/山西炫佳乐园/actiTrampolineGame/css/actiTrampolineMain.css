@@ -1,0 +1,186 @@
+* {
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+
+.main {
+	position: absolute;
+	width: 1280px;
+	height: 720px;
+	margin: 0px;
+	padding: 0px;
+	top: 0px;
+	left: 0px;
+	text-align: center;
+	overflow: hidden;
+	background: url(../img/main/xhrBG.jpg) no-repeat;
+}
+
+
+/*返回*/
+
+.back {
+	width: 88px;
+	height: 88px;
+	position: absolute;
+	top: 10px;
+	left: 1150px;
+	visibility: hidden;
+}
+
+#hands_x0_y0_postFocus0_ {
+	width: 88px;
+	height: 88px;
+	position: absolute;
+	top: 10px;
+	left: 1150px;
+}
+
+#postFocus0 {
+	width: 100px;
+	height: 94px;
+	visibility: hidden;
+}
+
+
+/*小黄人*/
+
+#squirrel {
+	position: absolute;
+	top: 10px;
+	left: 495px;
+}
+
+
+/*进入游戏按钮*/
+
+#goGame {
+	position: absolute;
+	left: 860px;
+	top: 320px;
+}
+
+#hands_x0_y0_goGameFocus_ {
+	position: absolute;
+	left: 860px;
+	top: 320px;
+	visibility: hidden;
+}
+
+
+/*开始*/
+
+#hands_x0_y0_postFocus1_ {
+	position: absolute;
+	top: 540px;
+	left: 580px;
+	visibility: hidden;
+}
+
+#startBtn {
+	position: absolute;
+	top: 540px;
+	left: 580px;
+}
+
+
+/*活动规则*/
+
+#ruleBtn {
+	position: absolute;
+	top: 30px;
+	left: 10px;
+}
+
+#hands_x0_y0_postFocus2_ {	
+	position: absolute;
+	top: 30px;
+	left: 10px;
+	visibility: hidden;
+}
+#hands_x0_y0_postFocus2_ img{
+	width: 150px;
+	height: 87px;
+}
+
+
+/*兑换积分*/
+
+#exchangeBtn {
+	position: absolute;
+	top: 100px;
+	left: 10px;
+}
+
+#hands_x0_y0_postFocus3_ {
+	position: absolute;
+	top: 100px;
+	left: 10px;
+	visibility: hidden;
+}
+
+#hands_x0_y0_postFocus3_ img {
+	width: 150px;
+	height: 87px;
+}
+
+
+/*无机会弹窗*/
+
+#noChanceTan {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	visibility: hidden;
+	z-index: 2;
+}
+#getChanceTan{
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	visibility: hidden;
+	z-index: 2;
+}
+
+
+/*无机会*/
+
+#hands_x0_y0_noChanceFocus_ {
+	position: absolute;
+	left: 520px;
+	top: 435px;	
+	z-index: 9;
+}
+
+#hands_x0_y0_noChanceFocus_ img {
+	height: 100px;
+	width: 240px;
+}
+
+/*获取一次机会*/
+#hands_x0_y0_getChanceFocus_{
+	position: absolute;
+	left: 520px;
+	top: 435px;	
+	z-index: 9;
+}
+#hands_x0_y0_getChanceFocus_ img{
+	height: 100px;
+	width: 240px;s
+}
+
+
+/*标题*/
+
+#title {
+	position: absolute;
+	left: 490px;
+	top: 0px;
+}
+/*前景小黄人*/
+#frontImg{
+	position: absolute;
+	left: 0px;
+	bottom: 0px;
+}

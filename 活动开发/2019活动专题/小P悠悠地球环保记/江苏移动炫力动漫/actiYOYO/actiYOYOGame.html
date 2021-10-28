@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="page-view-size" content="1280*720"/>
+    <title>小P悠悠活动游戏页</title>
+    <style>
+        .main{
+            width: 1280px;
+            height: 720px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-size: 30px;
+            line-height: 45px;
+            font-weight: bold;
+            text-align: center;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class = "main">
+        <!--背景图片-->
+        <img src="./images/startGame/BG.jpg" style = "width: 1280px;height: 720px;position: absolute;top: 0;left: 0;" alt="">
+
+        <!--小P优优-->
+        <div id = "hands_x0_y0_moveFocus_" style = "width: 352px;height: 368px;position: absolute;top: 266px;left: 496px;">
+            <img id = "+10" src = "./images/startGame/+10.png" style="width: 84px; height: 40px; top: -50px; left: 50px; visibility: hidden;">
+            <img id = "moveFocus" src="./images/startGame/P0.png" style = "width: 352px;height: 368px;" alt="">
+        </div>
+
+        <!-- 垃圾 -->
+        <div id = "iceDiv" style = "width: 1280px;height: 720px;position: absolute;top: 0;left: 0;">
+        </div>
+
+        <!-- 积分 -->
+        <div id="score" class="score" style="width: 100px; height: 40px; position: absolute; top: 653px; left: 110px;line-hight: 40px; text-align: center; color: white;">
+            0
+        </div>
+
+        <!--倒计时30-->
+        <div id = "time" style = "width: 100px;height: 40px;position: absolute;top: 653px;left: 325px; line-hight: 40px; text-align: center; color: white;">
+            30
+        </div>
+
+        <!-- 游戏成绩弹框 -->
+        <img id="modal" src="images/mainPage/eyes.png" style = "width: 1280px; height: 720px; position: absolute; top: 0; left: 0;visibility: hidden;">
+        <div id="hands_x0_y0_modalFocus_" class="modalFocus" style="width: 220px; height: 87px; position: absolute; top: 485px; left: 537px;">
+            <img id="modalFocus" src="./images/startGame/confirm.png" style="width: 220px; height: 87px;visibility: hidden;">
+        </div>
+
+        <!--游戏结束弹框-->
+        <img id="overModal" src="./images/change.png" style = "width: 1280px; height: 720px; position: absolute; top: 0; left: 0;visibility: hidden;">
+        <div id="hands_x0_y0_overModalFocus_" class="modalFocus" style="width: 220px; height: 87px; position: absolute; top: 485px; left: 537px;">
+            <img id="overModalFocus" src="./images/startGame/confirm.png" style="width: 220px; height: 87px;visibility: hidden;">
+        </div>
+    </div>
+</body>
+<script type = "text/javascript" src = "../../../js/column.js"></script>
+<script type="text/javascript" src="./js/actiComm.js"></script>
+<script>
+    var buttons = [
+        {
+            id: "hands_x0_y0_moveFocus_",
+            clickHandler: "",
+            up: "disable",
+            down: "disable",
+            left: "disable",
+            leftEvent: "javascript: leftMove()",
+            right: "disable",
+            rightEvent: "javascript: rightMove()",
+            focusType: 7
+        },{
+            id: "hands_x0_y0_modalFocus_",
+            clickHandler: "javascript: confirm()",
+            up: "disable",
+            down: "disable",
+            left: "disable",
+            leftEvent: "disable",
+            right: "disable",
+            focusType: 7
+        },{
+            id: "hands_x0_y0_overModalFocus_",
+            clickHandler: "javascript: devideConfirm()",
+            up: "disable",
+            down: "disable",
+            left: "disable",
+            right: "disable",
+            focusType: 7
+        }
+    ];
+
+    // 全局变量初始化
+    var failTime;                                           // 定时器
+    var scoreBox = document.getElementById("score");        // 积分容器
+    var score = 0;                                          // 分数
+    var iceArr = [];                                        // 下落数组
+    var timeBox = document.getElementById("time");          // 时间容器
+    var time = 30;                                          // 时间
+    var modal = document.getElementById("modal");           // 弹框
+    var addTen = document.getElementById("+10");            // +10提示
+    //用户上次积分
+    var preScore = 0;
+    //从眉头获取用户当前拥有机会次数
+    var chanceNum = parseInt(actiObj.GetQueryString("actiChance"));
+    if(!chanceNum){
+        chanceNum = 1;
+    }
+    //获取用户此前积分,开始游戏
+    function startStatus(){
+        actiObj.getUserCredit(function(data){
+            if(data && data.resultMsg == "success"){
+                preScore = data.creditNum;
+            }else{
+                preScore = 0;
+            }
+            focusInit();
+            if(curFocus){
+                curFocus.defaultBlur();
+            }
+            curFocus = getFocusModel6("hands_x0_y0_moveFocus_");
+            curFocus.defaultFocus();
+            startGame();
+        });
+    }
+    startStatus();
+    /* 游戏逻辑 */
+    // 垃圾下落
+    function FailDownIce(){
+        var _this = this;
+        this.src = "./images/startGame/empty/0.png";
+        this.width = "161px";
+        this.height = "131px";
+        this.top = "0";
+        this.type = (function(){                               // 随机生成掉落垃圾
+            var ii = Math.floor(Math.random()*100);
+            if(ii <= 10){
+                //鸡蛋
+                _this.src = "./images/startGame/ip/0.png";
+            }else if(ii >10 && ii < 20){
+                //鱼
+                _this.src = "./images/startGame/ip/1.png";
+            }else if(ii >= 20 && ii < 30){
+                //瓶子
+                _this.src = "./images/startGame/ip/2.png";
+            }else if(ii >= 30 && ii < 40){
+                //垃圾袋
+                _this.src = "./images/startGame/ip/3.png";
+            }else if(ii >= 40 && ii < 50){
+                // 香蕉皮
+                _this.src = "./images/startGame/ip/4.png";
+            }else{
+                //苹果核
+                _this.src = "./images/startGame/ip/5.png";
+            }
+        })();
+        this.ele = (function(){
+            var iceImg = document.createElement("img");
+            iceImg.src = _this.src;
+            iceImg.style.width = _this.width;
+            iceImg.style.height = _this.height;
+            iceImg.style.position = "absolute";
+            iceImg.style.top = _this.top;
+            iceImg.style.left = Math.floor(Math.random()*5)*150+215 + "px";
+
+            CT.$("iceDiv").appendChild(iceImg);
+            return iceImg;
+        })();
+        this.failDown = function(){
+            _this.ele.style.top = parseInt(_this.ele.style.top) + 25 + "px";
+        };
+        this.clearSelf = function(){
+            CT.$("iceDiv").removeChild(_this.ele);
+        }
+    }
+
+    // 开始游戏
+    var preLeft = 0;
+    function startGame(){
+        chanceNum --;
+        var downFlag = 0;
+        failTime = setInterval(function(){
+            var mLeft = parseInt(CT.$("hands_x0_y0_moveFocus_").style.left);
+            if(downFlag%3 === 0){
+                var dc = new FailDownIce();
+                if(preLeft !=  parseInt(dc.ele.style.left)){
+                    iceArr.push(dc);
+                    preLeft = parseInt(dc.ele.style.left);
+                }else{
+                    dc.clearSelf();
+                }
+            }
+            for(var i = 0;i < iceArr.length;i++){
+                if(parseInt(iceArr[i].ele.style.top) >= 368){
+                    if(parseInt(iceArr[i].ele.style.left) - 100 >= mLeft && parseInt(iceArr[i].ele.style.left) <= mLeft + 165){
+                        score += 10;
+                        addTen.style.visibility = "visible";
+                        setTimeout(function(){
+                            addTen.style.visibility = "hidden";
+                        }, 300);
+                        scoreBox.innerHTML = score;
+                        CT.$("moveFocus").src = "./images/startGame/P1.png";
+                    }else{
+                        CT.$("moveFocus").src = "./images/startGame/P0.png";
+                    }
+                    iceArr[i].clearSelf();
+                    iceArr.splice(i,1);
+                }else{
+                    iceArr[i].failDown();
+                }
+            }
+            downFlag ++;
+            if(downFlag%10 === 0){
+                time--;
+                if(time < 10){
+                    time = '0' + time;
+                }
+                timeBox.innerHTML = time;
+                if(time === "00"){
+                    clearInterval(failTime);
+                    actiObj.setChance(function(){
+                        var nowScore = score;
+                        score += preScore;
+                        actiObj.setUserCredit(score,function(){
+                            if(nowScore >= 50){
+                                modal.src = "images/startGame/50.png";
+                                actiObj.changeFocus("hands_x0_y0_modalFocus_");
+                                modal.style.visibility = "visible";
+                            }else if(nowScore >= 20) {
+                                modal.src = "images/startGame/20.png";
+                                actiObj.changeFocus("hands_x0_y0_modalFocus_");
+                                modal.style.visibility = "visible";
+                            }else if(nowScore >= 10) {
+                                modal.src = "images/startGame/10.png";
+                                actiObj.changeFocus("hands_x0_y0_modalFocus_");
+                                modal.style.visibility = "visible";
+                            }else {
+                                confirm();
+                            }
+                        });
+                    });
+                }
+            }
+        },100);
+    }
+    // 左移动
+    function leftMove(){
+        if(parseInt(CT.$("hands_x0_y0_moveFocus_").style.left) >= 105){
+            CT.$("hands_x0_y0_moveFocus_").style.left = parseInt(CT.$("hands_x0_y0_moveFocus_").style.left) - 55 + "px";
+        }
+    }
+    // 右移动
+    function rightMove(){
+        if(parseInt(CT.$("hands_x0_y0_moveFocus_").style.left) < 800){
+            CT.$("hands_x0_y0_moveFocus_").style.left = parseInt(CT.$("hands_x0_y0_moveFocus_").style.left) + 55 + "px";
+        }
+    }
+
+    /* 弹框方法 */
+    function confirm() {
+        modal.style.visibility = "hidden";
+        if(chanceNum <= 0){
+            CT.$("overModal").src = "./images/window/noChance.png";
+            actiObj.changeFocus("hands_x0_y0_overModalFocus_");
+        }else{
+            CT.$("overModal").src = "./images/window/startAgain.png";
+            actiObj.changeFocus("hands_x0_y0_overModalFocus_");
+        }
+        CT.$("overModal").style.visibility = "visible";
+    }
+    /* 区分当前弹框是无机会还是再来一次 */
+    function devideConfirm(){
+        if(chanceNum <= 0){
+            CT.$("overModal").style.visibility = "hidden";
+            CT.$("overModal").src = "./images/change.png";
+            backfunc();
+        }else{
+            CT.$("overModal").style.visibility = "hidden";
+            CT.$("overModal").src = "./images/change.png";
+            actiObj.changeFocus("hands_x0_y0_moveFocus_");
+            preScore = score;
+            score = 0;
+            time = 30;
+            timeBox.innerHTML = time;
+            scoreBox.innerHTML = score;
+            startGame();
+        }
+    }
+    /* 工具函数 */
+    // 返回,返回至当前活动首页
+    function backfunc(){
+        window.location.href = "./actiYOYOMain.html?actiTime=" + new Date().getTime();
+    }
+</script>
+</html>

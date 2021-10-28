@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>疯狂扭蛋机首页</title>
+		<meta name="page-view-size" content="1280*720">
+		<link rel="stylesheet" type="text/css" href="../css/activity_CrazyEggsMain.css?v=2020010601" />
+	</head>
+
+	<body>
+		<div id="main">
+			<!--扭蛋机内小球-->
+			<div id="smallBall">
+				<!--第一排小球-->
+				<div id="smallBallUp">
+					<img id="smallBall0" src="../img/mainPage/smallEggs/1.png">
+					<img id="smallBall1" src="../img/mainPage/smallEggs/1.png">
+					<img id="smallBall2" src="../img/mainPage/smallEggs/1.png">
+					<img id="smallBall3" src="../img/mainPage/smallEggs/1.png">
+					<img id="smallBall4" src="../img/mainPage/smallEggs/1.png">
+					<img id="smallBall5" src="../img/mainPage/smallEggs/1.png">
+				</div>
+				<!--第二排小球-->
+				<div id="smallBallDown">
+					<img id="smallBall6" src="../img/mainPage/smallEggs/1.png">
+					<img id="smallBall7" src="../img/mainPage/smallEggs/1.png">
+					<img id="smallBall8" src="../img/mainPage/smallEggs/1.png">
+					<img id="smallBall9" src="../img/mainPage/smallEggs/1.png">
+					<img id="smallBall10" src="../img/mainPage/smallEggs/1.png">
+					<img id="smallBall11" src="../img/mainPage/smallEggs/1.png">
+				</div>
+			</div>
+			<!--按键-->
+			<div id="pressKey">
+				<!--第一排按键-->
+				<div id="pressKeyUp">
+					<img id="pressKey0" src="../img/mainPage/choose/rotate1.png">
+					<img id="pressKey1" src="../img/mainPage/choose/rotate1.png">
+					<img id="pressKey2" src="../img/mainPage/choose/rotate1.png">
+					<img id="pressKey3" src="../img/mainPage/choose/rotate1.png">
+					<img id="pressKey4" src="../img/mainPage/choose/rotate1.png">
+					<img id="pressKey5" src="../img/mainPage/choose/rotate1.png">
+				</div>
+				<!--第二排按键-->
+				<div id="pressKeyDown">
+					<img id="pressKey6" src="../img/mainPage/choose/rotate1.png">
+					<img id="pressKey7" src="../img/mainPage/choose/rotate1.png">
+					<img id="pressKey8" src="../img/mainPage/choose/rotate1.png">
+					<img id="pressKey9" src="../img/mainPage/choose/rotate1.png">
+					<img id="pressKey10" src="../img/mainPage/choose/rotate1.png">
+					<img id="pressKey11" src="../img/mainPage/choose/rotate1.png">
+				</div>
+			</div>
+			<!--流光-->
+			<div id="meteor">
+				<img src="../img/empty.png" id="meteor0" />
+				<img src="../img/empty.png" id="meteor1" />
+				<img src="../img/empty.png" id="meteor2" />
+				<img src="../img/empty.png" id="meteor3" />
+			</div>
+			<!--中间大球-->
+			<div id="bigBall">
+				<img id="bigBall1" src="../img/mainPage/bigEggs/0.png">
+				<img id="bigBall2" src="../img/mainPage/bigEggs/3.png" alt="" style="visibility: hidden;" />
+			</div>
+
+			<!--首页界面-->
+			<div id="mainShow" style="visibility: hidden;">
+				<!--标题、灯光、中间礼品-->
+				<div id="title_lamp_prize" style="visibility: hidden;">
+					<img src="../img/mainPage/LOGO.png" id="title" />
+					<img src="../img/mainPage/light.png" id="light" />
+					<img src="../img/mainPage/prizeShow.png" id="prize" />
+				</div>
+				<!--左侧按钮-->
+				<div id="left_btn">
+					<img src="../img/mainPage/ruleBtn.png" id="ruleBtn" />
+					<div id="hands_x0_y0_ruleBtnFocus_">
+						<img src="../img/mainPage/ruleFocus.png" id="ruleBtnFocus" style="visibility: hidden;" />
+					</div>
+					<img src="../img/mainPage/nameListBtn.png" id="nameListBtn" />
+					<div id="hands_x0_y0_nameListBtnFocus_">
+						<img src="../img/mainPage/ruleFocus.png" id="nameListBtnFocus" style="visibility: hidden;" />
+					</div>
+				</div>
+				<!--右侧卡通、看视频按钮、开始按钮-->
+				<div id="right_element">
+					<img src="../img/mainPage/cartoon.png" id="rightCartoon" class="rightCartoon" />
+					<img src="../img/mainPage/seeVideo.png" id="seeVideo" class="seeVideo" />
+					<div id="hands_x0_y0_seeVideoBtnFocus_">
+						<img src="../img/mainPage/seeVideoFocus.png" id="seeVideoBtnFocus" style="visibility: hidden;" />
+					</div>
+					<img src="../img/mainPage/startBTn.png" id="startBTn" />
+					<div id="hands_x0_y0_startBTnFocus_">
+						<img src="../img/mainPage/startFocus.png" id="startBTnFocus" style="visibility: hidden;" />
+					</div>
+				</div>
+			</div>
+			
+			<!--首页去记得回来抽奖弹窗提示-->
+			<img src="../img/tip/mainRemember.jpg" style="position: absolute;left: 0px;top: 0px;visibility: hidden;" id="mainRemember"/>
+
+			<!--弹窗提示-->
+			<div id="tipTanchuang" style="visibility: hidden;">
+				<img src="../img/empty.png" id="tipTitle" />
+				<div id="tipCenter">
+					<img src="../img/empty.png" id="getPrize" />
+					<img src="../img/tip/zjCondition/decorateZJ.png" id="decoration" style="visibility: hidden;" />
+					<img src="../img/empty.png" id="tipText" />
+				</div>
+				<img src="../img/tip/confirmBtn.png" id="confirmBtn" style="visibility: hidden;" />
+				<!--确定按钮-->
+				<div id="hands_x0_y0_confirmBtnFocus_">
+					<img src="../img/nameList/keyFocus.png" id="confirmBtnFocus" width="232px" height="120px" style="visibility: hidden;" />
+				</div>
+				<!--看视频按钮-->
+				<img src="../img/tip/seeVideoBtn.png" id="seeVideoTipBtn" style="visibility: hidden;"/>
+				<div id="hands_x0_y0_seeVideoTipBtnFocus_">
+					<img src="../img/nameList/keyFocus.png" id="seeVideoTipBtnFocus" width="232px" height="120px" style="visibility: hidden;" />
+				</div>
+				<!--继续按钮-->
+				<img src="../img/tip/continueBtn.png" id="continueBtn" style="visibility: hidden;"/>
+				<div id="hands_x0_y0_continueBtnFocus_">
+					<img src="../img/nameList/keyFocus.png" id="continueBtnFocus" width="232px" height="120px" style="visibility: hidden;" />
+				</div>
+				<img src="../img/empty.png" id="blingbling" />
+				<!--记得回来抽奖-->
+				<div id="hands_x0_y0_rememberFocus_">
+					<img src="../img/nameList/keyFocus.png" id="rememberFocus" width="232px" height="120px" style="visibility: hidden;" />
+				</div>
+			</div>
+
+			<!--空焦点-->
+			<div id="hands_x0_y0_blankFocus_" style="position: absolute;left: 0px;top: 0px;">
+				<img src="../img/empty.png" id="blankFocus" style="visibility: hidden;width: 76px;height: 76px;" />
+			</div>
+
+			<!--规则页-->
+			<img src="../img/rule.png" id="rulePage" style="visibility: hidden;" />
+			<div id="hands_x0_y0_ruleCloseFocus_">
+				<img src="../img/nameList/XFocus.png" id="ruleCloseFocus" style="visibility: hidden;" />
+			</div>
+
+			<!--中奖名单页-->
+			<div id="nameListPage" style="visibility: hidden;">
+				<img src="../img/nameList/nameList.png"/>
+				<!--用户信息-->
+				<div id="userInfo"></div>
+				<!--中奖情况-->
+				<div id="prizeInfo"></div>
+				<!--名单列表-->
+				<div id="nameListTitle"><span>账号</span><span>奖品</span></div>
+				<ul id="nameList">										
+				</ul>
+				<!--手机号输入框-->
+				<div id="telInput"></div>
+				<!--输入框焦点-->
+				<div id="hands_x0_y0_inputFocus_">
+					<img src="../img/nameList/chooseFocus.png" id="inputFocus" style="visibility: hidden;" />
+				</div>
+				<!--保存按钮焦点-->
+				<div id="hands_x0_y0_saveBtnFocus_">
+					<img src="../img/nameList/keyFocus.png" id="saveBtnFocus" style="visibility: hidden;" />
+				</div>
+				<!--保存提示-->
+				<div id="savetips"></div>
+				<!--清除按钮焦点-->
+				<div id="hands_x0_y0_emptyBtnFocus_">
+					<img src="../img/nameList/keyFocus.png" id="emptyBtnFocus" style="visibility: hidden;" />
+				</div>
+				<!--中奖页关闭按钮-->
+				<div id="hands_x0_y0_nameListCloseFocus_">
+					<img src="../img/nameList/XFocus.png" id="nameListCloseFocus" style="visibility: hidden;" />
+				</div>
+			</div>
+
+		</div>
+		<!--引入公用JS-->
+		<script type="text/javascript" src="../../../../js/column.js"></script>
+		<script type="text/javascript" src="../js/actiComm.js?v=2020011601"></script>
+		<!--引用结束-->
+		<script type="text/javascript" src="../js/activity_CrazyEggsMain.js?v=2020012001"></script>
+		<script type="text/javascript">
+			setLoggerInfo.uploadLogPage();
+			//启动页焦点》》》提示弹窗焦点>>>规则页》》》中奖名单页
+			var buttons = [{
+				id: "hands_x0_y0_ruleBtnFocus_",
+				clickHandler: "javascript:CrazyEggsGame.btnJump(0)",
+				left: "disable",
+				right: "hands_x0_y0_startBTnFocus_",
+				up: "disable",
+				down: "hands_x0_y0_nameListBtnFocus_",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_nameListBtnFocus_",
+				clickHandler: "javascript:CrazyEggsGame.btnJump(1)",
+				left: "disable",
+				right: "hands_x0_y0_startBTnFocus_",
+				up: "hands_x0_y0_ruleBtnFocus_",
+				down: "hands_x0_y0_startBTnFocus_",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_seeVideoBtnFocus_",
+				clickHandler: "javascript:CrazyEggsGame.btnJump(2)",
+				left: "hands_x0_y0_startBTnFocus_",
+				right: "disable",
+				up: "disable",
+				down: "hands_x0_y0_startBTnFocus_",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_startBTnFocus_",
+				clickHandler: "javascript:CrazyEggsGame.btnJump(3)",
+				left: "hands_x0_y0_nameListBtnFocus_",
+				right: "hands_x0_y0_seeVideoBtnFocus_",
+				up: "hands_x0_y0_seeVideoBtnFocus_",
+				down: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_confirmBtnFocus_",
+				clickHandler: "javascript:CrazyEggsGame.confirmBtn()",
+				left: "disable",
+				right: "disable",
+				up: "disable",
+				down: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_blankFocus_",
+				left: "disable",
+				right: "disable",
+				up: "disable",
+				down: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_ruleCloseFocus_",
+				clickHandler: "javascript:CrazyEggsGame.ruleCloseFunc()",
+				left: "disable",
+				right: "disable",
+				up: "disable",
+				down: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_inputFocus_",
+				otherFocusEvent: "javascript:CrazyEggsGame.onFocus(1)",
+				otherBlurEvent: "javascript:CrazyEggsGame.onFocus(0)",
+				left: "disable",
+				right: "hands_x0_y0_saveBtnFocus_",
+				up: "hands_x0_y0_nameListCloseFocus_",
+				down: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_saveBtnFocus_",
+				clickHandler: "javascript:CrazyEggsGame.saveFunc()",
+				otherBlurEvent: 'javascript:CrazyEggsGame.saveBlur()',
+				left: "hands_x0_y0_inputFocus_",
+				right: "hands_x0_y0_emptyBtnFocus_",
+				up: "hands_x0_y0_nameListCloseFocus_",
+				down: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_emptyBtnFocus_",
+				clickHandler: "javascript:CrazyEggsGame.emptyFunc()",
+				left: "hands_x0_y0_saveBtnFocus_",
+				right: "disable",
+				up: "hands_x0_y0_nameListCloseFocus_",
+				down: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_nameListCloseFocus_",
+				clickHandler: "javascript:CrazyEggsGame.nameListClose()",
+				left: "hands_x0_y0_inputFocus_",
+				right: "disable",
+				up: "disable",
+				down: "hands_x0_y0_inputFocus_",
+				focusType: 7
+			},{
+				id: "hands_x0_y0_seeVideoTipBtnFocus_",
+				clickHandler: "javascript:CrazyEggsGame.seeVideo()",
+				left: "disable",
+				right: "hands_x0_y0_continueBtnFocus_",
+				up: "disable",
+				down: "disable",
+				focusType: 7
+			},{
+				id: "hands_x0_y0_continueBtnFocus_",
+				clickHandler: "javascript:CrazyEggsGame.continueFunc()",
+				left: "hands_x0_y0_seeVideoTipBtnFocus_",
+				right: "disable",
+				up: "disable",
+				down: "disable",
+				focusType: 7
+			},{
+				id: "hands_x0_y0_rememberFocus_",
+				clickHandler: "javascript:CrazyEggsGame.jumpVideo()",
+				left: "disable",
+				right: "disable",
+				up: "disable",
+				down: "disable",
+				focusType: 7
+			}]
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,178 @@
+* {
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+
+.main {
+	width: 1280px;
+	height: 720px;
+	background: url(../img/bg.jpg) no-repeat;
+	background-size: 100% 100%;
+	overflow: hidden;
+	position: relative;
+}
+
+.blackBG {
+	width: 100%;
+	height: 100%;
+	background: url(../img/blackBJ.png) no-repeat;
+	background-size: 100% 100%;
+	overflow: hidden;
+}
+
+.logo {
+	width: 521px;
+	height: 111px;
+	position: absolute;
+	left: 330px;
+	top: 30px;
+}
+
+.card1 {
+	position: absolute;
+	left: 250px;
+	top: 160px;
+	transform: rotateX(40deg) rotateY(-370deg) rotateZ(7deg);
+	-webkit-transform: rotateX(40deg) rotateY(-370deg) rotateZ(7deg);
+}
+
+#hands_x0_y0_cards1Focus_ {
+	position: absolute;
+	left: 270px;
+	top: 255px;
+}
+
+.card2 {
+	position: absolute;
+	left: 520px;
+	top: 160px;
+	transform: rotateX(40deg) rotateY(-370deg) rotateZ(7deg);
+	-webkit-transform: rotateX(40deg) rotateY(-370deg) rotateZ(7deg);
+}
+
+#hands_x0_y0_cards2Focus_ {
+	position: absolute;
+	left: 550px;
+	top: 255px;
+}
+
+.card3 {
+	position: absolute;
+	left: 790px;
+	top: 160px;
+	transform: rotateX(40deg) rotateY(-370deg) rotateZ(7deg);
+	-webkit-transform: rotateX(40deg) rotateY(-370deg) rotateZ(7deg);
+}
+
+#hands_x0_y0_cards3Focus_ {
+	position: absolute;
+	left: 820px;
+	top: 255px;
+}
+
+.card4 {
+	position: absolute;
+	left: 380px;
+	top: 430px;
+	transform: rotateX(40deg) rotateY(-370deg) rotateZ(7deg);
+	-webkit-transform: rotateX(40deg) rotateY(-370deg) rotateZ(7deg);
+}
+
+#hands_x0_y0_cards4Focus_ {
+	position: absolute;
+	left: 400px;
+	top: 530px;
+}
+
+.card5 {
+	position: absolute;
+	left: 640px;
+	top: 430px;
+	transform: rotateX(40deg) rotateY(-370deg) rotateZ(7deg);
+	-webkit-transform: rotateX(40deg) rotateY(-370deg) rotateZ(7deg);
+}
+
+#hands_x0_y0_cards5Focus_ {
+	position: absolute;
+	left: 670px;
+	top: 530px;
+}
+
+
+/*卡片飞到中间动画*/
+
+.flyCenter {
+	position: absolute;
+	left: 510px;
+	top: 275px;
+	z-index: 2;
+	transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+	-webkit-transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+	transition: all 800ms;
+	-webkit-transition: all 800ms;
+}
+
+
+/*大图动画*/
+
+.ipBigAni {
+	animation: ipBigAni 400ms alternate;
+	-webkit-animation: ipBigAni 400ms alternate;
+	-ms-animation: ipBigAni 400ms alternate;
+	/*规定动画执行次数*/
+	animation-iteration-count: 1;
+	-webkit-animation-iteration-count: 1;
+	-ms-animation-iteration-count: 1;
+	/*让动画停留在最后一帧*/
+	animation-fill-mode: forwards;
+	-webkit-animation-fill-mode: forwards;
+	-ms-animation-fill-mode: forwards;
+}
+
+@keyframes ipBigAni {
+	0% {
+		transform: scale(1);
+		-webkit-transform: scale(1);
+	}
+	50% {
+		transform: scale(2);
+		-webkit-transform: scale(2);
+	}
+	100% {
+		transform: scale(1);
+		-webkit-transform: scale(1);
+	}
+}
+
+@-webkit-keyframes ipBigAni {
+	0% {
+		transform: scale(1);
+		-webkit-transform: scale(1);
+	}
+	50% {
+		transform: scale(2);
+		-webkit-transform: scale(2);
+	}
+	100% {
+		transform: scale(1);
+		-webkit-transform: scale(1);
+	}
+}
+
+/*IP上下动画*/
+.upDownAni{
+	animation: upDownAni 400ms alternate infinite;
+	-webkit-animation: upDownAni 400ms alternate infinite;	
+}
+
+@keyframes upDownAni{
+	0%,
+	100%{
+		transform: translateY(0px);
+	}
+	50%{
+		transform: translateY(10px);
+	}
+}
+

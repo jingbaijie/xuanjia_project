@@ -1,0 +1,306 @@
+.withScreen{
+    width: 1280px;
+    height: 720px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    text-align: center;
+}
+/*首页*/
+.mainBg{
+    background: url("../images/main/BG.jpg")no-repeat;
+}
+.gezi1{
+    width: 199px;
+    height: 127px;
+    position: absolute;
+    top: 45px;
+    left: 735px;
+    background: url("../images/main/gezi.png")no-repeat;
+}
+.gezi2{
+    width: 393px;
+    height: 286px;
+    position: absolute;
+    top: 80px;
+    left: 150px;
+    background: url("../images/main/gezi1.png")no-repeat;
+}
+.title{
+    width: 608px;
+    height: 344px;
+    position: absolute;
+    top: 15px;
+    left: 240px;
+    background: url("../images/main/title.png");
+}
+#ipDom{
+    width: 429px;
+    height: 562px;
+    position: absolute;
+    top: 200px;
+    left: 0px;
+}
+#ssDom{
+    width: 247px;
+    height: 355px;
+    position: absolute;
+    top: 325px;
+    left: 700px;
+}
+#blkDom{
+    width: 246px;
+    height: 275px;
+    position: absolute;
+    top: 200px;
+    left: 980px;
+}
+#qqDom{
+    width: 196px;
+    height: 233px;
+    position: absolute;
+    top: 40px;
+    left: 1050px;
+}
+.yuanpan{
+    width: 1280px;
+    height: 122px;
+    position: absolute;
+    top: 598px;
+    left: -100px;
+    background: url("../images/main/table.png")no-repeat;
+}
+.prize1{
+    width: 288px;
+    height: 321px;
+    position: absolute;
+    top: 335px;
+    left: 460px;
+    background: url("../images/main/prize1.png")no-repeat;
+}
+.prize2{
+    width: 204px;
+    height: 265px;
+    position: absolute;
+    top: 380px;
+    left: 330px;
+    background: url("../images/main/prize2.png")no-repeat;
+}
+.prize3{
+     width: 260px;
+     height: 147px;
+     position: absolute;
+     top: 545px;
+     left: 575px;
+     background: url("../images/main/prize3.png")no-repeat;
+ }
+.prize4{
+    width: 230px;
+    height: 169px;
+    position: absolute;
+    top: 505px;
+    left: 205px;
+    background: url("../images/main/prize4.png")no-repeat;
+}
+.signBg{
+    background: url("../images/sign/BG.png")no-repeat;
+}
+#mainGray{
+    width: 440px;
+    height: 215px;
+    position: absolute;
+    top: 240px;
+    left: 380px;
+}
+.mainGrayImg{
+    width: 77px;
+    height: 73px;
+    position: absolute;
+}
+#mainYes{
+    width: 440px;
+    height: 215px;
+    position: absolute;
+    top: 240px;
+    left: 380px;
+}
+.mainYesImg{
+    width: 77px;
+    height: 73px;
+    position: absolute;
+}
+/*视频播放页*/
+.videoBg{
+    background: url("../images/fangying/BG.png")no-repeat;
+}
+.vBlkDom{
+    width: 319px;
+    height: 403px;
+    position: absolute;
+    top: 85px;
+    left: 10px;
+    background: url("../images/fangying/IP1.png")no-repeat;
+}
+.vSsDom{
+    width: 406px;
+    height: 392px;
+    position: absolute;
+    top: 330px;
+    left: 885px;
+    background: url("../images/fangying/IP2.png")no-repeat;
+}
+/*答题页*/
+.questionBg{
+    background: url("../images/dati/BG.jpg")no-repeat;
+}
+.childDom{
+    width: 462px;
+    height: 497px;
+    position: absolute;
+    top: 375px;
+    left: 370px;
+    background: url("../images/dati/IP1.png")no-repeat;
+}
+.qSsDom{
+    width: 329px;
+    height: 492px;
+    position: absolute;
+    top: 355px;
+    left: 735px;
+    background: url("../images/dati/IP2.png")no-repeat;
+}
+#questionDom{
+    width: 900px;
+    height: 100px;
+    position: absolute;
+    top: 150px;
+    left: 190px;
+    color: #ffffff;
+    font-weight: bold;
+    line-height: 100px;
+    font-size: 48px;
+    text-align: center;
+}
+/*连连看*/
+.deleteBg{
+    background: url("../images/lianlian/BG.jpg")no-repeat;
+}
+.aoteman{
+    width: 361px;
+    height: 487px;
+    position: absolute;
+    top: 240px;
+    left: 940px;
+    background: url("../images/lianlian/aoteman.png")no-repeat;
+}
+.ipImg{
+    width: 292px;
+    height: 292px;
+    position: absolute;
+}
+/*抽奖页*/
+#selectBorder{
+    width: 142px;
+    height: 123px;
+    position: absolute;
+    background: url("../images/choujiang/selected.png");
+}
+#lwChanceDom{
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 320px;
+    left: 965px;
+    font-size: 32px;
+    text-align: center;
+    line-height: 50px;
+    font-weight: bold;
+    color: #ffe600;
+}
+/*中奖名单页*/
+.rankList{
+    width: 675px;
+    height: 225px;
+    overflow: hidden;
+    position: absolute;
+    top: 230px;
+    left: 300px;
+}
+#rankList{
+    width: 675px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+#rankList .rankLine{
+    width: 675px;
+    height: 30px;
+    position: relative;
+    line-height: 30px;
+    font-size: 24px;
+    text-align: center;
+    color: #e8d53f;
+}
+#rankList .rankLine .line1{
+    display: block;
+    width: 200px;
+    height: 30px;
+    float: left;
+}
+#rankList .rankLine .line2{
+    display: block;
+    width: 355px;
+    height: 30px;
+    float: left;
+}
+#rankList .rankLine .line3{
+    display: block;
+    width: 290px;
+    height: 30px;
+    float: left;
+}
+.showSize{
+    font-size: 28px;
+    font-weight: bold;
+    color: #ff8f00;
+}
+#myUserId{
+    width: 240px;
+    height: 40px;
+    position: absolute;
+    top: 530px;
+    left: 420px;
+}
+#myPrize{
+    width: 240px;
+    height: 40px;
+    position: absolute;
+    top: 535px;
+    left: 783px;
+    font-size: 22px;
+}
+#phoneText{
+    width: 280px;
+    height: 50px;
+    position: absolute;
+    top: 580px;
+    left: 428px;
+    color: white;
+    text-align: center;
+    line-height: 50px;
+    font-size: 28px;
+}
+#phoneTips{
+    width: 480px;
+    height: 50px;
+    position: absolute;
+    top: 630px;
+    left: 360px;
+    color: #ff0057;
+    text-align: center;
+    line-height: 50px;
+    font-size: 28px;
+}

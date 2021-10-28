@@ -1,0 +1,61 @@
+* {
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+
+
+/*再来一次弹窗*/
+
+#startAgainTan,
+#noChanceTan,
+#failDownTan {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	visibility: hidden;
+}
+
+#hands_x0_y0_startAgainFocus_,
+#hands_x0_y0_failDownFocus_ {
+	position: absolute;
+	left: 520px;
+    top: 435px;
+}
+
+
+/*无机会*/
+
+#hands_x0_y0_noChanceFocus_ {
+	position: absolute;
+	left: 520px;
+    top: 435px;
+}
+
+#hands_x0_y0_startAgainFocus_ img,
+#hands_x0_y0_noChanceFocus_ img,
+#hands_x0_y0_failDownFocus_ img {
+	height: 100px;
+	width: 240px;
+}
+
+/*获取一次机会*/
+#getChanceTan{
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	visibility: hidden;
+	z-index: 2;
+}
+
+/*获取一次机会*/
+#hands_x0_y0_getChanceFocus_{
+	position: absolute;
+	left: 520px;
+	top: 435px;	
+	z-index: 9;
+}
+#hands_x0_y0_getChanceFocus_ img{
+	height: 100px;
+	width: 240px;
+}

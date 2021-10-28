@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="page-view-size" content="1280*720">
+    <title>神枪手游戏页</title>
+    <link rel="stylesheet" href="./css/actiSharpshooterGame.css?v=2019103101">
+</head>
+
+<body>
+    <div id="main">
+        <!-- 左边靶 -->
+        <img src="./img/game/0/0.png" alt="" id="targetLeft">
+        <!-- 中间靶 -->
+        <img src="./img/game/1/0.png" alt="" id="targetMiddle">
+        <!-- 右边靶 -->
+        <img src="./img/game/2/0.png" alt="" id="targetRight">
+
+        <!-- 枪手 -->
+        <!-- 左 -->
+        <div id="hands_x0_y0_shootFocus0_">
+            <img src="./img/game/hand2.png" alt="" id="shootFocus0" style="visibility:hidden;">
+        </div>
+        <!-- 中 -->
+        <div id="hands_x0_y0_shootFocus1_">
+            <img src="./img/game/hand2.png" alt="" id="shootFocus1" style="visibility:hidden;">
+        </div>
+        <!-- 右 -->
+        <div id="hands_x0_y0_shootFocus2_">
+            <img src="./img/game/hand2.png" alt="" id="shootFocus2" style="visibility:hidden;">
+        </div>
+
+        <!-- 左边子弹爆炸 -->
+        <img src="./img/game/0/2.png" alt="" id="boomLeft" style="visibility:hidden;">
+        <!-- 中间子弹爆炸 -->
+        <img src="./img/game/1/2.png" alt="" id="boomMiddle" style="visibility:hidden;">
+        <!-- 右边子弹爆炸 -->
+        <img src="./img/game/2/2.png" alt="" id="boomRight" style="visibility:hidden;">
+
+        <!-- 计分弹窗 -->
+        <div id="tanchuang">
+            <img src="./img/game/congratulationTip.png" alt="" id="zhong" style="visibility:hidden;">
+			<img src="./img/game/pityTip.png" alt="" id="nozhong" style="visibility:hidden;">
+            <!-- 打中环数显示 -->
+            <div id="circleNum"></div>
+            <!-- 得分显示 -->
+            <div id="scoreNum"></div>
+            <div id="hands_x0_y0_shootFocus3_">
+                <img src="./img/game/tipFocus.png" alt="" id="shootFocus3" style="visibility:hidden;">
+            </div>
+        </div>
+
+		<!--提醒观看视频弹窗-->
+		<img id="seeVideoTip" src="./img/rank/seeVideo/seeVideoTip.png" />
+		<!--确认按钮-->
+		<div id="hands_x0_y0_shootFocus4_">
+			<img id="shootFocus4" src="./img/rank/seeVideo/confirmFocus.png" style="visibility:hidden;"/>
+		</div>
+		<!--右上角返回按钮-->
+		<div id="hands_x0_y0_shootFocus5_">
+			<img id="shootFocus5" src="./img/rank/seeVideo/backFocus.png" style="visibility:hidden;"/>
+		</div>
+
+        <!-- 页面总计分 -->
+        <div id="totalScore">0</div>
+
+    </div>
+    <!-- 引用公用js -->
+    <script type = "text/javascript" src = "../../../js/column.js"></script>  
+    <script type="text/javascript" src="./js/common/actiComm.js"></script>   
+    <!-- 引用公用js结束 -->
+    <script type="text/javascript" src="./js/actiJS/actiSharpshooterGame.js?v=2010103102"></script>
+
+</body>
+
+</html>

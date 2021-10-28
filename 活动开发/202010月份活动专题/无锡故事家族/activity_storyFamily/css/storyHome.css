@@ -1,0 +1,386 @@
+.main {
+    width: 1280px;
+    height: 720px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    overFlow: hidden;
+    background: url("../img/homeBJ.jpg");
+}
+
+.barbox {
+    margin-top: 140px;
+    background: url('../img/barBJ.png');
+    width: 1280px;
+    height: 34px;
+    background-repeat: no-repeat;
+}
+
+.score {
+    height: 34px;
+    line-height: 34px;
+    color: white;
+    font-size: 22px;
+    width: 277px;
+    position: absolute;
+    top: 140px;
+    left: 1000px;
+}
+
+.barconent {
+    width: 850px;
+    color: white;
+    height: 34px;
+    line-height: 34px;
+    font-size: 24px;
+}
+
+.videosmall {
+    position: absolute;
+    top: 4px;
+}
+
+.labelsmall {
+    position: absolute;
+    top: 4px;
+}
+
+.bar-cell {
+    line-height: 34px;
+    width: 425px;
+    text-align: center;
+    position: relative;
+}
+
+.videoshow {
+    padding-left: 40px;
+}
+
+.publiclesson {
+    padding-left: 40px;
+}
+
+.content {
+}
+
+.sidebar-box {
+    width: 260px;
+    font-size: 20px;
+}
+
+.sidebar-cell {
+    background-repeat: no-repeat;
+    background-image: url('../img/sidebardefault.png');
+    width: 224px;
+    height: 46px;
+    line-height: 46px;
+    text-align: center;
+    color: white;
+}
+
+.sidebar-checked {
+    background-repeat: no-repeat;
+    background-image: url('../img/sidebarchecked.png');
+    width: 224px;
+    height: 46px;
+    margin-bottom: 5px;
+    line-height: 46px;
+    text-align: center;
+    color: white;
+}
+
+.container {
+
+}
+
+.container-cell {
+    background-repeat: no-repeat;
+    background-image: url('../img/containerCell.png');
+    width: 463px;
+    height: 501px;
+    line-height: 46px;
+    text-align: center;
+    color: white;
+    font-size: 17px;
+    /* overflow: scroll; */
+}
+
+.container2 {
+    margin-left: 20px;
+    width: 906px;
+    height: 501px;
+}
+
+.container2-cell {
+    background-repeat: no-repeat;
+    background-image: url('../img/publicCell.png');
+    width: 886px;
+    height: 421px;
+}
+
+.lesson-cell {
+    background-repeat: no-repeat;
+    background-image: url('../img/lessonCell.png');
+    width: 243px;
+    height: 183px;
+}
+.lesson-cell-img{
+    padding: 3px 0 0 2px;
+}
+
+.lesson-checked {
+    background-repeat: no-repeat;
+    background-image: url('../img/lessonCell_.png');
+    width: 243px;
+    height: 183px;
+}
+
+.signInImg {
+    /* width: 148px;
+    height: 112px; */
+}
+
+.signIn {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+}
+
+
+
+.focusbox {
+    position: absolute;
+    top: 0;
+    width: 1280px;
+    height: 720px;
+}
+
+.scoreicon {
+    padding: 6px 6px 0 0;
+    width: 24px;
+    height: 24px;
+}
+
+.container-cell-yey {
+    position: absolute;
+    top: 220px;
+    left: 380px;
+    font-size: 24px;
+}
+
+.container-cell-xiaox {
+    position: absolute;
+    top: 220px;
+    left: 850px;
+    font-size: 24px;
+}
+
+.yey-box {
+    color: rgb(58, 150, 226);
+    line-height: 36px;
+    text-align: left;
+    margin: 80px 0px 40px 60px;
+    overflow: hidden;
+    width: 403px;
+    height: 371px;
+}
+
+.yey-box::-webkit-scrollbar {
+    display: none;
+}
+
+.xiaox-box {
+    color: rgb(58, 150, 226);
+    line-height: 36px;
+    text-align: left;
+    /* width: 100%;
+    height: 100%; */
+    width: 403px;
+    height: 371px;
+    margin: 80px 0px 40px 60px;
+    overflow: hidden;
+
+}
+
+.bar-cell-check1 {
+    background-image: url('../img/barChecked.png');
+    width: 425px;
+    height: 57px;
+    position: absolute;
+    left: 0;
+    top: 124px;
+}
+
+.bar-cell-check2 {
+    background-image: url('../img/barChecked.png');
+    width: 425px;
+    height: 57px;
+    position: absolute;
+    left: 425px;
+    top: 124px;
+}
+
+.videobig {
+    position: absolute;
+    top: 15px;
+    left: 140px;
+}
+
+.videoshows {
+    width: 385px;
+    text-align: center;
+    height: 57px;
+    line-height: 57px;
+    padding-left: 40px;
+}
+
+.lableshows {
+    width: 385px;
+    text-align: center;
+    height: 57px;
+    line-height: 57px;
+    padding-left: 40px;
+}
+
+.barCellChecksp {
+}
+
+.lablebig {
+    position: absolute;
+    top: 15px;
+    left: 140px;
+}
+
+.barCellCheckgy {
+}
+
+.xiala {
+    color: black;
+    position: absolute;
+    top: 120px;
+    left: 420px;
+    background-image: url(../img/scrollbar_.png);
+    background-repeat: no-repeat;
+    height: 274px;
+    width: 9px;
+}
+
+.xiala_ {
+    position: absolute;
+    background-image: url('../img/scrollbar.png');
+    background-repeat: no-repeat;
+}
+
+.xiala2_ {
+    position: absolute;
+    background-image: url('../img/scrollbar.png');
+    background-repeat: no-repeat;
+}
+
+.xiala2 {
+    color: black;
+    position: absolute;
+    top: 110px;
+    left: 420px;
+    background-image: url('../img/scrollbar_.png');
+    background-repeat: no-repeat;
+    height: 274px;
+    width: 9px;
+}
+
+.xiala3_ {
+    top: 120px;
+    left: 875px;
+    background-image: url('../img/scrollbar.png');
+    background-repeat: no-repeat;
+    height: 274px;
+    width: 9px;
+}
+
+.xiala3 {
+    color: black;
+    position: absolute;
+    top: 300px;
+    left: 1220px;
+    background-image: url('../img/scrollbar_.png');
+    background-repeat: no-repeat;
+    height: 274px;
+    width: 9px;
+}
+
+.school-def {}
+
+.school-checked {
+    color: #A0D032;
+    /* text-decoration: #A0D032; */
+    text-decoration: underline;
+}
+
+.modal-box {
+    width: 1280px;
+    height: 720px;
+    position: absolute;
+    top: 0;
+    background-image: url('../img/modalBJ.png');
+}
+
+.modal-input-box {
+    position: absolute;
+    top: 528px;
+    left: 330px;
+    width: 420px;
+    height: 88px;
+    /*background-image: url('../img/mobileCheck.png');*/
+    background-repeat: no-repeat;
+}
+
+.modal-input-boxs {
+    position: absolute;
+    top: 528px;
+    left: 330px;
+    width: 420px;
+    height: 88px;
+}
+
+.modal-input {
+    width: 360px;
+    height: 60px;
+    border-radius: 20px;
+    font-size: 24px;
+    padding: 0 20px;
+}
+
+.modal-confirm {
+    position: absolute;
+    background-image: url('../img/checkModal.png');
+    width: 149px;
+    height: 85px;
+}
+
+.input-div{
+    height: 50px;
+    line-height: 50px;
+    font-size: 24px;
+    width: 360px;
+    position: absolute;
+    left: 30px;
+    top: 19px;
+}
+.cartoon-name{
+    text-align: center;
+    color: white;
+    font-size: 24px;
+}
+#phoneTips {
+    width: 480px;
+    height: 50px;
+    position: absolute;
+    top: 485px;
+    left: 295px;
+    color: #ff0057;
+    text-align: center;
+    line-height: 50px;
+    font-size: 28px;
+}

@@ -1,0 +1,79 @@
+* {
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+
+#main {
+	width: 1280px;
+	height: 720px;
+	position: relative;
+	background: url(../img/main/mainBGNew.jpg) no-repeat;
+	left: 0px;
+	top: 0px;
+	overflow: hidden;
+}
+
+
+/*左边IP*/
+
+#leftIP {
+	position: absolute;
+	left: 80px;
+	top: 240px;
+	animation: leftIPAni 400ms alternate infinite;
+	-webkit-animation: leftIPAni 400ms alternate infinite;
+}
+
+@keyframes leftIPAni {
+	0,
+	100% {
+		transform: translateY(0px);
+		-webkit-transform: translateY(0px);
+		-ms-transform: translateY(0px);
+	}
+	50% {
+		transform: translateY(4px);
+		-webkit-transform: translateY(4px);
+		-ms-transform: translateY(4px);
+	}
+}
+
+@-webkit-keyframes leftIPAni {
+	0,
+	100% {
+		transform: translateY(0px);
+		-webkit-transform: translateY(0px);
+		-ms-transform: translateY(0px);
+	}
+	50% {
+		transform: translateY(4px);
+		-webkit-transform: translateY(4px);
+		-ms-transform: translateY(4px);
+	}
+}
+
+
+
+/* 没有机会弹窗 */
+#noChance{
+	position:absolute;
+	left:0px;
+	top:0px;
+}
+#hands_x0_y0_confirmFocus_ img{
+	position: absolute;
+    left: 440px;
+    top: 450px;
+    width: 200px;
+    height: 80px;
+	visibility:hidden;
+}
+#hands_x0_y0_cancelFocus_ img{
+	position: absolute;
+    left: 650px;
+    top: 450px;
+    width: 200px;
+    height: 80px;
+	visibility:hidden;
+}

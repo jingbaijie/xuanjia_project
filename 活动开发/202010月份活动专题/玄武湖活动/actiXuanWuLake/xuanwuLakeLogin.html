@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>玄武湖订炫力少儿会员送好礼登录页</title>
+</head>
+
+<body>
+    <!--引入公用JS-->
+    <script type="text/javascript" src="../../../../js/loadCommomJs.js"></script>
+    <!--引入结束-->
+    <script type="text/javascript">
+        //获取眉头信息参数
+        function GetQueryString(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+            console.log(reg)
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) return unescape(r[2]);
+            return null;
+        }
+        (function () {
+            //存取cookie
+            var userId = GetQueryString("userId"),
+                activityId = GetQueryString("activityId"),
+                userToken = GetQueryString("userToken"),
+                carrierId = GetQueryString("carrierId"),
+                pid = GetQueryString("pid"),
+                fromTVOrderPage = GetQueryString("fromTVOrderPage");
+            if (userId) {
+                //CT.delCookie("userId");
+                CT.setCookie("actiUserId", userId);
+            }
+            if (activityId) {
+                CT.delCookie("activityId");
+                CT.setCookie("activityId", activityId);
+            }
+            if (userToken) {
+                CT.delCookie("userToken");
+                CT.setCookie("userToken", userToken);
+            }
+            if (carrierId) {
+                CT.delCookie("carrierId");
+                CT.setCookie("carrierId", carrierId);
+            }
+            if (pid) {
+                CT.delCookie("pid");
+                CT.setCookie("pid", pid);
+            }
+            var str = location.href.substr((location.href.indexOf("?")) + 1);
+            window.onload = function () {
+				//判断是否是南京用户
+				orderJs.getAreaOfUser(function (res) {
+					 if(res=="nanjing"){
+						window.location.href = "xuanwuLakeMain.html" + "?" + str;
+					 }else{
+						window.location.href = "activity_nanjingPortal.html" + "?" + str;
+					 }
+				});                
+            }
+        })();
+    </script>
+</body>
+
+</html>

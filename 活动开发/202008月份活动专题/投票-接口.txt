@@ -1,0 +1,111 @@
+﻿
+说明：
+	全部用户页接口
+接口地址：
+	http://192.168.2.48:8080/iptv-admin-api/vote/api/userInfo/list
+参数：
+	playerId（搜索的时候传）
+	pageNum 当前页码（默认第一页）
+	pageSize 页面大小（默认每页10条数据）
+	orderType 排序方式（不传或者传0-按月票拍，1-按年票）
+	citycode （点击相应的城市，返回对应的选手）
+请求方式：
+	post/get
+===============================================================================
+
+
+说明：
+	获取用户信息
+接口地址：
+	http://192.168.2.48:8080/iptv-admin-api/vote/api/userInfo/getUserInfoByUserId
+参数：
+	userId 用户id（必传）
+请求方式：
+	post/get
+================================================================================
+
+说明：
+	点击投票之后显示当前用户票数数据
+接口地址：
+	http://192.168.2.48:8080/iptv-admin-api/vote/api/userInfo/getPersonalCreditsInfo
+参数
+	playerId 用户id（必传）
+请求方式
+	post/get
+	
+	
+================================================================================
+说明：
+	报名
+接口地址：
+	http://192.168.2.48:8080/iptv-admin-api/vote/api/userInfo/insert
+参数
+	userName: 用户名 （必传）
+	userAgreeFlag: 是否同意协议 （0-同意， 1-不同意）
+	userIntroduction: 用户爱好
+	userAge: 年龄
+	userPhone: 手机号（必传）
+	userCity: 城市Id
+	file类型：
+		基础图片5张：
+			pics：
+			pics：
+			pics：
+			pics：
+			pics：
+		头像：
+			avatar:
+请求方式
+	post
+
+===============================================================================
+说明：
+	获取城市下拉框数据
+接口地址：
+	http://192.168.2.48:8080/iptv-admin-api/vote/api/province/getCityByProvinceId
+参数：
+    provinceId 省份id（不传返回所有城市）
+请求方式：
+	post/get
+
+================================================================================
+
+说明：
+	产看积分排行榜
+接口地址：
+	http://192.168.2.48:8080/iptv-admin-api/vote/api/list
+参数：
+    rankType：排行类型（0-月；1-年）
+请求方式：
+	post/get
+================================================================================
+
+
+说明：
+	投票
+接口地址：
+	http://192.168.2.48:8080/iptv-admin-api/vote/api/insert
+参数：
+    userId 投票用户id （必传）
+    userType 用户类型（0-iptv 1-微信）（必传）
+    addBaby 小朋友id（必传）(playerId)
+请求方式：
+	post/get
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

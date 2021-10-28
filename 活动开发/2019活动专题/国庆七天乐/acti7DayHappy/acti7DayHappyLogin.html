@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>国庆七天乐登录页</title>
+    <link rel="stylesheet" href="./css/7DayHappy.css">
+</head>
+<body>
+
+</body>
+<script type="text/javascript" src="../../../js/column.js"></script>
+<script>
+    //获取眉头信息参数
+    function GetQueryString(name){
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if(r!=null)return  unescape(r[2]); return null;
+    }
+    (function () {
+        //存取cookie
+        var userId = GetQueryString("userId")+"",
+            activityId = GetQueryString("activityId")+"",
+            userToken = GetQueryString("userToken")+"",
+            carrierId = GetQueryString("carrierId")+"",
+            pid = GetQueryString("pid")+"";
+        if(userId != "null"){
+            CT.setCookie("actiUserId", userId);
+        }else{
+            userId =  GetQueryString("UserID")+"";
+            if(userId != "null"){
+                CT.setCookie("actiUserId", userId);
+            }else{
+                userId = CT.getCookie("userId");
+                if(userId){
+                    CT.setCookie("actiUserId", userId);
+                }
+            }
+        }
+        if(activityId != "null"){
+            CT.setCookie("activityId", activityId);
+        }else{
+            activityId = CT.getCookie("activityId")
+            if(activityId){
+                CT.setCookie("userId", userId);
+            }
+        }
+        if(userToken != "null"){
+            CT.setCookie("userToken", userToken);
+        }else{
+            userToken =  GetQueryString("UserToken")+"";
+            if(userToken != "null"){
+                CT.setCookie("userToken", userToken);
+            }else{
+                userToken = CT.getCookie("userToken");
+                if(userToken){
+                    CT.setCookie("userToken", userToken);
+                }
+            }
+        }
+        if(carrierId != "null"){
+            CT.setCookie("carrierId", carrierId);
+        }else{
+            carrierId =  GetQueryString("CarrierID")+"";
+            if(carrierId != "null"){
+                CT.setCookie("carrierId", carrierId);
+            }else{
+                carrierId = CT.getCookie("carrierId");
+                if(carrierId){
+                    CT.setCookie("carrierId", carrierId);
+                }
+            }
+        }
+        if(pid != "null"){
+            CT.setCookie("pid", pid);
+        }else{
+            pid = CT.getCookie("pid");
+            if(pid){
+                CT.setCookie("pid", pid);
+            }
+        }
+        var str = location.href.substr((location.href.indexOf("?"))+1);
+        window.onload = function(){
+			CT.setCookie("actiLogin","yes");
+            window.location.href = "./acti7DayHappyMain.html" + "?" + str;
+        }
+    })();
+</script>
+</html>

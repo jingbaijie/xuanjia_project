@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name = "page-view-size" content = "1280*720">
+    <title>快乐暑期--炫动有礼</title>
+</head>
+<body>
+<!--引入公用JS-->
+<script type="text/javascript" src="js/loadCommomJs.js"></script>
+<!--引入结束-->
+<script type="text/javascript">
+    //获取眉头信息参数
+    function GetQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        console.log(reg)
+        var r = window.location.search.substr(1).match(reg);
+        if(r != null) return unescape(r[2]);
+        return null;
+    }
+
+    (function() {
+        //存取cookie
+        var userId = GetQueryString("userId"),
+            activityId = GetQueryString("activityId"),
+            userToken = GetQueryString("userToken"),
+            carrierId = GetQueryString("carrierId"),
+            pid = GetQueryString("pid"),
+            fromTVOrderPage = GetQueryString("fromTVOrderPage");
+        if(userId) {
+            //CT.delCookie("userId");
+            CT.setCookie("actiUserId", userId);
+        }
+        if(activityId) {
+            CT.delCookie("activityId");
+            CT.setCookie("activityId", activityId);
+        }
+        if(userToken) {
+            CT.delCookie("userToken");
+            CT.setCookie("userToken", userToken);
+        }
+        if(carrierId) {
+            CT.delCookie("carrierId");
+            CT.setCookie("carrierId", carrierId);
+        }
+        if(pid) {
+            CT.delCookie("pid");
+            CT.setCookie("pid", pid);
+        }
+        var str = location.href.substr((location.href.indexOf("?")) + 1);
+        window.onload = function() {
+            window.location.href = "actiHappySummerMain.html" + "?" + str;
+        }
+       /* window.onload = function() {
+            var url = "./actiHappySummerMain.html";
+            actiObj.actiCommonJumpUrl(url);
+        }*/
+    })();
+</script>
+</body>
+
+</html>

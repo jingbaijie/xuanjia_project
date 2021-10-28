@@ -1,0 +1,156 @@
+* {
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+
+#main {
+	width: 1280px;
+	height: 720px;
+	position: relative;
+	left: 0px;
+	top: 0px;
+	overflow: hidden;
+	background: url(../img/bg.jpg) no-repeat;
+	background-size: 100% 100%;
+}
+
+#table {
+	width: 709px;
+	height: 720px;
+	position: absolute;
+	left: 125px;
+	top: 0px;
+	background: url(../img/table.png) no-repeat;
+}
+
+#spring {
+	position: absolute;
+	left: 526px;
+	bottom: 150px;
+}
+
+#progressBar {
+	position: absolute;
+	top: 545px;
+	left: 230px;
+	width: 228px;
+	height: 62px;
+}
+
+#hands_x0_y0_marblesFocus_,
+#launchBtn {
+	position: absolute;
+	top: 595px;
+	left: 230px;
+}
+
+#hands_x0_y0_blankFocus_ {
+	position: absolute;
+	top: 595px;
+	left: 230px;
+}
+
+.ipFirst:nth-child(1) {
+	position: absolute;
+	left: 500px;
+	top: 200px;
+}
+
+#ip0 {
+	position: absolute;
+	left: 190px;
+	top: 190px;
+}
+
+#ip1 {
+	position: absolute;
+	left: 355px;
+	top: 155px;
+}
+
+#ip2 {
+	position: absolute;
+	left: 255px;
+	top: 310px;
+}
+
+#ip3 {
+	position: absolute;
+	left: 180px;
+	top: 420px;
+}
+
+#ip4 {
+	position: absolute;
+	left: 360px;
+	top: 410px;
+}
+
+
+/*弹珠*/
+
+#marbleBall {
+	position: absolute;
+	left: 528px;
+	top: 395px;
+}
+
+
+/*弹窗*/
+
+#noZhongTip {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 1280px;
+	height: 720px;
+	background: url(../img/tip/noneTip.png) no-repeat;
+	background-size: 100% 100%;
+}
+
+#noZhongConfirm {
+	position: absolute;
+	left: 575px;
+	top: 480px;
+}
+
+#hands_x0_y0_noZhongConfirmFocus_ {
+	position: absolute;
+	left: 562px;
+	top: 470px;
+}
+
+#zhongTip {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 1280px;
+	height: 720px;
+	background: url(../img/tip/zhongTip.png) no-repeat;
+	background-size: 100% 100%;
+}
+
+#zhongConfirm {
+	position: absolute;
+	left: 470px;
+	top: 550px;
+}
+
+#againBtn {
+	position: absolute;
+	left: 690px;
+	top: 550px;
+}
+
+#hands_x0_y0_zhongConfirmFocus_ {
+	position: absolute;
+	left: 460px;
+	top: 535px;
+}
+
+#hands_x0_y0_againFocus_ {
+	position: absolute;
+	left: 680px;
+	top: 535px;
+}

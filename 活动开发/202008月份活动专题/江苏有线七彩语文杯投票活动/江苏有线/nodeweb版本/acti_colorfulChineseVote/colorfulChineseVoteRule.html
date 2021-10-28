@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="page-view-size" content="1280*720">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>七彩语文杯投票活动</title>
+		<style>
+			* {
+				margin: 0px;
+				padding: 0px;
+				list-style: none;
+			}
+			
+			#ruleMain {
+				position: relative;
+				left: 0px;
+				top: 0px;
+				width: 1280px;
+				height: 720px;
+				background: url(img/rulePage.png) no-repeat;
+				overflow: hidden;
+			}
+			
+			#rulrText {
+				position: absolute;
+				left: 660px;
+				top: 220px;
+			}
+		</style>
+	</head>
+
+	<body style="background:transparent;">
+		<div id="ruleMain">
+			<!-- 规则文案 -->
+			<img src="img/ruleText80.png" alt="" id="rulrText">
+		</div>
+		<script type="text/javascript" src="../../../../js/loadCommomJs.js"></script>
+		<script type="text/javascript" src="playVideo/js/interface.js"></script>
+		<script type="text/javascript">
+			var videoListJSon;
+			var cartoonId = 1179;
+			var videoId = 22326;
+			getVideoData();
+
+			function getVideoData() {
+				//所有集数信息
+				interface.findVideoListByCartoonId({
+					params: {
+						cartoonId: cartoonId
+					},
+					ajaxConfig: {
+						async: true
+					}
+				}, function(data) {
+					videoListJSon = data;
+					try {
+						//播放视频
+						playSmallVideo();
+					} catch(e) {}
+				});
+			}
+
+			/**
+			 *播放小视频
+			 */
+			function playSmallVideo() {
+				var mediaCode = videoListJSon.data[0].movieDetails[0].playUrl;
+				orderJs.getUserInfo(function(e) {
+					//酷开产创小视屏尺寸
+						if(window.navigator.appVersion.indexOf("Safari") > -1) {
+							videoPlayer.SmallPlay(mediaCode, {
+								top: 212,
+								left: 267,
+								height: 213,
+								width: 373
+							});
+						} else {
+							//中间件，华博等
+							videoPlayer.SmallPlay(mediaCode, {
+								top: 205,
+								left: 270,
+								height: 222,
+								width: 395
+							});
+						}
+				});
+			}
+
+			function backfunc() {
+				window.history.go(-1);
+			}
+		</script>
+	</body>
+
+</html>

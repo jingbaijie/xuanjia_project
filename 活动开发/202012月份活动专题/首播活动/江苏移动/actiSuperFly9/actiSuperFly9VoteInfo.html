@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="page-view-size" content="1280*720">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>投票信息展示页</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+            list-style: none;
+        }
+
+        #main {
+            position: relative;
+            left: 0px;
+            top: 0px;
+            width: 1280px;
+            height: 720px;
+            background: url(img/voteInfoPage/voteInfoBG.jpg) no-repeat;
+            overflow: hidden;
+        }
+
+        .baoHead {
+            position: absolute;
+            left: 10px;
+            top: 5px;
+        }
+
+        .rankIcon {
+            position: absolute;
+            left: 10px;
+            top: 115px;
+        }
+
+        .votedText {
+            position: absolute;
+            left: 35px;
+            top: 160px;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .voteNum {
+            position: absolute;
+            left: 0px;
+            top: 190px;
+            width: 120px;
+            text-align: center;
+            color: #fff;
+            font-weight: bold;
+            font-size: 22px;
+            font-style: italic;
+        }
+
+        #closeBtn {
+            position: absolute;
+            left: 1030px;
+            top: 40px;
+        }
+
+        #hands_x0_y0_closeBtnFocus_ {
+            position: absolute;
+            left: 1020px;
+            top: 32px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main">
+        <div id="ip1"
+            style="width: 117px;height: 250px;background: #99c2ff;position: absolute;left: 290px;bottom: 95px;border-radius: 58px 58px 0 0;box-shadow: #99c2ff 0px 0px 10px;">
+            <img src="img/voteInfoPage/mibao.png" alt="" class="baoHead">
+            <img src="img/empty.png" alt="" id="topImg1" class="rankIcon">
+            <div class="votedText">已投票</div>
+            <div id="voteNum1" class="voteNum">0</div>
+        </div>
+        <div id="ip2"
+            style="width:117px;height:250px;background:#fc73b3;position: absolute;left:435px;bottom:95px;border-radius: 58px 58px 0 0;box-shadow: #fc73b3 0px 0px 10px;">
+            <img src="img/voteInfoPage/aibao.png" alt="" class="baoHead">
+            <img src="img/empty.png" alt="" id="topImg2" class="rankIcon">
+            <div class="votedText">已投票</div>
+            <div id="voteNum2" class="voteNum">0</div>
+        </div>
+        <div id="ip3"
+            style="width:117px;height:250px;background:#ff593b;position: absolute;left:580px;bottom:95px;border-radius: 58px 58px 0 0;box-shadow: #ff593b 0px 0px 10px;">
+            <img src="img/voteInfoPage/lebao.png" alt="" class="baoHead">
+            <img src="img/empty.png" alt="" id="topImg3" class="rankIcon">
+            <div class="votedText">已投票</div>
+            <div id="voteNum3" class="voteNum">0</div>
+        </div>
+        <div id="ip4"
+            style="width:117px;height:250px;background:#ffae00;position: absolute;left:725px;bottom:95px;border-radius: 58px 58px 0 0;box-shadow: #ffae00 0px 0px 10px;">
+            <img src="img/voteInfoPage/duobao.png" alt="" class="baoHead">
+            <img src="img/empty.png" alt="" id="topImg4" class="rankIcon">
+            <div class="votedText">已投票</div>
+            <div id="voteNum4" class="voteNum">0</div>
+        </div>
+        <div id="ip5"
+            style="width:117px;height:250px;background:#2f6cf5;position: absolute;left:870px;bottom:95px;border-radius: 58px 58px 0 0;box-shadow: #2f6cf5 0px 0px 10px;">
+            <img src="img/voteInfoPage/jingbao.png" alt="" class="baoHead">
+            <img src="img/empty.png" alt="" id="topImg5" class="rankIcon">
+            <div class="votedText">已投票</div>
+            <div id="voteNum5" class="voteNum">0</div>
+        </div>
+        <img src="img/voteInfoPage/bottomNew.png" alt="" style="position:absolute;left:0px;top:480px;">
+		<img src="img/voteInfoPage/prizeChoose.png" alt="" style="position:absolute;left:995px;top:530px;">
+        <img src="img/mainPage/backBtn.png" alt="" id="closeBtn">
+        <div id="hands_x0_y0_closeBtnFocus_">
+            <img src="img/mainPage/backBtnFocus.png" alt="" id="closeBtnFocus" style="visibility:hidden;">
+        </div>
+    </div>
+    <!-- 引入公共js -->
+    <script type="text/javascript" src="../../../js/column.js"></script>
+    <script type="text/javascript" src="js/actiComm.js"></script>
+    <!-- 引入公共js结束 -->
+    <script type="text/javascript">
+        var buttons = [
+            {
+                id: "hands_x0_y0_closeBtnFocus_",
+                clickHandler: "javascript:backfunc()",
+                left: "disable",
+                right: "hands_x0_y0_backBtnFocus_",
+                up: "disable",
+                down: "hands_x0_y0_voteInfoBtnFocus_",
+                focusType: 7
+            }
+        ]
+         //焦点初始化
+        focusInit();
+		curFocus = getFocusModel6("hands_x0_y0_closeBtnFocus_");
+        curFocus.defaultFocus();
+
+        /**
+         * 渲染票数
+         * 排行榜
+         * */
+        var voteUserId = "test001";//投票固定用户
+        var allPlayerVotes = "0_0_0_0_0";//所有选手票数字符串
+        actiObj.getUserDataList(voteUserId, function (res) {
+            if(res.resultMsg == "success") {
+                allPlayerVotes = res.list[0].user_acti_data;
+            } else {
+                allPlayerVotes = "0_0_0_0_0";
+            }
+            //页面票数渲染
+            voteNumShow();
+        });
+
+        function voteNumShow() {
+            var totalBase = 0.1;
+            var allPlayerVotesArr = allPlayerVotes.split("_");
+            for (var i = 0; i < allPlayerVotesArr.length; i++) {
+                CT.$("ip" + (i + 1) + "").style.height = 250 + allPlayerVotesArr[i] * totalBase + "px";
+                CT.$("voteNum" + (i + 1) + "").innerText = allPlayerVotesArr[i];
+            }
+            if (allPlayerVotes != "0_0_0_0_0") {
+                //排行
+                getRank();
+            }
+        }
+
+
+        var firstNum = 0;
+        var firstIndex = 0;
+        var secondNum = 0;
+        var secondIndex = 0;
+        var thirdNum = 0;
+        var thirdIndex = 0;
+        function getRank() {
+            var votesArr = allPlayerVotes.split("_");
+            firstNum = parseInt(votesArr[0]);
+            var firstM = 0;//当前数组中第一名下标
+            for (var m = 0; m < votesArr.length; m++) {
+                if (firstNum < parseInt(votesArr[m])) {//第一名
+                    firstNum = parseInt(votesArr[m]);
+                    firstM = m;
+                    firstIndex = m;
+                }
+            }
+            votesArr.splice(firstM, 1);
+            secondNum = parseInt(votesArr[0]);
+            var secondM = 0;//当前数组中第二名下标
+            for (var m = 0; m < votesArr.length; m++) {
+                if (secondNum < parseInt(votesArr[m])) {//第二名
+                    secondNum = parseInt(votesArr[m]);
+                    secondM = m;
+                }
+            }
+            votesArr.splice(secondM, 1);
+            thirdNum = parseInt(votesArr[0]);
+            var thirdM = 0;//当前数组中第三名下标
+            for (var m = 0; m < votesArr.length; m++) {
+                if (thirdNum < parseInt(votesArr[m])) {//第三名
+                    thirdNum = parseInt(votesArr[m]);
+                    thirdM = m;
+                }
+            }
+            votesArr.splice(thirdM, 1);
+            for (var i = 0; i < allPlayerVotes.split("_").length; i++) {
+                if (secondNum == allPlayerVotes.split("_")[i] && i != firstIndex) {
+                    secondIndex = i;
+                }
+            }
+            for (var i = 0; i < allPlayerVotes.split("_").length; i++) {
+                if (thirdNum == allPlayerVotes.split("_")[i] && i != firstIndex && i != secondIndex) {
+                    thirdIndex = i;
+                }
+            }
+            CT.$("topImg" + (firstIndex + 1) + "").src = "img/voteInfoPage/top1.png";
+            CT.$("topImg" + (secondIndex + 1) + "").src = "img/voteInfoPage/top2.png";
+            CT.$("topImg" + (thirdIndex + 1) + "").src = "img/voteInfoPage/top3.png";
+        }
+
+        function backfunc() {
+            actiObj.actiCommonJumpUrl("actiSuperFly9Main.html");
+        }
+    </script>
+</body>
+
+</html>

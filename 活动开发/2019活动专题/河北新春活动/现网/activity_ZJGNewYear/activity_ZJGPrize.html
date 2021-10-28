@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="page-view-size" content="1280*720">
+		<title>双十一中奖名单页</title>
+		<link rel="stylesheet" href="./css/activity_ZJGNewYear.css?v=2019">
+	</head>
+
+	<body>
+		<div class="mainBg withScreen">
+			<!--    背景图     -->
+			<img class="withScreen" src="./images/prize/prizeBG.png" alt="">
+			<!--    排行版    -->
+			<div class="rankList">
+				<div id="rankList" style="top: 0;">
+				</div>
+			</div>
+
+			<!--    返回按钮    -->
+			<div id="hands_x0_y0_backFocus_" style="width: 67px;height: 67px;position: absolute;top: 77px;left: 953px;">
+				<img id="backFocus" src="./images/prize/back.png" style="width: 67px;height: 67px;visibility: hidden;" alt="">
+			</div>
+			<!--     我的ID   -->
+			<div id="myUserId" class="showSize">
+
+			</div>
+			<!--     我的奖品   -->
+			<div id="myPrize" class="showSize">
+
+			</div>
+			<!--     输入款焦点       -->
+			<div id="hands_x0_y0_phoneFocus_" style="width: 327px;height: 70px;position: absolute;top: 616px;left: 418px;">
+				<img id="phoneFocus" src="./images/prize/phoneText.png" style="visibility: hidden;" alt="">
+			</div>
+			<input id="phoneInput" type="text" placeholder="请输入手机号" maxlength="11" class="phoneText" style="visibility: hidden;">
+			<!--     保存焦点       -->
+			<div id="hands_x0_y0_saveFocus_" style="width: 120px;height: 62px;position: absolute;top: 573px;left: 720px;">
+				<img id="saveFocus" src="./images/prize/save.png" style="visibility: hidden;" alt="">
+			</div>
+			<!--     删除焦点       -->
+			<div id="hands_x0_y0_clearFocus_" style="width: 120px;height: 62px;position: absolute;top: 573px;left: 824px;">
+				<img id="clearFocus" src="./images/prize/save.png" style="visibility: hidden;" alt="">
+			</div>
+			<div id="phoneTable" style="visibility: hidden;">
+				<div class="phoneOne">1</div>
+				<div class="phoneOne">2</div>
+				<div class="phoneOne">3</div>
+				<div class="phoneOne">4</div>
+				<div class="phoneOne">5</div>
+				<div class="phoneOne">6</div>
+				<div class="phoneOne">7</div>
+				<div class="phoneOne">8</div>
+				<div class="phoneOne">9</div>
+				<div class="phoneOne">删除</div>
+				<div class="phoneOne">0</div>
+				<div class="phoneOne">确认</div>
+			</div>
+			<!--    数字按键    -->
+			<div id="hands_x0_y0_phoneFocus1_" style="width: 102px;height: 92px;position: absolute;top: 190px;left: 435px;">
+				<img id="phoneFocus1" src="./images/backSelect.png" style="width: 102px;height: 92px;visibility: hidden;" alt="">
+			</div>
+			<div id="hands_x0_y0_phoneFocus2_" style="width: 102px;height: 92px;position: absolute;top: 190px;left: 536px;">
+				<img id="phoneFocus2" src="./images/backSelect.png" style="width: 102px;height: 92px;visibility: hidden;" alt="">
+			</div>
+			<div id="hands_x0_y0_phoneFocus3_" style="width: 102px;height: 92px;position: absolute;top: 190px;left: 640px;">
+				<img id="phoneFocus3" src="./images/backSelect.png" style="width: 102px;height: 92px;visibility: hidden;" alt="">
+			</div>
+
+			<div id="hands_x0_y0_phoneFocus4_" style="width: 102px;height: 92px;position: absolute;top: 290px;left: 435px;">
+				<img id="phoneFocus4" src="./images/backSelect.png" style="width: 102px;height: 92px;visibility: hidden;" alt="">
+			</div>
+			<div id="hands_x0_y0_phoneFocus5_" style="width: 102px;height: 92px;position: absolute;top: 290px;left: 536px;">
+				<img id="phoneFocus5" src="./images/backSelect.png" style="width: 102px;height: 92px;visibility: hidden;" alt="">
+			</div>
+			<div id="hands_x0_y0_phoneFocus6_" style="width: 102px;height: 92px;position: absolute;top: 290px;left: 640px;">
+				<img id="phoneFocus6" src="./images/backSelect.png" style="width: 102px;height: 92px;visibility: hidden;" alt="">
+			</div>
+
+			<div id="hands_x0_y0_phoneFocus7_" style="width: 102px;height: 92px;position: absolute;top: 388px;left: 435px;">
+				<img id="phoneFocus7" src="./images/backSelect.png" style="width: 102px;height: 92px;visibility: hidden;" alt="">
+			</div>
+			<div id="hands_x0_y0_phoneFocus8_" style="width: 102px;height: 92px;position: absolute;top: 388px;left: 536px;">
+				<img id="phoneFocus8" src="./images/backSelect.png" style="width: 102px;height: 92px;visibility: hidden;" alt="">
+			</div>
+			<div id="hands_x0_y0_phoneFocus9_" style="width: 102px;height: 92px;position: absolute;top: 388px;left: 640px;">
+				<img id="phoneFocus9" src="./images/backSelect.png" style="width: 102px;height: 92px;visibility: hidden;" alt="">
+			</div>
+
+			<div id="hands_x0_y0_phoneFocusDel_" style="width: 102px;height: 92px;position: absolute;top: 486px;left: 435px;">
+				<img id="phoneFocusDel" src="./images/backSelect.png" style="width: 102px;height: 92px;visibility: hidden;" alt="">
+			</div>
+			<div id="hands_x0_y0_phoneFocus0_" style="width: 102px;height: 92px;position: absolute;top: 486px;left: 536px;">
+				<img id="phoneFocus0" src="./images/backSelect.png" style="width: 102px;height: 92px;visibility: hidden;" alt="">
+			</div>
+			<div id="hands_x0_y0_phoneFocusSure_" style="width: 102px;height: 92px;position: absolute;top: 486px;left: 640px;">
+				<img id="phoneFocusSure" src="./images/backSelect.png" style="width: 102px;height: 92px;visibility: hidden;" alt="">
+			</div>
+			<div id="phoneText" style="position: absolute;top: 580px;left: 428px;"></div>
+			<div id="phoneTips"></div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../../../js/loadCommomJs.js"></script>
+	<script type="text/javascript" src="../../../../js/actiComm.js?v=2019"></script>
+	<script type="text/javascript" src="./js/music_11.js?v=2020010701"></script>
+	<script>
+		var buttons = [{
+			id: "hands_x0_y0_backFocus_",
+			clickHandler: "javascript: backfunc()",
+			//otherFocusEvent: "javascript: phoneBlur()",
+			up: "disable",
+			down: "hands_x0_y0_clearFocus_",
+			left: "hands_x0_y0_clearFocus_",
+			right: "disable",
+			focusType: 7
+		}, {
+			id: "hands_x0_y0_phoneFocus_",
+			clickHandler: "",
+			otherFocusEvent: "javascript: phoneOnFocus()",
+			otherBlurEvent: "javascript: phoneLoseFocus()",
+			up: "disable",
+			down: "disable",
+			left: "disable",
+			right: "hands_x0_y0_saveFocus_",
+			focusType: 7
+		}, {
+			id: "hands_x0_y0_saveFocus_",
+			clickHandler: "javascript: savePhone()",
+			//otherFocusEvent: "javascript: phoneBlur()",
+			otherBlurEvent: "javascript: outFocus()",
+			up: "hands_x0_y0_backFocus_",
+			down: "disable",
+			left: "hands_x0_y0_phoneFocus_",
+			right: "hands_x0_y0_clearFocus_",
+			focusType: 7
+		}, {
+			id: "hands_x0_y0_clearFocus_",
+			//otherFocusEvent: "javascript: phoneBlur()",
+			clickHandler: "javascript: clearPhone()",
+			up: "hands_x0_y0_backFocus_",
+			down: "disable",
+			left: "hands_x0_y0_saveFocus_",
+			right: "hands_x0_y0_backFocus_",
+			focusType: 7
+		}, {
+			id: "hands_x0_y0_phoneFocus0_",
+			clickHandler: "javascript: inputNum(0)",
+			up: "hands_x0_y0_phoneFocus8_",
+			down: "disable",
+			left: "hands_x0_y0_phoneFocusDel_",
+			right: "hands_x0_y0_phoneFocusSure_",
+			focusType: 7
+		}, {
+			id: "hands_x0_y0_phoneFocus1_",
+			clickHandler: "javascript: inputNum(1)",
+			up: "disable",
+			down: "hands_x0_y0_phoneFocus4_",
+			left: "disable",
+			right: "hands_x0_y0_phoneFocus2_",
+			focusType: 7
+		}, {
+			id: "hands_x0_y0_phoneFocus2_",
+			clickHandler: "javascript: inputNum(2)",
+			up: "disable",
+			down: "hands_x0_y0_phoneFocus5_",
+			left: "hands_x0_y0_phoneFocus1_",
+			right: "hands_x0_y0_phoneFocus3_",
+			focusType: 7
+		}, {
+			id: "hands_x0_y0_phoneFocus3_",
+			clickHandler: "javascript: inputNum(3)",
+			up: "disable",
+			down: "hands_x0_y0_phoneFocus6_",
+			left: "hands_x0_y0_phoneFocus2_",
+			right: "disable",
+			focusType: 7
+		}, {
+			id: "hands_x0_y0_phoneFocus4_",
+			clickHandler: "javascript: inputNum(4)",
+			up: "hands_x0_y0_phoneFocus1_",
+			down: "hands_x0_y0_phoneFocus7_",
+			left: "disable",
+			right: "hands_x0_y0_phoneFocus5_",
+			focusType: 7
+		}, {
+			id: "hands_x0_y0_phoneFocus5_",
+			clickHandler: "javascript: inputNum(5)",
+			up: "hands_x0_y0_phoneFocus2_",
+			down: "hands_x0_y0_phoneFocus8_",
+			left: "hands_x0_y0_phoneFocus4_",
+			right: "hands_x0_y0_phoneFocus6_",
+			focusType: 7
+		}, {
+			id: "hands_x0_y0_phoneFocus6_",
+			clickHandler: "javascript: inputNum(6)",
+			up: "hands_x0_y0_phoneFocus3_",
+			down: "hands_x0_y0_phoneFocus9_",
+			left: "hands_x0_y0_phoneFocus5_",
+			right: "disable",
+			focusType: 7
+		}, {
+			id: "hands_x0_y0_phoneFocus7_",
+			clickHandler: "javascript: inputNum(7)",
+			up: "hands_x0_y0_phoneFocus4_",
+			down: "hands_x0_y0_phoneFocusDel_",
+			left: "disable",
+			right: "hands_x0_y0_phoneFocus8_",
+			focusType: 7
+		}, {
+			id: "hands_x0_y0_phoneFocus8_",
+			clickHandler: "javascript: inputNum(8)",
+			up: "hands_x0_y0_phoneFocus5_",
+			down: "hands_x0_y0_phoneFocus0_",
+			left: "hands_x0_y0_phoneFocus7_",
+			right: "hands_x0_y0_phoneFocus9_",
+			focusType: 7
+		}, {
+			id: "hands_x0_y0_phoneFocus9_",
+			clickHandler: "javascript: inputNum(9)",
+			up: "hands_x0_y0_phoneFocus6_",
+			down: "hands_x0_y0_phoneFocusSure_",
+			left: "hands_x0_y0_phoneFocus8_",
+			right: "disable",
+			focusType: 7
+		}, {
+			id: "hands_x0_y0_phoneFocusDel_",
+			clickHandler: "javascript: phoneDel()",
+			up: "hands_x0_y0_phoneFocus7_",
+			down: "disable",
+			left: "disable",
+			right: "hands_x0_y0_phoneFocus0_",
+			focusType: 7
+		}, {
+			id: "hands_x0_y0_phoneFocusSure_",
+			clickHandler: "javascript: phoneSure()",
+			up: "hands_x0_y0_phoneFocus9_",
+			down: "disable",
+			left: "hands_x0_y0_phoneFocus0_",
+			right: "disable",
+			focusType: 7
+		}];
+		var actiPageCname = "";
+		//我的用户名
+		var myUserId = document.getElementById("myUserId");
+		//我的奖品
+		var myPrize = document.getElementById("myPrize");
+		//手机输入框
+		var phoneText = document.getElementById("phoneText");
+		//手机输入提示框
+		var phoneTips = document.getElementById("phoneTips");
+		//奖品名单
+		var rankList = document.getElementById("rankList");
+		//手机号输入框
+		var phoneInput = document.getElementById("phoneInput");
+		//手机输入键盘
+		var phoneTable = document.getElementById("phoneTable");
+		var rankLines = null;
+		var isPhoneFocus = false;
+		var phoneNums = "";
+		var rankInterval = null;
+		var maxUp = 0;
+
+		try {
+			startMp3();
+		} catch(e) {}
+
+		//获取当前用户手机号,奖品
+		actiObj.getUserPhone(function(res) {
+			if(res.successFlg == 1) {
+				if(res.data.userPhone != null) {
+					phoneNums = res.data.userPhone;
+					phoneText.innerHTML = res.data.userPhone;
+				}
+			} else {
+				phoneText.innerHTML = "";
+			}
+			actiObj.getUserPrizeInfo(function(param) {
+				if(param && param.successFlg == 1) {
+					myPrize.innerHTML = param.data[0].prizeCname;
+				} else {
+					myPrize.innerHTML = "暂未获奖";
+				}
+			});
+
+			myUserId.innerHTML = actiUserId;
+			getActiFous();
+			setTopList();
+		});
+		//获取焦点
+		function getActiFous() {
+			//焦点初始化
+			PAGE.focusInit();
+			PAGE.changeFocus("hands_x0_y0_saveFocus_");
+		}
+		//选中框获得焦点
+		function phoneOnFocus() {
+			//phoneInput.focus();
+			phoneTable.style.visibility = "visible";
+			actiObj.changeFocus("hands_x0_y0_phoneFocus1_");
+			isPhoneFocus = true;
+		}
+		//选中框失去焦点
+		function phoneLoseFocus() {
+			isPhoneFocus = false;
+		}
+
+		function phoneSure() {
+			phoneTable.style.visibility = "hidden";
+			actiObj.changeFocus("hands_x0_y0_saveFocus_");
+		}
+
+		function phoneDel() {
+			phoneNums = phoneText.innerHTML + "";
+			if(phoneNums.length > 0) {
+				phoneNums = phoneNums.substr(0, phoneNums.length - 1);
+				phoneText.innerHTML = phoneNums;
+			}
+		}
+
+		function inputNum(nums) {
+			phoneNums = phoneText.innerHTML + "";
+			if(phoneNums.length < 11) {
+				phoneNums += nums;
+				phoneText.innerHTML = phoneNums;
+			}
+		}
+
+		function phoneBlur() {
+			phoneInput.blur();
+		}
+		// 保存按钮失去焦点
+		function outFocus() {
+			phoneTips.innerHTML = "";
+		}
+		//保存手机号
+		function savePhone() {
+			var TEL_REGEXP = /^(13[0-9]|14[579]|15[0-3,5-9]|16[6]|17[0135678]|18[0-9]|19[89])\d{8}$/;
+			phoneNums = phoneText.innerHTML + "";
+			if(phoneNums.length >= 11 && TEL_REGEXP.test(phoneNums)) {
+				actiObj.setUserPhone(phoneNums, function(data) {
+					if(data) {
+						phoneTips.innerHTML = "手机号码保存成功";
+						//myUserId.innerHTML = phoneNums;
+					} else {
+						phoneTips.innerHTML = "手机号码保存失败";
+					}
+				});
+			} else {
+				phoneTips.innerHTML = "您输入的手机号格式无效,请重新输入!"
+			}
+		}
+		//清除手机号
+		function clearPhone() {
+			phoneNums = "";
+			phoneText.innerHTML = phoneNums;
+			//phoneInput.value = phoneNums;
+			phoneTips.innerHTML = "";
+		}
+		//输入手机号
+		function changeNum(nums) {
+			if(isPhoneFocus) {
+				if(parseInt(nums) < 10 && phoneNums.length < 11) {
+					phoneNums += nums;
+					phoneText.innerHTML = phoneNums;
+				}
+			}
+
+		}
+		//设置奖品榜，超过7人开始想下滚动
+		function setTopList() {
+			var topListhtml = "";
+			if(rankInterval) {
+				clearInterval(rankInterval);
+			}
+			actiObj.getPrizeUserInfo(function(res) {
+				if(res && res.successFlg == 1 && res.data.records.length > 0) {
+					var topList = res.data.records;
+				} else {
+					var topList = [];
+				};
+				for(var i = 0; i < topList.length; i++) {
+					if(topList[i]) {
+						topListhtml += '<div class = "rankLine">' +
+							// '<span class="line1">'+ (i+1) +'</span>'+
+							'<span class = "line2">' + topList[i].userId.substr(0, 3) + "****" + topList[i].userId
+							.substr((topList[i].userId.length - 4), 4) + '</span>' +
+							'<span class = "line3">' + topList[i].prizeCname + '</span>' +
+							'</div>';
+					}
+				}
+				if(topList.length >= 7) {
+					topListhtml += topListhtml;
+					rankList.innerHTML = topListhtml;
+					setRankUp();
+				} else {
+					rankList.innerHTML = topListhtml;
+				}
+			});
+		}
+		//奖品榜滚动
+		function setRankUp() {
+			rankLines = rankList.getElementsByTagName("div");
+			if(rankLines && rankLines.length >= 7) {
+				maxUp = 0 - (rankLines.length / 2) * 30;
+				rankInterval = setInterval(function() {
+					if(parseInt(rankList.style.top) > maxUp) {
+						rankList.style.top = parseInt(rankList.style.top) - 10 + "px";
+					} else {
+						rankList.style.top = "0px";
+					}
+				}, 200);
+			}
+		}
+
+		function backfunc() {
+			if(phoneTable.style.visibility == "visible") {
+				phoneSure();
+			} else {
+				try {
+					stopMp3();
+				} catch(e) {}
+				actiObj.actiCommonJumpUrl("./activity_ZJGMain.html");
+			}
+		}
+	</script>
+
+</html>

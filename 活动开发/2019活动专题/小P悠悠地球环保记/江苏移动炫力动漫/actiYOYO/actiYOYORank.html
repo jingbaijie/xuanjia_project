@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="page-view-size" content ="1280*720" />
+    <title>小P悠悠活动排行榜页面</title>
+    <style>
+        body{-webkit-text-size-adjust:none}
+        .main{
+            position: absolute;
+            width: 1280px;
+            height: 720px;
+            margin: 0;
+            padding: 0;
+            top: 0;
+            left: 0;
+            text-align: center;
+            overflow: hidden;
+            background: url("./images/mainPage/BG.jpg");
+        }
+        div{
+            position: absolute;
+        }
+        #showBox{
+            width:780px;
+            height: 163px;
+            left: 260px;
+            top: 280px;
+            overflow: hidden;
+
+        }
+        #showUserInfo{
+            width: 765px;
+            height: 34px;
+            left: 261px;
+            top: 516px;
+
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <img src="./images/rank/BG.png" style="width: 1280px; height: 720px; position: absolute; top: 0; left: 0;">
+        <div id="phoneText" style="width: 223px; height: 41px; position: absolute; top: 560px;left:500px; line-height: 40px; font-size: 25px; font-weight: bolder; text-align: center; color: #fff;">
+        </div>
+        <div id="phoneInfo" style="width: 386px; height: 25px; position: absolute; top: 610px; left: 415px; line-height: 30px; font-size: 21px; font-weight: bolder; text-align: center; color: #fff;">
+        </div>
+        <!-- 输入框 -->
+        <div id="hands_x0_y0_postFocus0_" style="position: absolute;left: 474px;top: 554px;">
+            <img id="postFocus0" src="./images/rank/phoneNumber.png" style="visibility: hidden;"  alt=""/>
+        </div>
+        <!-- 保存 -->
+        <div id="hands_x0_y0_postFocus1_" style="position: absolute; left:768px;top: 563px;">
+            <img id="postFocus1" src="./images/rank/selected.png" style="visibility: hidden;" alt=""/>
+        </div>
+        <!-- 清除 -->
+        <div id="hands_x0_y0_postFocus2_" style="left: 849px;top: 562px;">
+            <img id="postFocus2" src="./images/rank/selected.png"  style="visibility: hidden;"  alt=""/>
+        </div>
+        <!-- 返回 -->
+        <img src = "./images/mainPage/back.png" style = "position: absolute;top: 40px;left: 1120px;">
+        <div id="hands_x0_y0_postFocus3_" style="position: absolute;top: 40px;left: 1120px;">
+            <img id="postFocus3" src="./images/mainPage/backed.png" style = "visibility: hidden;" alt=""/>
+        </div>
+
+
+        <div id="showBox">
+            <div id="loop_img_box1"></div>
+            <div id="loop_img_box2"></div>
+        </div>
+        <div id="showUserInfo">
+
+        </div>
+    </div>
+</body>
+<script type = "text/javascript" src = "../../../js/column.js"></script>
+<script type="text/javascript" src="./js/actiComm.js"></script>
+<script type="text/javascript">
+    //焦点是否在输入框上
+    var isOnFocus;
+    //积分top10排行版
+    var topList=[];
+    //当前用户积分
+    var  myScore =0;
+    //当前用户手机号
+    var  userPhone = "";
+    //当前用户排行
+    var myRank = 100;
+    //获取活动积分排行top10
+    actiObj.getActivityRankList(function(data){
+        if(data.resultMsg == "success" && data.list && data.list.length > 0){
+            topList = data.list;
+            setTopList();
+        }else{
+            topList=[{RANK:"",USERID:"",USER_PHONE:"",PRIZE_SCORE:"",PRIZE:""}];
+        }
+    });
+    //获取当前用户手机号,积分与排行
+    actiObj.getUserPhone(function(data){
+        if(data && data.userPhone){
+            userPhone = data.userPhone;
+            document.getElementById("phoneText").innerHTML=data.userPhone;
+        }else{
+            document.getElementById("phoneText").innerHTML="请输入手机号";
+        }
+        //获取积分
+        actiObj.getUserCredit(function(res){
+            if(res && res.resultMsg == "success"){
+                myScore = res.creditNum;
+            }
+            //获取排行
+            actiObj.getUserRankList(function(param){
+                if(param && param.resultMsg == "success" ){
+                    myRank = param.rankID;
+                }
+                //设置排行榜
+                setUserList();
+            });
+
+        });
+
+    });
+    //焦点获焦在输入框中执行的方法
+    function OnFocus(index){
+        isOnFocus = index==1?true:false;
+    }
+    //焦点数组
+    var buttons=[
+        {
+            id: 'hands_x0_y0_postFocus0_',
+            clickHandler: '',
+            left: 'hands_x0_y0_postFocus1_',
+            right: 'hands_x0_y0_postFocus1_',
+            up:'disable',
+            down:  'disable',
+            focusType: 7,
+            otherFocusEvent:'javascript:OnFocus(1)',
+            otherBlurEvent:'javascript:OnFocus(0)'
+        },
+        {
+            id: 'hands_x0_y0_postFocus1_',
+            clickHandler: 'javascript:getSave()',
+            left: 'hands_x0_y0_postFocus0_',
+            right: 'hands_x0_y0_postFocus2_',
+            up: 'disable',
+            down: 'disable',
+            focusType: 7
+        },
+        {
+            id: 'hands_x0_y0_postFocus2_',
+            clickHandler: 'javascript:clearPhoneNum()',
+            left: 'hands_x0_y0_postFocus1_',
+            right: 'hands_x0_y0_postFocus3_',
+            up: 'hands_x0_y0_postFocus3_',
+            down: 'disable',
+            focusType: 7
+        },
+        {
+            id: 'hands_x0_y0_postFocus3_',
+            clickHandler: 'javascript: backfunc()',
+            left: 'hands_x0_y0_postFocus2_',
+            right: 'disable',
+            up: 'disable',
+            down:  'hands_x0_y0_postFocus2_',
+            focusType: 7
+        }
+    ];
+    //初始化焦点
+    focusInit();
+    var start=getFocusModel6("hands_x0_y0_postFocus0_");
+    start.defaultFocus();
+    //手机号输入框
+    var phoneText=document.getElementById("phoneText").innerHTML;
+    //去除字符串两边的空格
+    function Trim(str,is_global)
+    {
+        var result;
+        result = str.replace(/(^\s+)|(\s+$)/g,"");
+        if(is_global.toLowerCase()=="g")
+        {
+            result = result.replace(/\s/g,"");
+        }
+        return result;
+    };
+
+    phoneText=Trim(phoneText,"g");
+
+    var  phoneNum=phoneText;
+    //监听用户遥控器输入的数字
+    function changeNum(ids){
+        if(isOnFocus){
+            var size;
+            if(phoneNum==""){
+                size=0;
+            }else{
+                size= phoneNum.length;
+            }
+
+            if(size < 11||!size){
+                var addnum = phoneNum;
+                phoneNum = addnum + ids;
+            }
+            document.getElementById("phoneText").innerHTML=phoneNum;
+        }
+    }
+    //清除输入框中的内容
+    function clearPhoneNum(){
+        phoneNum = "";
+        document.getElementById("phoneInfo").innerHTML="";
+        document.getElementById("phoneText").innerHTML="";
+    }
+    //保存手机号
+    function getSave(){
+        var phoneNum = document.getElementById("phoneText").innerHTML;
+        var size = phoneNum.length;
+        if(size === 11){
+            actiObj.setUserPhone(phoneNum,function(data){
+                if(data==true){
+                    document.getElementById("phoneInfo").innerHTML="手机号码保存成功";
+                    userPhone = phoneNum;
+                    setUserList();
+                }
+            });
+        }else{
+            document.getElementById("phoneInfo").innerHTML="您输入的手机号格式无效,请重新输入!";
+        }
+    }
+    //返回方法,返回至活动首页
+    function backfunc(){
+        window.location.href="./actiYOYOMain.html?actiTime=" + new Date().getTime();
+    }
+    //排行榜渲染数组
+    var resultArr=[];
+    var box1=document.getElementById("loop_img_box1");
+        var box2=document.getElementById("loop_img_box2");
+        var h="";
+        
+    //设置排行版内容
+    function setTopList(){
+        resultArr=[];
+        for (var i=0;i<topList.length;i++){
+            var phone,score;
+            if(topList[i].USER_PHONE){
+                phone=topList[i].USER_PHONE;
+            }else {
+                phone=null;
+            }
+
+            if(topList[i].userId){
+                resultArr.push({'useRank':(i+1),'useId':topList[i].userId,"phoneNumber":topList[i].userPhone,"userScore":topList[i].activity_credit_num});
+            }
+        }
+
+        
+        for(var i=0 ;i<resultArr.length;i++){
+            // var getUserId=resultArr[i].useId;
+            var getRank;
+            if(resultArr[i].useRank){
+                getRank=resultArr[i].useRank;
+            }
+            var getId;
+            if(resultArr[i].useId){
+                getId=resultArr[i].useId.slice(0,3)+"****"+resultArr[i].useId.slice(resultArr[i].useId.length-3,resultArr[i].useId.length);
+            }else{
+                getId="";
+            }
+            var phone=resultArr[i].phoneNumber;
+            var h1;
+            if(phone){
+                h1=resultArr[i].phoneNumber.slice(0,3)+"****"+resultArr[i].phoneNumber.slice(resultArr[i].phoneNumber.length-3,resultArr[i].phoneNumber.length)
+            }else{
+                h1="";
+            };
+            var score;
+            if(resultArr[i].userScore){
+                score=resultArr[i].userScore;
+            }else{
+                score="";
+            };
+
+
+            h+="<div style='width: 700px;height:34px;top:"+34*i+"px;left:0px;'>"+
+                "<div style='width:146px;height:34px;line-height: 34px; font-size: 21px;font-weight: bolder; text-align: center; color: #fff; top:2px;left:56px;'>"+
+                getRank+
+                "</div>	"+
+                "<div style='width:110px;height:34px;line-height: 34px; font-size: 21px;font-weight: bolder; text-align: center; color: #fff; top:2px;left:215px;'>"+
+                getId+
+                "</div>"+
+                "<div style='width:146px;height:34px;line-height: 34px; font-size: 21px;font-weight: bolder; text-align: center; color: #fff; top:2px;left:397px;'>"+
+                h1+
+                "</div>"+
+                "<div style='width:146px;height:34px;line-height: 34px; font-size: 21px;font-weight: bolder; color: #fff; top: 2px; left: 570px;text-align: center;'>"+
+                score+
+                "</div>"+
+                "</div>"
+        }
+        if(resultArr.length>=4){
+            loop();
+        }else{
+            box1.innerHTML=h;
+        }
+    }
+    //排行版滚动
+    function loop(){
+        box1.innerHTML=h;
+        box1.style.top=-34*resultArr.length+"px";
+        box2.innerHTML=h;
+        box2.style.top=-(34*resultArr.length)*2+"px";
+        var index=0;
+        var Height1=-34*resultArr.length;
+        var loopIndex=-34*resultArr.length*2;
+        var jin=setInterval(function(){
+            index++;
+            if((Math.floor(index/resultArr.length*10)%2==0)){
+                box1.style.top=-34*resultArr.length+"px";
+            }
+            if((Math.floor(index/resultArr.length*10)%2==0)){
+                box2.style.top=-(34*resultArr.length)*2+"px";
+            }
+            box1.style.top=Height1+index*34/10+4*34+"px";
+            box2.style.top=loopIndex+index*34/10+4*34+"px";
+            if(index==resultArr.length*10+1){
+                index=0
+            }
+        },250)
+    }
+    //设置用户自己的获奖信息
+    function setUserList(){
+        var  userId =actiUserId;
+        if(!myScore){
+            myRank="未上榜";
+            myScore="获取积分";
+        }
+        var myPrize;
+        switch (myRank){
+            case 1:
+                myPrize="即将获得一等奖";
+                break;
+            case 2:
+            case 3:
+                myPrize="即将获得二等奖";
+                break;
+            case 4:
+            case 5:
+            case 6:
+                myPrize="即将获得三等奖";
+                break;
+            default:
+                myPrize="继续加油！";
+                break;
+        }
+        var user;
+        if(userId=="null"){
+            user="";
+        }else{
+            user=userId.slice(0,3)+"****"+userId.slice(userId.length-3,userId.length);
+        }
+        var newPhone;
+        if(userPhone=="null"||userPhone==""){
+            userPhone="手机号码";
+            newPhone="";
+        }else{
+            newPhone=userPhone;
+            userPhone=userPhone.slice(0,3)+"****"+userPhone.slice(userPhone.length-3,userPhone.length);
+        }
+        var html="";
+        html=   "<div style='width:125px;height:34px;line-height: 34px; font-size: 10px;font-weight: bolder;  color: #fff; top: 2px; left:60px;text-align: center;'>"+
+            myRank+
+            "</div>" +
+            "<div style='line-height: 34px; font-size: 10px;font-weight: bolder; text-align: center; color: #fff; top:2px;left:192px;width:101px'>"+
+            user  +
+            "</div>	"+
+            "<div style='width:136px;line-height: 34px; font-size: 10px;font-weight: bolder; text-align: center; color: #fff; top:2px;left:302px;'>"+
+            userPhone +
+            "</div>"+
+            "<div style='width:130px;line-height: 34px; font-size: 10px;font-weight: bolder; text-align: center; color: #fff; top:2px;left:449px;'>"+
+            myScore+
+            "</div>" +
+            "<div style='width:120px;line-height: 34px; font-size: 10px;font-weight: bolder; text-align: center; color: #fff; top:2px;left:583px;'>"+
+            myPrize+
+            "</div>"
+        document.getElementById("showUserInfo").innerHTML=html;
+        document.getElementById("phoneText").innerHTML= newPhone;
+    }
+</script>
+</html>

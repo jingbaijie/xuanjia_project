@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="page-view-size" content="1280*720">
+		<link rel="stylesheet" href="./css/activity_ZJGNewYear.css?v=2020011301">
+		<title>喜迎新年，好礼大派送前置页</title>
+	</head>
+
+	<body>
+		<div class="withScreen" style="background: url('./images/platformBG.jpg')no-repeat;background-size: 100% 100%;">
+			<div class="withScreen portalBG"></div>
+			<!--    未选中灯笼    -->
+			<img id="hideLamp" style="visibility: visible;" src="./images/portal/lamp0.png">
+			<!--    选中灯笼    -->
+			<div id="hands_x0_y0_lampFocus_" style="width: 348px;height: 368px;position: absolute;top: 150px;left: 930px;">
+				<img id="lampFocus" src="./images/portal/selected0.png" style="width: 348px;height: 368px;visibility: hidden;" alt="">
+			</div>
+
+			<!--    返回按钮    -->
+			<img id="backImg" src="./images/comm/back.png" alt="">
+			<div id="hands_x0_y0_backFocus_" style="width: 148px;height: 71px;position: absolute;top: 40px;left: 1080px;">
+				<img id="backFocus" src="./images/comm/backed.png" style="width: 148px;height: 71px;visibility: hidden;" alt="">
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../../../js/loadCommomJs.js"></script>
+	<script type="text/javascript" src="../../../../js/actiComm.js"></script>
+	<script type="text/javascript" src="./js/music_11.js?v=2020010701"></script>
+	<script type="text/javascript">
+		var buttons = [{
+			id: "hands_x0_y0_lampFocus_",
+			clickHandler: "javascript: toActiMain()",
+			otherFocusEvent: "javascript: lampFocusFunc(1)",
+			otherBlurEvent: "javascript: lampFocusFunc(0)",
+			up: "hands_x0_y0_backFocus_",
+			down: "disable",
+			left: "disable",
+			right: "hands_x0_y0_backFocus_",
+			focusType: 7
+		}, {
+			id: "hands_x0_y0_backFocus_",
+			clickHandler: "javascript: backfunc()",
+			up: "disable",
+			down: "hands_x0_y0_lampFocus_",
+			left: "hands_x0_y0_lampFocus_",
+			right: "disable",
+			focusType: 7
+		}];
+		var actiPageCname = "";
+		//灯闪烁定时器
+		var lampInterval = null;
+		//闪烁标志
+		var lampFlag = 0;
+		//灯
+		var Lamp;
+		//灯图片名称
+		var lampImg;
+		//焦点初始化
+		PAGE.focusInit();
+		PAGE.changeFocus("hands_x0_y0_lampFocus_");
+
+		try {
+			startMp3();
+		} catch(e) {}
+
+		/**
+		 * 灯笼选中和未选中
+		 */
+		function lampFocusFunc(ii) {
+			clearInterval(lampInterval);
+			lampFlag = 0;
+			if(ii == 0) {
+				Lamp = CT.$("hideLamp");
+				lampImg = "lamp";
+			} else if(ii == 1) {
+				Lamp = CT.$("lampFocus");
+				lampImg = "selected";
+			}
+			lampInterval = setInterval(function() {
+				if(lampFlag > 1) {
+					lampFlag = 0;
+				}
+				Lamp.src = "./images/portal/" + lampImg + lampFlag + ".png";
+				lampFlag++;
+			}, 200);
+		}
+
+		/**
+		 *跳转首页抽奖
+		 */
+		function toActiMain() {
+			try {
+				stopMp3();
+			} catch(e) {}
+			actiObj.actiCommonJumpUrl("./activity_ZJGMain.html");
+		}
+		/**
+		 * 返回方法
+		 */
+		function backfunc() {
+			try {
+				stopMp3();
+			} catch(e) {}
+			window.location.href = "http://10.0.2.53:9097/web/HD/index.html";
+		}
+	</script>
+
+</html>

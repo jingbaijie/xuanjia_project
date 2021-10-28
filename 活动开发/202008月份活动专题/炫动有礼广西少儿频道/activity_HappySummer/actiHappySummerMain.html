@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content = "page-view-size" name = "1280*720">
+    <title>快乐暑期--炫动有礼</title>
+</head>
+<style>
+    body
+    .main{
+        width: 1280px;
+        height: 720px;
+        position: absolute;;
+        background: url("images/BG.jpg") no-repeat;
+        margin: 0;
+        padding: 0;
+        left: 0;
+        top: 0;
+    }
+    .rule{
+        position: absolute;
+        background: url("images/rule.png") no-repeat;
+        width: 270px;
+        height: 173px;
+        left: 100px;
+        top: 225px;
+    }
+    .lotter{
+        position: absolute;
+        width: 520px;
+        height: 500px;
+        left: 570px;
+        top: 150px;
+    }
+    .lotter div{
+        position: absolute;
+        width: 170px;
+        height: 145px;
+    }
+    .popup{
+        position: absolute;
+        top:0px;
+        left:0px;
+        width: 1280px;
+        height: 720px;
+        line-height: 720px;
+        text-align: center;
+        background: rgba(0,0,0,.7);
+        visibility: hidden
+    }
+</style>
+<body>
+    <div class="main">
+        <div id="littleTips" style="font-size: 38px;color: #ff0000;text-align: center;font-weight: bold;"></div>
+
+        <!--抽奖列表-->
+        <div id="lotter" class="lotter">
+            <div id="hands_x0_y0_clickstar_" style="left: 162px;top: 150px; ">
+                <img id="clickstar" src="images/star.png" style="position: absolute;visibility: hidden ">
+                <img id="btnstar" src="images/star.png" style="position: absolute;">
+            </div>
+            <img id="selectimg" src="images/select/4.png" style="position:absolute;width: 245px;height: 192px;left: 134px;top: 120px;">
+            <div style="left: 0px; top: 0px;"><img src="images/1.png"></div>
+            <div style="left: 174px; top: 0px;"><img src="images/2.png"></div>
+            <div style="left: 348px; top: 0px;"><img src="images/3.png"></div>
+            <div style="left: 348px; top: 150px;"><img src="images/4.png"></div>
+            <div style="left: 348px; top: 300px;"><img src="images/5.png"></div>
+            <div style="left: 174px; top: 300px;"><img src="images/6.png"></div>
+            <div style="left: 0px; top: 300px;"><img src="images/7.png"></div>
+            <div style="left: 0px; top: 150px;"><img src="images/8.png"></div>
+        </div>
+        <!--规则-->
+        <div class="rule"></div>
+        <!--中奖名单-->
+        <div style="position: absolute;left: 110px;top:475px;overflow: hidden;width: 240px;height: 210px;">
+            <div id="rankscro" style="position: absolute;left: 0px;top:0px;width: 240px;height: 150px;overflow: hidden;">
+                <div id="rankList" style="width: 240px;">
+
+                </div>
+            </div>
+
+            <div id="hands_x0_y0_infobtn_" style="position: absolute;left: 20px;top: 140px;">
+                <img src="images/info.png" style="position: absolute;">
+                <img id="infobtn" src="images/info_select.png" style="position: absolute;visibility: hidden">
+            </div>
+        </div>
+        <!--我的奖品-->
+        <div id="hands_x0_y0_myprize_" style="position: absolute;left: -5px;bottom: 50px;width: 90px;height: 168px;">
+            <img src="images/myprize.png" style="position: absolute">
+            <img id="myprize" src="images/myprize_select.png" style="position: absolute;visibility: hidden">
+        </div>
+        <!--返回-->
+        <div id="hands_x0_y0_back_" style="position: absolute;width: 100px;height: 100px;left: 1155px;top: 0px;">
+            <img src="images/back.png" style="position: absolute">
+            <img id="back" src="images/back_select.png" style="position: absolute;visibility: hidden">
+        </div>
+        <!--剩余奖品数-->
+        <div id="lastCount" style="position: absolute;color: #FFFFFF;left: 1175px;top: 202px;font-size: 12px;">
+            <div id="yxds5" title="5元有线电视费" style="position: absolute;left: 0px;top: 368px">0</div>
+            <div id="dlhhtz" title="得力绘画套装" style="position: absolute;left: 0px;top: 0px">0</div>
+            <div id="lgjmsc" title="乐高积木赛车" style="position: absolute;left: 0px;top: 124px">0</div>
+            <div id="yxds50" title="50元有线电视费" style="position: absolute;left: 0px;top: 248px">0</div>
+        </div>
+        <!--弹框-->
+        <div id="hands_x0_y0_popup_" class="popup">
+            <img id="popup" src="images/popup/popup1.png" style="position: absolute;top: 145px;left: 413px;visibility: hidden" >
+            <img id="popup4" src="images/popup/popup4.png" style="position: absolute;top: 145px;left: 413px;visibility: hidden" >
+            <img id="selectpopup" src="images/popup/selectpopup.png" style="position: absolute;top: 475px;left: 525px;">
+        </div>
+    </div>
+    <script type = "text/javascript" src = "js/loadCommomJs.js?v=202007092"></script>
+    <script type = "text/javascript" src = "js/actiComm.js?v=202007092"></script>
+<script>
+    var isOrder = 1; //是否订购,0表示已订购
+    var prizing = false;/*是否是抽奖动画播放中*/
+    var flag = false;/*开始按钮切换*/
+    var selectpicnum = 0;/*控制选中切换*/
+    var selectimg = CT.$('selectimg');//抽奖选中
+    var handspopup = CT.$('hands_x0_y0_popup_');//弹框背景
+    var popup = CT.$('popup');//弹框图片
+    var selectpopup = CT.$('selectpopup'); //弹框选中状态；
+    var prizes={};//用户信息
+    //var actiActivityId = '18';//活动id
+    var userprizes = 0;//用户已中奖品
+    var userprizesnum = 0;//用户今日抽奖次数
+    var userprizeslastnum = 1;//用户今日剩余抽奖次数
+    var prizePrice = 0;//是否是奖品，0不是奖品
+    var randomIndex = 0;//奖品索引
+    var prizeRemainNum;//当前奖品数量
+    var prizeCname;//当前奖品名称
+    var yxds5 = CT.$('yxds5').title;
+    var dlhhtz = CT.$('dlhhtz').title;
+    var lgjmsc = CT.$('lgjmsc').title;
+    var yxds50 = CT.$('yxds50').title;
+    var createtime;//用户订购时间
+    var sortedPrizes = ['小猪佩奇第六季英文版','5元有线电视费','宇宙护卫队','得力绘画套装','乐高积木赛车','熊出没夏日连连看','50元有线电视费','超级飞侠8'];
+    /*位置*/
+    var positions = [
+        { left: 0, top: 0 },
+        { left: 174, top: 0 },
+        { left: 348, top: 0 },
+        { left: 348, top: 150 },
+        { left: 348, top: 300 },
+        { left: 174, top: 300 },
+        { left: 0, top: 300 },
+        { left: 0, top: 150 },
+    ]
+
+    function initButtons() {
+        buttons.push({
+            id:'hands_x0_y0_clickstar_',
+            clickHandler: 'javascript:clickstar()',
+            up:'disable',
+            down:'disable',
+            leftEvent:'javascript:leftstar()',
+            rightEvent:'javascript:rightstar()',
+            focusType:7
+        },{
+            id:'hands_x0_y0_back_',
+            clickHandler: 'javascript:()',
+            up:'disable',
+            down:'disable',
+            leftEvent:'javascript:leftback()',
+            right:'disable',
+            focusType:7
+        },{
+            id:'hands_x0_y0_infobtn_',
+            clickHandler:'javascript:toactiMyPrize()',
+            up:'disable',
+            down:'disable',
+            left:'hands_x0_y0_myprize_',
+            rightEvent:'javascript:rightinfobtn()',
+            focusType:7
+        },{
+            id:'hands_x0_y0_myprize_',
+            clickHandler:'javascript:toactiMyPrize()',
+            up:'disable',
+            down:'disable',
+            left:'disable',
+            right:'hands_x0_y0_infobtn_',
+            focusType:7
+        },{
+            id:'hands_x0_y0_popup_',
+            clickHandler: 'javascript:clickpopup()',
+            up:'disable',
+            down:'disable',
+            left:'disable',
+            right:'disable',
+            focusType:7
+        })
+        /*鉴权*/
+        orderJs.columnGetAuth(function (data) {
+            if(data == '0'){
+                isOrder = 0;
+            }else {
+                isOrder = 1;
+            }
+        })
+        PAGE.focusInit();
+        PAGE.changeFocus('hands_x0_y0_clickstar_');
+        /*奖品列表 调用接口*/
+        actiObj.getActivityPrize(function (data) {
+            console.log(data);
+            prizes = data.data;
+            prizes.records.sort(function(r1, r2) {
+                return sortedPrizes.indexOf(r1.prizeCname) - sortedPrizes.indexOf(r2.prizeCname)
+                console.log(prizes);
+            });
+            actiObj.getUserPrizeInfo(function (data) {
+                console.log(data);
+                userprizes = data.data;
+                actiObj.getChance(function (data) {
+                    console.log(data);
+                    userprizesnum = parseInt(data.data.activityChance) || 0;
+                    userprizeslastnum = 1 - userprizesnum
+                    for(var i=0;i<prizes.records.length; i++){
+                        var prize = prizes.records[i];
+                        /*获取奖品数量*/
+                        prizeRemainNum = prizes.records[i].prizeRemainNum;
+                        prizeCname = prizes.records[i].prizeCname;
+                        if(prizeCname == yxds5){
+                            CT.$('yxds5').innerHTML = prizeRemainNum;
+                        }else if(prizeCname == dlhhtz){
+                            CT.$('dlhhtz').innerHTML = prizeRemainNum;
+                        }else if(prizeCname == lgjmsc){
+                            CT.$('lgjmsc').innerHTML = prizeRemainNum;
+                        }else if(prizeCname == yxds50){
+                            CT.$('yxds50').innerHTML = prizeRemainNum;
+                        }
+                    }
+                })
+            });
+        })
+    }
+
+    /*焦点切换*/
+    function leftstar() {
+        if(prizing){
+            CT.$('littleTips').innerHTML = "转盘转动中，请勿做多余操作！";
+        }else {
+            selectimg.style.visibility='hidden';
+            PAGE.changeFocus('hands_x0_y0_infobtn_');
+        }
+    }
+    function rightstar() {
+        if(prizing){
+            CT.$('littleTips').innerHTML = "转盘转动中，请勿做多余操作！";
+        }else {
+            selectimg.style.visibility='hidden';
+            CT.$('back').style.visibility='inherit';
+            PAGE.changeFocus('hands_x0_y0_back_');
+        }
+
+    }
+    function leftback() {
+        selectimg.style.visibility='inherit';
+        CT.$('back').style.visibility='hidden';
+        PAGE.changeFocus('hands_x0_y0_clickstar_');
+    }
+    function rightinfobtn() {
+        selectimg.style.visibility='inherit';
+        CT.$('infobtn').style.visibility='hidden';
+        PAGE.changeFocus('hands_x0_y0_clickstar_');
+    }
+
+    /*随机抽取*/
+    function randomPrize() {
+        var randomsum = 0;
+        for (var i=0; i<prizes.records.length; i++){
+            randomsum += prizes.records[i].prizePercentage;
+        }
+        var resule = Math.random() * randomsum;
+        var randomitem = 0;
+        for (var i=0; i<prizes.records.length; i++){
+            randomitem += prizes.records[i].prizePercentage;
+            if(randomitem>resule){//比较抽取的奖品属于哪个
+                return i;
+            }
+        }
+    }
+    /*弹出中奖提示*/
+    function play(queue,randomIndex) {
+        var ani = queue.shift();
+        selectimg.style.left = (positions[ani.index].left - 38) + 'px';
+        selectimg.style.top = (positions[ani.index].top -30) + 'px';
+        if(queue.length){
+            setTimeout(function() {
+                play(queue,randomIndex);
+            }, ani.delay);
+        }else {
+                CT.$('littleTips').innerHTML = "";
+                prizePrice = prizes.records[randomIndex].prizePrice;//0为看视频否则就是我的奖品
+                prizeCname = prizes.records[randomIndex].prizeCname;
+                if(randomIndex == 0 || randomIndex == 2 || randomIndex == 5 || randomIndex == 7){
+                    popup.src = 'images/popup/popup1.png';
+                }else if(randomIndex == 1 || randomIndex == 3 || randomIndex == 4 || randomIndex == 6){
+
+                    if(prizes.records[randomIndex].prizeRemainNum > 0){//奖品数量大于0，中奖
+                        var prizeId = prizes.records[randomIndex].id;
+                        actiObj.setPrize(prizeId);
+                        popup.src = 'images/popup/popup2.png';
+                        prizeRemainNum = prizes.records[randomIndex].prizeRemainNum - 1;//奖品剩余数量
+                        if(prizeCname == yxds5){
+                            CT.$('yxds5').innerHTML = prizeRemainNum;
+                        }else if(prizeCname == dlhhtz){
+                            CT.$('dlhhtz').innerHTML = prizeRemainNum;
+                        }else if(prizeCname == lgjmsc){
+                            CT.$('lgjmsc').innerHTML = prizeRemainNum;
+                        }else if(prizeCname == yxds50){
+                            CT.$('yxds50').innerHTML = prizeRemainNum;
+                        }
+                    }else {
+                        popup.src = 'images/popup/popup3.png';
+                    }
+                }
+                actiObj.setChance();
+                handspopup.style.visibility = 'visible';
+                PAGE.changeFocus('hands_x0_y0_popup_');
+        }
+    }
+    /*随机抽取看视频*/
+    function randomUnprize() {
+        var pIndex = randomPrize()
+        if(prizes.records[pIndex].prizePrice == 0){
+            return pIndex;
+        }else {
+            return randomUnprize();
+        }
+
+    }
+    var actiUserId = CT.getCookie("actiUserId")+"";
+    var getUserTimeurl = AjaxConfig.origin +"/suz_orderTime/commonOrderTab/orderTime";//苏州
+    //var getUserTimeurl = AjaxConfig.origin +"/wx_order_time/logOrderTab/orderTime"; //无锡
+    /*获取用户会员购买时间*/
+    function getUserTime(fn) {
+        actiObj.getAjaxResult({
+            requestUrl: getUserTimeurl,
+            params: {
+                userId: actiUserId
+            },
+            success: function(data){
+                fn &&fn(data);
+            },
+            fail: function(){
+                fn && fn(false);
+            }
+        });
+    }
+    getUserTime(function (data) {
+
+        createtime = new Date(data.CREATE_TIME).getTime();
+
+        //createtime = data.CREATE_TIME;
+        //createtime = 1595001600000;
+    });
+
+    /*开始按钮*/
+    function clickstar() {
+        if(isOrder == 0){//已订购用户可以抽奖，否则跳转订购页
+            if(prizing) return;
+            if(userprizeslastnum <= 0){//今日抽奖次数已用完
+                PAGE.changeFocus('hands_x0_y0_popup_');
+                handspopup.style.visibility = 'visible';
+                CT.$('popup4').style.visibility = 'visible';
+                return;
+            }
+            prizing = true;
+            var lefttTme =  1594742400000;//开始时间毫秒 lefttTme < createtime < rightTime
+            var rightTime = 1598803200000;//结束时间毫秒 userprizes.length <= 0 ||
+            if(userprizes.length <= 0 && lefttTme < createtime && createtime < rightTime){
+                randomIndex = randomPrize();
+            }else {
+                randomIndex = randomUnprize();
+            }
+            var random = prizes.records[randomIndex];
+            var queue = [];
+            queue.unshift({ index: randomIndex, delay: 0 });
+            var targRing = (Math.floor(Math.random()*3)) + 5;
+            for(var i =0; i<targRing; i++){
+                for(var j =prizes.records.length-1; j>=0; j--){
+                    queue.unshift({ index: j, delay: 100 })
+                }
+            }
+            play(queue,randomIndex)
+        }else {
+            PAGE.otherPageParam ='&' + window.location.search.substring(1);
+            CT.goPage();
+            orderJs.columnToOrderPage("actiHappySummerMain");
+        }
+
+    }
+    /*弹框点击确认*/
+    function clickpopup() {
+        //跳转
+        if(userprizeslastnum <=0){//如果抽奖次数小于0  让弹框关闭，焦点在开始按钮上
+            popup.style.visibility = 'hidden';
+            CT.$('popup4').style.visibility = 'hidden';
+            handspopup.style.visibility = 'hidden';
+            PAGE.changeFocus('hands_x0_y0_clickstar_');
+        }else {
+            if(prizePrice == 0){//如果奖品价格为0，就跳视频
+                var cartoonId=1897;
+                if(randomIndex == 0){
+                    cartoonId=1897;//苏州1897 无锡952
+                }else if(randomIndex == 2){
+                    cartoonId=2431;//苏州2431 无锡611
+                }else if(randomIndex == 5){
+                    cartoonId=2635;//苏州2635 无锡959
+                }else if(randomIndex == 7){
+                    cartoonId=2431;//苏州2431 无锡686
+                }
+                PAGE.otherPageParam = window.location.search.substring(1);
+                CT.goPage();
+                var commpageId = 3;
+                var cartoonData={recommendDisplayType:1,recommendDisplayValue:cartoonId,commpageId:commpageId};
+                CT.toAnterRecommendUrl(cartoonData);
+            }else {
+                if(prizes.records[randomIndex].prizeRemainNum > 0){ //如果奖品剩余数量大于0就跳我的奖品，否则就关闭弹框，焦点在开始
+                    window.location.href='actiMyPrize.html';
+                }else {
+                    popup.style.visibility = 'hidden';
+                    handspopup.style.visibility = 'hidden';
+                    PAGE.changeFocus('hands_x0_y0_clickstar_');
+                }
+            }
+        }
+    }
+    /*中奖名单*/
+    function prizeList() {
+        actiObj.getPrizeUserInfo(function(data){
+            var rankList = CT.$('rankList');
+            var rankListHTML = "";
+            var userId = "";
+            if(data && data.successFlg == "1" && data.data.records){
+                var rankListArr = data.data.records || [];
+                if(rankListArr.length > 0){
+                    for(var i = 0; i < rankListArr.length; i++){
+                        userId = rankListArr[i].userId+"";
+                        userId = userId.substr(0,3) + "****" + userId.substr(userId.length-4);
+                        rankListHTML += "<div style=\"height: 30px;\"><span style=\"float: left\">"+ userId +"</span><span style=\"float: right\">"+ rankListArr[i].prizeCname +"</span></div>"
+
+                    }
+                    rankList.innerHTML = rankListHTML;
+
+                    var con = document.getElementById('rankscro');
+                    var containerHeight = con.offsetHeight;
+                    var contentHeight = con.scrollHeight;
+                    if (containerHeight < contentHeight) {
+                        con.innerHTML += con.innerHTML;
+                        var setTime = setInterval(function () {
+                            con.scrollTop += 10;
+                            if (con.scrollTop > contentHeight) {
+                                con.scrollTop -= contentHeight;
+                            }
+                        }, 200);
+                    }
+                }
+            }
+        });
+    }
+
+    /*跳转我的奖品页面*/
+    function toactiMyPrize() {
+        window.location.href='actiMyPrize.html';
+      /*  var url = "actiMyPrize.html";
+        actiObj.actiCommonJumpUrl(url);*/
+    }
+    /*开始按钮动画*/
+    function lotter() {
+        var btnstar  = CT.$('btnstar');
+        if(flag)
+        {
+            btnstar.src = 'images/star.png';
+            flag=false;
+        }else {
+            btnstar.src = 'images/stars.png';
+            flag=true;
+        }
+    }
+    /*选中动画*/
+    function selectpic() {
+        var selectimg = CT.$('selectimg');
+        selectimg.src = 'images/select/' + ((selectpicnum%4)+1) + '.png'
+        selectpicnum++;
+    }
+    var timer = setInterval(function(){
+        lotter();
+        selectpic();
+    },200)
+    //页面返回
+    function backfunc(){
+        if(prizing){
+            CT.$('littleTips').innerHTML = "转盘转动中，请勿做多余操作！";
+        }else {
+            CT.backPage();
+        }
+        /*CT.goPage*/
+
+    }
+    prizeList();
+    initButtons();
+
+</script>
+
+</body>
+</html>

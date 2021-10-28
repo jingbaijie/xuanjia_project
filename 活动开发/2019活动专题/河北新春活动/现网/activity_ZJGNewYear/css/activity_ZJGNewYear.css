@@ -1,0 +1,196 @@
+.withScreen{
+    width: 1280px;
+    height: 720px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+/*前置页*/
+.portalBG{
+    background: url("../images/portal/hebeiBG.png")no-repeat;
+}
+#hideLamp{
+    width: 348px;
+    height: 368px;
+    position: absolute;
+    top: 150px;
+    left: 930px;
+}
+#backImg{
+    width: 148px;
+    height: 71px;
+    position: absolute;
+    top: 40px;
+    left: 1080px;
+}
+/*首页抽奖页*/
+.mainBg{
+    background: url("../images/mainPage/mainBG.jpg")no-repeat;
+}
+#littleTips{
+    width: 386px;
+    height: 25px;
+    position: absolute;
+    line-height: 30px;
+    font-size: 24px;
+    font-weight: bolder;
+    text-align: center;
+    color: red;
+}
+#chanceNum{
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 305px;
+    left: 1125px;
+    line-height: 50px;
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    color: #f7e40b;
+}
+.fastRow{
+    transition: all 0.2s ease 0s;
+    -webkit-transition: all 0.2s ease 0s;
+    -moz-transition: all 0.2s ease 0s;
+    -o-transition: all 0.2s ease 0s;
+}
+.slowRow{
+    transition: all 0.5s ease 0s;
+    -webkit-transition: all 0.5s ease 0s;
+    -moz-transition: all 0.5s ease 0s;
+    -o-transition: all 0.5s ease 0s;
+}
+/*中奖名单页*/
+.rankList{
+    width: 675px;
+    height: 225px;
+    overflow: hidden;
+    position: absolute;
+    top: 230px;
+    left: 300px;
+}
+#rankList{
+    width: 675px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+#rankList .rankLine{
+    width: 675px;
+    height: 30px;
+    position: relative;
+    line-height: 30px;
+    font-size: 24px;
+    text-align: center;
+    color: #171615;
+}
+#rankList .rankLine .line1{
+    display: block;
+    width: 200px;
+    height: 30px;
+    float: left;
+}
+#rankList .rankLine .line2{
+    display: block;
+    width: 355px;
+    height: 30px;
+    float: left;
+}
+#rankList .rankLine .line3{
+    display: block;
+    width: 290px;
+    height: 30px;
+    float: left;
+}
+.showSize{
+    font-size: 24px;
+    font-weight: bold;
+    color: #111010;
+}
+#myUserId{
+    width: 240px;
+    height: 40px;
+    position: absolute;
+    top: 535px;
+    left: 425px;
+}
+#myPrize{
+    width: 240px;
+    height: 40px;
+    position: absolute;
+    top: 535px;
+    left: 795px;
+    font-size: 22px;
+}
+#phoneText{
+    width: 280px;
+    height: 50px;
+    position: absolute;
+    top: 585px;
+    left: 428px;
+    color: white;
+    text-align: center;
+    line-height: 50px;
+    font-size: 28px;
+    z-index: 1;
+}
+.phoneText{
+    width: 280px;
+    height: 50px;
+    position: absolute;
+    top: 631px;
+    left: 428px;
+    color: white;
+    text-align: center;
+    line-height: 50px;
+    font-size: 28px;
+    background-color: transparent;
+    border: none;    
+}
+input {
+    border: 0;
+    outline: none;
+    background-color: rgba(0, 0, 0, 0);
+}
+#phoneTips{
+    width: 480px;
+    height: 50px;
+    position: absolute;
+    top: 630px;
+    left: 360px;
+    color: #ff0057;
+    text-align: center;
+    line-height: 50px;
+    font-size: 28px;
+}
+#phoneTable{
+    width: 306px;
+    height: 392px;
+    position: absolute;
+    top: 190px;
+    left: 435px;
+    background: black;
+    opacity: 0.5;
+}
+.phoneOne{
+    width: 102px;
+    height: 98px;
+    opacity: 1;
+    margin: 0;
+    padding: 0;
+    float: left;
+    text-align: center;
+    line-height: 98px;
+    font-size: 24px;
+    color: white;
+}
+.discountFocusAni{
+	animation: bigger 1s linear infinite;
+    -webkit-animation: bigger 1s linear infinite;
+    -moz-animation: bigger 1s linear infinite;
+    -o-animation: bigger 1s linear infinite;
+}

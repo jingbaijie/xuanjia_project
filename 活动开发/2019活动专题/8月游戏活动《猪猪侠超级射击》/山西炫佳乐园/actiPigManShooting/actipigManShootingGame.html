@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>猪猪侠超级射击游戏页</title>
+		<link rel="stylesheet" type="text/css" href="css/actipigManShootingGame.css" />
+	</head>
+
+	<body>
+		<div id="main">
+			<!--弹弓-->
+			<div id="hands_x0_y0_slingShotFocus_">
+				<img src="img/game/slingShot.png" id="slingShotFocus" />
+			</div>
+			<!--线-->
+			<div id="line" class="line"></div>
+			<img src="img/empty.png" id="threeLine" style="position: absolute;left: 510px;top: 470px;" />
+
+			<!--球-->
+			<img src="img/game/ball.png" id="ball" style="position: absolute;left: 620px;top: 410px;z-index: 1;" />
+
+			<!--IP-->
+			<img src="img/game/1.png" id="leftCartoon" />
+			<img src="img/game/2.png" id="middleCartoon" />
+			<img src="img/game/3.png" id="rightCartoon" />
+
+			<!--黑色屏障-->
+			<img src="img/empty.png" id="barrier" style="position: absolute;left: 460px;top: 30px;" />
+
+			<!--爆炸图片-->
+			<img src="img/empty.png" id="boom" style="position: absolute;left: 100px;top: 100px;" />
+
+			<!--弹窗-->
+			<img src="img/empty.png" id="tanchuangTip" style="position: absolute;left: 0px;top: 0px;z-index: 2;" />
+			<!--去抽奖-->
+			<div id="hands_x0_y0_goChouConfirmFocus_">
+				<img src="img/tanChuang/confirmFocus.png" id="goChouConfirmFocus" style="position: absolute;left: 445px;top: 380px;z-index: 2;visibility: hidden;" />
+			</div>
+			<div id="hands_x0_y0_goChouCancelFocus_">
+				<img src="img/tanChuang/cancelFocus.png" id="goChouCancelFocus" style="position: absolute;left: 655px;top: 380px;z-index: 2;visibility: hidden;" />
+			</div>
+			<!--没有抽奖机会-->
+			<div id="hands_x0_y0_noChouConfirmFocus_">
+				<img src="img/tanChuang/confirmFocus.png" id="noChouConfirmFocus" style="position: absolute;left: 445px;top: 380px;z-index: 2;visibility: hidden;" />
+			</div>
+			<div id="hands_x0_y0_noChouCancelFocus_">
+				<img src="img/tanChuang/cancelFocus.png" id="noChouCancelFocus" style="position: absolute;left: 655px;top: 380px;z-index: 2;visibility: hidden;" />
+			</div>
+		</div>
+		<!--引入公用JS-->
+		<script type="text/javascript" src="../../js/column.js"></script>
+		<script type="text/javascript" src="./js/actiComm.js"></script>
+		<!--引入结束-->
+		<script type="text/javascript">
+			var buttons = [{
+				id: "hands_x0_y0_slingShotFocus_",
+				clickHandler: "javascript:ShootGame.startShoot()",
+				left: "disable",
+				right: "disable",
+				up: "disable",
+				down: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_goChouConfirmFocus_",
+				clickHandler: "javascript:ShootGame.goChouConfirm()",
+				left: "disable",
+				right: "hands_x0_y0_goChouCancelFocus_",
+				up: "disable",
+				down: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_goChouCancelFocus_",
+				clickHandler: "javascript:ShootGame.backMain()",
+				left: "hands_x0_y0_goChouConfirmFocus_",
+				right: "disable",
+				up: "disable",
+				down: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_noChouConfirmFocus_",
+				clickHandler: "javascript:ShootGame.backMain()",
+				left: "disable",
+				right: "hands_x0_y0_noChouCancelFocus_",
+				up: "disable",
+				down: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_noChouCancelFocus_",
+				clickHandler: "javascript:ShootGame.backMain()",
+				left: "hands_x0_y0_noChouConfirmFocus_",
+				right: "disable",
+				up: "disable",
+				down: "disable",
+				focusType: 7
+			}]
+
+			function Shoot(main) {
+				this.init(); //初始化
+				this.shake(); //小球晃动
+				this.shakeAni;
+				this.lineImg = 1;
+				this.barrierImg = 1;
+				this.barrierAni = null; //黑色屏障动画					
+				this.barrierArr = [{
+					"left": "100px",
+					"top": "100px"
+				}, {
+					"left": "480px",
+					"top": "30px"
+				}, {
+					"left": "860px",
+					"top": "100px"
+				}];
+				this.randomNum; //随机数					
+				this.firstAni = null;
+				this.ballFlag = 0;
+				this.ip1Show = true;
+				this.ip2Show = true;
+				this.ip3Show = true;
+				this.boomImg = 1; //爆炸图片
+				this.boomAni = null;
+				this.boomArr = [{
+					"left": "100px",
+					"top": "100px"
+				}, {
+					"left": "460px",
+					"top": "80px"
+				}, {
+					"left": "880px",
+					"top": "150px"
+				}];
+				this.chanceNum = 0; //机会次数
+				this.creditNum = 0; //抽奖次数
+			}
+
+			Shoot.prototype = {
+				constructor: Shoot,
+				//初始化函数				
+				init: function() {
+					var _this = this;
+					//获取次数
+					actiObj.getChance(function(res) {
+						_this.chanceNum = res.activityChance;
+						//获取积分（抽奖机会）
+						actiObj.getUserCredit(function(data) {
+							if(data && data.resultMsg == "success") {
+								_this.creditNum = parseInt(data.creditNum, 10) || 0;
+							} else {
+								_this.creditNum = 0;
+							}
+						})
+					})
+				},
+				setChanceFunc: function() {
+					actiObj.setChance();
+					this.chanceNum++;
+				},
+				setCreditFunc: function() {
+					this.creditNum++;
+					actiObj.setUserCredit(this.creditNum);
+				},
+				//小球晃动
+				shake: function() {
+					var _this = this;
+					this.firstAni = setTimeout(function() {
+						actiObj.addClass(CT.$("ball"), "ballAni");
+						actiObj.removeClass(CT.$("line"), "line");
+						actiObj.addClass(CT.$("line"), "lineAni");
+					}, 500)
+					setTimeout(function() {
+						//焦点初始化
+						focusInit();
+						if(curFocus) {
+							curFocus.defaultBlur();
+						}
+						curFocus = getFocusModel6("hands_x0_y0_slingShotFocus_");
+						curFocus.defaultFocus();
+					}, 1000)
+					this.shakeAni = setInterval(function() {
+						actiObj.removeClass(CT.$("line"), "lineAni");
+						if(_this.lineImg > 3) {
+							_this.lineImg = 1;
+							CT.$("threeLine").src = "img/game/line" + _this.lineImg + ".png";
+							_this.ballFlag = 1;
+							CT.$("ball").style.left = "620px";
+							CT.$("threeLine").style.left = "510px";
+						} else {
+							CT.$("threeLine").src = "img/game/line" + _this.lineImg + ".png";
+							if(_this.lineImg == 2) {
+								_this.ballFlag = 2;
+								CT.$("ball").style.left = " 750px";
+								CT.$("threeLine").style.left = "560px";
+							} else if(_this.lineImg == 3) {
+								_this.ballFlag = 3;
+								CT.$("ball").style.left = "860px";
+								CT.$("threeLine").style.left = "560px";
+							}
+						}
+						_this.lineImg++;
+					}, 500)
+				},
+				//黑色屏障
+				barrier: function() {
+					var _this = this;
+					this.randomNum = Math.floor(Math.random() * 3); //生成[0,3)随机整数
+					CT.$("barrier").style.left = this.barrierArr[this.randomNum].left;
+					CT.$("barrier").style.top = this.barrierArr[this.randomNum].top;
+					this.barrierAni = setInterval(function() {
+						if(_this.barrierImg > 3) {
+							_this.barrierImg = 1;
+							clearInterval(_this.barrierAni);
+							CT.$("barrier").src = "img/empty.png";
+						} else {
+							CT.$("barrier").src = "img/game/barrier/" + _this.barrierImg + ".png";
+						}
+						_this.barrierImg++;
+					}, 200)
+				},
+				//点击射击
+				startShoot: function() {
+					var _this = this;
+					clearInterval(this.shakeAni);
+					CT.$("threeLine").src = "img/empty.png";
+					actiObj.addClass(CT.$("line"), "line");
+					this.barrier();
+					if(this.ballFlag == 1) {
+						actiObj.addClass(CT.$("ball"), "ball1Ani");
+						if(this.randomNum != 2) {
+							this.ip1Show = false;
+							this.boomFunc();
+							CT.$("boom").style.left = this.boomArr[2].left;
+							CT.$("boom").style.top = this.boomArr[2].top;
+							setTimeout(function() {
+								CT.$("rightCartoon").src = "img/empty.png";
+							}, 600)
+							setTimeout(function() {
+								CT.$("tanchuangTip").src = "img/tanChuang/goChou.png";
+								//切换焦点
+								actiObj.changeFocus("hands_x0_y0_goChouConfirmFocus_");
+								//上传一次机会
+								_this.setChanceFunc();
+								//存储一次抽奖机会
+								_this.setCreditFunc();
+							}, 1200)
+						} else {
+							setTimeout(function() {
+								CT.$("tanchuangTip").src = "img/tanChuang/noChou.png";
+								//切换焦点
+								actiObj.changeFocus("hands_x0_y0_noChouConfirmFocus_");
+								//上传一次机会
+								_this.setChanceFunc();
+							}, 1200)
+						}
+					} else if(this.ballFlag == 3) {
+						actiObj.addClass(CT.$("ball"), "ball3Ani");
+						if(this.randomNum != 0) {
+							this.ip3Show = false;
+							this.boomFunc();
+							CT.$("boom").style.left = this.boomArr[0].left;
+							CT.$("boom").style.top = this.boomArr[0].top;
+							setTimeout(function() {
+								CT.$("leftCartoon").src = "img/empty.png";
+							}, 600)
+							setTimeout(function() {
+								CT.$("tanchuangTip").src = "img/tanChuang/goChou.png";
+								//切换焦点
+								actiObj.changeFocus("hands_x0_y0_goChouConfirmFocus_");
+								//上传一次机会
+								_this.setChanceFunc();
+								//存储一次抽奖机会
+								_this.setCreditFunc();
+							}, 1200)
+						} else {
+							setTimeout(function() {
+								CT.$("tanchuangTip").src = "img/tanChuang/noChou.png";
+								//切换焦点
+								actiObj.changeFocus("hands_x0_y0_noChouConfirmFocus_");
+								//上传一次机会
+								_this.setChanceFunc();
+							}, 1200)
+						}
+					} else if(this.ballFlag == 2) {
+						actiObj.addClass(CT.$("ball"), "ball2Ani");
+						if(this.randomNum != 1) {
+							this.ip4Show = false;
+							this.boomFunc();
+							CT.$("boom").style.left = this.boomArr[1].left;
+							CT.$("boom").style.top = this.boomArr[1].top;
+							setTimeout(function() {
+								CT.$("middleCartoon").src = "img/empty.png";
+							}, 600)
+							setTimeout(function() {
+								CT.$("tanchuangTip").src = "img/tanChuang/goChou.png";
+								//切换焦点
+								actiObj.changeFocus("hands_x0_y0_goChouConfirmFocus_");
+								//上传一次机会
+								_this.setChanceFunc();
+								//存储一次抽奖机会
+								_this.setCreditFunc();
+							}, 1200)
+						} else {
+							setTimeout(function() {
+								CT.$("tanchuangTip").src = "img/tanChuang/noChou.png";
+								//切换焦点
+								actiObj.changeFocus("hands_x0_y0_noChouConfirmFocus_");
+								//上传一次机会
+								_this.setChanceFunc();
+							}, 1200)
+						}
+					}
+					setTimeout(function() {
+						CT.$("ball").src = "img/empty.png";
+					}, 300)
+				},
+				//爆炸动画
+				boomFunc: function() {
+					var _this = this;
+					this.boomAni = setInterval(function() {
+						if(_this.boomImg > 3) {
+							_this.boomImg = 1;
+							CT.$("boom").src = "img/empty.png";
+							clearInterval(_this.boomAni);
+						} else {
+							CT.$("boom").src = "img/game/boom/" + _this.boomImg + ".png";
+						}
+						_this.boomImg++;
+					}, 200)
+				},
+				//弹窗确定去抽奖
+				goChouConfirm: function() {
+					window.location.href = "actipigManShootingLottery.html";
+				},
+				//弹窗取消
+				backMain: function() {
+					window.location.href = "actipigManShootingMain.html";
+				}
+
+			}
+			var ShootGame = new Shoot("main");
+
+			//点击返回键
+			function backfunc() {
+				ShootGame.backMain();
+			}
+		</script>
+
+	</body>
+
+</html>

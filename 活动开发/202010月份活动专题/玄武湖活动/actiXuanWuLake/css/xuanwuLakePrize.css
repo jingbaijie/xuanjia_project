@@ -1,0 +1,98 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+}
+
+#main {
+    width: 1280px;
+    height: 720px;
+    position: relative;
+    left: 0px;
+    top: 0px;
+    overflow: hidden;
+    background: url(../img/prizeList.jpg) no-repeat;
+    background-size: 100% 100%;
+}
+#closeBtn {
+    position: absolute;
+    left: 1020px;
+    top: 70px;
+}
+
+#hands_x0_y0_closeBtnFocus_ {
+    position: absolute;
+    left: 1020px;
+    top: 70px;
+}
+#telInput{
+    position: absolute;
+    width: 260px;
+    height: 40px;
+    left: 460px;
+    top: 579px;
+    /* border: 1px solid red; */
+    line-height: 40px;
+    text-align: center;
+    font-size: 24px;
+}
+#hands_x0_y0_userPhoneFocus_{
+    position: absolute;
+    left: 438px;
+    top: 566px;
+}
+#userInfo{
+    position: absolute;
+    left: 400px;
+    top: 590px;
+    font-size: 20px;
+}
+#zhongJSituation{
+    position: absolute;
+    left: 450px;
+    top: 538px;
+    width: 600px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    font-size: 20px;
+}
+#hands_x0_y0_saveFocus_{
+    position: absolute;
+    left: 732px;
+    top: 562px;
+}
+#hands_x0_y0_emptyFocus_{
+    position: absolute;
+    left: 838px;
+    top: 562px;
+}
+/* 奖品列表 */
+#prizeListBox{
+	width: 780px;
+    height: 300px;
+    position: absolute;
+    left: 245px;
+    top: 200px;
+    overflow: hidden;
+}
+
+#prizeListBox li{
+	height: 30px;
+	font-size: 20px;
+	color: #333333;
+}
+
+#prizeListUL{
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 780px;
+}
+/*#prizeListBox li>span:nth-child(1), 
+#prizeListBox li>span:nth-child(2){
+	display: block;
+    width: 390px;
+    float: left;
+    text-align: center;
+}*

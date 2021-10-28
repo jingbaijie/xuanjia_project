@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="page-view-size" content="1280*720"/>
+    <title>规则页</title>
+    <link rel="stylesheet" href="./css/childVote.css">
+
+</head>
+<body>
+    <div  class="ruleMain">
+		<img src="./img/prizeMain/LOGO1.png" style="position:absolute;top:15px;left:15px;z-index:10000;" alt="">
+        <img src="./img/rule/bg.jpg"  style="position: absolute;top: 0;left: 0;" alt="">
+        <div class="back">
+            
+        </div>
+        <div class="content">
+
+            <img id="rulePic" src="./img/rule/rule.png" style="position: absolute;top: -8px;left: 62px;" alt="">
+            <div class="roller">
+                <img src="./img/rule/roller.png"  style="position: absolute;top: 0;left: 4px;" alt="">
+                <img id="rollerPic" src="./img/rule/jidu.png"  style="position: absolute;top: 0;left: 0;" alt="">
+            </div>
+            <div class='focus' id='hands_x0_y0_rollerFocus0_' style='left: 0px;top: 0px;'>
+                <img id='rollerFocus0' src='' style='visibility: hidden' alt="">
+            </div>
+        </div>
+    </div>
+    <!-- 引入公共js开始 -->
+    <script src="../../../../js/loadCommomJs.js"></script>
+    <script src="../../../../js/actiComm.js"></script>
+    <!-- 引入公共js结束 -->
+	<script type="text/javascript" src="./js/videoDetail.js"></script>
+    <script>
+        var buttons = [{
+            id: "hands_x0_y0_rollerFocus0_",
+            left: "disable",
+            right: "disable",
+            upEvent: "javascript:upMove()",
+            downEvent: "javascript:downMove()",
+            focusType: 7
+        }];
+        init();
+        function init() {
+            PAGE.focusInit();
+            curFocus = PAGE.getFocusModel6("hands_x0_y0_rollerFocus0_");
+            curFocus.defaultFocus();
+        }
+        function upMove() {
+            var top = parseInt(CT.$("rulePic").style.top);
+            if(top == -8){
+                CT.$("rulePic").style.top = (parseInt(CT.$("rulePic").style.top) + 0) + "px";
+                CT.$("rollerPic").style.top = 0+ "px";
+            }else {
+                CT.$("rulePic").style.top = (parseInt(CT.$("rulePic").style.top) + 29) + "px";
+                CT.$("rollerPic").style.top = (parseInt(CT.$("rollerPic").style.top) - 38.6) + "px";
+            }
+        }
+        function downMove() {
+            var top = parseInt(CT.$("rulePic").style.top);
+
+            if(top == -298){
+                CT.$("rulePic").style.top = (parseInt(CT.$("rulePic").style.top) - 0) + "px";
+                CT.$("rollerPic").style.top = 386 + "px";
+            }else {
+                CT.$("rulePic").style.top = (parseInt(CT.$("rulePic").style.top) - 29) + "px";
+                CT.$("rollerPic").style.top = (parseInt(CT.$("rollerPic").style.top) + 38.6) + "px";
+            }
+        }
+
+        function backFunc() {//关闭弹窗
+            actiObj.actiCommonJumpUrl("childPrizeMain.html");
+        }
+    </script>
+</body>
+</html>

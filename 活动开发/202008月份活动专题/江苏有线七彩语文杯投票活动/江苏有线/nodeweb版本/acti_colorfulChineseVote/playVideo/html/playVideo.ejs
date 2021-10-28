@@ -1,0 +1,1215 @@
+<%- include ('../../components/header') %>
+<link rel="stylesheet" href="<%= basePageUrl %>/css/playVideo.css">
+</head>
+<body bgcolor="transparent" onload="Page.init();" onunload="videoPlayer.exitPage();">
+
+    <!--进度条,收藏 style="display: none;"-->
+    <!--<img src="<%=basePageInfo.localImg%>other/designScetch.png" height="720" width="1280"/>-->
+    <!--进度条-->
+    <div id="progressBar">
+        <div id="progress">
+            <img class="progressImg" id="progress-white" src="<%=basePageInfo.localImg%>other/processBar.png">
+            <img class="progressImg" id="progress-yellow" style="left:-945px;" src="<%=basePageInfo.localImg%>other/curProcessBar.png">
+        </div>
+        <img class="progressImg" id="progress-xhb" style="left:129px;" src="<%=basePageInfo.localImg%>other/playPoint.png">
+        <!--当前播放时间-->
+        <span id="curTime">00:00:00</span>
+        <!--总时间-->
+        <span id="totalTime">01:00:00</span>
+    </div>
+    <div id="player-progress">
+        <!--顶部 显示当前播放的卡通的名称-->
+        <div id="videoName" style="visibility: hidden;"></div>
+        <!--收藏按钮-->
+        <div id="collect">
+            <div id="hands_x0_y0_collectBtn_" style="position: absolute;top:0px;left:0px;">
+                <img id="collectImg" src="<%=basePageInfo.localImg%>buttons/collect.png">
+                <img id="collectBtn" style="position: absolute;top: -8px;left: -8px;visibility: hidden;"
+                    src="<%=basePageInfo.localImg%>buttons/collectFocus.png">
+            </div>
+        </div>
+        <!--上一集按钮-->
+        <div id="preSet">
+            <div id="hands_x0_y0_preSetBtn_" style="position: absolute;top:0px;left:0px;">
+                <img id="preSetImg" src="<%=basePageInfo.localImg%>buttons/preBtn.png">
+                <img id="preSetBtn" style="position: absolute;top:0px;left:0px;visibility: hidden;"
+                    src="<%=basePageInfo.localImg%>buttons/preBtnFocus.png">
+            </div>
+        </div>
+        <!--暂停按钮-->
+        <div id="pause">
+            <div id="hands_x0_y0_pauseBtn_" style="position: absolute;top:0px;left:0px;">
+                <img id="pauseImg" src="<%=basePageInfo.localImg%>buttons/play.png">
+                <img id="pauseBtn" style="position: absolute;top:0px;left:0px;visibility: hidden;"
+                    src="./HD/images/empty.png">
+            </div>
+        </div>
+        <!--下一集按钮-->
+        <div id="nextSet">
+            <div id="hands_x0_y0_nextSetBtn_" style="position: absolute;top:0px;left:0px;">
+                <img id="nextSetImg" src="<%=basePageInfo.localImg%>buttons/nextBtn.png">
+                <img id="nextSetBtn" style="position: absolute;top:0px;left:0px;visibility: hidden;"
+                    src="<%=basePageInfo.localImg%>buttons/nextBtnFocus.png">
+            </div>
+        </div>
+        <!--选集按钮-->
+        <div id="selectSet">
+            <div id="hands_x0_y0_selectSetBtn_" style="position: absolute;top:0px;left:0px;">
+                <img id="selectSetImg" src="<%=basePageInfo.localImg%>buttons/select.png">
+                <img id="selectSetBtn" style="position: absolute;top: -8px;left: -8px;visibility: hidden;"
+                    src="<%=basePageInfo.localImg%>buttons/selectFocus.png">
+            </div>
+        </div>
+        <!--快进暂停操作-->
+        <div id="control">
+            <img id="controlImg" src="./HD/images/empty.png">
+            <!--倍速-->
+            <!-- <span id="speedTxt"></span>-->
+        </div>
+
+        <!--推荐弹框半透明背景-->
+        <img id="recBG" src="./HD/images/translucent.png" style="position: absolute;left: 0px;visibility: hidden;"
+            alt="">
+        <!--推荐片单-->
+        <div id="recPosterWrapper">
+            <div id="recTex">当桑手动阀是打发斯蒂芬</div>
+            <div id="hands_x0_y0_rec0_" class="recPoster" style="">
+                <img id="rec0Img" class="recPosterImg" src="./HD/images/empty.png">
+                <img id="rec0" style="position: absolute;top:0px;left:0px;visibility: hidden;"
+                    src="./HD/images/empty.png">
+            </div>
+            <div id="hands_x0_y0_rec1_" class="recPoster" style="left: 205px;">
+                <img id="rec1Img" class="recPosterImg" src="./HD/images/empty.png">
+                <img id="rec1" style="position: absolute;top:0px;left:0px;visibility: hidden;"
+                    src="./HD/images/empty.png">
+            </div>
+            <div id="hands_x0_y0_rec2_" class="recPoster" style="left: 385px;">
+                <img id="rec2Img" class="recPosterImg" src="./HD/images/empty.png">
+                <img id="rec2" style="position: absolute;top:0px;left:0px;visibility: hidden;"
+                    src="./HD/images/empty.png">
+            </div>
+            <div id="hands_x0_y0_rec3_" class="recPoster" style="left: 565px;">
+                <img id="rec3Img" class="recPosterImg" src="./HD/images/empty.png">
+                <img id="rec3" style="position: absolute;top:0px;left:0px;visibility: hidden;"
+                    src="./HD/images/empty.png">
+            </div>
+            <!--推荐片单返回按钮-->
+            <div id="recBackWrapper" style="visibility: hidden;">
+                <div id="hands_x0_y0_recBack0_" class="recBackBtn" style="left: 220px;">
+                    <img id="recBack0Img" src="<%=basePageInfo.localImg%>buttons/back.png">
+                    <img id="recBack0" style="position: absolute;top:0px;left:0px;visibility: hidden;"
+                        src="<%=basePageInfo.localImg%>buttons/backFocus.png">
+                </div>
+                <div id="hands_x0_y0_recBack1_" class="recBackBtn" style="left: 410px;">
+                    <img id="recBack0Img" src="<%=basePageInfo.localImg%>buttons/exit.png">
+                    <img id="recBack1" style="position: absolute;top:0px;left:0px;visibility: hidden;"
+                        src="<%=basePageInfo.localImg%>buttons/exitFocus.png">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--选集-->
+    <div id="episodes"></div>
+    <!--声音-->
+    <div id="voice" style="visibility: hidden;display: none;overflow: hidden;">
+        <span id="voiceAdd">+</span>
+        <img class="voiceImg" id="voice-white" src="<%=basePageInfo.localImg%>other/voice-white.png">
+        <img class="voiceImg" id="voice-yellow" style="height: 316px;" src="<%=basePageInfo.localImg%>other/voice-yellow.png">
+        <span id="voiceDown">-</span>
+    </div>
+
+    <!-- 播放下一集 -->
+    <div id="nextEpi" style="visibility: hidden;">
+        10s后自动播放下一集
+    </div>
+
+    <%- include('../../components/commJs') %>
+    <script src="<%= basePageUrl %>/js/key3_4.js"></script>
+    <script src="<%= basePageUrl %>/js/videoObj.js"></script>
+    <script>
+        var listNotes = CT.stringToJson(CT.getCookie('listNotes')) || {};
+        var Page = {
+            localImg: basePageInfo.localImg,
+            userId: xjDataLog.getUserId(), //用户id
+            contentId: basePageInfo.commonPageInfo.pageInfo.commonPageId || 1, //页面id
+            cartoonId: CT.requestValue("cartoonId") || '', //播放的cartoonId
+            videoId: CT.requestValue("videoId") || 0, //播放的videoId
+            playId: CT.requestValue("videoId") + "_" + new Date().getTime(), //上传用户播放的唯一标识
+            startPlayPos: 0, //播放的开始位置
+            //进度条长度
+            processBarLen: 945,
+            //是否已显示推荐返回按钮
+            alreadyShowBackBtn: false,
+            //暂停推荐数据
+            pauseRecData: basePageInfo.commonPageInfo.recommend_1 || [],
+            //退出推荐数据
+            exitRecData: [],
+            videoCode: null, //播放的videoCode
+            videoNumber: null, //视频集数
+            videoCname: null, //视频的中文名称
+            videoEname: null, //视频的英文名称
+            booleanFree: 0, //是否免费
+            videoUrl: null, //视频播放串
+            movieCode: null, //播放的 movieCode
+            videoList: [], //视频集合
+            len: 0, //视频的长度
+            /** 播放器UI相关参数 */
+            changeImageTimer: null, //图片切换显示定时器
+            playState: 'play', //播放状态，'play'播放中, 'pause'暂停，trickMode 快进快退
+            forwardOrBackwardFlag: null, //进度条的显示和隐藏Flag
+            volumeTimer: null, //控制音量进度条显示隐藏的定时器
+            volumeDuration: 3000, //音量进度条显示时间
+            startTimebarTimeout: null, //获取总时长定时器
+            curTimer: null, //当前播放时间定时器
+            totalTime: 60 * 60, //视频总时长
+            curTime: 0, //当前播放时间
+            testCurTime: 0, //测试当前播放时间
+            PerSecondTimeout: null, //每秒计时器
+            /** 以下变量会在切换集数的时候使用 */
+            step: 9, //步长,一页会显示多少集
+            startIndex: 0, //起始位置
+            pageNo: listNotes.pageNo || 0, //当前页数
+            pageNum: 1, //总页数
+            playStartTime: new Date().getTime(), //开始播放视频的时间
+            cartoonData: {}, //当前卡通数据
+            isSitcom: false, //是否有剧集,默认false无剧集
+            defaultFocus: listNotes.defaultFocus || "hands_x0_y0_number0_", //默认焦点
+            videoLogTimeStep: 5 * 60 * 1000, //上传日志间隔
+            // videoLogTimeStep: 5 * 1000,
+            timerFlag: null,//心跳日志计时器
+            playUrl: '',
+            //获取总时长计时器计数
+            totalNums2:0,
+            /** 初始化 */
+            init: function () {
+                var _this = this;
+                try {
+                    //当前进度条初始位置
+                    CT.$('progress-yellow').style.left = 0 - _this.processBarLen + 'px';
+                    //退出推荐
+                    if (_this.pauseRecData && _this.pauseRecData.length >= 8) {
+                        _this.exitRecData = _this.pauseRecData.slice(4);
+                    }
+                    // 获取详情
+                    this.getVodDetail();
+                    this.progressBarShow();
+                    clearTimeout(_this.forwardOrBackwardFlag);
+                    _this.forwardOrBackwardFlag = setTimeout(function () {
+                        _this.progressBarHid();
+                    }, 2000);
+                } catch (e) {
+
+                }
+            },
+            /** 获取详情 */
+            getVodDetail: function () {
+                var _this = this;
+                interface.findVideoListByCartoonId({
+                    params: {
+                        cartoonId: _this.cartoonId,
+                        videoId: _this.videoId
+                    },
+                    ajaxConfig: {
+                        async: true
+                    }
+                }, function (res) {
+                    _this.booleanFree = res.data[0].isFree;
+                    _this.videoCode = res.data[0].videoCode;
+                    _this.videoNumber = Number(res.data[0].videoNumber);
+                    _this.videoCname = res.data[0].videoCname;
+                    _this.videoEname = res.data[0].videoEname;
+                    if (res.data[0].videoSumtime) {
+                        videoPlayer.totalTime = res.data[0].videoSumtime;
+                        CT.$("totalTime").innerHTML = Page.timeFormat(videoPlayer.totalTime);
+                    }
+                    _this.videoList = res.data[0];
+
+                    //顶部视频名称
+                    CT.$("videoName").innerHTML = '正在播放：' + res.data[0].videoCname;
+                    _this.videoUrl = res.data[0].movieDetails[0].playUrl;
+                    _this.movieCode = res.data[0].movieDetails[0].movieCode;
+                    //调用播放
+                    _this.preparePlay();
+                    _this.getTotalTime();
+                })
+            },
+            /** 开始准备播放 */
+            preparePlay: function () {
+                var _this = this;
+                _this.getVideoList();
+                _this.getCollectState();
+            },
+            /**
+             * 开始播放视频
+             * 开始播放之前先获取到播放串,可以在眉头获取或者ajax请求获取_this.videoUrl
+             * 视频真正播放时埋点
+             */
+            startVideo: function () {
+                var _this = this;
+                //添加观看记录，个人中心显示用
+                var params = {
+                    userId: _this.userId,
+                    contentId: _this.cartoonId,
+                    contentType: 1, //0 游戏，1卡通
+                    videoId: _this.videoId,
+                    playType: 0
+                };
+                interface.insertHistoryList(params, function (data) { });
+                //记录开始播放视频的时间
+                _this.playStartTime = new Date().getTime();
+                interface.findCartoonDetailById({
+                    params: {
+                        id: _this.cartoonId
+                    }
+                }, function (e) {
+                    _this.cartoonData = e.data;
+                    //上传日志
+                    _this.setUpLoadVideoLog();
+                    var fullPlayObj = {
+                        nns_ids: _this.videoUrl, //视频合集媒资
+                        videoIndex: _this.videoNumber - 1, //当前集数下标
+                        videoName: _this.videoCname, //播放视频名
+                        totalsets: _this.videoList.length //总集数
+                    }
+                    orderJs.getAuth(function () {
+                        videoPlayer.fullScreenPlaying(fullPlayObj);
+                    });
+                });
+
+            },
+            /**
+             * 获取一部视频的集合
+             * 如果cartoonId == 0 是单集，不需要请求list，直接return，cartoonId != 0需要请求所有集数信息
+             */
+            getVideoList: function () {
+                var _this = this;
+                var params = {};
+                if (_this.cartoonId) {
+                    params.cartoonId = _this.cartoonId;
+                } else {
+                    params.videoId = _this.videoId;
+                }
+                interface.findVideoListByCartoonId({
+                    params: params,
+                    ajaxConfig: {
+                        async: true
+                    }
+                }, function (e) {
+                    _this.videoList = e.data || [];
+                    _this.len = e.data.length;
+                    if (_this.len > 0) {
+                        _this.isSitcom = true;
+                    }
+                    _this.pageNum = Number(_this.len - _this.step + 1);
+                    _this.setBtn();
+                    _this.setOtherBtn();
+                    PAGE.focusInit();
+                    var initFocus = 'hands_x0_y0_pauseBtn_';
+                    var start = PAGE.getFocusModel6(initFocus);
+                    start.defaultFocus();
+                    _this.startVideo();
+                });
+            },
+            /**
+             * _this.setBtn();
+             * 设置选集按钮
+             */
+            setBtn: function () {
+                var _this = this;
+                var episodeHtml = "";
+                for (var i = 0; i < _this.step; i++) {
+                    episodeHtml += "<div id='number" + i + "' class='btn' style='top:" + (i * 63 + 80) + "px;left:3px;width:360px;height:70px;visibility:hidden;background: url(" + _this.localImg + "other/selectBtnEd.png)'></div>"
+                        + "<div id='hands_x0_y0_number" + i + "_' class='btn' style='width:354px;height:70px;line-height:70px;top:" + (i * 63 + 80) + "px;left:3px;color: white;font-size: 28px;text-align: center'>"
+                        + "<p id='cartoonName" + i + "'></p>"
+                        + "</div>";
+                    var button = {
+                        id: 'hands_x0_y0_number' + i + '_',
+                        clickHandler: 'javascript:Page.jumpUrl()',
+                        otherFocusEvent: 'javascript: Page.otherFocusFun()',
+                        rightEvent: 'javascript: Page.setBtnToRight()',
+                        left: "disable",
+                        up: 'hands_x0_y0_number' + Number(i - 1) + '_',
+                        down: 'hands_x0_y0_number' + Number(i + 1) + '_',
+                        focusType: 7
+                    }
+                    if (i == 0) {
+                        button.up = "disable";
+                        button.upEvent = "javascript:Page.upEventFun()";
+                    }
+                    if (i == (_this.step - 1)) {
+                        button.down = "disable";
+                        button.downEvent = "javascript:Page.downEventFun()";
+                    }
+                    buttons.push(button);
+                }
+                CT.$("episodes").innerHTML = episodeHtml;
+            },
+            /**
+             * _this.setBtnToRight();
+             * 选集按钮向右
+             * 
+             */
+            setBtnToRight: function () {
+                var _this = this;
+                if (_this.playState == 'pause') {
+                    PAGE.changeFocus('hands_x0_y0_selectSetBtn_');
+                }
+            },
+            /**
+             * _this.setOtherBtn();
+             * 设置选集按钮之外的按钮，收藏、推荐弹框上按钮等
+             */
+            setOtherBtn: function () {
+                var _this = this;
+                //收藏、上一集下一集、暂停/播放、选集按钮
+                for (var index = 0; index < 5; index++) {
+                    var button = {
+                        id: 'hands_x0_y0_collectBtn_',
+                        clickHandler: 'javascript:Page.toggleCollectState()',
+                        right: "hands_x0_y0_preSetBtn_",
+                        left: "disable",
+                        upEvent: 'javascript:Page.bottomBtnUp()',
+                        down: 'disable',
+                        focusType: 7
+                    }
+                    switch (index) {
+                        case 1:
+                            button.id = 'hands_x0_y0_preSetBtn_';
+                            button.left = 'hands_x0_y0_collectBtn_';
+                            button.right = 'hands_x0_y0_pauseBtn_';
+                            button.clickHandler = 'javascript:Page.preEpisode()';
+                            break;
+                        case 2:
+                            button.id = 'hands_x0_y0_pauseBtn_';
+                            button.left = 'hands_x0_y0_preSetBtn_';
+                            button.right = 'hands_x0_y0_nextSetBtn_';
+                            button.clickHandler = 'javascript:videoObj.stopOrPlay()';
+                            button.otherFocusEvent = 'javascript:Page.btnGetFocus("pauseBtn")';
+                            button.otherBlurEvent = 'javascript:Page.btnBlurFocus("pauseBtn")';
+                            break;
+                        case 3:
+                            button.id = 'hands_x0_y0_nextSetBtn_';
+                            button.left = 'hands_x0_y0_pauseBtn_';
+                            button.right = 'hands_x0_y0_selectSetBtn_';
+                            button.clickHandler = 'javascript:Page.nextEpisode()';
+                            break;
+                        case 4:
+                            button.id = 'hands_x0_y0_selectSetBtn_';
+                            button.left = 'hands_x0_y0_nextSetBtn_';
+                            button.right = 'disable';
+                            button.clickHandler = 'javascript:Page.showEpisodesData()';
+                            button.otherFocusEvent = 'javascript:Page.btnGetFocus("selBtn")';
+                            break;
+
+                        default:
+                            break;
+                    }
+                    buttons.push(button);
+                }
+                //推荐弹框两个按钮，返回和退出
+                for (var index = 0; index < 2; index++) {
+                    var button = {
+                        id: 'hands_x0_y0_recBack0_',
+                        clickHandler: 'javascript:videoObj.stopOrPlay("backBtn")',
+                        right: "hands_x0_y0_recBack1_",
+                        left: "disable",
+                        up: 'hands_x0_y0_rec1_',
+                        down: 'disable',
+                        focusType: 7
+                    }
+                    if (index == 1) {
+                        button.id = 'hands_x0_y0_recBack1_';
+                        button.left = 'hands_x0_y0_recBack0_';
+                        button.right = 'disable';
+                        button.up = 'hands_x0_y0_rec2_';
+                        button.clickHandler = 'javascript:backFunc()';
+                    }
+                    buttons.push(button);
+                }
+                //推荐弹框四个推荐位海报按钮
+                var indexMaxNum = _this.pauseRecData.length >= 4 ? 4 : 0;
+                for (var index = 0; index < indexMaxNum; index++) {
+                    var button = {
+                        id: 'hands_x0_y0_rec' + index + '_',
+                        clickHandler: 'javascript:Page.goSomeWhere(' + index + ')',
+                        right: 'hands_x0_y0_rec' + (index + 1) + '_',
+                        left: 'hands_x0_y0_rec' + (index - 1) + '_',
+                        downEvent: 'javascript:Page.topBtnDown()',
+                        up: 'disable',
+                        TempData: _this.pauseRecData[index],
+                        focusType: 7
+                    }
+                    switch (index) {
+                        case 0:
+                            button.left = 'disable';
+                            break;
+                        case 3:
+                            button.right = 'disable';
+                            break;
+
+                        default:
+                            break;
+                    }
+                    buttons.push(button);
+                    try {
+                        //图
+                        CT.$('rec' + index + 'Img').src = AjaxConfig.imgUrl + _this.pauseRecData[index].recommendPic.picPath;
+                        CT.$('rec' + index).src = AjaxConfig.imgUrl + _this.pauseRecData[index].recommendLabelpic.picPath;
+                    } catch (error) {
+
+                    }
+                }
+            },
+            /**
+             * _this.btnGetFocus();
+             * 暂停按钮获焦
+             * 
+             */
+            btnGetFocus: function (what) {
+                var _this = this;
+                switch (what) {
+                    case 'pauseBtn':
+                        CT.$('pauseImg').src = _this.localImg + 'buttons/playFocus.png';
+                        break;
+                    case 'selBtn':
+                        CT.$("episodes").style.visibility = "hidden";
+                        break;
+
+                    default:
+                        break;
+                }
+            },
+            /**
+             * _this.pauseBtnBlurFocus();
+             * 暂停按钮获焦
+             * 
+             */
+            btnBlurFocus: function (what) {
+                var _this = this;
+                switch (what) {
+                    case 'pauseBtn':
+                        CT.$('pauseImg').src = _this.localImg + 'buttons/play.png';
+                        break;
+                    case 'selBtn':
+
+                        break;
+
+                    default:
+                        break;
+                }
+            },
+            /**
+             * _this.goSomeWhere();
+             * 跳转某个地方
+             * 
+             */
+            goSomeWhere: function (index) {
+                var _this = this;
+                Page.uploadViodeEndLog();
+                CT.delPreMemoryPage();
+                CT.toAnterRecommendUrl(curFocus.TempData);
+            },
+            /**
+             * _this.bottomBtnUp();
+             * 底部按钮向上
+             * 
+             */
+            bottomBtnUp: function () {
+                var _this = this;
+                if (_this.alreadyShowBackBtn) {
+                    PAGE.changeFocus('hands_x0_y0_recBack0_');
+                } else  if(CT.$('player-progress').style.visibility == 'visible' && _this.pauseRecData.length >= 4){
+                    PAGE.changeFocus('hands_x0_y0_rec1_');
+                }
+            },
+            /**
+             * _this.topBtnDown();
+             * 弹框推荐位按钮向下
+             * 
+             */
+            topBtnDown: function () {
+                var _this = this;
+                if (_this.alreadyShowBackBtn) {
+                    PAGE.changeFocus('hands_x0_y0_recBack0_');
+                } else {
+                    PAGE.changeFocus('hands_x0_y0_pauseBtn_');
+                }
+            },
+            /**
+             * _this.clearAll();
+             * 清理集数 数据
+             * 清理卡通名称，样式，按钮
+             * 
+             */
+            clearAll: function () { //清除列表
+                var _this = this;
+                for (var i = 0; i < _this.step; i++) {
+                    CT.$("cartoonName" + i).innerHTML = "";
+                    CT.removeClass(CT.$("cartoonName" + i), 'pTxt');
+                    var btnObj = PAGE.getFocusModel6("hands_x0_y0_number" + i + "_");
+                    btnObj.TempData = null;
+                    PAGE.disableFocus("hands_x0_y0_number" + i + "_");
+                }
+            },
+            /**
+             * _this.showEpisodesData();
+             * 显示集数
+             * CT.$("episodes").style.visibility == "hidden"时，按“上”显示集数，否则上下切换集数按钮
+             * 显示数据之前需要先清空数据
+             */
+            showEpisodesData: function () {
+                var _this = this;
+                var arr = _this.getCurArr() || [];
+                if (CT.$("episodes").style.visibility == "hidden" || CT.$("episodes").style.visibility == "") {
+                    CT.$("episodes").style.visibility = "visible";
+                }
+                _this.clearAll();
+                for (var i = 0, len = arr.length; i < len; i++) {
+                    CT.$("cartoonName" + i).innerHTML = _this.sliceVideoName(arr[i].videoCname);
+                    if (arr[i].videoId == _this.videoId) {
+                        CT.addClass(CT.$("cartoonName" + i), 'pTxt');
+                    }
+                    var btnObj = PAGE.getFocusModel6("hands_x0_y0_number" + i + "_");
+                    btnObj.TempData = arr[i];
+                    PAGE.enableFocus("hands_x0_y0_number" + i + "_");
+                }
+                var curId = null;
+                if (arr.length < _this.step && curFocus.FocusID == "hands_x0_y0_number8_") {
+                    curId = "hands_x0_y0_number" + (arr.length - 1) + "_";
+                } else {
+                    curId = curFocus.FocusID ? curFocus.FocusID : "hands_x0_y0_number0_";
+                }
+                curId = _this.defaultFocus || curId;
+                PAGE.changeFocus(curId);
+            },
+            /**
+             * _this.getCurArr();
+             * 获取当前页面要显示的数组
+             * @returns {*|Array}
+             */
+            getCurArr: function () {
+                var _this = this;
+                var arr = [];
+                if (_this.len <= _this.step) {
+                    arr = _this.videoList;
+                } else {
+                    var startIndex = _this.pageNo;
+                    var endIndex = startIndex + _this.step;
+                    if (_this.pageNo >= _this.pageNum) {
+                        endIndex = _this.len;
+                    }
+                    arr = _this.videoList.slice(startIndex, endIndex);
+                }
+                return arr;
+            },
+            /**
+             *_this.sliceVideoName(str);
+             * 截取videoName
+             * @param str
+             * @returns {*}
+             */
+            sliceVideoName: function (str) {
+                var _this = this;
+                str = str || "";
+                if (str.length > 12) {
+                    str = str.substring(0, 6) + "..." + str.substring(str.length - 5);
+                }
+                return str;
+            },
+            /**
+             * 聚焦事件
+             * */
+            otherFocusFun: function () {
+                var _this = this;
+                _this.defaultFocus = curFocus.FocusID;
+            },
+            /**
+             * _this.upEventFun();
+             * 选集向上事件
+             */
+            upEventFun: function () {
+                var _this = this;
+                _this.pageNo--;
+                if (_this.pageNo < 0) {
+                    _this.pageNo = 0;
+                    return;
+                }
+                if (_this.pageNo < _this.pageNum) {
+                    _this.showEpisodesData();
+                }
+            },
+            /**
+             * _this.upEventFun();
+             * 选集向下事件
+             */
+            downEventFun: function () {
+                var _this = this;
+                _this.pageNo++;
+                if (_this.pageNo >= _this.pageNum) {
+                    _this.pageNo = _this.pageNum - 1;
+                    return;
+                }
+                _this.showEpisodesData();
+            },
+            /**
+             * _this.jumpUrl();
+             * 选集跳转
+             * 数据从临时变量TempData里取
+             */
+            jumpUrl: function () {
+                var _this = this;
+                var btnObj = PAGE.getFocusModel6(curFocus.FocusID);
+                //alert(btnObj.TempData.videoCname);
+                //上传本集结束日志
+                _this.uploadViodeEndLog();
+                //存储cookie
+                _this.defaultFocus = curFocus.FocusID;
+                var params = {
+                    pageNo: _this.pageNo,
+                    defaultFocus: _this.defaultFocus
+                };
+                params = CT.jsonToString(params);
+                CT.setCookie('listNotes', params);
+                btnObj.TempData.recommendDisplayType = 2; //页面类型2表示全屏页面
+                CT.toAnterRecommendUrl(btnObj.TempData);
+            },
+            /**
+             * _this.forwardOrBackward("forward");
+             * 点击快进 或快退 事件改变进度条
+             * @param type
+             */
+            forwardOrBackward: function (type, curTime) {
+                var _this = this;
+                //显示进度条
+                _this.progressBarShow();
+                //改变进度条
+                _this.changeprogressLen(type, curTime);
+            },
+            /**
+             * _this.progressVisible();
+             * 显示暂停UI
+             */
+            progressVisible: function () {
+                var _this = this;
+                CT.$("player-progress").style.visibility = "visible";
+                // CT.$("player-progress").style.display = "block";
+                _this.progressBarShow();
+            },
+            /**
+             * _this.progressHidden();
+             * 隐藏暂停UI
+             */
+            progressHidden: function () {
+                var _this = this;
+                CT.$("player-progress").style.visibility = "hidden";
+                // CT.$("player-progress").style.display = "none";
+                _this.progressBarHid();
+            },
+            /**
+             * _this.progressBarShow();
+             * 显示进度条的DOM
+             */
+            progressBarShow: function () {
+                var _this = this;
+                CT.$("progressBar").style.visibility = "visible";
+                CT.$("progressBar").style.display = "block";
+                CT.$("videoName").style.visibility = "visible";
+                CT.$("videoName").style.display = "block";
+            },
+            /**
+             * _this.progressBarHid();
+             * 隐藏进度条的DOM
+             */
+            progressBarHid: function () {
+                var _this = this;
+                CT.$("progressBar").style.visibility = "hidden";
+                CT.$("progressBar").style.display = "none";
+                CT.$("videoName").style.visibility = "hidden";
+                CT.$("videoName").style.display = "none";
+            },
+            /**
+             * _this.progressBarShow();
+             * 显示推荐弹框按钮
+             */
+            recBtnShow: function () {
+                var _this = this;
+                CT.$("recBack0Img").style.visibility = "visible";
+                CT.$("recBack1Img").style.visibility = "visible";
+            },
+            /**
+             * _this.progressBarHid();
+             * 隐藏推荐弹框按钮
+             */
+            recBtnBarHid: function () {
+                var _this = this;
+                CT.$("recBack0Img").style.visibility = "hidden";
+                CT.$("recBack1Img").style.visibility = "hidden";
+            },
+            /**
+             * _this.changeprogressLen("forward");
+             * 改变进度条
+             * 改变进度条的同同时改变播放器的速度，并实时判断视频是否播放完成
+             * @param type
+             */
+            changeprogressLen: function (type, curTime) {
+                var _this = this;
+                var curTime = curTime ? curTime : _this.getCurTime(type);
+                if (curTime >= videoPlayer.totalTime) {
+                    //判断是否存在下一集，并切换到下一集
+                    _this.nextEpisode();
+                    return;
+                } else if (curTime <= 0) {
+                    //判断是否存在上一集，并切换到下一集
+                    //_this.preEpisode();
+                    return;
+                }
+                var positionLeftXHB = _this.processBarLen * (curTime / videoPlayer.totalTime) + 125 + "px";
+                CT.$("progress-xhb").style.left = positionLeftXHB;
+                var positionLeft = (0 - _this.processBarLen) * (1 - (curTime / videoPlayer.totalTime)) + "px";
+                CT.$("progress-yellow").style.left = positionLeft;
+                CT.$("curTime").innerHTML = _this.timeFormat(curTime);
+                //改变播放器的图标
+                _this.changeControlImg(type);
+
+
+            },
+            /** 获取当前播放时间 */
+            getCurTime: function (type) {
+                var _this = this;
+                try {
+                    videoPlayer.curTime = parseInt(videoObj.getCurrentPlayTime());
+                } catch (e) {
+                    if (type === "forward") {
+                        _this.testCurTime += 5;
+                    } else {
+                        _this.testCurTime -= 5;
+                    }
+                    return videoPlayer.curTime
+                }
+                if (typeof videoPlayer.curTime !== 'undefined' && !isNaN(videoPlayer.curTime) && videoPlayer.curTime !== 0) {
+                    if (_this.curTimer !== null) {
+                        clearTimeout(_this.curTimer);
+                        _this.curTimer = null
+                    }
+                } else {
+                    _this.curTimer = setTimeout(function () {
+                        _this.getCurTime();
+                    }, 200);
+                }
+                return videoPlayer.curTime || 0;
+            },
+            /** 获取播放总时长 */
+            getTotalTimer: null,
+            getTotalTime: function () {
+                var _this = this;
+                _this.totalNums2 = 0;
+                if(_this.getTotalTimer){
+                    return;
+                }
+                if (!videoPlayer.alreadyGetTotalTime && videoPlayer.totalTime == 60 * 60) {
+                    try {
+                        //获取总时长
+                        _this.getTotalTimer = setTimeout(function () {
+                            if (_this.totalNums2 == 20 || (videoPlayer.totalTime && videoPlayer.totalTime != 3600)) {
+                                clearTimeout(_this.getTotalTimer);
+                            }
+                            var sysmethodGettotalTime = Number(videoPlayer.getVideoDuration());
+                            if (sysmethodGettotalTime != 0) {
+                                videoPlayer.totalTime = sysmethodGettotalTime;
+                                _this.setTimePerSecond();
+                                CT.$("totalTime").innerHTML = Page.timeFormat(videoPlayer.totalTime);
+                            }
+                            _this.totalNums2++;
+                        }, 5000);
+                    } catch (error) {
+
+                    }
+                } else {
+                    _this.setTimePerSecond();
+                    CT.$("totalTime").innerHTML = Page.timeFormat(videoPlayer.totalTime);
+                }
+            },
+            /**
+             * _this.timeFormat(600);
+             * 时间的转换格式
+             * @param time
+             * @returns {string} 0:10:00
+             */
+            timeFormat: function (time) {
+                var sign = "";
+                if (time < 0) {
+                    sing = "-";
+                    time = 0 - time;
+                }
+                var hh = (Math.floor(time / 3600) % 24 + 100).toString().substring(1);
+                var mm = (Math.floor((time % 3600) / 60) + 100).toString().substring(1);
+                var ss = (time % 60 + 100).toString().substring(1);
+
+                var t = sign + hh + ":" + mm + ":" + ss;
+                return t;
+            },
+            /**
+             * _this.playOrPause();
+             * 暂停和播放
+             * 点击“确定”事件
+             */
+            playOrPause: function () {
+                var _this = this;
+                //标识进度条没在拖动
+                videoPlayer.forwardOrRewindFlag = false;
+                //隐藏退出弹框半透明背景
+                CT.$('recBG').style.visibility = 'hidden';
+                if (_this.playState == "play" || _this.playState == "trickMode") {
+                    _this.playState = 'pause';
+                    CT.$('recTex').innerHTML = '当前视频播放暂停中，其他内容同样精彩！';
+                    // 图片切换
+                    _this.changeControlImg("pause");
+                    // 进度条显示
+                    _this.progressVisible();
+                } else {
+                    _this.playState = 'play';
+                    _this.changeControlImg("play");
+                    _this.progressHidden();
+                }
+            },
+            /**
+             * _this.changeControlImg();
+             * 切换控制区的图标（快进快退暂停播放）
+             * @param type
+             */
+            changeControlImg: function (type) {
+                var _this = this;
+                var controlImg = CT.$("controlImg");
+
+                switch (type) {
+                    case "play":
+                        controlImg.src = './HD/images/empty.png';
+                        break;
+                    case "pause":
+                        controlImg.src = _this.localImg + 'other/pause.png';
+                        break;
+                    case "forward":
+                        controlImg.src = _this.localImg + 'other/forward.png';
+                        break;
+                    case "backward":
+                        controlImg.src = _this.localImg + 'other/backward.png';
+                        break;
+                    case "mute":
+                        controlImg.src = _this.localImg + 'other/mute.png';
+                        break;
+                    default:
+                        if (videoPlayer.curStatus != "pause") {
+                            controlImg.src = './HD/images/empty.png';
+                        }
+
+                        break;
+                }
+
+                if (type === "forward" || type === "backward" || type === "mute") {
+                    controlImg.style.visibility = 'visible';
+                    clearTimeout(_this.changeImageTimer);
+                    _this.changeImageTimer = setTimeout(function () {
+                        controlImg.src = './HD/images/empty.png';
+                        //隐藏进度条
+                        CT.$('progressBar').style.visibility = 'hidden';
+                        CT.$("progressBar").style.display = "none";
+                    }, 2000);
+                }
+            },
+            /**
+             * _this.nextEpisode():
+             * 下一集
+             * 如果存在下一集跳转全屏，不存在下一集跳转到详情页
+             */
+            nextEpisode: function () {
+                var _this = this;
+                if (_this.len > 1 && Number(_this.videoNumber) < _this.len) {
+                    //获取下一集的信息
+                    var nextUrl = _this.videoList[Number(_this.videoNumber)].videoPlayurl;
+                    //上传本集结束日志
+                    _this.uploadViodeEndLog();
+                    //跳转到下一集
+                    _this.videoList[Number(_this.videoNumber)].recommendDisplayType = 2; //页面类型2表示全屏页面
+                    CT.toAnterRecommendUrl(_this.videoList[Number(_this.videoNumber)]);
+                } else if(!Page.alreadyShowBackBtn) {
+                    _this.showExitUI();
+                    CT.$('recTex').innerHTML = '当前视频播放完成，快来看看其他视频吧~';
+                }
+            },
+            /**
+             * _this.preEpisode():
+             * 上一集
+             */
+            preEpisode: function () {
+                var _this = this;
+                if (_this.len > 1 && Number(_this.videoNumber) < _this.len && Number(_this.videoNumber) > 1) {
+                    //获取上一集的信息
+                    var nextUrl = _this.videoList[Number(_this.videoNumber) - 1].videoPlayurl;
+                    //上传本集结束日志
+                    _this.uploadViodeEndLog();
+                    //跳转到上一集
+                    _this.videoList[Number(_this.videoNumber - 1)].recommendDisplayType = 2; //页面类型2表示全屏页面
+                    CT.toAnterRecommendUrl(_this.videoList[Number(_this.videoNumber - 1)]);
+                } else {
+                    backFunc();
+                }
+            },
+            /**
+             *  先获取收藏状态并显示
+             *  contentType : 1    0-游戏，1-卡通，2-视频
+             */
+            getCollectState: function () {
+                var _this = this;
+                var data = {
+                    params: {
+                        userId: _this.userId,
+                        contentId: _this.cartoonId,
+                        contentType: 1
+                    },
+                    ajaxConfig: {
+                        async: true
+                    }
+                };
+                interface.findMediaCollectStatus(data, function (e) {
+                    if (e.data == 0 || e.data == "0") { //已收藏
+                        CT.$('collectImg').src = _this.localImg+"buttons/collectEd.png";
+                    } else { //未收藏
+                        CT.$('collectImg').src = _this.localImg+"buttons/collect.png";
+                    }
+                })
+            },
+            /**
+             *  切换收藏状态
+             */
+            toggleCollectState: function () {
+                var _this = this;
+                // _this.progressVisible();
+                var data = {
+                    params: {
+                        userId: _this.userId,
+                        contentId: _this.cartoonId,
+                        contentType: 1
+                    }
+                };
+                interface.findMediaCollectStatus(data, function (e) {
+                    if (e.data == 0 || e.data == "0") { //已收藏
+                        _this.delCollect();
+                    } else { //未收藏
+                        _this.saveCollect();
+                    }
+                })
+            },
+            /**
+             *  添加用户收藏
+             */
+            saveCollect: function () {
+                var _this = this;
+                var params = {
+                    userId: _this.userId,
+                    contentId: _this.cartoonId,
+                    contentType: 1
+                };
+                interface.saveUserCollect(params, function (data) {
+                    if (data.successFlg == 1) { //1代表收藏成功或内容已经收藏
+                        CT.$('collectImg').src = _this.localImg+"buttons/collectEd.png";
+                    } else {
+                        //收藏失败
+                    }
+                })
+            },
+            /**
+             *  删除收藏
+             */
+            delCollect: function () {
+                var _this = this;
+                var params = {
+                    userId: _this.userId,
+                    contentId: _this.cartoonId,
+                    contentType: 1
+                };
+                interface.deleteUserCollect(params, function (data) {
+                    if (data.successFlg == 1) { //删除成功
+                        CT.$('collectImg').src = _this.localImg+"buttons/collect.png";
+                    } else {
+                        //删除失败
+                    }
+                });
+            },
+            uploadVideoLog: function () {
+                var _this = this;
+                var data = {
+                    cartoonId: _this.cartoonId,
+                    cartoonCname: _this.cartoonData.cartoonCname,
+                    cartoonEname: _this.cartoonData.cartoonEname,
+                    contentId: _this.cartoonId,
+                    isFree: _this.booleanFree,
+                    videoId: _this.videoId,
+                    videoCname: _this.videoCname,
+                    videoEname: _this.videoEname,
+                    startTime: _this.playStartTime,
+                    playId: _this.playId,
+                    playType: 0,
+                    eventType: "start",
+                    playName: _this.videoCname,
+                    stateTime: new Date().getTime() - _this.playStartTime
+                };
+                return function (option) {
+                    option = option || {};
+                    data.eventType = option && option.eventType || "start";
+                    data.stateTime = parseInt((new Date().getTime() - _this.playStartTime) / 1000);
+                    //查看用户是否在全屏页播放后一直停留，比如睡着，如有做相应处理
+                    if (data.stateTime > videoPlayer.totalTime) {
+                        //当前停留时长大于总时长，清理掉心跳日志计时器
+                        clearInterval(_this.timerFlag);
+                        if (data.eventType == 'start' || data.eventType == 'end') {
+                            try {
+                                data.stateTime = videoPlayer.totalTime;
+                                //上传大数据
+                                commonUpLoadVideo(data);
+                            } catch (e) { }
+                        }
+                    }else{
+                        try {
+                            //上传大数据
+                            commonUpLoadVideo(data);
+                        } catch (e) { }
+                    }
+                }
+            },
+            //设置视频心跳日志
+            setUpLoadVideoLog: function () {
+                var _this = this;
+                _this.fn = _this.uploadVideoLog();
+                //上传视频开始日志
+                _this.fn();
+                clearInterval(_this.timerFlag);
+                _this.timerFlag = setInterval(function () {
+                    _this.fn({
+                        eventType: "playing"
+                    });
+                }, _this.videoLogTimeStep);
+            },
+
+            /**
+             *  上传视频播放结束日志
+             */
+            uploadViodeEndLog: function () {
+                //请求获取卡通的详情
+                var _this = this;
+                //关闭播放器
+                videoPlayer.exitPage();
+                _this.fn = _this.uploadVideoLog();
+                var data = {
+                    eventType: "end"
+                };
+                _this.fn(data);
+
+            },
+            /**
+             * 当不拖动时每秒循环设置当前时间,剧集非最后一集时的倒计时也在此设置
+             */
+            setTimePerSecond: function () {
+                var _this = this;
+                clearTimeout(_this.PerSecondTimeout);
+                var curTime = curTime ? curTime : parseInt(videoObj.getCurrentPlayTime());
+                if (_this.isSitcom) {
+                    if (curTime >= (videoPlayer.totalTime - 3)) {
+                        // 播放下一集
+                        _this.nextEpisode();
+                    }
+                }
+                // 进度条以及当前时间改变
+                if (videoPlayer.forwardOrRewindFlag == false) {
+                    _this.changeprogressLen();
+                }
+
+                _this.PerSecondTimeout = setTimeout(function () {
+                    _this.setTimePerSecond();
+                }, 1000);
+            },
+            volumebar: function (volume) {
+                var _this = this;
+                if (_this.volumeTimer != null) {
+                    clearTimeout(_this.volumeTimer);
+                    _this.volumeTimer = null;
+                }
+
+                CT.$("voice-yellow").style.height = (volume / 100) * 316 + "px";
+                CT.$("voice").style.visibility = "visible";
+
+                _this.volumeTimer = setTimeout(function () {
+                    CT.$("voice").style.visibility = "hidden";
+                }, _this.volumeDuration)
+            },
+            /**
+             *  显示退出UI
+             */
+            showExitUI: function () {
+                var _this = this;
+                if (videoPlayer.leftOrRightTimeout !== null) {
+                    return;
+                }
+                Page.btnGetFocus("selBtn");
+                if (_this.exitRecData.length >= 4) {
+                    for (var index = 0; index < 4; index++) {
+                        //图
+                        CT.$('rec' + index + 'Img').src = AjaxConfig.imgUrl + _this.exitRecData[index].recommendPic.picPath;
+                        CT.$('rec' + index).src = AjaxConfig.imgUrl + _this.exitRecData[index].recommendLabelpic.picPath;
+                        //数据
+                        PAGE.getModelByFocusId('hands_x0_y0_rec' + index + '_').TempData = _this.exitRecData[index];
+                    }
+                }
+                Page.playState = 'play';
+                Page.playOrPause();
+                videoPlayer.pausePlay();
+                CT.$('recTex').innerHTML = '更多精彩内容，快来抢先看吧~';
+                CT.$('recBG').style.visibility = 'visible';
+                CT.$('recBackWrapper').style.visibility = 'visible';
+                Page.alreadyShowBackBtn = true;
+                PAGE.changeFocus('hands_x0_y0_recBack0_');
+            },
+            /**
+             *  隐藏退出UI
+             */
+            hiddenExitUI: function () {
+                var _this = this;
+                CT.$('recBG').style.visibility = 'hidden';
+                CT.$('recBackWrapper').style.visibility = 'hidden';
+                Page.alreadyShowBackBtn = false;
+                PAGE.changeFocus('hands_x0_y0_pauseBtn_');
+                if (Page.playState == 'pause') {
+                    videoObj.stopOrPlay();
+                }
+                if (_this.exitRecData.length >= 4) {
+                    for (var index = 0; index < 4; index++) {
+                        //图
+                        CT.$('rec' + index + 'Img').src = AjaxConfig.imgUrl + _this.pauseRecData[index].recommendPic.picPath;
+                        CT.$('rec' + index).src = AjaxConfig.imgUrl + _this.pauseRecData[index].recommendLabelpic.picPath;
+                        //数据
+                        PAGE.getModelByFocusId('hands_x0_y0_rec' + index + '_').TempData = _this.pauseRecData[index];
+                    }
+                }
+            },
+        };
+
+        //离开页面前停掉视频播放心跳日志计时器
+        window.addEventListener('unload', function(){
+            clearInterval(Page.timerFlag);
+        })
+
+        /**
+         * 离开前先上传视频播放的时间
+         */
+        function backFunc() {
+            if (Page.alreadyShowBackBtn) {
+                Page.uploadViodeEndLog();
+                //先上传视频播放结束日志
+                CT.backPage();
+            } else {
+                Page.showExitUI();
+            }
+        }
+    </script>
+</body>
+
+</html>

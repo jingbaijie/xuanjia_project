@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="page-view-size" content="1280*720">
+    <title>贪吃蛇游戏专题</title>
+    <link rel="stylesheet" href="css/columnRetroSnaker.css?v=2020091104">
+</head>
+
+<body>
+    <div id="mainBG">
+        <div id="map"></div>
+        <!-- 弹窗显示 -->
+        <!-- 再来一次弹窗 -->
+        <div id="againTip" style="visibility:hidden;position:absolute;left:0px;top:0px;z-index: 2;">
+            <img src="img/tip/gameFinishBG.png" alt="" id="againBG" style="position:absolute;left:0px;top:0px;">
+            <img src="img/tip/againBtn.png" alt="" id="againBtn" style="position: absolute;left: 550px;top: 550px;">
+            <div id="hands_x0_y0_againBtnFocus_" style="position: absolute;left: 535px;top: 540px;">
+                <img src="img/tip/chooseFocus.png" alt="" id="againBtnFocus" style="visibility:hidden;">
+            </div>
+        </div>
+        <!-- 打开宝箱弹窗 -->
+        <div id="openTip" style="visibility:hidden;position:absolute;left:0px;top:0px;z-index: 2;">
+            <img src="img/tip/openBG.png" alt="" id="openBG" style="position:absolute;left:0px;top:0px;">
+            <img src="img/tip/openBtn.png" alt="" id="openBtn" style="position: absolute;left: 550px;top: 550px;">
+            <div id="hands_x0_y0_openBtnFocus_" style="position: absolute;left: 535px;top: 540px;">
+                <img src="img/tip/chooseFocus.png" alt="" id="openBtnFocus" style="visibility:hidden;">
+            </div>
+        </div>
+        <!-- 空焦点 -->
+        <div id="hands_x0_y0_emptyFocus_" style="position:absolute;left:200px;top:500px;">
+            <img src="img/empty.png" alt="" id="emptyFocus" style="visibility:hidden;">
+        </div>
+		<!-- vip订购按钮 -->
+		<img src="img/game/vipOrder.png" alt="" id="vipOrder" style="position:absolute;left:1050px;top:640px;">
+        <div id="hands_x0_y0_vipOrderFocus_" style="position:absolute;left:1035px;top:630px;">
+            <img src="img/game/vipOrderFocus.png" alt="" id="vipOrderFocus" style="visibility:hidden;">
+        </div>
+		<!--左键开始游戏提示-->
+		<img src="img/tip/startGameTip.png" id="startGameTip" style="position:absolute;left:1025px;top:515px;">
+    </div>
+    <script src="../../../js/loadCommomJs.js"></script>
+    <script type="text/javascript">
+        var buttons = [{
+            id: "hands_x0_y0_againBtnFocus_",
+            clickHandler: "javascript:game.againFunc()",
+            left: "disable",
+            right: "disable",
+            up: "disable",
+            down: "disable",
+            focusType: 7
+        }, {
+            id: "hands_x0_y0_openBtnFocus_",
+            clickHandler: "javascript:game.openBoxFunc()",
+            left: "disable",
+            right: "disable",
+            up: "disable",
+            down: "disable",
+            focusType: 7
+        }, {
+            id: "hands_x0_y0_emptyFocus_",
+            left: "disable",
+            right: "disable",
+            up: "disable",
+            down: "disable",
+            focusType: 7
+        },{
+			id: "hands_x0_y0_vipOrderFocus_",
+			clickHandler: "javascript:game.vipOrder()",
+            left: "disable",
+			leftEvent:"javascript:game.vipBtnLeft()",
+            right: "disable",
+            up: "disable",
+            down: "disable",
+            focusType: 7
+		}]
+        PAGE.focusInit();
+        PAGE.changeFocus("hands_x0_y0_vipOrderFocus_");
+    
+		//页面埋点信息
+		var setLoggerInfo={
+			pageInfoLog:{
+				data:{
+					pageInfo:{
+						commPageEname:CT.requestValue("contentEName"),						
+						commPageCname:CT.requestValue("contentCName")
+					}
+				}
+			},
+			playStatus:{
+				playId:"",
+				playType:"",
+				eventType:"",
+				playName:""
+			}
+		}
+    </script>
+    <script type="text/javascript" src="js/columnRetroSnaker.js?v=2020091611"></script>
+</body>
+
+</html>

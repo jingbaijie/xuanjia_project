@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>抽奖页</title>
+		<link rel="stylesheet" type="text/css" href="css/actiDisneyLottery.css" />
+	</head>
+
+	<body>
+		<div id="main">
+			<!--抽奖-->
+			<div id="lotteryTanBG">
+				<img src="img/lottery/turntable.png" id="turnTable" />
+				<img src="img/lottery/title.png" id="lotterytitle" />
+				<img src="img/lottery/Mickey.png" id="mickey" />
+				<img src="img/lottery/chicken.png" id="chicken" />
+				<!--抽奖焦点、抽奖按鈕-->
+				<img src="img/lottery/btn2.png" id="pointer" />
+				<div id="hands_x0_y0_lotteryFocus_">
+					<img src="img/lottery/btnChoose.png" id="lotteryFocus" />
+				</div>
+				<!--空选中-->
+				<div id="hands_x0_y0_emptyFocus_" style="width: 2px;height: 2px;position: absolute;top: 310px;left: 787px;">
+					<img id="emptyFocus" src="img/game/empty.png" style="width: 2px;height: 2px;visibility: hidden;" alt="">
+				</div>
+				<!--抽奖中请勿做多余操作-->
+				<div id="littleTips" style="position: absolute;left:500px;top:150px;color: red;font-size: 40px;font-weight: bolder;visibility: hidden;">转盘转动中,请勿做多余操作</div>
+				<!--弹窗-->
+				<img src="img/game/empty.png" id="lotteryTan" style="position: absolute;left: 0px;top: 0px;" />
+				<div id="hands_x0_y0_lotteryTanFocus_">
+					<img src="img/game/empty.png" id="lotteryTanFocus" />
+				</div>				
+			</div>
+		</div>
+		<!--引入公用JS-->
+		<script type="text/javascript" src="../../../js/column.js"></script>
+		<script type="text/javascript" src="./js/actiComm.js"></script>
+		<script type="text/javascript" src="js/lottery.js"></script>
+		<!--引用结束-->
+		<script type="text/javascript">
+			var buttons = [{
+				id: "hands_x0_y0_lotteryFocus_",
+				clickHandler: "javascript:lotteryStartFunc()",
+				left: "disable",
+				right: "disable",
+				up: "disable",
+				down: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_emptyFocus_",
+				clickHandler: "javascript: notTips()",
+				upEvent: "javascript: notTips()",
+				downEvent: "javascript: notTips()",
+				leftEvent: "javascript: notTips()",
+				rightEvent: "javascript: notTips()",
+				up: "disable",
+				down: "disable",
+				left: "disable",
+				right: "disable",
+				focusType: 7
+			},{				
+				id: "hands_x0_y0_lotteryTanFocus_",
+				clickHandler: "javascript: lotteryTips()",				
+				up: "disable",
+				down: "disable",
+				left: "disable",
+				right: "disable",
+				focusType: 7
+			}]
+
+			//焦点初始化
+			focusInit();
+			curFocus = getFocusModel6("hands_x0_y0_lotteryFocus_");
+			curFocus.defaultFocus();
+
+			//按返回键
+			function backfunc() {
+				window.location.href = "actiDisneyMain.html";
+			}
+		</script>
+
+	</body>
+
+</html>

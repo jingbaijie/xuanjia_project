@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="page-view-size" content="1280*720">
+    <link rel="stylesheet" href="./css/storyHome.css?v=20200602">
+    <title>故事家族</title>
+</head>
+
+<body>
+    <div class="main">
+        <div class="signIn">
+            <img class="signInImg" id="signInImg" src="./img/signInDefault.png" alt="">
+        </div>
+        <div class="barbox">
+            <div class="barconent">
+                <div class="bar-cell">
+                    <img class="videosmall" src="./img/videosmall.png" style = "left: 140px;" alt="">
+                    <span class="videoshow">视频展示</span>
+                </div>
+                <div id="barCellChecksp" class="bar-cell-check1" style="display:none;">
+                    <img class="videobig" src="./img/videobig.png" alt="">
+                    <div class="videoshows">视频展示</div>
+                </div>
+                <div class="bar-cell" style = "position: absolute;left: 426px;top: 140px;">
+                    <img class="labelsmall" src="./img/labelsmall.png" style = "left: 140px;"  alt="">
+                    <span class="publiclesson">公益课程</span>
+                </div>
+                <div id="barCellCheckgy" class="bar-cell-check2" style="display:none;">
+                    <img class="lablebig" src="./img/labelbig.png" alt="">
+                    <div class="lableshows">公益课程</div>
+                </div>
+            </div>
+            <div class="score">
+                <img class="scoreicon" src="./img/scoreicon.png" alt="">
+                <div id = "allCredit" style="position: absolute;left: 40px;top: 0;">累计积分：0分</div>
+            </div>
+        </div>
+        <div class="content" id="content" style="margin: 0;display: none;position: absolute; top: 20px;left: 0;">
+            <div class="sidebar-box" id="sidebox1" style = "margin: 0;position: absolute; left: 45px;top: 200px;">
+            </div>
+            <div class="container" style = 'position: absolute;top: 170px;left: 280px;'>
+                <div class="container-cell" style = "position: absolute; top: 0;left: 0;">
+                    <div class="container-cell-yey" style = "top: 27px;left: 55px;">幼儿园组</div>
+                    <div class="yey-box" id="yeyBox" style = "margin: 0;position: absolute;top: 80px;left: 60px;">
+                    </div>
+                    <div class="xiala">
+                        <div class="xiala_" id="xiala_" style="width: 9px;height: 274px;top: 0px;"></div>
+                    </div>
+                </div>
+                <div class="container-cell" style = "position: absolute; top: 0;left: 501px;">
+                    <div class="container-cell-xiaox" style = "top: 27px;left: 55px;">小学组</div>
+                    <div class="xiaox-box" id="xiaoxBox" style = "margin: 0;position: absolute;top: 80px;left: 60px;">
+                    </div>
+                    <div class="xiala2">
+                        <div class="xiala2_" id="xiala2_" style="width: 9px;height: 274px;top:0px"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="content2" class="content" style = "position: absolute;top: 20px;margin: 0;left: 0;">
+            <div class="sidebar-box" id="sidebox2" style = "position: absolute;margin: 0;left: 45px;top: 200px;">
+            </div>
+            <div class="container2" style = "margin: 0;position: absolute; left: 285px;top: 158px;">
+                <div class="container2-cell" id="lessonBox" style = "position: absolute;top: 40px;left: 10px;">
+                    <!-- 课程选择焦点 -->
+                    <img id="lessonSelectedImg" src="./img/empty.png" style="position: absolute;" alt="">
+                </div>
+
+                <div class="xiala3">
+                    <div class="xiala3_" id = "xiala3_" style="width: 9px;height: 274px;top:0px;position: absolute;left: 0px;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 焦点位置 -->
+        <div class="focusbox">
+            <div id="hands_x0_y0_signIn_" style="position:absolute;top: 35px;right: 20px;">
+                <img id="signIn" src="./img/empty.png" style="width: 148px;height: 112px;visibility: hidden;" alt="">
+            </div>
+            <div id="hands_x0_y0_video_" style="position:absolute;width: 425px;height: 57px;top: 124px;left: 0px;">
+                <img id="video" src="./img/empty.png" style="width: 425px;height: 57px;visibility: hidden;" alt="">
+            </div>
+            <div id="hands_x0_y0_publicInterest_"
+                style="position:absolute;width: 425px;height: 57px;top: 124px;left: 425px;">
+                <img id="publicInterest" src="./img/empty.png" style="width: 425px;height: 57px;visibility: hidden;"
+                    alt="">
+            </div>
+        </div>
+
+
+        <!-- 模态框 -->
+        <div class="modal-box" style="visibility: hidden;" id="modalBox">
+            <div class="modal-input-box" id="hands_x0_y0_inputX_">
+                <div id = "inputDiv" class="input-div"></div>
+                <img id="inputX" src="./img/mobileCheck.png" style="visibility: hidden;" alt="">
+            </div>
+			<div id = "addModelText" style = "width: 300px;height: 50px;position: absolute;top: 370px;left: 620px;font-weight: bold;font-size: 26px;color: white;text-align: center;line-height: 50px;">(手机号码仅做领奖使用)</div>
+            <div id="phoneTips"></div>
+            <div id="hands_x0_y0_confirm_" class="modal-confirm" style="top: 530px;left: 760px;">
+                <img id="confirm" src="./img/empty.png" style="visibility: hidden;" alt="">
+            </div>
+        </div>
+    </div>
+   <!--引入公用js-->
+		<script type="text/javascript" src="../../../../js/loadCommomJs.js"></script>
+		<script type="text/javascript" src="js/actiComm.js?v=20200615"></script>
+	<!--公用js引入结束-->
+    <script>
+        var buttons = [{
+                id: "hands_x0_y0_video_",
+                clickHandler: "",
+                enMove: false,
+                otherFocusEvent: "javascript: schoolFocusHere(0)",
+                otherBlurEvent: "javascript: schoolFocusLose(0)",
+                left: "disable",
+                right: "hands_x0_y0_publicInterest_",
+                up: "disable",
+                down: "hands_x0_y0_area0_",
+                focusType: 7
+            },
+            {
+                id: "hands_x0_y0_publicInterest_",
+                clickHandler: "",
+                enMove: false,
+                otherFocusEvent: "javascript: schoolFocusHere(0)",
+                otherBlurEvent: "javascript: schoolFocusLose(0)",
+                left: "hands_x0_y0_video_",
+                right: "hands_x0_y0_signIn_",
+                up: "disable",
+                down: "hands_x0_y0_type0_",
+                focusType: 7
+            },
+            {
+                id: "hands_x0_y0_signIn_",
+                clickHandler: "javascript: toSignPage()",
+                enMove: false,
+                otherFocusEvent: "javascript: schoolFocusHere(-1)",
+                otherBlurEvent: "javascript: schoolFocusLose(-1)",
+                left: "hands_x0_y0_publicInterest_",
+                right: "disable",
+                up: "disable",
+                down: "disable",
+                focusType: 7
+            },
+            {
+                id: "hands_x0_y0_inputX_",
+                clickHandler: "",
+                enMove: false,
+                otherFocusEvent: "javascript: schoolFocusHere(-2)",
+                otherBlurEvent: "javascript: schoolFocusLose(-2)",
+                left: "disable",
+                right: "hands_x0_y0_confirm_",
+                up: "disable",
+                down: "disable",
+                focusType: 7
+            },
+            {
+                id: "hands_x0_y0_confirm_",
+                clickHandler: "javascript: confirmHandle()",
+                enMove: false,
+                otherFocusEvent: "javascript: schoolFocusHere(-3)",
+                otherBlurEvent: "javascript: schoolFocusLose(-3)",
+                left: "hands_x0_y0_inputX_",
+                right: "disable",
+                up: "disable",
+                down: "disable",
+                focusType: 7
+            }
+        ];
+        var phoneFocus = false;//输入框是否获焦
+        function StoryHome() {
+            //当前父类包含分类接口，参数parentId
+            this.getTypeUrl = AjaxConfig.interfaceUrl + "findTypesByParentId";
+            //当前父类包含卡通接口，参数typeId
+            this.getCartoonListUrl = AjaxConfig.interfaceUrl + "findContentsByTypeId";
+            this.imgUrl = AjaxConfig.imgUrl;
+            //选中部分
+            this.content1 = document.getElementById('content');
+            this.content2 = document.getElementById('content2');
+            this.barCellChecksp = document.getElementById('barCellChecksp');
+            this.barCellCheckgy = document.getElementById('barCellCheckgy');
+            //下拉进度条
+            this.xiala_ = document.getElementById("xiala_");
+            this.xiala2_ = document.getElementById("xiala2_");
+            this.xiala3_ = document.getElementById("xiala3_");
+            this.allCredit = document.getElementById("allCredit");
+            this.credit = 0;
+            this.xlPageJson = {
+                xlSchoolParentId: 101,//学校类父类
+                xlVideoParentId: 95,//视频类父类
+                curParentsTypeId: 101,//当前选择的父类ID
+                curAreaType: null,//当前地区栏展示类型ID
+                curYeyType: null,//当前幼儿园栏展示类型ID
+                curXxType: null,//当前小学栏展示类型ID
+                curVideoType: null,//当前视频区栏展示类型ID
+                curVideoIndex: 0,//当前视频区展示为第几列
+                curYeyIndex: 0,//当前幼儿园区展示为第几列
+                curXxIndex: 0,//当前小学区展示为第几列
+                curContentFocus: null,//当前获焦焦点
+                preLeftFocus: null,//上一个分栏焦点
+                preLeftYeyFocus: null,//上一个幼儿园焦点
+                leavePage: false,//是否离开本页面
+                leaveFocus: null,
+                typeList: {}
+            };
+            //获取父类包含分类
+            this.getTypeList = function(parentId,fn){
+                var _this = this;
+                var beRequested = false;
+                for(var key in this.xlPageJson.typeList){
+                    if(key == parentId){
+                        beRequested = true;
+                        break;
+                    }
+                }
+                if(beRequested){
+                    fn && fn(this.xlPageJson.typeList[parentId]);
+                }else{
+                    ajax.init({
+                        url:_this.getTypeUrl,
+                        method:"get",
+                        params:{
+                            "parentId": parentId || _this.xlPageJson.xlSchoolParentId
+                        },
+                        async:true,
+                        ContentType:"application/x-www-form-urlencoded",
+                        success:function(data){
+                            if(fn && typeof fn == "function"){
+                                if(data && data.errorCode == "1000"){
+                                    _this.xlPageJson.typeList[parentId] = data.data;
+                                    fn(data.data);
+                                }else{
+                                    _this.xlPageJson.typeList[parentId] = null;
+                                    fn(false);
+                                }
+
+                            }
+                        },
+                        fail:function(status){
+                            fn(false);
+                        }
+                    })
+                }
+            };
+            //获取父类包含卡通
+            this.getCartoonList = function(typeId,fn){
+                var _this = this;
+                var beRequested = false;
+                for(var key in this.xlPageJson.typeList){
+                    if(key == typeId){
+                        beRequested = true;
+                        break;
+                    }
+                }
+                if(beRequested) {
+                    fn && fn(this.xlPageJson.typeList[typeId]);
+                }else{
+                    ajax.init({
+                        url:_this.getCartoonListUrl,
+                        method:"get",
+                        params:{
+                            "typeId": typeId || 96
+                        },
+                        async:true,
+                        ContentType:"application/x-www-form-urlencoded",
+                        success:function(data){
+                            if(fn && typeof fn == "function"){
+                                if(data && data.errorCode == "1000"){
+                                    _this.xlPageJson.typeList[typeId] = data.data;
+                                    fn(data.data);
+                                }else{
+                                    _this.xlPageJson.typeList[typeId] = null;
+                                    fn(false);
+                                }
+
+                            }
+                        },
+                        fail:function(status){
+                            fn(false);
+                        }
+                    })
+                }
+            };
+            //截取对应数组长度
+            this.getArrWithLength = function(targetArr,start,end){
+                if(targetArr){
+                    var returnArr = [];
+                    end = end < targetArr.length?end:targetArr.length-1;
+                    for(var i = parseInt(start); i <= parseInt(end); i++){
+                        returnArr.push(targetArr[i]);
+                    }
+                    return returnArr;
+                }else{
+                    return [];
+                }
+            };
+            //截取文字
+            this.resetText = function(text,length){
+                if(text && typeof text == "string"){
+                    if(text.length > length){
+                        return text.substring(0,length-3) + "...";
+                    }else{
+                        return text;
+                    }
+                }else{
+                    return "";
+                }
+            };
+        }
+        StoryHome.prototype = {
+            constructor: StoryHome,
+            beforeInit: function(){
+                var _this = this;
+                actiObj.getUserPhone(function(phoneData){
+                    actiObj.getUserCredit(function(creditData){
+                        if(creditData && creditData.errorCode == "1000"){
+                            _this.credit = creditData.data.creditNum;
+                            allCredit.innerHTML = "累计积分："+ creditData.data.creditNum +"分";
+                        }else{
+                            _this.credit = 0;
+                            allCredit.innerHTML = "累计积分：0分";
+                        }
+                        if(phoneData && phoneData.errorCode == "1000" && phoneData.data.userPhone){
+                            _this.initPage();
+                        }else{
+                            document.getElementById('modalBox').style.visibility = 'visible';
+                            PAGE.focusInit();
+                            PAGE.changeFocus('hands_x0_y0_inputX_');
+                        }
+
+                    });
+                });
+            },
+            initPage: function(){
+                var _this = this;
+                document.getElementById('modalBox').style.visibility = 'hidden';
+                this.addAllButtons();
+                this.getTypeList(_this.xlPageJson.xlSchoolParentId,function(msgSchool){
+                    _this.getTypeList(_this.xlPageJson.xlVideoParentId,function(msgVideo){
+                        if(msgSchool){
+                            _this.setAreaType(msgSchool);
+                        }
+                        if(msgVideo){
+                            _this.setVideoType(msgVideo);
+                        }
+						var loginId = CT.getCookie("pid");
+                        var prePageJson = CT.getCookie("xlPageJson");
+                        CT.delCookie("xlPageJson");
+                        if(prePageJson)prePageJson=eval("("+ prePageJson +")");
+						switch(loginId){
+							case "story_khb":
+								CT.setCookie("pid",loginId+"be");
+								prePageJson = {
+									xlSchoolParentId: 101,
+									xlVideoParentId: 95,
+									curParentsTypeId: 95,
+									curAreaType: null,
+									curYeyType: null,
+									curXxType: null,
+									curVideoType: 98,
+									curVideoIndex: 0,
+									curYeyIndex: 0,
+									curXxIndex: 0,
+									curContentFocus: null,
+									preLeftFocus: null,
+									preLeftYeyFocus: null,
+									leavePage: true,
+									leaveFocus: "hands_x0_y0_lesson0_",
+									typeList: []
+								}
+								break;
+							default:
+								break;
+						}
+                        if(prePageJson && prePageJson.leavePage){
+                            for(var key in prePageJson){
+                                if(key != "typeList" && key != "leavePage"){
+                                    _this.xlPageJson[key] = prePageJson[key];
+                                }
+                            }
+                            if(_this.xlPageJson.curParentsTypeId == 101){
+                                _this.getTypeList(_this.xlPageJson.curAreaType,function(schoolMsg){
+                                    if(schoolMsg){
+                                        if(schoolMsg[0].typeCname == "小学组"){
+                                            _this.getCartoonList(schoolMsg[1].id,function(yeyMsg){
+                                                _this.getCartoonList(schoolMsg[0].id,function(xxMsg){
+                                                    _this.setSlideBar();
+                                                    _this.setKindergarten(storyObj.getArrWithLength(yeyMsg,_this.xlPageJson.curYeyIndex*10,_this.xlPageJson.curYeyIndex*10+9));
+                                                    _this.setPrimary(storyObj.getArrWithLength(xxMsg,_this.xlPageJson.curXxIndex*10,_this.xlPageJson.curXxIndex*10+9));
+                                                    _this.barCellChecksp.style.display = "block";
+                                                    _this.content1.style.display = "block";
+                                                    _this.barCellCheckgy.style.display = "none";
+                                                    _this.content2.style.display = "none";
+                                                    PAGE.focusInit();
+                                                    PAGE.changeFocus(_this.xlPageJson.leaveFocus);
+                                                });
+                                            });
+                                        }else{
+                                            _this.getCartoonList(schoolMsg[0].id,function(yeyMsg){
+                                                _this.getCartoonList(schoolMsg[1].id,function(xxMsg){
+                                                    _this.setSlideBar();
+                                                    _this.setKindergarten(storyObj.getArrWithLength(yeyMsg,_this.xlPageJson.curYeyIndex*10,_this.xlPageJson.curYeyIndex*10+9));
+                                                    _this.setPrimary(storyObj.getArrWithLength(xxMsg,_this.xlPageJson.curXxIndex*10,_this.xlPageJson.curXxIndex*10+9));
+                                                    _this.barCellChecksp.style.display = "block";
+                                                    _this.content1.style.display = "block";
+                                                    _this.barCellCheckgy.style.display = "none";
+                                                    _this.content2.style.display = "none";
+                                                    PAGE.focusInit();
+                                                    PAGE.changeFocus(_this.xlPageJson.leaveFocus);
+                                                });
+                                            });
+                                        }
+
+                                    }
+                                });
+                            }else{
+                                _this.getCartoonList(_this.xlPageJson.curVideoType,function(videoMsg){
+                                    _this.setSlideBar();
+                                    _this.setVideoListHtml(storyObj.getArrWithLength(videoMsg,_this.xlPageJson.curVideoIndex*6,_this.xlPageJson.curVideoIndex*6+5));
+                                    _this.barCellCheckgy.style.display = "block";
+                                    _this.content2.style.display = "block";
+                                    _this.barCellChecksp.style.display = "none";
+                                    _this.content1.style.display = "none";
+                                    PAGE.focusInit();
+                                    PAGE.changeFocus(_this.xlPageJson.leaveFocus);
+                                });
+                            }
+                        }else{
+                            PAGE.focusInit();
+                            PAGE.changeFocus('hands_x0_y0_video_');
+                        }
+                    });
+                });
+            },
+            setSlideBar: function(){
+                if(this.xlPageJson.curParentsTypeId == "101"){
+                    var totalYeyArr = this.xlPageJson.typeList[this.xlPageJson.curYeyType];
+                    if(!totalYeyArr)totalYeyArr=[],this.xiala_.style.height = 274 + "px",this.xiala_.style.top = "0px";
+                    var totalYeyPage = parseInt(totalYeyArr.length/10);
+                    if(totalYeyArr.length%10 > 0){
+                        totalYeyPage ++;
+                    }
+                    this.xiala_.style.height = (1/totalYeyPage)*274 + "px";
+                    this.xiala_.style.top = this.xlPageJson.curYeyIndex*(274/totalYeyPage) + "px";
+
+                    var totalXxArr = this.xlPageJson.typeList[this.xlPageJson.curXxType];
+                    if(!totalXxArr)totalXxArr=[],this.xiala2_.style.height = 274 + "px",this.xiala2_.style.top = "0px";
+                    var totalXxPage = parseInt(totalXxArr.length/10);
+                    if(totalXxArr.length%10 > 0){
+                        totalXxPage ++;
+                    }
+                    this.xiala2_.style.height = (1/totalXxPage)*274 + "px";
+                    this.xiala2_.style.top = this.xlPageJson.curXxIndex*(274/totalXxPage) + "px";
+                }else{
+                    var totalVideoArr = this.xlPageJson.typeList[this.xlPageJson.curVideoType];
+                    if(!totalVideoArr)totalVideoArr=[],this.xiala3_.style.height = 274 + "px",this.xiala3_.style.top = "0px";
+                    var totalVideoPage = parseInt(totalVideoArr.length/6);
+                    if(totalVideoArr.length%6 > 0){
+                        totalVideoPage ++;
+                    }
+                    this.xiala3_.style.height = (1/totalVideoPage)*274 + "px";
+                    this.xiala3_.style.top = this.xlPageJson.curVideoIndex*(274/totalVideoPage) + "px";
+                }
+            },
+            addAllButtons: function(){
+                //公益课程分类焦点
+                for (var i = 0; i < 4; i++) {
+                    button = {
+                        id: "hands_x0_y0_type" + i + "_",
+                        clickHandler: "",
+                        otherFocusEvent: "javascript: schoolFocusHere(1)",
+                        otherBlurEvent: "javascript: schoolFocusLose(1)",
+                        left: "disable",
+                        right: "disable",
+                        rightEvent: "javascript: videoToRight()",
+                        up: (i == 0 ? "hands_x0_y0_publicInterest_" : "hands_x0_y0_type" + (i - 1) + "_"),
+                        down: (i == 3? "disable" : "hands_x0_y0_type" + (i + 1) + "_"),
+                        focusType: 7
+                    };
+                    buttons.push(button)
+                }
+                this.setVideoType(false);
+                //公益课程视频框焦点
+                for (var i = 0; i < 6; i++) {
+                    button = {
+                        id: "hands_x0_y0_lesson" + i + "_",
+                        clickHandler: "javascript: videoListToDetail()",
+                        enMove: false,
+                        otherFocusEvent: "javascript: schoolFocusHere(3,"+ i +")",
+                        otherBlurEvent: "javascript: schoolFocusLose(3,"+ i +")",
+                        left: (i == 0 ? "hands_x0_y0_type1_" : "hands_x0_y0_lesson" + (i - 1) + "_"),
+                        right: (i > 4 ? "disable" : "hands_x0_y0_lesson" + (i + 1) + "_"),
+                        up: (i < 3 ? "disable" : "hands_x0_y0_lesson" + (i - 3) + "_"),
+                        down: (i < 3 ? "hands_x0_y0_lesson" + (i + 3) + "_" : "disable"),
+                        focusType: 7
+                    };
+                    if(i < 3){
+                        button.up = "disable";
+                        button.upEvent = "javascript: videoListToUp('"+ i +"')";
+                    }else{
+                        button.down = "disable";
+                        button.downEvent = "javascript: videoListToDown('"+ i +"')";
+                    }
+                    if(i == 0){
+                        button.left = "disable";
+                        button.leftEvent = "javascript: videoListToLeft('"+ i +"')";
+                    }
+                    buttons.push(button)
+                }
+                this.setVideoListHtml(false);
+                //地区焦点
+                for (var i = 0; i < 6; i++) {
+                    button = {
+                        id: "hands_x0_y0_area" + i + "_",
+                        clickHandler: "",
+                        enMove: false,
+                        otherFocusEvent: "javascript: schoolFocusHere(1,"+ i +")",
+                        otherBlurEvent: "javascript: schoolFocusLose(1,"+ i +")",
+                        left: "disable",
+                        right: "disable",
+                        rightEvent: "javascript: areaToRight()",
+                        up: (i == 0 ? "hands_x0_y0_video_" : "hands_x0_y0_area" + (i-1) + "_"),
+                        down: (i == 5 ? "disable" : "hands_x0_y0_area" + (i+1) + "_"),
+                        focusType: 7
+                    };
+                    buttons.push(button)
+                }
+                this.setAreaType(false);
+                //幼儿园组视频焦点
+                for (var i = 0; i < 10; i++) {
+                    button = {
+                        id: "hands_x0_y0_school" + i + "_",
+                        clickHandler: "javascript:checkSchool()",
+                        enMove: false,
+                        otherFocusEvent: "javascript: schoolFocusHere(2,"+ i +")",
+                        otherBlurEvent: "javascript: schoolFocusLose(2,"+ i +")",
+                        left: "disable",
+                        leftEvent: "javascript: kindergartenToLeft()",
+                        right: "disable",
+                        rightEvent: "javascript: kindergartenToRight('"+ i +"')",
+                        up: (i == 0 ? "disable" : "hands_x0_y0_school" + (i - 1) + "_"),
+                        down: (i == 9 ? "disable" : "hands_x0_y0_school" + (i + 1) + "_"),
+                        focusType: 7
+                    };
+                    if(i == 0){
+                        button.up = "disable";
+                        button.upEvent = "javascript: kindergartenToUp()";
+                    }else if(i == 9){
+                        button.down = "disable";
+                        button.downEvent = "javascript: kindergartenToDown()";
+                    }
+                    buttons.push(button)
+                }
+                this.setKindergarten(false);
+                //小学组视频焦点
+                for (var i = 0; i < 10; i++) {
+                    button = {
+                        id: "hands_x0_y0_schoolx" + i + "_",
+                        clickHandler: "javascript:checkSchool()",
+                        enMove: false,
+                        otherFocusEvent: "javascript: schoolFocusHere(2,"+ i +")",
+                        otherBlurEvent: "javascript: schoolFocusLose(2,"+ i +")",
+                        left: "disable",
+                        leftEvent: "javascript: primaryToLeft()",
+                        right: "disable",
+                        up: (i == 0 ? "disable" : "hands_x0_y0_schoolx" + (i - 1) + "_"),
+                        down: (i == 9 ? "disable" : "hands_x0_y0_schoolx" + (i + 1) + "_"),
+                        focusType: 7
+                    };
+                    if(i == 0){
+                        button.up = "disable";
+                        button.upEvent = "javascript: primaryToUp()";
+                    }else if(i == 9){
+                        button.down = "disable";
+                        button.downEvent = "javascript: primaryToDown()";
+                    }
+                    buttons.push(button)
+                }
+                this.setPrimary(false);
+            },
+            // 设置左侧公益课程类型焦点
+            setVideoType: function(targetMsg){
+                //storyObj.xlPageJson.preLeftFocus = null;
+                document.getElementById("sidebox2").innerHTML = "";
+                if(targetMsg){
+                    for (var i = 0; i < targetMsg.length; i++) {
+                        if(targetMsg[i].typeCname == "早教课程"){
+                            targetMsg.splice(i,1);
+                            break;
+                        }
+                    }
+                    for (var i = 0; i < targetMsg.length; i++) {
+                        var elem = "<div id='hands_x0_y0_type" +
+                            i + "_' class='sidebar-cell' style = 'position: absolute;left: 0;top: "+ (i*51) +"px;'>" + targetMsg[i].typeCname +
+                            "<img id='type" + i +
+                            "' src='./img/empty.png' style='width: 425px;height: 57px;visibility: hidden;' alt=''></div>";
+                        document.getElementById("sidebox2").innerHTML += elem;
+                        PAGE.enableFocus("hands_x0_y0_type" + i + "_");
+                    }
+                    for(var i = targetMsg.length; i < 4; i++){
+                        var delFocus = "hands_x0_y0_type" + i + "_";
+                        var elem = "<div id='hands_x0_y0_type" +
+                            i + "_' class='sidebar-cell' style = 'position: absolute;left: 0;top: "+ (i*51) +"px;'>"+
+                            "<img id='type" + i +
+                            "' src='./img/empty.png' style='width: 425px;height: 57px;visibility: hidden;' alt=''></div>";
+                        document.getElementById("sidebox2").innerHTML += elem;
+                        if(document.getElementById(delFocus)){
+                            PAGE.disableFocus(delFocus);
+                        }
+                    }
+                }else{
+                    targetMsg = ["早教故事","看绘本","国学名著","亲子学塾"];//,"早教课程"
+                    for (var i = 0; i < targetMsg.length; i++) {
+                        var elem = "<div id='hands_x0_y0_type" +
+                            i + "_' class='sidebar-cell' style = 'position: absolute;left: 0;top: "+ (i*51) +"px;'>" + targetMsg[i] +
+                            "<img id='type" + i +
+                            "' src='./img/empty.png' style='width: 425px;height: 57px;visibility: hidden;' alt=''></div>";
+                        document.getElementById("sidebox2").innerHTML += elem;
+                        PAGE.enableFocus("hands_x0_y0_type" + i + "_");
+                    }
+                    for(var i = targetMsg.length; i < 4; i++){
+                        var delFocus = "hands_x0_y0_type" + i + "_";
+                        var elem = "<div id='hands_x0_y0_type" +
+                            i + "_' class='sidebar-cell' style = 'position: absolute;left: 0;top: "+ (i*51) +"px;'>"+
+                            "<img id='type" + i +
+                            "' src='./img/empty.png' style='width: 425px;height: 57px;visibility: hidden;' alt=''></div>";
+                        document.getElementById("sidebox2").innerHTML += elem;
+                        if(document.getElementById(delFocus)){
+                            PAGE.disableFocus(delFocus);
+                        }
+                    }
+                }
+            },
+            // 设置右侧课程焦点
+            setVideoListHtml: function(targetMsg){
+                document.getElementById("lessonBox").innerHTML = "";
+                if(targetMsg){
+                    for (var i = 0; i < targetMsg.length; i++) {
+                        var elem = "<div id='hands_x0_y0_lesson" +
+                            i + "_' class='lesson-cell' style = 'position: absolute;top: "+ (i<3?20:223) +"px;left: "+((i%3==0?40:(i%3)*283+40))+"px;' cartoonid = '"+ targetMsg[i].contentId +"'><img class='lesson-cell-img' src='" + this.imgUrl +
+                            targetMsg[i].more1 +
+                            "'><img id='lesson" + i +
+                            "' src='./img/empty.png' style='visibility: hidden;' alt=''>" +
+                            "<div class = 'cartoon-name'>"+ this.resetText(targetMsg[i].contentCname,7) +"</div></div>";
+                        document.getElementById("lessonBox").innerHTML += elem;
+                        PAGE.enableFocus("hands_x0_y0_lesson" +i + "_");
+                    }
+                    for(var i = targetMsg.length; i < 6; i++){
+                        var delFocus = "hands_x0_y0_lesson" + i + "_";
+                        var elem = "<div style='visibility: hidden;position: absolute;top: "+ (i<3?20:223) +"px;left: "+((i%3==0?40:(i%3)*283+40))+"px;' id='hands_x0_y0_lesson" +
+                            i + "_' class='lesson-cell'><img class='lesson-cell-img' src='./img/empty.png'><img id='lesson" + i +
+                            "' src='./img/empty.png' style='visibility: hidden;' alt=''></div>";
+                        document.getElementById("lessonBox").innerHTML += elem;
+                        if(document.getElementById(delFocus)){
+                            PAGE.disableFocus(delFocus);
+                        }
+                    }
+                }else{
+                    for(var i = 0; i < 6; i++){
+                        var delFocus = "hands_x0_y0_lesson" + i + "_";
+                        var elem = "<div style='visibility: hidden;position: absolute;top: "+ (i<3?20:223) +"px;left: "+((i%3==0?40:(i%3)*283+40))+"px;' id='hands_x0_y0_lesson" +
+                            i + "_' class='lesson-cell'><img class='lesson-cell-img' src='./img/empty.png'><img id='lesson" + i +
+                            "' src='./img/empty.png' style='visibility: hidden;' alt=''></div>";
+                        document.getElementById("lessonBox").innerHTML += elem;
+                        if(document.getElementById(delFocus)){
+                            PAGE.disableFocus(delFocus);
+                        }
+                    }
+                }
+
+            },
+            //设置左侧地区信息
+            setAreaType: function(targetMsg){
+                //storyObj.xlPageJson.preLeftFocus = null;
+                document.getElementById("sidebox1").innerHTML = "";
+                if(targetMsg){
+                    for (var i = 0; i < targetMsg.length; i++) {
+                        var elem =
+                            "<div id='hands_x0_y0_area" +
+                            i + "_' class='sidebar-cell' style='position: absolute;left: 0;top: "+ (i*51) +"px;'>" + targetMsg[i].typeCname +
+                            "<img id='area" + i +
+                            "' src='./img/empty.png' style='width: 224px;height: 46px;visibility: hidden;top:0px;right:0px;position:absolute' alt=''></div>";
+                        document.getElementById("sidebox1").innerHTML += elem;
+                        PAGE.enableFocus("hands_x0_y0_area" + i + "_");
+                    }
+                    for(var i = targetMsg.length; i < 6; i++){
+                        var delFocus = "hands_x0_y0_area" + i + "_";
+                        var elem =
+                            "<div id='hands_x0_y0_area" +
+                            i + "_' class='sidebar-cell' style='position: absolute;left: 0;top: "+ (i*51) +"px;'>" +
+                            "<img id='area" + i +
+                            "' src='./img/empty.png' style='width: 224px;height: 46px;visibility: hidden;top:0px;right:0px;position:absolute' alt=''></div>";
+                        document.getElementById("sidebox1").innerHTML += elem;
+                        if(document.getElementById(delFocus)){
+                            PAGE.disableFocus(delFocus);
+                        }
+                    }
+                }else{
+                    targetMsg = ["梁溪区","滨湖区","经开区","锡山区","惠山区","新吴区"];
+                    for (var i = 0; i < targetMsg.length; i++) {
+                        var elem =
+                            "<div id='hands_x0_y0_area" +
+                            i + "_' class='sidebar-cell' style='position: absolute;left: 0;top: "+ (i*5+46) +"px;'>" + targetMsg[i] +
+                            "<img id='area" + i +
+                            "' src='./img/empty.png' style='width: 224px;height: 46px;visibility: hidden;top:0px;right:0px;position:absolute' alt=''></div>";
+                        document.getElementById("sidebox1").innerHTML += elem;
+                        PAGE.enableFocus("hands_x0_y0_area" + i + "_");
+                    }
+                }
+
+            },
+            //设置右侧幼儿园焦点
+            setKindergarten: function(targetMsg) {
+                document.getElementById("yeyBox").innerHTML = "";
+                if(targetMsg){
+                    for (var i = 0; i < targetMsg.length; i++) {
+                        var elem = "<div id='hands_x0_y0_school" +
+                            i + "_' class='school-def' style = 'position: absolute; left: 0;top: "+ (i*36) +"px;' cartoonid = '"+ targetMsg[i].contentId +"'>"+ targetMsg[i].contentCname +"<img id='school" + i +
+                            "' src='./img/empty.png' style='visibility: hidden;' alt=''></div>";
+                        document.getElementById("yeyBox").innerHTML += elem;
+                        PAGE.enableFocus("hands_x0_y0_school" + i + "_");
+                    }
+                    for(var i = targetMsg.length; i < 6; i++){
+                        var delFocus = "hands_x0_y0_school" + i + "_";
+                        if(targetMsg.length == 0 && i == 0){
+                            var elem = "<div id='hands_x0_y0_school" +
+                                i + "_'  style = 'position: absolute; left: 0;top: "+ (i*36) +"px;' class='school-def'>敬请期待<img id='school" + i +
+                                "' src='./img/empty.png' style='visibility: visible;' alt=''></div>";
+                        }else{
+                            var elem = "<div id='hands_x0_y0_school" +
+                                i + "_'  style = 'position: absolute; left: 0;top: "+ (i*36) +"px;' class='school-def'><img id='school" + i +
+                                "' src='./img/empty.png' style='visibility: hidden;' alt=''></div>";
+                        }
+                        document.getElementById("yeyBox").innerHTML += elem;
+                        if(document.getElementById(delFocus)){
+                            PAGE.disableFocus(delFocus);
+                        }
+                    }
+                }else{
+                    for (var i = 0; i < 10; i++) {
+                        if(i == 0){
+                            var elem = "<div id='hands_x0_y0_school" +
+                                i + "_'  style = 'position: absolute; left: 0;top: "+ (i*36) +"px;' class='school-def'>敬请期待<img id='school" + i +
+                                "' src='./img/empty.png' style='visibility: visible;' alt=''></div>";
+                        }else{
+                            var elem = "<div id='hands_x0_y0_school" +
+                                i + "_'  style = 'position: absolute; left: 0;top: "+ (i*36) +"px;' class='school-def'><img id='school" + i +
+                                "' src='./img/empty.png' style='visibility: hidden;' alt=''></div>";
+                        }
+                        document.getElementById("yeyBox").innerHTML += elem;
+                    }
+                    for(var i = 0; i < 10; i++){
+                        var delFocus = "hands_x0_y0_school" + i + "_";
+                        if(document.getElementById(delFocus)){
+                            PAGE.disableFocus(delFocus);
+                        }
+                    }
+                }
+            },
+            //设置右侧小学焦点
+            setPrimary: function(targetMsg){
+                document.getElementById("xiaoxBox").innerHTML = "";
+                storyObj.xlPageJson.preLeftYeyFocus = null;
+                if(targetMsg){
+                    for (var i = 0; i < targetMsg.length; i++) {
+                        var elem = "<div id='hands_x0_y0_schoolx" +
+                            i + "_' class='school-def'  style = 'position: absolute; left: 0;top: "+ (i*36) +"px;' cartoonid = '"+ targetMsg[i].contentId +"'>"+ targetMsg[i].contentCname +"<img id='schoolx" + i +
+                            "' src='./img/empty.png' style='visibility: hidden;' alt=''></div>";
+                        document.getElementById("xiaoxBox").innerHTML += elem;
+                        PAGE.enableFocus("hands_x0_y0_schoolx" + i + "_");
+                    }
+                    for(var i = targetMsg.length; i < 10; i++){
+                        var delFocus = "hands_x0_y0_schoolx" + i + "_";
+                        if(targetMsg.length == 0 && i == 0){
+                            var elem = "<div id='hands_x0_y0_schoolx" +
+                                i + "_'  style = 'position: absolute; left: 0;top: "+ (i*36) +"px;' class='school-def'>敬请期待<img id='schoolx" + i +
+                                "' src='./img/empty.png' style='visibility: visible;' alt=''></div>";
+                        }else{
+                            var elem = "<div id='hands_x0_y0_schoolx" +
+                                i + "_'  style = 'position: absolute; left: 0;top: "+ (i*36) +"px;' class='school-def'><img id='schoolx" + i +
+                                "' src='./img/empty.png' style='visibility: hidden;' alt=''></div>";
+                        }
+                        document.getElementById("xiaoxBox").innerHTML += elem;
+                        if(document.getElementById(delFocus)){
+                            PAGE.disableFocus(delFocus);
+                        }
+                    }
+                }else{
+                    for (var i = 0; i < 10; i++) {
+                        if(i == 0){
+                            var elem = "<div id='hands_x0_y0_schoolx" +
+                                i + "_'  style = 'position: absolute; left: 0;top: "+ (i*36) +"px;' class='school-def'>敬请期待<img id='schoolx" + i +
+                                "' src='./img/empty.png' style='visibility: visible;' alt=''></div>";
+                        }else{
+                            var elem = "<div id='hands_x0_y0_schoolx" +
+                                i + "_'  style = 'position: absolute; left: 0;top: "+ (i*36) +"px;' class='school-def'><img id='schoolx" + i +
+                                "' src='./img/empty.png' style='visibility: hidden;' alt=''></div>";
+                        }
+                        document.getElementById("xiaoxBox").innerHTML += elem;
+                    }
+                    for(var i = 0; i < 10; i++){
+                        var delFocus = "hands_x0_y0_schoolx" + i + "_";
+                        if(document.getElementById(delFocus)){
+                            PAGE.disableFocus(delFocus);
+                        }
+                    }
+                }
+
+            }
+        };
+        // 焦点获焦函数
+        function schoolFocusHere(id,ii) {
+            document.getElementById('signInImg').src = './img/signInDefault.png';
+            document.getElementById('hands_x0_y0_confirm_').style.visibility = 'hidden';
+            switch (id) {
+                case -3:
+                    CT.$('hands_x0_y0_confirm_').style.visibility = 'visible';
+                    CT.$('hands_x0_y0_inputX_')[0].className = 'modal-input-boxs';
+                    break;
+                case -2:
+                    CT.$('hands_x0_y0_inputX_')[0].className = 'modal-input-box';
+                    CT.$('modalInput').style.border = '3px solid #00F6FF';
+                    phoneFocus = true;
+                    break;
+                case -1:
+                    CT.$('signInImg').src = './img/singIn.png';
+                    break
+                case 0:
+                    if (curFocus.ImgID == 'video') {
+                        storyObj.xlPageJson.curParentsTypeId = storyObj.xlPageJson.xlSchoolParentId;
+                        storyObj.barCellChecksp.style.display = "block";
+                        storyObj.content1.style.display = "block";
+                        storyObj.barCellCheckgy.style.display = "none";
+                        storyObj.content2.style.display = "none";
+                        storyObj.getTypeList(storyObj.xlPageJson.typeList[storyObj.xlPageJson.xlSchoolParentId][0].id,function(schoolMsg){
+                            if(schoolMsg){
+                                if(schoolMsg[0].typeCname == "小学组"){
+                                    storyObj.getCartoonList(schoolMsg[1].id,function(yeyMsg){
+                                        storyObj.getCartoonList(schoolMsg[0].id,function(xxMsg){
+                                            storyObj.xlPageJson.curYeyIndex = 0;
+                                            storyObj.xlPageJson.curXxIndex = 0;
+                                            storyObj.setSlideBar();
+                                            storyObj.setKindergarten(storyObj.getArrWithLength(yeyMsg,0,9));
+                                            storyObj.setPrimary(storyObj.getArrWithLength(xxMsg,0,9));
+                                        });
+                                    });
+                                }else{
+                                    storyObj.getCartoonList(schoolMsg[0].id,function(yeyMsg){
+                                        storyObj.getCartoonList(schoolMsg[1].id,function(xxMsg){
+                                            storyObj.xlPageJson.curYeyIndex = 0;
+                                            storyObj.xlPageJson.curXxIndex = 0;
+                                            storyObj.setSlideBar();
+                                            storyObj.setKindergarten(storyObj.getArrWithLength(yeyMsg,0,9));
+                                            storyObj.setPrimary(storyObj.getArrWithLength(xxMsg,0,9));
+                                        });
+                                    });
+                                }
+                            }
+                        });
+                    } else {
+                        storyObj.xlPageJson.curParentsTypeId = storyObj.xlPageJson.xlVideoParentId;
+                        storyObj.barCellCheckgy.style.display = "block";
+                        storyObj.content2.style.display = "block";
+                        storyObj.barCellChecksp.style.display = "none";
+                        storyObj.content1.style.display = "none";
+                        storyObj.getCartoonList(storyObj.xlPageJson.typeList[storyObj.xlPageJson.xlVideoParentId][0].id,function(videoMsg){
+                            storyObj.xlPageJson.curVideoIndex = 0;
+                            storyObj.setSlideBar();
+                            storyObj.setVideoListHtml(storyObj.getArrWithLength(videoMsg,0,5));
+                        });
+                    }
+                    break;
+                case 1:
+                    CT.$(curFocus.FocusID).className = 'sidebar-checked';
+                    var curTypeId = 0;
+                    var curTypeName = CT.$(curFocus.FocusID).innerText;
+                    if(storyObj.xlPageJson.typeList && storyObj.xlPageJson.typeList[storyObj.xlPageJson.curParentsTypeId]){
+                        var areaTypeList = storyObj.xlPageJson.typeList[storyObj.xlPageJson.curParentsTypeId];
+                        for(var i = 0; i < areaTypeList.length; i++){
+                            if(areaTypeList[i].typeCname == curTypeName){
+                                curTypeId = areaTypeList[i].id;
+                                break;
+                            }
+                        }
+                        if(curTypeId != 0){
+                            if(curFocus.FocusID.indexOf("area") > -1){
+                                if(storyObj.xlPageJson.curAreaType == curTypeId)return;
+                                storyObj.xlPageJson.curAreaType = curTypeId;
+                                storyObj.getTypeList(curTypeId,function(schoolMsg){
+                                    if(schoolMsg){
+                                        if(schoolMsg[0].typeCname == "小学组"){
+                                            storyObj.getCartoonList(schoolMsg[1].id,function(yeyMsg){
+                                                storyObj.getCartoonList(schoolMsg[0].id,function(xxMsg){
+                                                    storyObj.xlPageJson.curYeyIndex = 0;
+                                                    storyObj.xlPageJson.curXxIndex = 0;
+                                                    storyObj.setSlideBar();
+                                                    storyObj.setKindergarten(storyObj.getArrWithLength(yeyMsg,0,9));
+                                                    storyObj.setPrimary(storyObj.getArrWithLength(xxMsg,0,9));
+                                                });
+                                            });
+                                        }else{
+                                            storyObj.getCartoonList(schoolMsg[0].id,function(yeyMsg){
+                                                storyObj.getCartoonList(schoolMsg[1].id,function(xxMsg){
+                                                    storyObj.xlPageJson.curYeyIndex = 0;
+                                                    storyObj.xlPageJson.curXxIndex = 0;
+                                                    storyObj.setSlideBar();
+                                                    storyObj.setKindergarten(storyObj.getArrWithLength(yeyMsg,0,9));
+                                                    storyObj.setPrimary(storyObj.getArrWithLength(xxMsg,0,9));
+                                                });
+                                            });
+                                        }
+                                    }
+                                });
+                            }else{
+                                if(storyObj.xlPageJson.curVideoType == curTypeId)return;
+                                storyObj.xlPageJson.curVideoType = curTypeId;
+                                storyObj.getCartoonList(curTypeId,function(videoMsg){
+                                    storyObj.xlPageJson.curVideoIndex = 0;
+                                    storyObj.setSlideBar();
+                                    storyObj.setVideoListHtml(storyObj.getArrWithLength(videoMsg,0,5));
+                                });
+                            }
+                        }
+                    }
+                    storyObj.xlPageJson.preLeftFocus = curFocus.FocusID;
+                    break;
+                case 2:
+                    CT.$(storyObj.xlPageJson.preLeftFocus).className = 'sidebar-checked';
+                    CT.$(curFocus.FocusID).className = 'school-checked';
+                    if(curFocus.FocusID.indexOf("schoolx") > -1){
+                        storyObj.xlPageJson.curYeyType = storyObj.xlPageJson.typeList[storyObj.xlPageJson.curAreaType][0].id;
+                    }else{
+                        storyObj.xlPageJson.curXxType = storyObj.xlPageJson.typeList[storyObj.xlPageJson.curAreaType][1].id;
+                    }
+                    break;
+                case 3:
+                    CT.$(storyObj.xlPageJson.preLeftFocus).className = 'sidebar-checked';
+                    CT.$(curFocus.FocusID).className = 'lesson-checked';
+                    break;
+                default:
+                    break;
+
+            }
+        }
+        // 焦点失去获焦函数
+        function schoolFocusLose(id,ii){
+            switch (id) {
+                case -3:
+                    CT.$('hands_x0_y0_inputX_')[0].className = '';
+
+                    break;
+                case -2:
+                    CT.$('hands_x0_y0_inputX_')[0].className = '';
+                    phoneFocus = false;
+                    break;
+                case -1:
+                    break;
+                case 0:
+                    break;
+                case 1:
+                    CT.$(curFocus.FocusID).className = "sidebar-cell";
+                    break;
+                case 2:
+                    CT.$(curFocus.FocusID).className = 'school-def';
+                    if(curFocus.FocusID.indexOf("schoolx") == -1){
+                        storyObj.xlPageJson.preLeftYeyFocus = curFocus.FocusID;
+                    }
+                    break;
+                case 3:
+                    CT.$(curFocus.FocusID).className = "lesson-cell";
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        //地区分栏向右移动
+        function areaToRight(){
+            if(storyObj.xlPageJson.typeList[storyObj.xlPageJson.curAreaType]){
+                if(storyObj.xlPageJson.typeList[storyObj.xlPageJson.curAreaType][0].typeCname == "小学组"){
+                    if(storyObj.xlPageJson.typeList[storyObj.xlPageJson.typeList[storyObj.xlPageJson.curAreaType][1].id]){
+                        PAGE.changeFocus("hands_x0_y0_school0_");
+                    }else if(storyObj.xlPageJson.typeList[storyObj.xlPageJson.typeList[storyObj.xlPageJson.curAreaType][0].id]){
+                        PAGE.changeFocus("hands_x0_y0_schoolx0_");
+                    }
+                }else{
+                    if(storyObj.xlPageJson.typeList[storyObj.xlPageJson.typeList[storyObj.xlPageJson.curAreaType][0].id]){
+                        PAGE.changeFocus("hands_x0_y0_school0_");
+                    }else if(storyObj.xlPageJson.typeList[storyObj.xlPageJson.typeList[storyObj.xlPageJson.curAreaType][1].id]){
+                        PAGE.changeFocus("hands_x0_y0_schoolx0_");
+                    }
+                }
+            }
+        }
+        //视频分栏向右移动
+        function videoToRight(){
+            if(storyObj.xlPageJson.typeList[storyObj.xlPageJson.curVideoType]){
+                PAGE.changeFocus("hands_x0_y0_lesson0_");
+            }
+        }
+        //幼儿园栏向上翻动
+        function kindergartenToUp(){
+            var targetStart = storyObj.xlPageJson.curYeyIndex * 10 - 10;
+            if(storyObj.xlPageJson.typeList[storyObj.xlPageJson.curYeyType] && targetStart >= 0){
+                var targetArr = storyObj.getArrWithLength(storyObj.xlPageJson.typeList[storyObj.xlPageJson.curYeyType],targetStart,targetStart+10);
+                if(targetArr.length > 0){
+                    storyObj.setKindergarten(targetArr);
+                    storyObj.xlPageJson.curYeyIndex --;
+                    storyObj.setSlideBar();
+                    PAGE.changeFocus("hands_x0_y0_school9_");
+                }
+            }
+        }
+        //幼儿园栏向下翻动
+        function kindergartenToDown(){
+            var targetStart = storyObj.xlPageJson.curYeyIndex * 10 + 10;
+            if(storyObj.xlPageJson.typeList[storyObj.xlPageJson.curYeyType] && targetStart < storyObj.xlPageJson.typeList[storyObj.xlPageJson.curYeyType].length){
+                var targetArr = storyObj.getArrWithLength(storyObj.xlPageJson.typeList[storyObj.xlPageJson.curYeyType],targetStart,targetStart+9);
+                if(targetArr.length > 0){
+                    storyObj.setKindergarten(targetArr);
+                    storyObj.xlPageJson.curYeyIndex ++;
+                    storyObj.setSlideBar();
+                    PAGE.changeFocus("hands_x0_y0_school0_");
+                }
+            }
+        }
+        //幼儿园栏向左移动
+        function kindergartenToLeft(){
+            if(storyObj.xlPageJson.preLeftFocus && document.getElementById(storyObj.xlPageJson.preLeftFocus)){
+                PAGE.changeFocus(storyObj.xlPageJson.preLeftFocus);
+            }else{
+                PAGE.changeFocus("hands_x0_y0_area0_");
+            }
+        }
+        //幼儿园栏向右移动
+        function kindergartenToRight(ii){
+            if(storyObj.xlPageJson.typeList[storyObj.xlPageJson.curAreaType]){
+                if(storyObj.xlPageJson.typeList[storyObj.xlPageJson.curAreaType][0].typeCname == "小学组"){
+                    if(storyObj.xlPageJson.typeList[storyObj.xlPageJson.typeList[storyObj.xlPageJson.curAreaType][0].id]){
+                        if(PAGE.getFocusModel6("hands_x0_y0_schoolx" + ii + "_") && PAGE.getFocusModel6("hands_x0_y0_schoolx" + ii + "_").enFocus){
+                            PAGE.changeFocus("hands_x0_y0_schoolx" + ii + "_");
+                        }else{
+                            PAGE.changeFocus("hands_x0_y0_schoolx0_");
+                        }
+                    }
+                }else{
+                    if(storyObj.xlPageJson.typeList[storyObj.xlPageJson.typeList[storyObj.xlPageJson.curAreaType][1].id]){
+                        if(PAGE.getFocusModel6("hands_x0_y0_schoolx" + ii + "_") && PAGE.getFocusModel6("hands_x0_y0_schoolx" + ii + "_").enFocus){
+                            PAGE.changeFocus("hands_x0_y0_schoolx" + ii + "_");
+                        }else{
+                            PAGE.changeFocus("hands_x0_y0_schoolx0_");
+                        }
+                    }
+                }
+
+            }
+        }
+        //小学栏向上翻动
+        function primaryToUp(){
+            var targetStart = storyObj.xlPageJson.curXxIndex * 10 - 10;
+            if(storyObj.xlPageJson.typeList[storyObj.xlPageJson.curXxType] && targetStart >= 0){
+                var targetArr = storyObj.getArrWithLength(storyObj.xlPageJson.typeList[storyObj.xlPageJson.curXxType],targetStart,targetStart+9);
+                if(targetArr.length > 0){
+                    storyObj.setKindergarten(targetArr);
+                    storyObj.xlPageJson.curXxIndex ++;
+                    storyObj.setSlideBar();
+                    PAGE.changeFocus("hands_x0_y0_school9_");
+                }
+            }
+        }
+        //小学栏向下翻动
+        function primaryToDown(){
+            var targetStart = storyObj.xlPageJson.curXxIndex * 10 + 10;
+            if(storyObj.xlPageJson.typeList[storyObj.xlPageJson.curXxType] && targetStart < storyObj.xlPageJson.typeList[storyObj.xlPageJson.curXxType].length){
+                var targetArr = storyObj.getArrWithLength(storyObj.xlPageJson.typeList[storyObj.xlPageJson.curXxType],targetStart,targetStart+9);
+                if(targetArr.length > 0){
+                    storyObj.setPrimary(targetArr);
+                    storyObj.xlPageJson.curXxIndex --;
+                    storyObj.setSlideBar();
+                    PAGE.changeFocus("hands_x0_y0_schoolx0_");
+                }
+            }
+        }
+        //小学栏向左移动
+        function primaryToLeft(ii){
+            if(storyObj.xlPageJson.typeList[storyObj.xlPageJson.curAreaType]){
+                if(storyObj.xlPageJson.typeList[storyObj.xlPageJson.typeList[storyObj.xlPageJson.curAreaType][0].id]){
+                    if(PAGE.getFocusModel6("hands_x0_y0_school" + ii + "_") && PAGE.getFocusModel6("hands_x0_y0_school" + ii + "_").enFocus){
+                        PAGE.changeFocus("hands_x0_y0_school" + ii + "_");
+                    }else{
+                        PAGE.changeFocus("hands_x0_y0_school0_");
+                    }
+                }else{
+                    if(storyObj.xlPageJson.preLeftFocus && document.getElementById(storyObj.xlPageJson.preLeftFocus)){
+                        PAGE.changeFocus(storyObj.xlPageJson.preLeftFocus);
+                    }else{
+                        PAGE.changeFocus("hands_x0_y0_area0_");
+                    }
+                }
+            }
+            storyObj.xlPageJson.preLeftYeyFocus
+        }
+        //视频栏向上翻动
+        function videoListToUp(ii){
+            var targetStart = storyObj.xlPageJson.curVideoIndex * 6 - 6;
+            if(storyObj.xlPageJson.typeList[storyObj.xlPageJson.curVideoType] && targetStart >= 0){
+                var targetArr = storyObj.getArrWithLength(storyObj.xlPageJson.typeList[storyObj.xlPageJson.curVideoType],targetStart,targetStart+5);
+                if(targetArr.length > 0){
+                    storyObj.setVideoListHtml(targetArr);
+                    storyObj.xlPageJson.curVideoIndex --;
+                    storyObj.setSlideBar();
+                    if(PAGE.getFocusModel6("hands_x0_y0_lesson"+ (parseInt(ii) + 3) +"_") && PAGE.getFocusModel6("hands_x0_y0_lesson"+ (parseInt(ii) + 3) +"_").enFocus){
+                        PAGE.changeFocus("hands_x0_y0_lesson"+ (parseInt(ii) + 3) +"_");
+                    }else{
+                        PAGE.changeFocus("hands_x0_y0_lesson3_");
+                    }
+                }
+            }
+        }
+        //视频栏向下翻动
+        function videoListToDown(ii){
+            var targetStart = storyObj.xlPageJson.curVideoIndex * 6 + 6;
+            if(storyObj.xlPageJson.typeList[storyObj.xlPageJson.curVideoType] && targetStart < storyObj.xlPageJson.typeList[storyObj.xlPageJson.curVideoType].length){
+                var targetArr = storyObj.getArrWithLength(storyObj.xlPageJson.typeList[storyObj.xlPageJson.curVideoType],targetStart,targetStart + 5);
+                if(targetArr.length > 0){
+                    storyObj.setVideoListHtml(targetArr);
+                    storyObj.xlPageJson.curVideoIndex ++;
+                    storyObj.setSlideBar();
+                    if(PAGE.getFocusModel6("hands_x0_y0_lesson"+ (parseInt(ii) - 3) +"_") && PAGE.getFocusModel6("hands_x0_y0_lesson"+ (parseInt(ii) - 3) +"_").enFocus){
+                        PAGE.changeFocus("hands_x0_y0_lesson"+ (parseInt(ii) - 3) +"_");
+                    }else{
+                        PAGE.changeFocus("hands_x0_y0_lesson0_");
+                    }
+                }
+            }
+        }
+        //视频栏向左移动
+        function videoListToLeft(){
+            if(storyObj.xlPageJson.preLeftFocus && document.getElementById(storyObj.xlPageJson.preLeftFocus)){
+                PAGE.changeFocus(storyObj.xlPageJson.preLeftFocus);
+            }else{
+                PAGE.changeFocus("hands_x0_y0_type0_");
+            }
+        }
+
+
+        var storyObj = new StoryHome();
+        storyObj.beforeInit();
+        //视频列表
+        function videoListToDetail(){
+            toJumpVideoPlay();
+        }
+        // 选择学校
+        function checkSchool() {
+            setPageParams();
+            CT.goPage();
+            window.location.href = './activity_school.html?cartoonId=' + CT.$(curFocus.FocusID).getAttribute("cartoonid") + "&time=" + new Date().getTime();
+        }
+        //获取卡通剧集列表
+        function getCartoonList(cartoonId,fn){
+            ajax.init({
+                url:AjaxConfig.interfaceUrl + "findVideoListByCartoonId",
+                method:"get",
+                params:{
+                    "cartoonId": cartoonId
+                },
+                async:true,
+                ContentType:"application/x-www-form-urlencoded",
+                success:function(data){
+                    if(data && data.errorCode == "1000"){
+                        fn(data.data);
+                    }else{
+                        fn(false);
+                    }
+                },
+                fail:function(status){
+                    fn(false);
+                }
+            });
+        }
+        //跳转全屏
+        function toJumpVideoPlay(){
+            getCartoonList(CT.$(curFocus.FocusID).getAttribute("cartoonid"),function(videoMsg){
+                if(videoMsg){
+                    setPageParams();
+                    CT.goPage();
+                    var params = {
+                        contentId: 15,
+                        cartoonId: videoMsg[0].cartoonId,
+                        videoId: videoMsg[0].id,
+                        contentType: "video",
+                        curFocusId: "formStory"
+                    };
+                    if(curFocus.FocusID.indexOf("lesson") > -1){
+                        params.curFocusId = "formStory10";
+                    }
+                    CT.getAnterByIdOrAction(params);
+                }
+            });
+        }
+        // 用户保存手机号
+        function confirmHandle() {
+            var phoneHTML = CT.$("inputDiv").innerHTML+"";
+            var phoneTips = CT.$("phoneTips");
+            var phoneSize = phoneHTML.length;
+            var TEL_REGEXP = /^(13[0-9]|14[579]|15[0-3,5-9]|16[6]|17[0135678]|18[0-9]|19[89])\d{8}$/;
+            if (phoneSize >= 11 && TEL_REGEXP.test(phoneHTML)) {
+                actiObj.setUserPhone(phoneHTML, function (data) {
+                    if (data) {
+                        actiObj.setUserCredit(parseInt(storyObj.credit)+100,function(){
+                        	storyObj.credit += 100;
+                        	storyObj.allCredit.innerHTML += storyObj.credit;
+                        	
+                            phoneTips.innerHTML = "手机号码保存成功";
+                        });
+                    } else {
+                        phoneTips.innerHTML = "手机号码保存失败";
+                    }
+                });
+            } else {
+                CT.$("inputDiv").innerHTML = "";
+                phoneTips.innerHTML = "您输入的手机号格式无效,请重新输入!"
+            }
+        }
+        //页面离开时设置本页面参数
+        function setPageParams(){
+            storyObj.xlPageJson.typeList = [];
+            storyObj.xlPageJson.leavePage = true;
+            storyObj.xlPageJson.leaveFocus = curFocus.FocusID;
+            CT.setCookie("xlPageJson",CT.jsonToString(storyObj.xlPageJson));
+        }
+        //输入框输入数字方法
+        changeNumObj.changeNum = function(num){
+            var phoneHTML = CT.$("inputDiv").innerHTML+"";
+            var phoneSize = phoneHTML.length;
+            if(phoneSize < 11){
+                phoneHTML += "" + num;
+            }
+            CT.$("inputDiv").innerHTML = phoneHTML;
+        }
+        //跳转活动签到页
+		function toSignPage(){
+			setPageParams();
+			CT.goPage();
+			window.location.href="signLottery.html";
+		}
+        // 返回函数
+        function backfunc() {
+            if(document.getElementById('modalBox').style.visibility == 'visible'){
+                document.getElementById('modalBox').style.visibility = "hidden";
+                CT.$("inputX").style.visibility = "hidden";
+                storyObj.initPage();
+            }else{
+                CT.backPage();
+            }
+        }
+    </script>
+</body>
+
+</html>

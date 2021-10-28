@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name = "page-view-size" content = "1280*720">
+		<title>卡通弹珠台</title>
+		<link rel="stylesheet" type="text/css" href="css/columnMarbles.css?v=1.2" />
+		<style>
+			#ip3{
+				position: absolute;
+				left: 180px;
+				top: 420px;
+				height: 140px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="main">
+			<!--弹珠台-->
+			<div id="table">
+				<!--弹簧-->
+				<img src="img/pressUp.png" id="spring" />
+				<!--进度条-->
+				<img src="img/eneryProgress/0.png" id="progressBar" />
+				<!--发射按钮-->
+				<img src="img/launchBtn1.png" id="launchBtn" />
+				<div id="hands_x0_y0_marblesFocus_" style="position:absolute;left: 205px;top: 570px;">
+					<img src="img/btnFocusNew.png" id="marblesFocus" />
+				</div>
+				<!--弹珠-->
+				<img src="img/marble.png" id="marbleBall" />
+				<!--空焦点-->
+				<div id="hands_x0_y0_blankFocus_">
+					<img src="img/launchBtn1.png" id="blankFocus" style="visibility: hidden;" />
+				</div>
+				<!--五个IP-->
+			</div>
+			<!--弹窗-->
+			<div id="noZhongTip" style="visibility: hidden;">
+				<img src="img/tip/confirmBtn.png" id="noZhongConfirm" />
+				<div id="hands_x0_y0_noZhongConfirmFocus_">
+					<img src="img/tip/confirmBtnFocus.png" id="noZhongConfirmFocus" style="visibility: hidden;" />
+				</div>
+			</div>
+			<div id="zhongTip" style="visibility: hidden;">
+				<img src="img/tip/confirmBtn.png" id="zhongConfirm" />
+				<img src="img/tip/againBtn.png" id="againBtn" />
+				<div id="hands_x0_y0_zhongConfirmFocus_">
+					<img src="img/tip/confirmBtnFocus.png" id="zhongConfirmFocus" style="visibility: hidden;" />
+				</div>
+				<div id="hands_x0_y0_againFocus_">
+					<img src="img/tip/againBtnFocus.png" id="againFocus" style="visibility: hidden;" />
+				</div>
+			</div>
+			<!--加入vip按钮-->
+			<img src="img/orderBtn.png" id="orderBtn" style="position:absolute;left:1010px;top:25px;"/>
+			<div id="hands_x0_y0_orderFocus_" style="position: absolute;left: 985px;top: 2px;">
+				<img src="img/xz.png" id="orderFocus" style="visibility:hidden;"/>
+			</div>
+		</div>
+		<!--引入公用js-->
+		<script type="text/javascript" src="../../../js/loadCommomJs.js?v=1.212"></script>
+		<!--公用js引用结束-->
+		<script type="text/javascript" src="js/key1_3.js?v=1"></script>
+		<script type="text/javascript">
+			var buttons = [{
+				id: "hands_x0_y0_marblesFocus_",
+				clickHandler: "javascript:MarblesGame.keyDownFunc()",
+				left: "disable",
+				right: "hands_x0_y0_orderFocus_",
+				up: "disable",
+				upEvent:"javascript:MarblesGame.upEventFunc()",
+				down: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_noZhongConfirmFocus_",
+				clickHandler: "javascript:MarblesGame.againFunc()",
+				left: "disable",
+				right: "disable",
+				up: "disable",
+				down: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_zhongConfirmFocus_",
+				clickHandler: "javascript:MarblesGame.seeVideoFunc()",
+				left: "disable",
+				right: "hands_x0_y0_againFocus_",
+				up: "disable",
+				down: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_againFocus_",
+				clickHandler: "javascript:MarblesGame.againFunc()",
+				left: "hands_x0_y0_zhongConfirmFocus_",
+				right: "disable",
+				up: "disable",
+				down: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_blankFocus_",
+				left: "disable",
+				right: "disable",
+				up: "disable",
+				down: "disable",
+				focusType: 7
+			},{
+				id:"hands_x0_y0_orderFocus_",
+				clickHandler:"javascript:toOrder()",
+				left:"hands_x0_y0_marblesFocus_",
+				right:"disable",
+				up:"disable",
+				down:"hands_x0_y0_marblesFocus_",
+				focusType:7
+			}];
+			//固定轨迹数组
+			var fixedTrajectoryArr = [{
+				"left": "528px",
+				"top": "200px"
+			}, {
+				"left": "522px",
+				"top": "170px"
+			}, {
+				"left": "505px",
+				"top": "130px"
+			}, {
+				"left": "480px",
+				"top": "90px"
+			}, {
+				"left": "445px",
+				"top": "60px"
+			}, {
+				"left": "410px",
+				"top": "45px"
+			}, {
+				"left": "360px",
+				"top": "32px"
+			}];
+			//随机轨迹数组
+			var randomTrajectoryArr = [
+				[{
+					"left": "300px",
+					"top": "40px"
+				}, {
+					"left": "345px",
+					"top": "100px"
+				}, {
+					"left": "260px",
+					"top": "170px"
+				}],
+				[{
+					"left": "230px",
+					"top": "100px"
+				}, {
+					"left": "332px",
+					"top": "190px"
+				}],
+				[{
+					"left": "230px",
+					"top": "100px"
+				}, {
+					"left": "375px",
+					"top": "270px"
+				}, {
+					"left": "335px",
+					"top": "305px"
+				}],
+				[{
+					"left": "300px",
+					"top": "40px"
+				}, {
+					"left": "345px",
+					"top": "100px"
+				}, {
+					"left": "142px",
+					"top": "190px"
+				}, {
+					"left": "220px",
+					"top": "320px"
+				}, {
+					"left": "170px",
+					"top": "360px"
+				}, {
+					"left": "210px",
+					"top": "395px"
+				}],
+				[{
+					"left": "230px",
+					"top": "100px"
+				}, {
+					"left": "410px",
+					"top": "350px"
+				}, {
+					"left": "390px",
+					"top": "390px"
+				}],
+				[{
+					"left": "230px",
+					"top": "100px"
+				}, {
+					"left": "410px",
+					"top": "350px"
+				}, {
+					"left": "327px",
+					"top": "440px"
+				}, {
+					"left": "370px",
+					"top": "520px"
+				}]
+			];
+
+			//页面数据
+			var OutJson = [];
+			//图片数组
+			var ipImages = [
+				[],
+				[],
+				[],
+				[],
+				[]
+			];
+
+			/*
+			 *
+			 * ajax请求专题配置内容,有内容进行页面渲染,无内容跳转首页
+			 *
+			 */
+			getOutJson();
+
+			function getOutJson() {
+				//获取推荐详情
+				ajax.init({
+					url: AjaxConfig.interfaceUrl + 'findCommonPageInfo',
+					method: 'get',
+					params: {
+						'contentName': CT.querySearchUrlKey(window.location.href, "contentEName")
+					},
+					async: false,
+					ContentType: 'json',
+					success: function(data) {
+						// 埋点日志
+						setLoggerInfo.pageInfoLog = data;
+						OutJson = data.data;
+						showData(OutJson);
+					},
+					fail: function(status) {
+						console.log("获取数据失败！")
+					}
+				});
+			}
+
+			/*
+			 * ajax数据
+			 */
+			function showData(OutJson) {
+				console.log(OutJson);
+				var recommend_1 = OutJson.recommend_1;
+				for(var i = 0; i < recommend_1.length; i++) {
+					var recommendPic = recommend_1[i].recommendPic.picPath;
+					ipImages[i].push(AjaxConfig.imgUrl + recommendPic);
+					var recommendLabelpic = recommend_1[i].recommendLabelpic.picPath;
+					ipImages[i].push(AjaxConfig.imgUrl + recommendLabelpic);
+					//IP元素渲染
+					var ipDom = '<img src="img/IP/ip'+i+'.png" id="ip' + i + '"/>';
+					CT.$("table").innerHTML += ipDom;
+				}				
+			}
+
+
+			/*
+			*鉴权
+			*/
+			var isOrder = 1;
+			orderJs.columnGetAuth(function(authData) {
+				if(authData == "0") {
+					isOrder=0;
+				}else{
+					isOrder=1;
+				}
+			});
+
+						
+			 /**
+			 *  返回方法
+			 * */
+			function backfunc(){
+					CT.delCookie("columnBackUrl");					
+					if(MarblesGame.tipShow == true) {
+						MarblesGame.tipShow = false;
+						MarblesGame.againFunc();
+					} else if(OutJson.recommend_2 && OutJson.recommend_2[0]) {
+						CT.toAnterRecommendUrl(OutJson.recommend_2[0]);
+					} else {
+						try {
+							var columnBack = CT.getCookie('columnBack');
+							CT.delCookie('columnBack');
+							// 判断是否不是从频道入口进入
+							if(false){//columnBack == CT.requestValue('contentId')
+								var backMain = CT.getCookie("mainBackUrl");
+								if(backMain){
+									window.parent.location.href  = backMain;
+								}else{// 退出到局方
+									try{
+										window.parent.location.href  = CT.getEpgDomain("isAllUrl");
+									}catch(e){
+										window.parent.location.href = iPanel.eventFrame.portalUrl;
+									}
+								}
+							}else {
+								CT.backPage();
+							}
+						}catch (e) {
+							CT.BackPortalMainPage();
+						}
+					}				
+			}
+
+			/*
+			*跳订购
+			*/
+			function toOrder(){
+				if(isOrder=="0"){
+					backfunc();
+				}else{
+					PAGE.otherPageParam = "&contentId=" + CT.querySearchUrlKey(window.location.href,"contentId") + "&contentEName=" + CT.querySearchUrlKey(window.location.href,"contentEName") + "&contentCName=" + CT.querySearchUrlKey(window.location.href,"contentCName") + "&contentType=" + CT.querySearchUrlKey(window.location.href,"contentCName") + "&action=" +CT.querySearchUrlKey(window.location.href,"action");
+					CT.goPage();
+					orderJs.columnToOrderPage();
+				}
+			}
+
+		</script>
+		<script type="text/javascript" src="js/columnMarbles.js?v=1.0714"></script>
+	</body>
+
+</html>

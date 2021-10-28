@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>消灭病毒游戏页</title>
+    <link rel="stylesheet" href="css/activity_eliminateVirusGame.css">
+</head>
+
+<body>
+    <div id="main">
+        <!-- 计分 -->
+        <div id="score">0</div>
+        <!-- 射手 -->
+        <img src="img/empty.png" alt="" id="shooter">
+        <!-- 页面病毒 -->
+        <div id="virus"></div>
+        <!--发射机-->
+        <div id="hands_x0_y0_shootFocus_" style="position:absolute;left:200px;top:550px;">
+            <img src="img/game/shooter.png" alt="" id="shootFocus">
+        </div>
+        <!-- 火药 -->
+        <img src="img/empty.png" id="boom" style="position: absolute;left: 0px;top:0px;">
+        <!-- 弹窗 -->
+        <div id="tip" style="visibility:hidden;">
+            <img src="img/tanchuang/tip.png" alt="">
+            <div id="tipText">戴口罩，养成勤洗手的好习惯！</div>
+            <div class="thisScore">本局得分<span id="thisScore">10</span>分</div>
+            <div id="hands_x0_y0_againFocus_">
+                <img src="img/tanchuang/tipBtnFocus .png" alt="" id="againFocus" style="visibility:hidden;">
+            </div>
+            <div id="hands_x0_y0_otherSeeFocus_">
+                <img src="img/tanchuang/tipBtnFocus .png" alt="" id="otherSeeFocus" style="visibility:hidden;">
+            </div>
+            <div id="hands_x0_y0_tipBackFocus_">
+                <img src="img/tanchuang/backFocus.png" alt="" id="tipBackFocus" style="visibility:hidden;">
+            </div>
+        </div>
+
+    </div>
+    <script type="text/javascript" src="../../../js/column.js"></script>
+    <script type="text/javascript" src="./js/actiComm.js"></script>
+    <script type="text/javascript">
+        // 焦点数组
+        var buttons = [{
+            id: "hands_x0_y0_shootFocus_",
+            leftEvent: "javascript:elimonateVirusGameSp.leftMove()",
+            rightEvent: "javascript:elimonateVirusGameSp.rightMove()",
+            left: "disable",
+            right: "disable",
+            up: "disable",
+            down: "disable",
+            clickHandler: "javascript:elimonateVirusGameSp.shootFunc()",
+            focusType: 7
+        }, {
+            id: "hands_x0_y0_againFocus_",
+            left: "disable",
+            right: "hands_x0_y0_otherSeeFocus_",
+            up: "hands_x0_y0_tipBackFocus_",
+            down: "disable",
+            clickHandler: "javascript:elimonateVirusGameSp.againFunc()",
+            focusType: 7
+        }, {
+            id: "hands_x0_y0_otherSeeFocus_",
+            left: "hands_x0_y0_againFocus_",
+            right: "disable",
+            up: "hands_x0_y0_tipBackFocus_",
+            down: "disable",
+            clickHandler: "javascript:elimonateVirusGameSp.otherSeeFunc()",
+            focusType: 7
+        }, {
+            id: "hands_x0_y0_tipBackFocus_",
+            left: "disable",
+            right: "disable",
+            up: "disable",
+            down: "hands_x0_y0_againFocus_",
+            clickHandler: "javascript:backfunc()",
+            focusType: 7
+        }]
+    </script>
+    <script type="text/javascript" src="js/activity_eliminateVirusGame.js?v=2020030906"></script>
+</body>
+
+</html>

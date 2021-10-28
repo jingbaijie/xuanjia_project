@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>趣味蹦床大赛游戏页面</title>
+		<link rel="stylesheet" type="text/css" href="css/actiTrampolineGame.css?v=1.6" />
+		<style type="text/css">
+			.main {
+				position: absolute;
+				width: 1280px;
+				height: 720px;
+				margin: 0;
+				padding: 0;
+				top: 0;
+				left: 0;
+				text-align: center;
+				overflow: hidden;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="main">
+			<!--背景图片-->
+			<img id="bgImg" src="img/startGame/gameBG.jpg" style="width: 1280px;height: 720px;position: absolute;top: 0;left: 0;" alt="">
+
+			<!--分数-->
+			<div style="width: 200px;height: 50px;position: absolute;top: 20px;left: 20px;text-align: center;line-height: 50px;font-size: 30px;font-weight: bold;color: black;">
+				<span style="color: black;">分数: </span><span id="myScores">000</span>
+			</div>
+
+			<!--时间-->
+			<div id="lastTime" style="width: 100px;height: 50px;position: absolute;top: 42px;left: 1160px;text-align: center;line-height: 50px;font-size: 26px;font-weight: bold;color: red;">
+				60
+			</div>
+			<!--蹦床-->
+			<div id="hands_x0_y0_postFocus0_" style="width: 391px;height: 220px;position: absolute;top: 490px;left: 395px;">
+				<img id="postFocus0" src="img/change.png" style="width: 391px;height: 220px;visibility: hidden;" alt="">
+
+			</div>
+
+			<!-- 星星 -->
+			<div id="stars" style="width: 97px;height: 275px;position: absolute;top: 100px;right: 0;">
+				<img src="img/startGame/star.png" style="width: 49px;height: 49px;position: absolute;top: 50px;left: 24px;visibility:hidden;">
+				<img src="img/startGame/star.png" style="width: 49px;height: 49px;position: absolute;top: 114px;left: 24px;visibility:hidden;">
+				<img src="img/startGame/star.png" style="width: 49px;height: 49px;position: absolute;top: 177px;left: 24px;visibility:hidden;">
+			</div>
+			<!--小黄人-->
+			<img id="squirrel" src="img/startGame/jump/1.png" style="width: 332px;height: 572px;position: absolute;top: 55px;left: 485px;" alt="">
+
+			<!--四个奖品-->
+			<div id="ballDiv" style="width: 1280px;height: 720px;position: absolute;top: 0;left: 0;">
+				<img src="img/startGame/ball/1.png" style="width: 160px;height: 160px;position: absolute;top: 130px;left: 75px;display: block;" alt="">
+				<img src="img/startGame/ball/2.png" style="width: 160px;height: 160px;position: absolute;top: 50px;left: 340px;display: block;" alt="">
+				<img src="img/startGame/ball/3.png" style="width: 160px;height: 160px;position: absolute;top: 15px;left: 650px;display: block;" alt="">
+				<img src="img/startGame/ball/4.png" style="width: 160px;height: 160px;position: absolute;top: 130px;left: 930px;display: block;" alt="">
+
+			</div>
+
+			<!--四个奖品-->
+			<div id="boomDiv" style="width: 1280px;height: 720px;position: absolute;top: 0;left: 0;">
+				<img src="img/change.png" style="width: 250px;height: 180px;position: absolute;top: 130px;left: 30px;" alt="">
+				<img src="img/change.png" style="width: 250px;height: 180px;position: absolute;top: 50px;left: 295px;" alt="">
+				<img src="img/change.png" style="width: 250px;height: 180px;position: absolute;top: 15px;left: 605px;" alt="">
+				<img src="img/change.png" style="width: 250px;height: 180px;position: absolute;top: 130px;left: 885px;" alt="">
+
+			</div>
+			<!-- 按返回键弹窗提示 -->
+			<div id="confirmDiv" class="main" style="visibility: hidden;">
+				<img src="img/window/confirmNew.png" style="width: 1280px;height: 720px;position: absolute;top: 0;left: 0;">
+			</div>
+			<!-- 继续 -->
+			<div id="hands_x0_y0_postFocus1_" style="width: 200px;height: 80px;position: absolute;top: 450px;left: 450px;">
+				<img id="postFocus1" src="img/window/continue.png" style="width: 200px;height: 80px;visibility: hidden;" alt="">
+			</div>
+			<!-- 退出 -->
+			<div id="hands_x0_y0_postFocus2_" style="width: 200px;height: 80px;position: absolute;top: 450px;left: 640px;">
+				<img id="postFocus2" src="img/window/continue.png" style="width: 200px;height: 80px;visibility: hidden;" alt="">
+			</div>
+
+			<!--再来一次弹窗-->
+			<img src="img/window/startAgainNew.png" id="startAgainTan" />
+			<div id="hands_x0_y0_startAgainFocus_">
+				<img src="img/window/continue.png" id="startAgainFocus" style="visibility: hidden;" />
+			</div>
+
+			<!--没有机会弹窗-->
+			<img src="img/window/noChanceNew.png" id="noChanceTan" />
+			<div id="hands_x0_y0_noChanceFocus_">
+				<img src="img/window/continue.png" id="noChanceFocus" style="visibility: hidden;" />
+			</div>
+
+			<!--点击游戏再获得一次机会-->
+			<img src="img/startGame/twoTimes.png" id="getChanceTan" />
+			<div id="hands_x0_y0_getChanceFocus_">
+				<img src="img/window/continue.png" id="getChanceFocus" style="visibility: hidden;" />
+			</div>
+
+			<!--跌落弹窗-->
+			<img src="img/window/failDownNew.png" id="failDownTan" />
+			<div id="hands_x0_y0_failDownFocus_">
+				<img src="img/window/continue.png" id="failDownFocus" style="visibility: hidden;" />
+			</div>
+
+			<!-- 教程文字 -->
+			<img src="img/startGame/text.png" id="learnText" style="position: absolute;top: 500px;left: 500px;" alt="">
+
+			<!--箭头-->
+			<img src="img/startGame/arrow.png" id="arrow" style="position: absolute;left: 340px;top: 520px;" />
+		</div>
+		<!--引入公用JS-->
+		<script type="text/javascript" src="../../js/column.js"></script>
+		<script type="text/javascript" src="./js/actiComm.js"></script>
+		<!--引用结束-->
+		<script type="text/javascript">
+			var buttons = [{
+					id: "hands_x0_y0_postFocus0_",
+					clickHandler: "",
+					up: "disable",
+					down: "disable",
+					left: "disable",
+					leftEvent: "javascript: leftMove()",
+					right: "disable",
+					rightEvent: "javascript: rightMove()",
+					focusType: 7
+				}, {
+					id: "hands_x0_y0_postFocus1_",
+					clickHandler: "javascript: backGame()",
+					up: "disable",
+					down: "disable",
+					left: "disable",
+					right: "hands_x0_y0_postFocus2_",
+					focusType: 7
+				}, {
+					id: "hands_x0_y0_postFocus2_",
+					clickHandler: "javascript: backfunc()",
+					up: "disable",
+					down: "disable",
+					left: "hands_x0_y0_postFocus1_",
+					right: "disable",
+					focusType: 7
+				},
+				{
+					id: "hands_x0_y0_startAgainFocus_",
+					clickHandler: "javascript: startAgainConfirm()",
+					up: "disable",
+					down: "disable",
+					left: "disable",
+					right: "disable",
+					focusType: 7
+				}, {
+					id: "hands_x0_y0_noChanceFocus_",
+					clickHandler: "javascript: noChanceConfirm()",
+					up: "disable",
+					down: "disable",
+					left: "disable",
+					right: "disable",
+					focusType: 7
+				}, {
+					id: "hands_x0_y0_failDownFocus_",
+					clickHandler: "javascript: failDownConfirm()",
+					up: "disable",
+					down: "disable",
+					left: "disable",
+					right: "disable",
+					focusType: 7
+				}, {
+					id: "hands_x0_y0_getChanceFocus_",
+					clickHandler: "javascript: getChanceConfirm()",
+					up: "disable",
+					down: "disable",
+					left: "disable",
+					right: "disable",
+					focusType: 7
+				}
+			];
+
+			//星星
+			var stars = CT.$("stars").getElementsByTagName("img");
+			var lastStarts;
+
+			//获取用户机会
+			var chanceNum = 0;
+			chanceCreditStars();
+
+			//获取用户机会、积分、星星显示
+			function chanceCreditStars() {
+				actiObj.getChance(function(res) {
+					chanceNum = res.activityChance;
+					//获取用户积分			
+					actiObj.getUserCredit(function(res) {
+						if(res.resultMsg == "success") {
+							mySco = res.creditNum;
+							showMysco();
+						} else {
+							mySco = 0;
+						}
+						//焦点初始化
+						focusInit();
+						start = getFocusModel6("hands_x0_y0_postFocus0_");
+						start.defaultFocus();
+
+						stars[0].style.visibility = "hidden";
+						stars[1].style.visibility = "hidden";
+						stars[2].style.visibility = "hidden";
+						lastStarts = 2 - parseInt(chanceNum);
+						for(var s = 0; s < lastStarts; s++) {
+							stars[s].style.visibility = "visible";
+						}
+					})
+				})
+			}
+
+			//顶部的四个球
+			var balls = CT.$("ballDiv").getElementsByTagName("img");
+			var booms = CT.$("boomDiv").getElementsByTagName("img");
+
+			var ballsMsg = [{
+				show: true,
+				left: 75,
+				top: 290
+			}, {
+				show: true,
+				left: 340,
+				top: 210
+			}, {
+				show: true,
+				left: 650,
+				top: 175
+			}, {
+				show: true,
+				left: 930,
+				top: 290
+			}];
+			var preLeft = 395;
+			var squirrelTop = [205, 190, 110, 20, 20, 90, 190];
+			//松鼠
+			var squirrel = CT.$("squirrel");
+			//蹦床
+			var beng = CT.$("hands_x0_y0_postFocus0_");
+			//分数
+			var mySco = 0;
+			//时间
+			var myTime = 60;
+
+			//每次运动切换时间
+			var downTimes = 200;
+			//当前运动图片
+			var jumpFlag = 8;
+			var nowJumpPic = 0;
+			//松鼠当前top
+			var topNow;
+			//松鼠当前left
+			var leftNow;
+			//松鼠每次图片转换移动距离
+			var moveDis = 0;
+			var jumpTime;
+
+			var backFlag = 1;
+			var start;
+
+			//教程动图
+			setTimeout(function() {
+				backFlag = 0;
+				if(start) {
+					start.defaultBlur();
+				}
+				curFocus.defaultBlur();
+				curFocus = getFocusModel6("hands_x0_y0_postFocus0_");
+				curFocus.defaultFocus();
+				startGame();
+				CT.$("arrow").style.visibility = "hidden";
+				CT.$("learnText").style.visibility = "hidden";
+			}, 2000);
+
+			var seconds = 0;
+			var startAgainTan = document.getElementById("startAgainTan");
+			var noChanceTan = document.getElementById("noChanceTan");
+			var failDownTan = document.getElementById("failDownTan");
+
+			function startGame() {
+				beng.style.left = "395px";
+				squirrel.style.left = "485px";
+				var lostBall = 0;
+				var lastArr = [];
+				for(var z = 0; z < ballsMsg.length; z++) {
+					if(ballsMsg[z].show === false) {
+						lostBall++;
+						lastArr.push(z);
+					}
+					if(z === 3) {
+						for(var x = 0; x < lostBall; x++) {
+							var willBalls = Math.floor(Math.random() * 11);
+							balls[lastArr[x]].src = "img/startGame/ball/" + willBalls + ".png";
+							balls[lastArr[x]].style.display = "block";
+							ballsMsg[lastArr[x]].show = true;
+						}
+					}
+				}
+				clearInterval(jumpTime);
+				jumpTime = setInterval(function() {
+					nowJumpPic = jumpFlag % 5;
+					squirrel.src = "img/startGame/jump/" + nowJumpPic + ".png";
+					jumpFlag++;
+					if(seconds % 5 === 0) {
+						if(myTime === 0) {
+							gameOver("startAgain");
+						} else {
+							myTime--;
+							showTime();
+						}
+					}
+					seconds++;
+					if(nowJumpPic === 1) {
+						var lostBall = 0;
+						var lastArr = [];
+						for(var z = 0; z < ballsMsg.length; z++) {
+							if(ballsMsg[z].show === false) {
+								lostBall++;
+								lastArr.push(z);
+							}
+							if(z === 3 && lostBall > 2) {
+								for(var x = 0; x < lostBall; x++) {
+									var willBalls = Math.floor(Math.random() * 11);
+									balls[lastArr[x]].src = "img/startGame/ball/" + willBalls + ".png";
+									balls[lastArr[x]].style.display = "block";
+									ballsMsg[lastArr[x]].show = true;
+								}
+							}
+						}
+					}
+					if(nowJumpPic === 1) {
+						var squirrelLeftNow = parseInt(squirrel.style.left);
+						if(squirrelLeftNow <= -35 || squirrelLeftNow >= 965) {
+							gameOver("failDown");
+						}
+						moveDis = 0;
+					}
+					squirrel.style.left = parseInt(squirrel.style.left) + moveDis + "px";
+					for(var i = 0; i < ballsMsg.length; i++) {
+						leftNow = parseInt(squirrel.style.left);
+						if(leftNow + 120 > ballsMsg[i].left && leftNow + 120 < ballsMsg[i].left + 120) {
+							topNow = parseInt(squirrel.style.top) + squirrelTop[nowJumpPic];
+							if(topNow < ballsMsg[i].top) {
+								if(ballsMsg[i].show === true) {
+									mySco += 10;
+									ballsMsg[i].show = false;
+									balls[i].style.display = "none";
+									showBoom(i);
+									showMysco();
+									break;
+								}
+							}
+						}
+					}
+				}, downTimes);
+			}
+
+			function gameOver(toUrl) {
+				clearInterval(jumpTime);
+				var actiTimes = new Date().getTime();
+				//上传用户此次使用机会
+				actiObj.setChance(function() {
+					chanceNum++;
+					//设置用户积分
+					actiObj.setUserCredit(mySco, function(res) {
+						if(res.resultMsg == "success") {
+							if(chanceNum >= 3) {
+								//没有机会弹窗
+								CT.$("noChanceTan").style.visibility = "visible";
+								//切换焦点
+								actiObj.changeFocus("hands_x0_y0_noChanceFocus_");
+							} else if(chanceNum == 2) {
+								CT.$("getChanceTan").style.visibility = "visible";
+								//切换焦点
+								actiObj.changeFocus("hands_x0_y0_getChanceFocus_");
+							} else if(toUrl == "startAgain") {
+								//再来一次弹窗
+								startAgainTan.style.visibility = "visible";
+								//焦点切换
+								actiObj.changeFocus("hands_x0_y0_startAgainFocus_");
+							} else if(toUrl == "failDown") {
+								//跌落弹窗
+								failDownTan.style.visibility = "visible";
+								//焦点切换
+								actiObj.changeFocus("hands_x0_y0_failDownFocus_");
+							}
+						}
+					})
+				})
+			}
+
+			//再来一次
+			function startAgainConfirm() {
+				//再来一次弹窗
+				startAgainTan.style.visibility = "hidden";
+				//焦点切换
+				actiObj.changeFocus("hands_x0_y0_postFocus0_");
+				//重新开始游戏
+				startGame();
+				myTime = 60;
+				chanceCreditStars();
+			}
+
+			//没有机会
+			function noChanceConfirm() {
+				//没有机会弹窗
+				noChanceTan.style.visibility = "hidden";
+				//跳转
+				window.location.href = "actiTrampolineMain.html";
+			}
+
+			//跌落
+			function failDownConfirm() {
+				//跌落弹窗
+				failDownTan.style.visibility = "hidden";
+				//重新开始游戏
+				startGame();
+				//焦点切换
+				actiObj.changeFocus("hands_x0_y0_postFocus0_");
+				myTime = 60;
+				chanceCreditStars();
+
+			}
+
+			//玩游戏获取一次机会
+			function getChanceConfirm() {
+				//没有机会弹窗
+				getChanceTan.style.visibility = "hidden";
+				//跳转
+				window.location.href = "actiTrampolineMain.html";
+			}
+
+			function showMysco() {
+				if(mySco < 10) {
+					CT.$("myScores").innerHTML = "00" + mySco;
+				} else if(mySco >= 10 && mySco < 100) {
+					CT.$("myScores").innerHTML = "0" + mySco;
+				} else {
+					CT.$("myScores").innerHTML = mySco;
+				}
+			}
+
+			function showTime() {
+				CT.$("lastTime").innerHTML = myTime;
+			}
+
+			var boomInterval;
+
+			function showBoom(i) {
+				var ii = parseInt(i);
+				booms[ii].style.display = "block";
+				var boomFlag = 1;
+				clearInterval(boomInterval);
+				boomInterval = setInterval(function() {
+					if(boomFlag === 4) {
+						clearInterval(boomInterval);
+						booms[ii].style.display = "none";
+					}
+					booms[ii].src = "img/startGame/bling/" + boomFlag + ".png";
+					boomFlag++;
+				}, 200);
+			}
+
+			function leftMove() {
+				if(parseInt(beng.style.left) > 20) {
+					moveDis = -20;
+				}
+			}
+
+			function rightMove() {
+				if(parseInt(beng.style.left) < 1075) {
+					moveDis = 20;
+				}
+			}
+
+			function backGame() {
+				backFlag = 0;
+				CT.$("confirmDiv").style.visibility = "hidden";
+				curFocus.defaultBlur();
+				curFocus = getFocusModel6("hands_x0_y0_postFocus0_");
+				curFocus.defaultFocus();
+				startGame();
+			}
+
+			function backfunc() {
+				if(backFlag == 1) {
+					window.location.href = "actiTrampolineMain.html";
+				} else {
+					clearInterval(jumpTime);
+					CT.$("confirmDiv").style.visibility = "visible";
+					if(start) {
+						start.defaultBlur();
+					}
+					curFocus.defaultBlur();
+					curFocus = getFocusModel6("hands_x0_y0_postFocus1_");
+					curFocus.defaultFocus();
+					backFlag = 1;
+				}
+			}
+		</script>
+	</body>
+
+</html>

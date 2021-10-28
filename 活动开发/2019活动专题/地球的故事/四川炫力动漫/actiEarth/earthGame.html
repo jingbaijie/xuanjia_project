@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name = "page-view-size" content = "1280*720">
+    <title>地球的故事游戏页</title>
+    <style>
+        .main{
+            width: 1280px;
+            height: 720px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+			color: #fff;
+            background: url("images/life/bg_life.jpg");
+        }
+        #question {
+            width: 398px;
+            height: 50px;
+            position: absolute;
+            top: 214px;
+            left: 273px;
+			font-size: 23px;
+            font-weight: 900;
+            z-index: 10;
+        }
+        #option1, #option2, #option3, #option4 {
+            position: absolute;
+            top: 25px;
+            left: 41px;
+            font-size: 23px;
+            color: #143d40;
+            font-weight: 900;
+        }
+        #content {
+            width: 200px;
+            height: 80px;
+            position: absolute;
+            top: 295px;
+            left: 466px;
+			font-size: 24px;
+        }
+        #timer {
+            font-size: 24px;
+            color: white;
+            position: absolute;
+            top: 145px;
+            left: 45px;
+            font-weight: 900;
+        }
+    </style>
+</head>
+<body>
+    <div id="mainContent" class="main">
+        <!-- 背景 -->
+        <img src="./images/game/bg.png" style = "width: 1280px;height: 720px;position: absolute;top: 0;left: 0;">
+        <!-- 返回按钮 -->
+        <img src="./images/back.png" style = "width: 82px;height: 93px;position: absolute;top: 36px;left: 1129px;">
+        <div id = "hands_x0_y0_backFocus_" style = "width: 82px;height: 93px;position: absolute;top: 36px;left: 1129px;">
+            <img id = "backFocus" src="./images/backFocus.png" style = "width: 82px;height: 93px;visibility: hidden;" alt="">
+        </div>
+        <!--题目与选中-->
+        <div id = "question"></div>
+        <div id="hands_x0_y0_box1_" style="width:394px; height: 85px; position: absolute; top: 334px;left: 228px;">
+            <div id = "option1"></div>
+            <img id="box1" src="./images/game/focus.png" style="width:394px; height: 85px; visibility: hidden">
+            <div></div>
+        </div>
+        <div id="hands_x0_y0_box2_" style="width:394px; height: 85px; position: absolute; top: 335px;left: 649px;">
+            <div id = "option2"></div>
+            <img id="box2" src="./images/game/focus.png" style="width:394px; height: 85px; visibility: hidden">
+        </div>
+        <div id="hands_x0_y0_box3_" style="width:394px; height: 85px; position: absolute; top: 430px;left: 228px;">
+            <div id = "option3"></div>
+            <img id="box3" src="./images/game/focus.png" style="width:394px; height: 85px; visibility: hidden">
+        </div>
+        <div id="hands_x0_y0_box4_" style="width:394px; height: 85px; position: absolute; top: 430px;left: 649px;">
+            <div id = "option4"></div>
+            <img id="box4" src="./images/game/focus.png" style="width:394px; height: 85px; visibility: hidden">
+        </div>
+        <!-------- 弹框 -------->
+		<!-- 答题弹框 + 时间不够弹框 -->
+        <div id = "modalDiv" style = "width: 1280px;height: 720px;position: absolute;top: 0;left: 0;visibility: hidden;z-index: 20">
+            <!--弹框背景-->
+            <img id = "bgImg" src="./images/modal.png" style = "width: 1280px;height: 720px;position: absolute;top: 0;left: 0;">
+            <!--弹框内容-->
+            <div id = "content"></div>
+            <!--确认按钮-->
+            <div id = "hands_x0_y0_confirmModalFocus_" style = "width: 124px;height: 55px;position: absolute;top: 426px;left: 527px;">
+                <img id = "confirmModalFocus" src="./images/modalFocus.png" style = "width: 200px;height: 70px;visibility: hidden;">
+            </div>
+        </div>
+		<!-- 计时器 -->
+        <div id="timer">
+            00:10
+        </div>
+    </div>
+    <script type = "text/javascript" src = "./data/data.js?V=201904101"></script>
+    <script type = "text/javascript" src = "../../../js/column.js"></script>
+    <script type = "text/javascript" src = "./js/actiComm.js?v=2018"></script>
+    <script>
+		var modalDiv1 = document.getElementById('modalDiv1');   // 弹框    
+		var usedNum = GetQueryString("usedNum");                // 用户当日答题次数
+		var chanceNum = GetQueryString("chanceNum");            // 今日剩余答题次数
+		var isVideo = false;                                    // 判断是否返回
+
+        var buttons = [
+            {
+                id: "hands_x0_y0_backFocus_",
+                clickHandler: "javascript: backfunc()",
+                left: "disable",
+                right: "disable",
+                up: "disable",
+                down: "hands_x0_y0_box1_",
+                focusType: 7
+            },
+            {
+                id: "hands_x0_y0_box1_",
+                clickHandler: "javascript: answerQ('A')",
+                left: "disable",
+                right: "hands_x0_y0_box2_",
+                up: "hands_x0_y0_backFocus_",
+                down: "hands_x0_y0_box3_",
+                focusType: 7
+            },
+            {
+                id: "hands_x0_y0_box2_",
+                clickHandler: "javascript: answerQ('B')",
+                left: "hands_x0_y0_box1_",
+                right: "hands_x0_y0_backFocus_",
+                up: "hands_x0_y0_backFocus_",
+                down: "hands_x0_y0_box4_",
+                focusType: 7
+            },
+            {
+                id: "hands_x0_y0_box3_",
+                clickHandler: "javascript: answerQ('C')",
+                left: "disable",
+                right: "hands_x0_y0_box4_",
+                up: "hands_x0_y0_box1_",
+                down: "disable",
+                focusType: 7
+            },
+            {
+                id: "hands_x0_y0_box4_",
+                clickHandler: "javascript: answerQ('D')",
+                left: "hands_x0_y0_box3_",
+                right: "hands_x0_y0_backFocus_",
+                up: "hands_x0_y0_box2_",
+                down: "disable",
+                focusType: 7
+            },
+            {
+                id: "hands_x0_y0_confirmModalFocus_",
+                clickHandler: "javascript: confirmModal()",
+                left: "disable",
+                right: "hands_x0_y0_backModalFocus_",
+                up: "disable",
+                down: "disable",
+                focusType: 7
+            },
+            {
+                id: "hands_x0_y0_backModalFocus_",
+                clickHandler: "javascript: backModal()",
+                left: "hands_x0_y0_confirmModalFocus_",
+                right: "disable",
+                up: "disable",
+                down: "disable",
+                focusType: 7
+            },
+			{
+                id: "hands_x0_y0_chanceFocus_",
+                clickHandler: "javascript: closeModal()",
+                left: "disable",
+                right: "disable",
+                up: "disable",
+                down: "disable",
+                focusType: 7
+            }
+        ]
+        /* 初始化 */
+        function init(){
+            focusInit();
+            curFocus = getFocusModel6("hands_x0_y0_box1_");
+            curFocus.defaultFocus();
+			getChance();
+        }
+        init();
+
+        /* 答题逻辑 */
+        var questionIndex = [],
+            question = document.getElementById('question'),
+            option1 = document.getElementById('option1'),
+            option2 = document.getElementById('option2'),
+            option3 = document.getElementById('option3'),
+            option4 = document.getElementById('option4'),
+            modalDiv = document.getElementById('modalDiv'),
+            content = document.getElementById('content'),
+            clock = document.getElementById('timer'),
+            timer1,
+			q,
+            data,
+            index = 1,
+            columnName;
+		// 生成题目
+        function quesGenerate () {
+            var actiIndex = GetQueryString("actiIndex");
+            // 判断进入了哪一个主题
+            switch (actiIndex) {
+                case "dogFocus1":
+                    data = data1;
+                    break;
+                case "dogFocus":
+                    data = data1;
+                    break;
+                case "planeFocus":
+                    data = data2;
+                    break;
+                case "bearFocus1":
+                    data = data3;
+                    break;
+                case "bearFocus":
+                    data = data3;
+                default:
+                    break;
+            }
+			q = data['q' + index];
+            columnName = data["name"];
+            question.innerHTML = q.question;
+            option1.innerHTML = q.options[0];
+            option2.innerHTML = q.options[1];
+            option3.innerHTML = q.options[2];
+            option4.innerHTML = q.options[3];
+            index++;
+        }
+        quesGenerate();
+        // 答案判断
+        function answerQ (n) {
+			clearInterval(timer1);
+			timer1 = null;
+			if (n == q.answer.slice(3,4)) {
+				content.innerHTML = q.answer + "</br>" + "恭喜你答对了，获得一枚金币！";
+				modalDiv.style.visibility = 'visible';
+				changeFocus('hands_x0_y0_confirmModalFocus_');
+				toSetCredit();
+			} else {
+				content.innerHTML = "答错了！" + q.answer;
+				modalDiv.style.visibility = 'visible';
+				changeFocus('hands_x0_y0_confirmModalFocus_');
+			}
+        }
+		// 判断是否继续出题
+        var isJudge = false;
+        function judge(){
+            if(index !== 6) {
+                modalDiv.style.visibility = 'hidden';
+                changeFocus('hands_x0_y0_box1_');
+                quesGenerate();
+                timer();
+            }else {
+                content.innerHTML = "题目已完成！"
+				chanceNum--;
+				usedNum++;
+                isJudge = true;
+            }
+        }
+		// 计时器
+        function timer() {
+            var num = 9;
+            timer1 = setInterval(function(){
+                if(num < 0){
+                    clearInterval(timer1);
+                    timer1 = null;
+					clock.innerHTML = '00:10';
+					content.innerHTML = "时间到了！"
+                    modalDiv.style.visibility = 'visible';
+					changeFocus("hands_x0_y0_confirmModalFocus_");
+                }else {
+                    clock.innerHTML = '00:0' + num;
+                    num--;
+                }
+            },1000)
+        }
+		timer();
+
+		/* 弹窗方法 */
+		// 计算答题次数+确定
+		function confirmModal() {
+		    if(isJudge === true) {
+				if(isVideo === true){
+				    backfunc();
+				}else {
+				    if(usedNum === 1 && chanceNum === 0) {
+						content.innerHTML = "前往首页观看视频可以获取答题机会！"
+						isVideo = true;
+					}else{
+						backfunc();
+					}
+				}
+            }else{
+			    judge();
+			}
+		}
+
+        /* 数据请求 */
+		// 获取用户当日答题次数
+		function getChance() {
+			var _this = this;
+			actiObj.getChance(function(data) {
+				usedNum = parseInt(data.activityChance);
+			});
+		}
+        // 设置答题次数
+		function setChance(){
+			actiObj.setChance(function(data){
+			    var actiTime = new Date().getTime();
+                window.location.href = "earthMain.html?actiTime=" + actiTime;
+			});
+		}
+		// 设置积分
+		function toSetCredit() {
+		    actiObj.getUserCredit(function(data){
+				var creditNum = data.creditNum ? data.creditNum : 0;
+			    creditNum = parseInt(creditNum,10) + 1;
+				actiObj.setUserCredit(creditNum);
+			})
+		}
+
+        /* 工具函数 */
+        // 改变焦点
+        function changeFocus(focusName){
+            if(focusName){
+                curFocus.defaultBlur();
+                curFocus = getFocusModel6(focusName);
+                curFocus.defaultFocus();
+            }
+        }
+		//获取眉头信息参数
+        function GetQueryString(name){
+            var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if(r!=null)return  unescape(r[2]); return null;
+        }
+		// 返回首页
+        function backfunc(){
+		    if(index > 2) {
+                setChance();
+            }else{
+				var actiTime = new Date().getTime();
+                window.location.href = "earthMain.html?actiTime=" + actiTime;
+			}
+        }
+    </script>
+</body>
+</html>

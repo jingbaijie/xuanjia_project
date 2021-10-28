@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>趣味蹦床大赛主页面</title>
+		<link rel="stylesheet" type="text/css" href="css/actiTrampolineMain.css?v=3.1" />
+	</head>
+
+	<body>
+		<div id="main" class="main ">
+			<!-- 返回  -->
+			<img src="img/window/back.png" class="back">
+			<div id="hands_x0_y0_postFocus0_">
+				<img id="postFocus0" src="img/window/backed.png">
+			</div>
+			<!-- 小黄人 -->
+			<img id="squirrel" src="img/main/3.png">
+			<!--前景小黄人-->
+			<img src="img/main/front1.png" id="frontImg" />
+			<!-- 开始 -->
+			<img src="img/main/start1.png" id="startBtn" />
+			<div id="hands_x0_y0_postFocus1_">
+				<img id="postFocus1" src="img/main/start2.png">
+			</div>
+			<!--进入游戏按钮-->
+			<img src="img/main/goGame1.png" id="goGame" />
+			<div id="hands_x0_y0_goGameFocus_">
+				<img src="img/main/goGameFocus.png" id="goGameFocus" />
+			</div>
+			<!-- 活动规则 -->
+			<img src="img/main/ruleBtn.png" id="ruleBtn" />
+			<div id="hands_x0_y0_postFocus2_">
+				<img id="postFocus2" src="img/main/selected.png">
+			</div>
+			<!-- 积分兑换-->
+			<img src="img/main/exchangeBtn.png" id="exchangeBtn" />
+			<div id="hands_x0_y0_postFocus3_">
+				<img id="postFocus3" src="img/main/selected.png">
+			</div>
+			<!--点击游戏再获得一次机会-->
+			<img src="img/startGame/twoTimes.png" id="getChanceTan" />
+			<div id="hands_x0_y0_getChanceFocus_">
+				<img src="img/window/continue.png" id="getChanceFocus" style="visibility: hidden;" />
+			</div>
+			<!--没有机会弹窗-->
+			<img src="img/window/noChanceNew.png" id="noChanceTan" />
+			<div id="hands_x0_y0_noChanceFocus_">
+				<img src="img/window/continue.png" id="noChanceFocus" style="visibility: hidden;" />
+			</div>
+			<!--标题-->
+			<img src="img/main/title.png" id="title" />
+
+		</div>
+		<!--引入公用JS-->
+		<script type="text/javascript" src="../../js/column.js"></script>
+		<script type="text/javascript" src="./js/actiComm.js"></script>
+		<!--引用结束-->
+		<script type="text/javascript">
+			var buttons = [{
+				id: "hands_x0_y0_postFocus0_",
+				clickHandler: "javascript: backfunc()",
+				up: "disable",
+				down: "hands_x0_y0_postFocus1_",
+				left: "hands_x0_y0_postFocus2_",
+				right: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_postFocus1_",
+				clickHandler: "javascript: goSomeWhere(1)",
+				up: "hands_x0_y0_postFocus3_",
+				down: "disable",
+				left: "hands_x0_y0_postFocus3_",
+				right: "hands_x0_y0_goGameFocus_",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_postFocus2_",
+				clickHandler: "javascript: goSomeWhere(2)",
+				up: "disable",
+				down: "hands_x0_y0_postFocus3_",
+				left: "disable",
+				right: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_postFocus3_",
+				clickHandler: "javascript: goSomeWhere(3)",
+				up: "hands_x0_y0_postFocus2_",
+				down: "hands_x0_y0_postFocus1_",
+				left: "disable",
+				right: "hands_x0_y0_postFocus1_",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_noChanceFocus_",
+				clickHandler: "javascript: noChanceConfirm()",
+				up: "disable",
+				down: "disable",
+				left: "disable",
+				right: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_goGameFocus_",
+				clickHandler: "javascript: goSomeWhere(4)",
+				up: "disable",
+				down: "disable",
+				left: "hands_x0_y0_postFocus1_",
+				right: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_getChanceFocus_",
+				clickHandler: "javascript: getChanceConfirm()",
+				up: "disable",
+				down: "disable",
+				left: "disable",
+				right: "disable",
+				focusType: 7
+			}];
+
+			//用户鉴权结果
+			var isOrder = 1;
+			// 初始化焦点并鉴权
+			function initAuth() {
+				//鉴权(data为0,鉴权通过,其余则未通过,需要跳转订购)
+				orderJs.columnGetAuth(function(data) {
+					isOrder = data + "";
+					setActiFocus();
+				});
+			}
+			initAuth();
+
+
+			//焦点初始化
+			//获取当前焦点对象
+			function setActiFocus() {
+			//焦点初始化
+			focusInit();
+			var start = getFocusModel6("hands_x0_y0_postFocus1_");
+			start.defaultFocus();
+			}
+
+			//获取机会
+			var chanceNum=2;
+			actiObj.getChance(function(res) {
+				chanceNum = res.activityChance;
+			})
+
+			//没有机会
+			function noChanceConfirm() {
+				//没有机会弹窗
+				noChanceTan.style.visibility = "hidden";
+				//切换焦点
+				actiObj.changeFocus("hands_x0_y0_postFocus1_");
+			}
+
+			//玩游戏获取一次机会
+			function getChanceConfirm() {
+				//没有机会弹窗
+				getChanceTan.style.visibility = "hidden";
+				//切换焦点
+				actiObj.changeFocus("hands_x0_y0_postFocus1_");
+			}
+			
+			//获取跳转数据
+			var user_acti_data;
+			var maxChance=2;
+			actiObj.getUserDataList(function(res) {
+				if(res.resultMsg == "success") {
+					var thisDate = new Date().getMonth() + 1 + "" + new Date().getDate();
+					user_acti_data = res.list[0].user_acti_data;
+					if(user_acti_data == thisDate) {
+						maxChance=3;
+					}
+				}
+			})
+
+			function goSomeWhere(ii) {
+				switch(ii) {
+					case 1:
+					if(isOrder != "0"){
+						orderJs.columnToOrderPage("actiDragonBoatFestival");
+					}else{
+						if(chanceNum == 2 && maxChance==2) {
+							CT.$("getChanceTan").style.visibility = "visible";
+							//切换焦点
+							actiObj.changeFocus("hands_x0_y0_getChanceFocus_");
+						} else if(chanceNum == 3) {
+							//没有机会弹窗
+							noChanceTan.style.visibility = "visible";
+							//切换焦点
+							actiObj.changeFocus("hands_x0_y0_noChanceFocus_");
+						} else {
+							window.location.href = "actiTrampolineGame.html";
+						}
+					}
+						break;
+					case 2:
+						window.location.href = "actiTrampolineRule.html";
+						break;
+					case 3:
+						window.location.href = "actiTrampolineExchange.html";
+						break;
+					case 4:
+						var thisDate = new Date().getMonth() + 1 + "" + new Date().getDate();
+						actiObj.setUserDataList(thisDate);						
+						setTimeout(function() {
+							toDetailUrl("gameDetail",110,curFocus.FocusID);
+						}, 1000)
+					default:
+						break;
+				}
+			}
+
+			//首页小黄人动画、进入游戏按钮动画
+			var intvalFlag = 1;
+			setInterval(function() {
+				if(intvalFlag % 2 === 0) {
+					CT.$("squirrel").src = "img/main/3.png";
+					CT.$("goGame").src = "img/main/goGame1.png";
+					CT.$("frontImg").src = "img/main/front1.png";
+				} else {
+					CT.$("squirrel").src = "img/main/4.png";
+					CT.$("goGame").src = "img/main/goGame2.png";
+					CT.$("frontImg").src = "img/main/front2.png";
+				}
+				intvalFlag++;
+			}, 500);
+
+			
+
+			//返回平台首页
+			function backfunc() {
+				BackPortalMainPage();
+			}
+
+
+			//从订购页回来重新刷新页面
+			function orderSucess() {
+				window.location.reload();
+			}
+
+			function orderFail() {
+				window.location.reload();
+			}
+
+
+		</script>
+	</body>
+
+</html>

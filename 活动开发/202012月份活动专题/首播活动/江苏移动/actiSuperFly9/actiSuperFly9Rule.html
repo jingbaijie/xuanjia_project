@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="page-view-size" content="1280*720">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>规则页面</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+            list-style: none;
+        }
+
+        #main {
+            position: relative;
+            left: 0px;
+            top: 0px;
+            width: 1280px;
+            height: 720px;
+            background: url(img/rulePage/ruleBG.jpg) no-repeat;
+            overflow: hidden;
+        }
+
+        #joinStyleTitle {
+            position: absolute;
+            left: 50px;
+            top: 70px;
+        }
+
+        #getPrizeRule {
+            position: absolute;
+            left: 50px;
+            top: 155px;
+        }
+
+        #ruleBox {
+            position: absolute;
+            left: 290px;
+            top: 100px;
+            width: 700px;
+            height: 465px;
+            padding-left: 50px;
+            box-sizing: border-box;
+        }
+
+        #text1 {
+            position: absolute;
+            left: 50px;
+            top: 112px;
+            color: #fff;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        #text2 {
+            width: 600px;
+            position: absolute;
+            left: 50px;
+            top: 195px;
+            color: #fff;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        #text3 {
+            width: 600px;
+            position: absolute;
+            left: 50px;
+            top: 300px;
+            color: #fff;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        #notice {
+            position: absolute;
+            left: 50px;
+            top: 375px;
+        }
+
+        #closeBtn {
+            position: absolute;
+            left: 1030px;
+            top: 40px;
+        }
+
+        #hands_x0_y0_closeBtnFocus_ {
+            position: absolute;
+            left: 1020px;
+            top: 32px;
+        }
+
+        #prizeChoose {
+            width: 290px;
+			position: absolute;
+			left: 760px;
+			top: 489px;
+			height: 175px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main">
+        <div id="ruleBox">
+            <img src="img/rulePage/joinStyle.png" alt="" id="joinStyleTitle">
+            <div id="text1">所有用户，每天都有机会参加活动；</div>
+            <img src="img/rulePage/getPrizeRule.png" alt="" id="getPrizeRule">
+            <div id="text2">
+                小伙伴们，快来为喜爱的超级宠物投票吧！活动期间，普通用户每天可享受一次投票机会，爱家畅想会员用户每天可享受3次/日投票机会，超级宠物的票数是在一直累计的哦，留下手机号更有机会获得超级飞侠系列周边小礼品哦。</div>
+            <div id="text3">未填写联系方式或者联系方式有误的用户，视为自动放弃。本活动最终解释权归举办方所有，奖品以实物为准。</div>
+            <img src="img/rulePage/noticeNew.png" alt="" id="notice">
+        </div>
+        <img src="img/mainPage/backBtn.png" alt="" id="closeBtn">
+        <div id="hands_x0_y0_closeBtnFocus_">
+            <img src="img/mainPage/backBtnFocus.png" alt="" id="closeBtnFocus" style="visibility:hidden;">
+        </div>
+        <img src="img/rulePage/prizeChoose.png" alt="" id="prizeChoose">
+    </div>
+    <!-- 引入公共js -->
+    <script type="text/javascript" src="../../../js/column.js"></script>
+    <script type="text/javascript" src="js/actiComm.js"></script>
+    <!-- 引入公共js结束 -->
+    <script type="text/javascript">
+        var buttons = [
+            {
+                id: "hands_x0_y0_closeBtnFocus_",
+                clickHandler: "javascript:backfunc()",
+                left: "disable",
+                right: "hands_x0_y0_backBtnFocus_",
+                up: "disable",
+                down: "hands_x0_y0_voteInfoBtnFocus_",
+                focusType: 7
+            }
+        ]
+        //焦点初始化
+        focusInit();
+		curFocus = getFocusModel6("hands_x0_y0_closeBtnFocus_");
+        curFocus.defaultFocus();
+   
+        function backfunc() {
+            actiObj.actiCommonJumpUrl("actiSuperFly9Main.html");
+        }
+    </script>
+</body>
+
+</html>

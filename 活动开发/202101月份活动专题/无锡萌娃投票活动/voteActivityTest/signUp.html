@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>报名页面</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" data-dpr="1">
+		<!--<script src="http://g.tbcdn.cn/mtb/lib-flexible/0.3.4/??flexible_css.js,flexible.js"></script>-->
+		<script type="text/javascript" src="js/flexible.js"></script>
+		<script type="text/javascript" src="js/zepto.js"></script>
+		<link rel="stylesheet" type="text/css" href="js/weui/css/weui.css?v=1.2" />
+		<link rel="stylesheet" type="text/css" href="js/weui/css/weuix.css?v=1.2" />
+		<link rel="stylesheet" type="text/css" href="js/weui/css/jquery-weui.css?v=1.2" />
+		<link rel="stylesheet" type="text/css" href="css/signUp.css?v=1.421" />
+		<link rel="stylesheet" type="text/css" href="js/layer/need/layer.css?v=1.2" />
+	</head>
+
+	<body>
+		<!--报名表单-->
+		<div class="signUpBG">
+			<!--江苏有线logo-->
+			<img src="img/logo@3x.png" class="logo" />
+			<!--头部图片-->
+			<div class="headPic">
+				<div class="textAreaBG">
+					<!--标题-->
+					<div class="title">最萌宝贝</div>
+					<!--标题底部横线-->
+					<div class="solid_dashed">
+						<span class="dashed_line"></span>
+						<span class="solid_line"></span>
+					</div>
+					<!--表单-->
+					<ul class="signUpForm">
+						<!--<li class="playerId">
+							<form class="formBox">
+								<span>编&nbsp;&nbsp;&nbsp;号:</span>
+								<input type="text" id="playerId" value=""/>
+							</form>
+						</li>-->
+						<li class="name">
+							<form class="formBox">
+								<span>姓&nbsp;&nbsp;&nbsp;名:</span>
+								<input type="text" id="name" />
+							</form>
+						</li>
+						<li class="phone">
+							<form class="formBox">
+								<span>电&nbsp;&nbsp;&nbsp;话:</span>
+								<input type="text" id="phone" maxlength="11" />
+							</form>
+						</li>
+						<li class="sex">
+							<form class="formBox option">
+								<span>性&nbsp;&nbsp;&nbsp;别:</span>
+								<select id="selectSex" style="color: #999;">
+									<option value="" disabled selected>请选择您孩子的性别</option>
+									<option value="1">女</option>
+									<option value="0">男</option>
+								</select>
+							</form>
+						</li>
+						<li class="age">
+							<form class="formBox">
+								<span>年&nbsp;&nbsp;&nbsp;龄:</span>
+								<select id="selectAge" style="color: #999;">
+									<option value="" disabled selected>请选择您孩子的年龄</option>
+									<option value="0">0岁</option>
+									<option value="1">1岁</option>
+									<option value="2">2岁</option>
+									<option value="3">3岁</option>
+									<option value="4">4岁</option>
+									<option value="5">5岁</option>
+									<option value="6">6岁</option>
+									<option value="7">7岁</option>
+									<option value="8">8岁</option>
+									<option value="9">9岁</option>
+									<option value="10">10岁</option>
+									<option value="11">11岁</option>
+									<option value="12">12岁</option>
+								</select>
+							</form>
+						</li>
+						<li class="hobbies" style="height: auto;">
+							<form class="formBox">
+								<span>爱好特长:</span>
+								<textarea name="" rows="2" cols="" style="resize:none" placeholder="10字以内" id="hobbies" maxlength="10"></textarea>
+							</form>
+						</li>
+						<li class="home-city">
+							<form class="formBox">
+								<span>地&nbsp;&nbsp;&nbsp;区:</span>
+								<input id="home-city" type="text" placeholder="请选择您所在地区">
+							</form>
+						</li>
+						<li class="touxiang">
+							<form class="formBox" enctype="multipart/form-data" id="single_pic">
+								<div class="photoTextBox">
+									<span>正面照:</span>
+									<span>(上传1张)</span>
+								</div>
+								<ul class="uploadTouxiang-box">
+									<li>
+										<img src="img/signUpPage/camera@3x.png" id="uploadTouxiang" data-isUpLoad="0" />
+										<!--文件上传窗口-->
+										<input type="file" name="avatar" id="file0" multiple="multiple" accept="image/*" style="display: none;" />
+										<!--删除箭头-->
+										<img src="img/signUpPage/delete@3x.png" class="deleteHead" id="deleteHead" style="display: none;" />
+									</li>
+								</ul>
+							</form>
+						</li>
+						<li class="artPhoto">
+							<form class="formBox" enctype="multipart/form-data" id="duo_pic">
+								<div class="photoTextBox">
+									<span>形象照:</span>
+									<span>(5张以内)</span>
+								</div>
+								<ul class="uploadArtPhoto-box weui_uploader_files">
+									<!-- 预览图插入到这 -->
+									<div class="weui_uploader_input_wrp">
+										<!--隐藏域-->
+										<input type="hidden" name="type" value="enclosure" />
+										<input class="weui_uploader_input" type="file" name="pics" id="uploadArtPhoto" accept="image/jpg,image/jpeg,image/png,image/gif" multiple="multiple">
+									</div>
+								</ul>
+							</form>
+						</li>
+						<li class="picShow" style="display: none;"></li>
+					</ul>
+					<div class="bottomBtn">
+						<!--按钮：保存上传、提交审核-->
+						<div id="saveBtn">
+							保存上传
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--确认弹窗-->
+			<div class="confirmTanBG" style="display: none;">
+				<div class="tipPic">
+					<!--文字-->
+					<div class="tipText">
+						<span>请再次确认</span>
+						<span>一经提交，将无法修改，</span>
+						<span>请谨慎填写信息！</span>
+					</div>
+					<!--按钮-->
+					<ul class="tipBtn">
+						<li id="backEdit">返回修改</li>
+						<li id="confirmSave">立即保存</li>
+					</ul>
+				</div>
+			</div>
+			<!--协议弹窗-->
+			<div class="agreeMentTipBG" style="display: block;">
+				<div class="whiteBG">
+					<p class="title">用户须知条款</p>
+					<div class="paragraph">
+						<p>特别提醒，在您报名参加炫力少儿举办的投票活动时，请认真阅读本用户须知相关条款，确保您充分理解各条款。请您审慎阅读并选择同意或不同意。</p>
+						<p>1、报名选手要求是江苏省0-12岁宝贝，以报名时间为年龄判断依据；</p>
+						<p>2、参赛报名时，需由监护人陪同下参加；</p>
+						<p>3、参赛者需提供真实照片及信息，盗用他人信息的，主办方有权取消参赛资格；</p>
+						<p>4、用户需上传一张正面照+5张以内的形象照，总内存不大于100M，照片可包含自我形象展示，全家福等，内容要求健康向上，一经提交，将无法修改，请谨慎填写信息！任何违反法律法规，损害国家及他人利益的照片，其任何后果、责任由用户自行承担；</p>
+						<p>5、本次投票活动采用电视端+手机端联合投票的方式，累计票数统计将在每周二10：00进行更新，投票票数当天有效，每个自然月最后一天截止当月投票统计：</p>
+						<p>1）电视端投票：每小时限制投票数上限为10票，未订购用户每天上限票数10票，订购用户每天上限票数30票，</p>
+						<p>2）手机端投票：手机端每人可投1票，转发分享即可增加1次投票机会，每天最多可投30票；</p>
+						<p>6、用户报名需注明“选手照片+选手视频+姓名+电话（父母联系方式）+年龄+性别+爱好特长（一句话）”；</p>
+						<p>7、月度最萌宝贝将获得以下奖品：</p>
+						<p>1）江苏有线1年免费会员权益套餐（套餐包含：1年电视基本收视费+1年互动基本服务费+1年畅看D套餐 + 独家内容）；</p>
+						<p>2）赠送江苏有线炫力少儿1个月免费观看权益；</p>
+						<p>3）江苏有线炫力少儿最萌宝贝，将参与为江苏有线炫力少儿拍摄的宣传视频并在炫力少儿平台展示；</p>
+						<p>4）江苏有线炫力少儿平台开机画面展示萌娃形象一周；</p>
+						<p>注：获得最萌宝贝冠军的用户必须为有线用户，非有线用户获得冠军后，需成为有线用户方可领取奖品，否则冠军人员将往下一名次顺延。</p>
+						<p>8、活动投票截止时间为5月31，工作人员将于10个工作日内联系用户发放奖品；</p>
+						<p>9、用户参加本次活动，即视为授权举办方使用并编辑展示相关个人信息。同时举办方向您郑重承诺，我们不会收集法律法规禁止我们采集的任何个人信息，不会将用户的信息进行泄露；</p>
+						<p>10、本活动秉承公平、公正、公开的原则，对于故意进行有损投票活动的用户合法权益的行为，或恶意阻碍活动进行的行为，举办方有权取消用户参赛资格而无须给予任何补偿，并保留追究该用户法律责任的权利。</p>
+						<p>本人已充分阅读并理解以上条款，同意自愿参加本次活动。</p>
+					</div>
+					<div class="isAgreeBtn">
+						<img src="img/tips/agree@3x.png" alt="" id="agreeBtn" />
+						<img src="img/tips/disagree@3x.png" alt="" id="disagreeBtn" />
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--个人档案-->
+		<div class="personalFiles" style="display: none;">
+			<!--江苏有线logo-->
+			<img src="img/logo@3x.png" class="logo" />
+			<!--个人档案表单-->
+			<div class="personalFilesInfo">
+				<!--标题-->
+				<div class="title">个人档案</div>
+				<!--档案表单-->
+				<ul class="presonalFiles_list">
+					<li>
+						<span>编号：</span>
+						<span id="playerId">000180</span>
+					</li>
+					<li>
+						<span>姓名：</span>
+						<span id="playerName">徐婕</span>
+					</li>
+					<li>
+						<span>电话：</span>
+						<span id="playerPhone">徐婕</span>
+					</li>
+					<li>
+						<span>性别：</span>
+						<span id="playerSex">女</span>
+					</li>
+					<li>
+						<span>年龄：</span>
+						<span id="playerAge">4岁</span>
+					</li>
+					<li>
+						<span>爱好特长：</span>
+						<span id="playerHobbies">唱歌跳舞弹琴游泳哈哈</span>
+					</li>
+					<li>
+						<span>地区：</span>
+						<span id="playerArea">江苏省  南京市</span>
+					</li>
+				</ul>
+				<!--图片展示-->
+				<ul class="presonalFiles_picShow">
+
+				</ul>
+			</div>
+			<!--返回按钮-->
+			<div class="personalFiles_backBtn">
+				<!--返回-->
+				<div id="backBtn">
+					返回
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="js/weui/js/jquery-2.1.4.js"></script>
+		<script type="text/javascript" src="js/jquery.cookie.js"></script>
+		<script type="text/javascript" src="js/common.js?v=1.26"></script>
+		<script type="text/javascript" src="js/weui/js/jquery-weui.js"></script>
+		<script type="text/javascript" src="js/weui/js/city-picker.js"></script>
+		<script type="text/javascript" src="js/signUp.js?v=2.92"></script>
+		<script type="text/javascript" src="js/weui/js/fileupload.js?v=1.2"></script>
+		<script type="text/javascript" src="js/layer/layer.js?v=1.2"></script>
+	</body>
+
+</html>

@@ -1,0 +1,270 @@
+﻿<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: sueRimn
+ * @Date: 2020-06-23 17:53:05
+ * @LastEditors: sueRimn
+ * @LastEditTime: 2020-07-08 10:42:15
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="page-view-size" content="1280*720">
+    <title>通用专题</title>
+    <style>
+        #mainContent {
+            width: 1280px;
+            height: 720px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .QRcodeContainer {
+            position: absolute;
+            top: 283px;
+            left: 142px;
+            width: 225px;
+            height: 200px;
+        }
+
+        .productList img {
+            position: absolute;
+        }
+
+        #tips {
+            width: 1280px;
+            height: 720px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-image: url(../image/tips.png);
+            display: none;
+            z-index: 999;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <div id="debugTxt"
+        style="position: absolute;top:100px;left: 50px; border:1px solid red;background-color: rgba(197, 201, 199, 0.8);width: 1100px;height: 550px;z-index: 100000;">
+    </div> -->
+    <div class="main" id="mainContent">
+        <div style="width: 1280px;height: 720px;position: absolute;top: 0;left: 0;">
+            <img id="BJImg" src='../image/BJ2.jpg' style="width: 1280px; height: 720px;" />
+        </div>
+        <div class="QRcodeContainer">
+            <img id="QRcode" src="../image/empty.png" style="width:225px;height:200px">
+        </div>
+        <div id="productList" class="productList" style="position: absolute;left:464px;top:240px;"></div>
+
+        <div id="tips" style="display:none;">
+            <div id="hands_x0_y0_cancel_"
+                style="position: absolute;width: 135px;height: 53px; top: 490px;left: 450px;background-image: url(../image/cancel.png)">
+                <img id="cancel" style="position: absolute;visibility: hidden;" src="../image/cancelFocus.png">
+            </div>
+            <div id="hands_x0_y0_confirm_"
+                style="position: relative;width: 135px;height: 53px;top: 490px;left: 640px;background-image: url(../image/confirm.png)">
+                <img id="confirm" style="position: absolute;visibility: hidden;" src="../image/confirmFocus.png">
+            </div>
+        </div>
+    </div>
+    <div id="leftOrderArrow" style="display:none; position: absolute; left:10px;top:335px;width:60px;height:89px;"><img width='62' height="89" id='leftOrderArrow_img' src='../image/leftarrow.png'/></div>
+</body>
+<!-- 引入公共js开始 -->
+
+<script type="text/javascript" src="../../../js/loadCommomJs.js"></script>
+<!-- 引入公共js结束 -->
+<script>
+    var orderType = CT.requestValue("contentType");
+    var queryTimer = null;
+    var resProductList = {};
+    var saveClick = null;
+    var productCodeList;
+	//判断南京用户更换扫码订购页
+	orderJs.getAreaOfUser(function (res) {
+		 if(res=="nanjing"){
+		     CT.$("BJImg").src="../image/orderPageXuanWuBG.jpg";
+		 }else{
+		     CT.$("BJImg").src="../image/BJ2.jpg"; 
+		 }
+     });
+    //向左移动 跳转到余额订购页
+    leftToOrderPage =  function(){  //
+        if(CT.$('leftOrderArrow').style.display == "block") {
+            CT.getAnterByIdOrAction({
+                contentId: "orderPage_2019v1"
+            })
+        }
+    }
+    var showLeftArrTime = undefined;
+    showLeftArr = function(){
+        clearTimeout(showLeftArrTime);
+        showLeftArrTime = setTimeout(function(){
+            if(CT.$('leftOrderArrow').style.display != 'block') {
+                CT.$('leftOrderArrow').style.display = "block";
+            } else {
+                CT.$('leftOrderArrow').style.display = "none";
+            }
+            showLeftArr();
+        },800);
+    }
+    if (Number(orderType)) {
+        productCodeList = orderJs.productId_new.split(",");
+        showLeftArr();
+    } else {
+        productCodeList = orderJs.productId_nj.split(",")
+    }
+
+    function updateCode(index) {
+        //停留1S以上再刷新二维码
+        saveClick && clearTimeout(saveClick)
+        saveClick = setTimeout(function () {
+            if(!resProductList[productCodeList[index]]) {
+                return;
+            }
+            orderJs.getQRCode({
+                product_id: productCodeList[index],
+                fee_id: resProductList[productCodeList[index]].fee_id,
+                offer_id: resProductList[productCodeList[index]].offer_id,
+                video_id: "xxx",
+                notify_url: "xxx",
+                third_order_id: "xxx"
+            }, function (resp) {
+                if (resp && resp.resultCode == 0) {
+                    CT.$("QRcode").src = resp.order_url;
+                    queryTimer && clearInterval(queryTimer)
+                    queryTimer = setInterval(function () {
+                        orderJs.queryQRCodeState(resp.order_id, function (res) {
+                            if (res && res.resultCode == 0) {
+				xjDataLog.uploadOrderSuccess({
+				productId: productCodeList[index],
+                		orderState: "0",
+                		more3 : resp.order_id,
+				more1:"扫码支付"
+           	 		});
+
+                                //0订购成功
+                                orderJs.toOrderSucPage()
+                            }
+                        });
+                    }, 3000);
+			 //1未支付，其他失败
+                    	xjDataLog.uploadOrderSuccess({
+                                productId: productCodeList[index].name,
+                                orderState: "9",
+                                more1:"扫码支付等待_"+resProductList[productCodeList[index]].name,
+                                more3 : Number(orderType)?'全省':'南京'
+                        });
+                }
+            })
+        }, 1000)
+    }
+   function hideTip(){
+		 CT.$("tips").style.display = "none";
+		PAGE.changeFocus("hands_x0_y0_product0_");
+	}
+    function sweepCode() {
+        CT.$("tips").style.display = "none";
+		var btn=[]
+        for (var i = 0; i < productCodeList.length; i++) {
+            if (i == productCodeList.length - 1) {
+                buttons.push({
+                    id: 'hands_x0_y0_product' + i + '_',
+                    focusType: 7,
+                    down:"disable",
+                    otherFocusEvent: "javascript:updateCode(" + i + ")",
+                    leftEvent: "javascript:leftToOrderPage()"
+                });
+            } else {
+                buttons.push({
+                    id: 'hands_x0_y0_product' + i + '_',
+                    focusType: 7,
+                    otherFocusEvent: "javascript:updateCode(" + i + ")",
+                    leftEvent: "javascript:leftToOrderPage()"
+                });
+            }
+        }
+        PAGE.focusInit();
+        PAGE.changeFocus("hands_x0_y0_product0_");
+    }
+    /**
+     *  返回方法
+     * */
+    function backfunc(type) {
+        if(type == 'cancel' || CT.$("tips").style.display != 'none') {
+            // var returnUrl =orderJs.getOrderReturnUrl();
+            // returnUrl += "&resultCode=-1&errorMessage=900_QRcancel";
+            // PAGE.redirect( returnUrl);
+            // CT.backPage();
+			CT.commonJumpUrl(orderJs.getOrderReturnUrl() + "&resultCode=1&errorMessage=未完成订购(扫码返回)")
+            return;
+        }
+        CT.$("tips").style.display = "block";
+        PAGE.changeFocus("hands_x0_y0_cancel_");
+    }
+
+    (function () {
+        var btnhtml = ""
+        for (var i = 0; i < productCodeList.length; i++) {
+            btnhtml += '<div id="hands_x0_y0_product' + i + '_" style="position: absolute;width:738px;height: 92px; top:' + i * 100 + 'px;background-image: url(\'../image/product' + i + '.png?t='+parseInt(Math.random()*100)+'\') "><img id="product' + i + '" style="visibility: hidden;" src="../image/product' + i + '_focus.png"></div>'
+        }
+        CT.$("productList").innerHTML = btnhtml;
+
+        buttons = [{
+            id: 'hands_x0_y0_cancel_',
+            focusType: 7,
+            up: "disable",
+            down: "disable",
+            left: "disable",
+			right:"hands_x0_y0_confirm_",
+            clickHandler: "javascript:backfunc('cancel')"
+        }, {
+            id: 'hands_x0_y0_confirm_',
+            focusType: 7,
+            up: "disable",
+            right: "disable",
+			left:"hands_x0_y0_cancel_",
+            down: "disable",
+            clickHandler: "javascript:hideTip()"
+        }]  
+    
+        
+
+        orderJs.initJscnAAA(function () {
+            JscnAAA.get_order_product_list({ product_id: productCodeList.join() }, function (p_resp) {
+                var list = {};
+				sweepCode()
+                //解决局方返回产品顺序不规则
+                // if (Number(orderType)) {
+                //     list = p_resp.product_list
+                //     CT.$('leftOrderArrow').style.display = "block";
+                // } else {
+                    // for(var i = 0;i < productCodeList.length;i++) {
+                    //     for(var j = 0;j < p_resp.product_list.length;j++) {
+
+                    //     }
+                    // }
+                    for(var i = 0;i < p_resp.product_list.length;i++) {
+                        var key = p_resp.product_list[i].id;
+                        resProductList[key] = p_resp.product_list[i];
+                    }
+                    // list[0] = p_resp.product_list[0];
+                    // list[1] = p_resp.product_list[3];
+                    // list[2] = p_resp.product_list[1];
+                    // list[3] = p_resp.product_list[2];
+                // }
+                // resProductList = list;
+				//sweepCode();
+                updateCode(0);
+            });
+        })
+    })()
+</script>
+
+</html>

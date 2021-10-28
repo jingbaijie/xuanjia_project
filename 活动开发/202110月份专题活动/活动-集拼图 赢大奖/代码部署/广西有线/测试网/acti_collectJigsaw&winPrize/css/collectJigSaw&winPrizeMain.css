@@ -1,0 +1,175 @@
+#hands_x0_y0_choosePrize1Focus_{
+    position: absolute;
+    left: 152px;
+    top: 575px;
+}
+#hands_x0_y0_choosePrize2Focus_{
+    position: absolute;
+    left: 525px;
+    top: 575px;
+}
+#hands_x0_y0_choosePrize3Focus_{
+    position: absolute;
+    left: 900px;
+    top: 575px;
+}
+/* 奖品运动轨迹 */
+.prize1Ani{
+    animation: prize1Ani 2s linear;
+    -webkit-animation: prize1Ani 2s linear;
+}
+@keyframes prize1Ani{
+    0% {
+        left:100px;
+        top:245px;
+    }
+    15%{
+        left: 480px;
+        top: 20px;
+    }
+    85%{
+        left: 480px;
+        top: 20px;
+    }
+    100%{
+        left:100px;
+        top:245px;
+    }
+}
+@-webkit-keyframes prize1Ani{
+    0% {
+        left:100px;
+        top:245px;
+    }
+    15%{
+        left: 480px;
+        top: 20px;
+    }
+    85%{
+        left: 480px;
+        top: 20px;
+    }
+    100%{
+        left:100px;
+        top:245px;
+    }
+}
+.prize2Ani{
+    animation: prize2Ani 2s linear;
+    -webkit-animation: prize2Ani 2s linear;
+}
+@keyframes prize2Ani{
+    0% {
+        left:480px;
+        top:245px;
+    }
+    15%{
+        left: 480px;
+        top: 20px;
+    }
+    85%{
+        left: 480px;
+        top: 20px;
+    }
+    100% {
+        left:480px;
+        top:245px;
+    }
+}
+@-webkit-keyframes prize2Ani{
+    0% {
+        left:480px;
+        top:245px;
+    }
+    15%{
+        left: 480px;
+        top: 20px;
+    }
+    85%{
+        left: 480px;
+        top: 20px;
+    }
+    100% {
+        left:480px;
+        top:245px;
+    }
+}
+.prize3Ani{
+    animation: prize3Ani 2s linear;
+    -webkit-animation: prize3Ani 2s linear;
+}
+@keyframes prize3Ani{
+    0% {
+        left:850px;
+        top:245px;
+    }
+    15%{
+        left: 480px;
+        top: 20px;
+    }
+    85%{
+        left: 480px;
+        top: 20px;
+    }
+    100% {
+        left:850px;
+        top:245px;
+    }
+}
+@-webkit-keyframes prize3Ani{
+    0% {
+        left:850px;
+        top:245px;
+    }
+    15%{
+        left: 480px;
+        top: 20px;
+    }
+    85%{
+        left: 480px;
+        top: 20px;
+    }
+    100% {
+        left:850px;
+        top:245px;
+    }
+}
+/* 礼物盒上下抖动打开 */
+.prizeOpen{
+    animation: prizeOpen 400ms 3;
+    -webkit-animation: prizeOpen 400ms 3;
+}
+@keyframes prizeOpen{
+    0%{
+        transform: translateY(0px);
+        -webkit-transform: translateY(0px);
+    }
+    50%{
+        transform: translateY(-10px);
+        -webkit-transform: translateY(-10px);
+    }
+    100%{
+        transform: translateY(0px);
+        -webkit-transform: translateY(0px);
+    }
+}
+@-webkit-keyframes prizeOpen{
+    0%{
+        transform: translateY(0px);
+        -webkit-transform: translateY(0px);
+    }
+    50%{
+        transform: translateY(-10px);
+        -webkit-transform: translateY(-10px);
+    }
+    100%{
+        transform: translateY(0px);
+        -webkit-transform: translateY(0px);
+    }
+}
+/* 规则 */
+#ruleBtn, #hands_x0_y0_ruleBtnFocus_{
+    position: absolute;
+    left: 0px;
+    top: 40px;
+}

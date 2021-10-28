@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name = "page-view-size" content = "1280*720">
+    <title>规则</title>
+    <link rel="stylesheet" href="./css/lottery.css">
+</head>
+<body>
+<div class="rule">
+    <div class="backG"></div>
+    <!---返回按钮-->
+    <img src="./img/back.png" style = "position: absolute;top: 17px;left: 1152px;z-index:10;" alt="">
+
+    <!--返回按钮光标-->
+    <div id = "hands_x0_y0_backFocus_" style = "position: absolute;top: 16px;left: 1148px;z-index:10;">
+        <img id = "backFocus" src="./img/backSelect.png" style = "visibility: hidden;">
+    </div>
+    <!--光标-->
+    <div class='focus' id='hands_x0_y0_mainFocus_' style='top: 7px;left: 13px;'>
+        <img id='mainFocus' src='./img/btn.png' style='visibility: hidden'>
+    </div>
+    <div class='focus' id='hands_x0_y0_giftFocus_' style='top: 75px;left: 13px;'>
+        <img id='giftFocus' src='./img/btn.png' style='visibility: hidden'>
+    </div>
+    <div class='focus' id='hands_x0_y0_moreFocus_' style='top: 144px;left: 13px;'>
+        <img id='moreFocus' src='./img/btn.png' style='visibility: hidden'>
+    </div>
+</div>
+<!--引入公用JS-->
+<script type="text/javascript" src="../../../../js/loadCommomJs.js"></script>
+<script type="text/javascript" src="../../../../js/actiComm.js"></script>
+<!--引用结束-->
+<script>
+    var buttons = [
+        {
+            id: "hands_x0_y0_backFocus_",
+            clickHandler: "javascript: backfunc()",
+            up: "disable",
+            down: "disable",
+            left: "hands_x0_y0_mainFocus_",
+            right: "disable",
+            focusType: 7
+        },
+        {
+            id: "hands_x0_y0_mainFocus_",
+                clickHandler: "javascript:goSomeWhere(0)",
+                left: "disable",
+                right: "hands_x0_y0_backFocus_",
+                up: "disable",
+                down: "hands_x0_y0_giftFocus_",
+                focusType: 7
+        },
+        {
+            id: "hands_x0_y0_giftFocus_",
+                clickHandler: "javascript:goSomeWhere(1)",
+                left: "disable",
+                right: "hands_x0_y0_backFocus_",
+                up: "hands_x0_y0_mainFocus_",
+                down: "hands_x0_y0_moreFocus_",
+                focusType: 7
+        },
+        {
+            id: "hands_x0_y0_moreFocus_",
+                clickHandler: "javascript:goSomeWhere(2)",
+                left: "disable",
+                right: "hands_x0_y0_backFocus_",
+                up: "hands_x0_y0_giftFocus_",
+                down: "disable",
+                focusType: 7
+        }];
+    var wuyipageFocusRule = CT.getCookie("wuyipageFocusRule") || "hands_x0_y0_backFocus_";
+    PAGE.focusInit();
+    curFocus = PAGE.getFocusModel6(wuyipageFocusRule);
+    curFocus.defaultFocus();
+    function backfunc() {
+        window.location.href = "lotteryMain.html";
+    }
+    function goSomeWhere(num) {
+        CT.setCookie("wuyipageFocusRule",curFocus.FocusID);
+        if(num == 0){
+            window.location.href = "./lotteryMain.html"
+        }else if(num == 1){
+            window.location.href = "./lotteryPrizeList.html"
+        }else if(num == 2){//跳更多详情
+            CT.backPage();
+        }
+    }
+</script>
+</body>
+</html>

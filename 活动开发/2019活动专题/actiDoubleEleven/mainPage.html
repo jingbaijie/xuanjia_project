@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name = "page-view-size" content = "1280*720">
+    <title>狂欢双十一首页</title>
+    <style>
+        #mainContent{
+            width: 1280px;
+            height: 720px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        .fontDiv{
+            width: 50px;
+            height: 50px;
+            font-size: 24px;
+            font-weight: bold;
+            color: black;
+            text-align: center;
+        }
+		#showBox{
+            width: 290px;
+            height: 155px;
+			position: absolute;
+            left: 40px;
+            top: 40px;
+            overflow: hidden;
+			margin: 0;
+			padding: 0;
+			border: 2px dashed red;
+			border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id = "mainContent">
+        <!--背景图片-->
+        <img  src="./images/main/BG.jpg" style = "width: 1280px;height: 720px;position: absolute;top: 0;left: 0;" alt="">
+
+        <!--返回按钮-->
+        <div id = "hands_x0_y0_backFocus_" style = "width: 111px;height: 93px;position: absolute;top: 15px;left: 1130px;">
+            <img id = "backFocus" src="./images/backed.png" style = "width: 111px;height: 93px;visibility: hidden;" alt="">
+        </div>
+        <!--开启狂欢夜-->
+        <div id = "hands_x0_y0_startFocus_" style = "width: 315px;height: 133px;position: absolute;top: 510px;left: 50px;">
+            <img id = "startFocus" src="./images/main/selected1.png" style = "width: 315px;height: 133px;visibility: hidden;" alt="">
+        </div>
+        <!--幸运大转盘-->
+        <div id = "hands_x0_y0_turnTableFocus_" style = "width: 257px;height: 94px;position: absolute;top: 420px;left: 924px;">
+            <img id = "turnTableFocus" src="./images/main/selected2.png" style = "width: 257px;height: 94px;visibility: hidden;" alt="">
+        </div>
+		<div id="showBox">
+			<div id="loop_img_box1" style = "position: absolute;"></div>
+			<div id="loop_img_box2" style = "position: absolute;"></div>
+		</div>
+    </div>
+	<!--弹框-->
+    <div id = "confirmDiv" style = "width: 1280px;height: 720px;position:absolute;left: 0;top: 0;visibility: hidden;">
+        <img id = "confirmImg" src="./images/confirm/notOrder.png" style = "width: 1280px;height: 720px;position: absolute;top: 0;left: 0;" alt="">
+        <p id = "textMsg" style = "width: 300px;height: 200px;color: white;position: absolute;top: 240px;left: 448px;text-align: center;font-size: 28px;font-weight: bold;">
+            今日机会已用完,明天再来吧
+        </p>
+        <!--弹框确认-->
+        <div id = "hands_x0_y0_sureFocus0_" style = "width: 188px;height: 71px;position: absolute;top: 520px;left: 455px;">
+            <img id = "sureFocus0" src="./images/confirm/selected.png" style = "width: 188px;height: 71px;visibility: hidden;" alt="">
+        </div>
+		 <div id = "hands_x0_y0_sureFocus1_" style = "width: 188px;height: 71px;position: absolute;top: 520px;left: 455px;">
+            <img id = "sureFocus1" src="./images/confirm/selected.png" style = "width: 188px;height: 71px;visibility: hidden;" alt="">
+        </div>
+        <!--弹框取消-->
+        <div id = "hands_x0_y0_cancelFocus0_" style = "width: 188px;height: 71px;position: absolute;top: 520px;left: 644px;">
+            <img id = "cancelFocus0" src="./images/confirm/selected.png" style = "width: 188px;height: 71px;visibility: hidden;" alt="">
+        </div>
+		<div id = "hands_x0_y0_cancelFocus1_" style = "width: 188px;height: 71px;position: absolute;top: 520px;left: 644px;">
+            <img id = "cancelFocus1" src="./images/confirm/selected.png" style = "width: 188px;height: 71px;visibility: hidden;" alt="">
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../../js/comm.js"></script>
+<script type="text/javascript" src="../../../js/common1_1.js"></script>
+<script type="text/javascript" src="../../../js/key1_3.js"></script>
+<script type="text/javascript" src="../../../js/recommendUrl.js"></script>
+<script type="text/javascript" src="../../../js/ajax_20170828.js"></script>
+<script type="text/javascript" src="../../../js/logger.js"></script>
+<script type = "text/javascript" src = "./js/actiComm.js"></script>
+<script>
+    var buttons = [
+        {
+            id: "hands_x0_y0_backFocus_",
+            clickHandler: "javascript: backfunc()",
+            up: "disable",
+            down: "hands_x0_y0_turnTableFocus_",
+            left: "hands_x0_y0_startFocus_",
+            right: "disable",
+            focusType: 7
+        },
+        {
+            id: "hands_x0_y0_startFocus_",
+            clickHandler: "javascript: goMian()",
+            up: "hands_x0_y0_backFocus_",
+            down: "disable",
+            left: "disable",
+            right: "hands_x0_y0_turnTableFocus_",
+            focusType: 6
+        },
+        {
+            id: "hands_x0_y0_turnTableFocus_",
+            clickHandler: "javascript: toTurnTablePage()",
+            up: "hands_x0_y0_backFocus_",
+            down: "disable",
+            left: "hands_x0_y0_startFocus_",
+            right: "disable",
+            focusType: 6
+        },
+        {
+            id: "hands_x0_y0_sureFocus0_",
+            clickHandler: "javascript: toOrder()",
+            up: "disable",
+            down: "disable",
+            left: "disable",
+            right: "hands_x0_y0_cancelFocus0_",
+            focusType: 7
+        },
+        {
+            id: "hands_x0_y0_cancelFocus0_",
+            clickHandler: "javascript: backfunc()",
+            up: "disable",
+            down: "disable",
+            left: "hands_x0_y0_sureFocus0_",
+            right: "disable",
+            focusType: 7
+        },
+        {
+            id: "hands_x0_y0_sureFocus1_",
+            clickHandler: "javascript: backfunc()",
+            up: "disable",
+            down: "disable",
+            left: "disable",
+            right: "hands_x0_y0_cancelFocus1_",
+            focusType: 7
+        },
+        {
+            id: "hands_x0_y0_cancelFocus1_",
+            clickHandler: "javascript: backfunc()",
+            up: "disable",
+            down: "disable",
+            left: "hands_x0_y0_sureFocus1_",
+            right: "disable",
+            focusType: 7
+        }
+    ];
+	isOrderFun();
+    //初始化焦点
+	function setActiFocus(){
+		isOrder = CT.getCookie("isOrder") + "";
+		focusInit();
+		curFocus = getFocusModel6("hands_x0_y0_startFocus_");
+		curFocus.defaultFocus();
+	}
+    
+    var areConfirm = false;
+    var isOrder = 1;
+    var preFocusXL = "hands_x0_y0_startFocus_";
+	var isToTurn = "fail";
+	
+	//用户是否抽过奖
+	function getUserDataList(){
+		actiAjax.init({
+			url:getUserDataListUrl,
+			method:"get",
+			params:{
+				"activityId": actiActivityId,
+				"userId": actiUserId
+			},
+			async:true,
+			ContentType:"application/x-www-form-urlencoded",
+			success:function(data){
+				if(data){
+					isToTurn = data.resultMsg;
+				}else{
+					isToTurn = "fail";
+				}
+				setActiFocus();
+			},
+			fail:function(status){
+				isToTurn = "fail";
+				setActiFocus();
+			}
+		});
+	}
+	getUserDataList();
+
+    function toOrder(){
+		setLogInfoOfAll(CT.getCookie("userId"),CT.getCookie("pid"),111,"doubleEleven","tOrder");
+		isTimeSystem();
+    }
+    function toTurnTablePage(){
+		isOrder = CT.getCookie("isOrder");
+        if(isOrder == 0){
+			//isToTurn = "fail";
+			if(isToTurn == "fail"){
+				window.location.href = "turntable.html";
+			}else{
+				showConfirm("您已参与过抽奖,期待下一次机会吧");
+			}
+        }else{
+            showConfirm();
+        }
+    }
+    function goMian(){
+        if(isOrder == 0){
+            backfunc();
+        }else{
+            toOrder();
+        }
+    }
+    //弹框显示
+    function showConfirm(inner){
+        preFocusXL = curFocus.FocusID;
+		curFocus.defaultBlur();
+        if(inner){
+            document.getElementById("textMsg").innerHTML = inner;
+            CT.$("confirmImg").src = "./images/confirm/tips.png";
+			curFocus = getFocusModel6("hands_x0_y0_sureFocus1_");
+        }else {
+            document.getElementById("textMsg").innerHTML = "";
+            CT.$("confirmImg").src = "./images/confirm/notOrder.png";
+			curFocus = getFocusModel6("hands_x0_y0_sureFocus0_");
+        }
+        document.getElementById("confirmDiv").style.visibility = "visible";
+        curFocus.defaultFocus();
+        areConfirm = true;
+    }
+    //弹框隐藏
+    function hideConfirm(){
+        document.getElementById("confirmDiv").style.visibility = "hidden";
+        document.getElementById("textMsg").innerHTML = "";
+        curFocus.defaultBlur();
+        curFocus = getFocusModel6(preFocusXL);
+        curFocus.defaultFocus();
+        areConfirm = false;
+    }
+	//获奖名单
+	var box1=document.getElementById("loop_img_box1");
+    var box2=document.getElementById("loop_img_box2");
+	var h = "";
+	var topList;
+    function getActivityUserPrizeList(){
+        actiAjax.init({
+            url:getPrizeUserInfoUrl,
+            method:"get",
+            params:{
+				"activityId":actiActivityId,
+				"pageNo": 1,
+				"pageSize": 100
+				},
+            async:true,
+            ContentType:"application/x-www-form-urlencoded",
+            success:function(data){
+                console.log(data);
+				if(data.resultMsg != "fail"){
+					topList = data.list;
+				}else{
+					topList = {};
+				}
+				setPrizeList();
+            },
+            fail:function(status){
+
+            }
+        });
+    }
+	getActivityUserPrizeList();
+	var resultArr=[];
+	function setPrizeList(){
+		for (var n=0;n<topList.length;n++){
+			var phone,score;
+			if(topList[n].USER_PHONE){
+				phone=topList[n].USER_PHONE;
+			}else {
+				phone=null;
+			}
+
+
+			resultArr.push({'USERID':topList[n].USERID,"PRIZE_CNAME":topList[n].PRIZE_CNAME});
+		}
+		for(var i=0 ;i<resultArr.length;i++){
+			var getId;
+			if(resultArr[i].USERID){
+				getId=resultArr[i].USERID.slice(0,3)+"****"+resultArr[i].USERID.slice(resultArr[i].USERID.length-3,resultArr[i].USERID.length);
+			}else{
+				getId="";
+			}
+			var score;
+			if(resultArr[i].PRIZE_CNAME){
+				score=resultArr[i].PRIZE_CNAME;
+			}else{
+				score="未获奖";
+			};
+
+
+			h+="<div style='width: 700px;height:34px;position: absolute;top:"+34*i+"px;left:5px;'>"+
+				"<div style='position: absolute;line-height: 34px; font-size: 16px;font-weight: bolder; text-align: left; color: yellow; top:2px;left:5px;'>"+
+				getId+
+				"</div>	"+
+				"<div style='position: absolute;line-height: 34px; font-size: 16px;font-weight: bolder; text-align: left; color: yellow; top:2px;left:125px;'>获得"+
+				score+
+				"</div>"+
+				"</div>"
+		}
+		if(resultArr.length>=4){
+			loop();
+		}else{
+			box1.innerHTML=h;
+		}
+	
+	}
+	function loop(){
+        box1.innerHTML=h;
+        box1.style.top=-34*resultArr.length+"px";
+        box2.innerHTML=h;
+        box2.style.top=-(34*resultArr.length)*2+"px";
+        var index=0;
+        var Height1=-34*resultArr.length;
+        var loopIndex=-34*resultArr.length*2;
+        var jin=setInterval(function(){
+            index++;
+            if((Math.floor(index/resultArr.length*10)%2 === 0)){
+                box1.style.top=-34*resultArr.length+"px";
+            }
+            if((Math.floor(index/resultArr.length*10)%2 === 0)){
+                box2.style.top=-(34*resultArr.length)*2+"px";
+            }
+            box1.style.top=Height1+index*34/10+4*34+"px";
+            box2.style.top=loopIndex+index*34/10+4*34+"px";
+            if(index === resultArr.length*10+1){
+                index=0
+            }
+        },250)
+    }
+    //返回方法
+    function backfunc(){
+        if(areConfirm){
+            hideConfirm();
+        }else{
+            window.location.href = "http://112.25.69.22:28080/XuanLi_Cartoon/HD/html/main_2018v5/main2018v5.html";
+        }
+    }
+
+	function orderSuccess(){
+		isOrderFun();
+		setTimeout(function(){
+			isOrder = CT.getCookie("isOrder");
+		},500);
+	}
+	function orderFail(){
+		isOrderFun();
+		setTimeout(function(){
+			isOrder = CT.getCookie("isOrder");
+		},500);
+	}
+
+
+//活动时长埋点
+var startVideoTimeDrn = new Date();
+function setLogerVideoTimeDrn(){
+		var endVideoTimeDrn =  new Date();
+		startVideoTimeDrn=fmtDate(startVideoTimeDrn);
+		endVideoTimeDrn=fmtDate(endVideoTimeDrn);
+		if(startVideoTimeDrn != endVideoTimeDrn){
+			try{
+				var city=xjJSV2.getValueV2("CITY_CODE");
+			}catch(e){
+				if(window.androidjs){
+					window.androidjs.getValueV2("CITY_CODE");
+				} else {
+					var city="14";
+				}
+			}
+			var commPageId= "34";
+			var commPageCname= "狂欢双十一";
+			var productid="0020412cp0005";
+			toMonitorCompanyList(city,startVideoTimeDrn,endVideoTimeDrn,commPageId,commPageCname,productid);
+		}
+}
+
+
+function fmtDate(date){
+	var y = 1900+date.getYear();
+	var m = "0"+(date.getMonth()+1);
+	var d = "0"+date.getDate();
+	var h = "0"+date.getHours();
+	var min = "0"+date.getMinutes();
+	var s = "0"+date.getSeconds();
+	return y+m.substring(m.length-2,m.length)+d.substring(d.length-2,d.length)+h.substring(h.length-2,h.length)+min.substring(min.length-2,min.length)+s.substring(s.length-2,s.length);
+}
+
+function toMonitorCompanyList(city,startVideoTimeDrn,endVideoTimeDrn,commPageId,commPageCname,productid){
+    var params = {
+        "userid": CT.getCookie("userId"),
+        "city": city,
+        "starttime": startVideoTimeDrn,
+        "endtime": endVideoTimeDrn,
+        "programid": commPageId,
+        "programname": commPageCname,
+        "productid":productid
+    };
+
+    var args = '';
+	for(var i in params) {
+		if(args != '') {
+			args += '&';
+		}   
+		args += i + '=' + encodeURIComponent(params[i]);
+	}
+	var img=new Image(1,1);
+	img.src = "http://112.25.69.4:8091/JSYDUploadInterface/addottuserviewdata?" + args;
+	//安卓会在用户点击全屏播放时会进行埋点,导致数据埋点信息中的视频播放埋点中的页面埋点与安卓埋点时间接近产生冲突,所以在用户点击全屏时页面将不再进行后续计时埋点
+	setVideoLogFlagDrn = 1;
+}
+
+window.addEventListener('unload',function(){
+            try{
+				setLogerVideoTimeDrn();
+            }catch(e){}
+});
+</script>
+</html>

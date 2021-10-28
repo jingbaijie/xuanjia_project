@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="page-view-size" content="1280*720">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>迪士尼乐园保卫战游戏页</title>
+		<link rel="stylesheet" type="text/css" href="css/actiDisneyGame.css" />
+	</head>
+
+	<body>
+		<div id="main" style="position:relative;left: 0px;top: 0px;">		
+			<!--标题-->
+			<img src="img/game/title.png" id="gameTitle" />
+			<!--计时器-->
+			<img src="img/game/timer.png" id="timer" />
+			<div id="timerNum"><span>30</span>S</div>
+			<!--恐龙数-->
+			<img src="img/game/numBox.png" id="numBox" />
+			<div id="amounts">0</div>
+			<!--草坪-->
+			<img src="img/game/grass.png" id="grass" />
+			<!--发射机-->
+			<div id="hands_x0_y0_biubiuFocus_" style="position: absolute;left: 500px;bottom: 20px;z-index: 2;">
+				<img src="img/game/biubiu1.png" id="biubiuFocus" />
+			</div>
+			<!--水果子弹-->
+			<img id="bullet" src="img/game/bullet.png" style="position:absolute;z-index:1;left: 500px;top: 700px;">
+			<!--爆炸-->
+			<div id="booms" style="position: absolute;top: 250px;">
+				<img src="img/game/empty.png" style="position: absolute;z-index: 1;" />
+			</div>
+			<!--泡泡龙-->
+			<div class="bubbleList">
+				<ul id="bubbleList1" style="position: absolute;left: 0px;top: 0px;">
+					<li><img src="img/game/bubble.png" style="position: absolute;left: 40px;top: 0px;" id="bubble1" /></li>
+					<li><img src="img/game/bubble.png" style="position: absolute;left: 270px;top: -80px;" id="bubble2" /></li>
+					<li><img src="img/game/bubble.png" style="position: absolute;left: 660px;top: -50px;" id="bubble3" /></li>
+					<li><img src="img/game/bubble.png" style="position: absolute;left: 1000px;top: 100px;" id="bubble4" /></li>
+				</ul>
+			</div>
+			<!--弹窗-->
+			<img id="tanchuangTip" src="img/game/empty.png" style="position: absolute;left: 0px;top: 0px;z-index: 9;" />
+			<!--去抽奖-->
+			<div id="hands_x0_y0_goChoujiangFocus_">
+				<img src="img/game/empty.png" id="goChoujiangFocus" />
+			</div>
+			<!--没有抽奖机会-->
+			<div id="hands_x0_y0_continueFocus_">
+				<img src="img/game/empty.png" id="continueFocus" />
+			</div>
+			<!--看视频获得一次游戏机会-->
+			<div id="hands_x0_y0_getChanceFocus_">
+				<img src="img/game/empty.png" id="getChanceFocus" />
+			</div>
+			<!--没有机会-->
+			<div id="hands_x0_y0_outTimesFocus_">
+				<img src="img/game/empty.png" id="outTimesFocus" />
+			</div>
+		</div>
+
+		<!--引入公用JS-->
+		<script type="text/javascript" src="../../../js/column.js"></script>
+		<script type="text/javascript" src="./js/actiComm.js"></script>
+		<!--引用结束-->
+		<script type="text/javascript">
+			//焦点数组
+			var buttons = [{
+				id: "hands_x0_y0_biubiuFocus_",
+				clickHandler: "javascript:DisneyGame.biubiuFunc()",
+				leftEvent: 'javascript:DisneyGame.leftMoveFunc()',
+				rightEvent: 'javascript:DisneyGame.rightMoveFunc()',
+				left: "disable",
+				right: "disable",
+				up: "disable",
+				down: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_goChoujiangFocus_",
+				clickHandler: "javascript:DisneyGame.jumpUrlFunc(1)",
+				left: "disable",
+				right: "disable",
+				up: "disable",
+				down: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_continueFocus_",
+				clickHandler: "javascript:DisneyGame.jumpUrlFunc(2)",
+				left: "disable",
+				right: "disable",
+				up: "disable",
+				down: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_getChanceFocus_",
+				clickHandler: "javascript:DisneyGame.jumpUrlFunc(3)",
+				left: "disable",
+				right: "disable",
+				up: "disable",
+				down: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_outTimesFocus_",
+				clickHandler: "javascript:DisneyGame.jumpUrlFunc(4)",
+				left: "disable",
+				right: "disable",
+				up: "disable",
+				down: "disable",
+				focusType: 7
+			}]
+
+			function Disney(main) {
+				this.initAuth(); //初始化鉴权
+				this.main = document.querySelector("#" + main); //外层可视模块				
+				this.timerAni = null; //计时器
+				this.timerFunc(); //计时器函数
+				this.countDown = 30; //计数
+				this.timerNum = this.main.querySelector("#timerNum span"); //计时器DOM
+				this.speed = 20; //泡泡左移速度
+				this.bubbleList1 = this.main.querySelector("#bubbleList1"); //内层滚动内容模块1	
+				this.MarqueeAni = null; //滚动动画
+				this.bubble = this.main.querySelectorAll(".bubbleList img"); //泡泡图片数组
+				this.biubiuChange(); //biubiu两张图片切换
+				this.biubiuImg = 1;
+				this.biubiuImgs = this.main.querySelectorAll("#hands_x0_y0_biubiuFocus_ img"); //焦点图片数组
+				this.biubiu = this.main.querySelector("#hands_x0_y0_biubiuFocus_"); //焦点对象
+				this.boomImgs = this.main.querySelectorAll("#booms img"); //爆炸
+				this.boomImg = 0;
+				this.boomAni = null; //爆炸动画
+				this.isclick = true; //防止重复点击
+				this.bullet = this.main.querySelector("#bullet"); //水果炸弹	
+				this.bulletAni = null; //水果炸弹动画	
+				this.leftNow = 0; //当前left值
+				this.topNow = 0; //当前top值		
+				this.bubbleNum = 0; //泡泡龙数量
+				this.chanceNum = 0; //次数变量
+				this.amounts = this.main.querySelector("#amounts"); //恐龙数DOM
+				this.tanchuangTip = this.main.querySelector("#tanchuangTip"); //弹窗提示				
+				this.isOrder = 1; //用户鉴权结果
+
+			}
+
+			Disney.prototype = {
+				constructor: Disney,
+				//鉴权
+				initAuth: function() {
+					var _this = this;
+					//鉴权(data为0,鉴权通过,其余则未通过,需要跳转订购)
+					orderJs.columnGetAuth(function(data) {
+						isOrder = data + "";
+						_this.init(); //焦点初始化
+					});
+
+				},
+				//初始化函数				
+				init: function() {
+					var _this = this;
+					//获取积分、次数
+					actiObj.getChance(function(res) {
+						_this.chanceNum = res.activityChance;
+						actiObj.getUserCredit(function(data) {
+							if(data && data.resultMsg == "success") {
+								_this.bubbleNum = parseInt(data.creditNum, 10) || 0;
+								_this.amounts.innerText = _this.bubbleNum;
+							} else {
+								_this.bubbleNum = 0;
+							}
+						})
+					})
+					//焦点初始化
+					focusInit();
+					if(curFocus) {
+						curFocus.defaultBlur();
+					}
+					curFocus = getFocusModel6("hands_x0_y0_biubiuFocus_");
+					curFocus.defaultFocus();
+					setTimeout(function() {
+						_this.Marquee(); //滚动函数
+					}, 1000)
+				},
+				//发射机左移方法
+				leftMoveFunc: function() {
+					if(parseInt(this.biubiu.style.left) >= 0) {
+						this.biubiu.style.left = (parseInt(this.biubiu.style.left) - 20) + "px";
+					}
+				},
+				//发射机右移方法
+				rightMoveFunc: function() {
+					if(parseInt(this.biubiu.style.left) <= 1060) {
+						this.biubiu.style.left = (parseInt(this.biubiu.style.left) + 20) + "px";
+					}
+				},
+				//发射机两张图片切换
+				biubiuChange: function() {
+					var _this = this;
+					setInterval(function() {
+						if(_this.biubiuImg % 2 == 0) {
+							_this.biubiuImgs[0].src = "img/game/biubiu1.png";
+						} else {
+							_this.biubiuImgs[0].src = "img/game/biubiu2.png";
+						}
+						_this.biubiuImg++;
+					}, 300)
+				},
+				//计时器
+				timerFunc: function() {
+					var _this = this;
+					this.timerAni = setInterval(function() {
+						_this.timerNum.innerText = _this.countDown;
+						if(_this.countDown < 1) {
+							_this.countDown = 30;
+							_this.chanceNum += 1;
+							//30秒结束，存积分、存次数
+							actiObj.setChance(function() {
+								actiObj.setUserCredit(_this.bubbleNum);
+							});
+							//30秒结束判断是否拥有抽奖机会、游戏机会	
+							if(isOrder === "0") {
+								if(_this.chanceNum >= 3) {
+									if(_this.chanceNum >= 4) {
+										_this.tanchuangTip.src = "img/tips/outTimes.png";
+										//清理定时器
+										clearInterval(_this.MarqueeAni);
+										clearInterval(_this.timerAni);
+										//切换焦点
+										actiObj.changeFocus("hands_x0_y0_outTimesFocus_");
+									} else {
+										_this.tanchuangTip.src = "img/tips/getChance.png";
+										//清理定时器
+										clearInterval(_this.MarqueeAni);
+										clearInterval(_this.timerAni);
+										actiObj.changeFocus("hands_x0_y0_getChanceFocus_");
+									}
+								} else {
+									if(_this.bubbleNum >= 10) {
+										_this.tanchuangTip.src = "img/tips/goChouJiang.png";
+										//清理定时器
+										clearInterval(_this.MarqueeAni);
+										clearInterval(_this.timerAni);
+										actiObj.changeFocus("hands_x0_y0_goChoujiangFocus_");
+									} else {
+										//继续游戏
+										_this.tanchuangTip.src = "img/tips/noChouJ.png";
+										//清理定时器
+										clearInterval(_this.MarqueeAni);
+										clearInterval(_this.timerAni);
+										actiObj.changeFocus("hands_x0_y0_continueFocus_");
+									}
+								}
+							} else {
+								_this.tanchuangTip.src = "img/tips/outTimes.png";
+								//清理定时器
+								clearInterval(_this.MarqueeAni);
+								clearInterval(_this.timerAni);
+								//切换焦点
+								actiObj.changeFocus("hands_x0_y0_outTimesFocus_");
+							}
+
+						} else {
+							_this.countDown--;
+						}
+					}, 1000)
+				},
+				//创建一个泡泡龙滚动函数
+				Marquee: function() {
+					var _this = this;
+					this.MarqueeAni = setInterval(function() {
+						for(var i = 0; i < _this.bubble.length; i++) {
+							if(parseInt(_this.bubble[i].style.left) <= -180) {
+								_this.bubble[i].style.left = 1200 + "px";
+							} else {
+								_this.bubble[i].style.left = parseInt(_this.bubble[i].style.left) - 1 + "px";
+							}
+							if(parseInt(_this.biubiu.style.left) >= parseInt(_this.bubble[i].style.left) - 50 && parseInt(_this.biubiu.style.left) < (parseInt(_this.bubble[i].style.left) + 50) && parseInt(_this.bullet.style.top) >= parseInt(_this.bubble[i].style.top) && parseInt(_this.bullet.style.top) < (parseInt(_this.bubble[i].style.top) + 200)) {
+								_this.leftNow = parseInt(_this.bubble[i].style.left);
+								_this.topNow = parseInt(_this.bubble[i].style.top);
+								_this.boomImgs[0].style.left = (_this.leftNow - 20) + "px";
+								_this.boomImgs[0].style.top = _this.topNow + "px";
+								//碰撞的时候恢复点击
+								_this.isclick = true;
+								_this.bullet.style.top = "700px";
+								_this.boomFunc();
+								_this.bubbleNum += 1;
+								_this.amounts.innerText = _this.bubbleNum;
+
+								//泡泡从屏幕外重新出现								
+								if(i == 0) {
+									_this.bubble[i].style.left = "1100px";
+								} else if(i == 1) {
+									_this.bubble[i].style.left = "1430px";
+								} else if(i == 2) {
+									_this.bubble[i].style.left = "1820px";
+								} else if(i == 3) {
+									_this.bubble[i].style.left = "2160px";
+								}
+							}
+						}
+
+						if(_this.isclick == false) {
+							if(parseInt(_this.bullet.style.top) <= -224) {
+								_this.bullet.style.top = "700px";
+								_this.isclick = true;
+							} else {
+								_this.bullet.style.top = parseInt(_this.bullet.style.top) - 30 + "px";
+							}
+						}
+
+					}, _this.speed)
+				},
+				//biubiu方法
+				biubiuFunc: function() {
+					this.bullet.style.left = this.biubiu.style.left;
+					this.bulletFunc();
+				},
+				//爆炸
+				boomFunc: function() {
+					//爆炸动画
+					var _this = this;
+					this.boomAni = setInterval(function() {
+						if(_this.boomImg >= 3) {
+							_this.boomImg = 0;
+							_this.boomImgs[0].src = "img/game/empty.png";
+							clearInterval(_this.boomAni);
+						} else {
+							_this.boomImgs[0].src = "img/game/boom" + _this.boomImg + ".png";
+						}
+						_this.boomImg++;
+					}, 200);
+				},
+				//水果子弹	
+				bulletFunc: function() {
+					if(this.isclick) {
+						this.isclick = false;
+					}
+				},
+				jumpUrlFunc: function(index) {
+					if(index == 1) {
+						window.location.href = "actiDisneyLottery.html";
+					} else if(index == 2) {
+						this.timerFunc(); //计时器函数
+						this.init(); //初始化函数
+						this.tanchuangTip.src = "img/game/empty.png";
+					} else if(index == 3) {
+						window.location.href = "actiDisneyMain.html";
+					} else if(index == 4) {
+						window.location.href = "actiDisneyMain.html";
+					}
+				}
+
+			}
+			var DisneyGame = new Disney("main");
+
+			//游戏页返回方法
+			function backfunc() {
+				window.location.href = "actiDisneyMain.html";
+			}
+		</script>
+	</body>
+
+</html>

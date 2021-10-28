@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="page-view-size" content="1280*720">
+    <title>游戏页</title>
+    <link rel="stylesheet" href="../../../../css/commCss.css">
+    <link rel="stylesheet" href="./css/common.css?v=2021041101611">
+</head>
+
+<body>
+    <div class="main">
+        <!-- 空焦点 -->
+        <div id="hands_x0_y0_blankFocus_" style="position: absolute;top: 0px;left: 0px;">
+            <img id="blankFocus" src="./imgs/cuteChicken/empty.png" alt="" style="visibility: hidden;">
+        </div>
+        <!-- slogan -->
+        <img src="imgs/cuteChicken/slogan1.png" alt="" id="slogan" style="position: absolute;left: 920px;top: 0px;">
+        <!-- 我的宝藏按钮 -->
+        <div id="hands_x0_y0_winners_" style="position: absolute;top: 630px;left: 100px;">
+            <img src="./imgs/cuteChicken/myPrizeBtn.png" alt="" style="position: absolute;">
+            <img id="winners" src="./imgs/cuteChicken/myPrizeBtnFocus.png" alt="" style="visibility: hidden;">
+        </div>
+        <!-- 活动规则按钮 -->
+        <div id="hands_x0_y0_rule_" style="position: absolute;top: 630px;left: 320px;">
+            <img src="./imgs/cuteChicken/ruleBtn.png" alt="" style="position: absolute;">
+            <img id="rule" src="./imgs/cuteChicken/ruleBtnFocus.png" alt="" style="visibility: hidden;">
+        </div>
+        <!-- 开始游戏按钮 -->
+        <div id="hands_x0_y0_gameStart_" style="position: absolute;top: 462px;left: 140px;">
+            <img id="gameStart" src="./imgs/cuteChicken/startFocus.png" alt="" style="visibility: hidden;">
+        </div>
+        <!-- 中奖信息 -->
+        <div id="winnerMessage" style="overflow: hidden;width: 600px;height: 32px;">
+            <div id="winnerMessageList" style="position:absolute;"></div>
+        </div>
+        <!-- 游戏奖品位置 -->
+        <div class="prize-position">
+            <div id="hands_x0_y0_prize1_" style="position: absolute;top: 280px;left: 175px;">
+                <img src="./imgs/cuteChicken/badge.png" alt="">
+                <img id="prize1" src="./imgs/cuteChicken/chooseFocus.png" alt=""
+                    style="position: absolute;left: -20px;top: -21px;visibility: hidden;">
+            </div>
+            <div id="hands_x0_y0_prize2_" style="position: absolute;top: 185px;left: 295px;">
+                <img src="./imgs/cuteChicken/h1.png" alt="">
+                <img id="prize2" src="./imgs/cuteChicken/chooseFocus.png" alt=""
+                    style="position: absolute;left: -20px;top: -21px;visibility: hidden;">
+            </div>
+            <div id="hands_x0_y0_prize3_" style="position: absolute;top: 185px;left: 400px;">
+                <img src="../actiChildrenGather/img/prize/1.png" alt="">
+                <img id="prize3" src="./imgs/cuteChicken/chooseFocus.png" alt=""
+                    style="position: absolute;left: -10px;top: -17px;visibility: hidden;">
+            </div>
+            <div id="hands_x0_y0_prize4_" style="position: absolute;top: 270px;left: 405px;">
+                <img src="../actiChildrenGather/img/sheet/3.png" alt="">
+                <img id="prize4" src="./imgs/cuteChicken/chooseFocus.png" alt=""
+                    style="position: absolute;left: -15px;top: -12px;visibility: hidden;">
+            </div>
+            <div id="hands_x0_y0_prize5_" style="position: absolute;top: 455px;left: 405px;">
+                <img src="../actiChildrenGather/img/sheet/1.png" alt="">
+                <img id="prize5" src="./imgs/cuteChicken/chooseFocus.png" alt=""
+                    style="position: absolute;left: -15px;top: -13px;visibility: hidden;">
+            </div>
+            <div id="hands_x0_y0_prize6_" style="position: absolute;top: 455px;left: 525px;">
+                <img src="../actiChildrenGather/img/sheet/6.png" alt="">
+                <img id="prize6" src="./imgs/cuteChicken/chooseFocus.png" alt=""
+                    style="position: absolute;left: -15px;top: -12px;visibility: hidden;">
+            </div>
+            <div id="hands_x0_y0_prize7_" style="position: absolute;top: 370px;left: 630px;">
+                <img src="../actiChildrenGather/img/prize/3.png" alt="">
+                <img id="prize7" src="./imgs/cuteChicken/chooseFocus.png" alt=""
+                    style="position: absolute;left: -5px;top: -20px;visibility: hidden;">
+            </div>
+            <div id="hands_x0_y0_prize8_" style="position: absolute;top: 270px;left: 638px;">
+                <img src="../actiChildrenGather/img/sheet/2.png" alt="">
+                <img id="prize8" src="./imgs/cuteChicken/chooseFocus.png" alt=""
+                    style="position: absolute;left: -15px;top: -12px;visibility: hidden;">
+            </div>
+            <div id="hands_x0_y0_prize9_" style="position: absolute;top: 185px;left: 645px;">
+                <img src="./imgs/cuteChicken/h2.png" alt="">
+                <img id="prize9" src="./imgs/cuteChicken/chooseFocus.png" alt=""
+                    style="position: absolute;left: -22px;top: -22px;visibility: hidden;">
+            </div>
+            <div id="hands_x0_y0_prize10_" style="position: absolute;top: 180px;left: 755px;">
+                <img src="../actiChildrenGather/img/sheet/3.png" alt="">
+                <img id="prize10" src="./imgs/cuteChicken/chooseFocus.png" alt=""
+                    style="position: absolute;left: -18px;top: -12px;visibility: hidden;">
+            </div>
+            <div id="hands_x0_y0_prize11_" style="position: absolute;top: 190px;left: 865px;">
+                <img src="../actiChildrenGather/img/prize/2.png" alt="">
+                <img id="prize11" src="./imgs/cuteChicken/chooseFocus.png" alt=""
+                    style="position: absolute;left: -8px;top: -20px;visibility: hidden;">
+            </div>
+            <div id="hands_x0_y0_prize12_" style="position: absolute;top: 180px;left: 985px;">
+                <img src="../actiChildrenGather/img/sheet/5.png" alt="">
+                <img id="prize12" src="./imgs/cuteChicken/chooseFocus.png" alt=""
+                    style="position: absolute;left: -12px;top: -12px;visibility: hidden;">
+            </div>
+            <div id="hands_x0_y0_prize13_" style="position: absolute;top: 455px;left: 1104px;">
+                <img src="../actiChildrenGather/img/sheet/2.png" alt="">
+                <img id="prize13" src="./imgs/cuteChicken/chooseFocus.png" alt=""
+                    style="position: absolute;left: -16px;top: -15px;visibility: hidden;">
+            </div>
+        </div>
+
+        <!-- 规则模态框 -->
+        <div id="ruleModal" style="position: absolute;display: none;">
+            <img src="./imgs/cuteChicken/rulePage.png" alt="">
+        </div>
+        <!-- 我的宝藏模态框 -->
+        <div id="winnerModal" style="position: absolute;display: none;">
+            <img src="./imgs/cuteChicken/myPrizePageNew.png" alt="">
+            <div id="qrCodeImg" style="position: absolute;left: 960px;top: 558px;"><img
+                    src="../actiChildrenGather/img/mainPage/gehuaCode.jpg" alt="" width="120px" height="120px"></div>
+        </div>
+        <!-- 中奖弹框 -->
+        <div id="prizeTip"
+            style="position: absolute;left:0px;top:0px;background: rgba(0,0,0,0.6);width: 1280px;height: 720px;visibility: hidden;">
+            <img src="imgs/cuteChicken/tip.png" alt="" style="position: absolute;left: 385px;top: 70px;" id="tipImg">
+            <img src="imgs/cuteChicken/4.png" alt="" style="position: absolute;left: 505px;top: 435px;" id="prizeText">
+            <img src="../actiChildrenGather/img/badge/2.png" alt="" style="position: absolute;left: 545px;top: 245px;"
+                id="prizeImg">
+            <div id="hands_x0_y0_prizeConfirmFocus_" style="position: absolute;left: 515px;top: 535px;">
+                <img src="imgs/cuteChicken/confirmFocus.png" alt="" id="prizeConfirmFocus" style="visibility: hidden;">
+            </div>
+            <!-- 奖品二维码 -->
+            <div id="qrCodeBox"
+                style="position: absolute;left: 800px;top: 310px;width:165px;height:212px;background: url(imgs/cuteChicken/codeTip.png);">
+                <div id="qrcode" style="position: absolute;left: 20px;top: 70px;"></div>
+            </div>
+        </div>
+        <!-- 观影权益弹窗 -->
+        <div id="videoTip"
+            style="position: absolute;left:0px;top:0px;background: rgba(0,0,0,0.6);width: 1280px;height: 720px;visibility: hidden;">
+            <img src="imgs/cuteChicken/tip.png" alt="" style="position: absolute;left: 385px;top: 72px;"
+                id="tipVideoImg">
+            <img src="imgs/cuteChicken/6.png" alt="" style="position: absolute;left: 520px;top: 275px;"
+                id="prizeVideoText">
+            <div id="hands_x0_y0_videoConfirmFocus_" style="position: absolute;left: 515px;top: 535px;">
+                <img src="imgs/cuteChicken/confirmFocus.png" alt="" id="videoConfirmFocus" style="visibility: hidden;">
+            </div>
+        </div>
+    </div>
+
+    <!-- 引入依赖js -->
+    <script type="text/javascript" src="../../../../js/loadCommomJs.js"></script>
+    <script type="text/javascript" src="../../../../js/actiComm.js"></script>
+    <script type="text/javascript" src="../actiCommonPage/js/prizeList.js?v=2021041401"></script>
+    <script type="text/javascript" src="js/qrcode.min.js"></script>
+
+    <script>
+        var buttons = [{
+            id: "hands_x0_y0_rule_",
+            clickHandler: "javascript:xjPage.showModal(1)",
+            left: "hands_x0_y0_winners_",
+            right: "disable",
+            up: "hands_x0_y0_gameStart_",
+            down: "disable",
+            focusType: 7
+        }, {
+            id: "hands_x0_y0_winners_",
+            clickHandler: "javascript:xjPage.showModal(2)",
+            left: "disable",
+            right: "hands_x0_y0_rule_",
+            up: "hands_x0_y0_gameStart_",
+            down: "disable",
+            focusType: 7
+        }, {
+            id: "hands_x0_y0_gameStart_",
+            clickHandler: "javascript:xjPage.gameStart()",
+            left: "disable",
+            right: "disable",
+            up: "disable",
+            down: "hands_x0_y0_winners_",
+            focusType: 7
+        }, {
+            id: "hands_x0_y0_blankFocus_",
+            left: "disable",
+            right: "disable",
+            up: "disable",
+            down: "disable",
+            focusType: 7
+        }, {
+            id: "hands_x0_y0_prizeConfirmFocus_",
+            clickHandler: "javascript:backFunc()",
+            left: "disable",
+            right: "disable",
+            up: "disable",
+            down: "disable",
+            focusType: 7
+        }, {
+            id: "hands_x0_y0_videoConfirmFocus_",
+            clickHandler: "javascript:xjPage.goVideoDetail()",
+            left: "disable",
+            right: "disable",
+            up: "disable",
+            down: "disable",
+            focusType: 7
+        }];
+        // 声明奖品列表数据对象
+        var prizeListJson = {
+            "titleInfo": {
+                "title": [
+                    {
+                        "name": "",
+                    },
+                    {
+                        "name": "",
+                    }
+                ],
+            },
+            "rankLines": 11,
+            "prizeListBox": {
+                "width": "800px",
+                "height": "330px",
+                "left": "250px",
+                "top": "210px"
+            },
+            "prizeListBoxLi": {
+                "height": "30px",
+                "fontSize": "20px",
+                "color": "#fff"
+            }
+        }
+        var xjPage = {
+            playRecords: [false, false, false, false],//非订购游戏记录
+            prizeData: [],//活动奖品信息
+            basicPro: 10000,//基础中奖概率
+            havePrize: false,//该用户是否已经拥有奖品 true：拥有 ; false:未拥有
+            prizeId: 0,//奖品id
+            inGame: false,
+            defaultFocus: "hands_x0_y0_gameStart_",
+            isOrder: 1,
+            chanceNum: 0,//判断未订购用户是否还有游戏机会
+            prizeIndex: 1,//奖品下标,
+            videoIndexArr: [2, 4, 5, 6, 8, 9, 10, 12, 13],//看片单下标
+            tipShowVideo: false,//片单弹窗是否显示
+            tipShowPrize: false,//获奖弹窗是否显示
+            tipShowRule: false,//规则页弹窗是否显示
+            tipShowBZ: false,//宝藏页弹窗是否显示
+            randomVideoIndex: 0,//当前视频片单下标随机数
+            videoCartoonId: [2905, 3709, 3687, 3645, 3718, 2905, 3709,3673,3718],
+            ipName : "萌鸡小队",
+            // 页面初始化函数
+            initPage: function () {
+                this.getActivityPrize();//获取活动奖品列表查看是否还有奖品                
+                this.getPrizeUserInfo();//获取中奖用户信息用于公告栏展示                
+            },
+            // 获取鉴权结果
+            getAuthResult: function () {
+                var _this = this;//绑定this指向当前对象 xjPage
+                orderJs.columnGetAuth(function (data) {
+                    if (data == 0) {
+                        _this.isOrder = 0;
+                    } else {
+                        _this.isOrder = 1;
+                    }
+                    // 默认焦点设置
+
+                    _this.defaultFocus = "hands_x0_y0_gameStart_";
+                    PAGE.focusInit();
+                    PAGE.changeFocus(_this.defaultFocus);
+                    //未订购用户获取当天游戏机会
+                    if (_this.isOrder != 0) {
+                        actiObj.getChance(function (res) {
+                            if (res.errorCode == "1000") {
+                                _this.chanceNum = res.data.activityChance;
+                            }
+                        });
+                        // 获取非订购用户游戏次数记录
+                        actiObj.getUserDataList(function (res) {
+                            if (res.errorCode = "1000" && res.data) {
+                                _this.playRecords = JSON.parse(res.data.userActiData);
+                            }
+                        });
+                    }
+                });
+            },
+            // 开始游戏
+            gameStart: function () {
+                var _this = this;
+                if (this.inGame) {
+                    return;
+                }
+                //未订购用户每天玩过一次即跳订购
+                if (this.isOrder != 0 && this.chanceNum >= 1) {
+                    PAGE.otherPageParam="&activityId="+CT.requestValue("activityId")+"&contentId="+CT.requestValue("contentId")+"&contentCName="+CT.requestValue("contentCName")+"&contentEName="+CT.requestValue("contentEName");
+                    CT.goPage();
+                    orderJs.columnToOrderPage("childrenGatherMJXD");
+                    return;
+                }
+                this.inGame = true;
+                PAGE.changeFocus("hands_x0_y0_blankFocus_");
+                var randomNum = 1;//随机数取1-13之间随机值
+                var timer = 0;
+                var sloganImg = 1;
+                // 计算概率
+                this.calProbability();
+                var gameInterval = setInterval(function () {
+                    for (var i = 0; i < 13; i++) {
+                        CT.$("prize" + (i + 1) + "").style.visibility = "hidden";
+                    }
+                    if (timer < 30) {
+                        randomNum = Math.ceil(Math.random() * 13);//[1,13]
+                        CT.$("prize" + randomNum + "").style.visibility = "visible";
+                        if (sloganImg > 3) {
+                            sloganImg = 1;
+                        } else {
+                            CT.$("slogan").src = "imgs/cuteChicken/slogan" + sloganImg + ".png";
+                        }
+                    } else {
+                        if (!_this.havePrize) {
+                            CT.$("prize" + _this.prizeIndex + "").style.visibility = "visible";
+                            // 中奖操作
+                            _this.setPrize(_this.prizeId);
+                        } else {
+                            CT.$("prize" + _this.videoIndexArr[_this.randomVideoIndex] + "").style.visibility = "visible";
+                            _this.showModal(4);//看片单
+                        }
+                        _this.inGame = false;
+                        clearInterval(gameInterval);//动画结束清除计时器   
+                        gameInterval = null;
+                    }
+                    timer++;
+                    sloganImg++;
+                }, 168);
+            },
+            /**
+             * 计算概率
+             */
+            calProbability: function () {
+                if (this.isOrder == 0) {
+                    var probabilityRandom = Math.ceil(Math.random() * this.basicPro);//[1,10000]
+                    if (!this.havePrize) {//未中过奖
+                        if (probabilityRandom <= 500 && this.prizeData[1].prizeRemainNum > 0) {//三等奖汪汪队玩具
+                            this.prizeIndex = 7;
+                            this.prizeId = this.prizeData[1].id;
+                        } else if (probabilityRandom == 501 && this.prizeData[2].prizeRemainNum > 0) {//二等奖年包会员券
+                            this.prizeIndex = 11;
+                            this.prizeId = this.prizeData[2].id;
+                        } else if (probabilityRandom == 502 && this.prizeData[3].prizeRemainNum > 0) {//一等奖乐高-宠物商店拼插积木玩具限量版
+                            this.prizeIndex = 3;
+                            this.prizeId = this.prizeData[3].id;
+                        } else {//四等奖徽章                                                                                                                                                                                                                                                                                                                                                                                                                  
+                            this.prizeIndex = 1;
+                            this.prizeId = this.prizeData[0].id;
+                        }
+                    } else {//中过奖看片单
+                        this.randomVideoIndex = Math.floor(Math.random() * 9);//[0,8]                        
+                    }
+                } else {
+                    // 判断未订购用户今天是否还有游戏机会
+                    actiObj.setChance();
+                    this.chanceNum++;
+                    // 上传游戏总记录
+                    this.playRecords[2] = true;
+                    actiObj.setUserDataList(JSON.stringify(this.playRecords));
+                    //未中过奖中徽章，中过奖看片单
+                    if (!this.havePrize) {
+                        this.prizeIndex = 1;
+                        this.prizeId = this.prizeData[0].id;
+                    } else {
+                        this.randomVideoIndex = Math.floor(Math.random() * 9);//[0,8]
+                    }
+                }
+            },
+            /**
+             * 中奖操作
+             */
+            setPrize: function (prizeId) {
+                this.havePrize = true;
+                actiObj.setPrize(prizeId);
+                if (this.prizeIndex == 1) {
+                    //徽章二维码
+                    new QRCode(document.getElementById("qrcode"), {
+                        text: "https://cibn.tvjoy.cn/WeChatXHB/html/gehuaprize/html/getHZ.html?TVUserId=" + xjDataLog.getUserId() + "&wxTime=" + new Date().getTime(),
+                        width: 125,
+                        height: 125
+                    });
+                } else {
+                    // 奖品二维码
+                    new QRCode(document.getElementById("qrcode"), {
+                        text: "https://cibn.tvjoy.cn/WeChatXHB/html/gehuaprize/html/getPrize.html?TVUserId=" + xjDataLog.getUserId() + "&prizeId=" + this.prizeId + "&wxTime=" + new Date().getTime(),
+                        width: 125,
+                        height: 125
+                    });
+                }
+                this.showModal(3);
+            },
+            // 页面跳转
+            goVideoDetail: function () {
+                var cartoonId = this.videoCartoonId[this.randomVideoIndex];
+                var params = {
+                    contentId: 3,
+                    cartoonId: cartoonId,
+                    contentType: "page"
+                };
+                CT.goPage();
+                CT.getAnterByIdOrAction(params);
+            },
+            // 获取活动奖品列表
+            getActivityPrize: function () {
+                var _this = this;//绑定this;
+                actiObj.getActivityPrize(function (data) {
+                    if (data.errorCode == "1000" && data.data.records.length > 0) {
+                        _this.prizeData = data.data.records;
+                    }
+                    _this.getUserPrizeInfo();//获取用户获奖信息如果已经获奖则不能继续获奖                                      
+                });
+            },
+            // 获取当前用户中奖信息
+            getUserPrizeInfo: function () {
+                var _this = this;
+                actiObj.getUserPrizeInfo(function (res) {
+                    if (res.successFlg == 1 && res.errorCode == "1000" && res.data[0]) {
+                        _this.havePrize = true;
+                        for (var i = 0; i < _this.prizeData.length; i++) {
+                            if (_this.prizeData[i].prizePrice == res.data[0].prizePrice) {
+                                _this.prizeId = _this.prizeData[i].id;
+                            }
+                        }
+                    }
+                    _this.getAuthResult();
+                });
+            },
+            // 获取中奖用户信息
+            getPrizeUserInfo: function () {
+                actiObj.getPrizeUserInfo(function (res) {
+                    if (res.successFlg == 1 && res.data.records.length > 0) {
+                        var winnerList = res.data.records;
+                        CT.$('winnerMessageList').innerHTML = '<div style="height:32px;">恭喜 ' + winnerList[0].userId.substr(0, 2) + "****" + winnerList[0].userId.substring(winnerList[0].userId.length - 4) + ' 用户获得 “' + winnerList[0].prizeCname + '”</div>';
+                        var i = 0;
+                        var s = 0;
+                        setInterval(function () {
+                            if ((i + 1) < winnerList.length) {
+                                i++;
+                            } else {
+                                i = 0;
+                            }
+                            CT.$('winnerMessageList').innerHTML += '<div style="height:32px;">恭喜 ' + winnerList[i].userId.substr(0, 2) + "****" + winnerList[i].userId.substring(winnerList[i].userId.length - 4) + ' 用户获得 “' + winnerList[i].prizeCname + '”</div>';
+                            var hh = 0;
+                            var scroInt = setInterval(function () {
+                                hh++;
+                                if (hh <= 16) {
+                                    CT.$('winnerMessageList').style.top = (-2 * hh - (s - 1) * 32) + 'px';
+                                } else {
+                                    clearInterval(scroInt);
+                                }
+                            }, 50);
+                            s++;
+                        }, 5000);
+                    }
+                });
+            },
+            // 弹窗提示
+            showModal: function (ii) {
+                this.inGame = false;
+                if (ii == 1) {//规则页
+                    this.tipShowRule = true;
+                    CT.$("ruleModal").style.display = "block";
+                    PAGE.changeFocus("hands_x0_y0_blankFocus_");
+                } else if (ii == 2) {//我的宝藏
+                    this.tipShowBZ = true;
+                    CT.$("winnerModal").style.display = "block";
+                    PAGE.changeFocus("hands_x0_y0_blankFocus_");
+                    //渲染奖品列表
+                    if (CT.$("prizeListTitle") && CT.$("prizeListBox")) {
+                        getPrizePage.listHTML = "";
+                        CT.$("prizeListTitle").remove();
+                        CT.$("prizeListBox").remove();
+                    }
+                    getPrizePage.init("winnerModal", prizeListJson,this.ipName);
+                    // 没有获奖是公众号二维码，有奖品氛围徽章二维码、奖品二维码
+                    if (this.prizeId != 0) {
+                        CT.$("qrCodeImg").innerHTML = "";
+                        if (this.prizeIndex == 1) {
+                            //徽章二维码
+                            new QRCode(document.getElementById("qrCodeImg"), {
+                                text: "https://cibn.tvjoy.cn/WeChatXHB/html/gehuaprize/html/getHZ.html?TVUserId=" + xjDataLog.getUserId() + "&wxTime=" + new Date().getTime(),
+                                width: 120,
+                                height: 120
+                            });
+                        } else {
+                            // 奖品二维码
+                            new QRCode(document.getElementById("qrCodeImg"), {
+                                text: "https://cibn.tvjoy.cn/WeChatXHB/html/gehuaprize/html/getPrize.html?TVUserId=" + xjDataLog.getUserId() + "&prizeId=" + this.prizeId + "&wxTime=" + new Date().getTime(),
+                                width: 120,
+                                height: 120
+                            });
+                        }
+                    } else {
+                        CT.$("qrCodeImg").innerHTML = '<img src="../actiChildrenGather/img/mainPage/gehuaCode.jpg" alt="" width="120px" height="120px">';
+                    }
+                } else if (ii == 3) {//中奖
+                    this.tipShowPrize = true;
+                    if (this.prizeIndex == 1) {//四等奖徽章
+                        CT.$("prizeText").src = "imgs/cuteChicken/4.png";
+                        CT.$("prizeImg").src = "../actiChildrenGather/img/badge/1.png";
+                    } else if (this.prizeIndex == 7) {//三等奖汪汪队玩具
+                        CT.$("prizeText").src = "imgs/cuteChicken/5.png";
+                        CT.$("prizeText").style.left = "545px";
+                        CT.$("prizeText").style.top = "440px";
+                        CT.$("prizeImg").src = "../actiChildrenGather/img/prize/3-1.png";
+                        CT.$("prizeImg").style.left = "565px";
+                        CT.$("prizeImg").style.top = "265px";
+                    } else if (this.prizeIndex == 11) {//二等奖年包会员券
+                        CT.$("prizeText").src = "imgs/cuteChicken/3.png";
+                        CT.$("prizeText").style.left = "510px";
+                        CT.$("prizeText").style.top = "435px";
+                        CT.$("prizeImg").src = "../actiChildrenGather/img/prize/2-1.png";
+                        CT.$("prizeImg").style.left = "580px";
+                        CT.$("prizeImg").style.top = "290px";
+                    } else if (this.prizeIndex == 3) {//一等奖乐高-宠物商店拼插积木玩具限量版
+                        CT.$("prizeText").src = "imgs/cuteChicken/2.png";
+                        CT.$("prizeText").style.left = "500px";
+                        CT.$("prizeText").style.top = "435px";
+                        CT.$("prizeImg").src = "../actiChildrenGather/img/prize/1-1.png";
+                        CT.$("prizeImg").style.left = "580px";
+                        CT.$("prizeImg").style.top = "260px";
+                    }
+                    setTimeout(function () {
+                        CT.$("prizeTip").style.visibility = "visible";
+                        PAGE.changeFocus("hands_x0_y0_prizeConfirmFocus_");
+                    }, 1000);
+                } else if (ii == 4) {//看视频
+                    this.tipShowVideo = true;
+                    setTimeout(function () {
+                        CT.$("videoTip").style.visibility = "visible";
+                        PAGE.changeFocus("hands_x0_y0_videoConfirmFocus_");
+                    }, 1000);
+                }
+            }
+        };
+        xjPage.initPage();//页面初始化
+
+        // 返回函数
+        function backFunc() {
+            if (xjPage.tipShowRule) {
+                xjPage.tipShowRule = false;
+                PAGE.changeFocus("hands_x0_y0_rule_");
+                CT.$("ruleModal").style.display = "none";
+            } else if (xjPage.tipShowBZ) {
+                xjPage.tipShowBZ = false;
+                PAGE.changeFocus("hands_x0_y0_winners_");
+                CT.$("winnerModal").style.display = "none";
+            } else if (xjPage.tipShowPrize) {
+                xjPage.tipShowPrize = false;
+                PAGE.changeFocus("hands_x0_y0_gameStart_");
+                CT.$("prizeTip").style.visibility = "hidden";
+            } else if (xjPage.tipShowVideo) {
+                xjPage.tipShowVideo = false;
+                PAGE.changeFocus("hands_x0_y0_gameStart_");
+                CT.$("videoTip").style.visibility = "hidden";
+            } else {
+                CT.backPage();
+            }
+        }
+    </script>
+</body>
+
+</html>

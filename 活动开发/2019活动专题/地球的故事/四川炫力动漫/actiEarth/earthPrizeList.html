@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name = "page-view-size" content = "1280*720">
+    <title>地球的故事中奖名单</title>
+    <style>
+        .main{
+            position: absolute;
+            width: 1280px;
+            height: 720px;
+            margin: 0px;
+            padding: 0px;
+            top: 0px;
+            left: 0px;
+            text-align: center;
+            background: url("./images/life/bg_life.jpg");
+            font-size: 16px;
+
+        }
+        #showBox{
+            width: 778px;
+            height: 210px;
+            left: 233px;
+            top: 215px;
+            overflow: hidden;
+        }
+        #showUserInfo{
+            width: 778px;
+            height: 34px;
+            left: 348px;
+            top: 497px;
+        }
+		#userInfoId{
+			width: 200px;
+			height: 34px;
+			left: 38px;
+			top: -38px;
+			color: #00aaee;
+			text-align: left;
+		}
+		#userInfoMess{
+			width: 200px;
+			height: 34px;
+			left: 545px;
+			color: #00aaee;
+			top: -38px;
+			text-align: left;
+		}
+        div{
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+<div class="main">
+    <!-- 背景 -->
+    <img src="./images/prize/bg.png" style = "width: 1280px;height: 720px;position: absolute;top: 0;left: 0;">
+    <div id="phoneText" style="width: 223px; height: 41px; position: absolute; top: 500px;left:407px; line-height: 40px; font-size: 32px; font-weight: bolder; text-align: left; color: #111bff;">
+    </div>
+    <div id="phoneInfo" style="width: 400px; height: 25px; position: absolute; top: 536px; left: 275px; line-height: 30px; font-size: 21px; font-weight: bolder; text-align: center; color: #fff;">
+    </div>
+    <!-- 输入框 -->
+    <div id="hands_x0_y0_postFocus0_" style="width:309px;height:59px;left: 364px;top: 497px;">
+        <img id="postFocus0" src="./images/prize/phone.png" style="width: 266px; height: 46px;visibility: hidden;"  alt=""/>
+    </div>
+    <!-- 保存 -->
+    <div id="hands_x0_y0_postFocus1_" style="width:77px;height:43px;left: 673px;top: 501px;">
+        <img id="postFocus1" src="./images/prize/save.png"  style="width:77px;height:43px;visibility: hidden;"  alt=""/>
+    </div>
+
+    <!-- 清除 -->
+    <div id="hands_x0_y0_postFocus2_" style="width:77px;height:43px;left: 759px;top: 501px;">
+        <img id="postFocus2" src="./images/prize/save.png" style="width:77px;height:43px;visibility: hidden;" alt=""/>
+    </div>
+
+    <!-- 返回按钮 -->
+    <img src="./images/back.png" style = "width: 82px;height: 93px;position: absolute;top: 36px;left: 1129px;">
+    <div id = "hands_x0_y0_backFocus_" style = "width: 82px;height: 93px;position: absolute;top: 36px;left: 1129px;">
+        <img id = "backFocus" src="./images/backFocus.png" style = "width: 82px;height: 93px;visibility: hidden;">
+    </div>
+    <div id="showBox">
+        <div id="loop_img_box1"></div>
+        <div id="loop_img_box2"></div>
+    </div>
+    <div id="showUserInfo">
+		<div id="userInfoId">请输入手机号</div>	
+		<div id="userInfoMess">暂未中奖</div>	
+    </div>
+</div>
+</body>
+<script type = "text/javascript" src = "../../../js/column.js"></script>
+<script type = "text/javascript" src = "./js/actiComm.js?v=2018"></script>
+<script>
+    var buttons=[
+        {
+            id: 'hands_x0_y0_postFocus0_',
+            clickHandler: '',
+            left: 'disable',
+            right: 'hands_x0_y0_postFocus1_',
+            up:'hands_x0_y0_backFocus_',
+            down:  'disable',
+            focusType: 7,
+            otherFocusEvent:'javascript:OnFocus(1)',
+            otherBlurEvent:'javascript:OnFocus(0)'
+        },
+        {	
+			id: 'hands_x0_y0_postFocus1_',
+            clickHandler: 'javascript:getSave()',
+            left: 'hands_x0_y0_postFocus0_',
+		    right: 'hands_x0_y0_postFocus2_',
+            up: 'hands_x0_y0_backFocus_',
+            down: 'disable',
+            focusType: 7
+        },
+        {
+			id: 'hands_x0_y0_postFocus2_',
+            clickHandler: 'javascript:clearPhoneNum()',
+			left: 'hands_x0_y0_postFocus1_',
+            right: 'hands_x0_y0_backFocus_',
+            up: 'hands_x0_y0_backFocus_',
+            down: 'disable',
+            focusType: 7
+        },
+        {
+            id: 'hands_x0_y0_backFocus_',
+            clickHandler: 'javascript: backfunc()',
+            left: 'hands_x0_y0_postFocus2_',
+            right: 'disable',
+            up: 'disable',
+            down:  'hands_x0_y0_postFocus2_',
+            focusType: 7
+        }
+    ];
+//    焦点初始化
+    focusInit();
+    curFocus = getFocusModel6("hands_x0_y0_postFocus0_");
+    curFocus.defaultFocus();
+	var box1=document.getElementById("loop_img_box1");
+    var box2=document.getElementById("loop_img_box2");
+	var h = "";
+	var topList;
+//    获取当前活动中奖名单
+	actiObj.getPrizeUserInfo(function(data){
+        if(data.resultMsg != "fail"){
+            topList = data.list;
+            setPrizeList();
+        }else{
+            topList = {};
+        }
+
+    });
+//	获取当前用户中奖信息
+    actiObj.getUserPrizeInfo(function(data){
+        if(data.resultMsg == "success" && data.list.PRIZE_CNAME){
+            document.getElementById("userInfoMess").innerHTML=data.list.PRIZE_CNAME;
+        }else{
+            document.getElementById("userInfoMess").innerHTML="未拥有奖品";
+        }
+    });
+//    获取当前用户手机号
+    function getUserPhone(){
+        actiObj.getUserPhone(function(data){
+            if(data.userPhone){
+                document.getElementById("userInfoId").innerHTML=data.userPhone;
+            }else{
+                document.getElementById("userInfoId").innerHTML="请输入手机号";
+            }
+        });
+    }
+    getUserPhone();
+
+//    渲染中奖名单
+	var resultArr=[];
+	function setPrizeList(){
+		for (var n=0;n<topList.length;n++){
+			var phone,score;
+			if(topList[n].USER_PHONE){
+				phone=topList[n].USER_PHONE;
+			}else {
+				phone=null;
+			}
+			resultArr.push({'USERID':topList[n].USERID,"PRIZE_CNAME":topList[n].PRIZE_CNAME});
+		}
+		for(var i=0 ;i<resultArr.length;i++){
+			var getId;
+			if(resultArr[i].USERID){
+				var str = resultArr[i].USERID;
+				//getId=resultArr[i].USERID.slice(0,3)+"****"+resultArr[i].USERID.slice(resultArr[i].USERID.indexOf("_")-4,resultArr[i].USERID.indexOf("_"));
+				getId=str.slice(0,3)+"****"+str.slice(str.length - 4,str.length);
+			}else{
+				getId="";
+			}
+			var score;
+			if(resultArr[i].PRIZE_CNAME){
+				score=resultArr[i].PRIZE_CNAME;
+			}else{
+				score="未获奖";
+			};
+			h+="<div style='width: 680px;height:34px;top:"+34*i+"px;left:75px;'>"+
+				"<div style='line-height: 34px; font-size: 21px;font-weight: bolder; text-align: left; color: #fff; top:35px;left:19px;'>"+
+				getId+
+				"</div>	"+
+				"<div style='line-height: 34px; font-size: 21px;font-weight: bolder; text-align: left; color: #fff; top:35px;left:470px;'>"+
+				score+
+				"</div>"+
+				"</div>"
+		}
+		if(resultArr.length>=4){
+			loop();
+		}else{
+			box1.innerHTML=h;
+		}
+	
+	}
+//	中奖名单循环展示
+	function loop(){
+        box1.innerHTML=h;
+        box1.style.top=-34*resultArr.length+"px";
+        box2.innerHTML=h;
+        box2.style.top=-(34*resultArr.length)*2+"px";
+        var index=0;
+        var Height1=-34*resultArr.length;
+        var loopIndex=-34*resultArr.length*2;
+        var jin=setInterval(function(){
+            index++;
+            if((Math.floor(index/resultArr.length*10)%2 === 0)){
+                box1.style.top=-34*resultArr.length+"px";
+            }
+            if((Math.floor(index/resultArr.length*10)%2 === 0)){
+                box2.style.top=-(34*resultArr.length)*2+"px";
+            }
+            box1.style.top=Height1+index*34/10+4*34+"px";
+            box2.style.top=loopIndex+index*34/10+4*34+"px";
+            if(index === resultArr.length*10+1){
+                index=0
+            }
+        },250)
+    }
+
+//去除空格
+    function Trim(str,is_global)
+    {
+        var result;
+        result = str.replace(/(^\s+)|(\s+$)/g,"");
+        if(is_global.toLowerCase() === "g")
+        {
+            result = result.replace(/\s/g,"");
+        }
+        return result;
+    };
+	var phoneText=document.getElementById("phoneText").innerHTML;
+	phoneText=Trim(phoneText,"g");
+	var  phoneNum=phoneText;
+//    输入手机号
+	function changeNum(ids){
+        if(isOnFocus){
+            var size;
+            if(phoneNum ===""){
+                size=0;
+            }else{
+                size= phoneNum.length;
+            }
+            if(size < 11||!size){
+                var addnum = phoneNum;
+                phoneNum = addnum + ids;
+            }
+            document.getElementById("phoneText").innerHTML=phoneNum;
+        }
+    }
+//    清除手机号
+    function clearPhoneNum(){
+        phoneNum = "";
+        document.getElementById("phoneInfo").innerHTML="";
+        document.getElementById("phoneText").innerHTML="";
+    }
+//    保存手机号
+    function getSave(){
+        var phoneNum = document.getElementById("phoneText").innerHTML;
+        var size = phoneNum.length;
+        if(size === 11){
+            actiObj.setUserPhone(phoneNum,function(data){
+                if(data==true){
+                    document.getElementById("phoneInfo").innerHTML="手机号码保存成功";
+                    getUserPhone();
+                }
+            });
+        }else{
+            document.getElementById("phoneInfo").innerHTML="您输入的手机号格式无效,请重新输入!";
+        }
+    }
+    //返回
+    function backfunc(){
+        var actiTime = new Date().getTime();
+		window.location.href = "earthMain.html?actiTime=" + actiTime;
+    }
+	var	isOnFocus=false;
+//	判断焦点是否在输入框上
+    function OnFocus(n){
+		if(n==1){
+			isOnFocus=true;
+		}else{
+			isOnFocus=false;
+		}
+	}
+</script>
+</html>

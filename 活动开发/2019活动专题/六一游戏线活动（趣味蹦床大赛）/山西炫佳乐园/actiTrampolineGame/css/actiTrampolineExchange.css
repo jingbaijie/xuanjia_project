@@ -1,0 +1,132 @@
+* {
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+
+
+/*用户积分数*/
+
+#creditNum {
+	position: absolute;
+	right: 145px;
+	top: 125px;
+	font-size: 24px;
+	font-weight: bold;
+	color: #FFFFFF;
+}
+
+
+/*需要积分数*/
+
+#amount0 {
+	position: absolute;
+	left: 480px;
+	top: 394px;
+	font-weight: bold;
+}
+
+#amount1 {
+	position: absolute;
+	left: 700px;
+	top: 394px;
+	font-weight: bold;
+}
+
+#amount2 {
+	position: absolute;
+	left: 920px;
+	top: 394px;
+	font-weight: bold;
+}
+
+
+/*兑换焦点*/
+
+#hands_x0_y0_exchangeFocus1_ {
+	position: absolute;
+	left: 360px;
+	top: 435px;
+	visibility: hidden;
+}
+
+#hands_x0_y0_exchangeFocus2_ {
+	position: absolute;
+	left: 589px;
+	top: 435px;
+	visibility: hidden;
+}
+
+#hands_x0_y0_exchangeFocus3_ {
+	position: absolute;
+	left: 810px;
+	top: 435px;
+	visibility: hidden;
+}
+
+
+/*保存*/
+
+#hands_x0_y0_saveFocus_ {
+	position: absolute;
+	left: 800px;
+	bottom: 118px;
+	visibility: hidden;
+}
+
+
+/*清除*/
+
+#hands_x0_y0_emptyFocus_ {
+	position: absolute;
+	left: 900px;
+	bottom: 118px;
+	visibility: hidden;
+}
+
+#hands_x0_y0_inputFocus_ {
+	position: absolute;
+	left: 500px;
+	bottom: 120px;
+	visibility: hidden;
+}
+
+
+/*手机号保存成功提示*/
+
+#savetips {
+	position: absolute;
+	bottom: 105px;
+	left: 600px;
+	font-size: 18px;
+	font-weight: bold;		
+}
+
+
+/*手机号输入框*/
+#userPhone{
+	position: absolute;
+    width: 200px;
+    height: 32px;
+    left: 560px;
+    bottom: 136px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+}
+/*弹窗*/
+#tipsTan{
+	position: absolute;
+	left: 0px;
+	top: 0px;	
+}
+#hands_x0_y0_tipsTanFocus_{
+	position: absolute;
+    left: 520px;
+    top: 430px;
+    visibility: hidden;
+}
+#hands_x0_y0_tipsTanFocus_ img{
+	width: 250px;
+    height: 110px;
+}

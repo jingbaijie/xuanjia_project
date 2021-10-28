@@ -1,0 +1,31 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+}
+#main{
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    box-sizing: border-box;
+    background: url(../img//level2BG.jpg) no-repeat;
+    background-size: 100% 100%;
+    position: relative;
+}
+#getPrizeTip, #prizeBG{
+    width: 1280px;
+    height: 720px;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+/* 输入框 */
+#inputImg{position: absolute;left: 310px;top: 570px;}
+#hands_x0_y0_inputFocus_{position: absolute;left: 295px;top: 560px;}
+#confirmBtn{position: absolute;left: 680px;top: 580px;}
+#cancelBtn{position: absolute;left: 840px;top: 580px;}
+#hands_x0_y0_confirmFocus_{position: absolute;left: 662px;top: 559px;}
+#hands_x0_y0_cancelFocus_{position: absolute;left: 822px;top: 559px;}
+#closeBtn{position: absolute;left: 1020px;top: 100px;}
+#hands_x0_y0_closeBtnFocus_{position: absolute;left: 1005px;top: 85px;}
+#todayNoChance, #pityTip{position: absolute;left: 0px;top: 0px;}

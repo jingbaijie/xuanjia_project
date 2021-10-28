@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>包粽子规则页面</title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+			
+			.main {
+				position: relative;
+				width: 1280px;
+				height: 720px;
+				top: 0;
+				left: 0;
+				overflow: hidden;
+				background: url(img/JSrule.jpg) no-repeat;
+			}
+			/*我的粽子、兑奖按钮*/
+			
+			#hands_x0_y0_mineFocus_ img {
+				position: absolute;
+				left: 40px;
+				top: 198px;
+			}
+			
+			#hands_x0_y0_exchangeFocus_ img {
+				position: absolute;
+				left: 40px;
+				top: 260px;
+				visibility: hidden;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="main">
+			<div id="hands_x0_y0_mineFocus_">
+				<img src="img/chooseFocus.png" id="mineFocus" />
+			</div>
+			<div id="hands_x0_y0_exchangeFocus_">
+				<img src="img/chooseFocus.png" id="exchangeFocus" />
+			</div>
+		</div>
+		<!--引入公用JS-->
+		<script type="text/javascript" src="../../../js/column.js"></script>
+		<script type="text/javascript" src="./js/actiComm.js"></script>
+		<!--引入结束-->
+		<script type="text/javascript">
+			var buttons = [{
+				id: "hands_x0_y0_mineFocus_",
+				clickHandler: "javascript:goMineFunc()",
+				left: "disable",
+				right: "disable",
+				up: "disable",
+				down: "hands_x0_y0_exchangeFocus_",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_exchangeFocus_",
+				clickHandler: "javascript:goExchangeFunc()",
+				left: "disable",
+				right: "disable",
+				up: "hands_x0_y0_mineFocus_",
+				down: "disable",
+				focusType: 7
+			}]
+
+			focusInit();
+			//获取当前焦点对象
+			curFocus = getFocusModel6("hands_x0_y0_mineFocus_");
+			curFocus.defaultFocus();
+			//跳转
+			var actiTime = new Date().getTime();
+			function goMineFunc() {
+				window.location.href = "actiZongziMine.html?actiTime=" + actiTime;
+			}
+
+			function goExchangeFunc() {
+				window.location.href = "actiZongziPrize.html?actiTime=" + actiTime;
+			}
+			
+			//返回
+			/* 返回方法 返回平台首页*/
+			function backfunc() {
+				window.location.href="actiZongziMain.html?actiTime=" + actiTime;
+			}
+		</script>
+	</body>
+
+</html>

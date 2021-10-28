@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="page-view-size" content="1280*720">
+		<link rel="stylesheet" href="./css/activity_ZJGNewYear.css?v=2020010601">
+		<title>喜迎新年，好礼大派送首页抽奖页</title>
+	</head>
+
+	<body>
+		<div class="withScreen mainBg">
+			<!--    旋转光标    -->
+			<div id="hands_x0_y0_ringFocus_" class="fastRow" style="width: 142px;height: 123px;position: absolute;top: 225px;left: 730px;">
+				<img id="ringFocus" src="./images/mainPage/selected.png" style="width: 142px;height: 123px;visibility: hidden;" alt="">
+			</div>
+			<!--    今日剩余机会    -->
+			<div id="chanceNum">0</div>
+			<!--    规则页    -->
+			<img id="ruleImg" src="./images/mainPage/rule.png" style="width: 151px;height: 60px;position: absolute;top: 75px;left: 1100px;" alt="">
+			<div id="hands_x0_y0_ruleFocus_" style="width: 151px;height: 60px;position: absolute;top: 75px;left: 1100px;">
+				<img id="ruleFocus" src="./images/mainPage/ruled.png" style="width: 151px;height: 60px;visibility: hidden;" alt="">
+			</div>
+			<!--    奖品页    -->
+			<img id="prizeImg" src="./images/mainPage/prize.png" style="width: 151px;height: 60px;position: absolute;top: 150px;left: 1100px;" alt="">
+			<div id="hands_x0_y0_prizeFocus_" style="width: 151px;height: 60px;position: absolute;top: 150px;left: 1100px;">
+				<img id="prizeFocus" src="./images/mainPage/prized.png" style="width: 151px;height: 60px;visibility: hidden;" alt="">
+			</div>
+			<!--    开始光标    -->
+			<img id="startImg" src="./images/mainPage/chou0.png" style="width: 142px;height: 123px;position: absolute;top: 355px;left: 730px;" alt="">
+			<div id="hands_x0_y0_startFocus_" style="width: 142px;height: 123px;position: absolute;top: 355px;left: 730px;">
+				<img id="startFocus" src="./images/mainPage/selected.png" style="width: 142px;height: 123px;visibility: hidden;" alt="">
+			</div>
+			<!--抽奖中请勿做多余操作-->
+			<div id="littleTips" class="phoneInfo" style="top: 380px;left: 605px;visibility: hidden;">转盘转动中,请勿做多余操作</div>
+			<!--    弹窗（中奖与未中奖）    -->
+			<div id="confirm" class="widthScreen" style="visibility: hidden;z-index: 100;">
+
+				<!--      弹窗背景      -->
+				<img id="confirmImg" class="widthScreen" src="./images/empty.png" alt="" style="position: absolute;left: 0px;top: 0px;">
+				<img src="./images/confirm/selected.png" style="width: 243px;height: 121px;position: absolute;top: 560px;left: 560px;" alt="">
+				<!--      弹框确认按钮      -->
+				<div id="hands_x0_y0_sureFocus_" style="width: 243px;height: 121px;position: absolute;top: 560px;left: 560px;">
+					<img id="sureFocus" src="./images/confirm/select.png" style="width: 243px;height: 121px;visibility: hidden;" alt="">
+				</div>
+			</div>
+			<!--试玩结束去订购-->
+			<img src="images/confirm/orderTip.png" id="toOrder" style="position: absolute;left: 0px;top: 0px;visibility: hidden;" />
+			<div id="hands_x0_y0_toOrderFocus_" style="position: absolute;left: 500px;top: 555px;">
+				<img src="images/confirm/orderTipFocus.png" id="toOrderFocus" style="visibility: hidden;" />
+			</div>
+			<div id="hands_x0_y0_toOrderBackFocus_" style="position: absolute;left: 857px;top: 158px;">
+				<img src="images/back.png" id="toOrderBackFocus" style="visibility: hidden;" />
+			</div>
+			<!--中奖弹窗-->
+			<img src="images/grayBG.png" id="grayBG" style="position: absolute;left: 0px;top: 0px;visibility: hidden;" />
+			<img src="images/confirm/getPrize.png" id="getPrize" style="position: absolute;left: 0px;top: 0px;z-index: 1;visibility: hidden;" />
+			<!--     输入款焦点       -->
+			<div id="hands_x0_y0_phoneFocus_" style="width: 327px;height: 70px;position: absolute;top: 616px;left: 418px;">
+				<img id="phoneFocus" src="./images/prize/phoneText.png" style="visibility: hidden;" alt="">
+			</div>
+			<input id="phoneInput" type="text" placeholder="请输入手机号" maxlength="11" class="phoneText" style="visibility: hidden;">
+			<!--     保存焦点       -->
+			<div id="hands_x0_y0_saveFocus_" style="width: 120px;height: 62px;position: absolute;top: 580px;left: 695px;z-index: 1;">
+				<img id="saveFocus" src="./images/prize/save.png" style="visibility: hidden;" alt="">
+			</div>
+			<!--     删除焦点       -->
+			<div id="hands_x0_y0_clearFocus_" style="width: 120px;height: 62px;position: absolute;top: 580px;left: 795px;z-index: 1;">
+				<img id="clearFocus" src="./images/prize/save.png" style="visibility: hidden;" alt="">
+			</div>
+			<div id="phoneTable" style="visibility: hidden;z-index: 1;">
+				<div class="phoneOne">1</div>
+				<div class="phoneOne">2</div>
+				<div class="phoneOne">3</div>
+				<div class="phoneOne">4</div>
+				<div class="phoneOne">5</div>
+				<div class="phoneOne">6</div>
+				<div class="phoneOne">7</div>
+				<div class="phoneOne">8</div>
+				<div class="phoneOne">9</div>
+				<div class="phoneOne">删除</div>
+				<div class="phoneOne">0</div>
+				<div class="phoneOne">确认</div>
+			</div>
+			<!--    数字按键    -->
+			<div id="hands_x0_y0_phoneFocus1_" style="width: 102px;height: 92px;position: absolute;top: 190px;left: 435px;z-index: 1;">
+				<img id="phoneFocus1" src="./images/backSelect.png" style="width: 102px;height: 92px;visibility: hidden;" alt="">
+			</div>
+			<div id="hands_x0_y0_phoneFocus2_" style="width: 102px;height: 92px;position: absolute;top: 190px;left: 536px;z-index: 1;">
+				<img id="phoneFocus2" src="./images/backSelect.png" style="width: 102px;height: 92px;visibility: hidden;" alt="">
+			</div>
+			<div id="hands_x0_y0_phoneFocus3_" style="width: 102px;height: 92px;position: absolute;top: 190px;left: 640px;z-index: 1;">
+				<img id="phoneFocus3" src="./images/backSelect.png" style="width: 102px;height: 92px;visibility: hidden;" alt="">
+			</div>
+
+			<div id="hands_x0_y0_phoneFocus4_" style="width: 102px;height: 92px;position: absolute;top: 290px;left: 435px;z-index: 1;">
+				<img id="phoneFocus4" src="./images/backSelect.png" style="width: 102px;height: 92px;visibility: hidden;" alt="">
+			</div>
+			<div id="hands_x0_y0_phoneFocus5_" style="width: 102px;height: 92px;position: absolute;top: 290px;left: 536px;z-index: 1;">
+				<img id="phoneFocus5" src="./images/backSelect.png" style="width: 102px;height: 92px;visibility: hidden;" alt="">
+			</div>
+			<div id="hands_x0_y0_phoneFocus6_" style="width: 102px;height: 92px;position: absolute;top: 290px;left: 640px;z-index: 1;">
+				<img id="phoneFocus6" src="./images/backSelect.png" style="width: 102px;height: 92px;visibility: hidden;" alt="">
+			</div>
+
+			<div id="hands_x0_y0_phoneFocus7_" style="width: 102px;height: 92px;position: absolute;top: 388px;left: 435px;z-index: 1;">
+				<img id="phoneFocus7" src="./images/backSelect.png" style="width: 102px;height: 92px;visibility: hidden;" alt="">
+			</div>
+			<div id="hands_x0_y0_phoneFocus8_" style="width: 102px;height: 92px;position: absolute;top: 388px;left: 536px;z-index: 1;">
+				<img id="phoneFocus8" src="./images/backSelect.png" style="width: 102px;height: 92px;visibility: hidden;" alt="">
+			</div>
+			<div id="hands_x0_y0_phoneFocus9_" style="width: 102px;height: 92px;position: absolute;top: 388px;left: 640px;z-index: 1;">
+				<img id="phoneFocus9" src="./images/backSelect.png" style="width: 102px;height: 92px;visibility: hidden;" alt="">
+			</div>
+
+			<div id="hands_x0_y0_phoneFocusDel_" style="width: 102px;height: 92px;position: absolute;top: 486px;left: 435px;z-index: 1;">
+				<img id="phoneFocusDel" src="./images/backSelect.png" style="width: 102px;height: 92px;visibility: hidden;" alt="">
+			</div>
+			<div id="hands_x0_y0_phoneFocus0_" style="width: 102px;height: 92px;position: absolute;top: 486px;left: 536px;z-index: 1;">
+				<img id="phoneFocus0" src="./images/backSelect.png" style="width: 102px;height: 92px;visibility: hidden;" alt="">
+			</div>
+			<div id="hands_x0_y0_phoneFocusSure_" style="width: 102px;height: 92px;position: absolute;top: 486px;left: 640px;z-index: 1;">
+				<img id="phoneFocusSure" src="./images/backSelect.png" style="width: 102px;height: 92px;visibility: hidden;" alt="">
+			</div>
+			<div id="phoneText" style="visibility: hidden;"></div>
+			<div id="phoneTips"></div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../../../js/loadCommomJs.js?v=2020010803"></script>
+	<script type="text/javascript" src="../../../../js/actiComm.js?v=2020010801"></script>
+	<script type="text/javascript" src="./js/music_11.js?v=2020010701"></script>
+	<script type="text/javascript">
+		var buttons = [{
+			id: "hands_x0_y0_ringFocus_",
+			clickHandler: "",
+			up: "disable",
+			down: "disable",
+			left: "disable",
+			right: "disable",
+			focusType: 7
+		}, {
+			id: "hands_x0_y0_startFocus_",
+			clickHandler: "javascript: ringObj.startRing()",
+			otherFocusEvent: "javascript: ringObj.getStartFocus()",
+			otherBlurEvent: "javascript: ringObj.loseStartFocus()",
+			up: "hands_x0_y0_prizeFocus_",
+			down: "disable",
+			left: "disable",
+			right: "hands_x0_y0_prizeFocus_",
+			focusType: 7
+		}, {
+			id: "hands_x0_y0_ruleFocus_",
+			clickHandler: "javascript: ringObj.toRule()",
+			up: "disable",
+			down: "hands_x0_y0_prizeFocus_",
+			left: "hands_x0_y0_startFocus_",
+			right: "disable",
+			focusType: 7
+		}, {
+			id: "hands_x0_y0_prizeFocus_",
+			clickHandler: "javascript: ringObj.toPrize()",
+			up: "hands_x0_y0_ruleFocus_",
+			down: "disable",
+			left: "hands_x0_y0_startFocus_",
+			right: "disable",
+			focusType: 7
+		}, {
+			id: "hands_x0_y0_sureFocus_",
+			clickHandler: "javascript: ringObj.hideConfirm()",
+			up: "disable",
+			down: "disable",
+			left: "disable",
+			right: "disable",
+			focusType: 7
+		}, {
+			id: "hands_x0_y0_toOrderFocus_",
+			clickHandler: "javascript: ringObj.toOrder()",
+			up: "hands_x0_y0_toOrderBackFocus_",
+			down: "disable",
+			left: "disable",
+			right: "disable",
+			focusType: 7
+		}, {
+			id: "hands_x0_y0_toOrderBackFocus_",
+			clickHandler: "javascript: ringObj.toOrderBack()",
+			up: "disable",
+			down: "hands_x0_y0_toOrderFocus_",
+			left: "disable",
+			right: "disable",
+			focusType: 7
+		}, {
+			id: "hands_x0_y0_phoneFocus_",
+			clickHandler: "",
+			otherFocusEvent: "javascript: phoneOnFocus()",
+			otherBlurEvent: "javascript: phoneLoseFocus()",
+			up: "disable",
+			down: "disable",
+			left: "disable",
+			right: "hands_x0_y0_saveFocus_",
+			focusType: 7
+		}, {
+			id: "hands_x0_y0_saveFocus_",
+			clickHandler: "javascript: savePhone()",
+			//otherFocusEvent: "javascript: phoneBlur()",
+			otherBlurEvent: "javascript: outFocus()",
+			up: "disable",
+			down: "disable",
+			left: "hands_x0_y0_phoneFocus_",
+			right: "hands_x0_y0_clearFocus_",
+			focusType: 7
+		}, {
+			id: "hands_x0_y0_clearFocus_",
+			//otherFocusEvent: "javascript: phoneBlur()",
+			clickHandler: "javascript: clearPhone()",
+			up: "disable",
+			down: "disable",
+			left: "hands_x0_y0_saveFocus_",
+			right: "disable",
+			focusType: 7
+		}, {
+			id: "hands_x0_y0_phoneFocus0_",
+			clickHandler: "javascript: inputNum(0)",
+			up: "hands_x0_y0_phoneFocus8_",
+			down: "disable",
+			left: "hands_x0_y0_phoneFocusDel_",
+			right: "hands_x0_y0_phoneFocusSure_",
+			focusType: 7
+		}, {
+			id: "hands_x0_y0_phoneFocus1_",
+			clickHandler: "javascript: inputNum(1)",
+			up: "disable",
+			down: "hands_x0_y0_phoneFocus4_",
+			left: "disable",
+			right: "hands_x0_y0_phoneFocus2_",
+			focusType: 7
+		}, {
+			id: "hands_x0_y0_phoneFocus2_",
+			clickHandler: "javascript: inputNum(2)",
+			up: "disable",
+			down: "hands_x0_y0_phoneFocus5_",
+			left: "hands_x0_y0_phoneFocus1_",
+			right: "hands_x0_y0_phoneFocus3_",
+			focusType: 7
+		}, {
+			id: "hands_x0_y0_phoneFocus3_",
+			clickHandler: "javascript: inputNum(3)",
+			up: "disable",
+			down: "hands_x0_y0_phoneFocus6_",
+			left: "hands_x0_y0_phoneFocus2_",
+			right: "disable",
+			focusType: 7
+		}, {
+			id: "hands_x0_y0_phoneFocus4_",
+			clickHandler: "javascript: inputNum(4)",
+			up: "hands_x0_y0_phoneFocus1_",
+			down: "hands_x0_y0_phoneFocus7_",
+			left: "disable",
+			right: "hands_x0_y0_phoneFocus5_",
+			focusType: 7
+		}, {
+			id: "hands_x0_y0_phoneFocus5_",
+			clickHandler: "javascript: inputNum(5)",
+			up: "hands_x0_y0_phoneFocus2_",
+			down: "hands_x0_y0_phoneFocus8_",
+			left: "hands_x0_y0_phoneFocus4_",
+			right: "hands_x0_y0_phoneFocus6_",
+			focusType: 7
+		}, {
+			id: "hands_x0_y0_phoneFocus6_",
+			clickHandler: "javascript: inputNum(6)",
+			up: "hands_x0_y0_phoneFocus3_",
+			down: "hands_x0_y0_phoneFocus9_",
+			left: "hands_x0_y0_phoneFocus5_",
+			right: "disable",
+			focusType: 7
+		}, {
+			id: "hands_x0_y0_phoneFocus7_",
+			clickHandler: "javascript: inputNum(7)",
+			up: "hands_x0_y0_phoneFocus4_",
+			down: "hands_x0_y0_phoneFocusDel_",
+			left: "disable",
+			right: "hands_x0_y0_phoneFocus8_",
+			focusType: 7
+		}, {
+			id: "hands_x0_y0_phoneFocus8_",
+			clickHandler: "javascript: inputNum(8)",
+			up: "hands_x0_y0_phoneFocus5_",
+			down: "hands_x0_y0_phoneFocus0_",
+			left: "hands_x0_y0_phoneFocus7_",
+			right: "hands_x0_y0_phoneFocus9_",
+			focusType: 7
+		}, {
+			id: "hands_x0_y0_phoneFocus9_",
+			clickHandler: "javascript: inputNum(9)",
+			up: "hands_x0_y0_phoneFocus6_",
+			down: "hands_x0_y0_phoneFocusSure_",
+			left: "hands_x0_y0_phoneFocus8_",
+			right: "disable",
+			focusType: 7
+		}, {
+			id: "hands_x0_y0_phoneFocusDel_",
+			clickHandler: "javascript: phoneDel()",
+			up: "hands_x0_y0_phoneFocus7_",
+			down: "disable",
+			left: "disable",
+			right: "hands_x0_y0_phoneFocus0_",
+			focusType: 7
+		}, {
+			id: "hands_x0_y0_phoneFocusSure_",
+			clickHandler: "javascript: phoneSure()",
+			up: "hands_x0_y0_phoneFocus9_",
+			down: "disable",
+			left: "hands_x0_y0_phoneFocus0_",
+			right: "disable",
+			focusType: 7
+		}];
+
+		//手机输入框
+		var phoneText = document.getElementById("phoneText");
+		//手机输入提示框
+		var phoneTips = document.getElementById("phoneTips");
+		//手机号输入框
+		var phoneInput = document.getElementById("phoneInput");
+		//手机输入键盘
+		var phoneTable = document.getElementById("phoneTable");
+		var isPhoneFocus = false;
+		var phoneNums = "";
+		//获取跳转规则或者中奖名单存储的数据
+		var fromPage = CT.getCookie("FromPage");
+		var actiPageCname = "";
+
+		var ringObj = {
+			//奖品表
+			prizeList: null,
+			//获奖ID
+			prizeId: null,
+			//用户获奖信息
+			isPrize: false,
+			//转盘是否在转动中
+			isRing: false,
+			//转环
+			ringImg: document.getElementById("hands_x0_y0_ringFocus_"),
+			//旋转提示
+			littleTips: document.getElementById("littleTips"),
+			//弹窗
+			confirm: document.getElementById("confirm"),
+			//弹窗背景图
+			confirmImg: document.getElementById("confirmImg"),
+			//是否为订购用户
+			isOrder: null,
+			//开始按钮闪烁
+			twinkleInterval: null,
+			//开始闪烁图
+			startImg: document.getElementById("startImg"),
+			//机会显示
+			chanceText: document.getElementById("chanceNum"),
+			//用户今日剩余机会
+			haveChance: 0,
+			//旋转定时器
+			ringInterval: null,
+			//定时器执行时间
+			ringTime: 200,
+			//已旋转圈数
+			ringNum: 0,
+			//旋转抽奖标志
+			ringFlag: 0,
+			//最终旋转圈数
+			targetRing: 0,
+			//最终停止奖品格
+			targetPrize: 0,
+			//奖品下标数组
+			prizeArr: [7, 1, 5, 3],
+			//无奖品下标
+			noPrizeArr: [0, 2, 4, 6],
+			//奖品格坐标数组
+			ringArr: [
+				[225, 730],
+				[225, 875],
+				[355, 875],
+				[480, 875],
+				[480, 730],
+				[480, 582],
+				[355, 582],
+				[225, 582]
+			],
+			//是否试玩，默认没有试玩
+			isTry: null,
+			//去订购提示框是否显示
+			isOrderTip: false,
+			//提示中奖弹窗是否显示
+			isGetPrizeTip: false,
+			/**
+			 * 页面初始化，鉴权，获取机会，获取用户订购时间，奖品剩余数量
+			 */
+			init: function() {
+				var _this = this;
+				var nowDate = new Date().getMonth() + 1 + "" + new Date().getDate();
+				try {
+					startMp3();
+				} catch(e) {}
+				//鉴权
+				orderJs.columnGetAuth(function(authData) {
+					if(authData == "0") {
+						_this.isOrder = "0";
+					} else {
+						if(actiUserId=="0311nhwcsgd20009" || actiUserId=="0315gdtest") {
+							_this.isOrder = "0";
+						} else {
+							_this.isOrder = "1";
+						}
+					}
+					//获取试玩数据
+					//var tryPlay = CT.getCookie("isTry");
+					actiObj.getUserDataList(function(res) {
+						if(res && res.successFlg == 1) {
+							if(res.data.userActiData == nowDate) {
+								_this.isTry = "1";
+							}
+						} else {
+							_this.isTry = "0";
+						}
+					});
+					//					if(tryPlay) {
+					//						this.isTry = 1;
+					//					} else {
+					//						this.isTry = 0;
+					//					}
+					CT.writeInfo("该账号有没有试玩：" + this.isTry);
+					//获取活动剩余奖品
+					actiObj.getActivityPrize(function(prizeData) {
+						if(prizeData.successFlg == 1) {
+							_this.prizeList = prizeData.data.records;
+						} else {
+							_this.prizeList = [];
+						}
+						//获取用户获奖信息
+						actiObj.getUserPrizeInfo(function(userData) {
+							if(userData.successFlg == 1) {
+								_this.isPrize = true;
+							}
+							//获取用户今日剩余机会
+							actiObj.getChance(function(chanceData) {
+								if(chanceData.successFlg == 1) {
+									if(_this.isOrder == 0) {
+										_this.haveChance = 3 - chanceData.data.activityChance;
+									} else {
+										if(_this.isTry == 0) {
+											_this.haveChance = 1;
+										} else {
+											_this.haveChance = 0;
+										}
+									}
+								}
+								_this.chanceText.innerHTML = _this.haveChance;
+								//焦点初始化
+								PAGE.focusInit();
+								if(fromPage == "rulePage") {
+									PAGE.changeFocus("hands_x0_y0_ruleFocus_");
+								} else if(fromPage == "prizePage") {
+									PAGE.changeFocus("hands_x0_y0_prizeFocus_");
+								} else {
+									PAGE.changeFocus("hands_x0_y0_startFocus_");
+								}
+							});
+						});
+					});
+				});
+			},
+			/**
+			 *跳转规则页
+			 */
+			toRule: function() {
+				CT.delCookie("FromPage");
+				CT.setCookie("FromPage", "rulePage");
+				try {
+					stopMp3();
+				} catch(e) {}
+				actiObj.actiCommonJumpUrl("activity_ZJGRule.html");
+			},
+			/**
+			 *跳转获奖名单页
+			 */
+			toPrize: function() {
+				CT.delCookie("FromPage");
+				CT.setCookie("FromPage", "prizePage");
+				try {
+					stopMp3();
+				} catch(e) {}
+				actiObj.actiCommonJumpUrl("activity_ZJGPrize.html");
+			},
+			/**
+			 *开始按钮选中时
+			 */
+			getStartFocus: function() {
+				var _this = this;
+				clearInterval(this.twinkleInterval);
+				this.startImg.style.visibility = "visible";
+				this.twinkleInterval = setInterval(function() {
+					if(_this.startImg.src.indexOf("chou0") > -1) {
+						_this.startImg.src = "./images/mainPage/chou1.png";
+					} else {
+						_this.startImg.src = "./images/mainPage/chou0.png";
+					}
+				}, 200);
+			},
+			/**
+			 * 开始按钮失去焦点时
+			 */
+			loseStartFocus: function() {
+				this.startImg.style.visibility = "hidden";
+				clearInterval(this.twinkleInterval);
+			},
+			/**
+			 * 点击开始抽奖，根据是否有机会做各种判别
+			 */
+			startRing: function() {
+				var _this = this;
+				var nowDate = new Date().getMonth() + 1 + "" + new Date().getDate();
+				if(!this.isRing) {
+					if(this.isOrder != "0") {
+						//试玩过了
+						if(this.isTry == 1 || this.haveChance == 0) {
+							this.isOrderTip = true;
+							CT.$("toOrder").style.visibility = "visible";
+							actiObj.changeFocus("hands_x0_y0_toOrderFocus_");
+						} else if(this.isTry == 0) {
+							this.isRing = true;
+							this.haveChance = 0;
+							this.probabilityFunc();
+							this.toRing();
+							//CT.setCookie("isTry", "tryPlay");
+							actiObj.setUserDataList(nowDate);
+
+						}
+					} else {
+						if(this.haveChance > 0) {
+							this.isRing = true;
+							this.haveChance--;
+							actiObj.setChance(function() {
+								_this.probabilityFunc();
+								_this.toRing();
+							});
+						} else {
+							this.showNoChance();
+						}
+					}
+				}
+			},
+			/*
+			 * 概率计算
+			 */
+			probabilityFunc: function() {
+				this.targetRing = Math.ceil(Math.random() * 3) + 3;
+				var userNum = Math.ceil(Math.random() * 1000);
+				if(userNum <= this.prizeList[0].prizePercentage && this.prizeList && this.prizeList[0].prizeRemainNum > 0 && !this.isPrize) {
+					this.prizeId = this.prizeList[0].id;
+					this.targetPrize = 7;
+				} else if(userNum <= this.prizeList[3].prizePercentage + this.prizeList[0].prizePercentage && this.prizeList && this.prizeList[3].prizeRemainNum > 0 && !this.isPrize) {
+					this.prizeId = this.prizeList[3].id;
+					this.targetPrize = 3;
+				} else if(userNum <= this.prizeList[2].prizePercentage + this.prizeList[3].prizePercentage + this.prizeList[0].prizePercentage && this.prizeList && this.prizeList[2].prizeRemainNum > 0 && !this.isPrize) {
+					this.prizeId = this.prizeList[2].id;
+					this.targetPrize = 5;
+				} else if(userNum <= this.prizeList[1].prizePercentage + this.prizeList[2].prizePercentage + this.prizeList[3].prizePercentage + this.prizeList[0].prizePercentage && this.prizeList && this.prizeList[1].prizeRemainNum > 0 && !this.isPrize) {
+					this.prizeId = this.prizeList[1].id;
+					this.targetPrize = 1;
+				} else {
+					this.targetPrize = this.noPrizeArr[Math.floor(Math.random() * 4)];
+				}
+			},
+			/**
+			 * 转盘开始旋转，根据新老用户概率定下的最终停止格与最终旋转圈数去改变焦点的top,left值
+			 */
+			toRing: function() {
+				var _this = this;
+				this.ringTime = 200;
+				clearInterval(this.ringInterval);
+				actiObj.changeFocus("hands_x0_y0_ringFocus_");
+				this.ringInterval = setInterval(function() {
+					_this.ringImg.style.top = _this.ringArr[_this.ringFlag % 8][0] + "px";
+					_this.ringImg.style.left = _this.ringArr[_this.ringFlag % 8][1] + "px";
+					if(_this.ringFlag !== 0 && _this.ringFlag % 8 === 0) {
+						_this.ringNum += 1;
+					}
+					if(_this.ringNum >= _this.targetRing && Math.abs(_this.targetPrize - _this.ringFlag % 8) < 3) {
+						_this.ringTime = 500;
+						actiObj.removeClass(_this.ringImg, "fastRow");
+						actiObj.addClass(_this.ringImg, "slowRow");
+					}
+					if(_this.targetRing === _this.ringNum && _this.ringFlag % 8 === _this.targetPrize) {
+						clearInterval(_this.ringInterval);
+						_this.ringFlag = 0;
+						_this.ringNum = 0;
+						_this.stopRing();
+					} else {
+						_this.ringFlag++;
+					}
+				}, this.ringTime);
+			},
+			stopRing: function() {
+				var _this = this;
+				_this.chanceText.innerHTML = _this.haveChance;
+				this.isRing = false;
+				if(this.isOrder == 0) {
+					if(this.prizeArr.indexOf(this.targetPrize) > -1) {
+						actiObj.setPrize(this.prizeId, function() {
+							setTimeout(function() {
+								_this.showGetPrize();
+							}, 1000);
+						});
+					} else {
+						this.showNoPrize();
+					}
+				} else {
+					this.showNoPrize();
+				}
+			},
+			showNoChance: function() {
+				this.confirmImg.src = "./images/confirm/noChance.png";
+				this.confirm.style.visibility = "visible";
+				actiObj.changeFocus("hands_x0_y0_sureFocus_");
+			},
+			showGetPrize: function() {
+				this.isPrize = true;
+				this.isGetPrizeTip = true;
+				CT.$("phoneText").style.visibility = "visible";
+				CT.$("grayBG").style.visibility = "visible";
+				CT.$("getPrize").style.visibility = "visible";
+				actiObj.changeFocus("hands_x0_y0_saveFocus_");
+			},
+			showNoPrize: function() {
+				this.confirmImg.src = "./images/confirm/noPrize.png";
+				this.confirm.style.visibility = "visible";
+				actiObj.changeFocus("hands_x0_y0_sureFocus_");
+			},
+			hideConfirm: function() {
+				if(this.confirmImg.src.indexOf("getPrize") > -1) {
+					actiObj.actiCommonJumpUrl("actiZJGPrize.html");
+				} else {
+					this.confirm.style.visibility = "hidden";
+					actiObj.changeFocus("hands_x0_y0_startFocus_");
+					this.confirmImg.src = "./images/empty.png";
+				}
+			},
+			showTips: function() {
+				var _this = this;
+				if(this.littleTips.style.visibility == "hidden") {
+					this.littleTips.style.visibility = "visible";
+					setTimeout(function() {
+						this.littleTips.style.visibility = "hidden";
+					}, 2000);
+				}
+			},
+			toOrderBack: function() {
+				backfunc();
+			},
+			toOrder: function() {
+				CT.setCookie("columnBackUrl", window.location.href);
+				CT.delCookie("FromPage");
+				CT.goPage();
+				orderJs.columnToOrderPage();
+			}
+		};
+		ringObj.init();
+
+		/**
+		 * 返回方法
+		 */
+		function backfunc() {
+			CT.delCookie("FromPage");
+			if(ringObj.isRing) {
+				ringObj.showTips();
+			} else {
+				if(ringObj.confirm.style.visibility == "visible") {
+					ringObj.confirm.style.visibility = "hidden";
+					actiObj.changeFocus("hands_x0_y0_startFocus_");
+					ringObj.confirmImg.src = "./image/empty.png";
+				} else if(ringObj.isOrderTip == true) {
+					ringObj.isOrderTip = false;
+					CT.$("toOrder").style.visibility = "hidden";
+					actiObj.changeFocus("hands_x0_y0_startFocus_");
+				} else if(ringObj.isGetPrizeTip == true) {
+					if(phoneTable.style.visibility == "visible") {
+						phoneSure();
+					} else {
+						ringObj.isGetPrizeTip = false;
+						CT.$("grayBG").style.visibility = "hidden";
+						CT.$("getPrize").style.visibility = "hidden";
+						CT.$("phoneText").style.visibility = "hidden";
+						actiObj.changeFocus("hands_x0_y0_startFocus_");
+					}
+				} else {
+					try {
+						stopMp3();
+					} catch(e) {}
+					CT.BackPortalMainPage();
+				}
+			}
+		}
+
+		//获取当前用户手机号,奖品
+		actiObj.getUserPhone(function(res) {
+			if(res.successFlg == 1) {
+				if(res.data.userPhone != null) {
+					phoneNums = res.data.userPhone;
+					phoneText.innerHTML = res.data.userPhone;
+				}
+			} else {
+				phoneText.innerHTML = "";
+			}
+		});
+
+		//获取焦点
+		function getActiFous() {
+			//焦点初始化
+			PAGE.focusInit();
+			PAGE.changeFocus("hands_x0_y0_saveFocus_");
+		}
+		//选中框获得焦点
+		function phoneOnFocus() {
+			//phoneInput.focus();
+			phoneTable.style.visibility = "visible";
+			actiObj.changeFocus("hands_x0_y0_phoneFocus1_");
+			isPhoneFocus = true;
+		}
+		//选中框失去焦点
+		function phoneLoseFocus() {
+			isPhoneFocus = false;
+		}
+
+		function phoneSure() {
+			phoneTable.style.visibility = "hidden";
+			actiObj.changeFocus("hands_x0_y0_saveFocus_");
+		}
+
+		function phoneDel() {
+			phoneNums = phoneText.innerHTML + "";
+			if(phoneNums.length > 0) {
+				phoneNums = phoneNums.substr(0, phoneNums.length - 1);
+				phoneText.innerHTML = phoneNums;
+			}
+		}
+
+		function inputNum(nums) {
+			phoneNums = phoneText.innerHTML + "";
+			if(phoneNums.length < 11) {
+				phoneNums += nums;
+				phoneText.innerHTML = phoneNums;
+			}
+		}
+
+		function phoneBlur() {
+			phoneInput.blur();
+		}
+		// 保存按钮失去焦点
+		function outFocus() {
+			phoneTips.innerHTML = "";
+		}
+		//保存手机号
+		function savePhone() {
+			var TEL_REGEXP = /^(13[0-9]|14[579]|15[0-3,5-9]|16[6]|17[0135678]|18[0-9]|19[89])\d{8}$/;
+			phoneNums = phoneText.innerHTML + "";
+			if(phoneNums.length >= 11 && TEL_REGEXP.test(phoneNums)) {
+				actiObj.setUserPhone(phoneNums, function(res) {
+					if(res && res.successFlg == 1) {
+						phoneTips.innerHTML = "手机号码保存成功";
+						//myUserId.innerHTML = phoneNums;
+					} else {
+						phoneTips.innerHTML = "手机号码保存失败";
+					}
+				});
+			} else {
+				phoneTips.innerHTML = "您输入的手机号格式无效,请重新输入!"
+			}
+		}
+		//清除手机号
+		function clearPhone() {
+			phoneNums = "";
+			phoneText.innerHTML = phoneNums;
+			//phoneInput.value = phoneNums;
+			phoneTips.innerHTML = "";
+		}
+		//输入手机号
+		function changeNum(nums) {
+			if(isPhoneFocus) {
+				if(parseInt(nums) < 10 && phoneNums.length < 11) {
+					phoneNums += nums;
+					phoneText.innerHTML = phoneNums;
+				}
+			}
+
+		}
+	</script>
+
+</html>

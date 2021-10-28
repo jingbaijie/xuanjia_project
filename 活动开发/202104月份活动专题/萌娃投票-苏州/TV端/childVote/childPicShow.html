@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>show child</title>
+    <meta name="page-view-size" content ="1280*720" />
+    <link rel="stylesheet" href="./css/childVote.css?v=2020">
+</head>
+<body>
+    <div class="main">
+	<img src="./img/prizeMain/LOGO1.png" style="position:absolute;top:15px;left:15px;z-index:10000;" alt="">
+        <div class="leftChild" style="overflow: hidden">
+            <ul class="pic">
+                <div  id="pic_div" style="height: 344px; position: absolute;left: 0px;top: 0">
+                </div>
+            </ul>
+        </div>
+        <div class="rightChlid">
+            <p id="nameChlid">姓名：</p>
+            <p id="ageChlid">年龄：</p>
+            <p id="sexChlid">性别：</p>
+            <p id="placeChlid">地区：</p>
+            <p id="hobbyChlid" style="width: 210px">爱好：</p>
+        </div>
+        <ul class="bottomChild" id="bottomChild"></ul>
+        <!--投票按钮-->
+        <img src='./img/person/voteBtn.png' style='position: absolute;top: 403px;left: 919px;' alt="">
+        <div class='focus' id='hands_x0_y0_voteFocus0_' style='left: 916px;top: 399px;'>
+            <img id='voteFocus0' src='./img/person/voteBtnSleect.png' style='visibility: hidden' alt="">
+        </div>
+        <div id="tips3" style="width: 1280px;height: 720px;position: absolute;top: 0;left: 0;visibility: hidden">
+            <img src="./img/person/opacity.png" alt="">
+            <img id="scalePic" src="" style="width: 1000px;height: 564px;position: absolute;top: 78px;left: 139px;" alt="">
+            <img id="back" src="./img/person/back.png" style="position: absolute;top: 0px;left: 1144px;" alt="">
+            <div class='focus' id='hands_x0_y0_backFocus0_' style='left: 1141px;top: 52px;'>
+                <img id='backFocus0' src='./img/person/backSelect.png' style='visibility: hidden' alt="">
+            </div>
+        </div>
+        <!--弹窗-->
+        <div id="tips" style="visibility: hidden;z-index:9999;">
+            <img src="./img/tips/opacity.png" alt="">
+            <img src="./img/tips/vote.png" style="position: absolute;top: 83px;left: 335px;" alt="">
+            <p id="totalTicMonth"></p>
+            <p id="TVTic"></p>
+            <p id="phoneTic"></p>
+            <p id="totalTic"></p>
+        </div>
+        <div class='focus' id='hands_x0_y0_numFocus4_' style='left: 505px;top: 472px;z-index:10030;'>
+            <img id='numFocus4' src='./img/tips/voteBtnSelect.png' style='visibility: hidden' alt="">
+        </div>
+        <!--投票次数用完弹窗-->
+        <div id="tips1" style="visibility: hidden;z-index:9999;">
+            <img src="./img/tips/opacity.png" alt="">
+            <img src="./img/tips/vote1.png" style="text-align: center;vertical-align: middle;" alt="">
+            <p id="isGone"></p>
+        </div>
+    </div>
+    <!-- 引入公共js开始 -->
+    <script src="../../../../js/loadCommomJs.js"></script>
+    <script src="../../../../js/actiComm.js"></script>
+    <!-- 引入公共js结束 -->
+	<script type="text/javascript" src="./js/videoDetail.js?v=2020"></script>
+    <script type="text/javascript" src="./js/md5.js"></script>
+    <script type="text/javascript" src="./js/base64.js"></script>
+    <script type="text/javascript" src="./js/showChild.js?v=20200412"></script>
+</body>
+</html>

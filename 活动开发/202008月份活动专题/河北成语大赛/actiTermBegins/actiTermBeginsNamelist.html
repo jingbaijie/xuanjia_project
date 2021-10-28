@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>开学季-趣味成语大赛中奖名单页</title>
+		<style type="text/css">
+			* {
+				margin: 0px;
+				padding: 0px;
+				list-style: none;
+			}
+			
+			#main {
+				position: relative;
+				left: 0px;
+				top: 0px;
+				background: url(img/hebei/prizeListBG.jpg) no-repeat;
+				width: 1280px;
+				height: 720px;
+				overflow: hidden;
+			}
+			/*中奖名单*/
+			
+			#nameListTan {
+				position: absolute;
+				left: 0px;
+				top: 0px;
+				width: 100%;
+				height: 100%;
+				background: url(../img/rule-nameList/nameList.png) no-repeat;
+				visibility: hidden;
+			}
+			
+			#nameListBack {
+				position: absolute;
+				right: 30px;
+				top: 30px;
+			}
+			
+			#hands_x0_y0_nameListBackFocus_ img {
+				position: absolute;
+				right: 30px;
+				top: 30px;
+				visibility: hidden;
+			}
+			
+			#telInput {
+				position: absolute;
+				left: 500px;
+				bottom: 172px;
+				font-size: 20px;
+				color: #fff;
+			}
+			
+			#prizeInfo {
+				position: absolute;
+				left: 910px;
+				bottom: 227px;
+				font-size: 16px;
+				color: #fff;
+			}
+			
+			#userInfo {
+				position: absolute;
+				left: 450px;
+				bottom: 225px;
+				font-size: 16px;
+				color: #fff;
+			}
+			
+			#hands_x0_y0_inputFocus_ img {
+				position: absolute;
+				left: 430px;
+				bottom: 152px;
+				visibility: hidden;
+			}
+			
+			#hands_x0_y0_saveFocus_ img {
+				position: absolute;
+				left: 736px;
+				bottom: 152px;
+				visibility: hidden;
+			}
+			
+			#hands_x0_y0_emptyFocus_ img {
+				position: absolute;
+				left: 840px;
+				bottom: 152px;
+				visibility: hidden;
+			}
+			
+			.nameList{
+				position: absolute;
+				left: 240px;
+				top: 200px;
+				width: 832px;
+				height:208px;
+				height: 210px;
+				overflow: hidden;
+			}
+			
+			#nameList {
+				position: absolute;
+				left: 0px;
+				top: 0px;
+				width: 832px;
+				color: #FFFFFF;
+				font-size: 20px;
+			}
+			
+			#nameList li span:nth-child(1) {
+				float: left;
+				width: 50%;
+				text-align: center;
+			}
+			
+			#nameList li span:nth-child(2) {
+				float: left;
+				width: 50%;
+				text-align: center;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="main">
+			<!--手机号输入框-->
+			<!--<div id="telInput"></div>
+			<div id="hands_x0_y0_inputFocus_">
+				<img src="img/namelist/inputFocus.png" id="inputFocus" />
+			</div>-->
+			<!--保存-->
+			<!--<div id="hands_x0_y0_saveFocus_">
+				<img src="img/namelist/btnFocus.png" id="saveFocus" />
+			</div>-->
+			<!--保存提示-->
+			<!--<div id="savetips" style="position: absolute;left: 500px;top: 570px;color: #fff;font-size: 20px;"></div>-->
+			<!--清除-->
+			<!--<div id="hands_x0_y0_emptyFocus_">
+				<img src="img/namelist/btnFocus.png" id="emptyFocus" />
+			</div>-->
+			<!--用户信息-->
+			<!--<div id="userInfo"></div>-->
+			<!--中奖情况-->
+			<!--<div id="prizeInfo"></div>-->
+			<!--名单列表-->
+			<div class="nameList" style="z-index:1;">
+				<ul id="nameList">
+					<div>
+						<li><span>189****7710</span><span>20元话费</span></li>	
+					</div>					
+				</ul>
+			</div>
+		</div>
+		<!--引入公用JS-->
+		<script type="text/javascript" src="../../../../js/loadCommomJs.js"></script>
+		<script type="text/javascript" src="../../../../js/actiComm.js?v=2020080401"></script>
+		<!--引用结束-->
+		<script type="text/javascript">
+			/*
+			 * 获取当前活动获奖名单
+			 * 获取当前用户获奖信息
+			 * 获取用户手机号
+			 * 保存手机号
+			 */
+			//焦点数组
+			/*var buttons = [{
+				id: "hands_x0_y0_inputFocus_",
+				otherFocusEvent: "javascript:onFocus(1)",
+				otherBlurEvent: "javascript:onFocus(0)",
+				left: "disable",
+				right: "hands_x0_y0_saveFocus_",
+				up: "disable",
+				down: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_saveFocus_",
+				clickHandler: "javascript:saveFunc()",
+				otherBlurEvent: 'javascript:saveBlur()',
+				left: "hands_x0_y0_inputFocus_",
+				right: "hands_x0_y0_emptyFocus_",
+				up: "disable",
+				down: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_emptyFocus_",
+				clickHandler: "javascript:emptyFunc()",
+				left: "hands_x0_y0_saveFocus_",
+				right: "disable",
+				up: "disable",
+				down: "disable",
+				focusType: 7
+			}]
+
+			//焦点初始化
+			PAGE.focusInit();
+			PAGE.changeFocus("hands_x0_y0_inputFocus_");*/
+			var rankLines = null;
+			var rankInterval = null;
+			var maxUp = 0;
+
+			//获奖获奖名单渲染
+			actiObj.getPrizeUserInfo(function(res) {
+				var topListhtml = "";
+				if(rankInterval) {
+					clearInterval(rankInterval);
+				}
+				if(res && res.data.records.length>0) {
+					for(var i = 0; i < res.data.records.length; i++) {
+						topListhtml += "<div style='height:26px;'><li><span>" + res.data.records[i].userId + "</span><span>" + res.data.records[i].prizeCname + "</span></li></div>";
+						if((i+1)==res.data.records.length){
+							topListhtml+="<div style='height:26px;'></div>";
+						}
+						CT.$("nameList").innerHTML = topListhtml;						
+					}
+					if(res.data.records.length >= 8) {
+						topListhtml += topListhtml;
+						CT.$("nameList").innerHTML = topListhtml;
+						setRankUp();
+					} else {
+						CT.$("nameList").innerHTML = topListhtml;
+					}
+				}
+			})
+			
+			//排行榜榜滚动
+			function setRankUp() {
+				rankLines = CT.$("nameList").getElementsByTagName("div");
+				if(rankLines && rankLines.length >= 8) {
+					maxUp = 0 - (rankLines.length / 2) * 26;
+					rankInterval = setInterval(function() {
+						if(parseInt(CT.$("nameList").style.top) > maxUp) {
+							CT.$("nameList").style.top = parseInt(CT.$("nameList").style.top) - 13 + "px";
+						} else {
+							CT.$("nameList").style.top = "0px";
+						}
+					}, 200);
+				}
+			}
+
+			//获取用户中奖信息
+			/*actiObj.getUserPrizeInfo(function(res) {
+				if(res.successFlg == 1 && res.errorCode=="1000") {
+					CT.$("prizeInfo").innerHTML = res.data[0].prizeCname;
+				} else {
+					CT.$("prizeInfo").innerHTML = "未中奖";
+				}
+			})*/
+
+			//焦点是否在输入框上
+			//var isOnFocus;
+
+			//当前用户手机号
+			//var userPhone = "";
+
+			//焦点获焦在输入框中执行的方法
+			/*function onFocus(index) {
+				isOnFocus = index == 1 ? true : false;
+			}*/
+
+			//手机号输入框
+			//var telInput = document.getElementById("telInput").innerHTML;
+			//去除字符串内所有的空格
+			//telInput = telInput.replace(/\s*/g, "");
+			//获取手机号
+			/*actiObj.getUserPhone(function(res) {
+				if(res.errorCode == "1000" && res.successFlg==1) {
+					if(res.data.userPhone){
+						document.getElementById("telInput").innerHTML = res.data.userPhone;
+						phoneNum = res.data.userPhone;	
+					}									
+				}
+				CT.$("userInfo").innerHTML = actiUserId;
+			})*/
+
+			//var phoneNum = telInput;
+			//监听用户遥控器输入的数字
+			/*function changeNum(num) {
+				if(isOnFocus) {
+					var size;
+					if(phoneNum == "") {
+						size = 0;
+					} else {
+						size = phoneNum.length;
+					}
+					if(size < 11 || !size) {
+						var addnum = phoneNum;
+						phoneNum = addnum + num;
+					}
+					document.getElementById("telInput").innerHTML = phoneNum;
+				}
+			}*/
+
+			//保存手机号
+			/*function saveFunc() {
+				var phoneNum = document.getElementById("telInput").innerHTML;
+				if(phoneNum.length != 11) {
+					document.getElementById("telInput").innerHTML = "请输入11位手机号码";
+				} else {
+					actiObj.setUserPhone(phoneNum);
+					document.getElementById("savetips").innerHTML = "手机号保存成功";
+				}
+			}*/
+
+			//保存按钮失去焦点
+			/*function saveBlur() {
+				document.getElementById("savetips").innerHTML = "";
+			}*/
+
+			//修改、清除手机号
+			/*function emptyFunc() {
+				document.getElementById("telInput").innerHTML = "";
+				phoneNum = "";
+			}*/
+
+			//返回
+			function backfunc() {
+				actiObj.actiCommonJumpUrl("actiTermBeginsMain.html");
+			}
+		</script>
+	</body>
+
+</html>

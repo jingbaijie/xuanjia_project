@@ -1,0 +1,53 @@
+* {
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+
+#main {
+	width: 1280px;
+	height: 720px;
+	background: url(../img/game/gameBG.jpg) no-repeat;
+	overflow: hidden;
+	position: relative;
+	left: 0px;
+	top: 0px;
+}
+
+#hands_x0_y0_slingShotFocus_ img {
+	position: absolute;
+	left: 520px;
+	top: 445px;
+}
+
+
+
+
+
+/*球的动画*/
+
+.line {
+	transition: all 0.2s;
+	-webkit-transition: all 0.2s;
+	-ms-transition: all 0.2s;
+	-moz-transition: all 0.2s;
+	position: absolute;
+	left: 560px;
+	top: 470px;
+	width: 158px;
+	height: 9px;
+	background: url(../img/game/line0.png) no-repeat;
+}
+
+.lineAni {
+	transition: all 0.2s;
+	-webkit-transition: all 0.2s;
+	-ms-transition: all 0.2s;
+	-moz-transition: all 0.2s;
+	position: absolute;
+	background: url(../img/game/line1.png) no-repeat;
+	width: 213px;
+	height: 194px;
+	left: 510px;
+	top: 470px;
+}

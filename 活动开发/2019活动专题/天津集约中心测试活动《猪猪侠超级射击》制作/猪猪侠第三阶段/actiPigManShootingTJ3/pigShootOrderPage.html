@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name = "page-view-size" content = "1280*720">
+    <title>orderPage.html</title>
+    <style>
+        .main{
+            position: absolute;
+            width: 1280px;
+            height: 720px;
+            margin: 0px;
+            padding: 0px;
+            top: 0px;
+            left: 0px;
+            text-align: center;
+            background: url("./img/main/mainBG.jpg");
+        }
+        div{
+            position: absolute;
+        }
+		p{
+			width: 260px;
+			height: 38px;
+			margin: 0;
+			padding: 0;
+			line-height: 38px;
+			text-align: left;
+			font-size: 24px;
+			font-weight: bold;
+			color: #e6da97;
+		}
+		p span{
+			font-size: 28px;
+			color: #e6c50c;
+		}
+    </style>
+</head>
+<body>
+    <div class="main">
+		<!--订购产品名称-->
+		<div id = "ipName" style = "color: #FBD304;font-size: 24px;font-weight: bold;position: absolute;left: 330px;top: 602px;z-index:1"></div>
+		<!--订购产品价格-->
+		<div id = "ipPrice" style = "color: #FBD304;font-size: 24px;font-weight: bold;position: absolute;left: 470px;top: 602px;z-index:1"></div>
+		<img id = "bgImg" src="./img/orderPage/orderPageFirst.png" style = "width: 1280px;height: 720px;position: absolute;top: 0;left: 0;" alt="">
+        <div id="hands_x0_y0_postFocus0_" style="width:167px;height:83px;left: 445px;top: 525px;">
+            <img id="postFocus0" src="./img/tanChuang/confirmFocus.png"  style="visibility: hidden;"   alt=""/>
+        </div>
+        <div id="hands_x0_y0_postFocus1_" style="width:167px;height:76px;left:660px;top:525px;">
+            <img id="postFocus1" src="./img/tanChuang/cancelFocus.png"  style="visibility: hidden;"   alt=""/>
+        </div>
+		<!--订购价格-->
+		<div id="orderPrice" style="color: #FBD304;font-size: 24px;font-weight: bold;position: absolute;left: 470px;top: 602px;">25元</div>
+    </div>
+</body>
+<script type = "text/javascript" src = "../../js/comm.js"></script>
+<script type = "text/javascript" src = "../../js/common1_1.js"></script>
+<script type = "text/javascript" src = "../../js/key1_3.js"></script>
+<script type = "text/javascript" src = "./js/actiComm.js?v=2019"></script>
+<script>
+	actiObj.setLogForActivityBySelf("orderPagePIGTJ3");
+    var buttons=[
+        {
+            id: 'hands_x0_y0_postFocus0_',
+            clickHandler: 'javascript:toOrderMonery()',
+            left: 'disable',
+            right: 'hands_x0_y0_postFocus1_',
+            up: 'disable',
+            down:  'disable',
+            focusType: 7
+        },{
+            id: 'hands_x0_y0_postFocus1_',
+            clickHandler: 'javascript:backfunc()',
+            left: 'hands_x0_y0_postFocus0_',
+            right: 'disable',
+            up: 'disable',
+            down:  'disable',
+            focusType: 7
+        }
+    ];
+	
+	/******分时系统*****/
+    var BOOLEANRESULT = false;
+    //点击确认按钮时执行以下函数
+    var myDate = new Date();
+    var hourTime = myDate.getHours();//获取当前小时数(0-23)
+    var weekTime = myDate.getDay();//周几
+    var months = myDate.getMonth()+1;
+    var mewDate = myDate.getDate();
+    var minutes = myDate.getMinutes();
+
+    function getSpringDay(){
+		if(months == 1){
+			if(mewDate>=27 && mewDate<=31){
+				 getSpringChanges();
+			}else{
+				 getBooleanResult();
+			 }
+		}else if(months == 2){
+			 if(mewDate>=1 && mewDate<=2){
+				  getSpringChanges();
+			}else{
+				getBooleanResult();
+			  }
+		}else{
+		  getBooleanResult();
+		 }
+    }
+
+    function getSpringChanges(){
+		if(hourTime >=11 && hourTime<14){
+			BOOLEANRESULT = true;
+		}else if(hourTime >=16 && hourTime<20){
+			BOOLEANRESULT = true;
+		}
+    }
+
+/****
+自定义订购页面现需要做如下调整：
+1、工作日18:00至次日10:00，现有三步订购（第一次确认页默认确认，第二次确认页默认取消）修改为两步订购（第一次确认页默认确认，第二次确认页默认确认）；
+2、周六日全天，现有三步订购改为两步订购。
+3、另外，两步订购可随时关闭，改为三步或统一订购
+*/
+    function getBooleanResult(){
+
+		if(weekTime == 0 || weekTime == 6){
+			
+			  BOOLEANRESULT = true;
+		
+		}else{
+			if(hourTime >=18 || hourTime <=10){
+				BOOLEANRESULT = true;
+			}
+		}
+    }
+	getBooleanResult();
+
+
+	//数据埋点
+	function getLogInfoImg(url){
+		var img=new Image(1,1);
+		img.src = url;
+	}
+    function getLogOrderLog(){
+		var orderUrlAction = "userId="+ actiUserId +"&pid="+ actiPid +"&userToken="+ actiUserToken +"&carrierId="+ actiCarrierId +"&epgType=GQ"
+		var logUrl = "http://202.99.114.27:35806/xjcartoon_FrontEndWeb/setJILINLogOrderController?"+orderUrlAction;
+		getLogInfoImg(logUrl);
+	}
+
+	//获取眉头信息参数
+    function GetQueryString(name){
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if(r!==null)return  unescape(r[2]); return null;
+    }
+	var orderUrl = actiObj.TJNeiOrderUrl;
+    var IdCard=GetQueryString("IdCard");
+	switch(parseInt(IdCard)){
+		case 0:
+			CT.$("ipName").innerHTML = "爱培优";
+			CT.$("ipPrice").innerHTML = "25元";
+			orderUrl = orderUrl + "?" + actiObj.trimArgs(allParams[0]);
+			break;
+		case 1:
+			CT.$("ipName").innerHTML = "炫佳乐园";
+			CT.$("ipPrice").innerHTML = "25元";
+			orderUrl = orderUrl + "?" + actiObj.trimArgs(allParams[1]);
+			break;
+		case 2:
+			CT.$("ipName").innerHTML = "幸福健身团";
+			CT.$("ipPrice").innerHTML = "29元";
+			orderUrl = orderUrl + "?" + actiObj.trimArgs(allParams[2]);
+			break;		
+		default:
+			CT.$("ipName").innerHTML = "炫佳乐园";
+			orderUrl = orderUrl + "?" + actiObj.trimArgs(allParams[0]);
+	}
+
+    focusInit();
+	if(BOOLEANRESULT){
+		var start=getFocusModel6("hands_x0_y0_postFocus0_");
+	}else{
+		var start=getFocusModel6("hands_x0_y0_postFocus0_");
+	}
+    start.defaultFocus();
+    function backfunc(){
+		getLogOrderLog();
+        window.location.href = "actipigManShootingMain.html";
+    }
+    function toOrderMonery(){
+		CT.setCookie("IdCard",IdCard);
+        window.location.href=orderUrl;
+    }
+</script>
+</html>

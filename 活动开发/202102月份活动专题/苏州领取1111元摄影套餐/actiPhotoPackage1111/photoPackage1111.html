@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="page-view-size" content="1280*720">
+    <title>领取摄影套餐</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+            list-style: none;
+        }
+
+        #main {
+            width: 1280px;
+            height: 720px;
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            overflow: hidden;
+            background: url(img/bg.jpg) no-repeat;
+        }
+
+        #getPrizeBtn,
+        #hands_x0_y0_getPrizeBtnFocus_ {
+            position: absolute;
+            left: 800px;
+            top: 260px;
+        }
+
+        #tip {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main">
+        <!-- 领奖按钮 -->
+        <img id="getPrizeBtn" src="img/getBtn1.png" />
+        <div id="hands_x0_y0_getPrizeBtnFocus_">
+            <img src="img/getBtnFocus.png" alt="" id="getPrizeBtnFocus">
+        </div>
+        <!-- 弹窗提示 -->
+        <div id="tip" style="visibility: hidden;">
+            <img src="img/getSuc.png" alt="" id="tipImg">
+        </div>
+    </div>
+    <!-- 引用公共js -->
+    <script type="text/javascript" src="../../../../js/loadCommomJs.js"></script>
+    <script type="text/javascript" src="../../../../js/actiComm.js"></script>
+    <script src="../actiCommonPage/js/telinput.js"></script>
+    <!-- 引用公共js结束 -->
+    <script type="text/javascript">
+		//区分入口信息是视频详情页还是前置拦截
+		var actiPrePageInfo = CT.getCookie("logCollParam") && eval("(" + (CT.getCookie("logCollParam")) + ")");
+		var nowDate = new Date().getMonth()+1+""+new Date().getDate();
+		var getDate = 0;
+		actiObj.getUserDataList(function(res){
+			if(res.successFlg==1 && res.data.userActiData){
+				getDate = res.data.userActiData;
+			}
+			if(actiPrePageInfo.prevPageContentType!="cartoon" && actiPrePageInfo.prevPageEname!="newmain"){
+				if(getDate!=nowDate){
+					actiObj.setUserDataList(nowDate);//非视频详情页且当天第一次进
+				}else{
+					CT.backPage();//非视频详情页且当天不是第一次进
+				}			
+			}
+		});		
+        //订购信息，默认未订购
+        var isOrder = 1;
+        //当前活动奖品数据
+        var prizeList = [];
+        //当前用户是否中奖,默认未中奖
+        var prized = false;
+        //定时器
+        var getPrizeAni = null;
+        //领取按钮图片标识
+        var index = 0;
+        //弹窗打开还是关闭状态
+        var isTipShow = false;
+        //奖品id
+        var prizeId;
+        // 点击领奖焦点信息
+        var buttons = [
+            {
+                id: "hands_x0_y0_getPrizeBtnFocus_",
+                clickHandler: "javascript:getPrize()",
+                otherBlurEvent: "javascript:isOnFocus(0)",
+                otherFocusEvent: "javascript:isOnFocus(1)",
+                left: "disable",
+                right: "disable",
+                up: "disable",
+                down: "disable",
+                focusType: 7
+            }
+        ]
+        // 初始化填写手机号模块
+        var option = {
+            "textShowInfo": {
+                //输入框展示信息
+                "telInput": {
+                    "textSize": "24px",
+                    "textColor": "#fff",
+                    "textLeft": "490px",
+                    "textTop": "550px",
+                    "textWidth": "265px",
+                    "textHeight": "40px"
+                },
+                //保存提示信息
+                "saveTip": {
+                    "textSize": "24px",
+                    "textColor": "#fff",
+                    "textLeft": "540px",
+                    "textTop": "595px"
+                }
+            },
+            //焦点展示信息
+            "contactFocusInfo": {
+                "telInputFocus": {
+                    "focusLeft": "485px",
+                    "focusTop": "535px",
+                    "right": "emptyBtnFocus"
+                },
+                "saveBtnFocus": {
+                    "focusLeft": "895px",
+                    "focusTop": "535px",
+                    "clickEvent": "saveFunc()",
+                    "left": "emptyBtnFocus",
+                    "right": "disable"
+                },
+                "emptyBtnFocus": {
+                    "focusLeft": "785px",
+                    "focusTop": "535px",
+                    "clickEvent": "emptyFunc()",
+                    "left": "telInputFocus",
+                    "right": "saveBtnFocus"
+                }
+            }
+        }
+        var actiContact = new actiContactModule("actiContact");
+        actiContact.init("tip", option, function () {
+            PAGE.focusInit();
+            PAGE.changeFocus("hands_x0_y0_getPrizeBtnFocus_");
+        });
+        // 鉴权
+        orderJs.columnGetAuth(function (data) {
+            if (data == '0') {
+                isOrder = 0;
+            } else {
+                isOrder = 1;
+            }
+        });
+        // 当前活动奖品信息
+        actiObj.getActivityPrize(function (data) {
+            if (data.successFlg == 1 && data.data.records.length > 0) {
+                prizeList = data.data.records;
+                prizeId = data.data.records[0].id;
+            }
+        });
+        // 当前用户获奖信息
+        actiObj.getUserPrizeInfo(function (data) {
+            if (data.successFlg == 1) {
+                if (data && data.data[0] && data.data[0].prizeCname) {
+                    prized = true;
+                }
+            }
+        });
+        // 点击领奖按钮
+        function getPrize() {
+            if (isOrder == 0) {
+                //弹窗打开
+                isTipShow = true;
+                PAGE.changeFocus("hands_x0_y0_telInputFocus_");
+                CT.$("tip").style.visibility = "visible";
+                //订购用户已经领取过,提示已经领取过弹窗
+                if (prized) {
+                    CT.$("tipImg").src = "img/getted.png";
+                } else {
+                    //获取奖品，上传接口
+                    actiObj.setPrize(prizeId, function () {
+                        CT.$("tipImg").src = "img/getSuc.png";
+                    });
+                }
+            } else {
+                //跳订购
+                CT.goPage();
+                orderJs.columnToOrderPage("photoPackage1111");
+            }
+        };
+
+        // 领取按钮失焦聚焦事件
+        function isOnFocus(ii) {
+            //失焦执行动画
+            if (ii == 0) {
+                getPrizeAni = setInterval(function() {
+                    if (index % 2 == 0) {
+                        CT.$("getPrizeBtn").src = "img/getBtn1.png";
+                    } else {
+                        CT.$("getPrizeBtn").src = "img/getBtn2.png";
+                    }
+                    index++;
+                }, 200);
+            } else if (ii == 1) {
+                clearInterval(getPrizeAni);
+                getPrizeAni = null;
+                index = 0;
+            }
+        };
+
+        function backFunc () {
+            if (isTipShow) {
+                isTipShow = false;
+                PAGE.changeFocus("hands_x0_y0_getPrizeBtnFocus_");
+                CT.$("tip").style.visibility = "hidden";
+            } else {
+                CT.backPage();
+            }
+        };
+    </script>
+</body>
+
+</html>

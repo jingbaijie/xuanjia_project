@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name = "page-view-size" content = "1280*720">
+    <title>国庆七天乐规则页</title>
+    <link rel="stylesheet" href="./css/7DayHappy.css">
+</head>
+<body>
+<div class = "mainBg withScreen">
+    <!--    鸽子    -->
+    <div class = "gezi1"></div>
+    <!--    标题    -->
+    <div class = "title"></div>
+    <!--    两只鸽子    -->
+    <div class = "gezi2"></div>
+    <!--    IP人物    -->
+    <img id = "ipDom" src="./images/main/IP/0.png" alt="">
+    <!--    三只松鼠    -->
+    <img id = "ssDom" src="./images/main/sanzhisongshu.png" alt="">
+    <!--    气球    -->
+    <img id = "qqDom" src="./images/main/qiqiu.png" alt="">
+    <!--    布鲁克    -->
+    <img id = "blkDom" src="./images/main/buluke.png" alt="">
+    <!--    圆盘    -->
+    <div class = "yuanpan"></div>
+    <!--    一等奖    -->
+    <div class = "prize1"></div>
+    <!--    二等奖    -->
+    <div class = "prize2"></div>
+    <!--    三等奖    -->
+    <div class = "prize3"></div>
+    <!--    四等奖    -->
+    <div class = "prize4"></div>
+    <!--    置灰透明背景    -->
+    <div class = "withScreen" style = "background: black;opacity: 0.5;"></div>
+    <!--    活动规则图    -->
+    <img class = "withScreen" src="./images/rule/XLDM.png" alt="">
+    <!--    返回焦点    -->
+    <div id = "hands_x0_y0_emptyFocus_" style = "width: 2px;height: 2px;position: absolute;top: 245px;left: 130px;">
+        <img id = "emptyFocus" src="./images/empty.png" style = "visibility: hidden;" alt="">
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="../../../js/column.js"></script>
+<script src = "./js/actiComm.js"></script>
+<script>
+    var buttons = [
+        {
+            id: "hands_x0_y0_emptyFocus_",
+            clickHandler: "javascript: backfunc()",
+            up: "disable",
+            down: "disable",
+            left: "disable",
+            right: "disable",
+            focusType: 7
+        }
+    ]
+    focusInit();
+    curFocus.defaultBlur();
+    curFocus = getFocusModel6("hands_x0_y0_emptyFocus_");
+    curFocus.defaultFocus();
+    function backfunc(){
+        actiObj.toJumpUrl("./acti7DayHappyMain.html");
+    }
+</script>
+</html>

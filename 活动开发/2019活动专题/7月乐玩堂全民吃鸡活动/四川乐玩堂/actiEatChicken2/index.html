@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>存取参数</title>
+</head>
+<body>
+<script type="text/javascript"  src="../../../js/common1_1.js"></script>
+<script>
+    (function(){
+    	hiddenVideo();
+    	var userId = GetQueryString("userId");
+    	var activityId = GetQueryString("activityId");
+    	var pid= GetQueryString("pid");
+    	if(userId){
+        	CT.setCookie("userId", userId);
+   		}
+	    if(activityId){
+	        CT.setCookie("activityId", activityId);
+	    }
+	    if(pid){
+	        CT.setCookie("pid", pid);
+	    }
+	    var str = window.location.href; //取得整个地址栏
+	    var num = str.indexOf("?");
+	    str = str.substr(num + 1); //取得所有参数   stringvar.substr(start [, length ]
+	    window.onload = function() {
+			var time = new Date().getTime();
+		    window.location.href = "./actiEatChicken.html" + "?" + str+"&v="+time;
+		}
+		//隐藏视频
+	    function hiddenVideo() {
+	    	try{
+	        	xjJSV2.hiddenVideoV2();
+	    	}catch(e){
+	        //TODO handle the exception
+	    	}
+	    }
+	    //获取地址栏参数
+	    function GetQueryString(name) {
+	        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+	        var r = window.location.search.substr(1).match(reg);
+	        if (r != null)
+	            return unescape(r[2]);
+	        return null;
+	    }
+    })();
+</script>
+</body>
+</html>

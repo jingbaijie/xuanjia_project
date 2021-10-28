@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>消灭病毒首页</title>
+    <link rel="stylesheet" href="css/activity_eliminateVirusMain.css?v=220022403">
+</head>
+
+<body>
+    <div id="main">
+        <!-- 按钮 -->
+        <img src="img/main/ruleBtn.png" alt="" id="ruleBtn">
+        <div id="hands_x0_y0_ruleBtnFocus_">
+            <img src="img/main/btnfocus.png" alt="" id="ruleBtnFocus" style="visibility:hidden;">
+        </div>
+        <img src="img/main/rankBtn.png" alt="" id="rankBtn">
+        <div id="hands_x0_y0_rankBtnFocus_">
+            <img src="img/main/btnfocus.png" alt="" id="rankBtnFocus" style="visibility:hidden;">
+        </div>
+        <img src="img/main/backBtn.png" alt="" id="backBtn">
+        <div id="hands_x0_y0_backBtnFocus_">
+            <img src="img/main/btnfocus.png" alt="" id="backBtnFocus" style="visibility:hidden;">
+        </div>
+        <!-- 人物选择 -->
+        <div id="hands_x0_y0_leftCartoonFocus_">
+            <img src="img/main/charaterFocus.png" alt="" id="leftCartoonFocus" style="visibility:hidden;">
+        </div>
+        <div id="hands_x0_y0_rightCartoonFocus_">
+            <img src="img/main/charaterFocus.png" alt="" id="rightCartoonFocus" style="visibility:hidden;">
+        </div>
+        <!-- 弹窗页 -->
+        <div id="tanchuangBG" style="visibility:hidden;">
+            <div id="rulePage" style="visibility:hidden;">
+                <!-- 规则页 -->
+                <img src="img/tanchuang/rule.png">
+                <!-- 规则返回 -->
+                <div id="hands_x0_y0_ruleBackBtn_">
+                    <img src="img/tanchuang/backFocus.png" alt="" id="ruleBackBtn" style="visibility:hidden;">
+                </div>
+            </div>
+            <div id="rankPage" style="visibility:hidden;">
+                <!-- 排行榜页 -->
+                <img src="img/tanchuang/rank.png">
+                <!-- 排行榜页返回 -->
+                <div id="hands_x0_y0_rankBackBtn_">
+                    <img src="img/tanchuang/backFocus.png" alt="" id="rankBackBtn" style="visibility:hidden;">
+                </div>
+                <!-- 联系手机 -->
+                <div id="telInput"></div>
+                <div id="hands_x0_y0_inputFocus_">
+                    <img src="img/tanchuang/inputFocus.png" alt="" id="inputFocus" style="visibility:hidden;">
+                </div>
+                <!-- 确认按钮 -->
+                <div id="hands_x0_y0_confirmFocus_">
+                    <img src="img/tanchuang/btnFocus.png" alt="" id="confirmFocus" style="visibility:hidden;">
+                </div>
+                <!-- 取消按钮 -->
+                <div id="hands_x0_y0_cancelFocus_">
+                    <img src="img/tanchuang/btnFocus.png" alt="" id="cancelFocus" style="visibility:hidden;">
+                </div>
+                <!-- 排行列表 -->
+                <div class="rankList">
+                    <ul id="rankList">
+                        <li><span>18051987710</span><span>20</span></li>
+                    </ul>
+                </div>
+                <!-- 用户信息 -->
+                <div id="userInfo"></div>
+                <!-- 保存成功提示 -->
+				<div id="saveTip"></div>
+            </div>
+        </div>
+
+    </div>
+    <script type="text/javascript" src="../../../js/column.js"></script>
+    <script type="text/javascript" src="./js/actiComm.js"></script>
+    <script type="text/javascript">
+        // 焦点数组
+        var buttons = [
+            {
+                id: "hands_x0_y0_leftCartoonFocus_",
+                left: "disable",
+                right: "hands_x0_y0_rightCartoonFocus_",
+                up: "hands_x0_y0_backBtnFocus_",
+                down: "disable",
+                clickHandler: "javascript:eliminateVirusMainSp.chooseCharacter(0)",
+                focusType: 7
+            },
+            {
+                id: "hands_x0_y0_rightCartoonFocus_",
+                left: "hands_x0_y0_leftCartoonFocus_",
+                right: "hands_x0_y0_backBtnFocus_",
+                up: "hands_x0_y0_backBtnFocus_",
+                down: "disable",
+                clickHandler: "javascript:eliminateVirusMainSp.chooseCharacter(1)",
+                focusType: 7
+            },
+            {
+                id: "hands_x0_y0_ruleBtnFocus_",
+                left: "hands_x0_y0_rightCartoonFocus_",
+                right: "disable",
+                up: "disable",
+                down: "hands_x0_y0_rankBtnFocus_",
+                clickHandler: "javascript:eliminateVirusMainSp.jumpBtn(0)",
+                focusType: 7
+            }, {
+                id: "hands_x0_y0_rankBtnFocus_",
+                left: "hands_x0_y0_rightCartoonFocus_",
+                right: "disable",
+                up: "hands_x0_y0_ruleBtnFocus_",
+                down: "hands_x0_y0_backBtnFocus_",
+                clickHandler: "javascript:eliminateVirusMainSp.jumpBtn(1)",
+                focusType: 7
+            }, {
+                id: "hands_x0_y0_backBtnFocus_",
+                left: "hands_x0_y0_rightCartoonFocus_",
+                right: "disable",
+                up: "hands_x0_y0_rankBtnFocus_",
+                down: "disable",
+                clickHandler: "javascript:backfunc()",
+                focusType: 7
+            },
+            {
+                id: "hands_x0_y0_ruleBackBtn_",
+                left: "disable",
+                right: "disable",
+                up: "disable",
+                down: "disable",
+                clickHandler: "javascript:backfunc()",
+                focusType: 7
+            },
+            {
+                id: "hands_x0_y0_rankBackBtn_",
+                left: "hands_x0_y0_inputFocus_",
+                right: "disable",
+                up: "disable",
+                down: "hands_x0_y0_inputFocus_",
+                clickHandler: "javascript:backfunc()",
+                focusType: 7
+            },
+            {
+                id: "hands_x0_y0_inputFocus_",
+                left: "disable",
+                otherFocusEvent: "javascript:eliminateVirusMainSp.onFocus(1)",
+                otherBlurEvent: "javascript:eliminateVirusMainSp.onFocus(0)",
+                right: "hands_x0_y0_confirmFocus_",
+                up: "hands_x0_y0_rankBackBtn_",
+                down: "disable",
+                clickHandler: "javascript:eliminateVirusMainSp.ruleBackBtn()",
+                focusType: 7
+            },
+            {
+                id: "hands_x0_y0_confirmFocus_",
+                left: "hands_x0_y0_inputFocus_",
+                right: "hands_x0_y0_cancelFocus_",
+                up: "hands_x0_y0_rankBackBtn_",
+                down: "disable",
+                clickHandler: "javascript:eliminateVirusMainSp.saveFunc()",
+                otherBlurEvent: 'javascript:eliminateVirusMainSp.saveBlur()',
+                focusType: 7
+            },
+            {
+                id: "hands_x0_y0_cancelFocus_",
+                left: "hands_x0_y0_confirmFocus_",
+                right: "disable",
+                up: "hands_x0_y0_rankBackBtn_",
+                down: "disable",
+                clickHandler: "javascript:eliminateVirusMainSp.cancelFunc()",
+                focusType: 7
+            }
+        ]        
+    </script>
+    <script type="text/javascript" src="js/activity_eliminateVirusMain.js?v=2020022504"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>开学季-趣味成语大赛游戏页</title>
+		<link rel="stylesheet" type="text/css" href="css/actiTermBeginsGame.css" />
+	</head>
+
+	<body>
+		<div id="main">
+			<!--题目-->
+			<div id="words">
+				<div id="word0">开</div>
+				<div id="word1">门</div>
+				<div id="word2">见</div>
+				<div id="word3">山</div>
+			</div>
+			<!--答案-->
+			<div id="answer0">看</div>
+			<div id="hands_x0_y0_answer0Focus_">
+				<img src="img/game/textfocus.png" id="answer0Focus" />
+			</div>
+			<div id="answer1">听</div>
+			<div id="hands_x0_y0_answer1Focus_">
+				<img src="img/game/textfocus.png" id="answer1Focus" />
+			</div>
+			<div id="answer2">见</div>
+			<div id="hands_x0_y0_answer2Focus_">
+				<img src="img/game/textfocus.png" id="answer2Focus" />
+			</div>
+			<div id="answer3">问</div>
+			<div id="hands_x0_y0_answer3Focus_">
+				<img src="img/game/textfocus.png" id="answer3Focus" />
+			</div>
+			<!--第几题-->
+			<div id="number">0</div>
+			<!--返回按钮-->
+			<img src="img/main/back1.png" id="backBtn" />
+			<div id="hands_x0_y0_backBtnFocus_">
+				<img src="img/main/back2.png" id="backBtnFocus" />
+			</div>
+			<!--正确还是错误图标-->
+			<img src="img/empty.png" id="icon" />
+			<!--弹窗-->
+			<img src="img/empty.png" id="tanBG" />
+			<div id="hands_x0_y0_continueFocus_">
+				<img src="img/game/tanFocus.png" id="continueFocus" />
+			</div>
+			<div id="hands_x0_y0_seeVideoFocus_">
+				<img src="img/game/tanFocus.png" id="seeVideoFocus" />
+			</div>
+			<!--单次答对了几题-->
+			<div id="correctNumber">0</div>
+			<!--排行榜列表-->
+			<ul id="rankList">
+				<li id="phoneNum">18051987710</li>
+				<li id="correctNum">10题</li>
+			</ul>
+		</div>
+		<!--引入公用JS-->
+		<script type="text/javascript" src="../../../js/column.js"></script>
+		<script type="text/javascript" src="./js/actiComm.js"></script>
+		<!--引用结束-->
+		<script type="text/javascript">
+			/*
+			 * 	本地json数据
+			 * 进入页面获取答题机会、当前积分、答对题数
+			 * 答题过程中按返回按钮、10题结束弹窗出现：存储答题机会、存储分数（积分抽奖）(userdata接口)、答对题数(credit接口，有topList)
+			 * 
+			 */
+			//焦点数组
+			var buttons = [{
+				id: "hands_x0_y0_answer0Focus_",
+				clickHandler: "javascript:Termbegingame.chooseFunc(0)",
+				left: "disable",
+				right: "hands_x0_y0_answer1Focus_",
+				up: "disable",
+				down: "hands_x0_y0_backBtnFocus_",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_answer1Focus_",
+				clickHandler: "javascript:Termbegingame.chooseFunc(1)",
+				left: "hands_x0_y0_answer0Focus_",
+				right: "hands_x0_y0_answer2Focus_",
+				up: "disable",
+				down: "hands_x0_y0_backBtnFocus_",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_answer2Focus_",
+				clickHandler: "javascript:Termbegingame.chooseFunc(2)",
+				left: "hands_x0_y0_answer1Focus_",
+				right: "hands_x0_y0_answer3Focus_",
+				up: "disable",
+				down: "hands_x0_y0_backBtnFocus_",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_answer3Focus_",
+				clickHandler: "javascript:Termbegingame.chooseFunc(3)",
+				left: "hands_x0_y0_answer2Focus_",
+				right: "hands_x0_y0_backBtnFocus_",
+				up: "disable",
+				down: "hands_x0_y0_backBtnFocus_",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_backBtnFocus_",
+				clickHandler: "javascript:jumpMain()",
+				left: "hands_x0_y0_answer3Focus_",
+				right: "disable",
+				up: "hands_x0_y0_answer3Focus_",
+				down: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_continueFocus_",
+				clickHandler: "javascript:jumpMain()",
+				left: "disable",
+				right: "hands_x0_y0_seeVideoFocus_",
+				up: "disable",
+				down: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_seeVideoFocus_",
+				clickHandler: "javascript:seeVideo()",
+				left: "hands_x0_y0_continueFocus_",
+				right: "disable",
+				up: "disable",
+				down: "disable",
+				focusType: 7
+			}]
+
+			//题数当中取10个不重复
+			var arr1 = []; //题数数组
+			var arr2 = []; //十个不重复数字
+			var addCount = 0; //随机十个数当中第几个
+			for(var i = 0; i < 31; i++) {
+				arr1.push(i);
+			}
+			for(var k = 0; k < 10; k++) {
+				var id = Math.floor(Math.random() * 31);
+				if(arr2.indexOf(arr1[id]) === -1) {
+					arr2.push(arr1[id]);
+				} else {
+					k = k - 1;
+					continue;
+				}
+			}
+
+			//构造函数
+			function Termbegin(main) {
+				this.initFunc(); //初始化函数
+				this.main = document.getElementById("main"); //外层可视模块
+				this.OAFunc(); //成语题库数据操作
+				this.OAOutJson = {}; //成语数据json
+				this.outData = {}; //公用data数据
+				this.word0 = document.getElementById("word0"); //获取页面问题DOM
+				this.word1 = document.getElementById("word1");
+				this.word2 = document.getElementById("word2");
+				this.word3 = document.getElementById("word3");
+				this.answer0 = document.getElementById("answer0"); //获取页面答案DOM
+				this.answer1 = document.getElementById("answer1");
+				this.answer2 = document.getElementById("answer2");
+				this.answer3 = document.getElementById("answer3");
+				this.group; //[0,30]随机数字,随机出现哪一组
+				this.question = []; //当前出现的问题数组
+				this.options = []; //当前出现的选项数组
+				this.answer; //当前题目答案
+				this.chooseAnswer; //用户当前选择的答案
+				this.first; //问题数组中第一个出现答案中字的位置
+				this.words = document.getElementById("words");
+				this.numbers = 0; //第几题
+				this.numberDOM = document.getElementById("number"); //获取页面第几题DOM
+				this.correct = 0; //单次答对题数	
+				this.totalCorrect = 0;//总的答对题数
+				this.chouCreidt = 0;//抽奖积分（答对十题十分，一次抽奖机会）
+				this.chanceNum = 0;//答题机会（订购用户共三次）
+				this.isClick = true;//是否可以点击
+			}
+
+			//原型
+			Termbegin.prototype = {
+				constructor: Termbegin,
+				//鉴权、获取答题机会、当前积分、答对题数并初始化焦点
+				initFunc: function() {
+					var _this = this;
+					//获取答题机会
+					actiObj.getChance(function(res) {
+						_this.chanceNum = res.activityChance;
+						//获取总的答题次数
+						actiObj.getUserCredit(function(data) {
+							if(data && data.resultMsg == "success") {
+								_this.totalCorrect = parseInt(data.creditNum, 10) || 0;
+							} else {
+								_this.totalCorrect = 0;
+							}							
+						})											
+					})
+					//获取抽奖积分
+					actiObj.getUserDataList(function(data){
+						if(data && data.resultMsg == "success"){
+							_this.chouCreidt = parseInt(data.list[0].user_acti_data, 10) || 0;
+						}else{
+							_this.chouCreidt = 0;
+						}
+					})
+					//初始化焦点
+					focusInit();
+					curFocus = getFocusModel6("hands_x0_y0_answer0Focus_");
+					curFocus.defaultFocus();
+				},
+				//获取本地成语题库
+				OAFunc: function() {
+					var _this = this;
+					actiAjax.init({
+						url: "data/QA.json", //本地成语题库文件
+						method: "get",
+						async: true,
+						ContentType: "application/x-www-form-urlencoded",
+						success: function(data) {
+							//公用data数据
+							_this.outData = data;
+							//循环数据
+							_this.getJson(data);
+						},
+						fail: function(status) {
+							console.log(status);
+						}
+					});
+				},
+				//成语数据
+				getJson: function(data) {
+					//第几题
+					this.numbers++;
+					this.numberDOM.innerHTML = this.numbers;
+					OAOutJson = data.QA;
+					//[0,30]随机数字,随机出现哪一组
+					this.group = arr2[addCount];
+					//当前出现的问题数组
+					this.question = OAOutJson[this.group].question;
+					//当前出现的选项数组
+					this.options = OAOutJson[this.group].options;
+					//当前题目答案
+					this.answer = OAOutJson[this.group].answer;
+
+					//循环问题数组，若问题的字和答案中字相同，则让问题中第一个出现这个字的位置空着	
+					//获取问题数组中第一个出现答案中字的位置
+					this.first = this.question.indexOf(this.answer);
+					for(var m = 0; m < this.question.length; m++) {
+						//如果问题中出现了答案中的字，则跳出循环，如果没有则继续判断
+						if(this.question[this.first] == "") {
+							break;
+						} else if(this.question[m] == this.answer) {
+							this.question[this.first] = "";
+						}
+						//渲染页面问题
+						this.word0.innerHTML = this.question[0];
+						this.word1.innerHTML = this.question[1];
+						this.word2.innerHTML = this.question[2];
+						this.word3.innerHTML = this.question[3];
+						//渲染页面选项
+						this.answer0.innerHTML = this.options[0];
+						this.answer1.innerHTML = this.options[1];
+						this.answer2.innerHTML = this.options[2];
+						this.answer3.innerHTML = this.options[3];
+					}
+				},
+				//选择答案
+				chooseFunc: function(index) {
+					//点击之后变成不可点击
+					if(!this.isClick){
+						return;
+					}else{
+						this.isClick=false;
+					}
+					var _this = this;
+					//点击选中的焦点，判断对错：所选的字与答案中的字对照，相等则正确，黑字显示在框中，不等则错误，红字显示；
+					//如果是对的就显示正确图标，跳下一题；如果是错的，就显示错误图标，跳下一题。					
+					switch(index) {
+						case 0:
+							this.chooseAnswer = this.answer0.innerHTML;
+							break;
+						case 1:
+							this.chooseAnswer = this.answer1.innerHTML;
+							break;
+						case 2:
+							this.chooseAnswer = this.answer2.innerHTML;
+							break;
+						case 3:
+							this.chooseAnswer = this.answer3.innerHTML;
+							break;
+						default:
+							break;
+					}
+					//所选的字渲染到空白处
+					this.words.children[this.first].innerHTML = this.chooseAnswer;
+					//如果选择的字与答案相同
+					if(this.chooseAnswer == this.answer) {
+						//答对题数加一
+						this.correct++;
+						//存储答对题数
+						this.totalCorrect ++;
+						actiObj.setUserCredit(this.totalCorrect);
+						//存储抽奖积分,答对一题得一分							
+						_this.chouCreidt++;
+						actiObj.setUserDataList(_this.chouCreidt);
+						this.words.children[this.first].style.color = "#000000";
+						//显示正确图标
+						setTimeout(function() {
+							CT.$("icon").src = "img/game/dui.png";
+						}, 800)
+
+					} else {
+						this.words.children[this.first].style.color = "red";
+						//显示错误图标
+						setTimeout(function() {
+							CT.$("icon").src = "img/game/cuo.png";
+						}, 800)
+					}
+
+					//重新渲染页面，开始下一题
+					setTimeout(function() {
+						//随机十个数当中第几个
+						addCount++;
+						if(addCount >= 10) {
+							//弹窗出现
+							CT.$("tanBG").src = "img/game/rank.png";
+							//切换焦点
+							actiObj.changeFocus("hands_x0_y0_continueFocus_");
+							//显示答对题数
+							CT.$("correctNumber").style.visibility = "visible";
+							CT.$("correctNumber").innerHTML = _this.correct;
+							//总的答对题数排行
+							CT.$("rankList").style.visibility = "visible";
+							//存储答题机会(弹窗出现，用一次答题机会)
+							_this.chanceNum++;
+							actiObj.setChance();
+							//获取排名列表
+							actiObj.getActivityRankList(function(res){
+								var html = "";
+								if(res && res.resultMsg == "success"){
+									for(var i = 0; i < res.list.length; i++){
+										if(res.list[i].activity_credit_num!=0){
+											html+='<li><span id="phoneNum">'+res.list[i].userId+'</span><span id="correctNum">'+res.list[i].activity_credit_num+"题</span></li>";
+											CT.$("rankList").innerHTML = html;
+										}
+									}
+								}
+							})
+						} else {
+							CT.$("icon").src = "img/empty.png";
+							_this.words.children[_this.first].style.color = "#000000";
+							_this.getJson(_this.outData);
+						}
+						//恢复点击
+						_this.isClick=true;
+					}, 2000)
+				}
+			}
+
+			//创建实例
+			var Termbegingame = new Termbegin("main");
+
+			//返回
+			function backfunc() {
+				//如果弹窗显示则直接返回首页，如果弹窗没显示按返回键则算一次答题次数，存储答题次数				
+				if(CT.$("tanBG").src.substring(CT.$("tanBG").src.length - 13) == "img/empty.png"){
+					//存储答题次数
+					Termbegingame.chanceNum++;
+					actiObj.setChance();										
+					window.location.href = "actiTermBeginsMain.html";
+				}else{
+					window.location.href = "actiTermBeginsMain.html";
+				}				
+			}
+			
+			//回首页
+			function jumpMain(){
+				window.location.href = "actiTermBeginsMain.html";
+			}
+
+			//看视频
+			function seeVideo() {
+				
+			}
+		</script>
+	</body>
+
+</html>

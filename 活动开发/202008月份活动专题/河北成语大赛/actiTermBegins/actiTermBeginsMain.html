@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>开学季-趣味成语大赛首页</title>
+		<link rel="stylesheet" type="text/css" href="css/actiTermBeginsMain.css?v=2020080407" />
+	</head>
+
+	<body>
+		<div id="main">
+			<!--布鲁克-->
+			<!--<img id="leftIP" src="img/main/brooke.png"></img>-->
+			<!--开始按钮-->
+			<img src="img/main/start1.png" id="startBtn" style="position: absolute;left: 360px;top: 405px;width:282px;height:261px;"/>
+			<div id="hands_x0_y0_startBtnFocus_" style="width:282px;height:261px;position: absolute;left: 360px;top: 405px;">
+				<img src="img/main/start2.png" id="startBtnFocus" style="width:282px;height:261px;visibility: hidden;"/>
+			</div>
+			<!--抽奖按钮-->
+			<img src="img/main/lottery1.png" id="lotteryBtn" style="width:154px;height:73px;position: absolute;	left: 600px;top: 647px;"/>
+			<div id="hands_x0_y0_lotteryBtnFocus_" style="position: absolute;left: 580px;top: 625px;width:183px;height:95px;">
+				<img src="img/main/lottery2.png" id="lotteryBtnFocus" style="width:183px;height:95px;visibility: hidden;"/>
+			</div>
+			<!--中奖名单按钮-->
+			<img src="img/main/namelist1.png" id="namelistBtn" style="width:154px;height:73px;position: absolute;left: 758px;top: 647px;"/>
+			<div id="hands_x0_y0_namelistBtnFocus_" style="position: absolute;left: 745px;top: 625px;width:183px;height:95px;">
+				<img src="img/main/namelist2.png" id="namelistBtnFocus" style="width:183px;height:95px;visibility: hidden;"/>
+			</div>
+			<!--规则按钮-->
+			<img src="img/main/rule1.png" id="ruleBtn" style="width:154px;height:73px;position: absolute;left: 918px;top: 647px;"/>
+			<div id="hands_x0_y0_ruleBtnFocus_" style="position: absolute;left: 902px;top: 625px;width:183px;height:95px;">
+				<img src="img/main/rule2.png" id="ruleBtnFocus" style="width:183px;height:95px;visibility: hidden;"/>
+			</div>
+			<!--返回按钮-->
+			<img src="img/main/back1.png" id="backBtn" style="width:154px;height:73px;position: absolute;left: 1074px;top: 647px;"/>
+			<div id="hands_x0_y0_backBtnFocus_" style="position: absolute;left: 1062px;top: 625px;width:183px;height:95px;">
+				<img src="img/main/back2.png" id="backBtnFocus" style="width:183px;height:95px;visibility: hidden;"/>
+			</div>
+			<!--没有机会弹窗-->
+			<div class="tipBG" id="noChanceBG" style="visibility:hidden;"><img src="img/hebei/hebeiOutChance.png" id="noChance" /></div>
+			<div id="hands_x0_y0_confirmFocus_">
+				<img src="img/tips/focus.png" id="confirmFocus" />
+			</div>
+			<div id="hands_x0_y0_moreExcellentFocus_">
+				<img src="img/tips/focus.png" id="moreExcellentFocus" />
+			</div>
+			<!--跳订购弹窗-->
+			<div class="tipBG" id="toOrderTipBG" style="visibility:hidden;"><img src="img/hebei/orderTip.png" id="toOrderTip" /></div>
+			<div id="hands_x0_y0_toOrderFocus_">
+				<img src="img/tips/focus.png" id="toOrderFocus" />
+			</div>
+			<div id="hands_x0_y0_toOrderBackFocus_">
+				<img src="img/tips/focus.png" id="toOrderBackFocus" />
+			</div>
+		</div>
+		<!--引入公用JS-->
+		<script type="text/javascript" src="../../../../js/loadCommomJs.js"></script>
+		<script type="text/javascript" src="../../../../js/actiComm.js?v=2020080401"></script>
+		<!--引用结束-->
+		<script type="text/javascript">
+			/*
+			 * 鉴权
+			 * 获取游戏次数
+			 */
+
+			//焦点数组
+			var buttons = [{
+				id: "hands_x0_y0_startBtnFocus_",
+				clickHandler: "javascript:jumpUrl(1)",
+				left: "disable",
+				right: "hands_x0_y0_lotteryBtnFocus_",
+				up: "disable",
+				down: "hands_x0_y0_lotteryBtnFocus_",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_lotteryBtnFocus_",
+				clickHandler: "javascript:jumpUrl(2)",
+				left: "hands_x0_y0_startBtnFocus_",
+				right: "hands_x0_y0_namelistBtnFocus_",
+				up: "hands_x0_y0_startBtnFocus_",
+				down: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_namelistBtnFocus_",
+				clickHandler: "javascript:jumpUrl(3)",
+				left: "hands_x0_y0_lotteryBtnFocus_",
+				right: "hands_x0_y0_ruleBtnFocus_",
+				up: "hands_x0_y0_startBtnFocus_",
+				down: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_ruleBtnFocus_",
+				clickHandler: "javascript:jumpUrl(4)",
+				left: "hands_x0_y0_namelistBtnFocus_",
+				right: "hands_x0_y0_backBtnFocus_",
+				up: "hands_x0_y0_startBtnFocus_",
+				down: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_backBtnFocus_",
+				clickHandler: "javascript:backfunc()",
+				left: "hands_x0_y0_ruleBtnFocus_",
+				right: "disable",
+				up: "hands_x0_y0_startBtnFocus_",
+				down: "disable",
+				focusType: 7
+			},{
+				id: "hands_x0_y0_confirmFocus_",
+				clickHandler: "javascript:backfunc()",
+				left: "disable",
+				right: "hands_x0_y0_moreExcellentFocus_",
+				up: "disable",
+				down: "disable",
+				focusType: 7
+			},{
+				id: "hands_x0_y0_moreExcellentFocus_",
+				clickHandler: "javascript:moreExcellent()",
+				left: "hands_x0_y0_confirmFocus_",
+				right: "disable",
+				up: "disable",
+				down: "disable",
+				focusType: 7
+			},{
+				id: "hands_x0_y0_toOrderFocus_",
+				clickHandler: "javascript:toOrder()",
+				left: "disable",
+				right: "hands_x0_y0_toOrderBackFocus_",
+				up: "disable",
+				down: "disable",
+				focusType: 7
+			},{
+				id: "hands_x0_y0_toOrderBackFocus_",
+				clickHandler: "javascript:backfunc()",
+				left: "hands_x0_y0_toOrderFocus_",
+				right: "disable",
+				up: "disable",
+				down: "disable",
+				focusType: 7
+			}]
+
+			//用户鉴权结果
+			var isOrder = 1;
+			var tryData = 0;//试玩数据
+			var nowDate = new Date().getMonth()+1+""+new Date().getDate();//当前日期
+			var isTipShow = false;//弹窗是否显示
+
+			// 初始化焦点并鉴权
+			function initAuth() {
+				//鉴权(data为0,鉴权通过,其余则未通过,需要跳转订购)
+				orderJs.columnGetAuth(function(data) {
+					if (data == "0") {
+						isOrder = 0;
+					}else {
+						isOrder = 1;
+					}					
+				});
+			}
+			initAuth();
+			
+			//初始化焦点
+			PAGE.focusInit();
+			PAGE.changeFocus("hands_x0_y0_startBtnFocus_");
+			
+			//获取抽奖积分和试玩机会
+			actiObj.getUserDataList(function(data) {
+				if(data && data.successFlg == "1" && data.data.userActiData.split("_")[1]){
+					tryData = data.data.userActiData.split("_")[1];
+				}else{
+					tryData = 0;
+				}
+			})
+			
+
+			//获取游戏次数
+			var chanceNum = 0;
+			actiObj.getChance(function(res) {
+				chanceNum = res.data.activityChance;
+			})
+
+			
+			//跳转
+			function jumpUrl(index){
+				if(index==1){
+					 if(isOrder == "0"){
+						if(chanceNum>=3){
+							document.getElementById("noChanceBG").style.visibility="visible";
+							//切换焦点
+							PAGE.changeFocus("hands_x0_y0_confirmFocus_");	
+							isTipShow=true;							
+						}else{
+							actiObj.actiCommonJumpUrl("actiTermBeginsGame.html");
+						}
+					}else{
+						if(nowDate!=tryData){//今日未试玩
+							actiObj.actiCommonJumpUrl("actiTermBeginsGame.html");
+						}else{//今日已试玩跳订购弹窗
+							CT.$("toOrderTipBG").style.visibility="visible";
+							PAGE.changeFocus("hands_x0_y0_toOrderFocus_");	
+							isTipShow=true;
+						}						
+					}
+				}else if(index==2){
+					actiObj.actiCommonJumpUrl("actiTermBeginsLottery.html");
+				}else if(index==3){
+					actiObj.actiCommonJumpUrl("actiTermBeginsNamelist.html");
+				}else if(index==4){
+					actiObj.actiCommonJumpUrl("actiTermBeginsRule.html");
+				}
+			}
+			
+			//跳订购
+			function toOrder(){
+				PAGE.otherPageParam = "&curFocusId="+curFocus.FocusID + "&contentId=" + CT.requestValue("contentId")+"&contentEName="+CT.requestValue("contentEName")+"&contentCName="+CT.requestValue("contentCName");
+				CT.goPage();
+				orderJs.columnToOrderPage("actiTermBegins");			
+			}
+			
+			//返回
+			function backfunc(){
+				if(isTipShow){
+					CT.$("toOrderTipBG").style.visibility="hidden";
+					CT.$("noChanceBG").style.visibility="hidden";
+					PAGE.changeFocus("hands_x0_y0_startBtnFocus_");		
+					isTipShow=false;
+				}else{
+					CT.backPage();
+				}				
+			}
+
+
+			//更多精彩，跳转大厅首页
+			function moreExcellent(){
+				CT.backPage();
+			}
+			
+			
+			
+			
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>小P悠悠活动规则页</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="page-view-size" content ="1280*720" />
+    <style>
+        .main{
+            position: absolute;
+            width: 1280px;
+            height: 720px;
+            margin: 0;
+            padding: 0;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            text-align: center;
+            background : url("./images/mainPage/BG.jpg") no-repeat;
+        }
+    </style>
+</head>
+<body>
+<div class="main">
+    <img id="price" src="./images/rule/jsyd.png" alt="" style="position:absolute;left: 0;top: 0;">
+    <!-- 返回按钮 -->
+    <img src = "./images/mainPage/back.png" style = "width: 143px;height: 65px;position: absolute;top: 14px;left: 1117px;">
+    <div id = "hands_x0_y0_backFocus_" style = "width: 143px;height: 65px;position: absolute;top: 14px;left: 1117px;">
+        <img id = "backFocus" src = "./images/mainPage/backed.png" style = "width: 143px;height: 65px;visibility: hidden;">
+    </div>
+</div>
+</body>
+<script type = "text/javascript" src = "../../../js/column.js"></script>
+<script type = "text/javascript" src="./js/actiComm.js"></script>
+<script type="text/javascript">
+    //聚焦事件，调用封装的js
+    var buttons = [
+        {
+            id: "hands_x0_y0_backFocus_",
+            clickHandler:"javascript:backfunc()",
+            left:"disable",
+            right:"disable",
+            up:"disable",
+            down:"disable",
+            focusType:7
+        }
+    ];
+    focusInit();
+    curFocus = getFocusModel6("hands_x0_y0_backFocus_");
+    curFocus.defaultFocus();
+    function backfunc(){
+        window.location.href = "actiYOYOMain.html";
+    }
+</script>
+</html>

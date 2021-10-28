@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>电竞争霸赛游戏页</title>
+		<link rel="stylesheet" type="text/css" href="css/actiElectricContestGame.css?v=2019091004" />
+	</head>
+
+	<body>
+		<div id="main">
+			<!--两个对决IP-->
+			<img src="img/game/WZ1.png" id="pkLeft" style="position: absolute;left: -170px;top: 100px;" />
+			<img src="img/game/CJ1.png" id="pkRight" style="position: absolute;left: 940px;top: 20px;" />
+			<!--选择人物焦点-->
+			<!--王者战队-->
+			<div id="hands_x0_y0_wzIP1Focus_">
+				<img src="img/game/IPFocus.png" id="wzIP1Focus" style="visibility: hidden;" />
+			</div>
+			<div id="hands_x0_y0_wzIP2Focus_">
+				<img src="img/game/IPFocus.png" id="wzIP2Focus" style="visibility: hidden;" />
+			</div>
+			<div id="hands_x0_y0_wzIP3Focus_">
+				<img src="img/game/IPFocus.png" id="wzIP3Focus" style="visibility: hidden;" />
+			</div>
+			<!--吃鸡战队-->
+			<div id="hands_x0_y0_cjIP1Focus_">
+				<img src="img/game/IPFocus.png" id="cjIP1Focus" style="visibility: hidden;" />
+			</div>
+			<div id="hands_x0_y0_cjIP2Focus_">
+				<img src="img/game/IPFocus.png" id="cjIP2Focus" style="visibility: hidden;" />
+			</div>
+			<div id="hands_x0_y0_cjIP3Focus_">
+				<img src="img/game/IPFocus.png" id="cjIP3Focus" style="visibility: hidden;" />
+			</div>
+			<!--开始PK焦点-->
+			<div id="hands_x0_y0_pkBtnFocus_">
+				<img src="img/game/pkFocus.png" id="pkBtnFocus" style="visibility: hidden;" />
+			</div>
+			<!--爆炸动画-->
+			<div id="booms">
+				<img src="img/game/boom0.png" style="visibility:hidden;" />
+				<img src="img/game/boom1.png" style="visibility:hidden;" />
+				<img src="img/game/boom2.png" style="visibility:hidden;" />
+				<img src="img/game/boom3.png" style="visibility:hidden;" />
+			</div>
+			<!--展示弹窗-->
+			<div id="winShowTan">
+				<img src="img/empty.png" />
+			</div>
+			<!--获胜或失败弹窗-->
+			<img src="img/empty.png" id="scoreTan" />
+			<div id="hands_x0_y0_confirmFocus_">
+				<img src="img/tips/chooseFocus.png" id="confirmFocus" style="visibility: hidden;" />
+			</div>
+			<div id="hands_x0_y0_cancelFocus_">
+				<img src="img/tips/chooseFocus.png" id="cancelFocus" style="visibility: hidden;" />
+			</div>
+			<!--显示分数-->
+			<div id="wzScore">0</div>
+			<div id="cjScore">0</div>
+			<!--随机跳动选择光标-->
+			<div id="leftRandomFocus">
+				<img src="img/game/IPFocus.png" id="left0" style="position: absolute;left: 11px;top: 572px;visibility: hidden;" />
+				<img src="img/game/IPFocus.png" id="left1" style="position: absolute;left: 124px;top: 572px;visibility: hidden;" />
+				<img src="img/game/IPFocus.png" id="left2" style="position: absolute;left: 236px;top: 572px;visibility: hidden;" />
+			</div>
+			<div id="rightRandomFocus">
+				<img src="img/game/IPFocus.png" id="right0" style="position: absolute;left: 908px;top: 572px;visibility: hidden;" />
+				<img src="img/game/IPFocus.png" id="right1" style="position: absolute;left: 1019px;top: 572px;visibility: hidden;" />
+				<img src="img/game/IPFocus.png" id="right2" style="position: absolute;left: 1129px;top: 572px;visibility: hidden;" />
+			</div>
+			<!--空焦点-->
+			<div id="hands_x0_y0_blankFocus_">
+				<img src="img/empty.png" id="blankFocus" />
+			</div>
+		</div>
+
+		<!--引入公用JS-->
+		<script type="text/javascript" src="../../../js/column.js"></script>
+		<script type="text/javascript" src="./js/actiComm.js"></script>
+		<!--引入结束-->
+		<script type="text/javascript" src="js/scoreAjax.js?v=2019091002"></script>
+
+		<script type="text/javascript">
+			/*
+			 * 获取credit(0/1):用户选择队伍信息，决定展示页面及焦点位置
+			 * 获取游戏次数、上传游戏次数
+			 * 获取两队游戏积分(userData)，上传两队游戏积分
+			 */
+
+			//焦点数组
+			var buttons = [{
+				id: "hands_x0_y0_wzIP1Focus_",
+				clickHandler: "javascript:ContestGame.curIPFunc(0)",
+				otherFocusEvent: "javascript:ContestGame.changeIP(0)",
+				left: "disable",
+				right: "hands_x0_y0_wzIP2Focus_",
+				up: "disable",
+				down: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_wzIP2Focus_",
+				clickHandler: "javascript:ContestGame.curIPFunc(1)",
+				otherFocusEvent: "javascript:ContestGame.changeIP(1)",
+				left: "hands_x0_y0_wzIP1Focus_",
+				right: "hands_x0_y0_wzIP3Focus_",
+				up: "disable",
+				down: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_wzIP3Focus_",
+				clickHandler: "javascript:ContestGame.curIPFunc(2)",
+				otherFocusEvent: "javascript:ContestGame.changeIP(2)",
+				left: "hands_x0_y0_wzIP2Focus_",
+				right: "disable",
+				up: "disable",
+				down: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_cjIP1Focus_",
+				clickHandler: "javascript:ContestGame.curIPFunc(3)",
+				otherFocusEvent: "javascript:ContestGame.changeIP(3)",
+				left: "disable",
+				right: "hands_x0_y0_cjIP2Focus_",
+				up: "disable",
+				down: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_cjIP2Focus_",
+				clickHandler: "javascript:ContestGame.curIPFunc(4)",
+				otherFocusEvent: "javascript:ContestGame.changeIP(4)",
+				left: "hands_x0_y0_cjIP1Focus_",
+				right: "hands_x0_y0_cjIP3Focus_",
+				up: "disable",
+				down: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_cjIP3Focus_",
+				clickHandler: "javascript:ContestGame.curIPFunc(5)",
+				otherFocusEvent: "javascript:ContestGame.changeIP(5)",
+				left: "hands_x0_y0_cjIP2Focus_",
+				right: "disable",
+				up: "disable",
+				down: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_pkBtnFocus_",
+				clickHandler: "javascript:ContestGame.pkBtnFunc()",
+				left: "disable",
+				right: "disable",
+				up: "disable",
+				down: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_confirmFocus_",
+				clickHandler: "javascript:backfunc()",
+				left: "disable",
+				right: "hands_x0_y0_cancelFocus_",
+				up: "disable",
+				down: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_cancelFocus_",
+				clickHandler: "javascript:backfunc()",
+				left: "hands_x0_y0_confirmFocus_",
+				right: "disable",
+				up: "disable",
+				down: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_blankFocus_",
+				left: "disable",
+				right: "disable",
+				up: "disable",
+				down: "disable",
+				focusType: 7
+			}]
+
+			//构造函数
+			function Contest(main) {
+				this.actiTime = new Date().getTime(); //时间戳
+				this.initFunc(); //初始化函数
+				this.main = document.getElementById("main"); //外层可视模块
+				this.chooseIPAni = null; //随机选择IP光标跳动动画
+				this.randomFocus = 0; //随机光标变量				
+				this.circleNum = 6; //跳动圈数
+				this.stopNum = 0; //随机停止
+				this.rightIP = CT.$("rightRandomFocus").getElementsByTagName("img"); //右边IP所有光标DOM节点
+				this.leftIP = CT.$("leftRandomFocus").getElementsByTagName("img"); //左边IP所有光标DOM节点
+				this.wzLeft = CT.$("pkLeft"); //王者PK人物DOM
+				this.cjLeft = CT.$("pkRight"); //吃鸡PK人物DOM
+				this.boomImg = 0; //爆炸图片
+				this.boomAni = null; //爆炸动画
+				this.boomsDOM = CT.$("booms").getElementsByTagName("img"); //爆炸图片DOM
+				this.winIndex = 0; //随机赢
+				this.credit = 0; //选对信息（0是王者队，1是吃鸡队）
+				this.chanceNum = 0; //游戏次数
+				this.wzScore = 0; //王者队计分
+				this.cjScore = 0; //吃鸡队计分
+				this.wzScoreText = CT.$("wzScore"); //页面上王者队总计分
+				this.cjScoreText = CT.$("cjScore"); //页面上吃鸡队总计分
+			}
+
+			//原型
+			Contest.prototype = {
+				constructor: Contest,
+				//鉴权、获取选队信息credit、游戏机会、两队游戏积分
+				initFunc: function() {
+					var _this = this;
+					//获取游戏机会
+					actiObj.getChance(function(res) {
+						_this.chanceNum = res.activityChance;
+						//点击开始按钮获取选队信息
+						actiObj.getUserCredit(function(res) {
+							//如果credit的值为0，则选择的是王者队伍，credit为1，选择的是吃鸡队伍
+							if(res && res.resultMsg == "success") {
+								_this.credit = res.creditNum;
+								//焦点初始化
+								focusInit();
+								//如果选择的王者荣耀（credit=0），初始化左边，如果是绝地求生初始化右边（credit=1）
+								if(res.creditNum == 0) {
+									curFocus = getFocusModel6("hands_x0_y0_wzIP1Focus_");
+									curFocus.defaultFocus();
+								} else if(res.creditNum == 1) {
+									curFocus = getFocusModel6("hands_x0_y0_cjIP1Focus_");
+									curFocus.defaultFocus();
+								}
+							}
+						});
+					});
+					//获取两队积分userdata
+					this.getwzTotal();
+					this.getcjTotal();
+				},
+				//获取两队积分userdata
+				getwzTotal: function() {
+					var userId = "18051987710";
+					var _this = this;
+					gettotalScore(userId, actiActivityId, function(data) {
+						if(data && data.resultMsg == "success") {
+							_this.wzScore = parseInt(data.list[0].user_acti_data);
+							_this.wzScoreText.innerHTML = _this.wzScore;
+						} else {
+							_this.wzScore = 0;
+							_this.wzScoreText.innerHTML = _this.wzScore;
+						}
+					});
+				},
+				getcjTotal: function() {
+					var userId = "13851506382";
+					var _this = this;
+					gettotalScore(userId, actiActivityId, function(data) {
+						if(data && data.resultMsg == "success") {
+							_this.cjScore = parseInt(data.list[0].user_acti_data);
+							_this.cjScoreText.innerHTML = _this.cjScore;
+						} else {
+							_this.cjScore = 0;
+							_this.cjScoreText.innerHTML = _this.cjScore;
+						}
+					});
+				},
+				//左右切换IP
+				changeIP: function(ip) {
+					switch(ip) {
+						case 0:
+							CT.$("pkLeft").src = "img/game/WZ1.png";
+							CT.$("pkLeft").style.left = "-170px";
+							CT.$("pkLeft").style.top = "100px";
+							break;
+						case 1:
+							CT.$("pkLeft").src = "img/game/WZ2.png";
+							CT.$("pkLeft").style.left = "-85px";
+							CT.$("pkLeft").style.top = "90px";
+							break;
+						case 2:
+							CT.$("pkLeft").src = "img/game/WZ3.png";
+							CT.$("pkLeft").style.left = "-62px";
+							CT.$("pkLeft").style.top = "25px";
+							break;
+						case 3:
+							CT.$("pkRight").src = "img/game/CJ1.png";
+							CT.$("pkRight").style.left = "940px";
+							CT.$("pkRight").style.top = "20px";
+							break;
+						case 4:
+							CT.$("pkRight").src = "img/game/CJ2.png";
+							CT.$("pkRight").style.left = "840px";
+							CT.$("pkRight").style.top = "20px";
+							break;
+						case 5:
+							CT.$("pkRight").src = "img/game/CJ3.png";
+							CT.$("pkRight").style.left = "750px";
+							CT.$("pkRight").style.top = "50px";
+							break;
+						default:
+							break;
+					}
+				},
+				//点击选择人物
+				curIPFunc: function(ii) {
+					var _this = this;
+					this.stopNum = Math.floor(Math.random() * 3); //随机停止[0,2]					
+					//切换空焦点
+					actiObj.changeFocus("hands_x0_y0_blankFocus_");
+					//人物选中光标
+					if(ii == 0 || ii == 1 || ii == 2) {
+						this.leftIP[ii].style.visibility = "visible";
+					} else if(ii == 3 || ii == 4 || ii == 5) {
+						this.rightIP[ii - 3].style.visibility = "visible";
+					}
+					//敌方战队光标跳动随机选择人物，执行跳转动画，停止位置随机
+					this.chooseIPAni = setInterval(function() {
+						if(_this.circleNum <= 0) {
+							clearInterval(_this.chooseIPAni);
+							if(ii == 0 || ii == 1 || ii == 2) {
+								//先清空所有光标，再显示当前随机停止的光标
+								for(var i = 0; i < _this.rightIP.length; i++) {
+									_this.rightIP[i].style.visibility = "hidden";
+								}
+								CT.$("rightRandomFocus").getElementsByTagName("img")[_this.stopNum].style.visibility = "visible";
+								//敌军选择出战英雄大图显示
+								_this.changeIP(_this.stopNum + 3);
+							} else if(ii == 3 || ii == 4 || ii == 5) {
+								for(var i = 0; i < _this.leftIP.length; i++) {
+									_this.leftIP[i].style.visibility = "hidden";
+								}
+								CT.$("leftRandomFocus").getElementsByTagName("img")[_this.stopNum].style.visibility = "visible";
+								//敌军选择出战英雄大图显示
+								_this.changeIP(_this.stopNum);
+							}
+
+							//两队人物选择成功之后,一定时间之后焦点切换到PK按钮
+							setTimeout(function() {
+								actiObj.changeFocus("hands_x0_y0_pkBtnFocus_");
+							}, 1000)
+
+						} else {
+							if(_this.randomFocus > 2) {
+								//一圈结束减一
+								_this.circleNum--;
+								_this.randomFocus = 0;
+								if(ii == 0 || ii == 1 || ii == 2) {
+									CT.$("rightRandomFocus").getElementsByTagName("img")[2].style.visibility = "hidden";
+									CT.$("rightRandomFocus").getElementsByTagName("img")[_this.randomFocus].style.visibility = "visible";
+								} else if(ii == 3 || ii == 4 || ii == 5) {
+									CT.$("leftRandomFocus").getElementsByTagName("img")[2].style.visibility = "hidden";
+									CT.$("leftRandomFocus").getElementsByTagName("img")[_this.randomFocus].style.visibility = "visible";
+								}
+							} else {
+								if(ii == 0 || ii == 1 || ii == 2) {
+									CT.$("rightRandomFocus").getElementsByTagName("img")[_this.randomFocus].style.visibility = "visible";
+									if(_this.randomFocus >= 1) {
+										CT.$("rightRandomFocus").getElementsByTagName("img")[_this.randomFocus - 1].style.visibility = "hidden";
+									}
+								} else if(ii == 3 || ii == 4 || ii == 5) {
+									CT.$("leftRandomFocus").getElementsByTagName("img")[_this.randomFocus].style.visibility = "visible";
+									if(_this.randomFocus >= 1) {
+										CT.$("leftRandomFocus").getElementsByTagName("img")[_this.randomFocus - 1].style.visibility = "hidden";
+									}
+								}
+							}
+							//敌军选择出战英雄大图显示
+							if(ii == 0 || ii == 1 || ii == 2) {
+								_this.changeIP(_this.randomFocus + 3);
+							} else if(ii == 3 || ii == 4 || ii == 5) {
+								_this.changeIP(_this.randomFocus);
+							}
+							_this.randomFocus++;
+						}
+					}, 150)
+				},
+				//开始PK
+				pkBtnFunc: function() {
+					var _this = this;
+					//随机赢显示弹窗
+					this.winIndex = Math.floor(Math.random() * 2); //随机停止[0,1]	
+					//两大对战IP动画
+					CT.$("pkRight").className = "pkRightAni";
+					CT.$("pkLeft").style.left = "30px";
+					CT.$("pkLeft").className = "pkLeftAni";
+					/*actiObj.addClass(CT.$("pkLeft"), "pkLeftAni");
+					actiObj.addClass(CT.$("pkRight"), "pkRightAni");*/
+					//爆炸动画
+					this.boomAni = setInterval(function() {
+						for(var i = 0; i < _this.boomsDOM.length; i++) {
+							_this.boomsDOM[i].style.visibility = "hidden";
+						}
+						if(_this.boomImg > 3) {
+							clearInterval(_this.boomAni);
+							//PK按钮禁用
+							PAGE.focusArr["hands_x0_y0_pkBtnFocus_"].focusmodel.enFocus = false;
+							//PK动画结束显示战况弹窗
+							setTimeout(function() {
+								CT.$("winShowTan").getElementsByTagName("img")[0].src = "img/game/win" + _this.winIndex + ".png";
+							}, 500)
+							//pk结束执行方法
+							_this.pkOver();
+						} else {
+							_this.boomsDOM[_this.boomImg].style.visibility = "visible";
+						}
+						_this.boomImg++;
+					}, 200)
+				},
+				//pk结束弹窗
+				pkOver: function() {
+					var _this = this;
+					//获胜加一分，失败对方加一分,如果我方选择的是王者荣耀队，并且winIndex=0，显示获胜+1分弹窗，否则显示对方+1。
+					setTimeout(function() {
+						CT.$("winShowTan").getElementsByTagName("img")[0].src = "img/empty.png";
+						if(_this.credit == 0) {
+							if(_this.winIndex == 0) {
+								CT.$("scoreTan").src = "img/tips/win.png";
+								//切换焦点
+								actiObj.changeFocus("hands_x0_y0_confirmFocus_");
+								//王者队赢
+								_this.wzScore = _this.wzScore + 1;
+								_this.wzScoreText.innerHTML = _this.wzScore;
+							} else if(_this.winIndex == 1) {
+								CT.$("scoreTan").src = "img/tips/fail.png";
+								//切换焦点
+								actiObj.changeFocus("hands_x0_y0_confirmFocus_");
+								//吃鸡队赢
+								_this.cjScore = _this.cjScore + 1;
+								_this.cjScoreText.innerHTML = _this.cjScore;
+							}
+						} else if(_this.credit == 1) {
+							if(_this.winIndex == 0) {
+								CT.$("scoreTan").src = "img/tips/fail.png";
+								//切换焦点
+								actiObj.changeFocus("hands_x0_y0_confirmFocus_");
+								_this.wzScore = _this.wzScore + 1;
+								_this.wzScoreText.innerHTML = _this.wzScore;
+							} else if(_this.winIndex == 1) {
+								CT.$("scoreTan").src = "img/tips/win.png";
+								//切换焦点
+								actiObj.changeFocus("hands_x0_y0_confirmFocus_");
+								//吃鸡队赢
+								_this.cjScore = _this.cjScore + 1;
+								_this.cjScoreText.innerHTML = _this.cjScore;
+							}
+						}
+						//弹窗弹出之前获取两队总计分+1，再上传，但是页面上显示的积分是进入页面的积分+1	
+						_this.addWzScore();
+						_this.addCjScore();
+
+						//弹窗弹出上传游戏机会以及积分
+						_this.chanceNum++;
+						actiObj.setChance();
+						//上传积分
+						_this.wzteamScore();
+						_this.cjteamScore();
+					}, 1500)
+				},
+				//获取两队积分+1
+				addWzScore: function() {
+					var userId = "18051987710";
+					var _this = this;
+					gettotalScore(userId, actiActivityId, function(data) {
+						if(data && data.resultMsg == "success") {
+							_this.wzScore = parseInt(data.list[0].user_acti_data) + 1;
+						} else {
+							_this.wzScore = 0 + 1;
+						}
+					});
+				},
+				addCjScore: function() {
+					var userId = "13851506382";
+					var _this = this;
+					gettotalScore(userId, actiActivityId, function(data) {
+						if(data && data.resultMsg == "success") {
+							_this.cjScore = parseInt(data.list[0].user_acti_data) + 1;
+						} else {
+							_this.cjScore = 0 + 1;
+						}
+					});
+				},
+				//固定两个用户积分+1上传
+				wzteamScore: function() {
+					var userId = "18051987710";
+					var _this = this;
+					settotalScore(userId, actiActivityId, _this.wzScore);
+				},
+				cjteamScore: function() {
+					var userId = "13851506382";
+					var _this = this;
+					settotalScore(userId, actiActivityId, _this.cjScore);
+				}
+			}
+
+			//创建实例
+			var ContestGame = new Contest("main");
+
+			//返回方法
+			function backfunc() {
+				window.location.href = "actiElectricContestMain.html?actiTime=" + ContestGame.actiTime;
+			}
+		</script>
+	</body>
+
+</html>

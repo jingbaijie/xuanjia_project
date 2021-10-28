@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>玄武湖订炫力少儿会员送好礼规则页</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+            list-style: none;
+        }
+
+        #main {
+            width: 1280px;
+            height: 720px;
+            position: relative;
+            left: 0px;
+            top: 0px;
+            overflow: hidden;
+            background: url(img/rulePage.jpg) no-repeat;
+            background-size: 100% 100%;
+        }
+
+        #closeBtn {
+            position: absolute;
+            left: 1000px;
+            top: 100px;
+        }
+
+        #hands_x0_y0_closeBtnFocus_ {
+            position: absolute;
+            left: 1000px;
+            top: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main">
+        <!-- 返回按钮 -->
+        <img src="img/mainPage/closeBtn.png" alt="" id="closeBtn">
+        <div id="hands_x0_y0_closeBtnFocus_">
+            <img src="img/mainPage/closeBtnFocus.png" alt="" id="closeBtnFocus" style="visibility:hidden;">
+        </div>
+        <!-- 规则文字 -->
+        <img src="img/ruleText.png" alt="" style="position:absolute;left: 275px;top: 150px;">
+    </div>
+    <!--引入公用JS-->
+    <script type="text/javascript" src="../../../../js/loadCommomJs.js?v=202009240201"></script>
+    <script type="text/javascript" src="../../../../js/actiComm.js"></script>
+    <!--引入结束-->
+    <script type="text/javascript">
+        var buttons = [
+            {
+                id: "hands_x0_y0_closeBtnFocus_",
+                clickHandler: "javascript:backfunc()",
+                left: "disable",
+                right: "disable",
+                up: "disable",
+                down: "disable",
+                focusType: 7
+            }
+        ]
+        PAGE.focusInit();
+        PAGE.changeFocus("hands_x0_y0_closeBtnFocus_");
+        function backfunc(){
+            CT.commonJumpUrl("xuanwuLakeMain.html");
+        }
+    </script>
+</body>
+
+</html>

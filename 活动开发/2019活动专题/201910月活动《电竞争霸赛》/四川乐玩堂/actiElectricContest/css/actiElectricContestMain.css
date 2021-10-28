@@ -1,0 +1,254 @@
+* {
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+
+#main {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 1280px;
+	height: 720px;
+	overflow: hidden;
+	background: url(../img/main/mainBG.jpg) no-repeat;
+}
+
+
+/*返回按钮*/
+
+#backBtn,
+#hands_x0_y0_backFocus_ {
+	position: absolute;
+	left: 1200px;
+	top: 0px;
+}
+
+
+/*开始按钮*/
+
+#startBtn,
+#hands_x0_y0_startFocus_ {
+	position: absolute;
+	left: 510px;
+	top: 475px;
+	width: 275px;
+	height: 111px;
+	animation: startAni 1200ms alternate infinite;
+	-webkit-animation: startAni 1200ms alternate infinite;
+	-ms-animation: startAni 1200ms alternate infinite;
+	-moz-animation: startAni 1200ms alternate infinite;
+}
+
+@keyframes startAni {
+	0,
+	100% {
+		transform: scale(1);
+		-webkit-transform: scale(1);
+		-ms-transform: scale(1);
+		-moz-transform: scale(1);
+	}
+	50% {
+		transform: scale(0.8);
+		-webkit-transform: scale(0.8);
+		-ms-transform: scale(0.8);
+		-moz-transform:scale(0.8);
+	}
+}
+
+@-webkit-keyframes startAni {
+	0,
+	100% {
+		transform: scale(1);
+		-webkit-transform: scale(1);
+		-ms-transform: scale(1);
+		-moz-transform:scale(1);
+	}
+	50% {
+		transform: scale(0.8);
+		-webkit-transform: scale(0.8);
+		-ms-transform: scale(0.8);
+		-moz-transform:scale(0.8);
+	}
+}
+
+@-ms-keyframes startAni {
+	0,
+	100% {
+		transform: scale(1);
+		-webkit-transform: scale(1);
+		-ms-transform: scale(1);
+		-moz-transform:scale(1);
+	}
+	50% {
+		transform: scale(0.8);
+		-webkit-transform: scale(0.8);
+		-ms-transform: scale(0.8);
+		-moz-transform:scale(0.8);
+	}
+}
+
+@-moz-keyframes startAni {
+	0,
+	100% {
+		transform: scale(1);
+		-webkit-transform: scale(1);
+		-ms-transform: scale(1);
+		-moz-transform:scale(1);
+	}
+	50% {
+		transform: scale(0.8);
+		-webkit-transform: scale(0.8);
+		-ms-transform: scale(0.8);
+		-moz-transform:scale(0.8);
+	}
+}
+
+
+
+/*组队弹窗*/
+
+#chooseTeamTan {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+}
+
+#hands_x0_y0_wangzheFocus_ {
+	position: absolute;
+	left: 250px;
+	top: 515px;
+}
+
+#hands_x0_y0_chijiFocus_ {
+	position: absolute;
+	left: 878px;
+	top: 517px;
+}
+
+#myTeamInfo {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+}
+
+#hands_x0_y0_confirmFocus_ {
+	position: absolute;
+	left: 492px;
+	top: 422px;
+}
+
+#hands_x0_y0_cancelFocus_ {
+	position: absolute;
+	left: 662px;
+	top: 422px;
+}
+
+#noChance{
+	position: absolute;
+	left: 0px;
+	top: 0px;
+}
+
+#hands_x0_y0_noChanceConfirmFocus_{
+	position: absolute;
+	left: 492px;
+	top: 410px;
+}
+#hands_x0_y0_noChanceCancelFocus_{
+	position: absolute;
+	left: 662px;
+	top: 410px;
+}
+
+
+/*我选择的队伍弹窗*/
+
+#myTeamTan {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 1280px;
+	height: 720px;
+	overflow: hidden;
+	visibility: hidden;
+}
+
+#myTeamTan #myTeamTanBG {
+	width: 100%;
+	height: 100%;
+}
+
+
+/*手机号输入框*/
+
+#hands_x0_y0_inputFocus_ {
+	position: absolute;
+	left: 430px;
+	top: 502px;
+}
+
+#telInput {
+	position: absolute;
+    left: 447px;
+    top: 522px;
+    font-size: 20px;
+    color: #fff;
+    width: 300px;
+    height: 30px;
+    line-height: 30px;    
+    text-align: center;
+}
+
+#myTeamBack,
+#hands_x0_y0_myTeamBackFocus_ {
+	position: absolute;
+	left: 1200px;
+	top: 0px;
+}
+
+#savetips{
+	position: absolute;left: 545px;top: 570px;color: #fff;font-size: 20px;
+}
+
+#hands_x0_y0_saveFocus_{
+	position: absolute;left: 756px;top: 501px;
+}
+#hands_x0_y0_emptyFocus_{
+	position: absolute;left: 858px;top: 501px;
+}
+
+
+/*计分*/
+
+#scoreNum {
+	width: 120px;
+	height: 30px;
+	position: absolute;
+	left: 458px;
+	top: 468px;
+	font-size: 28px;
+	color: #fff;
+	font-weight: bold;
+	line-height: 30px;
+	text-align: center;
+}
+
+
+/*规则*/
+
+#ruleTan {
+	position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 1280px;
+    height: 720px;
+}
+
+
+#hands_x0_y0_ruleBackFocus_ {
+	position: absolute;
+	left: 1200px;
+	top: 0px;
+}
+

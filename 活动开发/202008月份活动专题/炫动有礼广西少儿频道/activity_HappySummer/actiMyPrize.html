@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content = "page-view-size" name = "1280*720">
+    <title>我的奖品</title>
+</head>
+<style>
+    .prizeMain{
+        width: 1280px;
+        height: 720px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-image: url("images/myprize/myprizeBG.jpg");
+    }
+    #phoneText{
+        width: 223px;
+        height: 41px;
+        position: absolute;
+        top: 539px;
+        left: 615px;
+        line-height: 40px;
+        font-size: 25px;
+        font-weight: bolder;
+        text-align: center;
+        color: #fff;
+    }
+    #phoneInfo{
+        width: 386px;
+        height: 25px;
+        position: absolute;
+        top: 602px;
+        left: 470px;
+        line-height: 30px;
+        font-size: 21px;
+        font-weight: bolder;
+        text-align: center;
+        color: #fff;
+    }
+    #prizeDiv{
+        width: 578px;
+        height: 286px;
+        position: absolute;
+        top: 164px;
+        left: 373px;
+        text-align: center;
+        line-height: 286px;
+    }
+    #prizeImg{
+        margin-top: 10%;
+    }
+
+</style>
+<body>
+<div class = "prizeMain">
+    <!-- 输入选中框 -->
+    <div id="hands_x0_y0_textFocus_" style="position: absolute;left: 585px;top: 525px;">
+        <img id="textFocus" src="images/myprize/phoneText.png" alt=""/>
+    </div>
+    <!-- 返回 -->
+    <div class = "backImg"></div>
+    <div id = "hands_x0_y0_backFocus_" style = "width: 100px;height: 100px;position: absolute;top: 15px;left: 1150px;">
+        <img id = "" src = "images/back.png" style = "position:absolute;width: 100px;height: 100px;" alt="">
+        <img id = "backFocus" src = "images/back_select.png" style = "position:absolute;width: 100px;height: 100px;visibility: hidden" alt="">
+    </div>
+    <div id = "prizeDiv">
+        <div style="height: 50px"></div>
+       <!-- <img src="images/myprize/prize50.png">-->
+    </div>
+
+    <!-- 保存 -->
+    <div id="hands_x0_y0_saveFocus_" style="position: absolute; left:910px;top: 530px;">
+        <img id="saveFocus" src="images/myprize/selecte.png" style="visibility: hidden;" alt=""/>
+    </div>
+    <!-- 清除 -->
+    <div id="hands_x0_y0_clearFocus_" style="position: absolute;left: 310px;top: 535px;">
+        <img id="clearFocus" src="images/myprize/selecte.png"  style="visibility: hidden;"  alt=""/>
+    </div>
+    <!--输入框-->
+    <div id="phoneText"><img id="Unbound" src="images/myprize/Unbound.png" style="visibility: hidden;"></div>
+    <!--输入提示信息-->
+    <div id="phoneInfo"></div>
+    <!--剩余奖品数-->
+    <div id="lastCount" style="position: absolute;color: #FFFFFF;left: 1075px;top: 142px;font-size: 12px;">
+        <div id="yxds5" title="5元有线电视费" style="position: absolute;left: 0px;top: 368px"></div>
+        <div id="dlhhtz" title="得力绘画套装" style="position: absolute;left: 0px;top: 0px"></div>
+        <div id="lgjmsc" title="乐高积木赛车" style="position: absolute;left: 0px;top: 124px"></div>
+        <div id="yxds50" title="50元有线电视费" style="position: absolute;left: 0px;top: 248px"></div>
+    </div>
+</div>
+</body>
+<script type = "text/javascript" src = "js/loadCommomJs.js?v=202007093"></script>
+<script type = "text/javascript" src = "js/actiComm.js?v=202007092"></script>
+<script>
+    var prizeDiv = CT.$('prizeDiv');
+    var yxds5 = CT.$('yxds5').title;
+    var dlhhtz = CT.$('dlhhtz').title;
+    var lgjmsc = CT.$('lgjmsc').title;
+    var yxds50 = CT.$('yxds50').title;
+    var buttons = [
+        {
+            id: "hands_x0_y0_textFocus_",
+            clickHandler: "",
+            otherFocusEvent: "javascript: textGetFocus()",
+            otherBlurEvent: "javascript: textLoseFocus()",
+            up: "disable",
+            down: "disable",
+            left: "hands_x0_y0_clearFocus_",
+            right: "hands_x0_y0_saveFocus_",
+            focusType: 7
+        },{
+            id: "hands_x0_y0_backFocus_",
+            clickHandler: "javascript: backfunc()",
+            up: "disable",
+            down: "hands_x0_y0_saveFocus_",
+            left: "hands_x0_y0_saveFocus_",
+            right: "disable",
+            focusType: 7
+        },{
+            id: "hands_x0_y0_saveFocus_",
+            clickHandler: "javascript: savePhone()",
+            up: "hands_x0_y0_backFocus_",
+            down: "disable",
+            left: "hands_x0_y0_textFocus_",
+            right: "hands_x0_y0_backFocus_",
+            focusType: 7
+        },{
+            id: "hands_x0_y0_clearFocus_",
+            clickHandler: "javascript: clearPhone()",
+            up: "disable",
+            down: "disable",
+            left: "disable",
+            right: "hands_x0_y0_textFocus_",
+            focusType: 7
+        }
+    ];
+
+
+    var textOnFocus = false;
+    var phoneText = CT.$('phoneText');
+    var phoneInfo = CT.$('phoneInfo');
+    var phoneNum = "";
+
+/*获取当前用户奖品*/
+    function userPrizeInfo() {
+        actiObj.getUserPrizeInfo(function (data) {
+            console.log(data);
+            if(data && data.successFlg == "1"){
+                var img = new Image();
+                img.src = "images/myprize/prize" + data.data[0].prizePrice + ".png";
+                prizeDiv.appendChild(img);
+            }
+        });
+        actiObj.getUserPhone(function (data) {
+            console.log(data);
+            if(data.successFlg == "1" && data.data.userPhone){
+                phoneText.innerHTML = data.data.userPhone;
+            }else {
+                CT.$('Unbound').style.visibility = 'visible';
+            }
+        })
+    }
+    /*奖品剩余数量*/
+    function prizenum() {
+        actiObj.getActivityPrize(function (data) {
+            console.log(data);
+            var prizes = data.data;
+            for(var i=0;i<prizes.records.length; i++){
+                /*获取奖品数量*/
+                var prizeRemainNum = prizes.records[i].prizeRemainNum;
+                var prizeCname = prizes.records[i].prizeCname;
+                if(prizeCname == yxds5){
+                    CT.$('yxds5').innerHTML = prizeRemainNum;
+                }else if(prizeCname == dlhhtz){
+                    CT.$('dlhhtz').innerHTML = prizeRemainNum;
+                }else if(prizeCname == lgjmsc){
+                    CT.$('lgjmsc').innerHTML = prizeRemainNum;
+                }else if(prizeCname == yxds50){
+                    CT.$('yxds50').innerHTML = prizeRemainNum;
+                }
+
+            }
+        })
+
+    }
+    function savePhone() {
+
+        if(!(/^1(3|4|5|6|7|8|9)\d{9}$/.test(phoneNum))){
+
+            phoneInfo.innerHTML="您输入的手机号格式无效,请重新输入!";
+
+        }else {
+            actiObj.setUserPhone(phoneNum,function (data) {
+                if(data){
+                    phoneInfo.innerHTML="手机号码保存成功";
+                }
+            })
+        }
+    }
+    function clearPhone() {
+        phoneNum = "";
+        phoneText.innerHTML=phoneNum;
+    }
+    function textGetFocus(){
+        textOnFocus = true;
+    }
+    function textLoseFocus(){
+        textOnFocus = false;
+    }
+    //监听用户遥控器输入的数字
+    changeNumObj.changeNum = function(ids){
+        ids = parseInt(ids);
+        if(curFocus.FocusID == "hands_x0_y0_textFocus_" && ids != NaN){
+            var size;
+            if(phoneNum==""){
+                size=0;
+            }else{
+                size= phoneNum.length;
+            }
+            if(size < 11||!size){
+                var addnum = phoneNum;
+                phoneNum = addnum + ids;
+            }
+            phoneText.innerHTML=phoneNum;
+        }
+    }
+    /*返回*/
+    function backfunc(){
+        window.history.go(-1);
+       /* window.location.href='actiHappySummerMain.html';*/
+        /*var url = "./actiHappySummerMain.html";
+        actiObj.actiCommonJumpUrl(url);*/
+    }
+    prizenum();
+    userPrizeInfo();
+    PAGE.focusInit();
+    PAGE.changeFocus("hands_x0_y0_textFocus_");
+  /*  //获取当前用户是否拥有奖品
+    actiObj.getUserPrizeInfo(function(data){
+        if(data && data.successFlg == "1"){
+            var prizeImg = '<img id = "prizeImg" src="./images/prize/prize'+ data.data[0].prizePrice +'.png" alt="">';
+            document.getElementById("prizeDiv").innerHTML = prizeImg;
+        }
+    });
+    //获取用户手机号
+    actiObj.getUserPhone(function(data){
+        if(data.successFlg == "1" && data.data.userPhone){
+            phoneNum = data.data.userPhone;
+            phoneText.innerHTML = data.data.userPhone;
+        }
+    });
+    function textGetFocus(){
+        textOnFocus = true;
+    }
+    function textLoseFocus(){
+        textOnFocus = false;
+    }
+    //监听用户遥控器输入的数字
+    PAGE.changeNum = function(ids){
+        ids = parseInt(ids);
+        if(curFocus.FocusID == "hands_x0_y0_textFocus_" && ids != NaN){
+            var size;
+            if(phoneNum==""){
+                size=0;
+            }else{
+                size= phoneNum.length;
+            }
+
+            if(size < 11||!size){
+                var addnum = phoneNum;
+                phoneNum = addnum + ids;
+            }
+            phoneText.innerHTML=phoneNum;
+        }
+    }
+    function clearPhone(){
+        phoneNum = "";
+        phoneText.innerHTML=phoneNum;
+    }
+    function savePhone(){
+        if(phoneNum.length === 11){
+            actiObj.setUserPhone(phoneNum,function(data){
+                if(data.successFlg == "1"){
+                    phoneInfo.innerHTML="手机号码保存成功";
+                }
+            });
+        }else{
+            phoneInfo.innerHTML="您输入的手机号格式无效,请重新输入!";
+        }
+    }
+    function backfunc(){
+        var url = "./superFlyMain.html";
+        actiObj.actiCommonJumpUrl(url);
+        //window.location.href = "./superFlyMain.html?actiTime=" + new Date().getTime();
+    }*/
+</script>
+</html>

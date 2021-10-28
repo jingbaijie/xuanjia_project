@@ -1,0 +1,283 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+}
+#main{
+    position: relative;
+    left: 0px;
+    top: 0px;
+    width: 1280px;
+    height: 720px;
+    background: url(../img/mainPage/bg.jpg) no-repeat;
+    overflow: hidden;
+}
+.logo{
+    position: absolute;
+    left: 470px;
+    top: 40px;
+}
+.ipCartoon{
+    position: absolute;
+    left: 60px;
+    top: 35px;
+}
+
+/* 按钮 */
+.ruleBtn{
+    position: absolute;
+    left: 50px;
+    top: 30px;
+}
+#hands_x0_y0_voteRuleFocus_{
+    position: absolute;
+    left: 40px;
+    top: 22px;
+}
+.voteInfoBtn{
+    position: absolute;
+    left: 50px;
+    top: 90px;
+}
+#hands_x0_y0_voteInfoBtnFocus_{
+    position: absolute;
+    left: 42px;
+    top: 82px;
+}
+.backBtn{
+    position: absolute;
+    left: 1035px;
+    top: 40px;
+}
+#hands_x0_y0_backBtnFocus_{
+    position: absolute;
+    left: 1025px;
+    top: 30px;
+}
+/* 第一个超级飞侠 */
+.voteShow1{
+    position: absolute;
+    left: 45px;
+    top: 220px;
+}
+.leftRank{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: 2;
+}
+.rightKuang{
+    position: absolute;
+    left: 45px;
+    top: 13px;
+    background: url(../img/mainPage/top/kuang.png) no-repeat;
+}
+.topImg{
+    position: absolute;
+    left: 18px;
+    top: 10px;
+    z-index: 2;
+}
+.votedText{
+    position: absolute;
+    left: 75px;
+    top: 17px;
+}
+.voteText{
+    position: absolute;
+    left: 180px;
+    top: 17px; 
+}
+.numberShow{
+    position: absolute;
+    left: 105px;
+    top: 16px;
+    width: 80px;
+    text-align: center;
+    padding-left: 6px;
+    box-sizing: border-box;
+}
+.numberShow img{
+    margin-left: -5px;
+}
+/* 第二个超级飞侠 */
+.voteShow2{
+    position: absolute;
+    left: 285px;
+    top: 270px;
+}
+.voteShow3{
+    position: absolute;
+    left: 540px;
+    top: 310px;
+}
+.voteShow4{
+    position: absolute;
+    left: 745px;
+    top: 270px;
+}
+.voteShow5{
+    position: absolute;
+    left: 985px;
+    top: 210px;
+}
+/* 投票按钮 */
+#hands_x0_y0_voteBtn1Focus_{
+    position: absolute;
+    left: 30px;
+    top: 480px;
+}
+#hands_x0_y0_voteBtn2Focus_{
+    position: absolute;
+    left: 230px;
+    top: 555px;
+}
+#hands_x0_y0_voteBtn3Focus_{
+    position: absolute;
+    left: 510px;
+    top: 590px;
+}
+#hands_x0_y0_voteBtn4Focus_{
+    position: absolute;
+    left: 770px;
+    top: 550px;
+}
+#hands_x0_y0_voteBtn5Focus_{
+    position: absolute;
+    left: 1025px;
+    top: 485px;
+}
+/* ip焦点 */
+#hands_x0_y0_ip1Focus_{
+    position: absolute;
+    left: 55px;
+    top: 260px;
+}
+#hands_x0_y0_ip2Focus_{
+    position: absolute;
+    left: 270px;
+    top: 330px;
+}
+#hands_x0_y0_ip3Focus_{
+    position: absolute;
+    left: 455px;
+    top: 370px;
+}
+#hands_x0_y0_ip4Focus_{
+    position: absolute;
+    left: 740px;
+    top: 305px;
+}
+#hands_x0_y0_ip5Focus_{
+    position: absolute;
+    left: 965px;
+    top: 260px;
+}
+.blueSlider{
+    background: deepskyblue;
+    width: 0%;
+    height: 85%;
+    position: absolute;
+    top: 2px;
+}
+/* 投票成功弹窗 */
+.voteSuccess{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: url(../img/tip/voteSuccess.png) no-repeat;
+    z-index: 2;
+}
+#sucCloseBtn,
+#hands_x0_y0_sucCloseBtnFocus_{
+    position: absolute;
+    left: 1070px;
+    top: 40px;
+}
+#telInput{
+	position: absolute;
+    width: 219px;
+    height: 30px;
+    left: 620px;
+    top: 25px;
+    background: url(../img/userInfoPage/inputKuang.png) no-repeat;
+    line-height: 30px;
+	text-align: center;
+    font-size: 22px;
+    color: #ffffff;
+}
+#hands_x0_y0_userPhoneFocus_{
+	position: absolute;
+    left: 610px;
+    top: 15px;
+}
+#userInfo{
+    width: 219px;
+    height: 30px;
+	position: absolute;
+    left: 170px;
+    top: 25px;
+    background: url(../img/userInfoPage/inputKuang.png) no-repeat;
+    font-size: 20px;
+    text-align: center;
+    color: #ffffff;
+}
+#hands_x0_y0_deleteBtnFocus_{
+	position: absolute;
+    left: 740px;
+    top: 60px;
+}
+#voteSuccessBottomBG{
+    width: 900px;
+    height: 130px;
+    position: absolute;
+    left: 170px;
+    top: 560px;
+    background: rgba(255,255,255,0.6);
+    border-radius: 10px;
+}
+#userInfoTitle{
+    position: absolute;
+    left: 50px;
+    top: 25px;
+}
+#contactTitle{
+    position: absolute;
+    left: 500px;
+    top: 25px;
+}
+#confirmBtn{
+    position: absolute;
+    left: 620px;
+    top: 70px;
+}
+#hands_x0_y0_confirmBtnFocus_{
+	position: absolute;
+    left: 612px;
+    top: 60px;
+}
+#deleteBtn{
+    position: absolute;
+    left: 750px;
+    top: 70px;
+}
+/* 次数用完 */
+#chanceOutTip{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 1280px;
+    height: 720px;
+    background: url(../img/tip/noChance.png) no-repeat;
+    overflow: hidden;
+    z-index: 2;
+}
+#noChanceCloseBtn,
+#hands_x0_y0_noChanceBtnFocus_{
+    position: absolute;
+    left: 1100px;
+    top: 40px;
+}

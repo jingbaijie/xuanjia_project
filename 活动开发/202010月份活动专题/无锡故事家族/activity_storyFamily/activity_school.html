@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="page-view-size" content="1280*720">
+    <link rel="stylesheet" href="./css/school.css?v=2020060116">
+    <title>故事家族</title>
+</head>
+
+<body>
+    <div class="main">
+        <div class="signIn">
+            <img class="signInImg" id="signInImg" src="./img/signInDefault.png" alt="">
+        </div>
+        <div class="barbox">
+            <div class="bar-cell">
+                <div id = "cartoonCname" class="bar-cell-text"></div>
+            </div>
+
+            <div class="score">
+                <img class="scoreicon" src="./img/scoreicon.png" alt="">
+                <div id = "allCredit" style="position: absolute;left: 40px;top: 0;">累计积分：0分</div>
+            </div>
+        </div>
+
+        <div class="content" id="content" style = "position: absolute; top: 175px;">
+            <div class="cell-box" id="cellBox" style = "position: absolute;top: 0;left: 0;"></div>
+            <div class="xiala">
+                <div class="xiala_" id="xiala_" style="width: 9px;height: 274px;top: 0px;"></div>
+            </div>
+        </div>
+
+        <div class="focusbox">
+            <div id="hands_x0_y0_signIn_" style="position:absolute;top: 35px;right: 20px;">
+                <img id="signIn" src="./img/empty.png" style="width: 148px;height: 112px;visibility: hidden;" alt="">
+            </div>
+        </div>
+    </div>
+ 	 <!--引入公用js-->
+		<script type="text/javascript" src="../../../../js/loadCommomJs.js"></script>
+		<script type="text/javascript" src="js/actiComm.js?v=1"></script>
+	<!--公用js引入结束-->
+    <script>
+        var buttons = [{
+            id: "hands_x0_y0_signIn_",
+            clickHandler: "javascript:toSignPage()",
+            enMove: false,
+            otherFocusEvent: "javascript: focusHere(-1)",
+            otherBlurEvent: "javascript: focusLoseHere(-1)",
+            left: "disable",
+            right: "disable",
+            up: "disable",
+            down: "hands_x0_y0_lesVideo0_",
+            focusType: 7
+        }];
+        var OUT_LIST_JSON = [];
+        var curVideoIndex = 0;
+        //获取眉头信息
+        function GetQueryString (name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+            var r = location.search.substr(1).match(reg);
+            if (r != null) return unescape(decodeURI(r[2])); return null;
+        }
+        //获取卡通剧集列表
+        function getCartoonList(fn){
+            ajax.init({
+                url:AjaxConfig.interfaceUrl + "findVideoListByCartoonId",
+                method:"get",
+                params:{
+                    "cartoonId": GetQueryString("cartoonId")
+                },
+                async:true,
+                ContentType:"application/x-www-form-urlencoded",
+                success:function(data){
+                    if(data && data.errorCode == "1000"){
+                        fn(data.data);
+                    }else{
+                        fn(false);
+                    }
+                },
+                fail:function(status){
+                    fn(false);
+                }
+            });
+        }
+        function setSlideBar(){
+            var xiala_ = CT.$("xiala_");
+            var totalPage = parseInt(OUT_LIST_JSON.length/10);
+            if(OUT_LIST_JSON.length%10 > 0){
+                totalPage ++;
+            }
+            xiala_.style.height = (1/totalPage)*274 + "px";
+            xiala_.style.top = curVideoIndex*(274/totalPage) + "px";
+        }
+        //截取文字
+        function resetText(text,length){
+            if(text && typeof text == "string"){
+                if(text.length > length){
+                    return text.substring(0,length-3) + "...";
+                }else{
+                    return text;
+                }
+            }else{
+                return "";
+            }
+        }
+        //截取对应数组长度
+        function getArrWithLength(targetArr,start,end){
+            if(targetArr){
+                var returnArr = [];
+                end = end < targetArr.length?end:targetArr.length-1;
+                for(var i = parseInt(start); i <= parseInt(end); i++){
+                    returnArr.push(targetArr[i]);
+                }
+                return returnArr;
+            }else{
+                return [];
+            }
+        }
+        // 页面初始化
+        function initPage(){
+            for (var i = 0; i < 10; i++) {
+                button = {
+                    id: "hands_x0_y0_lesVideo" + i + "_",
+                    clickHandler: "javascript: toSeeVideo()",
+                    enMove: false,
+                    otherFocusEvent: "javascript: focusHere(1)",
+                    otherBlurEvent: "javascript: focusLoseHere(1)",
+                    left: (i == 0 ? "disable" : "hands_x0_y0_lesVideo" + (i - 1) + "_"),
+                    right: (i == 9 ? "disable" : "hands_x0_y0_lesVideo" + (i + 1) + "_"),
+                    up: "disable",
+                    upEvent: "javascript: videoListUp('"+ i +"')",
+                    downEvent: "javascript: videoListDown('"+ i +"')",
+                    down: "disable",
+                    focusType: 7
+                };
+                buttons.push(button)
+            }
+			actiObj.getUserCredit(function(creditData){
+				var allCredit = document.getElementById("allCredit");
+				if(creditData && creditData.errorCode == "1000"){
+					allCredit.innerHTML = "累计积分："+ creditData.data.creditNum +"分";
+				}else{
+					allCredit.innerHTML = "累计积分：0分";
+				}
+				getCartoonList(function(videoData){
+					if(videoData){
+						CT.$("cartoonCname").innerHTML = videoData[0].cartoonInfo.cartoonCname;
+						OUT_LIST_JSON = videoData;
+						curVideoIndex = GetQueryString("curVideoIndex") || 0;
+						var preFocus = GetQueryString("backFocus");
+						if(curVideoIndex && PAGE.getFocusModel6(preFocus) && PAGE.getFocusModel6(preFocus).enFocus){
+							setVideoList(getArrWithLength(videoData,curVideoIndex,parseInt(curVideoIndex)+9));
+							PAGE.focusInit();
+							PAGE.changeFocus(preFocus);
+						}else{
+							setVideoList(getArrWithLength(videoData,0,9));
+							setSlideBar();
+							PAGE.focusInit();
+							PAGE.changeFocus("hands_x0_y0_lesVideo0_");
+						}
+					}else{
+						videoData = [];
+						setVideoList(videoData);
+						PAGE.focusInit();
+						PAGE.changeFocus("hands_x0_y0_signIn_");
+					}
+				});
+			})
+
+        }
+        initPage();
+        //焦点获焦执行
+        function focusHere(id) {
+            if (id == -1) {
+                CT.$('signInImg').src = './img/singIn.png';
+            }
+            if (id == 1) {
+                CT.$('signInImg').src = './img/signInDefault.png';
+                CT.$(curFocus.FocusID).className = 'lesVideo-checked';
+            }
+        }
+        //焦点失焦执行
+        function focusLoseHere(id){
+            if (id == -1) {
+                CT.$(curFocus.FocusID).className = '';
+            }
+            if (id == 1) {
+                CT.$(curFocus.FocusID).className = 'lesVideo-cell';
+            }
+        }
+        //剧集框向上移动
+        function videoListUp(ii){
+            if(ii < 5){
+                var targetStart = curVideoIndex*10 - 10;
+                if(OUT_LIST_JSON && targetStart >= 0){
+                    var targetArr = getArrWithLength(OUT_LIST_JSON,targetStart,targetStart+9);
+                    if(targetArr.length > 0){
+                        setVideoList(targetArr);
+                        curVideoIndex --;
+                        setSlideBar();
+                        if(PAGE.getFocusModel6("hands_x0_y0_lesVideo"+ (parseInt(ii) + 5) +"_") && PAGE.getFocusModel6("hands_x0_y0_lesVideo"+ (parseInt(ii) + 5) +"_").enFocus){
+                            PAGE.changeFocus("hands_x0_y0_lesVideo"+ (parseInt(ii) + 5) +"_");
+                        }else if(PAGE.getFocusModel6("hands_x0_y0_lesVideo5_") && PAGE.getFocusModel6("hands_x0_y0_lesVideo5_").enFocus){
+                            PAGE.changeFocus("hands_x0_y0_lesVideo5_");
+                        }else{
+                        	PAGE.changeFocus("hands_x0_y0_signIn_");
+                        }
+                    }else{
+                		PAGE.changeFocus("hands_x0_y0_signIn_");
+                	}
+                }else{
+            		PAGE.changeFocus("hands_x0_y0_signIn_");
+            	}
+            }else{
+                if(PAGE.getFocusModel6("hands_x0_y0_lesVideo" + (parseInt(ii) - 5) + "_") && PAGE.getFocusModel6("hands_x0_y0_lesVideo" + (parseInt(ii) - 5) + "_").enFocus){
+                    PAGE.changeFocus("hands_x0_y0_lesVideo" + (parseInt(ii) - 5) + "_");
+                }else{
+                    PAGE.changeFocus("hands_x0_y0_lesVideo0_");
+                }
+            }
+        }
+        //剧集框向下移动
+        function videoListDown(ii){
+            if(ii > 4){
+                var targetStart = curVideoIndex*10 + 10;
+                if(OUT_LIST_JSON && targetStart < OUT_LIST_JSON.length){
+                    var targetArr = getArrWithLength(OUT_LIST_JSON,targetStart,targetStart+9);
+                    if(targetArr.length > 0){
+                        setVideoList(targetArr);
+                        curVideoIndex ++;
+                        setSlideBar();
+                        if(PAGE.getFocusModel6("hands_x0_y0_lesVideo"+ (parseInt(ii) - 5) +"_") && PAGE.getFocusModel6("hands_x0_y0_lesVideo"+ (parseInt(ii) - 5) +"_").enFocus){
+                            PAGE.changeFocus("hands_x0_y0_lesVideo"+ (parseInt(ii) - 5) +"_");
+                        }else if(PAGE.getFocusModel6("hands_x0_y0_lesVideo0_") && PAGE.getFocusModel6("hands_x0_y0_lesVideo0_").enFocus){
+                            PAGE.changeFocus("hands_x0_y0_lesVideo0_");
+                        }
+                    }
+                }
+            }else{
+                if(PAGE.getFocusModel6("hands_x0_y0_lesVideo" + (parseInt(ii) + 5) + "_") && PAGE.getFocusModel6("hands_x0_y0_lesVideo" + (parseInt(ii) + 5) + "_").enFocus){
+                    PAGE.changeFocus("hands_x0_y0_lesVideo" + (parseInt(ii) + 5) + "_");
+                }else if(PAGE.getFocusModel6("hands_x0_y0_lesVideo5_") && PAGE.getFocusModel6("hands_x0_y0_lesVideo5_").enFocus){
+                    PAGE.changeFocus("hands_x0_y0_lesVideo5_");
+                }
+            }
+        }
+        // 渲染视频列表
+        function setVideoList(targetMsg) {
+            document.getElementById("cellBox").innerHTML = "";
+            var headerArr = [1,2,3,4,5,6,7,8,9,10];
+            var headerImg = "./img/header/1.jpg";
+            var headerNum = 0;
+            for (var i = 0; i < targetMsg.length; i++) {
+                headerNum = Math.floor(Math.random()*headerArr.length);
+                headerImg = "./img/header/"+ headerArr[headerNum] +".jpg";
+                headerArr.splice(headerNum,1);
+                var elem = "<div id='hands_x0_y0_lesVideo" +
+                    i + "_' style = 'position: absolute; top: "+ (i<5?65:275) +"px;left: "+ ((i%5)==0?30:(i%5)*230 + 30) +"px;' class='lesVideo-cell' videoId = '"+ targetMsg[i].id +"'><img style = 'width: 189px;height: 106px;' src='" + headerImg +
+                    "'><img id='lesVideo" + i +
+                    "' src='./img/empty.png' style='width: 0px;height: 0px;visibility: hidden;' alt=''>" +
+                    "<div class = 'video-name'>"+ resetText(targetMsg[i].videoCname,9) + "</div></div>";
+                document.getElementById("cellBox").innerHTML += elem;
+                if(PAGE.getFocusModel6("hands_x0_y0_lesVideo" +i + "_")){
+                    PAGE.enableFocus("hands_x0_y0_lesVideo" +i + "_");
+                }
+            }
+            for (var i = targetMsg.length; i < 10; i++) {
+                var elem = "<div style='visibility: hidden;' id='hands_x0_y0_lesVideo" +
+                    i + "_' class='lesVideo-cell'><img id='lesVideo" + i +
+                    "' src='./img/empty.png' style='visibility: hidden;' alt=''>" +
+                    "<div class = 'video-name'></div></div>";
+                document.getElementById("cellBox").innerHTML += elem;
+				buttons[i+1].enFocus = false;
+                if(PAGE.getFocusModel6("hands_x0_y0_lesVideo" +i + "_")){
+                    PAGE.disableFocus("hands_x0_y0_lesVideo" +i + "_");
+                }
+            }
+        }
+        //全屏观看视频
+        function toSeeVideo(){
+            if(CT.$(curFocus.FocusID).getAttribute("videoid")){
+                var curData = null;
+                for(var i = 0; i < OUT_LIST_JSON.length; i++){
+                    if(OUT_LIST_JSON[i].id == CT.$(curFocus.FocusID).getAttribute("videoid")){
+                        curData = OUT_LIST_JSON[i];
+                        break;
+                    }
+                }
+                PAGE.otherPageParam = "&cartoonId=" + GetQueryString("cartoonId") + "&curVideoIndex=" + curVideoIndex + "&backFocus=" + curFocus.FocusID;
+                CT.goPage();
+                var params = {
+                    contentId: 15,
+                    cartoonId: curData.cartoonId,
+                    videoId: curData.id,
+                    contentType: "video",
+                    curFocusId: "formStory"
+                };
+                CT.getAnterByIdOrAction(params);
+            }
+
+        }
+        //跳转活动签到页
+		function toSignPage(){
+			PAGE.otherPageParam = "&cartoonId=" + GetQueryString("cartoonId") + "&curVideoIndex=" + curVideoIndex + "&backFocus=" + curFocus.FocusID;
+            CT.goPage();
+			window.location.href="signLottery.html";
+		}
+        // 返回函数 点击返回按钮
+        function backfunc() {
+            CT.backPage();
+        }
+    </script>
+</body>
+
+</html>

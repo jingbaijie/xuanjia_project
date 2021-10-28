@@ -1,0 +1,183 @@
+* {
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+
+#main {
+	position: relative;
+	left: 0px;
+	top: 0px;
+	width: 1280px;
+	height: 720px;
+	overflow: hidden;
+	background: url(../img/game/BG.jpg) no-repeat;
+}
+
+#booms img{
+	position: absolute;
+	left: 345px;
+	top: 70px;
+	width: 616px;
+	height: 402px;
+}
+
+
+/*选择人物焦点*/
+
+#hands_x0_y0_wzIP1Focus_ {
+	position: absolute;
+	left: 11px;
+	top: 572px;
+}
+
+#hands_x0_y0_wzIP2Focus_ {
+	position: absolute;
+	left: 124px;
+	top: 572px;
+}
+
+#hands_x0_y0_wzIP3Focus_ {
+	position: absolute;
+	left: 236px;
+	top: 572px;
+}
+
+#hands_x0_y0_cjIP1Focus_ {
+	position: absolute;
+	left: 908px;
+	top: 572px;
+}
+
+#hands_x0_y0_cjIP2Focus_ {
+	position: absolute;
+	left: 1019px;
+	top: 572px;
+}
+
+#hands_x0_y0_cjIP3Focus_ {
+	position: absolute;
+	left: 1129px;
+	top: 572px;
+}
+
+
+/*开始PK焦点*/
+
+#hands_x0_y0_pkBtnFocus_ {
+	position: absolute;
+	left: 566px;
+	top: 564px;
+}
+
+
+
+/*弹窗*/
+
+#winShowTan {
+	position: absolute;
+	left: 350px;
+	top: 195px;
+}
+
+#scoreTan{
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	z-index: 1;
+}
+
+#hands_x0_y0_confirmFocus_ {
+	position: absolute;
+	left: 492px;
+	top: 407px;
+	z-index: 2;
+}
+
+#hands_x0_y0_cancelFocus_ {
+	position: absolute;
+	left: 662px;
+	top: 407px;
+	z-index: 2;
+}
+
+
+/*显示分数*/
+
+#wzScore {
+	position: absolute;
+	left: 472px;
+	top: 615px;
+	font-size: 30px;
+	font-weight: bold;
+	width: 100px;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+	color: #00F0FF;
+}
+
+#cjScore {
+	position: absolute;
+	left: 760px;
+	top: 615px;
+	color: #FF4200;
+	font-size: 30px;
+	font-weight: bold;
+	width: 100px;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+}
+
+
+/*转动特效*/
+
+#hands_x0_y0_pkBtnFocus_ {
+	animation: circleAni 600ms alternate infinite;
+	-webkit-animation: circleAni 600ms alternate infinite;
+}
+
+@keyframes circleAni {
+	0,
+	100% {
+		transform: scale(1);
+		-webkit-transform: scale(1);
+		-ms-transform: scale(1);
+	}
+	50% {
+		transform: scale(0.9);
+		-webkit-transform: scale(0.9);
+		-ms-transform: scale(0.9);
+	}
+}
+
+@-webkit-keyframes circleAni {
+	0,
+	100% {
+		transform: scale(1);
+		-webkit-transform: scale(1);
+		-ms-transform: scale(1);
+	}
+	50% {
+		transform: scale(0.9);
+		-webkit-transform: scale(0.9);
+		-ms-transform: scale(0.9);
+	}
+}
+
+
+/*两大对战IP动画*/
+.pkLeftAni {
+	transition: all 1.5s;	
+	-webkit-transition: all 1.5s;	
+	-ms-transition: all 1.5s;	
+}
+.pkRightAni{
+	transition: all 1.5s;
+	transform: translateX(-200px);
+	-webkit-transition: all 1.5s;
+	-webkit-transform: translateX(-200px);
+	-ms-transition: all 1.5s;
+	-ms-transform: translateX(-200px);
+}

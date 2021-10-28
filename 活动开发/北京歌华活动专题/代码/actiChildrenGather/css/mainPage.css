@@ -1,0 +1,75 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+}
+#main,#ruleMain{
+   width: 1280px;
+   height: 720px;   
+   overflow: hidden;
+   position: absolute;
+   left: 0px;
+   top: 0px; 
+   background: url(../img/mainPage/mainPageNew.jpg) no-repeat;
+}
+#publicCodeBox{
+    width: 206px;
+    height: 170px;
+    background: url(../img/mainPage/publicCode.png) no-repeat;
+    background-size: 100% 100%;
+    position: absolute;
+    left: 50px;
+    top: 0px;
+}
+#publicCodeImg{
+    width: 99px;
+    height: 99px;
+    position: absolute;
+    left: 54px;
+    top: 35px;
+}
+#ruleBtn,#hands_x0_y0_ruleBtnFous_{
+    position: absolute;
+    left: 1040px;
+    top: 15px;
+}
+#ip0Show,#ip0Change{
+    position: absolute;
+    left: 45px;
+    top: 45px;
+}
+#ip1Show,#ip1Change{
+    position: absolute;
+    left: 325px;
+    top: 110px;
+}
+#ip2Show,#ip2Change{
+    position: absolute;
+    left: 605px;
+    top: 110px;
+}
+#ip3Show,#ip3Change{
+    position: absolute;
+    left: 875px;
+    top: 30px;
+}
+#hands_x0_y0_ip0Focus_{
+    position: absolute;
+    left: 106px;
+    top: 442px;
+}
+#hands_x0_y0_ip1Focus_{
+    position: absolute;
+    left: 387px;
+    top: 510px;
+}
+#hands_x0_y0_ip2Focus_{
+    position: absolute;
+    left: 665px;
+    top: 510px;
+}
+#hands_x0_y0_ip3Focus_{
+    position: absolute;
+    left: 935px;
+    top: 428px;
+}

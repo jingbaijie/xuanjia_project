@@ -1,0 +1,133 @@
+* {
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+
+#main {
+	width: 1280px;
+	height: 720px;
+	background: url(../img/game/gameBG.jpg) no-repeat;
+	overflow: hidden;
+	position: relative;
+	left: 0px;
+	top: 0px;
+}
+
+#hands_x0_y0_slingShotFocus_ img {
+	position: absolute;
+	left: 520px;
+	top: 445px;
+}
+
+#leftCartoon {
+	position: absolute;
+	left: 100px;
+	top: 100px;
+	animation: leftCartoonAni 400ms alternate infinite;
+	-webkit-animation: leftCartoonAni 400ms alternate infinite;
+}
+
+#middleCartoon {
+	position: absolute;
+	left: 500px;
+	top: 100px;
+	animation: middleCartoonAni 400ms alternate infinite;
+	-webkit-animation: middleCartoonAni 400ms alternate infinite;
+}
+
+#rightCartoon {
+	position: absolute;
+	left: 900px;
+	top: 100px;
+	animation: rightCartoonAni 400ms alternate infinite;
+	-webkit-animation: rightCartoonAni 400ms alternate infinite;
+}
+
+
+/*卡通动画*/
+
+@keyframes leftCartoonAni {
+	0,
+	100% {
+		transform: translateY(0);
+		-webkit-transform: translateY(0);
+		-ms-transform: translateY(0);
+	}
+	50% {
+		transform: translateY(5px);
+		-webkit-transform: translateY(5px);
+		-ms-transform: translateY(5px);
+	}
+}
+
+@keyframes middleCartoonAni {
+	0,
+	100% {
+		transform: translateY(0);
+		-webkit-transform: translateY(0);
+		-ms-transform: translateY(0);
+	}
+	50% {
+		transform: translateY(-5px);
+		-webkit-transform: translateY(-5px);
+		-ms-transform: translateY(-5px);
+	}
+}
+
+@keyframes rightCartoonAni {
+	0,
+	100% {
+		transform: translateY(0);
+		-webkit-transform: translateY(0);
+		-ms-transform: translateY(0);
+	}
+	50% {
+		transform: translateY(5px);
+		-webkit-transform: translateY(5px);
+		-ms-transform: translateY(5px);
+	}
+}
+
+
+/*球的动画*/
+
+.ballAni {
+	transition: all 0.2s;
+	transform: translate(-130px, 200px);
+}
+
+.ball1Ani {
+	transition: all 0.2s;
+	transform: translate(360px, -180px);
+}
+
+.ball2Ani {
+	transition: all 0.2s;
+	transform: translate(-150px, -260px);
+}
+
+.ball3Ani {
+	transition: all 0.2s;
+	transform: translate(-620px, -200px);
+}
+
+.line {
+	transition: all 0.2s;
+	position: absolute;
+	left: 560px;
+	top: 470px;
+	width: 158px;
+	height: 9px;
+	background: url(../img/game/line0.png) no-repeat;
+}
+
+.lineAni {
+	transition: all 0.2s;
+	position: absolute;
+	background: url(../img/game/line1.png) no-repeat;
+	width: 213px;
+	height: 194px;
+	left: 510px;
+	top: 470px;
+}

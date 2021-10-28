@@ -1,0 +1,107 @@
+.main {
+    width: 1280px;
+    height: 720px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    overFlow: hidden;
+    background: url("../img/homeBJ.jpg");
+}
+
+.barbox {
+    margin-top: 140px;
+    background: url('../img/barBJ.png');
+    width: 1280px;
+    height: 34px;
+    background-repeat: no-repeat;
+}
+
+.bar-cell {
+    background-image: url('../img/barChecked.png');
+    width: 425px;
+    height: 57px;
+    position: absolute;
+    left: 0;
+    top: 124px;
+    color: white;
+    font-size: 24px;
+}
+
+.bar-cell-text {
+    text-align: center;
+    height: 57px;
+    line-height: 57px;
+}
+
+.score {
+    height: 34px;
+    line-height: 34px;
+    color: white;
+    font-size: 22px;
+    width: 277px;
+    position: absolute;
+    top: 140px;
+    left: 1000px;
+}
+
+.scoreicon {
+    padding: 6px 6px 0 0;
+    width: 24px;
+    height: 24px;
+}
+
+.signIn {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+}
+
+.content {
+    background-image: url('../img/schoolBj.png');
+    width: 1175px;
+    height: 513px;
+    background-repeat: no-repeat;
+    margin: 0 52px 0 52px;
+    /* padding: 30px 0px 0 0; */
+}
+
+.cell-box {
+    height: 450px;
+    padding: 20px 30px 0 0;
+}
+
+.lesVideo-cell {
+    width: 190px;
+    height: 143px;
+    background-image: url('../img/cell.png');
+}
+
+.lesVideo-checked{
+    width: 190px;
+    height: 143px;
+    background-image: url('../img/cell_.png');
+}
+
+.xiala {
+    color: black;
+    position: absolute;
+    top: 120px;
+    left: 1150px;
+    background-image: url(../img/scrollbar_.png);
+    background-repeat: no-repeat;
+    height: 274px;
+    width: 9px;
+}
+
+.xiala_ {
+    position: absolute;
+    background-image: url('../img/scrollbar.png');
+    background-repeat: no-repeat;
+}
+.video-name{
+    text-align: center;
+    color: white;
+    font-size: 20px;
+}

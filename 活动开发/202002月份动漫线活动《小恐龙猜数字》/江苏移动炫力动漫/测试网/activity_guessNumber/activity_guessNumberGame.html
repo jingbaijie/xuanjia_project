@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>小恐龙猜数字游戏页</title>
+    <link rel="stylesheet" href="css/activity_guessNumberGame.css?v=20120202">
+</head>
+
+<body>
+    <div id="main">
+        <!-- 地面 -->
+        <img src="img/game/underground.png" alt="" id="underground">
+        <!--水面 -->
+        <img src="img/game/water.png" alt="" id="waterHeight" style="position: absolute;left: 500px;bottom: -280px;z-index: 1;">
+        <!-- 右边恐龙老师 -->
+        <img src="img/game/6-2.png" alt="" id="teacher">
+        <!-- 对话框 -->
+        <div class="dialogue" id="dialogue">
+            <img src="img/game/number.png" alt="">
+            <div id="dialogueNumber">0</div>
+        </div>
+        <!-- 左边答题恐龙学生 -->
+        <div id="leftDinosaur">
+            <img src="img/game/6-1.png" alt="" class="big" style="visibility: visible;">
+            <img src="img/game/3-1.png" alt="" class="middle1" style="visibility: visible;">
+            <img src="img/game/3-2.png" alt="" class="middle2" style="visibility: visible;">
+            <img src="img/game/1-1.png" alt="" class="small1" style="visibility: visible;">
+            <img src="img/game/1-2.png" alt="" class="small2" style="visibility: visible;">
+        </div>
+        <div id="hands_x0_y0_leftFocus0_">
+            <img src="img/game/6-1.png" alt="" id="leftFocus0" style="visibility: hidden;">
+        </div>
+        <div id="hands_x0_y0_leftFocus1_">
+            <img src="img/game/3-1.png" alt="" id="leftFocus1" style="visibility: hidden;">
+        </div>
+        <div id="hands_x0_y0_leftFocus2_">
+            <img src="img/game/3-2.png" alt="" id="leftFocus2" style="visibility: hidden;">
+        </div>
+        <div id="hands_x0_y0_leftFocus3_">
+            <img src="img/game/1-1.png" alt="" id="leftFocus3" style="visibility: hidden;">
+        </div>
+        <div id="hands_x0_y0_leftFocus4_">
+            <img src="img/game/1-2.png" alt="" id="leftFocus4" style="visibility: hidden;">
+        </div>
+        <!-- 返回按钮 -->
+        <img src="img/main/back.png" alt="" id="backBtn">
+        <div id="hands_x0_y0_backFocus_">
+            <img src="img/main/backFocus.png" alt="" id="backFocus" style="visibility: hidden;">
+        </div>
+        <!-- 计时 -->
+        <div id="timeCount">30</div>
+        <!-- 积分 -->
+        <div id="totalScore">0</div>
+        <!-- 空焦点 -->
+        <div id="hands_x0_y0_blankFocus_">
+            <img src="img/empty.png" alt="" id="blankFocus">
+        </div>
+        <!-- 弹窗 -->
+        <div id="tanChuangBG" style="visibility: hidden;">
+            <img src="img/empty.png" alt="" id="tanchuangTip">
+            <!-- 继续按钮 -->
+            <div id="hands_x0_y0_continueBtnFocus_">
+                <img src="img/playFocus.png" alt="" id="continueBtnFocus" style="visibility: hidden;">
+            </div>
+            <!--  试玩结束去订购按钮-->
+            <div id="hands_x0_y0_toOrderBtnFocus_">
+                <img src="img/playFocus.png" alt="" id="toOrderBtnFocus" style="visibility: hidden;">
+            </div>
+            <!--  玩游戏按钮-->
+            <div id="hands_x0_y0_playGameBtnFocus_">
+                <img src="img/playFocus.png" alt="" id="playGameBtnFocus" style="visibility: hidden;">
+            </div>
+            <!-- 累计积分显示 -->
+            <div id="totalScoreTip"></div>
+        </div>
+    </div>
+    <!-- 引入公共js -->
+    <script type="text/javascript" src="../../../js/column.js"></script>
+	<script type="text/javascript" src="./js/commonJs/actiComm.js"></script>
+    <!--引入公共js结束  -->
+    <script src="js/activity_guessNumberGame.js?v=2020020201"></script>
+</body>
+
+</html>

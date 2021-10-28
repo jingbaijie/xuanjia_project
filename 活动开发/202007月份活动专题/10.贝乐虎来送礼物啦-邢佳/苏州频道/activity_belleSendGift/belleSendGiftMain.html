@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="page-view-size" content="1280*720" />
+	<title>贝乐虎来送礼物啦首页</title>
+	<link rel="stylesheet" type="text/css" href="css/belleSendGift.css?v=2020062902" />
+</head>
+
+<body>
+	<div id="mainBox">
+		<!--贝乐虎动画-->
+		<img src="img/mainPage/cartoonImg1.png" alt="" id="cartoonImg" />
+		<!--礼物图片-->
+		<img src="img/mainPage/giftImg.png"/ id="giftImg">
+		<!--六个片单-->
+		<img src="img/mainPage/song.png"/ id="songIP">
+		<div id="hands_x0_y0_songIPFocus_" style="z-index:9;">
+			<img src="img/mainPage/songFocus.png" id="songIPFocus" style="visibility:hidden;" />
+		</div>
+		<img src="img/mainPage/music.png" id="musicIP" />
+		<div id="hands_x0_y0_musicIPFocus_" style="z-index:9;">
+			<img src="img/mainPage/musicFocus.png" id="musicIPFocus" style="visibility:hidden;" />
+		</div>
+		<img src="img/mainPage/poem.png" id="poemPIP" />
+		<div id="hands_x0_y0_poemIPFocus_" style="z-index:9;">
+			<img src="img/mainPage/poemFocus.png" id="poemIPFocus" style="visibility:hidden;" />
+		</div>
+		<img src="img/mainPage/story.png" id="storyIP" />
+		<div id="hands_x0_y0_storyIPFocus_" style="z-index:9;">
+			<img src="img/mainPage/storyFocus.png" id="storyIPFocus" style="visibility:hidden;" />
+		</div>
+		<img src="img/mainPage/superCar.png" id="superCarIP" />
+		<div id="hands_x0_y0_superCarIPFocus_" style="z-index:9;">
+			<img src="img/mainPage/superCarFocus.png" id="superCarIPFocus" style="visibility:hidden;" />
+		</div>
+		<img src="img/mainPage/word.png" id="wordIP" />
+		<div id="hands_x0_y0_wordIPFocus_" style="z-index:9;">
+			<img src="img/mainPage/wordFocus.png" id="wordIPFocus" style="visibility:hidden;" />
+		</div>
+		<!--抽奖部分-->
+		<img src="img/mainPage/szLogo.png" id="titleImg" />
+		<img src="img/mainPage/turnTable.png" id="turntable" />
+		<!-- 抽奖按钮 -->
+		<img src="img/mainPage/lotteryBtn1.png" id="lotteryBtn" />
+		<div id="hands_x0_y0_lotteryBtnFocus_" class="fastRow">
+			<img src="img/mainPage/lotteryFocus.png" id="lotteryBtnFocus" style="visibility:hidden;" />
+		</div>
+		<!--活动规则 中奖名单按钮-->
+		<img src="img/mainPage/ruleBtn.png" id="ruleBtn" />
+		<div id="hands_x0_y0_ruleBtnFocus_">
+			<img src="img/mainPage/btnFocus.png" id="ruleBtnFocus" style="visibility:hidden;" />
+		</div>
+		<img src="img/mainPage/prizeBtn.png" id="prizeBtn" />
+		<div id="hands_x0_y0_prizeBtnFocus_">
+			<img src="img/mainPage/btnFocus.png" id="prizeBtnFocus" style="visibility:hidden;" />
+		</div>
+		<!-- 弹窗 -->
+		<div id="tipBG" style="visibility:hidden;">
+			<img src="img/empty.png" alt="" id="tipImg">
+			<div id="hands_x0_y0_tipImgFocus_">
+				<img src="img/tip/chooseFocus.png" alt="" id="tipImgFocus" style="visibility:hidden;">
+			</div>
+		</div>
+	</div>
+	<!--引入公用JS-->
+	<script type="text/javascript" src="../../../../js/loadCommomJs.js"></script>	
+	<script type="text/javascript" src="./js/actiComm.js?v=20200703"></script>
+	<!--引入结束-->
+	<script>
+		// 焦点数组
+		var buttons = [{
+			id: "hands_x0_y0_lotteryBtnFocus_",
+			otherFocusEvent:"javascript:belleSendGiftMain.onLotteryFocus(1)",
+			otherBlurEvent:"javascript:belleSendGiftMain.onLotteryFocus(0)",
+			clickHandler: "javascript:belleSendGiftMain.lottery()",
+			left: "hands_x0_y0_poemIPFocus_",
+			right: "hands_x0_y0_ruleBtnFocus_",
+			up: "disable",
+			down: "disable",
+			focusType: 7
+		}, {
+			id: "hands_x0_y0_ruleBtnFocus_",
+			clickHandler: "javascript:belleSendGiftMain.pageJump(0)",
+			left: "disable",
+			leftEvent:"javascript:belleSendGiftMain.leftEventFunc()",
+			right: "disable",
+			up: "disable",
+			down: "hands_x0_y0_prizeBtnFocus_",
+			focusType: 7
+		}, {
+			id: "hands_x0_y0_prizeBtnFocus_",
+			clickHandler: "javascript:belleSendGiftMain.pageJump(1)",
+			left: "disable",
+			leftEvent:"javascript:belleSendGiftMain.leftEventFunc()",
+			right: "disable",
+			up: "hands_x0_y0_ruleBtnFocus_",
+			down: "disable",
+			focusType: 7
+		}, {
+			id: "hands_x0_y0_songIPFocus_",
+			clickHandler: "javascript:belleSendGiftMain.jumpIP(1)",
+			left: "disable",
+			right: "hands_x0_y0_musicIPFocus_",
+			up: "disable",
+			down: "hands_x0_y0_superCarIPFocus_",
+			focusType: 7
+		}, {
+			id: "hands_x0_y0_musicIPFocus_",
+			clickHandler: "javascript:belleSendGiftMain.jumpIP(2)",
+			left: "hands_x0_y0_songIPFocus_",
+			right: "disable",
+			rightEvent:"javascript:belleSendGiftMain.rightEventFunc()",
+			up: "disable",
+			down: "hands_x0_y0_storyIPFocus_",
+			focusType: 7
+		}, {
+			id: "hands_x0_y0_superCarIPFocus_",
+			clickHandler: "javascript:belleSendGiftMain.jumpIP(3)",
+			left: "disable",
+			right: "hands_x0_y0_storyIPFocus_",
+			up: "hands_x0_y0_songIPFocus_",
+			down: "hands_x0_y0_wordIPFocus_",
+			focusType: 7
+		}, {
+			id: "hands_x0_y0_storyIPFocus_",
+			clickHandler: "javascript:belleSendGiftMain.jumpIP(4)",
+			left: "hands_x0_y0_superCarIPFocus_",
+			right: "disable",
+			rightEvent:"javascript:belleSendGiftMain.rightEventFunc()",
+			up: "hands_x0_y0_musicIPFocus_",
+			down: "hands_x0_y0_poemIPFocus_",
+			focusType: 7
+		}, {
+			id: "hands_x0_y0_wordIPFocus_",
+			clickHandler: "javascript:belleSendGiftMain.jumpIP(5)",
+			left: "disable",
+			right: "hands_x0_y0_poemIPFocus_",
+			up: "hands_x0_y0_superCarIPFocus_",
+			down: "disable",
+			focusType: 7
+		}, {
+			id: "hands_x0_y0_poemIPFocus_",
+			clickHandler: "javascript:belleSendGiftMain.jumpIP(6)",
+			left: "hands_x0_y0_wordIPFocus_",
+			right: "disable",
+			rightEvent:"javascript:belleSendGiftMain.rightEventFunc()",
+			up: "hands_x0_y0_storyIPFocus_",
+			down: "disable",
+			focusType: 7
+		},{
+			id: "hands_x0_y0_tipImgFocus_",
+			clickHandler: "javascript:backfunc()",
+			left: "disable",
+			right: "disable",
+			up: "disable",
+			down: "disable",
+			focusType: 7
+		}]
+		</script>
+	<script type="text/javascript" src="js/belleSendGiftMain.js?v=2020062904"></script>
+</body>
+
+</html>

@@ -1,0 +1,223 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+}
+#main{
+    position: relative;
+    left: 0px;
+    top: 0px;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: url(../img/main/mainBG.jpg) no-repeat;
+}
+#backBtn{
+    position: absolute;
+    left: 1150px;
+    top: 60px;
+    width: 54px;
+    height: 58px;
+}
+/* 焦点 */
+/* 规则 */
+#hands_x0_y0_mainBtnFocus0_{
+    position: absolute;
+    left: 182px;
+    top: 548px;
+    width: 233px;
+    height: 105px;
+}
+/* 开始游戏 */
+#hands_x0_y0_mainBtnFocus1_{
+    position: absolute;
+    left: 508px;;
+    top: 528px;
+    width: 297px;
+    height: 133px;
+    animation: startAni 1200ms alternate infinite;
+    -webkit-animation: startAni 1200ms alternate infinite;
+}
+
+@keyframes startAni {
+	0%,
+	100% {
+		transform: scale(1);
+		-webkit-transform: scale(1);
+		-ms-transform: scale(1);
+	}
+	50% {
+		transform: scale(0.95);
+		-webkit-transform: scale(0.95);
+		-ms-transform: scale(0.95);
+	}
+}
+
+@-webkit-keyframes startAni {
+    0%,
+    100%{
+        transform: scale(1);
+		-webkit-transform: scale(1);
+		-ms-transform: scale(1);
+    }
+    50%{
+        transform: scale(0.95);
+		-webkit-transform: scale(0.95);
+		-ms-transform: scale(0.95);
+    }
+
+}
+/* 排行榜 */
+#hands_x0_y0_mainBtnFocus2_{
+    position: absolute;
+    left: 882px;
+    top: 548px;
+    width: 233px;
+    height: 105px;
+}
+/* 返回 */
+#hands_x0_y0_mainBtnFocus3_{
+    position: absolute;
+    left: 1132px;
+    top: 42px;
+    width: 91px;
+    height: 94px;
+}
+/* 规则弹窗、排行榜弹窗 */
+#tanchaungBG{
+    position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 1280px;
+	height: 720px;
+    overflow: hidden;    
+}
+#tanchaungBG #tanchaungImg{ 
+    width: 100%;
+	height: 100%;
+}
+#hands_x0_y0_mainBtnFocus4_{
+    position: absolute;
+    left: 1093px;
+    top: 35px;
+    width: 91px;
+    height: 94px;
+}
+#telInput {
+    position: absolute;
+    left: 382px;
+    bottom: 168px;
+    font-size: 20px;
+    color: #fff;
+    width: 300px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;    
+}
+#hands_x0_y0_mainBtnFocus5_{
+    position: absolute;
+    left: 365px;
+    top: 495px;
+    width: 91px;
+    height: 94px;
+}
+#hands_x0_y0_mainBtnFocus6_{
+    position: absolute;
+    left: 690px;
+    top: 493px;
+    width: 91px;
+    height: 94px;
+}
+#hands_x0_y0_mainBtnFocus7_{
+    position: absolute;
+    left: 798px;
+    top: 493px;
+    width: 91px;
+    height: 94px;
+}
+#hands_x0_y0_mainBtnFocus8_{
+    position: absolute;
+    left: 1134px;
+    top: 42px;
+    width: 91px;
+    height: 94px;
+}
+
+/*弹窗*/
+#seeVideoTip{
+	position:absolute;
+	left:0px;
+	top:0px;
+	visibility:hidden;
+}
+#noChanceTip{
+	position:absolute;
+	left:0px;
+	top:0px;
+	visibility:hidden;
+}
+#hands_x0_y0_mainBtnFocus9_{
+	position: absolute;
+    left: 586px;
+    top: 424px; 
+	z-index: 1;
+}
+#hands_x0_y0_mainBtnFocus10_{
+	position: absolute;
+    left: 924px;
+    top: 130px;
+	z-index: 1;
+}
+#hands_x0_y0_mainBtnFocus11_{
+	position: absolute;
+    left: 586px;
+    top: 424px; 
+	z-index: 1;
+}
+/* 用户信息 */
+#userInfo {
+    position: absolute;
+    left: 400px;
+    bottom: 225px;
+    font-size: 20px;
+    color: #fff;
+}
+/* 用户排行 */
+#userRank{
+    position: absolute;
+    left: 900px;
+    bottom: 226px;
+    font-size: 20px;
+    color: #fff; 
+}
+/* 保存提示 */
+#savetips{
+    position: absolute;
+    left: 500px;
+    top: 560px;
+    color: #fff;
+    font-size: 20px;
+}
+/* 排行榜 */
+#rankList {
+    position: absolute;
+    left: 335px;
+    top: 230px;
+    width: 595px;
+    color: #FFFFFF;
+    font-size: 16px;
+}
+
+#rankList>li span:nth-child(1) {
+    float: left;
+    width: 50%;
+    text-align: left;
+}
+
+#rankList>li span:nth-child(2) {
+    float: left;
+    width: 50%;
+    text-align: right;
+}
+
+	

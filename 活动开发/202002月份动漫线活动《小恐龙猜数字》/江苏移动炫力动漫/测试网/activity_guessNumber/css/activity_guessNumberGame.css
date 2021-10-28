@@ -1,0 +1,386 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+}
+
+#main {
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    position: relative;
+    left: 0px;
+    top: 0px;
+    background: url(../img/game/bg.jpg) no-repeat;
+}
+
+#underground {
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    z-index: 2;
+}
+
+#teacher {
+    position: absolute;
+    left: 1050px;
+    top: 165px;
+    z-index: 2;
+}
+
+.dialogue {
+    position: absolute;
+    left: 950px;
+    top: 50px;
+    visibility: hidden;
+}
+
+.dialogue img {
+    width: 100%;
+    height: 100%;
+}
+
+
+/* 对话框数字 */
+
+#dialogueNumber {
+    position: absolute;
+    left: 80px;
+    top: 24px;
+    width: 80px;
+    height: 60px;
+    /* border: 1px solid red; */
+    text-align: center;
+    line-height: 60px;
+    font-size: 30px;
+    font-weight: bolder;
+}
+
+
+/* 恐龙学生 */
+
+.big {
+    position: absolute;
+    left: 20px;
+    top: 85px;
+    z-index: 2;
+}
+
+#hands_x0_y0_leftFocus0_ {
+    position: absolute;
+    left: 20px;
+    top: 85px;
+    z-index: 2;
+    animation: leftDinosaurAni 400ms alternate infinite;
+    -webkit-animation: leftDinosaurAni 400ms alternate infinite;
+}
+
+.middle1 {
+    position: absolute;
+    left: 320px;
+    top: 202px;
+    z-index: 2;
+}
+
+#hands_x0_y0_leftFocus1_ {
+    position: absolute;
+    left: 320px;
+    top: 202px;
+    z-index: 2;
+    animation: leftDinosaurAni 400ms alternate infinite;
+    -webkit-animation: leftDinosaurAni 400ms alternate infinite;
+}
+
+.middle2 {
+    position: absolute;
+    left: 405px;
+    top: 202px;
+    z-index: 2;
+}
+
+#hands_x0_y0_leftFocus2_ {
+    position: absolute;
+    left: 405px;
+    top: 202px;
+    z-index: 2;
+    animation: leftDinosaurAni 400ms alternate infinite;
+    -webkit-animation: leftDinosaurAni 400ms alternate infinite;
+}
+
+.small1 {
+    position: absolute;
+    left: 560px;
+    top: 240px;
+    z-index: 3;
+}
+
+#hands_x0_y0_leftFocus3_ {
+    position: absolute;
+    left: 560px;
+    top: 240px;
+    z-index: 2;
+    animation: leftDinosaurAni 400ms alternate infinite;
+    -webkit-animation: leftDinosaurAni 400ms alternate infinite;
+}
+
+.small2 {
+    position: absolute;
+    left: 635px;
+    top: 240px;
+    z-index: 2;
+}
+
+#hands_x0_y0_leftFocus4_ {
+    position: absolute;
+    left: 635px;
+    top: 240px;
+    z-index: 2;
+    animation: leftDinosaurAni 400ms alternate infinite;
+    -webkit-animation: leftDinosaurAni 400ms alternate infinite;
+}
+
+
+/* 返回按钮 */
+
+#backBtn {
+    position: absolute;
+    left: 1120px;
+    top: 660px;
+    z-index: 2;
+}
+
+#hands_x0_y0_backFocus_ {
+    position: absolute;
+    left: 1105px;
+    top: 640px;
+    z-index: 2;
+}
+
+#timeCount {
+    position: absolute;
+    left: 160px;
+    bottom: 35px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+    z-index: 2;
+}
+
+#totalScore {
+    position: absolute;
+    left: 310px;
+    bottom: 35px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+    z-index: 2;
+}
+
+
+/* 左侧恐龙动画 */
+
+@keyframes leftDinosaurAni {
+    0%,
+    100% {
+        transform: translateY(0px);
+        -webkit-transform: translateY(0px);
+        -ms-transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+        -webkit-transform: translateY(-10px);
+        -ms-transform: translateY(-10px);
+    }
+}
+
+@-webkit-keyframes leftDinosaurAni {
+    0%,
+    100% {
+        transform: translateY(0px);
+        -webkit-transform: translateY(0px);
+        -ms-transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+        -webkit-transform: translateY(-10px);
+        -ms-transform: translateY(-10px);
+    }
+}
+
+@-moz-keyframes leftDinosaurAni {
+    0%,
+    100% {
+        transform: translateY(0px);
+        -webkit-transform: translateY(0px);
+        -ms-transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+        -webkit-transform: translateY(-10px);
+        -ms-transform: translateY(-10px);
+    }
+}
+
+
+/* 跳进水中小恐龙动画 */
+
+
+/* 小恐龙 */
+
+.jumpSmallAni {
+    left: 820px;
+    top: 640px;
+    z-index: 0;
+    animation: jumpSmallAni 1000ms linear;
+    -webkit-animation: jumpSmallAni 1000ms linear;
+}
+
+@keyframes jumpSmallAni {
+    0% {
+        top: 200px;
+        left: 820px;
+    }
+    100% {
+        top: 640px;
+        left: 820px;
+    }
+}
+
+@-webkit-keyframes jumpSmallAni {
+    0% {
+        top: 200px;
+        left: 820px;
+    }
+    100% {
+        top: 640px;
+        left: 820px;
+    }
+}
+
+
+/* 中等恐龙 */
+
+.jumpMiddleAni {
+    left: 820px;
+    top: 600px;
+    z-index: 0;
+    animation: jumpMiddleAni 1000ms linear;
+    -webkit-animation: jumpMiddleAni 1000ms linear;
+}
+
+@keyframes jumpMiddleAni {
+    0% {
+        top: 200px;
+        left: 820px;
+    }
+    100% {
+        top: 600px;
+        left: 820px;
+    }
+}
+
+@-webkit-keyframes jumpMiddleAni {
+    0% {
+        top: 200px;
+        left: 820px;
+    }
+    100% {
+        top: 600px;
+        left: 820px;
+    }
+}
+
+
+/* 大恐龙 */
+
+.jumpBigAni {
+    left: 800px;
+    top: 520px;
+    z-index: 0;
+    animation: jumpBigAni 1000ms linear;
+    -webkit-animation: jumpBigAni 1000ms linear;
+}
+
+@keyframes jumpBigAni {
+    0% {
+        top: 200px;
+        left: 800px;
+    }
+    100% {
+        top: 520px;
+        left: 800px;
+    }
+}
+
+@-webkit-keyframes jumpBigAni {
+    0% {
+        top: 200px;
+        left: 800px;
+    }
+    100% {
+        top: 520px;
+        left: 800px;
+    }
+}
+
+
+/* 水位变化 */
+
+.waterAni {
+    transition: all 800ms;
+    -webkit-transition: all 800ms;
+    -moz-transition: all 800ms;
+}
+
+
+/* 对话框动画 */
+
+.dialogueAni {
+    animation: dialogueAni 1000ms;
+}
+
+@keyframes dialogueAni {
+    0% {
+        transform: scale(0);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+
+/* 弹窗 */
+
+#tanChuangBG {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: 3;
+}
+
+#tanChuangBG #tanchuangTip {
+    width: 100%;
+    height: 100%;
+}
+
+#hands_x0_y0_continueBtnFocus_,
+#hands_x0_y0_toOrderBtnFocus_,
+#hands_x0_y0_playGameBtnFocus_ {
+    position: absolute;
+    left: 750px;
+    top: 180px;
+}
+
+#totalScoreTip {
+    position: absolute;
+    left: 622px;
+    top: 445px;
+    font-size: 28px;
+    font-weight: bold;
+    width: 70px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    /* border: 1px solid red; */
+    color: #333;
+}

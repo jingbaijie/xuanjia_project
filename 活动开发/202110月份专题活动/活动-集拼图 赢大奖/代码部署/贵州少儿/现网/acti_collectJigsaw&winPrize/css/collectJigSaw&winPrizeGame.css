@@ -1,0 +1,170 @@
+/* 规则 */
+#ruleBtn, #hands_x0_y0_ruleBtnFocus_{
+    position: absolute;
+    left: 0px;
+    top: 30px;
+}
+/* 左侧卡通 */
+#leftCartoon{
+    position: absolute;
+    left: 170px;
+    top: 160px;
+}
+/* 碎片进度条 */
+#progressBG{
+    position: absolute;
+    width: 404px;
+    height: 35px;
+    left: 385px;
+    top: 516px;
+    background: url(../img/gamePage/progress/1.png) no-repeat;
+}
+#progressdynamic{
+   margin-top: 3px;
+   width: 200px;
+    height: 30px;
+    border-radius: 25px;
+}
+#progressText{
+    position: absolute;
+    left: 796px;
+    top: 520px;
+    font-size: 20px;
+    color: #ffffff;
+    width: 50px;
+    height: 24px;
+    text-align: center;
+}
+/* 我的奖品 */
+#myPrizeImg{
+    position: absolute;
+    left: 888px;
+    top: 72px;
+    background-repeat: no-repeat;    
+    width: 280px;
+    height: 277px;
+    background-size: 100% 100%;
+    z-index: 1;
+}
+#myPrizeCover{
+    margin-left: 25px;
+    margin-top: 9px;
+}
+#dialogue{
+    position: absolute;
+    left: 205px;
+    top: -20px;
+}
+#clueProgress{
+    position: absolute;
+    left: 0px;
+    bottom: 30px;
+    background: url(../img/gamePage/clueTip.png) no-repeat;
+    width: 247px;
+    height: 66px;
+}
+#clueProgressText{
+    color: #ffffff;
+    font-size: 22px;
+    margin-top: 20px;
+    margin-left: 155px;
+}
+/* 推荐片单 */
+#recommendSheet{
+    position: absolute;
+    left: 300px;
+    bottom: 38px;
+}
+#recommendSheet li{
+    float: left;
+    margin-left: 30px;
+}
+/* 推荐焦点 */
+#hands_x0_y0_sheet1Focus_{
+    position: absolute;
+    left: 312px;
+    bottom: 20px;
+}
+#hands_x0_y0_sheet2Focus_{
+    position: absolute;
+    left: 482px;
+    bottom: 20px;
+}
+#hands_x0_y0_sheet3Focus_{
+    position: absolute;
+    left: 652px;
+    bottom: 20px;
+}
+#hands_x0_y0_sheet4Focus_{
+    position: absolute;
+    left: 822px;
+    bottom: 20px;
+}
+/* 拼图区域 */
+#puzzleArea{
+    position: absolute;
+    left: 433px;
+    top: 145px;
+    width: 435px;
+    height: 350px;
+}
+#puzzleAreaImg{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+#puzzleAreaCover{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+#hands_x0_y0_myPrizeFocus_{
+    position: absolute;
+    left: 930px;
+    top: 65px;
+}
+/* 锦鲤卡 */
+#koiCard,
+#goodLuckCard,
+#toSheetTip,
+#stolen5Tip,
+#isGiveUpTip,
+#getClueTip,
+#pityTip,
+#noGetClue{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+#hands_x0_y0_koiCardFocus_,
+#hands_x0_y0_goodLuckCardFocus_{
+    position: absolute;
+    left: 540px;
+    top: 565px;
+}
+#hands_x0_y0_stolen5BtnFocus_{
+    position: absolute;
+    left: 540px;
+    top: 458px;
+}
+#hands_x0_y0_toSheetBtnFocus_,
+#hands_x0_y0_getClueBtnFocus_,
+#hands_x0_y0_pityTipBtnFocus_,
+#hands_x0_y0_noGetClueBtnFocus_{
+    position: absolute;
+    left: 540px;
+    top: 456px;
+}
+#hands_x0_y0_continueBtnFocus_{
+    position: absolute;
+    left: 428px;
+    top: 430px;
+}
+#hands_x0_y0_giveUpBtnFocus_{
+    position: absolute;
+    left: 625px;
+    top: 430px;
+}
+#telInputFocus{
+    width: 300px;
+}

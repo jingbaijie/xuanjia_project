@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name = "page-view-size" content = "1280*720">
+    <title>国庆七天乐连连看页</title>
+    <link rel="stylesheet" href="./css/7DayHappy.css">
+</head>
+<body>
+    <div class = "deleteBg withScreen">
+        <!--    奥特曼    -->
+        <div class = "aoteman"></div>
+        <!--    8个不同IP    -->
+        <div id = "dIpDom" class = "withScreen">
+            <img class = "ipImg" style="top: 245px;left: 130px;" src="./images/empty.png" alt="">
+            <img class = "ipImg" style="top: 245px;left: 335px;" src="./images/empty.png" alt="">
+            <img class = "ipImg" style="top: 245px;left: 540px;" src="./images/empty.png" alt="">
+            <img class = "ipImg" style="top: 245px;left: 745px;" src="./images/empty.png" alt="">
+            <img class = "ipImg" style="top: 420px;left: 30px;"  src="./images/empty.png" alt="">
+            <img class = "ipImg" style="top: 420px;left: 233px;" src="./images/empty.png" alt="">
+            <img class = "ipImg" style="top: 420px;left: 437px;" src="./images/empty.png" alt="">
+            <img class = "ipImg" style="top: 420px;left: 642px;" src="./images/empty.png" alt="">
+        </div>
+        <!--    8个蒙版    -->
+        <div id = "dGrayDom" class = "withScreen">
+            <img class = "ipImg" style="top: 245px;left: 130px;visibility: hidden;" src="./images/lianlian/gray.png" alt="">
+            <img class = "ipImg" style="top: 245px;left: 335px;visibility: hidden;" src="./images/lianlian/gray.png" alt="">
+            <img class = "ipImg" style="top: 245px;left: 540px;visibility: hidden;" src="./images/lianlian/gray.png" alt="">
+            <img class = "ipImg" style="top: 245px;left: 745px;visibility: hidden;" src="./images/lianlian/gray.png" alt="">
+            <img class = "ipImg" style="top: 420px;left: 30px;visibility: hidden;"  src="./images/lianlian/gray.png" alt="">
+            <img class = "ipImg" style="top: 420px;left: 233px;visibility: hidden;" src="./images/lianlian/gray.png" alt="">
+            <img class = "ipImg" style="top: 420px;left: 437px;visibility: hidden;" src="./images/lianlian/gray.png" alt="">
+            <img class = "ipImg" style="top: 420px;left: 642px;visibility: hidden;" src="./images/lianlian/gray.png" alt="">
+        </div>
+        <!--    8个消灭    -->
+        <div id = "dBoomDom" class = "withScreen">
+            <img class = "ipImg" style="top: 245px;left: 130px;visibility: hidden;" src="./images/empty.png" alt="">
+            <img class = "ipImg" style="top: 245px;left: 335px;visibility: hidden;" src="./images/empty.png" alt="">
+            <img class = "ipImg" style="top: 245px;left: 540px;visibility: hidden;" src="./images/empty.png" alt="">
+            <img class = "ipImg" style="top: 245px;left: 745px;visibility: hidden;" src="./images/empty.png" alt="">
+            <img class = "ipImg" style="top: 420px;left: 30px;visibility: hidden;"  src="./images/empty.png" alt="">
+            <img class = "ipImg" style="top: 420px;left: 233px;visibility: hidden;" src="./images/empty.png" alt="">
+            <img class = "ipImg" style="top: 420px;left: 437px;visibility: hidden;" src="./images/empty.png" alt="">
+            <img class = "ipImg" style="top: 420px;left: 642px;visibility: hidden;" src="./images/empty.png" alt="">
+        </div>
+        <!--    空焦点    -->
+        <div id = "hands_x0_y0_emptyFocus_" style = "width: 2px;height: 2px;position: absolute;top: 245px;left: 130px;">
+            <img id = "emptyFocus" src="./images/empty.png" style = "visibility: hidden;" alt="">
+        </div>
+        <!--    8个选中焦点    -->
+        <div id = "hands_x0_y0_dChoseFocus0_" style = "width: 292px;height: 292px;position: absolute;top: 245px;left: 130px;">
+            <img id = "dChoseFocus0" src="./images/lianlian/selected.png" style = "visibility: hidden;" alt="">
+        </div>
+        <div id = "hands_x0_y0_dChoseFocus1_" style = "width: 292px;height: 292px;position: absolute;top: 245px;left: 335px;">
+            <img id = "dChoseFocus1" src="./images/lianlian/selected.png" style = "visibility: hidden;" alt="">
+        </div>
+        <div id = "hands_x0_y0_dChoseFocus2_" style = "width: 292px;height: 292px;position: absolute;top: 245px;left: 540px;">
+            <img id = "dChoseFocus2" src="./images/lianlian/selected.png" style = "visibility: hidden;" alt="">
+        </div>
+        <div id = "hands_x0_y0_dChoseFocus3_" style = "width: 292px;height: 292px;position: absolute;top: 245px;left: 745px;">
+            <img id = "dChoseFocus3" src="./images/lianlian/selected.png" style = "visibility: hidden;" alt="">
+        </div>
+        <div id = "hands_x0_y0_dChoseFocus4_" style = "width: 292px;height: 292px;position: absolute;top: 420px;left: 30px;">
+            <img id = "dChoseFocus4" src="./images/lianlian/selected.png" style = "visibility: hidden;" alt="">
+        </div>
+        <div id = "hands_x0_y0_dChoseFocus5_" style = "width: 292px;height: 292px;position: absolute;top: 420px;left: 233px;">
+            <img id = "dChoseFocus5" src="./images/lianlian/selected.png" style = "visibility: hidden;" alt="">
+        </div>
+        <div id = "hands_x0_y0_dChoseFocus6_" style = "width: 292px;height: 292px;position: absolute;top: 420px;left: 437px;">
+            <img id = "dChoseFocus6" src="./images/lianlian/selected.png" style = "visibility: hidden;" alt="">
+        </div>
+        <div id = "hands_x0_y0_dChoseFocus7_" style = "width: 292px;height: 292px;position: absolute;top: 420px;left: 642px;">
+            <img id = "dChoseFocus7" src="./images/lianlian/selected.png" style = "visibility: hidden;" alt="">
+        </div>
+        <!--    弹框    -->
+        <div id = "conFirm" class = "withScreen" style = "visibility: hidden;">
+            <!--      弹窗背景图      -->
+            <img id = "conBg" src="./images/confirm/canChou.png" alt="">
+            <!--      弹窗确认焦点      -->
+            <img src="./images/confirm/sure.png" style = "width: 243px;height: 121px;position: absolute;top: 560px;left: 535px;visibility: hidden;" alt="">
+            <div id = "hands_x0_y0_conSureFocus_" style = "width: 243px;height: 121px;position: absolute;top: 560px;left: 535px;">
+                <img id = "conSureFocus" src="./images/confirm/selected.png" style = "visibility: hidden;" alt="">
+            </div>
+            <!--      弹窗去抽奖焦点      -->
+            <img src="./images/confirm/toChou.png" style = "width: 243px;height: 121px;position: absolute;top: 560px;left: 535px;" alt="">
+            <div id = "hands_x0_y0_conChouFocus_" style = "width: 243px;height: 121px;position: absolute;top: 560px;left: 535px;">
+                <img id = "conChouFocus" src="./images/confirm/selected.png" style = "visibility: hidden;" alt="">
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../../js/column.js"></script>
+<script src = "./js/actiComm.js"></script>
+<script>
+    var buttons = [
+        {
+            id: "hands_x0_y0_emptyFocus_",
+            clickHandler: "",
+            up: "disable",
+            down: "disable",
+            left: "disable",
+            right: "disable",
+            focusType: 7
+        },
+        {
+            id: "hands_x0_y0_dChoseFocus0_",
+            clickHandler: "javascript: deleteObj.choseClick(0)",
+            up: "disable",
+            down: "hands_x0_y0_dChoseFocus4_",
+            left: "disable",
+            right: "hands_x0_y0_dChoseFocus1_",
+            focusType: 7
+        },{
+            id: "hands_x0_y0_dChoseFocus1_",
+            clickHandler: "javascript: deleteObj.choseClick(1)",
+            up: "disable",
+            down: "hands_x0_y0_dChoseFocus5_",
+            left: "hands_x0_y0_dChoseFocus0_",
+            right: "hands_x0_y0_dChoseFocus2_",
+            focusType: 7
+        },{
+            id: "hands_x0_y0_dChoseFocus2_",
+            clickHandler: "javascript: deleteObj.choseClick(2)",
+            up: "disable",
+            down: "hands_x0_y0_dChoseFocus6_",
+            left: "hands_x0_y0_dChoseFocus1_",
+            right: "hands_x0_y0_dChoseFocus3_",
+            focusType: 7
+        },{
+            id: "hands_x0_y0_dChoseFocus3_",
+            clickHandler: "javascript: deleteObj.choseClick(3)",
+            up: "disable",
+            down: "hands_x0_y0_dChoseFocus7_",
+            left: "hands_x0_y0_dChoseFocus2_",
+            right: "disable",
+            focusType: 7
+        },{
+            id: "hands_x0_y0_dChoseFocus4_",
+            clickHandler: "javascript: deleteObj.choseClick(4)",
+            up: "hands_x0_y0_dChoseFocus0_",
+            down: "disable",
+            left: "disable",
+            right: "hands_x0_y0_dChoseFocus5_",
+            focusType: 7
+        },{
+            id: "hands_x0_y0_dChoseFocus5_",
+            clickHandler: "javascript: deleteObj.choseClick(5)",
+            up: "hands_x0_y0_dChoseFocus1_",
+            down: "disable",
+            left: "hands_x0_y0_dChoseFocus4_",
+            right: "hands_x0_y0_dChoseFocus6_",
+            focusType: 7
+        },{
+            id: "hands_x0_y0_dChoseFocus6_",
+            clickHandler: "javascript: deleteObj.choseClick(6)",
+            up: "hands_x0_y0_dChoseFocus2_",
+            down: "disable",
+            left: "hands_x0_y0_dChoseFocus5_",
+            right: "hands_x0_y0_dChoseFocus7_",
+            focusType: 7
+        },{
+            id: "hands_x0_y0_dChoseFocus7_",
+            clickHandler: "javascript: deleteObj.choseClick(7)",
+            up: "hands_x0_y0_dChoseFocus3_",
+            down: "disable",
+            left: "hands_x0_y0_dChoseFocus6_",
+            right: "disable",
+            focusType: 7
+        },{
+            id: "hands_x0_y0_conChouFocus_",
+            clickHandler: "javascript: hideConfirm()",
+            up: "disable",
+            down: "disable",
+            left: "disable",
+            right: "disable",
+            focusType: 7
+        }
+    ];
+    var deleteObj = {
+        //全部被清除
+        allClear: false,
+        //销毁IP定时器
+        desInter: null,
+        //定时器执行次数
+        desInterFlag: 0,
+        //上一个被选中的IP
+        preIp: null,
+        //销毁前的选中焦点
+        preFocus: "hands_x0_y0_dChoseFocus0_",
+        //空图片地址
+        emptyPng: "./images/empty.png",
+        //被选择的IP
+        IpDoms: document.getElementById("dIpDom").getElementsByTagName("img"),
+        //灰色蒙版
+        grayDom: document.getElementById("dGrayDom").getElementsByTagName("img"),
+        //消除动画
+        boomDom: document.getElementById("dBoomDom").getElementsByTagName("img"),
+        //存储IP位置信息
+        ipArr: [],
+        //已被选择的IP数量，上限为2
+        choseNums: 0,
+        /**
+         *重新打乱IP
+         */
+        reSetIp: function(){
+            if(this.ipArr.length <= 0){
+                for(var i = 0; i < this.IpDoms.length; i++){
+                    this.ipArr.push({ipFlag:null,choosed: false,becleared: false});
+                }
+            }
+            var spliceArr = [0,1,2,3,0,1,2,3];
+            var spliceTarget = 0;
+            for(var i = 0; i < this.ipArr.length; i++){
+                spliceTarget = Math.floor(Math.random()*spliceArr.length);
+                this.ipArr[i].ipFlag = spliceArr[spliceTarget];
+                spliceArr.splice(spliceTarget,1);
+                this.IpDoms[i].src = "./images/lianlian/IP/"+ this.ipArr[i].ipFlag +".png";
+                this.ipArr[i].choosed = false;
+                this.ipArr[i].becleared = false;
+            }
+        },
+        /**
+         *IP选择点击事件
+         * @param ii 第几个焦点（代表选中的第几个IP）
+         */
+        choseClick: function(ii){
+            var _this = this;
+            if(!this.ipArr[ii].becleared && !this.ipArr[ii].choosed && this.choseNums < 2){
+                this.ipArr[ii].choosed = true;
+                this.grayDom[ii].style.visibility = "visible";
+                this.choseNums++;
+                if(this.choseNums === 2){
+                    this.preFocus = curFocus.FocusID;
+                    actiObj.changeFocus("hands_x0_y0_emptyFocus_");
+                    if(this.ipArr[this.preIp].choosed && this.ipArr[this.preIp].ipFlag === this.ipArr[ii].ipFlag){
+                        this.ipArr[this.preIp].choosed = false;
+                        this.ipArr[this.preIp].becleared = true;
+                        this.ipArr[this.preIp].ipFlag = null;
+                        this.ipArr[ii].choosed = false;
+                        this.ipArr[ii].becleared = true;
+                        this.ipArr[ii].ipFlag = null;
+                        this.destroyIp(this.preIp,ii);
+                    }else{
+                        setTimeout(function(){
+                            _this.ipArr[_this.preIp].choosed = false;
+                            _this.ipArr[ii].choosed = false;
+                            _this.grayDom[_this.preIp].style.visibility = "hidden";
+                            _this.grayDom[ii].style.visibility = "hidden";
+                            _this.choseNums = 0;
+                            actiObj.changeFocus(_this.preFocus);
+                        },1000);
+                    }
+                }else{
+                    this.preIp = ii;
+                    this.ipArr[this.preIp].choosed = true;
+                }
+            }
+        },
+        /**
+         * 清除两个相同的已选中的IP
+         * @param num1 ip1下标
+         * @param num2 ip2下标
+         */
+        destroyIp: function(num1,num2){
+            var _this = this;
+            this.boomDom[num1].style.visibility = "visible";
+            this.boomDom[num2].style.visibility = "visible";
+            this.desInterFlag = 0;
+            this.desInter = setInterval(function(){
+                _this.boomDom[num1].src = "./images/lianlian/boom/"+ _this.desInterFlag +".png";
+                _this.boomDom[num2].src = "./images/lianlian/boom/"+ _this.desInterFlag +".png";
+                _this.desInterFlag++;
+                if(_this.desInterFlag > 4){
+                    _this.IpDoms[num1].src = _this.emptyPng;
+                    _this.IpDoms[num2].src = _this.emptyPng;
+                    _this.boomDom[num1].src = _this.emptyPng;
+                    _this.boomDom[num2].src = _this.emptyPng;
+                    _this.boomDom[num1].style.visibility = "hidden";
+                    _this.boomDom[num2].style.visibility = "hidden";
+                    _this.allClear = true;
+                    for(var i = 0; i < _this.ipArr.length; i++){
+                        if(!_this.ipArr[i].becleared){
+                            _this.allClear = false;
+                        }
+                    }
+                    if(_this.allClear){
+                        _this.gameOver();
+                    }else{
+                        actiObj.changeFocus(_this.preFocus);
+                    }
+                    _this.choseNums = 0;
+                    clearInterval(_this.desInter);
+                }
+            },200);
+        },
+        /**
+         * 游戏结束弹出弹框
+         */
+        gameOver: function(){
+            document.getElementById("conFirm").style.visibility = "visible";
+            actiObj.changeFocus("hands_x0_y0_conChouFocus_");
+        }
+    }
+    //隐藏弹框并进入抽奖页
+    function hideConfirm(){
+        actiObj.toJumpUrl("./acti7DayHappyLuckDraw.html")
+    }
+    //初始化焦点
+    function getActiFocus(){
+        focusInit();
+        curFocus.defaultBlur();
+        curFocus = getFocusModel6("hands_x0_y0_dChoseFocus0_");
+        curFocus.defaultFocus();
+
+    }
+    //重置IP并初始化焦点
+    function start(){
+        deleteObj.reSetIp();
+        getActiFocus();
+    }
+    start()
+    function backfunc(){
+        actiObj.toJumpUrl("./acti7DayHappyMain.html");
+    }
+</script>
+</html>

@@ -1,0 +1,633 @@
+* {
+	margin: 0rem;
+	padding: 0rem;
+	list-style: none;
+	text-decoration: none;	
+}
+
+html {
+	width: 100%;
+	height: 100%;
+}
+
+body {
+	width: 100%;
+	height: 100%;
+	background: url(../img/signUpPage/pureBG@3x.png) no-repeat;
+	background-size: 100% 100%;
+	line-height: normal;
+	overflow: hidden;
+	background-attachment: fixed;
+}
+
+.signUpBG {
+	width: 100%;
+	height: 100%;
+	position: relative;
+	padding-top: 0.3rem;
+	box-sizing: border-box;
+}
+
+.headPic {
+	width: 6.6933rem;
+	height: 4rem;
+	background: url(../img/mainPage/bottomPic@3x.png) no-repeat;
+	background-size: 100% 100%;
+	margin: 0rem auto;
+	position: relative;
+}
+
+.textAreaBG {
+	width: 9.0666rem;
+	height: 282%;
+	background: url(../img/signUpPage/signUpText@3x.png) no-repeat;
+	background-size: 100% 100%;
+	position: absolute;
+	top: 3rem;
+	left: calc(50% - 4.42rem);
+}
+
+.textAreaBG>.title {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 0.64rem;
+	font-family: "微软雅黑";
+	font-weight: bold;
+	color: #32247c;
+	/*background-image: linear-gradient(to bottom, #32247c, #7666c9);
+	background-image: -webkit-linear-gradient(to bottom, #32247c, #7666c9);*/
+	/*必需加前缀 -webkit- 才支持这个text值 */
+	/*background-clip: text;
+	-webkit-background-clip: text;*/
+	/*text-fill-color会覆盖color所定义的字体颜色： */
+	/*-webkit-text-fill-color: transparent;*/
+	margin-top: 1.5rem;
+}
+
+.solid_dashed {
+	width: 100%;
+	padding-left: 1.1333rem;
+	padding-right: 1.3rem;
+	box-sizing: border-box;
+	margin-top: 0.1rem;
+}
+
+.solid_dashed .solid_line {
+	display: block;
+	width: 100%;
+	height: 0rem;
+	border-bottom: 3px solid #4c3d9a;
+}
+
+.solid_dashed .dashed_line {
+	display: block;
+	width: 100%;
+	height: 0rem;
+	border-bottom: 2px dashed #4c3d9a;
+	margin-bottom: 0.08rem;
+}
+
+
+/*表单*/
+
+.signUpForm {
+	padding-left: 1.1333rem;
+	box-sizing: border-box;
+	margin-top: 0.1333rem;
+}
+
+.signUpForm>li {
+	height: 0.6666rem;
+	font-size: 0.4266rem;
+	font-family: "微软雅黑";
+	font-weight: 500;
+	color: #4f419c;
+	display: flex;
+	align-items: center;
+	margin-bottom: 0.2666rem;
+}
+
+.picShow {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.picShow>img {
+	width: 2rem;
+	height: 1.1rem;
+	margin-right: 0.2rem;
+}
+
+.signUpForm input {
+	border: none;
+	background: #d9d9d9;
+	border-radius: 0.0666rem;
+}
+
+.formBox {
+	height: 100%;
+	width: 80%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.formBox input {
+	font-size: 0.4rem;
+	height: 100%;
+	width: 71%;
+	color: #333;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+select {
+	color: #333;
+	height: 100%;
+	width: 71%;
+	background: #d9d9d9;
+	/* 清除默认边框 */
+	border: 0;
+	outline: none;
+	border-radius: 0.0666rem
+}
+
+option {
+	color: #333;
+	font-size: 0.4rem;
+}
+
+textarea {
+	width: 71%;
+	background: #d9d9d9;
+	/*清除默认边框*/
+	border: 0;
+	outline: none;
+	border-radius: 0.0666rem
+}
+
+
+/*placeholder兼容写法*/
+
+::-webkit-input-placeholder {
+	color: #999;
+}
+
+.photoTextBox {
+	display: flex;
+	flex-direction: column;
+}
+
+.photoTextBox span:nth-child(2) {
+	font-size: 0.2666rem;
+}
+
+.signUpForm .touxiang,
+.signUpForm .artPhoto {
+	height: 1.0666rem!important;
+}
+
+.hobbies textarea {
+	font-size: 0.4rem;
+	color: #333;
+}
+
+
+/*省市二级联动样式修改*/
+
+.weui-picker-modal {
+	height: 8rem;
+	touch-action:none;
+}
+
+.toolbar {
+	font-size: 0.4rem;
+}
+
+.toolbar .toolbar-inner {
+	height: 1rem;
+}
+
+.toolbar .picker-button {
+	height: 1rem;
+	line-height: 1rem;
+	color: #ffa374;
+}
+
+.toolbar .title {
+	font-size: 0.4rem;
+	line-height: 1rem;
+}
+
+.weui-picker-modal .picker-items {
+	font-size: 0.4rem;
+	top: 0px;
+}
+
+.weui-picker-modal .picker-modal-inner {
+	height: 7rem;
+}
+
+.weui-picker-modal .picker-items {
+	text-align: center;
+}
+
+.uploadTouxiang-box,
+.uploadArtPhoto-box {
+	width: 75%;
+	height: 0.9733rem;
+	display: flex;
+}
+
+.uploadTouxiang-box>li,
+.uploadArtPhoto-box>li {
+	width: 1.1466rem;
+	height: 100%;
+	position: relative;
+	margin-right: 0.16rem;
+}
+
+.uploadTouxiang-box #uploadTouxiang,
+.uploadArtPhoto-box #uploadArtPhoto {
+	width: 100%;
+	height: 100%;
+	border-radius: 0.0666rem;
+}
+
+.deleteHead,
+.deleteBtn {
+	position: absolute;
+	right: -0.1rem;
+	top: -0.1rem;
+	width: 0.4rem;
+	height: 0.4rem;
+}
+
+.touxiang .formBox,
+.artPhoto .formBox {
+	width: 88%;
+}
+
+
+/*更改weui样式*/
+
+.weui_uploader_input {
+	opacity: 0;
+}
+
+.weui_uploader_input_wrp {
+	width: 1.1466rem;
+	height: 1.0666rem;
+	background: url(../img/signUpPage/camera@3x.png) no-repeat;
+	background-size: 100% 100%;
+	border: none;
+	border-radius: 0.0666rem;
+}
+
+.weui_uploader_input_wrp input {
+	width: 100%;
+	height: 100%;
+}
+
+.weui_uploader_input_wrp:before {
+	width: 0rem;
+	height: 0rem;
+}
+
+.weui_uploader_input_wrp:after {
+	width: 0rem;
+	height: 0rem;
+}
+
+.weui_uploader_file {
+	border-radius: 0.0666rem;
+}
+
+
+/*省份禁止操作*/
+
+.col-province {
+	pointer-events: none;
+}
+
+
+/*报名页按钮*/
+
+.bottomBtn {
+	width: 100%;
+	height: 0.8533rem;
+	position: absolute;
+	bottom: -1rem;
+	display: flex;
+	justify-content: center;
+}
+
+#saveBtn,
+#backBtn {
+	background: #4b84ed;
+	/*background: #DDDDDD;*/
+	width: 6.1333rem;
+	height: 100%;
+	border-radius: 0.0666rem;
+	color: #fff;
+	text-align: center;
+	line-height: 0.8533rem;
+	font-size: 0.4533rem;
+}
+
+
+/*弹窗*/
+
+.confirmTanBG {
+	width: 100%;
+	height: 100%;
+	background: url(../img/tips/opacityBg.png) no-repeat;
+	background-size: 100% 100%;
+	position: absolute;
+	left: 0rem;
+	top: 0rem;
+}
+
+.tipPic {
+	position: absolute;
+	left: calc(50% - 4rem);
+	top: calc(50% - 3.6rem);
+	width: 8rem;
+	height: 7.0933rem;
+	background: url(../img/tips/tip.png) no-repeat;
+	background-size: 100% 100%;
+}
+
+.tipText {
+	width: 100%;
+	height: 2.2rem;
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	position: absolute;
+	left: 0rem;
+	top: 2.8rem;
+	color: #616161;
+	font-size: 0.4266rem;
+}
+
+.tipText span:nth-child(1) {
+	font-size: 0.56rem;
+	color: #333333;
+	margin-bottom: 0.4rem;
+}
+
+.tipBtn {
+	position: absolute;
+	left: calc(50% - 4rem);
+	top: 6.1rem;
+	display: flex;
+	justify-content: space-around;
+	font-size: 0.4533rem;
+	width: 8rem;
+	height: 1.3333rem;
+	color: #333;
+}
+
+.tipBtn>li {
+	width: 50%;
+	text-align: center;
+	cursor: pointer;
+	-webkit-tap-highlight-color: transparent;
+}
+
+.tipBtn #confirmSave {
+	color: #ff4e00;
+}
+
+
+/*协议弹窗*/
+
+.agreeMentTipBG {
+	width: 100%;
+	height: 100%;
+	background: url(../img/tips/opacityBg.png) no-repeat;
+	background-size: 100% 100%;
+	position: absolute;
+	left: 0rem;
+	top: 0rem;
+	padding: 0.5333rem;
+	box-sizing: border-box;
+}
+
+.whiteBG {
+	width: 100%;
+	height: 100%;
+	background: #FFFFFF;
+	border-radius: 0.0666rem;
+	padding: 0.2rem 0.2666rem;
+	box-sizing: border-box;
+	font-family: "微软雅黑";
+}
+
+.whiteBG p {
+	font-size: 0.32rem;
+	color: #1e1e1e;
+}
+
+.whiteBG>.title {
+	font-size: 0.4266rem;
+	text-align: center;
+	margin-bottom: 0.2rem;
+}
+
+.paragraph {
+	width: 100%;
+	height: 80%;
+	overflow: scroll;
+	box-sizing: border-box;
+}
+
+.paragraph>p {
+	margin-bottom: 0.0666rem;
+}
+
+.paragraph>p:nth-child(1) {
+	margin-bottom: 0.1333rem;
+}
+
+.paragraph>p:nth-last-child {
+	margin-bottom: 0rem;
+}
+
+.isAgreeBtn {
+	width: 100%;
+	height: 1.0666rem;
+	display: flex;
+	justify-content: space-around;
+	margin-top: 0.2666rem;
+}
+
+.isAgreeBtn img {
+	width: 3.3333rem;
+}
+
+.logo {
+	position: absolute;
+	left: 0.3rem;
+	top: 0.2rem;
+	width: 2.16rem;
+	height: 0.8rem;
+}
+
+
+/*个人档案*/
+
+.personalFiles {
+	width: 100%;
+	height: 100%;
+	position: relative;
+	padding-top: 1.3rem;
+	box-sizing: border-box;
+}
+
+.personalFilesInfo {
+	width: 9.0666rem;
+	height: 13.2rem;
+	background: url(../img/personalFiles/textArea@3x.png) no-repeat;
+	background-size: 100% 100%;
+	margin: 0px auto;
+	padding-top: 0.5rem;
+	box-sizing: border-box;
+}
+
+.personalFiles_backBtn {
+	width: 100%;
+	height: 0.8533rem;
+	display: flex;
+	justify-content: center;
+	margin-top: 0.2rem;
+}
+
+.personalFilesInfo>.title {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 0.64rem;
+	font-family: "微软雅黑";
+	font-weight: bold;
+	color: #32247c;
+}
+
+.presonalFiles_list {
+	margin-top: 0.6rem;
+	color: #4c3d9a;
+	padding-left: 1.2rem;
+	box-sizing: border-box;
+}
+
+.presonalFiles_list>li {
+	display: flex;
+	font-size: 0.4rem;
+	margin-bottom: 0.2rem;
+	align-items: center;
+}
+
+.presonalFiles_list>li>span:nth-child(1) {
+	font-weight: 600;
+	margin-right: 0.2rem;
+}
+
+.canvass_voteBtn {
+	display: flex;
+	justify-content: space-between;
+	padding-left: 0.8rem;
+	padding-right: 1rem;
+	box-sizing: border-box;
+}
+
+.canvass_voteBtn>li {
+	width: 3.2rem;
+	height: 0.8rem;
+}
+
+.canvass_voteBtn>li img {
+	width: 100%;
+	height: 100%;
+}
+
+.voteNumInfo {
+	display: flex;
+	justify-content: flex-end;
+	padding-right: 1rem;
+	margin-top: 0.1rem;
+	margin-bottom: 0.1rem;
+	box-sizing: border-box;
+}
+
+.voteNumInfo>li:nth-child(1) {
+	margin-right: 0.5rem;
+}
+
+.presonalFiles_picShow {
+	display: flex;
+	flex-flow: wrap;
+	justify-content: space-between;
+	padding-left: 1rem;
+	padding-right: 1rem;
+	box-sizing: border-box;
+}
+
+.presonalFiles_picShow>li {
+	width: 3.4rem;
+	height: 1.85rem;
+	border-radius: 0.1066rem;
+	margin-bottom: 0.12rem;
+}
+
+.presonalFiles_picShow>li img {
+	width: 100%;
+	height: 100%;
+}
+
+
+/*iphone6/7/8 plus适配*/
+
+@media screen and (min-device-width: 414px) and (device-height: 736px) {
+	.headPic {
+		height: 3.2rem;
+	}
+	.textAreaBG {
+		height: 350%;
+		top: 2.25rem;
+	}
+	.signUpForm>li {
+		margin-bottom: 0.2rem;
+	}
+	.formBox {
+		width: 81%;
+	}
+}
+
+
+/*iphoneX适配*/
+
+@media screen and (min-device-width: 375px) and (device-height: 812px) {
+	.textAreaBG {
+		height: 285%;
+	}
+}
+
+/*iphone11适配*/
+@media screen and (min-device-width: 414px) and (device-height: 896px) {
+	.textAreaBG {
+		height: 288%;
+	}
+}
+
+
+/*pixel2适配*/
+
+@media screen and (min-device-width: 411px) and (device-height: 731px) {}
+
+
+/*pixel2 XL适配*/
+
+@media screen and (min-device-width: 411px) and (device-height: 823px) {}

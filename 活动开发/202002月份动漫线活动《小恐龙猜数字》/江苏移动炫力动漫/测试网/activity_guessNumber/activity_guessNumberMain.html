@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>小恐龙猜数字首页</title>
+		<meta name="page-view-size" content="1280*720">
+		<link rel="stylesheet" href="css/activity_guessNumberMain.css?v=2020020202">
+	</head>
+
+	<body>
+		<div id="main">
+			<!-- 背景图片 -->
+			<img src="img/main/bg1.jpg" alt="" id="mainBG">
+			<!-- 返回按钮 -->
+			<img src="img/main/back.png" alt="" id="backBtn">
+			<div id="hands_x0_y0_backBtnFocus_">
+				<img src="img/main/backFocus.png" alt="" id="backBtnFocus" style="visibility: hidden;">
+			</div>
+			<!-- 排行榜按钮 -->
+			<img src="img/main/rankBtn.png" alt="" id="rankBtn">
+			<div id="hands_x0_y0_rankBtnFocus_">
+				<img src="img/main/choose.png" alt="" id="rankBtnFocus" style="visibility: hidden;">
+			</div>
+			<!-- 规则按钮 -->
+			<img src="img/main/rule.png" alt="" id="ruleBtn">
+			<div id="hands_x0_y0_ruleBtnFocus_">
+				<img src="img/main/choose.png" alt="" id="ruleBtnFocus" style="visibility: hidden;">
+			</div>
+			<!-- 开始按钮 -->
+			<img src="img/main/start1.png"  alt="" id="startBtn">
+			<div id="hands_x0_y0_startBtnFocus_">
+				<img src="img/main/satrtFocus.png" alt="" id="startBtnFocus" style="visibility: hidden;">
+			</div>
+			<!-- 规则页 -->
+			<div id="rulePageBG">
+				<img src="img/rule.png" alt="" id="rulePage">
+				<img src="img/main/back.png" alt="" id="ruleBackBtn">
+				<div id="hands_x0_y0_ruleBackBtnFocus_">
+					<img src="img/main/backFocus.png" alt="" id="ruleBackBtnFocus" style="visibility: hidden;">
+				</div>
+			</div>
+			<!-- 排行榜页 -->
+			<div id="rankPageBG">
+				<img src="img/rankPage.png" alt="" id="rankPage">
+				<!-- 输入框 -->
+				<div id="phoneInput"></div>
+				<div id="hands_x0_y0_inputFocus_">
+					<img src="img/inputFocus.png" alt="" id="inputFocus" style="visibility: hidden;">
+				</div>
+				<!-- 保存 -->
+				<div id="hands_x0_y0_saveFocus_">
+					<img src="img/saveFocus.png" alt="" id="saveFocus" style="visibility: hidden;">
+				</div>
+				<!-- 保存成功提示 -->
+				<div id="saveTip"></div>
+				<!-- 清除 -->
+				<div id="hands_x0_y0_emptyFocus_">
+					<img src="img/saveFocus.png" alt="" id="emptyFocus" style="visibility: hidden;">
+				</div>
+				<!-- 返回 -->
+				<img src="img/main/back.png" alt="" id="rankBackBtn">
+				<div id="hands_x0_y0_rankBackBtnFocus_">
+					<img src="img/main/backFocus.png" alt="" id="rankBackBtnFocus" style="visibility: hidden;">
+				</div>
+				<!-- 当前积分 -->
+				<div id="currentScore">0</div>
+				<!-- 当前排名 -->
+				<div id="currentRank">11</div>
+				<!-- 排行榜名单 -->
+				<div id="nameListOuter">
+					<ul id="nameListInner">
+						<li><span>66</span><span>120</span><span>18051987710</span></li>						
+					</ul>
+				</div>
+			</div>
+			<!--弹窗-->
+			<div id="tanChuangBG" style="visibility: hidden;">
+				<img src="img/empty.png" id="tanchuangTip" />
+				<!--没有机会玩游戏按钮-->
+				<div id="hands_x0_y0_playGameBtnFocus_">
+					<img src="img/playFocus.png" alt="" id="playGameBtnFocus" style="visibility: hidden;">
+				</div>
+				<!--试玩结束去订购按钮-->
+				<div id="hands_x0_y0_toOrderBtnFocus_">
+					<img src="img/playFocus.png" alt="" id="toOrderBtnFocus" style="visibility: hidden;">
+				</div>
+			</div>
+		</div>
+		<!-- 引入公共js -->
+		<script type="text/javascript" src="../../../js/column.js"></script>
+		<script type="text/javascript" src="./js/commonJs/actiComm.js?v=20200202"></script>
+		<!--引入公共js结束  -->		
+		<script type="text/javascript">
+			//焦点数组
+			var buttons = [{
+				id: "hands_x0_y0_startBtnFocus_",
+				clickHandler: "javascript:GuessMainSp.btnJump(0)",
+				left: "hands_x0_y0_ruleBtnFocus_",
+				right: "hands_x0_y0_backBtnFocus_",
+				up: "hands_x0_y0_ruleBtnFocus_",
+				down: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_ruleBtnFocus_",
+				clickHandler: "javascript:GuessMainSp.btnJump(1)",
+				left: "disable",
+				right: "hands_x0_y0_startBtnFocus_",
+				up: "hands_x0_y0_rankBtnFocus_",
+				down: "hands_x0_y0_startBtnFocus_",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_rankBtnFocus_",
+				clickHandler: "javascript:GuessMainSp.btnJump(2)",
+				left: "disable",
+				right: "hands_x0_y0_startBtnFocus_",
+				up: "disable",
+				down: "hands_x0_y0_ruleBtnFocus_",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_backBtnFocus_",
+				clickHandler: "javascript:GuessMainSp.btnJump(3)",
+				left: "hands_x0_y0_startBtnFocus_",
+				right: "disable",
+				up: "disable",
+				down: "hands_x0_y0_startBtnFocus_",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_ruleBackBtnFocus_",
+				clickHandler: "javascript:backfunc()",
+				left: "disable",
+				right: "disable",
+				up: "disable",
+				down: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_inputFocus_",
+				otherFocusEvent:"javascript:GuessMainSp.onFocus(1)",
+				otherBlurEvent:"javascript:GuessMainSp.onFocus(0)",
+				left: "disable",
+				right: "hands_x0_y0_saveFocus_",
+				up: "hands_x0_y0_rankBackBtnFocus_",
+				down: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_saveFocus_",
+				clickHandler: "javascript:GuessMainSp.saveFunc()",
+				otherBlurEvent: 'javascript:GuessMainSp.saveBlur()',
+				left: "hands_x0_y0_inputFocus_",
+				right: "hands_x0_y0_emptyFocus_",
+				up: "hands_x0_y0_rankBackBtnFocus_",
+				down: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_emptyFocus_",
+				clickHandler: "javascript:GuessMainSp.emptyFunc()",
+				left: "hands_x0_y0_saveFocus_",
+				right: "disable",
+				up: "hands_x0_y0_rankBackBtnFocus_",
+				down: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_rankBackBtnFocus_",
+				clickHandler: "javascript:backfunc()",
+				left: "hands_x0_y0_inputFocus_",
+				right: "disable",
+				up: "disable",
+				down: "hands_x0_y0_inputFocus_",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_toOrderBtnFocus_",
+				clickHandler: "javascript:GuessMainSp.toOrder()",
+				left: "disable",
+				right: "disable",
+				up: "disable",
+				down: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_playGameBtnFocus_",
+				clickHandler: "javascript:GuessMainSp.playGame()",
+				left: "disable",
+				right: "disable",
+				up: "disable",
+				down: "disable",
+				focusType: 7
+			}]			
+		</script>
+		<script src="js/activity_guessNumberMain.js?v=2020020202"></script>
+	</body>
+
+</html>

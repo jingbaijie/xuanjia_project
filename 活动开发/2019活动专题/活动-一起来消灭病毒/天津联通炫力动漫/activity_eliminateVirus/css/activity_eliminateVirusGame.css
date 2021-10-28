@@ -1,0 +1,389 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+}
+
+#main {
+    position: relative;
+    left: 0px;
+    top: 0px;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: url(../img/game/gameBG.jpg) no-repeat;
+}
+
+
+/* 返回 */
+
+#backBtn {
+    position: absolute;
+    left: 1110px;
+    top: 15px;
+}
+
+#hands_x0_y0_backBtnFocus_ {
+    position: absolute;
+    left: 1110px;
+    top: 15px;
+}
+
+#shooter {
+    position: absolute;
+    left: 940px;
+    top: 310px;
+}
+
+
+/* 计分 */
+
+#score {
+    position: absolute;
+    left: 520px;
+    top: 15px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #fff;
+    width: 100px;
+    height: 50px;
+    line-height: 50px;
+    /* border: 1px solid red; */
+    text-align: center;
+}
+
+
+/* 病毒 */
+
+.virus1 {
+    position: absolute;
+    left: 90px;
+    top: 90px;
+    animation: virusAni1 400ms alternate infinite;
+    -webkit-animation: virusAni1 400ms alternate infinite;
+}
+
+.virus2 {
+    position: absolute;
+    left: 180px;
+    top: 90px;
+    /* animation: virusAni2 400ms alternate infinite; */
+}
+
+.virus3 {
+    position: absolute;
+    left: 155px;
+    top: 105px;
+    /* animation: virusAni1 400ms alternate infinite; */
+}
+
+.virus4 {
+    position: absolute;
+    left: 260px;
+    top: 90px;
+    /* animation: virusAni2 400ms alternate infinite; */
+}
+
+#virus5 {
+    position: absolute;
+    left: 365px;
+    top: 75px;
+    animation: virusAni1 400ms alternate infinite;
+    -webkit-animation:virusAni1 400ms alternate infinite;
+}
+
+#virus6 {
+    position: absolute;
+    left: 330px;
+    top: 155px;
+    /* animation: virusAni2 400ms alternate infinite; */
+}
+
+#virus7 {
+    position: absolute;
+    left: 395px;
+    top: 170px;
+    /* animation: virusAni2 400ms alternate infinite; */
+}
+
+#virus8 {
+    position: absolute;
+    left: 470px;
+    top: 160px;
+    /* animation: virusAni1 400ms alternate infinite; */
+}
+
+#virus9 {
+    position: absolute;
+    left: 500px;
+    top: 80px;
+    /* animation: virusAni1 400ms alternate infinite; */
+}
+
+#virus10 {
+    position: absolute;
+    left: 505px;
+    top: 180px;
+    animation: virusAni1 400ms alternate infinite;
+    -webkit-animation: virusAni1 400ms alternate infinite;
+}
+
+#virus11 {
+    position: absolute;
+    left: 600px;
+    top: 152px;
+    /* animation: virusAni1 400ms alternate infinite; */
+}
+
+#virus12 {
+    position: absolute;
+    left: 690px;
+    top: 140px;
+    animation: virusAni2 400ms alternate infinite;
+    -webkit-animation: virusAni2 400ms alternate infinite;
+}
+
+#virus13 {
+    position: absolute;
+    left: 800px;
+    top: 120px;
+    /* animation: virusAni1 400ms alternate infinite; */
+}
+
+#virus14 {
+    position: absolute;
+    left: 760px;
+    top: 75px;
+    /* animation: virusAni2 400ms alternate infinite; */
+}
+
+#virus15 {
+    position: absolute;
+    left: 655px;
+    top: 120px;
+    /* animation: virusAni1 400ms alternate infinite; */
+}
+
+#virus16 {
+    position: absolute;
+    left: 860px;
+    top: 85px;
+    /* animation: virusAni2 400ms alternate infinite; */
+}
+
+#virus17 {
+    position: absolute;
+    left: 280px;
+    top: 195px;
+    animation: virusAni2 400ms alternate infinite;
+    -webkit-animation: virusAni2 400ms alternate infinite;
+}
+
+#virus18 {
+    position: absolute;
+    left: 575px;
+    top: 140px;
+    /* animation: virusAni2 400ms alternate infinite; */
+}
+
+#virus19 {
+    position: absolute;
+    left: 790px;
+    top: 198px;
+    animation: virusAni1 400ms alternate infinite;
+    -webkit-animation: virusAni1 400ms alternate infinite;
+}
+
+#virus20 {
+    position: absolute;
+    left: 650px;
+    top: 225px;
+    /* animation: virusAni2 400ms alternate infinite; */
+}
+
+#virus21 {
+    position: absolute;
+    left: 105px;
+    top: 170px;
+    /* animation: virusAni1 400ms alternate infinite; */
+}
+
+#virus22 {
+    position: absolute;
+    left: 440px;
+    top: 230px;
+    /* animation: virusAni2 400ms alternate infinite; */
+}
+
+#virus23 {
+    position: absolute;
+    left: 200px;
+    top: 200px;
+    animation: virusAni1 400ms alternate infinite;
+    -webkit-animation: virusAni1 400ms alternate infinite;
+}
+
+#virus24 {
+    position: absolute;
+    left: 600px;
+    top: 95px;
+    animation: virusAni2 400ms alternate infinite;
+    -webkit-animation: virusAni2 400ms alternate infinite;
+}
+
+#virus25 {
+    position: absolute;
+    left: 700px;
+    top: 85px;
+    /* animation: virusAni1 400ms alternate infinite; */
+}
+
+#virus26 {
+    position: absolute;
+    left: 875px;
+    top: 195px;
+    animation: virusAni2 400ms alternate infinite;
+    -webkit-animation: virusAni2 400ms alternate infinite;
+}
+
+#virus27 {
+    position: absolute;
+    left: 970px;
+    top: 110px;
+    animation: virusAni2 400ms alternate infinite;
+    -webkit-animation: virusAni2 400ms alternate infinite;
+}
+
+#virus28 {
+    position: absolute;
+    left: 330px;
+    top: 230px;
+    animation: virusAni1 400ms alternate infinite;
+    -webkit-animation: virusAni1 400ms alternate infinite;
+}
+
+
+/* 病毒动画 */
+
+@keyframes virusAni1 {
+    0%,
+    100% {
+        transform: translateY(5px);
+        -webkit-transform: translateY(5px);
+    }
+    50% {
+        transform: translateY(-5px);
+        -webkit-transform:translateY(-5px);
+    }
+}
+@-webkit-keyframes virusAni1 {
+    0%,
+    100% {
+        transform: translateY(5px);
+        -webkit-transform: translateY(5px);
+    }
+    50% {
+        transform: translateY(-5px);
+        -webkit-transform:translateY(-5px);
+    }
+}
+
+@keyframes virusAni2 {
+    0%,
+    100% {
+        transform: translateX(5px);
+        -webkit-transform: translateX(5px);
+    }
+    50% {
+        transform: translateX(-5px);
+        -webkit-transform: translateX(-5px);
+    }
+}
+@-webkit-keyframes virusAni2 {
+    0%,
+    100% {
+        transform: translateX(5px);
+        -webkit-transform: translateX(5px);
+    }
+    50% {
+        transform: translateX(-5px);
+        -webkit-transform: translateX(-5px);
+    }
+}
+
+#hands_x0_y0_shootFocus_ {
+    animation: shootAni 600ms alternate infinite;
+    -webkit-animation: shootAni 600ms alternate infinite;
+}
+
+@keyframes shootAni {
+    0%,
+    100% {
+        transform: scale(1);
+        -webkit-transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+        -webkit-transform: scale(1.1);
+    }
+}
+@-webkit-keyframes shootAni {
+    0%,
+    100% {
+        transform: scale(1);
+        -webkit-transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+        -webkit-transform: scale(1.1);
+    }
+}
+
+#tip {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    font-size: 30px;
+    color: #fff;
+    font-weight: bold;
+}
+
+#tipText {
+    position: absolute;
+    left: 340px;
+    top: 240px;
+    width: 600px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    /* border: 1px solid red; */
+}
+
+.thisScore {
+    position: absolute;
+    left: 340px;
+    top: 330px;
+    width: 600px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    /* border: 1px solid red; */
+}
+
+#hands_x0_y0_againFocus_ {
+    position: absolute;
+    left: 450px;
+    top: 440px;
+}
+
+#hands_x0_y0_otherSeeFocus_ {
+    position: absolute;
+    left: 663px;
+    top: 440px;
+}
+
+#hands_x0_y0_tipBackFocus_ {
+    position: absolute;
+    left: 941px;
+    top: 86px;
+}

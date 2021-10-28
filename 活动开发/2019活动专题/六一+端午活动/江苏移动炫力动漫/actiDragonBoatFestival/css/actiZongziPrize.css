@@ -1,0 +1,94 @@
+* {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.main {
+	position: relative;
+	width: 1280px;
+	height: 720px;
+	top: 0;
+	left: 0;
+	overflow: hidden;
+	background: url(../img/exchangePage.jpg) no-repeat;
+}
+
+
+/*我的粽子、活动规则按钮*/
+
+#hands_x0_y0_mineFocus_ img {
+	position: absolute;
+	left: 40px;
+	top: 198px;
+}
+
+#hands_x0_y0_ruleFocus_ img {
+	position: absolute;
+	left: 40px;
+	top: 260px;
+}
+
+
+/*兑换按钮*/
+
+#hands_x0_y0_exchangeFocus1_ img {
+	position: absolute;
+	left: 280px;
+	bottom: 125px;
+}
+
+#hands_x0_y0_exchangeFocus2_ img {
+	position: absolute;
+	left: 520px;
+	bottom: 125px;
+}
+
+#hands_x0_y0_exchangeFocus3_ img {
+	position: absolute;
+	left: 770px;
+	bottom: 125px;
+}
+
+#hands_x0_y0_inputFocus_ img {
+	position: absolute;
+	left: 470px;
+	bottom: 30px;
+}
+
+#telInput {
+	background: transparent;
+    height: 40px;
+    width: 220px;
+    position: absolute;
+    left: 480px;
+    bottom: 45px;    
+    padding: 4px 10px 0;
+    box-sizing: border-box;
+    z-index: 10;
+    font-size: 20px;
+    font-weight: bolder;
+    text-align: center;
+    color: #fff;
+}
+
+#hands_x0_y0_saveFocus_ img {
+	position: absolute;
+	left: 734px;
+	bottom: 36px;
+}
+
+#hands_x0_y0_emptyFocus_ img {
+	position: absolute;
+	left: 840px;
+	bottom: 36px;
+}
+
+
+/*返回*/
+
+#hands_x0_y0_backFocus_ img {
+	position: absolute;
+	left: 1135px;
+	top: 8px;
+}

@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>包粽子兑奖页面</title>
+		<link rel="stylesheet" type="text/css" href="css/actiZongziPrize.css?v=1.5" />
+		<style type="text/css">
+			#tipsTan{
+				position: absolute;
+				left: 0px;
+				top: 0px;
+				z-index: 12;
+			}
+			
+			#amount0 {
+				position: absolute;
+				left: 420px;
+				bottom: 250px;
+				font-weight: bold
+			}
+			
+			#amount1 {
+				position: absolute;
+				left: 670px;
+				bottom: 250px;
+				font-weight: bold
+			}
+			
+			#amount2 {
+				position: absolute;
+				left: 910px;
+				bottom: 250px;
+				font-weight: bold;
+			}
+
+			#savetips{
+				position: absolute;
+				left: 520px;
+				bottom: 110px;
+				font-size: 24px;
+				color: #ffffff;
+				font-weight: bold;
+			}
+
+			#hands_x0_y0_tipsTanFocus_ img{			   
+				position: absolute;
+				z-index: 15;
+				left: 510px;
+				bottom: 234px;
+				width: 246px;
+				height: 96px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="main">
+			<!--我的粽子-->
+			<div id="hands_x0_y0_mineFocus_">
+				<img src="img/chooseFocus.png" id="mineFocus" style="visibility: hidden;" />
+			</div>
+			<!--活动规则-->
+			<div id="hands_x0_y0_ruleFocus_">
+				<img src="img/chooseFocus.png" id="ruleFocus" style="visibility: hidden;" />
+			</div>
+			<!--兑换-->
+			<div id="hands_x0_y0_exchangeFocus1_">
+				<img src="img/exchangeFocus.png" id="exchangeFocus1" />
+			</div>
+			<div id="hands_x0_y0_exchangeFocus2_">
+				<img src="img/exchangeFocus.png" id="exchangeFocus2" style="visibility: hidden;" />
+			</div>
+			<div id="hands_x0_y0_exchangeFocus3_">
+				<img src="img/exchangeFocus.png" id="exchangeFocus3" style="visibility: hidden;" />
+			</div>
+			<!--手机号输入框-->
+			<div id="telInput" /></div>
+			<div id="hands_x0_y0_inputFocus_">
+				<img src="img/tel.png" id="inputFocus" style="visibility: hidden;" />
+			</div>
+			<!--保存-->
+			<div id="hands_x0_y0_saveFocus_">
+				<img src="img/save.png" id="saveFocus" style="visibility: hidden;" />
+			</div>
+			<!--清除-->
+			<div id="hands_x0_y0_emptyFocus_">
+				<img src="img/save.png" id="emptyFocus" style="visibility: hidden;" />
+			</div>
+			<!--返回-->
+			<div id="hands_x0_y0_backFocus_">
+				<img src="img/chooseFocus.png" id="backFocus" style="visibility: hidden;" />
+			</div>
+			<!-- 兑换弹窗提示 -->
+			<img id="tipsTan" src=""/>
+			<div id="hands_x0_y0_tipsTanFocus_">
+				<img src="img/chooseFocus.png" id="tipsTanFocus" style="visibility: hidden;" />
+			</div>	
+			<!--需要粽子数量-->
+			<ul>
+				<li id="amount0">160个</li>
+				<li id="amount1">100个</li>
+				<li id="amount2">50个</li>
+			</ul>
+			<!--保存提示-->
+			<div id="savetips"></div>
+		</div>
+		<!--引入公用JS-->
+		<script type="text/javascript" src="../../../js/column.js"></script>
+		<script type="text/javascript" src="./js/actiComm.js"></script>
+		<!--引入结束-->
+
+		<script type="text/javascript">
+			//焦点是否在输入框上
+			var isOnFocus;
+			//当前用户手机号
+			var userPhone = "";
+			//焦点数组
+			var buttons = [{
+					id: "hands_x0_y0_mineFocus_",
+					clickHandler: "javascript:goMineFunc()",
+					left: "disable",
+					right: "hands_x0_y0_backFocus_",
+					up: "disable",
+					down: "hands_x0_y0_ruleFocus_",
+					focusType: 7
+				}, {
+					id: "hands_x0_y0_ruleFocus_",
+					clickHandler: "javascript:goRuleFunc()",
+					left: "disable",
+					right: "hands_x0_y0_exchangeFocus1_",
+					up: "hands_x0_y0_mineFocus_",
+					down: "disable",
+					focusType: 7
+				},
+				{
+					id: "hands_x0_y0_exchangeFocus1_",
+					clickHandler: "javascript:exchangeFunc(0)",
+					left: "hands_x0_y0_ruleFocus_",
+					right: "hands_x0_y0_exchangeFocus2_",
+					up: "hands_x0_y0_ruleFocus_",
+					down: "hands_x0_y0_inputFocus_",
+					focusType: 7
+				}, {
+					id: "hands_x0_y0_exchangeFocus2_",
+					clickHandler: "javascript:exchangeFunc(1)",
+					left: "hands_x0_y0_exchangeFocus1_",
+					right: "hands_x0_y0_exchangeFocus3_",
+					up: "hands_x0_y0_ruleFocus_",
+					down: "hands_x0_y0_inputFocus_",
+					focusType: 7
+				},
+				{
+					id: "hands_x0_y0_exchangeFocus3_",
+					clickHandler: "javascript:exchangeFunc(2)",
+					left: "hands_x0_y0_exchangeFocus2_",
+					right: "disable",
+					up: "hands_x0_y0_backFocus_",
+					down: "hands_x0_y0_emptyFocus_",
+					focusType: 7
+				}, {
+					id: "hands_x0_y0_inputFocus_",
+					otherFocusEvent: 'javascript:OnFocus(1)',
+					otherBlurEvent: 'javascript:OnFocus(0)',
+					left: "disable",
+					right: "hands_x0_y0_saveFocus_",
+					up: "hands_x0_y0_exchangeFocus2_",
+					down: "disable",
+					focusType: 7
+				},
+				{
+					id: "hands_x0_y0_saveFocus_",
+					clickHandler: "javascript:saveFunc()",
+					otherBlurEvent:'javascript:saveBlur()',
+					left: "hands_x0_y0_inputFocus_",
+					right: "hands_x0_y0_emptyFocus_",
+					up: "hands_x0_y0_exchangeFocus3_",
+					down: "disable",
+					focusType: 7
+				}, {
+					id: "hands_x0_y0_emptyFocus_",
+					clickHandler: "javascript:emptyFunc()",
+					left: "hands_x0_y0_saveFocus_",
+					right: "disable",
+					up: "hands_x0_y0_exchangeFocus3_",
+					down: "disable",
+					focusType: 7
+				},
+				{
+					id: "hands_x0_y0_backFocus_",
+					clickHandler: "javascript:backfunc()",
+					left: "hands_x0_y0_mineFocus_",
+					right: "disable",
+					up: "disable",
+					down: "hands_x0_y0_exchangeFocus3_",
+					focusType: 7
+				},
+				{
+					id: "hands_x0_y0_tipsTanFocus_",
+					clickHandler: "javascript:tipsTanFocusFunc()",
+					left: "disable",
+					right: "disable",
+					up: "disable",
+					down: "disable",
+					focusType: 7
+				}
+			];
+
+			
+
+			//当前活动的奖品信息
+			var prizeId;
+			var prizeNum;
+			var listArr = [];			
+			actiObj.getActivityPrize(function(res) {
+				var list = res.list;
+				for(var i = 0; i < list.length; i++) {
+					var prize = {
+						prizeId: list[i].prize_id,
+						prizeNum: list[i].prize_num
+					}
+					listArr.push(prize);
+				}
+				focusInit();
+				//获取当前焦点对象
+				curFocus = getFocusModel6("hands_x0_y0_exchangeFocus1_");
+				curFocus.defaultFocus();
+			})
+
+			//获取用户获奖信息
+			var amount0 = document.getElementById("amount0");
+			var amount1 = document.getElementById("amount1");
+			var amount2 = document.getElementById("amount2");
+			var amounts = [amount0, amount1, amount2];
+
+			//兑奖
+			//设置当前用户拥有哪个奖品
+			var changeClick = false;
+			function exchangeFunc(index) {
+				//是否中奖
+				//获取当前用户获奖信息
+				if(!changeClick){
+					changeClick = true;					
+					actiObj.getUserPrizeInfo(function(userJson){
+						if(userJson && userJson.resultMsg == "success"){
+							changeClick = false;
+							//兑过奖品
+							tipsTan.src = "img/duiguo.png";
+							//切换焦点
+							actiObj.changeFocus("hands_x0_y0_tipsTanFocus_");
+						}else{
+							if(listArr[index].prizeNum < 1) {
+								changeClick = false;
+								//该奖品兑完
+								tipsTan.src = "img/duiwan.png";
+								//切换焦点
+								actiObj.changeFocus("hands_x0_y0_tipsTanFocus_");
+							}else{
+								actiObj.getUserCredit(function(res) {
+									if(res.resultMsg == "fail"){
+										var totalAmount = 0;
+									}else{
+										var totalAmount = parseInt(res.creditNum,10) || 0;
+									}
+									if(totalAmount >= parseInt(amounts[index].innerHTML)) {
+										totalAmount -= parseInt(amounts[index].innerHTML);
+										actiObj.setUserCredit(totalAmount,function(){
+											actiObj.setPrize(listArr[index].prizeId, function(res) {
+												//兑换成功
+												tipsTan.src = "img/success.png";
+												//切换焦点
+												actiObj.changeFocus("hands_x0_y0_tipsTanFocus_");
+											})
+										});
+									} else {
+										//粽子不足
+										tipsTan.src = "img/BuZuTip.png";										
+										//切换焦点
+										actiObj.changeFocus("hands_x0_y0_tipsTanFocus_");
+									}
+									changeClick = false;
+								});
+							}
+						}
+					});
+				}
+			}
+
+			//点击弹窗确定按钮执行的方法
+			function tipsTanFocusFunc(){
+				document.getElementById("tipsTan").src="img/empty.png";
+				//切换焦点
+				actiObj.changeFocus("hands_x0_y0_exchangeFocus1_");
+			}
+
+			//焦点获焦在输入框中执行的方法
+			function OnFocus(index) {
+				isOnFocus = index == 1 ? true : false;
+			}
+
+			//手机号输入框
+			var telInput = document.getElementById("telInput").innerHTML;
+			//去除字符串内所有的空格
+			telInput = telInput.replace(/\s*/g, "");
+			//获取用户手机号
+			actiObj.getUserPhone(function(res) {
+				if(res.userPhone != null) {
+					document.getElementById("telInput").innerHTML = res.userPhone;
+					phoneNum = res.userPhone;
+				}
+			})
+
+			var phoneNum = telInput;
+			//监听用户遥控器输入的数字
+			function changeNum(num) {
+				if(isOnFocus) {
+					var size;
+					if(phoneNum == "") {
+						size = 0;
+					} else {
+						size = phoneNum.length;
+					}
+					if(size < 11 || !size) {
+						var addnum = phoneNum;
+						phoneNum = addnum + num;
+					}
+					document.getElementById("telInput").innerHTML = phoneNum;
+				}
+			}
+
+			//保存手机号
+			function saveFunc() {
+				var phoneNum = document.getElementById("telInput").innerHTML;
+				if(phoneNum.length != 11) {
+					document.getElementById("telInput").innerHTML = "请输入11位手机号码";
+				} else {
+					actiObj.setUserPhone(phoneNum, function(res) {
+						phoneNum = res.userPhone;
+					})
+					document.getElementById("savetips").innerHTML="手机号保存成功";
+				}
+			}
+
+			//保存按钮失去焦点
+			function saveBlur(){
+				document.getElementById("savetips").innerHTML="";				
+			}
+
+			//清除手机号
+			function emptyFunc() {
+				document.getElementById("telInput").innerHTML = "";
+				phoneNum = "";
+			}
+
+			//跳转
+			var actiTime = new Date().getTime();
+			function goMineFunc() {
+				window.location.href = "actiZongziMine.html?actiTime=" + actiTime;
+			}
+
+			function goRuleFunc() {
+				window.location.href = "actiZongziRule.html?actiTime=" + actiTime;
+			}
+
+			function backfunc() {
+				window.location.href = "actiZongziMain.html?actiTime=" + actiTime;
+			}
+		</script>
+
+	</body>
+
+</html>

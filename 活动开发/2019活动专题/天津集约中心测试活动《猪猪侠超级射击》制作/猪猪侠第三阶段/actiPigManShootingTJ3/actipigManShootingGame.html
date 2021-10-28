@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>猪猪侠超级射击游戏页</title>
+		<meta name = "page-view-size" content = "1280*720">
+		<link rel="stylesheet" type="text/css" href="css/actipigManShootingGame.css?v=2019072205" />
+	</head>
+
+	<body>
+		<div id="main">
+			<!--弹弓-->
+			<div id="hands_x0_y0_slingShotFocus_">
+				<img src="img/game/slingShot.png" id="slingShotFocus" />
+			</div>
+			<!--线-->
+			<div id="line" class="line"></div>
+			<img src="img/empty.png" id="threeLine" style="position: absolute;left: 510px;top: 470px;" />
+
+			<!--球-->
+			<img src="img/game/ball.png" id="ball" style="position: absolute;left: 620px;top: 410px;z-index: 1;" />
+
+			<!--IP-->
+			<img src="img/game/1.png" id="leftCartoon" style="position: absolute;left: 100px;top: 100px;" />
+			<img src="img/game/2.png" id="middleCartoon" style="position: absolute;left: 500px;top: 100px;" />
+			<img src="img/game/3.png" id="rightCartoon" style="position: absolute;left: 900px;top: 100px;" />
+
+			<!--黑色屏障-->
+			<img src="img/empty.png" id="barrier" style="position: absolute;left: 460px;top: 30px;" />
+
+			<!--爆炸图片-->
+			<img src="img/empty.png" id="boom" style="position: absolute;left: 100px;top: 100px;" />
+
+			<!--弹窗-->			
+			<img src="img/empty.png" id="tanchuangTip" style="position: absolute;left: 0px;top: 0px;z-index: 2;" />
+			<!--剩余机会提示-->
+			<div id="chanceNumTip" style="position: absolute;font-size: 24px;color: yellow;z-index: 2;font-weight: bold;"></div>
+			<!--抽奖机会提示-->
+			<div id="chouJTip" style="position: absolute;left: 400px;top: 332px;font-size: 24px;color: yellow;z-index: 2;font-weight: bold;visibility:hidden;">0</div>
+			
+			<!--去抽奖-->
+			<div id="hands_x0_y0_goChouConfirmFocus_">
+				<img src="img/tanChuang/confirmFocus.png" id="goChouConfirmFocus" style="position: absolute;left: 445px;top: 380px;z-index: 2;visibility: hidden;" />
+			</div>
+			<div id="hands_x0_y0_goChouCancelFocus_">
+				<img src="img/tanChuang/cancelFocus.png" id="goChouCancelFocus" style="position: absolute;left: 655px;top: 380px;z-index: 2;visibility: hidden;" />
+			</div>
+			<!--没有抽奖机会-->
+			<div id="hands_x0_y0_noChouConfirmFocus_">
+				<img src="img/tanChuang/confirmFocus.png" id="noChouConfirmFocus" style="position: absolute;left: 445px;top: 380px;z-index: 2;visibility: hidden;" />
+			</div>
+			<div id="hands_x0_y0_noChouCancelFocus_">
+				<img src="img/tanChuang/cancelFocus.png" id="noChouCancelFocus" style="position: absolute;left: 655px;top: 380px;z-index: 2;visibility: hidden;" />
+			</div>
+			
+		</div>
+		<!--引入公用JS-->
+		<script type="text/javascript" src="../../js/comm.js?v=20190418"></script>
+		<script type="text/javascript" src="../../js/common1_1.js?v=20190418"></script>
+		<script type="text/javascript" src="../../js/key1_3.js?v=20190418"></script>
+		<script type="text/javascript" src="./js/actiComm.js?v=20190418"></script>
+		<!--引入结束-->
+		<script type="text/javascript">
+			var buttons = [{
+				id: "hands_x0_y0_slingShotFocus_",
+				clickHandler: "javascript:ShootGame.startShoot()",
+				left: "disable",
+				right: "disable",
+				up: "disable",
+				down: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_goChouConfirmFocus_",
+				clickHandler: "javascript:ShootGame.goChouConfirm()",
+				left: "disable",
+				right: "hands_x0_y0_goChouCancelFocus_",
+				up: "disable",
+				down: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_goChouCancelFocus_",
+				clickHandler: "javascript:ShootGame.backMain()",
+				left: "hands_x0_y0_goChouConfirmFocus_",
+				right: "disable",
+				up: "disable",
+				down: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_noChouConfirmFocus_",
+				clickHandler: "javascript:ShootGame.backMain()",
+				left: "disable",
+				right: "hands_x0_y0_noChouCancelFocus_",
+				up: "disable",
+				down: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_noChouCancelFocus_",
+				clickHandler: "javascript:ShootGame.backMain()",
+				left: "hands_x0_y0_noChouConfirmFocus_",
+				right: "disable",
+				up: "disable",
+				down: "disable",
+				focusType: 7
+			}]
+
+			function Shoot(main) {
+				this.init(); //初始化
+				this.shake(); //小球晃动
+				this.shakeAni;
+				this.lineImg = 1;
+				this.barrierImg = 1;
+				this.barrierAni = null; //黑色屏障动画					
+				this.barrierArr = [{
+					"left": "100px",
+					"top": "100px"
+				}, {
+					"left": "480px",
+					"top": "30px"
+				}, {
+					"left": "860px",
+					"top": "100px"
+				}];
+				this.randomNum; //随机数					
+				this.firstAni = null;
+				this.ballFlag = 0;
+				this.ip1Show = true;
+				this.ip2Show = true;
+				this.ip3Show = true;
+				this.boomImg = 1; //爆炸图片
+				this.boomAni = null;
+				this.boomArr = [{
+					"left": "100px",
+					"top": "100px"
+				}, {
+					"left": "460px",
+					"top": "80px"
+				}, {
+					"left": "880px",
+					"top": "150px"
+				}];
+				this.chanceNum = 0; //机会次数
+				this.creditNum = 0; //抽奖次数
+				this.leftCartoon = document.getElementById("leftCartoon");
+				this.middleCartoon = document.getElementById("middleCartoon");
+				this.rightCartoon = document.getElementById("rightCartoon");
+				this.GetQueryString("tryPlay");
+				this.GetQueryString("totalChanceNum");
+			}
+
+			Shoot.prototype = {
+				constructor: Shoot,
+				//获取眉头信息参数
+				GetQueryString: function(name) {
+					var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+					console.log(reg)
+					var r = window.location.search.substr(1).match(reg);
+					if(r != null) return unescape(r[2]);
+					return null;
+				},
+				//初始化函数				
+				init: function() {
+					var _this = this;
+					//获取次数
+					actiObj.getChance(function(res) {
+						_this.chanceNum = res.activityChance;
+						//获取积分（抽奖机会）
+						actiObj.getUserCredit(function(data) {
+							if(data && data.resultMsg == "success") {
+								_this.creditNum = parseInt(data.creditNum, 10) || 0;
+							} else {
+								_this.creditNum = 0;
+							}
+						})
+					})
+				},
+				//击中（试玩/非试玩）
+				setChanceFunc: function() {
+					var tryPlay = this.GetQueryString("tryPlay");
+					//判断是否是试玩
+					if(!tryPlay) {
+						actiObj.setChance();
+						this.chanceNum++;
+						CT.$("chanceNumTip").innerHTML=this.GetQueryString("totalChanceNum")-this.chanceNum;
+						CT.$("chanceNumTip").style.top="332px";
+						CT.$("chanceNumTip").style.left="620px";
+					}else{
+						CT.$("chanceNumTip").innerHTML= 0;
+						CT.$("chanceNumTip").style.top = "332px";
+						CT.$("chanceNumTip").style.left = "810px";
+						CT.$("chouJTip").style.visibility= "visible";
+						CT.$("chouJTip").style.top = "332px";
+						CT.$("chouJTip").style.left = "610px";
+					}
+				},
+				setCreditFunc: function() {
+					var tryPlay = this.GetQueryString("tryPlay");
+					//判断是否是试玩
+					if(!tryPlay){
+						this.creditNum+=3;
+						actiObj.setUserCredit(this.creditNum);
+					}	
+				},
+				isChouFunc: function() {
+					var tryPlay = this.GetQueryString("tryPlay");
+					if(tryPlay) {
+						CT.$("tanchuangTip").src = "img/tanChuang/pity.png";
+						//切换焦点
+						actiObj.changeFocus("hands_x0_y0_noChouConfirmFocus_");
+						CT.$("chanceNumTip").innerHTML= 0;
+						CT.$("chanceNumTip").style.top = "332px";
+						CT.$("chanceNumTip").style.left = "810px";
+						CT.$("chouJTip").style.visibility= "visible";
+						CT.$("chouJTip").style.top = "332px";
+						CT.$("chouJTip").style.left = "610px";
+					} else {
+						CT.$("tanchuangTip").src = "img/tanChuang/toPrize.png";
+						//切换焦点
+						actiObj.changeFocus("hands_x0_y0_goChouConfirmFocus_");
+					}
+				},
+				//未击中（试玩/非试玩）
+				noJiZhong:function(){
+					var tryPlay = this.GetQueryString("tryPlay");
+					if(!tryPlay) {
+						actiObj.setChance();
+						this.chanceNum++;
+						CT.$("chouJTip").style.visibility= "visible";
+						CT.$("chouJTip").innerHTML=0;
+						CT.$("chouJTip").style.top = "332px";
+						CT.$("chouJTip").style.left = "610px";
+						CT.$("chanceNumTip").innerHTML=this.GetQueryString("totalChanceNum")-this.chanceNum;
+						CT.$("chanceNumTip").style.top = "332px";
+						CT.$("chanceNumTip").style.left = "810px";
+					}else{
+						CT.$("chanceNumTip").innerHTML= 0;
+						CT.$("chanceNumTip").style.top = "332px";
+						CT.$("chanceNumTip").style.left = "810px";
+						CT.$("chouJTip").style.visibility= "visible";
+						CT.$("chouJTip").style.top = "332px";
+						CT.$("chouJTip").style.left = "610px";
+					}
+				},
+				//小球晃动
+				shake: function() {
+					var _this = this;
+					this.firstAni = setTimeout(function() {
+						CT.$("ball").style.left = "480px";
+						CT.$("ball").style.top = "620px";
+						actiObj.removeClass(CT.$("line"), "line");
+						actiObj.addClass(CT.$("line"), "lineAni");
+					}, 500)
+					setTimeout(function() {
+						//焦点初始化
+						focusInit();
+						if(curFocus) {
+							curFocus.defaultBlur();
+						}
+						curFocus = getFocusModel6("hands_x0_y0_slingShotFocus_");
+						curFocus.defaultFocus();
+					}, 1000)
+					this.shakeAni = setInterval(function() {
+						actiObj.removeClass(CT.$("line"), "lineAni");
+						if(_this.lineImg > 3) {
+							_this.lineImg = 1;
+							CT.$("threeLine").src = "img/game/line" + _this.lineImg + ".png";
+							_this.ballFlag = 1;
+							CT.$("ball").style.left = "480px";
+							CT.$("threeLine").style.left = "510px";
+						} else {
+							CT.$("threeLine").src = "img/game/line" + _this.lineImg + ".png";
+							if(_this.lineImg == 2) {
+								_this.ballFlag = 2;
+								CT.$("ball").style.left = " 620px";
+								CT.$("threeLine").style.left = "560px";
+							} else if(_this.lineImg == 3) {
+								_this.ballFlag = 3;
+								CT.$("ball").style.left = "730px";
+								CT.$("threeLine").style.left = "560px";
+							}
+						}
+						_this.lineImg++;
+
+						//三个IP动画
+						if(parseInt(_this.leftCartoon.style.top) > 105) {
+							_this.leftCartoon.style.top = parseInt(_this.leftCartoon.style.top) - 5 + "px";
+						} else if(parseInt(_this.leftCartoon.style.top) >= 100 && parseInt(_this.leftCartoon.style.top) <= 105) {
+							_this.leftCartoon.style.top = parseInt(_this.leftCartoon.style.top) + 5 + "px";
+						}
+
+						if(parseInt(_this.middleCartoon.style.top) < 95) {
+							_this.middleCartoon.style.top = parseInt(_this.middleCartoon.style.top) + 5 + "px";
+						} else if(parseInt(_this.middleCartoon.style.top) >= 95 && parseInt(_this.middleCartoon.style.top) <= 100) {
+							_this.middleCartoon.style.top = parseInt(_this.middleCartoon.style.top) - 5 + "px";
+						}
+
+						if(parseInt(_this.rightCartoon.style.top) > 105) {
+							_this.rightCartoon.style.top = parseInt(_this.rightCartoon.style.top) - 5 + "px";
+						} else if(parseInt(_this.rightCartoon.style.top) >= 100 && parseInt(_this.rightCartoon.style.top) <= 105) {
+							_this.rightCartoon.style.top = parseInt(_this.rightCartoon.style.top) + 5 + "px";
+						}
+					}, 500)
+				},
+				//黑色屏障
+				barrier: function() {
+					var _this = this;
+					this.randomNum = Math.floor(Math.random() * 3); //生成[0,3)随机整数
+					CT.$("barrier").style.left = this.barrierArr[this.randomNum].left;
+					CT.$("barrier").style.top = this.barrierArr[this.randomNum].top;
+					this.barrierAni = setInterval(function() {
+						if(_this.barrierImg > 3) {
+							_this.barrierImg = 1;
+							clearInterval(_this.barrierAni);
+							CT.$("barrier").src = "img/empty.png";
+						} else {
+							CT.$("barrier").src = "img/game/barrier/" + _this.barrierImg + ".png";
+						}
+						_this.barrierImg++;
+					}, 200)
+				},
+				//点击射击
+				startShoot: function() {
+					var _this = this;
+					var tryPlay = this.GetQueryString("tryPlay");
+					clearInterval(this.shakeAni);
+					CT.$("threeLine").src = "img/empty.png";
+					actiObj.addClass(CT.$("line"), "line");
+					this.barrier();
+					if(this.ballFlag == 1) {
+						CT.$("ball").style.left = "980px";
+						CT.$("ball").style.top = "230px";
+						if(this.randomNum != 2) {
+							this.ip1Show = false;
+							this.boomFunc();
+							CT.$("boom").style.left = this.boomArr[2].left;
+							CT.$("boom").style.top = this.boomArr[2].top;
+							setTimeout(function() {
+								CT.$("rightCartoon").src = "img/empty.png";
+							}, 600)
+							setTimeout(function() {
+								//是否是试玩的弹窗
+								_this.isChouFunc();								
+								//存储一次抽奖机会
+								_this.setCreditFunc();
+								//击中上传机会、弹窗文字显示
+								_this.setChanceFunc();
+							}, 1200)
+						} else {
+							setTimeout(function() {
+								CT.$("tanchuangTip").src = "img/tanChuang/pity.png";
+								//切换焦点
+								actiObj.changeFocus("hands_x0_y0_noChouConfirmFocus_");	
+								//未击中上传机会、弹窗文字显示
+								_this.noJiZhong();
+							}, 1200)
+						}
+					} else if(this.ballFlag == 3) {
+						CT.$("ball").style.left = "210px";
+						CT.$("ball").style.top = "210px";
+						if(this.randomNum != 0) {
+							this.ip3Show = false;
+							this.boomFunc();
+							CT.$("boom").style.left = this.boomArr[0].left;
+							CT.$("boom").style.top = this.boomArr[0].top;
+							setTimeout(function() {
+								CT.$("leftCartoon").src = "img/empty.png";
+							}, 600)
+							setTimeout(function() {
+								//是否是试玩的弹窗
+								_this.isChouFunc();								
+								//存储一次抽奖机会
+								_this.setCreditFunc();
+								//击中上传机会、弹窗文字显示
+								_this.setChanceFunc();
+							}, 1200)
+						} else {
+							setTimeout(function() {
+								CT.$("tanchuangTip").src = "img/tanChuang/pity.png";
+								//切换焦点
+								actiObj.changeFocus("hands_x0_y0_noChouConfirmFocus_");	
+								//未击中上传机会、弹窗文字显示
+								_this.noJiZhong();
+							}, 1200)
+						}
+					} else if(this.ballFlag == 2) {
+						CT.$("ball").style.left = "600px";
+						CT.$("ball").style.top = "150px";
+						if(this.randomNum != 1) {
+							this.ip4Show = false;
+							this.boomFunc();
+							CT.$("boom").style.left = this.boomArr[1].left;
+							CT.$("boom").style.top = this.boomArr[1].top;
+							setTimeout(function() {
+								CT.$("middleCartoon").src = "img/empty.png";
+							}, 600)
+							setTimeout(function() {
+								//是否是试玩的弹窗
+								_this.isChouFunc();								
+								//存储一次抽奖机会
+								_this.setCreditFunc();
+								//击中上传机会、弹窗文字显示
+								_this.setChanceFunc();
+							}, 1200)
+						} else {
+							setTimeout(function() {
+								CT.$("tanchuangTip").src = "img/tanChuang/pity.png";
+								//切换焦点
+								actiObj.changeFocus("hands_x0_y0_noChouConfirmFocus_");	
+								//未击中上传机会、弹窗文字显示
+								_this.noJiZhong();
+							}, 1200)
+						}
+					}
+					setTimeout(function() {
+						CT.$("ball").src = "img/empty.png";
+					}, 300)
+				},
+				//爆炸动画
+				boomFunc: function() {
+					var _this = this;
+					this.boomAni = setInterval(function() {
+						if(_this.boomImg > 3) {
+							_this.boomImg = 1;
+							CT.$("boom").src = "img/empty.png";
+							clearInterval(_this.boomAni);
+						} else {
+							CT.$("boom").src = "img/game/boom/" + _this.boomImg + ".png";
+						}
+						_this.boomImg++;
+					}, 200)
+				},
+				//弹窗确定去抽奖
+				goChouConfirm: function() {
+					window.location.href = "actipigManShootingLottery.html";
+				},
+				//弹窗取消
+				backMain: function() {
+					window.location.href = "actipigManShootingMain.html";
+				}
+
+			}
+			var ShootGame = new Shoot("main");
+
+			//点击返回键
+			function backfunc() {
+				ShootGame.backMain();
+			}
+		</script>
+
+	</body>
+
+</html>

@@ -1,0 +1,121 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+}
+.main{
+    width: 1280px;
+    height: 720px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+}
+.withScreen{
+    width: 1280px;
+    height: 720px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+/* 海报聚焦放大效果 */
+.biggerAni{
+    animation: biggerAni 1000ms ease;
+    -webkit-animation: biggerAni 1000ms ease;
+    -moz-animation: biggerAni 1000ms ease;
+    -o-animation: biggerAni 1000ms ease;
+    /*规定动画执行次数*/
+	animation-iteration-count: 1;
+	-webkit-animation-iteration-count: 1;
+	-ms-animation-iteration-count: 1;
+	/*让动画停留在最后一帧*/
+	animation-fill-mode: forwards;
+	-webkit-animation-fill-mode: forwards;
+	-ms-animation-fill-mode: forwards;
+    
+}
+@keyframes biggerAni{
+    0% {
+        transform: scale(1);
+        -webkit-transform: scale(1);
+        -moz-transform: scale(1);
+        -ms-transform: scale(1);
+        -o-transform: scale(1); 
+    }
+    100% {
+        transform: scale(1.1);
+        -webkit-transform: scale(1.1);
+        -moz-transform: scale(1.1);
+        -ms-transform: scale(1.1);
+        -o-transform: scale(1.1); 
+    }
+}
+@-webkit-keyframes biggerAni{
+    0% {
+        transform: scale(1);
+        -webkit-transform: scale(1);
+        -moz-transform: scale(1);
+        -ms-transform: scale(1);
+        -o-transform: scale(1); 
+    }
+    100% {
+        transform: scale(1.1);
+        -webkit-transform: scale(1.1);
+        -moz-transform: scale(1.1);
+        -ms-transform: scale(1.1);
+        -o-transform: scale(1.1); 
+    }
+}
+
+/* 全屏海报淡入淡出动画 */
+.easeInOut{
+    animation: easeInOut 2s ease-in-out;
+    -webkit-animation: easeInOut 2s ease-in-out;
+    -moz-animation: easeInOut 2s ease-in-out;
+    -o-animation: easeInOut 2s ease-in-out;
+}
+
+@keyframes easeInOut{
+    0% {
+        visibility: visible;
+        opacity:1;
+     }
+     25% {
+        visibility: visible;
+        opacity:1;
+     }
+     50% {
+        visibility: visible;
+        opacity:1;
+     }
+     75% {
+        visibility: visible;
+        opacity:1;
+     }
+    100%{
+        visibility: hidden;
+        opacity:0;
+    }
+}
+@-webkit-keyframes easeInOut{
+    0% {
+        visibility: visible;
+        opacity:1;
+     }
+     25% {
+        visibility: visible;
+        opacity:1;
+     }
+     50% {
+        visibility: visible;
+        opacity:1;
+     }
+     75% {
+        visibility: visible;
+        opacity:1;
+     }
+    100%{
+        visibility: hidden;
+        opacity:0;
+    }
+}

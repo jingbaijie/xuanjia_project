@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="page-view-size" content="1280*720"/>
+    <title>投票页</title>
+    <link rel="stylesheet" href="./css/childVote.css">
+</head>
+<body>
+    <div class="voteContainer">
+		<img src="./img/prizeMain/LOGO1.png" style="position:absolute;top:15px;left:15px;z-index:10000;" alt="">
+        <div class="place">
+            <div class='focus' id='hands_x0_y0_numFocus0_' style='left: -8px;top: -7px;'>
+                <img id='numFocus0' src='./img/vote/placeSelect.png' style='visibility: hidden' alt="">
+            </div>
+            <img src="./img/vote/palceBox.png" alt="">
+            <p id="choosePlace" style="position: absolute;top:9px;left: 16px;font-family: Microsoft YaHei;color: #373737;font-size: 20px;opacity: 0.5">地区选择</p>
+            <ul id="placeBox" style="visibility: hidden">
+            </ul>
+            <div class='focus' id='hands_x0_y0_numFocus1_' style='left: 201px;top: -7px;'>
+                <img id='numFocus1' src='./img/vote/inputIdSelect.png' style='visibility: hidden' alt="">
+            </div>
+            <img src="./img/vote/inputId.png" style="position: absolute;top:0;left: 206px;" alt="">
+            <p id="phoneText" style="border:none;position: absolute;top:10px;left: 224px;font-family: Microsoft YaHei;color: #373737;font-size: 20px;opacity: 0.5">请输入选手id</p>
+        </div>
+        <div id="vote" style="position: absolute;top: 0;left: 0;width: 1280px;height: 720px"></div>
+        <div id="bottomNum" style="visibility: visible;">
+            <div class='focus' id='hands_x0_y0_numFocus2_' style='left: -8px;top: -6px;'>
+                <img id='numFocus2' src='./img/vote/directSelect.png' style='visibility: hidden' alt="">
+            </div>
+            <img src="./img/vote/left.png" alt="">
+            <div class="middleNum">
+                <div id="middleNum" style=""></div>
+                <p id="dot" style="top: -10px;left: 270px;font-size: 42px;color: #fff;visibility: visible">...</p>
+            </div>
+            <div class='focus' id='hands_x0_y0_numFocus3_' style='left: 359px;top: -6px;'>
+                <img id='numFocus3' src='./img/vote/directSelect.png' style='visibility: hidden' alt="">
+            </div>
+            <img src="./img/vote/right.png" id="right" style="position: absolute;left: 366px;top: 0;" alt="">
+        </div>
+        <!--弹窗-->
+        <div id="tips" style="visibility: hidden;z-index:9999;">
+            <img src="./img/tips/opacity.png" alt="">
+            <img src="./img/tips/vote.png" style="position: absolute;top: 83px;left: 335px;" alt="">
+            <p id="totalTicMonth"></p>
+            <p id="TVTic"></p>
+            <p id="phoneTic"></p>
+            <p id="totalTic"></p>
+        </div>
+        <div class='focus' id='hands_x0_y0_numFocus4_' style='left: 505px;top: 472px;z-index:10030;'>
+            <img id='numFocus4' src='./img/tips/voteBtnSelect.png' style='visibility: hidden' alt="">
+        </div>
+        <!--投票次数用完弹窗-->
+        <div id="tips1" style="visibility: hidden;z-index:9999;">
+            <img src="./img/tips/opacity.png" alt="">
+            <img src="./img/tips/vote1.png" style="position: absolute;top: 83px;left: 335px;" alt="">
+            <p id="isGone"></p>
+        </div>
+        <!--输入正确的id弹窗-->
+        <div id="tips2" style="visibility: hidden;z-index:9999;">
+            <img src="./img/tips/opacity.png" style="position: absolute;top: 0px;left: 0px;z-index:1000;" alt="">
+            <img src="./img/tips/vote1.png" style="position: absolute;top: 41px;left: 335px;z-index:10001;" alt="">
+            <p id="error" style="z-index:10001;">请输入正确的ID</p>
+        </div>
+
+    </div>
+    <!-- 引入公共js开始 -->
+    <script src="../../../../js/loadCommomJs.js"></script>
+    <script src="../../../../js/actiComm.js"></script>
+    <!-- 引入公共js结束 -->
+	<script type="text/javascript" src="./js/videoDetail.js"></script>
+    <script type="text/javascript" src="./js/md5.js"></script>
+    <script type="text/javascript" src="./js/base64.js"></script>
+    <script type="text/javascript" src="./js/childVote.js?v=2021042704"></script>
+</body>
+</html>

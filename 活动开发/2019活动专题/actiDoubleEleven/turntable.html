@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name = "page-view-size" name = "1280*720">
+    <title>转盘抽奖页</title>
+    <style>
+        .mainContent{
+            width: 1280px;
+            height: 720px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        .phoneText{
+            width: 223px;
+            height: 41px;
+            position: absolute;
+            top: 470px;
+            left:496px;
+            line-height: 40px;
+            font-size: 32px;
+            font-weight: bolder;
+            text-align: center;
+            color: white;
+        }
+        .phoneInfo{
+            width: 386px;
+            height: 25px;
+            position: absolute;
+            top: 510px;
+            left: 420px;
+            line-height: 30px;
+            font-size: 24px;
+            font-weight: bolder;
+            text-align: center;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <!--主题内容-->
+    <div id = "mainContent" class = "mainContent">
+        <!--背景图-->
+        <img src="./images/ring/BG.jpg" style = "width: 1280px;height: 720px;position: absolute;top: 0;left: 0;" alt="">
+        <!--转盘-->
+        <img id = "turnTable" src="./images/ring/ring.png" style = "width: 473px;height: 473px;position: absolute;top: 157px;left: 635px;" alt="">
+        <!--指针-->
+        <img id = "pointer" src="./images/ring/pointer.png" style = "width: 150px;height: 191px;position: absolute;top: 280px;left: 796px;" alt="">
+
+        <!--返回按钮-->
+        <div id = "hands_x0_y0_backFocus_" style = "width: 111px;height: 93px;position: absolute;top: 15px;left: 1130px;">
+            <img id = "backFocus" src="./images/backed.png" style = "width: 111px;height: 93px;visibility: hidden;" alt="">
+        </div>
+        <!--抽奖按钮-->
+        <div id = "hands_x0_y0_startFocus_" style = "width: 168px;height: 168px;position: absolute;top: 310px;left: 787px;">
+            <img id = "startFocus" src="./images/ring/selected.png" style = "width: 168px;height: 168px;visibility: hidden;" alt="">
+        </div>
+        <!--空选中-->
+        <div id = "hands_x0_y0_emptyFocus_" style = "width: 2px;height: 2px;position: absolute;top: 310px;left: 787px;">
+            <img id = "emptyFocus" src="./images/empty.png" style = "width: 2px;height: 2px;visibility: hidden;" alt="">
+        </div>
+        <!--抽奖中请勿做多余操作-->
+        <div id = "littleTips" class = "phoneInfo" style = "top: 65px;left: 685px;visibility: hidden;">转盘转动中,请勿做多余操作</div>
+    </div>
+    <!--弹框-->
+    <div id = "confirmDiv" style = "width: 1280px;height: 720px;position: absolute;top: 0;left: 0;visibility: hidden;">
+        <!--弹框背景-->
+        <img id = "conBgImg" src="./images/confirm/savePhone.png" style = "width: 1280px;height: 720px;position: absolute;top: 0;left: 0;" alt="">
+
+        <!--无奖品确认按钮-->
+        <div id = "hands_x0_y0_noPrizeFocus0_" style = "width: 188px;height: 71px;position: absolute;top: 520px;left: 455px;">
+            <img id = "noPrizeFocus0" src="./images/confirm/selected.png" style = "width: 188px;height: 71px;visibility: hidden;" alt="">
+        </div>
+        <!--无奖品取消按钮-->
+        <div id = "hands_x0_y0_noPrizeFocus1_" style = "width: 188px;height: 71px;position: absolute;top: 520px;left: 645px;">
+            <img id = "noPrizeFocus1" src="./images/confirm/selected.png" style = "width: 188px;height: 71px;visibility: hidden;" alt="">
+        </div>
+
+        <!--奖品-->
+        <img id = "prizeImg1" src="./images/ring/prize/1.png" style = "position: absolute;top: 190px;left: 545px;visibility: hidden;" alt="">
+        <img id = "prizeImg2" src="./images/ring/prize/2.png" style = "position: absolute;top: 190px;left: 615px;visibility: hidden;" alt="">
+        <img id = "prizeImg3" src="./images/ring/prize/3.png" style = "position: absolute;top: 190px;left: 565px;visibility: hidden;" alt="">
+        <img id = "prizeImg4" src="./images/ring/prize/4.png" style = "position: absolute;top: 190px;left: 580px;visibility: hidden;" alt="">
+        <!--中奖页输入框焦点-->
+        <div id = "hands_x0_y0_getPrizeFocus0_" style = "width: 245px;height: 66px;position: absolute;top: 455px;left: 485px;">
+            <img id = "getPrizeFocus0" src="./images/confirm/phoneText.png" style = "width: 245px;height: 66px;visibility: hidden;" alt="">
+        </div>
+        <!--保存手机号-->
+        <div id = "hands_x0_y0_getPrizeFocus1_" style = "width: 103px;height: 64px;position: absolute;top: 460px;left: 725px;">
+            <img id = "getPrizeFocus1" src="./images/confirm/save.png" style = "width: 103px;height: 64px;visibility: hidden;" alt="">
+        </div>
+        <!--删除手机号-->
+        <div id = "hands_x0_y0_getPrizeFocus2_" style = "width: 103px;height: 64px;position: absolute;top: 460px;left: 815px;">
+            <img id = "getPrizeFocus2" src="./images/confirm/save.png" style = "width: 103px;height: 64px;visibility: hidden;" alt="">
+        </div>
+        <!--中奖弹窗返回按钮-->
+        <div id = "hands_x0_y0_prizeBackFocus_" style = "width: 111px;height: 93px;position: absolute;top: 15px;left: 1130px;">
+            <img id = "prizeBackFocus" src="./images/backed.png" style = "width: 111px;height: 93px;visibility: hidden;" alt="">
+        </div>
+		<!--未中奖弹窗返回按钮-->
+        <div id = "hands_x0_y0_prizeBackFocus1_" style = "width: 111px;height: 93px;position: absolute;top: 15px;left: 1130px;">
+            <img id = "prizeBackFocus1" src="./images/backed.png" style = "width: 111px;height: 93px;visibility: hidden;" alt="">
+        </div>
+        <div id = "phoneText" class = "phoneText"></div>
+        <div id = "phoneInfo" class = "phoneInfo"></div>
+    </div>
+</body>
+<script type="text/javascript" src="../../../js/comm.js"></script>
+<script type="text/javascript" src="../../../js/common1_1.js"></script>
+<script type="text/javascript" src="../../../js/key1_3.js"></script>
+<script type="text/javascript" src="../../../js/recommendUrl.js"></script>
+<script type="text/javascript" src="../../../js/ajax_20170828.js"></script>
+<script type="text/javascript" src="../../../js/logger.js"></script>
+<script type = "text/javascript" src = "./js/actiComm.js"></script>
+<script type = "text/javascript" src = "./js/turnTable.js?v=20181108"></script>
+<script>
+    var buttons = [
+        {
+            id: "hands_x0_y0_backFocus_",
+            clickHandler: "javascript: backfunc()",
+            up: "disable",
+            down: "hands_x0_y0_startFocus_",
+            left: "hands_x0_y0_startFocus_",
+            right: "disable",
+            focusType: 7
+        },
+        {
+            id: "hands_x0_y0_startFocus_",
+            clickHandler: "javascript: startRing()",
+            up: "hands_x0_y0_backFocus_",
+            down: "disable",
+            left: "disable",
+            right: "hands_x0_y0_backFocus_",
+            focusType: 7
+        },
+        {
+            id: "hands_x0_y0_emptyFocus_",
+            clickHandler: "javascript: notTips()",
+            upEvent: "javascript: notTips()",
+            downEvent: "javascript: notTips()",
+            leftEvent: "javascript: notTips()",
+            rightEvent: "javascript: notTips()",
+            up: "disable",
+            down: "disable",
+            left: "disable",
+            right: "disable",
+            focusType: 7
+        },
+        {
+            id: "hands_x0_y0_noPrizeFocus0_",
+            clickHandler: "javascript: backfunc()",
+            up: "hands_x0_y0_prizeBackFocus1_",
+            down: "disable",
+            left: "disable",
+            right: "hands_x0_y0_noPrizeFocus1_",
+            focusType: 7
+        },
+        {
+            id: "hands_x0_y0_noPrizeFocus1_",
+            clickHandler: "javascript: backfunc()",
+            up: "hands_x0_y0_prizeBackFocus1_",
+            down: "disable",
+            left: "hands_x0_y0_noPrizeFocus0_",
+            right: "disable",
+            focusType: 7
+        },
+        {
+            id: "hands_x0_y0_getPrizeFocus0_",
+            clickHandler: "",
+            otherFocusEvent: "javascript: canWrite();",
+            otherBlurEvent: "javascript: canNotWrite",
+            up: "hands_x0_y0_prizeBackFocus_",
+            down: "disable",
+            left: "disable",
+            right: "hands_x0_y0_getPrizeFocus1_",
+            focusType: 7
+        },
+        {
+            id: "hands_x0_y0_getPrizeFocus1_",
+            clickHandler: "javascript: getSave()",
+            up: "hands_x0_y0_prizeBackFocus_",
+            down: "disable",
+            left: "hands_x0_y0_getPrizeFocus0_",
+            right: "hands_x0_y0_getPrizeFocus2_",
+            focusType: 7
+        },
+        {
+            id: "hands_x0_y0_getPrizeFocus2_",
+            clickHandler: "javascript: clearPhoneNum()",
+            up: "hands_x0_y0_prizeBackFocus_",
+            down: "disable",
+            left: "hands_x0_y0_getPrizeFocus1_",
+            right: "hands_x0_y0_prizeBackFocus_",
+            focusType: 7
+        },
+        {
+            id: "hands_x0_y0_prizeBackFocus_",
+            clickHandler: "javascript: backfunc()",
+            up: "disable",
+            down: "hands_x0_y0_getPrizeFocus2_",
+            left: "hands_x0_y0_getPrizeFocus2_",
+            right: "disable",
+            focusType: 7
+        },
+		{
+			id: "hands_x0_y0_prizeBackFocus1_",
+			clickHandler: "javascript: backfunc()",
+            up: "disable",
+            down: "hands_x0_y0_noPrizeFocus1_",
+            left: "hands_x0_y0_noPrizeFocus1_",
+            right: "disable",
+            focusType: 7
+		}
+    ];
+
+    focusInit();
+    curFocus = getFocusModel6("hands_x0_y0_startFocus_");
+    curFocus.defaultFocus();
+
+    function backfunc(){
+        if(isRinging){
+            notTips();
+        }else{
+			window.location.href = "mainPage.html";
+        }
+    }
+</script>
+</html>

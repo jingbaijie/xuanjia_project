@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="page-view-size" content="1280*720">
+		<title>召唤守护神专题</title>
+		<link rel="stylesheet" type="text/css" href="css/columnCallPatronSaint.css?v=1" />
+	</head>
+
+	<body>
+		<div class="main">
+			<div id="blackBG">
+				<!--标题-->
+				<img src="img/logo.png" class="logo" />
+				<!--空焦点-->
+				<div id="hands_x0_y0_blankFocus_">
+					<img src="img/empty.png" id="blankFocus" />
+				</div>
+				<!--爆炸图-->
+				<img src="img/empty.png" id="boomImg" style="position: absolute;left: 350px;top: 110px;z-index: 3;" />
+				<!--IP大图-->
+				<img src="img/empty.png" id="ipBig" class="ipBig" style="position: absolute;left: 390px;top: 190px;z-index: 3;width: 430px;height: 480px;" />
+				<!--大图焦点-->
+				<div id="hands_x0_y0_ipBigFocus_">
+					<img src="img/empty.png" id="ipBigFocus" />
+				</div>
+			</div>
+		</div>
+		<!--引入公用js-->
+		<script type="text/javascript" src="../../js/column.js"></script>
+		<!--公用js引用结束-->
+		<script type="text/javascript">
+			var buttons = [{
+				id: "hands_x0_y0_blankFocus_",
+				left: "disable",
+				right: "disable",
+				up: "disable",
+				down: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_ipBigFocus_",
+				clickHandler: "javascript:callPatronSaintGame.clickbigIP()",
+				left: "disable",
+				right: "disable",
+				up: "disable",
+				down: "disable",
+				focusType: 7
+			}]
+			//页面数据
+			var OutJson = [];
+			//专题英文名
+			var generalAction = getGeneralAction();
+			//ajax请求页面数据
+			function getGeneralAction() {
+				var reg = new RegExp("(^|&)action=([^&]*)(&|$)");
+				var r = window.location.search.substr(1).match(reg);
+				if(r != null) {
+					return unescape(r[2]);
+				} else {
+					return null;
+				}
+			}
+
+			/*
+			 *
+			 * ajax请求专题配置内容,有内容进行页面渲染,无内容跳转首页
+			 *
+			 */
+			function getAllMessage() {
+				ajax.init({
+					url: ajaxActionUrl + 'RecommandCommPage',
+					method: 'get',
+					params: {
+						'action': generalAction
+					},
+					async: false,
+					ContentType: 'json',
+					success: function(data) {
+						OutJson = data;
+						showData(OutJson);
+					},
+					fail: function(status) {
+						console.log("获取数据失败！")
+					}
+				});
+			}
+			getAllMessage();
+
+			var ipImages = [
+				[],
+				[],
+				[],
+				[],
+				[]
+			];
+
+			/*
+			 * ajax数据
+			 */
+			function showData(OutJson) {
+				console.log(OutJson);
+				var recommend_1 = OutJson[1].recommend_1;
+				for(var i = 0; i < recommend_1.length; i++) {
+					var recommendPic = recommend_1[i].recommendPic.url;
+					ipImages[i].push(imgUrl + recommendPic);
+					var pics = JSON.parse(recommend_1[i].morePic).pics;
+					for(var j = 0; j < pics.length; j++) {
+						ipImages[i].push(imgUrl + pics[j].url);
+					}
+				}
+			}
+
+			var CHANGEMUN = "";
+			var freeAction = "";
+
+			function changeNum(num) {
+				CHANGEMUN = CHANGEMUN + num;
+				if(CHANGEMUN == "1024") {
+					freeAction = generalAction;
+				}
+			}
+
+			/*
+			 * 返回方法
+			 */
+			function backfunc() {
+				CT.delCookie("columnBackUrl");
+				if(OutJson[2] && OutJson[2].recommend_2[0]) {
+					toAnterRecommendUrl(OutJson, 2, "recommend_2", 0);
+				} else {
+					BackPortalMainPage();
+				}
+			}
+		</script>
+		<script type="text/javascript" src="js/columnCallPatronSaint.js?v=1.1"></script>
+	</body>
+
+</html>

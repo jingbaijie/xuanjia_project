@@ -1,0 +1,171 @@
+* {
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+
+#main {
+	width: 1280px;
+	height: 720px;
+	background: url(../img/game/gameBg.jpg) no-repeat;
+	overflow: hidden;
+}
+
+
+/*标题*/
+
+#gameTitle {
+	position: absolute;
+	left: 350px;
+	top: -20px;
+}
+
+
+/*定时器*/
+
+#timer {
+	position: absolute;
+	right: 275px;
+	top: 30px;
+}
+
+#timerNum {
+	position: absolute;
+	right: 308px;
+	top: 110px;
+	color: #fff;
+	font-weight: bolder;
+	font-size: 32px;
+}
+
+
+/*恐龙数*/
+
+#numBox {
+	position: absolute;
+	right: 160px;
+	top: 30px;
+	color: #fff;
+	font-weight: bolder;
+	font-size: 32px;
+}
+
+#amounts {
+	position: absolute;
+	right: 200px;
+	top: 110px;
+	color: #fff;
+	font-weight: bolder;
+	font-size: 32px;
+}
+
+
+/*返回按钮*/
+
+#gameBack {
+	position: absolute;
+	right: 20px;
+	top: 20px;
+}
+
+#hands_x0_y0_gameBackFocus_ {
+	position: absolute;
+	right: 20px;
+	top: 20px;
+	visibility: hidden;
+}
+
+
+/*草坪*/
+
+#grass {
+	position: absolute;
+	left: 0px;
+	bottom: 0px;
+	z-index: 3;
+}
+
+/*泡泡龙*/
+
+.bubbleList {
+	width: 8000%;
+	height: 200px;
+	position: absolute;
+	top: 250px;
+}
+
+.bubbleList li:nth-child(1) img,
+.bubbleList li:nth-child(3) img {
+	animation: bubbleOddAni 2000ms alternate infinite;
+	-webkit-animation: bubbleOddAni 2000ms alternate infinite;
+}
+
+/*弹窗*/
+#hands_x0_y0_goChoujiangFocus_{
+	position: absolute;
+	left: 500px;
+	top: 400px;
+	visibility: hidden;
+}
+
+@keyframes bubbleOddAni {
+	0%,
+	100% {
+		transform: translateY(0);
+		-webkit-transform: translateY(0);
+		-ms-transform: translateY(0);
+	}
+	50% {
+		transform: translateY(-10px);
+		-webkit-transform: translateY(-10px);
+		-ms-transform: translateY(-10px);
+	}
+}
+
+@-webkit-keyframes bubbleOddAni {
+	0%,
+	100% {
+		transform: translateY(0);
+		-webkit-transform: translateY(0);
+		-ms-transform: translateY(0);
+	}
+	50% {
+		transform: translateY(-10px);
+		-webkit-transform: translateY(-10px);
+		-ms-transform: translateY(-10px);
+	}
+}
+
+.bubbleList li:nth-child(2) img,
+.bubbleList li:nth-child(4) img {
+	animation: bubbleEvenAni 2000ms alternate infinite;
+	-webkit-animation: bubbleEvenAni 2000ms alternate infinite;
+}
+
+@keyframes bubbleEvenAni {
+	0%,
+	100% {
+		transform: translateY(0);
+		-webkit-transform: translateY(0);
+		-ms-transform: translateY(0);
+	}
+	50% {
+		transform: translateY(10px);
+		-webkit-transform: translateY(10px);
+		-ms-transform: translateY(10px);
+	}
+}
+
+@-webkit-keyframes bubbleEvenAni {
+	0%,
+	100% {
+		transform: translateY(0);
+		-webkit-transform: translateY(0);
+		-ms-transform: translateY(0);
+	}
+	50% {
+		transform: translateY(10px);
+		-webkit-transform: translateY(10px);
+		-ms-transform: translateY(10px);
+	}
+}

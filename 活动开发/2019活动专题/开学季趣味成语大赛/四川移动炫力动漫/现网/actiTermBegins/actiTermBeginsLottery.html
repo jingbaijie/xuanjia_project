@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>开学季-趣味成语大赛抽奖页</title>
+		<style type="text/css">
+			* {
+				margin: 0px;
+				padding: 0px;
+				list-style: none;
+			}
+			
+			#main {
+				width: 1280px;
+				height: 720px;
+				position: relative;
+				left: 0px;
+				top: 0px;
+				background: url(img/lottery/lotteryBG.jpg) no-repeat;
+				overflow: hidden;
+			}
+			
+			#hands_x0_y0_lotteryBtnFocus_ img {
+				position: absolute;
+				left: 555px;
+				top: 310px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="main">
+			<!--抽奖按钮-->
+			<div id="hands_x0_y0_lotteryBtnFocus_">
+				<img src="img/lottery/lotteryBtnFocus.png" id="lotteryBtnFocus" />
+			</div>
+			<!--每个奖品对应的位置-->
+			<div id="moveLottery">
+				<img src="img/lottery/choose.png" class="moveLottery" style="position: absolute;left: 420px;top: 180px;visibility: hidden;" />
+				<img src="img/lottery/choose.png" class="moveLottery" style="position: absolute;left: 560px;top: 180px;visibility: hidden;"/>
+				<img src="img/lottery/choose.png" class="moveLottery" style="position: absolute;left: 705px;top: 180px;visibility: hidden;"/>
+				<img src="img/lottery/choose.png" class="moveLottery" style="position: absolute;left: 705px;top: 320px;visibility: hidden;"/>
+				<img src="img/lottery/choose.png" class="moveLottery" style="position: absolute;left: 705px;top: 460px;visibility: hidden;"/>
+				<img src="img/lottery/choose.png" class="moveLottery" style="position: absolute;left: 560px;top: 460px;visibility: hidden;"/>
+				<img src="img/lottery/choose.png" class="moveLottery" style="position: absolute;left: 420px;top: 460px;visibility: hidden;"/>
+				<img src="img/lottery/choose.png" class="moveLottery" style="position: absolute;left: 420px;top: 320px;visibility: hidden;"/>
+			</div>
+
+			<!--空选中-->
+			<div id="hands_x0_y0_emptyFocus_" style="width: 2px;height: 2px;position: absolute;top: 310px;left: 787px;">
+				<img id="emptyFocus" src="img/empty.png" style="width: 2px;height: 2px;visibility: hidden;" alt="">
+			</div>
+			<!--抽奖中请勿做多余操作-->
+			<div id="littleTips" style="position: absolute;left:500px;top:150px;color: red;font-size: 40px;font-weight: bolder;visibility: hidden;">转盘转动中,请勿做多余操作</div>
+			<!--弹窗-->
+			<img src="img/empty.png" id="lotteryTan" style="position: absolute;left: 0px;top: 0px;" />
+			<div id="hands_x0_y0_lotteryconfirmFocus_">
+				<img src="img/tips/focus.png" id="lotteryconfirmFocus" style="position: absolute;left: 445px;top: 454px;width: 190px;visibility: hidden;" />
+			</div>
+			<div id="hands_x0_y0_lotteryCancelFocus_">
+				<img src="img/tips/focus.png" id="lotteryCancelFocus" style="position: absolute;left: 652px;top: 454px;width: 190px;visibility: hidden;" />
+			</div>
+		</div>
+		<!--引入公用JS-->
+		<script type="text/javascript" src="../../../js/column.js"></script>
+		<script type="text/javascript" src="./js/actiComm.js"></script>
+		<!--引用结束-->
+		<script type="text/javascript">
+			/*
+			 * 获取奖品列表
+			 * 获取当前积分
+			 * 抽奖一次，减去积分并存储
+			 */
+
+			//焦点数组
+			//焦点数组
+			var buttons = [{
+				id: "hands_x0_y0_lotteryBtnFocus_",
+				clickHandler: "javascript:startLottery()",
+				left: "disable",
+				right: "disable",
+				up: "disable",
+				down: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_emptyFocus_",
+				clickHandler: "javascript: notTips()",
+				upEvent: "javascript: notTips()",
+				downEvent: "javascript: notTips()",
+				leftEvent: "javascript: notTips()",
+				rightEvent: "javascript: notTips()",
+				up: "disable",
+				down: "disable",
+				left: "disable",
+				right: "disable",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_lotteryconfirmFocus_",
+				clickHandler: "javascript: backMain()",
+				up: "disable",
+				down: "disable",
+				left: "disable",
+				right: "hands_x0_y0_lotteryCancelFocus_",
+				focusType: 7
+			}, {
+				id: "hands_x0_y0_lotteryCancelFocus_",
+				clickHandler: "javascript: backMain()",
+				up: "disable",
+				down: "disable",
+				left: "hands_x0_y0_lotteryconfirmFocus_",
+				right: "disable",
+				focusType: 7
+			}]
+
+			
+
+			//奖品列表
+			var prizeList = [];
+			//转盘旋转定时器
+			var ringInterval = null;
+
+			//奖品ID
+			var prizeId = 100;
+			//几等奖
+			var prizePrice = 100;
+			//转盘是否正在转动
+			var isRinging = false;
+
+			//抽奖机会
+			var creditNum;
+
+			
+			//获取抽奖积分
+			actiObj.getUserDataList(function(data){
+				if(data && data.resultMsg == "success"){
+					creditNum = parseInt(data.list[0].user_acti_data, 10) || 0;
+				}else{
+					creditNum = 0;
+				}
+			})
+
+			//获取活动奖品列表
+			function getActivityPrizeList() {
+				actiAjax.init({
+					url: actiObj.getActivityPrizeUrl,
+					method: "get",
+					params: {
+						"activityId": actiActivityId,
+						"pageNo": 1,
+						"pageSize": 10
+					},
+					async: true,
+					ContentType: "application/x-www-form-urlencoded",
+					success: function(data) {
+						if(data.resultMsg == "success") {
+							prizeList = data.list;
+						} else {
+							prizeList = [];
+						}
+						console.log(data);
+					},
+					fail: function(status) {
+
+					}
+				});
+			}
+			getActivityPrizeList();
+
+			//焦点初始化
+			focusInit();
+			curFocus = getFocusModel6("hands_x0_y0_lotteryBtnFocus_");
+			curFocus.defaultFocus();
+
+			//转盘开始旋转
+			function startLottery() {
+				//转动图片
+				var circleImg = 0;
+
+				if(creditNum < 10) {
+					CT.$("lotteryTan").src = "img/tips/noChou.png";
+					actiObj.changeFocus("hands_x0_y0_lotteryconfirmFocus_");
+				} else {
+					var n = Math.ceil(Math.random() * 2 - 1); //获取[0,1]随机数 ，无奖
+					var m = Math.ceil(Math.random() * 2 + 1); //获取[2,3]随机数，三等奖
+					var k = Math.ceil(Math.random() * 2 + 3); //获取[4,5]随机数，四等奖
+
+					//切换至空焦点
+					curFocus.defaultBlur();
+					curFocus = getFocusModel6("hands_x0_y0_emptyFocus_");
+					curFocus.defaultFocus();
+					isRinging = true;
+
+					//每个奖品对应的位置	
+					var moveLottery = document.getElementById("moveLottery").getElementsByTagName("img");
+					var prizeDeg = [];
+					prizeDeg[0] = moveLottery[2];
+					prizeDeg[1] = moveLottery[5];
+					prizeDeg[2] = moveLottery[0];
+					prizeDeg[3] = moveLottery[4];
+					prizeDeg[4] = moveLottery[3];
+					prizeDeg[5] = moveLottery[6];
+					prizeDeg[6] = moveLottery[7];
+					prizeDeg[7] = moveLottery[1];
+					//旋转圈数
+					var ringNum = Math.ceil(Math.random() * 10) + 5;		
+					//最终旋转位置
+					var prizeRingNum = 0;
+					//进行概率计算
+					var giftPercent = Math.ceil(Math.random() * 10000);
+					if(prizeList[0].prize_num > 0 && giftPercent <= prizeList[0].prize_percentage) {
+						//一等奖
+						prizeRingNum = prizeDeg[6];
+						prizeId = prizeList[0].prize_id;
+						prizePrice = prizeList[0].prize_price;
+					} else if(prizeList[1].prize_num > 0 && giftPercent <= prizeList[0].prize_percentage + prizeList[1].prize_percentage) {
+						//二等奖
+						prizeRingNum = prizeDeg[7];
+						prizeId = prizeList[1].prize_id;
+						prizePrice = prizeList[1].prize_price;
+					} else if(prizeList[2].prize_num > 0 && giftPercent <= prizeList[0].prize_percentage + prizeList[1].prize_percentage + prizeList[2].prize_percentage) {
+						//三等奖
+						prizeRingNum = prizeDeg[m];
+						prizeId = prizeList[2].prize_id;
+						prizePrice = prizeList[2].prize_price;
+					} else if(prizeList[3].prize_num > 0 && giftPercent <= prizeList[0].prize_percentage + prizeList[1].prize_percentage + prizeList[2].prize_percentage + prizeList[3].prize_percentage) {
+						//四等奖
+						prizeRingNum = prizeDeg[k];
+						prizeId = prizeList[3].prize_id;
+						prizePrice = prizeList[3].prize_price;
+					} else {
+						//无奖品			
+						prizeRingNum = prizeDeg[n];
+						prizeId = 100;
+						prizePrice = 100;
+					}
+
+					ringInterval = setInterval(function() {			
+						//document.getElementById("errorTip").innerHTML="ringNum:"+ringNum+"<br/>";
+						if(ringNum <= 1) {
+							prizeRingNum.style.visibility = "visible";
+							clearInterval(ringInterval);
+							isRinging = false;
+							setPrize();
+
+							CT.$("littleTips").style.visibility = "hidden";
+						} else {
+							//document.getElementById("errorTip").innerHTML+="circleImg:"+circleImg+"<br/>";							
+							if(circleImg > 7) {
+								ringNum--;
+								moveLottery[circleImg - 1].style.visibility = "hidden";
+								circleImg = 0;
+								if(ringNum != 1) {
+									moveLottery[circleImg].style.visibility = "visible";
+								}
+							} else {									
+								moveLottery[circleImg].style.visibility = "visible";									
+								if(circleImg >= 1) {
+									moveLottery[circleImg - 1].style.visibility = "hidden";									
+								}
+							}
+							circleImg++;
+						}
+					}, 100);
+
+					//点击立即抽奖，抽奖积分减10
+					creditNum-=10;
+					//存储抽奖积分
+					actiObj.setUserDataList(creditNum.toString());
+				}
+			}
+
+			function setPrize() {
+				isRinging = false;
+				if(prizePrice <= 4) {
+					actiAjax.init({
+						url: actiObj.setPrizeUrl,
+						method: "get",
+						params: {
+							"userId": actiUserId,
+							"activityId": actiActivityId,
+							"prizeId": prizeId
+						},
+						async: true,
+						ContentType: "application/x-www-form-urlencoded",
+						success: function(data) {
+							if(data.resultMsg == "success") {
+								showPrize();
+							} else {
+								showConfirm();
+							}
+							console.log(data);
+						},
+						fail: function(status) {
+							showConfirm();
+						}
+					});
+				} else {
+					showConfirm();
+				}
+			}
+
+			function showPrize() {
+				CT.$("lotteryTan").src = "img/tips/zhongJ.png";
+				actiObj.changeFocus("hands_x0_y0_lotteryconfirmFocus_");
+				if(prizePrice <= 4) {
+					actiObj.changeFocus("hands_x0_y0_zhongjiangFocus_");
+				} else {
+					showConfirm();
+				}
+			}
+
+			//未中奖显示
+			function showConfirm() {
+				actiObj.changeFocus("hands_x0_y0_lotteryconfirmFocus_");
+				CT.$("lotteryTan").src = "img/tips/noZhong.png";
+			}
+
+			//转盘转动期间禁止多余操作
+			function notTips() {
+				CT.$("littleTips").style.visibility = "visible";
+			}
+
+			//返回
+			function backfunc() {
+				window.location.href = "actiTermBeginsMain.html";
+			}
+
+			//回首页
+			function backMain(){
+				window.location.href = "actiTermBeginsMain.html";
+			}
+		</script>
+	</body>
+
+</html>

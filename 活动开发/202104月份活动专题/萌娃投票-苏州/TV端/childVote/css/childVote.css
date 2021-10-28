@@ -1,0 +1,404 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+ul li {
+    list-style: none;
+}
+.contanier{
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    position: relative;
+    /*background: url(../img/prizeMain/bg.png);*/
+}
+.one,.two,.three{
+    width: 322px;
+    height: 164px;
+    position: absolute;
+    left: 40px;
+}
+.one p,.two p,.three p{
+    position: absolute;
+    font-family:fontW7;
+}
+.middle{
+    width: 700px;
+    height: 638px;
+    position: absolute;
+    top: 6px;
+    left: 347px;
+}
+.middle .middle_div{
+    width: 548px;
+    height: 309px;
+    position: absolute;
+    left: 80px;
+    top: 226px;
+    overflow: hidden;
+}
+.middle ul{
+    height: 309px;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+.middle ul li{
+    width: 548px;
+    height: 309px;
+    position: absolute;
+}
+
+.right{
+    width: 200px;
+    height: 700px;
+    position: absolute;
+    top: 0px;
+    right: 10px;
+}
+.right .code1,.code11{
+    position: absolute;
+    width: 152px;
+    top: 250px;
+    left: 10px;
+    transform:rotate(12deg);
+    -ms-transform:rotate(12deg);
+    -moz-transform:rotate(12deg);
+    -webkit-transform:rotate(12deg);
+    -o-transform:rotate(12deg);
+    border-radius: 15px;
+}
+.right .code2,.code21{
+    position: absolute;
+    width: 133px;
+    top: 555px;
+    left: 25px;
+    transform:rotate(-7deg);
+    -ms-transform:rotate(-7deg);
+    -moz-transform:rotate(-7deg);
+    -webkit-transform:rotate(-7deg);
+    -o-transform:rotate(-7deg);
+    border-radius: 15px;
+}
+/*********************投票页面*********************/
+#placeBox{
+    width: 160px;
+    position: absolute;
+    top: 46px;
+    left: 17px;
+    z-index: 9999;
+}
+#placeBox li{
+    width: 160px;
+    height: 32px;
+    line-height: 32px;
+    position: absolute;
+    text-align: center;
+    background: #fff;
+}
+#placeBox li p{
+    width: 160px;
+    height: 32px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-family: Microsoft YaHei;
+    font-size: 18px;
+}
+.areafocus{
+    width: 160px;
+    height: 32px;
+    position: absolute;
+}
+.areafocus img{
+    width: 160px;
+    height: 32px;
+}
+.voteContainer{
+    width: 1280px;
+    height: 720px;
+    background: url(../img/vote/bg.jpg);
+}
+.voteContainer .cardContainer{
+    width: 197px;
+    height: 265px;
+    position: absolute;
+    top: 103px;
+    left: 92px;
+    background: url(../img/vote/playerBg.png);
+}
+.voteContainer .card{
+    width: 197px;
+    height: 265px;
+    opacity: 0.7;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    border-radius: 10px;
+}
+.cargImg{
+    position: absolute;
+    top: 37px;
+    left: 8px;
+    width: 182px;
+    height: 136px;
+    background: tomato;
+    border-radius: 10px;
+}
+.focus{
+    position: absolute;
+}
+.place{
+    width: 573px;
+    height: 60px;
+    position: absolute;
+    top: 39px;
+    left: 635px;
+}
+#bottomNum{
+    width: 432px;
+    height: 36px;
+    position: absolute;
+    top: 673px;
+    left: 756px;
+}
+#bottomNum .middleNum{
+    width: 432px;
+    height: 36px;
+    position: absolute;
+    top: 0;
+    left: 51px;
+}
+
+.middleNum #middleNum{
+    width: 432px;
+    height: 36px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.middleNum p{
+    width: 37px;
+    height: 30px;
+    position: absolute;
+    text-align: center;
+    line-height: 30px;
+}
+/**********************规则页************************/
+.ruleMain{
+    width: 1280px;
+    height: 720px;
+    position: relative;
+    overflow: hidden;
+}
+.ruleMain .content{
+    width: 922px;
+    height: 514px;
+    position: absolute;
+    top: 154px;
+    left: 187px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.ruleMain .content .roller{
+    width: 20px;
+    height: 477px;
+    position: absolute;
+    top: 22px;
+    left: 842px;
+}
+/*.....................字体定义.....................*/
+/*华康w3*/
+/*@font-face
+{
+    font-family: fontW3;
+    src: url('./fonts/roundBodyW3.TTF');
+}*/
+/*华康w5*/
+/*@font-face
+{
+    font-family: fontW5;
+    src: url('./fonts/roundBodyW5.TTF');
+}*/
+/*华康w7*/
+/*@font-face
+{
+    font-family: fontW7;
+    src: url('./fonts/roundBodyW7.TTF');
+}*/
+/*华康w9*/
+/*@font-face
+{
+    font-family: fontW9;
+    src: url('./fonts/roundBodyW9.TTF');
+}*/
+/*棉花糖字体*/
+/*@font-face
+{
+    font-family: fontMars;
+    src: url('./fonts/MarshmallowFont.TTF');
+}*/
+.voteContainer .card p{
+    /*font-family:fontW7;*/
+}
+.contanier .middle p{
+    /*font-family:fontMars;*/
+}
+#tips{
+    width: 1280px;
+    height: 720px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+#tips1{
+    width: 1280px;
+    height: 720px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+#totalTicMonth{
+    width: 277px;
+    height: 38px;
+    line-height: 38px;
+    position: absolute;
+    top: 291px;
+    left: 623px;
+}
+#isGone{
+    width: 577px;
+    height: 84px;
+    line-height: 58px;
+    position: absolute;
+    top: 345px;
+    left: 345px;
+    text-align: center;
+    font-size: 37px;
+}
+#error{
+    width: 597px;
+    height: 38px;
+    line-height: 38px;
+    position: absolute;
+    top: 350px;
+    left: 334px;
+    text-align: center;
+    font-size: 37px;
+}
+#TVTic{
+    width: 200px;
+    height: 38px;
+    line-height: 38px;
+    position: absolute;
+    top: 338px;
+    left: 700px;
+}
+#phoneTic{
+    width: 200px;
+    height: 38px;
+    line-height: 38px;
+    position: absolute;
+    top: 386px;
+    left: 700px;
+}
+#totalTic{
+    width: 360px;
+    height: 38px;
+    line-height: 38px;
+    position: absolute;
+    top: 431px;
+    left: 539px;
+}
+/**********************萌娃信息展示页面*************************/
+.main{
+    width: 1280px;
+    height: 720px;
+    position: relative;
+    background: url(../img/person/BG.jpg);
+    overflow: hidden;
+}
+.opaci{
+    width: 1280px;
+    height: 720px;
+}
+.leftChild{
+    width: 615px;
+    height: 344px;
+    position: absolute;
+    top: 122px;
+    left: 120px;
+    border-radius: 10px;
+}
+.rightChlid{
+    width: 234px;
+    height: 325px;
+    position: absolute;
+    top: 130px;
+    left: 880px;
+
+}
+.bottomChild{
+    width: 1087px;
+    height: 149px;
+    position: absolute;
+    bottom: 67px;
+    left: 93px;
+
+}
+.bottomChild li{
+    width: 200px;
+    height: 149px;
+    position: absolute;
+    border-radius: 10px;
+}
+#nameChlid{
+    width: 200px;
+    /* background: burlywood; */
+    line-height: 34px;
+    position: absolute;
+    top: 80px;
+    left: 30px;
+    font-weight: bolder;
+    letter-spacing: 5px;
+}
+#ageChlid{
+    width: 200px;
+    /* background: burlywood; */
+    line-height: 34px;
+    position: absolute;
+    top: 112px;
+    left: 30px;
+    font-weight: bolder;
+    letter-spacing: 5px;
+}
+#sexChlid{
+    width: 200px;
+    /* background: burlywood; */
+    line-height: 34px;
+    position: absolute;
+    top: 144px;
+    left: 30px;
+    font-weight: bolder;
+    letter-spacing: 5px;
+}
+#placeChlid{
+    width: 200px;
+    /* background: burlywood; */
+    line-height: 34px;
+    position: absolute;
+    top: 178px;
+    left: 30px;
+    font-weight: bolder;
+    letter-spacing: 5px;
+}
+#hobbyChlid{
+    width: 200px;
+    /* background: burlywood; */
+    line-height: 28px;
+    position: absolute;
+    top: 211px;
+    left: 30px;
+    font-weight: bolder;
+    letter-spacing: 5px;
+}

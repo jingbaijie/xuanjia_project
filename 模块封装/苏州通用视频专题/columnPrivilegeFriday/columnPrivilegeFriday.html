@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>特权星期五</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="page-view-size" content ="1280*720" />
+    <style>
+        ul,li {
+            padding: 0;
+            margin: 0;
+        }
+        .main{
+            position: absolute;
+            width: 1280px;
+            height: 720px;
+            margin: 0;
+            padding: 0;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            text-align: center;
+        }
+        ul {
+            width: 500%;
+            text-align: left;
+            position:absolute;
+            left: 0;
+            top: 360px;
+            list-style: none;
+            height:306px;
+            /*margin-left:20px;*/
+            transition: all 0.3s ease-in-out;
+        }
+        ul li {
+            display: inline-block;
+            width: 240px;
+            height: 100%;
+            background-size: 200px 255px !important;
+	    
+        }
+	img{
+		display:inline-block;
+		width:100%;
+		height: 100%;
+	}
+        .normal {
+            position:absolute;
+            left: 0;
+            top: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="main" id="main">
+        <!--图片-->
+        <ul id="liPic" style="top: 385px;left: 45px;"></ul>
+		<ul id="liLabelPic" style="top: 385px;left: 45px;"></ul>
+        <!--光标-->
+        <div id="focusDiv"></div>
+    </div>
+    <!-- 引入公共js开始 -->
+	<script type = "text/javascript" src = "../../../js/loadCommomJs.js"></script>
+    <script type = "text/javascript" src="./js/main.js?v=2020"></script>
+</body>
+</html>

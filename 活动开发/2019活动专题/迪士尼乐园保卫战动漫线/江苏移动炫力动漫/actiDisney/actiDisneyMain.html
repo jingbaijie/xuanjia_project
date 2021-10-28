@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>迪士尼乐园保卫战首页</title>
+		<link rel="stylesheet" type="text/css" href="css/actiDisneyMain.css" />
+	</head>
+	<div id="main">
+		<!--标题-->
+		<img src="img/main/title.png" id="mainTitle" />
+		<!--游戏屋-->
+		<div id="hands_x0_y0_goGameFocus_">
+			<img src="img/main/IP/castle.png" id="goGameFocus" />
+		</div>
+		<!--四个IP-->
+		<img src="img/main/IP/Ultraman1.png" id="ip1" />
+		<div id="hands_x0_y0_firstFocus_">
+			<img src="img/main/IP/Ultraman2.png" id="firstFocus" />
+		</div>
+		<img src="img/main/IP/chickenM1.png" id="ip2" />
+		<div id="hands_x0_y0_secondFocus_">
+			<img src="img/main/IP/chickenM2.png" id="secondFocus" />
+		</div>
+		<img src="img/main/IP/horse1.png" id="ip3" />
+		<div id="hands_x0_y0_thirdFocus_">
+			<img src="img/main/IP/horse2.png" id="thirdFocus" />
+		</div>
+		<img src="img/main/IP/feixia1.png" id="ip4" />
+		<div id="hands_x0_y0_fourthFocus_">
+			<img src="img/main/IP/feixia2.png" id="fourthFocus" />
+		</div>
+		<!--左边三大按钮-->
+		<img src="img/main/prizeBtn.png" id="prizeBtn" />
+		<div id="hands_x0_y0_prizeBtnFocus_">
+			<img src="img/game/btnFocus.png" id="prizeBtnFocus" />
+		</div>
+		<img src="img/game/ruleBtn.png" id="ruleBtn" />
+		<div id="hands_x0_y0_ruleBtnFocus_">
+			<img src="img/game/btnFocus.png" id="ruleBtnFocus" />
+		</div>
+		<img src="img/game/lotteryBtn.png" id="lotteryBtn" />
+		<div id="hands_x0_y0_lotteryBtnFocus_">
+			<img src="img/game/btnFocus.png" id="lotteryBtnFocus" />
+		</div>
+		<!--弹窗-->
+		<!--中奖名单-->
+		<div id="nameListTanBG">
+			<img src="img/nameList/nameListBJ.png" id="nameList" />
+			<div id="hands_x0_y0_nameListBackFocus_">
+				<img src="img/nameList/XFocus.png" id="nameListBackFocus" />
+			</div>
+			<!--用户信息-->
+			<div id="userInfo"></div>
+			<!--手机号输入框-->
+			<div id="userPhone"></div>
+			<!--保存手机号成功提示-->
+			<div id="savetips"></div>
+			<div id="hands_x0_y0_inputFocus_">
+				<img src="img/nameList/phoneFocus.png" id="inputFocus" />
+			</div>
+			<div id="hands_x0_y0_saveFocus_">
+				<img src="img/nameList/save-emptyFocus.png" id="saveFocus" />
+			</div>
+			<div id="hands_x0_y0_emptyFocus_">
+				<img src="img/nameList/save-emptyFocus.png" id="emptyFocus" />
+			</div>
+			<ul id="userPhone-prize">
+				<li>
+					<span>180****7710</span>
+					<span>迪士尼家庭套装</span>
+				</li>
+			</ul>
+			<!--中奖信息-->
+			<div id="prizeInfo" style="position: absolute;left: 905px;bottom: 106px;font-size: 16px;font-weight: bold;"></div>
+
+		</div>
+
+		<!--活动规则-->
+		<div id="ruleTanBG">
+			<img src="img/rule/JSrule.png" id="ruleTan" />
+			<div id="hands_x0_y0_ruleBackFocus_">
+				<img src="img/nameList/XFocus.png" id="ruleBackFocus" />
+			</div>
+		</div>
+
+		<!--弹窗-->
+		<!--看视频获取机会-->
+		<img id="getChanceTan" src="img/tips/getChance.png" style="position: absolute;left: 0px;top: 0px;visibility: hidden;"></img>
+		<div id="hands_x0_y0_getChanceFocus_">
+			<img src="img/game/empty.png" id="getChanceFocus" />
+		</div>
+		<!--没有机会弹窗-->
+		<img id="outTimesTan" src="img/tips/outTimes.png" style="position: absolute;left: 0px;top: 0px;visibility: hidden;"></img>
+		<div id="hands_x0_y0_outTimesFocus_">
+			<img src="img/game/empty.png" id="outTimesFocus" />
+		</div>
+		<!--看视频弹窗-->
+		<img src="img/tips/seeVideo.png" id="seeVideoTan" style="position: absolute;left: 0px;top: 0px;visibility: hidden;" />
+
+	</div>
+
+	<body>
+		<!--引入公用JS-->
+		<script type="text/javascript" src="../../../js/column.js"></script>
+		<script type="text/javascript" src="./js/actiComm.js"></script>
+		<script type="text/javascript" src="js/nameList.js?v=1"></script>
+		<!--引入结束-->
+		<script type="text/javascript">
+			var buttons = [{
+					id: "hands_x0_y0_goGameFocus_",
+					clickHandler: "javascript:goGameFunc()",
+					left: "hands_x0_y0_firstFocus_",
+					right: "hands_x0_y0_secondFocus_",
+					up: "disable",
+					down: "hands_x0_y0_fourthFocus_",
+					focusType: 7
+				}, {
+					id: "hands_x0_y0_firstFocus_",
+					clickHandler: "javascript:jumpIPUrl(1)",
+					left: "hands_x0_y0_lotteryBtnFocus_",
+					right: "hands_x0_y0_goGameFocus_",
+					up: "disable",
+					down: "hands_x0_y0_fourthFocus_",
+					focusType: 7
+				}, {
+					id: "hands_x0_y0_secondFocus_",
+					clickHandler: "javascript:jumpIPUrl(2)",
+					left: "hands_x0_y0_goGameFocus_",
+					right: "disable",
+					up: "disable",
+					down: "hands_x0_y0_thirdFocus_",
+					focusType: 7
+				}, {
+					id: "hands_x0_y0_thirdFocus_",
+					clickHandler: "javascript:jumpIPUrl(3)",
+					left: "hands_x0_y0_fourthFocus_",
+					right: "disable",
+					up: "hands_x0_y0_secondFocus_",
+					down: "disable",
+					focusType: 7
+				}, {
+					id: "hands_x0_y0_fourthFocus_",
+					clickHandler: "javascript:jumpIPUrl(4)",
+					left: "hands_x0_y0_lotteryBtnFocus_",
+					right: "hands_x0_y0_thirdFocus_",
+					up: "hands_x0_y0_firstFocus_",
+					down: "disable",
+					focusType: 7
+				}, {
+					id: "hands_x0_y0_prizeBtnFocus_",
+					clickHandler: "javascript:goPrizePage()",
+					left: "disable",
+					right: "hands_x0_y0_firstFocus_",
+					up: "disable",
+					down: "hands_x0_y0_ruleBtnFocus_",
+					focusType: 7
+				}, {
+					id: "hands_x0_y0_ruleBtnFocus_",
+					clickHandler: "javascript:goRulePage()",
+					left: "disable",
+					right: "hands_x0_y0_firstFocus_",
+					up: "hands_x0_y0_prizeBtnFocus_",
+					down: "hands_x0_y0_lotteryBtnFocus_",
+					focusType: 7
+				}, {
+					id: "hands_x0_y0_lotteryBtnFocus_",
+					clickHandler: "javascript:goLotteryPage()",
+					left: "disable",
+					right: "hands_x0_y0_firstFocus_",
+					up: "hands_x0_y0_ruleBtnFocus_",
+					down: "hands_x0_y0_fourthFocus_",
+					focusType: 7
+				},
+				{
+					id: "hands_x0_y0_nameListBackFocus_",
+					clickHandler: "javascript:backmainFunc(1)",
+					left: "disable",
+					right: "disable",
+					up: "disable",
+					down: "hands_x0_y0_inputFocus_",
+					focusType: 7
+				},
+				{
+					id: "hands_x0_y0_ruleBackFocus_",
+					clickHandler: "javascript:backmainFunc(2)",
+					left: "disable",
+					right: "disable",
+					up: "disable",
+					down: "disable",
+					focusType: 7
+				},
+				{
+					id: "hands_x0_y0_inputFocus_",
+					otherFocusEvent: "javascript:onFocus(1)",
+					otherBlurEvent: "javascript:onFocus(0)",
+					left: "disable",
+					right: "hands_x0_y0_saveFocus_",
+					up: "hands_x0_y0_nameListBackFocus_",
+					down: "disable",
+					focusType: 7
+				}, {
+					id: "hands_x0_y0_saveFocus_",
+					clickHandler: "javascript:saveFunc()",
+					otherBlurEvent: 'javascript:saveBlurFunc()',
+					left: "hands_x0_y0_inputFocus_",
+					right: "hands_x0_y0_emptyFocus_",
+					up: "hands_x0_y0_nameListBackFocus_",
+					down: "disable",
+					focusType: 7
+				}, {
+					id: "hands_x0_y0_emptyFocus_",
+					clickHandler: "javascript:emptyFunc()",
+					left: "hands_x0_y0_saveFocus_",
+					right: "disable",
+					up: "hands_x0_y0_nameListBackFocus_",
+					down: "disable",
+					focusType: 7
+				}, {
+					id: "hands_x0_y0_getChanceFocus_",
+					clickHandler: "javascript:getChanceFunc()",
+					left: "disable",
+					right: "disable",
+					up: "disable",
+					down: "disable",
+					focusType: 7
+				}, {
+					id: "hands_x0_y0_outTimesFocus_",
+					clickHandler: "javascript:outTimesFunc()",
+					left: "disable",
+					right: "disable",
+					up: "disable",
+					down: "disable",
+					focusType: 7
+				}
+			]
+
+			//用户鉴权结果
+			var isOrder = 1;
+			var nameListShow = false; //中奖名单默认不显示
+			var ruleShow = false; //规则弹窗默认不显示			
+			var chanceNum = 3;
+
+			// 初始化焦点并鉴权
+			function initAuth() {
+				//鉴权(data为0,鉴权通过,其余则未通过,需要跳转订购)
+				orderJs.columnGetAuth(function(data) {
+					isOrder = data + "";
+					//初始化焦点
+					focusInit();
+					curFocus = getFocusModel6("hands_x0_y0_goGameFocus_");
+					curFocus.defaultFocus();
+				});
+			}
+			initAuth();
+
+			//获取游戏次数
+			actiObj.getChance(function(res) {
+				chanceNum = res.activityChance;
+			})
+
+			//获取用户中奖信息
+			actiObj.getUserPrizeInfo(function(res) {
+				if(res.resultMsg == "success") {
+					CT.$("prizeInfo").innerHTML = res.list.PRIZE_CNAME;
+				} else {
+					CT.$("prizeInfo").innerHTML = "未中奖";
+				}
+			})
+
+			//中奖用户
+			function goPrizePage() {
+				nameListShow = true;
+				CT.$("nameListTanBG").style.visibility = "visible";
+				actiObj.changeFocus("hands_x0_y0_inputFocus_");
+			}
+			//规则弹窗
+			function goRulePage() {
+				ruleShow = true;
+				CT.$("ruleTanBG").style.visibility = "visible";
+				actiObj.changeFocus("hands_x0_y0_ruleBackFocus_");
+			}
+			//抽奖弹窗
+			function goLotteryPage() {
+				window.location.href = "actiDisneyLottery.html";
+			}
+			//点击弹窗返回主页面
+			function backmainFunc(index) {
+				if(index == 2) {
+					CT.$("ruleTanBG").style.visibility = "hidden";
+					actiObj.changeFocus("hands_x0_y0_ruleBtnFocus_");
+					ruleShow = false;
+				} else if(index == 1) {
+					CT.$("nameListTanBG").style.visibility = "hidden";
+					actiObj.changeFocus("hands_x0_y0_prizeBtnFocus_");
+					nameListShow = false;
+				}
+			}
+
+			//按返回键返回
+			function backfunc() {
+				if(ruleShow == true) {
+					backmainFunc(2);
+				} else if(nameListShow == true) {
+					backmainFunc(1);
+				} else {
+					BackPortalMainPage();
+				}
+			}
+
+			//获取跳转数据
+			var user_acti_data;
+			var maxChance = 3;
+			actiObj.getUserDataList(function(res) {
+				if(res.resultMsg == "success") {
+					var thisDate = new Date().getMonth() + 1 + "" + new Date().getDate();
+					user_acti_data = res.list[0].user_acti_data;
+					if(user_acti_data == thisDate) {
+						maxChance = 4;
+					}
+				}
+			})
+
+			//跳转游戏
+			function goGameFunc() {
+				if(isOrder === "0") {
+					if(chanceNum == 3 && maxChance == 3) {
+						CT.$("getChanceTan").style.visibility = "visible";
+						//切换焦点
+						actiObj.changeFocus("hands_x0_y0_getChanceFocus_");
+					} else if(chanceNum == 4) {
+						//没有机会弹窗
+						CT.$("outTimesTan").style.visibility = "visible";
+						//切换焦点
+						actiObj.changeFocus("hands_x0_y0_outTimesFocus_");
+					} else {
+						window.location.href = "actiDisneyGame.html";
+					}
+				} else {
+					if(chanceNum >= 1) {
+						//跳订购
+						orderJs.columnToOrderPage("actiDisney");
+					} else {
+						window.location.href = "actiDisneyGame.html";
+					}
+				}
+			}
+
+			//首页IP跳转、看视频获取一次游戏机会
+			function jumpIPUrl(index) {
+				var thisDate = new Date().getMonth() + 1 + "" + new Date().getDate();
+				actiObj.setUserDataList(thisDate);
+				//弹窗显示
+				CT.$("seeVideoTan").style.visibility = "visible";
+				//跳视频之后返回活动首页
+				CT.setCookie("columnBackUrl", window.location.href);
+				setTimeout(function() {
+					//弹窗显示
+					CT.$("seeVideoTan").style.visibility = "hidden";
+					if(index == 1) {
+						getAnterUrl("cartoonDetail_2018v1", "?action=cartoonDetail_2018v1&cartoonId=1133", "hands_x0_y0_firstFocus_");
+					} else if(index == 2) {
+						getAnterUrl("cartoonDetail_2018v1", "?action=cartoonDetail_2018v1&cartoonId=1350", "hands_x0_y0_secondFocus_");
+					} else if(index == 3) {
+						getAnterUrl("cartoonDetail_2018v1", "?action=cartoonDetail_2018v1&cartoonId=568", "hands_x0_y0_thirdFocus_");
+					} else if(index == 4) {
+						getAnterUrl("cartoonDetail_2018v1", "?action=cartoonDetail_2018v1&cartoonId=1131", "hands_x0_y0_fourthFocus_");
+					}
+				}, 3000)
+
+			}
+
+			//看视频获取机会弹窗
+			function getChanceFunc() {
+				CT.$("getChanceTan").style.visibility = "hidden";
+				//切换焦点
+				actiObj.changeFocus("hands_x0_y0_goGameFocus_");
+			}
+
+			//没有机会弹窗
+			function outTimesFunc() {
+				CT.$("outTimesTan").style.visibility = "hidden";
+				//切换焦点
+				actiObj.changeFocus("hands_x0_y0_goGameFocus_");
+			}
+
+			//获奖用户
+			actiObj.getPrizeUserInfo(function(res) {
+				var html = "";
+				if(res.resultMsg=="success"){
+				for(var i = 0; i < res.list.length; i++) {
+					html += "<li><span>" + res.list[i].USER_PHONE + "</span><span> " + res.list[i].PRIZE_CNAME + "</span></li>";					
+					CT.$("userPhone-prize").innerHTML = html;
+				}
+				}
+
+			})
+		</script>
+	</body>
+
+</html>

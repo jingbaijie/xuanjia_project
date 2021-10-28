@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>包粽子活动主页</title>
+		<link rel="stylesheet" type="text/css" href="css/actiZongziMain.css?v=2" />
+	</head>
+
+	<body>
+		<div class="main">
+			<!--活动规则-->
+			<img src="img/rule.png" id="rule" />
+			<div id="hands_x0_y0_ruleFocus_">
+				<img src="img/chooseFocus.png" id="ruleFocus" />
+			</div>
+			<!--我的粽子-->
+			<img src="img/mine.png" id="mine" />
+			<div id="hands_x0_y0_mineFocus_">
+				<img src="img/chooseFocus.png" id="mineFocus" />
+			</div>
+			<!--兑奖-->
+			<img src="img/exchange.png" id="exchange" />
+			<div id="hands_x0_y0_exchangeFocus_">
+				<img src="img/chooseFocus.png" id="exchangeFocus" />
+			</div>
+			<!--四种材料-->
+			<img src="img/main/0/0.png" id="leaves" />
+			<div id="hands_x0_y0_leavesFocus_">
+				<img src="img/main/0/1.png" id="leavesFocus" style="visibility: hidden;" />
+			</div>
+			<img src="img/main/1/0.png" id="rice" />
+			<div id="hands_x0_y0_riceFocus_">
+				<img src="img/main/1/1.png" id="riceFocus" style="visibility: hidden;" />
+			</div>
+			<img src="img/main/2/0.png" id="fillings" />
+			<div id="hands_x0_y0_fillingsFocus_">
+				<img src="img/main/2/1.png" id="fillingsFocus" style="visibility: hidden;" />
+			</div>
+			<img src="img/main/3/0.png" id="string" />
+			<div id="hands_x0_y0_stringFocus_">
+				<img src="img/main/3/1.png" id="stringFocus" style="visibility: hidden;" />
+			</div>
+			<!--空焦点-->
+			<div id="hands_x0_y0_blankFocus_">
+				<img src="img/empty.png" id="blankFocus" />
+			</div>
+			<!--手-->
+			<img src="img/shou1.png" id="shou1" />
+			<img src="img/shou1.png" id="shou2" />
+			<img src="img/shou1.png" id="shou3" />
+			<img src="img/shou1.png" id="shou4" />
+			<!--返回-->
+			<img src="img/back.png" id="back" />
+			<div id="hands_x0_y0_backFocus_">
+				<img src="img/chooseFocus.png" id="backFocus" />
+			</div>
+			<!--铺在桌上的材料-->
+			<!--粽叶-->
+			<div class="addLeaves" id="addLeaves">
+				<img src="" />
+			</div>
+			<!--米饭-->
+			<div class="addRice" id="addRice">
+				<img src="" />
+			</div>
+			<!--馅料-->
+			<div class="addFillings" id="addFillings">
+				<img src="" />
+			</div>
+			<!--绳子-->
+			<div class="addString" id="addString">
+				<img src="" />
+			</div>
+			<!--整个粽子-->
+			<img src="" id="whole" class="whole" />
+
+			<!--包粽子按钮、开始-->
+			<img src="img/start.png" id="start" />
+			<div id="hands_x0_y0_startFocus_">
+				<img src="img/startFocus.png" id="startFocus" />
+			</div>
+
+			<!--计时器-->
+			<div id="timer">60</div>
+
+			<!--提示框-->
+			<div id="tips"></div>
+			<!--一次60秒弹窗-->
+			<div class="continueTan">
+				<img src="img/continue.png" id="continueTan" />
+			</div>
+			<!--继续包粽子焦点-->
+			<div id="hands_x0_y0_continueFocus_">
+				<img src="img/exchangeFocus.png" id="continueFocus" style="visibility: hidden;" />
+			</div>
+
+			<!--超过三次-->
+			<div class="outTimes">
+				<img src="img/outTimes.png" id="outTimes" />
+			</div>
+			<!--超过次数按钮-->
+			<div id="hands_x0_y0_outTimesFocus_">
+				<img src="img/exchangeFocus.png" id="outTimesFocus" style="visibility: hidden;" />
+			</div>
+
+		</div>
+
+		<!--引入公用JS-->
+		<script type="text/javascript" src="../../../js/column.js"></script>
+		<script type="text/javascript" src="./js/actiComm.js"></script>
+		<!--引入结束-->
+
+		<script>
+			var buttons = [{
+					id: "hands_x0_y0_startFocus_",
+					clickHandler: "javascript:start()",
+					left: "hands_x0_y0_exchangeFocus_",
+					right: "hands_x0_y0_backFocus_",
+					up: "hands_x0_y0_exchangeFocus_",
+					down: "disable",
+					focusType: 7
+				},
+				{
+					id: "hands_x0_y0_exchangeFocus_",
+					clickHandler: "javascript:goExchange()",
+					left: "disable",
+					right: "disable",
+					up: "hands_x0_y0_mineFocus_",
+					down: "hands_x0_y0_startFocus_",
+					focusType: 7
+				},
+				{
+					id: "hands_x0_y0_mineFocus_",
+					clickHandler: "javascript:goMine()",
+					left: "disable",
+					right: "disable",
+					up: "hands_x0_y0_ruleFocus_",
+					down: "hands_x0_y0_exchangeFocus_",
+					focusType: 7
+				},
+				{
+					id: "hands_x0_y0_ruleFocus_",
+					clickHandler: "javascript:goRule()",
+					left: "disable",
+					right: "hands_x0_y0_backFocus_",
+					up: "disable",
+					down: "hands_x0_y0_mineFocus_",
+					focusType: 7
+				},
+				{
+					id: "hands_x0_y0_backFocus_",
+					clickHandler: "javascript:backfunc()",
+					left: "hands_x0_y0_ruleFocus_",
+					right: "disable",
+					up: "disable",
+					down: "hands_x0_y0_startFocus_",
+					focusType: 7
+				},
+				{
+					id: "hands_x0_y0_leavesFocus_",
+					clickHandler: "javascript:addLeaves()",
+					otherFocusEvent: "javascript: handShow(1)",
+					otherBlurEvent: "javascript:handHide(1)",
+					left: "disable",
+					right: "hands_x0_y0_riceFocus_",
+					up: "disable",
+					down: "disable",
+					focusType: 7
+				},
+				{
+					id: "hands_x0_y0_riceFocus_",
+					clickHandler: "javascript:addRice()",
+					otherFocusEvent: "javascript: handShow(2)",
+					otherBlurEvent: "javascript:handHide(2)",
+					left: "hands_x0_y0_leavesFocus_",
+					right: "hands_x0_y0_fillingsFocus_",
+					up: "disable",
+					down: "disable",
+					focusType: 7
+				},
+				{
+					id: "hands_x0_y0_fillingsFocus_",
+					clickHandler: "javascript:addFillings()",
+					otherFocusEvent: "javascript: handShow(3)",
+					otherBlurEvent: "javascript:handHide(3)",
+					left: "hands_x0_y0_riceFocus_",
+					right: "hands_x0_y0_stringFocus_",
+					up: "disable",
+					down: "disable",
+					focusType: 7
+				},
+				{
+					id: "hands_x0_y0_stringFocus_",
+					clickHandler: "javascript:addString()",
+					otherFocusEvent: "javascript: handShow(4)",
+					otherBlurEvent: "javascript:handHide(4)",
+					left: "hands_x0_y0_fillingsFocus_",
+					right: "disable",
+					up: "disable",
+					down: "disable",
+					focusType: 7
+				},
+				{
+					id: "hands_x0_y0_continueFocus_",
+					clickHandler: "javascript:continueGame()",
+					left: "disable",
+					right: "disable",
+					up: "disable",
+					down: "disable",
+					focusType: 7
+				}, {
+					id: "hands_x0_y0_outTimesFocus_",
+					clickHandler: "javascript:outTimes()",
+					left: "disable",
+					right: "disable",
+					up: "disable",
+					down: "disable",
+					focusType: 7
+				}
+			];
+
+			var countDown; //倒计时
+			var addLeavesAni; //粽叶动画
+			var addRiceAni; //糯米动画
+			var addFillingsAni; //馅料动画
+			var addStringAni; //绳子动画
+			var fillingsAni;
+			var riceAni;
+			var changeBlankAni;//转移空焦点
+			var continueTan = document.getElementById("continueTan"); //继续游戏弹窗			
+			var outTimesTan = document.getElementById("outTimes"); //超过次数结束游戏弹窗
+			var canClick = true;
+
+			//用户鉴权结果
+			var isOrder = 1;
+			//粽子数量
+			var amount = 0;
+			//用户之前粽子数量
+			var preAmount = 0;
+			//获取用户机会
+			var chanceNum = 0;
+			var activityChance;
+			// 初始化焦点并鉴权
+			function initAuth() {
+				//鉴权(data为0,鉴权通过,其余则未通过,需要跳转订购)
+				orderJs.columnGetAuth(function(data) {
+					isOrder = data + "";
+					setActiFocus();
+				});
+			}
+			initAuth();
+			//获取活动机会和粽子数量
+			actiObj.getChance(function(res) {
+				activityChance = res.activityChance;
+				chanceNum = activityChance;
+				actiObj.getUserCredit(function(data) {
+					if(data && data.resultMsg == "success") {
+						preAmount = parseInt(data.creditNum, 10) || 0;
+					} else {
+						preAmount = 0;
+					}
+				})
+			})
+
+			//焦点初始化
+			//获取当前焦点对象
+			function setActiFocus() {
+				focusInit();
+				curFocus = getFocusModel6("hands_x0_y0_startFocus_");
+				curFocus.defaultFocus();
+			}
+
+			/*
+			 * 游戏逻辑
+			 */
+			//点击开始
+			function start() {
+				canClick = true;
+				amount = 0;
+				if(chanceNum >= 3) {
+					//结束游戏弹窗
+					outTimesTan.style.visibility = "visible";
+					actiObj.changeFocus("hands_x0_y0_outTimesFocus_");
+				} else {
+					if(isOrder != "0") {
+						//未订购用户取消一次试玩机会，直接跳订购
+						orderJs.columnToOrderPage("actiDragonBoatFestival");						
+					} else {
+						timerFunc();
+					}
+				}
+			}
+			var timer = null;
+			function timerFunc() {
+				//切换焦点
+				actiObj.changeFocus("hands_x0_y0_leavesFocus_");
+				//60s倒计时
+				countDown = 60;
+				var timerDOM = document.getElementById("timer");
+				timer = setInterval(function() {
+					//倒计时				
+					if(countDown == -1) {
+						chanceNum++;
+						//存储次数
+						actiObj.setChance(function() {
+							var nowAmount = amount;
+							amount += preAmount;
+							//存储粽子数量
+							preAmount = amount;
+							actiObj.setUserCredit(amount);
+						});
+						//关闭定时器
+						closeDSQ();				
+
+						if(chanceNum >= 3) {
+							//结束游戏弹窗
+							outTimesTan.style.visibility = "visible";
+							actiObj.changeFocus("hands_x0_y0_outTimesFocus_");
+						} else {
+							//一次60秒继续游戏弹窗
+							continueTan.style.visibility = "visible";
+							actiObj.changeFocus("hands_x0_y0_continueFocus_");
+						}
+						countDown = 60;
+						timerDOM.innerHTML = countDown;
+					} else {
+						timerDOM.innerHTML = countDown;
+					}
+					countDown--;
+				}, 1000)
+			}
+
+			//手指的显示隐藏
+			function handShow(index) {
+				document.getElementById("shou" + index + "").style.visibility = "visible";
+			}
+
+			function handHide(index) {
+				document.getElementById("shou" + index + "").style.visibility = "hidden";
+			}
+
+			//关闭定时器
+			function closeDSQ(){
+			clearTimeout(addLeavesAni);
+			clearTimeout(addRiceAni);
+			clearTimeout(addFillingsAni);
+			clearTimeout(addStringAni);
+			clearInterval(fillingsAni);
+			clearInterval(riceAni);
+			clearInterval(timer); //倒计时
+			clearTimeout(changeBlankAni); //切换空焦点
+			}
+
+			/*
+			 * 添加材料
+			 */
+			//粽叶
+			var addLeavesImg = document.getElementById("addLeaves").getElementsByTagName("img");
+			//糯米
+			var addRiceImg = document.getElementById("addRice").getElementsByTagName("img");
+			//馅料
+			var addFillingsImg = document.getElementById("addFillings").getElementsByTagName("img");
+			//绳子
+			var addStringImg = document.getElementById("addString").getElementsByTagName("img");
+			//错误提示
+			var tips = document.getElementById("tips");
+			//添加粽叶
+			function addLeaves() {
+				tips.innerHTML = "";
+				handFunc(1);
+				if(!canClick){
+					return;
+				}else{
+					canClick=false;
+				}
+				addLeavesAni = setTimeout(function() {
+					addLeavesImg[0].src = "img/main/0/2.png";
+					addLeavesAni = setTimeout(function() {
+						//切换焦点
+						actiObj.changeFocus("hands_x0_y0_riceFocus_");
+						PAGE.focusArr[3].focusmodel.enFocus = false;
+						//恢复点击
+						canClick=true;
+					}, 500)
+				}, 800)
+			}
+
+			//添加糯米
+			function addRice() {
+				var riceAni = null;
+				var riceImg = 2;
+				if(!canClick){
+					return;
+				}else{
+					canClick=false;
+				}
+				if(PAGE.focusArr[3].focusmodel.enFocus == true) {
+					tips.innerHTML = "请先选择粽叶哦";
+					//恢复点击
+					canClick=true;
+				} else {
+					tips.innerHTML = "";
+					handFunc(2);
+					addRiceAni = setTimeout(function() {
+						riceAni = setInterval(function() {
+							if(riceImg >= 6) {
+								riceImg = 5;
+								addRiceImg[0].src = "img/main/1/" + riceImg + ".png";
+								if(continueTan.style.visibility == "visible") {
+									//切换焦点
+									actiObj.changeFocus("hands_x0_y0_continueFocus_");
+									canClick=true;
+								} else if(outTimesTan.style.visibility == "visible") {
+									actiObj.changeFocus("hands_x0_y0_outTimesFocus_");
+									canClick=true;
+								} else {
+									//切换焦点
+									actiObj.changeFocus("hands_x0_y0_fillingsFocus_");
+									canClick=true;
+								}
+								PAGE.focusArr[4].focusmodel.enFocus = false;
+								clearInterval(riceAni);
+							} else {
+								addRiceImg[0].src = "img/main/1/" + riceImg + ".png";
+							}
+							riceImg++;
+						}, 200)
+					}, 800)
+				}
+
+			}
+
+			//添加馅料
+			var fillingsAni = null;
+			function addFillings() {				
+				var fillingsImg = 2;
+				if(!canClick){
+					return;
+				}else{
+					canClick=false;
+				}
+				if(PAGE.focusArr[4].focusmodel.enFocus == true) {
+					tips.innerHTML = "要先选择粽叶和糯米哦";
+					canClick=true;
+				} else {
+					tips.innerHTML = "";
+					handFunc(3);
+					addFillingsAni = setTimeout(function() {
+						addRiceImg[0].src = "img/empty.png";
+						fillingsAni = setInterval(function() {
+							if(fillingsImg >= 6) {
+								fillingsImg = 5;
+								addFillingsImg[0].src = "img/main/2/" + fillingsImg + ".png";
+								if(continueTan.style.visibility == "visible") {
+									//切换焦点
+									actiObj.changeFocus("hands_x0_y0_continueFocus_");
+									canClick=true;
+								} else if(outTimesTan.style.visibility == "visible") {
+									actiObj.changeFocus("hands_x0_y0_outTimesFocus_");
+									canClick=true;
+								} else {
+									//切换焦点
+									actiObj.changeFocus("hands_x0_y0_stringFocus_");
+									canClick=true;
+								}
+								PAGE.focusArr[5].focusmodel.enFocus = false;
+								clearInterval(fillingsAni);
+							} else {
+								addFillingsImg[0].src = "img/main/2/" + fillingsImg + ".png";
+							}
+							fillingsImg++;
+						}, 200)
+					}, 800)
+				}
+			}
+
+			//添加绳子
+			function addString() {
+				var addStringImg = document.getElementById("addString").getElementsByTagName("img");
+				if(!canClick){
+					return;
+				}else{
+					canClick=false;
+				}
+				if(PAGE.focusArr[4].focusmodel.enFocus == true || PAGE.focusArr[5].focusmodel.enFocus == true) {
+					tips.innerHTML = "要先选择粽叶、糯米和馅料哦";
+					canClick=true;
+				} else {
+					tips.innerHTML = "";
+					handFunc(4);
+					changeBlankAni = setTimeout(function() {
+						addStringImg[0].src = "img/main/3/2.png";
+						//切换空焦点
+						actiObj.changeFocus("hands_x0_y0_blankFocus_");
+						changeBlankAni = setTimeout(function() {
+							addStringImg[0].src = "img/empty.png";
+							addFillingsImg[0].src = "img/empty.png";
+							addLeavesImg[0].src = "img/empty.png";
+							addRiceImg[0].src = "img/empty.png";
+							setTimeout(function() {
+								wholeFunc();
+							}, 100)
+						}, 200)
+					}, 800)
+				    //抛物线动画
+					flyFunc();
+				}
+			}
+
+			//粽子飞出动画	
+			function flyFunc() {
+				amount++;
+				var $whole = document.getElementById("whole");
+				var flyAni = setTimeout(function() {
+					actiObj.addClass($whole, "wholeAni");
+				}, 2500)
+				//焦点切换到粽叶
+				addStringAni = setTimeout(function() {
+					PAGE.focusArr[3].focusmodel.enFocus = true;
+					PAGE.focusArr[4].focusmodel.enFocus = true;
+					PAGE.focusArr[5].focusmodel.enFocus = true;
+					PAGE.focusArr[6].focusmodel.enFocus = true;
+					actiObj.removeClass($whole, "wholeAni");
+					$whole.src = "img/empty.png";
+					actiObj.changeFocus("hands_x0_y0_leavesFocus_");
+					canClick=true;
+				}, 3600)
+
+			}
+
+			function wholeFunc() {
+				//整个粽子动画
+				var wholeAni = null;
+				var wholeImg = 0;
+				var wholeImgs = document.getElementById("whole");
+				var wholeAni = setInterval(function() {
+					if(wholeImg >= 6) {
+						wholeImg = 5;
+					} else {
+						wholeImgs.src = "img/main/4/" + wholeImg + ".png";
+					}
+					wholeImg++;
+				}, 200)
+			}
+
+			//手指动画
+			var shouAni = null;
+			var shouImg = 1;
+
+			function handFunc(index) {
+				var shouImgs = document.getElementById("shou" + index + "");
+				var shouAni = setInterval(function() {
+					if(shouImg >= 3) {
+						shouImg = 1;
+						shouImgs.src = "img/shou" + shouImg + ".png";
+						clearInterval(shouAni);
+					} else {
+						shouImgs.src = "img/shou" + shouImg + ".png";
+					}
+					shouImg++;
+				}, 200)
+			}
+
+			//继续包粽子
+			function continueGame() {
+				continueTan.style.visibility = "hidden";
+				addStringImg[0].src = "img/empty.png";
+				addFillingsImg[0].src = "img/empty.png";
+				addLeavesImg[0].src = "img/empty.png";
+				addRiceImg[0].src = "img/empty.png";
+				PAGE.focusArr[3].focusmodel.enFocus = true;
+				PAGE.focusArr[4].focusmodel.enFocus = true;
+				PAGE.focusArr[5].focusmodel.enFocus = true;
+				PAGE.focusArr[6].focusmodel.enFocus = true;
+				actiObj.changeFocus("hands_x0_y0_startFocus_");
+			}
+
+			/*
+			 * 跳转
+			 */
+			var actiTime = new Date().getTime();
+			//兑奖
+			function goExchange() {
+				window.location.href = "actiZongziPrize.html?actiTime=" + actiTime;
+			}
+			//我的粽子
+			function goMine() {
+				window.location.href = "actiZongziMine.html?actiTime=" + actiTime;
+			}
+			//活动规则
+			function goRule() {
+				window.location.href = "actiZongziRule.html?actiTime=" + actiTime;
+			}
+			//返回
+			/* 返回方法 返回平台首页*/
+			function backfunc() {				
+				var timerDOM = document.getElementById("timer");
+				if(outTimesTan.style.visibility == "visible") {
+					window.location.href = "actiZongziMain.html?actiTime=" + actiTime;
+				} else if(curFocus.FocusID == "hands_x0_y0_blankFocus_"|| curFocus.FocusID == "hands_x0_y0_leavesFocus_"|| curFocus.FocusID == "hands_x0_y0_riceFocus_"|| curFocus.FocusID == "hands_x0_y0_fillingsFocus_"|| curFocus.FocusID == "hands_x0_y0_stringFocus_") {
+					actiObj.changeFocus("hands_x0_y0_startFocus_");	
+					//关闭定时器
+					closeDSQ();
+					//焦点恢复初始状态
+					addStringImg[0].src = "img/empty.png";
+					addFillingsImg[0].src = "img/empty.png";
+					addLeavesImg[0].src = "img/empty.png";
+					addRiceImg[0].src = "img/empty.png";
+					PAGE.focusArr[3].focusmodel.enFocus = true;
+					PAGE.focusArr[4].focusmodel.enFocus = true;
+					PAGE.focusArr[5].focusmodel.enFocus = true;
+					PAGE.focusArr[6].focusmodel.enFocus = true;
+					countDown = 60;
+					timerDOM.innerHTML = countDown;
+				} else {
+					BackPortalMainPage();
+				}
+			}
+			//次数用完
+			function outTimes() {
+				window.location.href = "actiZongziMain.html?actiTime=" + actiTime;
+			}
+			//从订购页回来重新刷新页面
+			function orderSucess() {
+				window.location.reload();
+			}
+
+			function orderFail() {
+				window.location.reload();
+			}
+		</script>
+
+	</body>
+
+</html>

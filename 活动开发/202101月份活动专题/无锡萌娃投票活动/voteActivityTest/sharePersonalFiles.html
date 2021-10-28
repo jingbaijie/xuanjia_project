@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>萌娃档案页</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" data-dpr="1">
+		<script type="text/javascript" src="js/flexible.js"></script>
+		<script type="text/javascript" src="js/zepto.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/peraonalFiles.css" />
+		<link rel="stylesheet" type="text/css" href="js/layer/need/layer.css?v=1.277" />
+	</head>
+
+	<body>
+		<!--个人档案-->
+		<div class="personalFiles">
+			<!--江苏有线logo-->
+			<img src="img/logo@3x.png" class="logo" />
+			<!--个人档案表单-->
+			<div class="personalFilesInfo">
+				<!--标题-->
+				<div class="title">萌宝档案</div>
+				<!--档案表单-->
+				<ul class="presonalFiles_list">
+					<li>
+						<span>编号：</span>
+						<span id="playerId">000180</span>
+					</li>
+					<li>
+						<span>姓名：</span>
+						<span id="playerName">徐婕</span>
+					</li>
+					<li>
+						<span>性别：</span>
+						<span id="playerSex">女</span>
+					</li>
+					<li>
+						<span>年龄：</span>
+						<span id="playerAge">4岁</span>
+					</li>
+					<li>
+						<span>爱好特长：</span>
+						<span id="playerHobbies">唱歌跳舞弹琴游泳哈哈</span>
+					</li>
+					<li>
+						<span>地区：</span>
+						<span id="playerArea">江苏省  南京市</span>
+					</li>
+				</ul>
+				<!--投票和拉票按钮-->
+				<ul class="canvass_voteBtn">
+					<li id="canvassBtn"><img src="img/personalFiles/canvassBtn@3x.png" /></li>
+					<li id="voteBtn"><img src="img/personalFiles/voteBtn@3x.png" /></li>
+				</ul>
+				<!--月票和总票展示-->
+				<ul class="voteNumInfo">
+					<li>月票:<span id="monthNum">126</span></li>
+					<li style="display: none;">总票数:<span id="totalNum">1232423</span></li>
+				</ul>
+				<!--图片展示-->
+				<ul class="presonalFiles_picShow">
+
+				</ul>
+			</div>
+			<!--返回按钮-->
+			<div class="personalFiles_backBtn">
+				<!--返回-->
+				<div id="backBtn">
+					返回
+				</div>
+			</div>
+			<!--音乐播放-->
+			<audio autoplay="autoplay" loop="" id="music">
+				<source src="img/gqyp116.mp3">
+			</audio>
+		</div>
+		<script src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+		<script type="text/javascript" src="js/weui/js/jquery-2.1.4.js"></script>
+		<script type="text/javascript" src="js/jquery.cookie.js"></script>
+		<script type="text/javascript" src="js/wechat_config.js"></script>
+		<script type="text/javascript" src="js/common.js"></script>
+		<script type="text/javascript" src="js/base64.js"></script>
+		<script type="text/javascript" src="js/md5.js"></script>
+		<script type="text/javascript" src="js/sharePersonalFiles.js?v=1"></script>
+		<script type="text/javascript" src="js/layer/layer.js?v=1.2"></script>
+		<script type="text/javascript">
+			function audioAutoPlay(id) {
+				var audio = document.getElementById(id);
+				var play = function() {
+					document.removeEventListener("WeixinJSBridgeReady", play);
+					document.removeEventListener("YixinJSBridgeReady", play);
+					audio.play();
+					//audio.pause();
+					// document.removeEventListener("touchstart", play, false);
+				};
+				audio.play();
+				//audio.pause();
+				//weixin
+				document.addEventListener("WeixinJSBridgeReady", play, false);
+				//yixin
+				document.addEventListener('YixinJSBridgeReady', play, false);
+				// document.addEventListener("touchstart", play, false);
+			}
+			audioAutoPlay('music');
+			var audio = document.getElementById('music');
+			audio.play();
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <meta name = "page-view-size" name = "1280*720">
+        <title>地球的故事兑奖页</title>
+        <style>
+            .main {
+                width: 1280px;
+                height: 720px;
+                position: absolute;
+                top: 0;
+                left: 0;
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+                background: url("images/life/bg_life.jpg") no-repeat;
+            }
+			.coin {
+				width: 74px;
+				height: 37px;
+				text-align: center;
+				line-height: 1.8;
+				font-size: 20px;
+				font-weight: bold;
+				color: #e7c918;
+			}
+			.num {
+				width: 74px;
+				height: 37px;
+				text-align: center;
+				line-height: 1.8;
+				font-size: 20px;
+				font-weight: bold;
+				color: #fff;
+			}
+			#content {
+				width: 200px;
+				height: 80px;
+				position: absolute;
+				top: 293px;
+				left: 466px;
+				font-size: 24px;
+				color: #fff;
+				font-weight: bold;
+			}
+			#littleTips{
+				width: 510px;
+				height: 50px;
+				position: absolute;
+				top: 52px;
+				left: 413px;
+				color: #e7c918;
+				border-radius: 15px;
+				font-size: 34px;
+				visibility: hidden;
+				text-align: center;
+			}
+        </style>
+</head>
+<body>
+    <div id="mainContent" class="main">
+        <!-- 背景 -->
+        <img src="./images/exchange/bg.png" style = "width: 1280px;height: 720px;position: absolute;top: 0;left: 0;">
+        <!--返回按钮 -->
+        <img src="./images/back.png" style = "width: 82px;height: 93px;position: absolute;top: 36px;left: 1129px;">
+        <div id = "hands_x0_y0_backFocus_" style = "width: 82px;height: 93px;position: absolute;top: 36px;left: 1129px;">
+            <img id = "backFocus" src="./images/backFocus.png" style = "width: 82px;height: 93px;visibility: hidden;" alt="">
+        </div>
+        <!--兑换按钮-->
+        <div id = "hands_x0_y0_exchangeFocus0_" style = "width: 184px;height: 56px;position: absolute;top: 460px;left: 251px;">
+            <img id = "exchangeFocus0" src="./images/exchange/focus.png" style = "width: 184px;height: 56px;visibility: hidden;" alt="">
+        </div>
+        <div id = "hands_x0_y0_exchangeFocus1_" style = "width: 184px;height: 56px;position: absolute;top: 460px;left: 457px;">
+            <img id = "exchangeFocus1" src="./images/exchange/focus.png" style = "width: 184px;height: 56px;visibility: hidden;" alt="">
+        </div>
+        <div id = "hands_x0_y0_exchangeFocus2_" style = "width: 184px;height: 56px;position: absolute;top: 460px;left: 661px;">
+            <img id = "exchangeFocus2" src="./images/exchange/focus.png" style = "width: 184px;height: 56px;visibility: hidden;" alt="">
+        </div>
+		<div id = "hands_x0_y0_exchangeFocus3_" style = "width: 184px;height: 56px;position: absolute;top: 460px;left: 866px;">
+            <img id = "exchangeFocus3" src="./images/exchange/focus.png" style = "width: 184px;height: 56px;visibility: hidden;" alt="">
+        </div>
+		<!-- 奖品所需积分 -->
+		<div id="coin0" class = "coin" style = "position: absolute;top: 420px;left: 337px;">140</div>
+		<div id="coin1" class = "coin" style = "position: absolute;top: 420px;left: 545px;">120</div>
+		<div id="coin2" class = "coin" style = "position: absolute;top: 420px;left: 750px;">100</div>
+		<div id="coin3" class = "coin" style = "position: absolute;top: 420px;left: 955px;">80</div>
+		<!-- 奖品剩余数量 -->
+		<div id="num0" class = "num" style = "position: absolute;top: 390px;left: 337px;"></div>
+		<div id="num1" class = "num" style = "position: absolute;top: 390px;left: 545px;"></div>
+		<div id="num2" class = "num" style = "position: absolute;top: 390px;left: 750px;"></div>
+		<div id="num3" class = "num" style = "position: absolute;top: 390px;left: 950px;"></div>
+		<!-- 兑换奖品弹窗 -->
+		<div id = "coinModal" style = "width: 1280px;height: 720px;position: absolute;top: 0;left: 0;visibility: hidden;z-index: 20">
+            <!--弹框背景-->
+            <img id = "bgImg" src="./images/modal.png" style = "width: 1280px;height: 720px;position: absolute;top: 0;left: 0;">
+            <!--弹框内容-->
+            <div id = "content"></div>
+            <!--确认按钮-->
+            <div id = "hands_x0_y0_confirmModalFocus_" style = "width: 124px;height: 55px;position: absolute;top: 428px;left: 525px;">
+                <img id = "confirmModalFocus" src="./images/modalFocus.png" style = "width: 200px;height: 70px;visibility: hidden;">
+            </div>
+        </div>
+		<div id = "littleTips"></div>
+    </div>
+	<script type = "text/javascript" src = "../../../js/column.js"></script>
+    <script type = "text/javascript" src = "./js/actiComm.js?v=2019"></script>
+    <script>
+	    var coinModal = document.getElementById("coinModal");
+		var content = document.getElementById("content");
+		var coin0 = document.getElementById("coin0");
+		var coin1 = document.getElementById("coin1");
+		var coin2 = document.getElementById("coin2");
+		var coin3 = document.getElementById("coin3");
+		var num0 = document.getElementById("num0");
+		var num1 = document.getElementById("num1");
+		var num2 = document.getElementById("num2");
+		var num3 = document.getElementById("num3");
+		var coins = [coin0, coin1, coin2, coin3];
+        var buttons = [
+        {
+            id: "hands_x0_y0_backFocus_",
+            clickHandler: "javascript: goSomeWhere(0)",
+            left: "hands_x0_y0_exchangeFocus3_",
+            right: "disable",
+            up: "disable",
+            down: "hands_x0_y0_exchangeFocus3_",
+            focusType: 7
+        },
+		{
+			id: "hands_x0_y0_prizeListFocus_",
+			clickHandler: "javascript: goSomeWhere(1)",
+			left: "disable",
+			right: "hands_x0_y0_backFocus_",
+            up: "disable",
+            down: "hands_x0_y0_exchangeFocus0_",
+			focusType: 7
+        },
+        {
+			id: "hands_x0_y0_exchangeFocus0_",
+			clickHandler: "javascript: exchangeModal(0)",
+			left: "disable",
+			right: "hands_x0_y0_exchangeFocus1_",
+            up: "hands_x0_y0_backFocus_",
+            down: "disable",
+			focusType: 7
+        },
+        {
+			id: "hands_x0_y0_exchangeFocus1_",
+			clickHandler: "javascript: exchangeModal(1)",
+			left: "hands_x0_y0_exchangeFocus0_",
+			right: "hands_x0_y0_exchangeFocus2_",
+            up: "hands_x0_y0_backFocus_",
+            down: "disable",
+			focusType: 7
+        },
+        {
+			id: "hands_x0_y0_exchangeFocus2_",
+			clickHandler: "javascript: exchangeModal(2)",
+			left: "hands_x0_y0_exchangeFocus1_",
+			right: "hands_x0_y0_exchangeFocus3_",
+            up: "hands_x0_y0_backFocus_",
+            down: "disable",
+			focusType: 7
+		},
+		{
+			id: "hands_x0_y0_exchangeFocus3_",
+			clickHandler: "javascript: exchangeModal(3)",
+			left: "hands_x0_y0_exchangeFocus2_",
+			right: "hands_x0_y0_backFocus_",
+            up: "hands_x0_y0_backFocus_",
+            down: "disable",
+			focusType: 7
+		},
+		{
+		    id: "hands_x0_y0_coinModalFocus_",
+			clickHandler: "javascript: coinFocus()",
+			left: "disable",
+			right: "disable",
+            up: "disable",
+            down: "disable",
+			focusType: 7
+		},
+		{
+			id: "hands_x0_y0_confirmModalFocus_",
+			clickHandler: "javascript: confirmModal()",
+			left: "disable",
+			right: "hands_x0_y0_backModalFocus_",
+			up: "disable",
+			down: "disable",
+			focusType: 7
+        },
+		{
+			id: "hands_x0_y0_backModalFocus_",
+			clickHandler: "javascript: backModal()",
+			left: "hands_x0_y0_confirmModalFocus_",
+			right: "disable",
+			up: "disable",
+			down: "disable",
+			focusType: 7
+		}
+        ]
+        // 初始化
+        function init(){
+            focusInit();
+            curFocus = getFocusModel6("hands_x0_y0_exchangeFocus0_");
+            curFocus.defaultFocus();
+        }
+        init();
+        // 跳转
+        function goSomeWhere(n){
+            var actiTime = new Date().getTime();
+			switch (n){
+			    case 0: 
+                    window.location.href = "earthMain.html?actiTime=" + actiTime;
+					break;
+                case 1: 
+				    window.location.href = "earthPrizeList.html?actiTime=" + actiTime;
+					break;
+                default:
+                    break;  
+			}
+        }
+		// 金币提示与奖品剩余数量提示
+		function doTips(){
+            actiObj.getUserCredit(function(data){
+				var creditNum = data.creditNum ? data.creditNum : 0;
+			    
+				littleTips.innerHTML = "恭喜您！你目前累积金币共" + creditNum + "枚";
+				littleTips.style.visibility = "visible";
+			})
+			actiObj.getActivityPrize(function(data){
+				num0.innerHTML = data.list[0].prize_num;
+				num1.innerHTML = data.list[1].prize_num;
+				num2.innerHTML = data.list[2].prize_num;
+				num3.innerHTML = data.list[3].prize_num;
+			})
+		}
+		doTips();
+		/* 弹窗 */
+		function exchangeModal(n) {
+			getUserPrizeInfo(n);
+		}
+		function confirmModal() {
+		    coinModal.style.visibility = 'hidden';
+			changeFocus('hands_x0_y0_exchangeFocus0_');
+		}
+		function backModal() {
+		    var actiTime = new Date().getTime();
+			window.location.href = "quizMain.html?actiTime=" + actiTime;
+		}
+
+
+		// 改变焦点
+        function changeFocus(focusName){
+            if(focusName){
+                curFocus.defaultBlur();
+                curFocus = getFocusModel6(focusName);
+                curFocus.defaultFocus();
+            }
+        }
+		/* ajax */
+		// 获取用户积分
+		function getUserCredit(n){
+		    actiObj.getUserCredit(function(data) {
+			    var creditNum = data.creditNum;
+                if(creditNum >= coins[n].innerHTML){
+				    setPrize(creditNum-coins[n].innerHTML);
+				}else {
+					content.innerHTML = "金币不足，无法兑换奖品！"
+					changeFocus('hands_x0_y0_confirmModalFocus_');
+					coinModal.style.visibility = 'visible';
+				}
+			});
+		}
+		// 获取用户获奖信息
+		function getUserPrizeInfo(n) {
+		    actiObj.getUserPrizeInfo(function(data) {
+			    if(data.resultMsg == "success"){
+				    content.innerHTML = "在活动期间仅可兑换一次奖品哦！"
+					changeFocus('hands_x0_y0_confirmModalFocus_');
+					coinModal.style.visibility = 'visible';
+				}else {
+				    getActivityPrize(n);
+				}
+			})
+		}
+		// 获取奖品信息
+		var prizeData;
+		function getActivityPrize(n){
+		    actiObj.getActivityPrize(function(data){
+			    prizeData = data.list[n];
+				if(prizeData.prize_num <= 0){
+					content.innerHTML = "你来晚了，奖品已兑完！"
+					changeFocus('hands_x0_y0_confirmModalFocus_');
+					coinModal.style.visibility = 'visible';
+				} else {
+					getUserCredit(n);
+				}
+			})
+		}
+		// 设置奖品
+		function setPrize(creditNum){
+		    actiObj.setPrize(prizeData.prize_id,function(data){
+			    if(data.resultMsg == "success") {
+				    content.innerHTML = "恭喜您！成功兑换奖品" + "<br>" +prizeData.prize_cname;
+					changeFocus('hands_x0_y0_confirmModalFocus_');
+					coinModal.style.visibility = 'visible';
+					setUserCredit(creditNum);
+				}else {
+				    console.log(data.resultMsg);
+				}
+			});
+		}
+		// 设置奖品积分
+		function setUserCredit(creditNum){
+			actiObj.setUserCredit(creditNum, function(){
+			    doTips();
+			});
+		}
+		// 返回
+        function backfunc(){
+            var actiTime = new Date().getTime();
+            window.location.href = "earthMain.html?actiTime=" + actiTime;
+        }
+    </script>
+</body>
+</html>

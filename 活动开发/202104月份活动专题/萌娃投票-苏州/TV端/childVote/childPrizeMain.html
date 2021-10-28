@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="page-view-size" content="1280*720"/>
+    <title>首页</title>
+    <link rel="stylesheet" href="./css/childVote.css?v=20200407">
+</head>
+<body>
+    <div class="contanier">
+		<img src="./img/prizeMain/LOGO1.png" style="position:absolute;top:15px;left:15px;z-index:10000;" alt="">
+        <div style="position: absolute;top: 108px;left: 52px;width: 146px;height: 500px;">
+            <img id="listPic0" src="" style="position: absolute;width: 146px;height: 100px;top: 26px;" alt="">
+            <img id="listPic1" src="" style="position: absolute;width: 146px;height: 100px;top: 193px;" alt="">
+            <img id="listPic2" src="" style="position: absolute;width: 146px;height: 100px;top: 364px;" alt="">
+        </div>
+        <img src="./img/prizeMain/bg.png" style="position: absolute;top: 0;left: 0;width: 1280px;height: 720px" alt="">
+        <div class="left">
+            <div class="one" style="top: 99px;">
+                <p id="listId0" style="top: 57px;left: 169px;">ID:001</p>
+                <p id="listM0" style="top: 87px;left: 169px;">月票：109</p>
+                <p id="listTotal0" style="top: 108px;left: 169px;">总票数：8964</p>
+            </div>
+            <div class="two" style="top: 267px;">
+
+                <p id="listId1" style="top: 57px;left: 169px;">ID:002</p>
+                <p id="listM1" style="top: 87px;left: 169px;">月票：109</p>
+                <p id="listTotal1" style="top: 108px;left: 169px;">总票数：8964</p>
+            </div>
+            <div class="three" style="top: 437px;">
+
+                <p id="listId2" style="top: 57px;left: 169px;">ID:003</p>
+                <p id="listM2" style="top: 87px;left: 169px;">月票：109</p>
+                <p id="listTotal2" style="top: 108px;left: 169px;">总票数：8964</p>
+            </div>
+            <img src="./img/prizeMain/rule.png" style="position: absolute;top: 641px;left: 64px" alt="">
+            <img src="./img/prizeMain/more.png" style="position: absolute;top: 641px;left: 223px" alt="">
+
+        </div>
+        <div class="middle">
+            <img src="./img/prizeMain/LOGO.png" alt="">
+            <div class="middle_div">
+                <ul id="child_pic">
+                </ul>
+            </div>
+            <p id="playerName" style="width: 140px;height: 26px;overflow:hidden;position: absolute;bottom: 43px;left: 100px;"></p>
+            <p id="playerAge" style="width: 140px;height: 26px;position: absolute;bottom: 43px;left: 264px;"></p>
+            <img style="position: absolute;bottom: 22px;left: 450px;" src="./img/prizeMain/voteBtn.png" alt="">
+        </div>
+        <div class="right">
+            <img style="position: absolute;left: 28px;" src="./img/prizeMain/tuijian.png" alt="">
+            <img style="position: absolute;top: 443px;left: -80px;" src="./img/prizeMain/dd.png" alt="">
+
+            <img class="code11" src="./img/prizeMain/jsyx.jpg" style="width: 150px" alt="">
+            <img class="code1" src="./img/prizeMain/codeBox.png" alt="">
+        </div>
+        <!--光标-->
+        <div class='focus' id='hands_x0_y0_mainFocus0_' style='left: 107px;top: 137px;'>
+            <img id='mainFocus0' src='./img/prizeMain/topSelect.png' style='visibility: hidden' alt="">
+        </div>
+        <div class='focus' id='hands_x0_y0_mainFocus1_' style='left: 107px;top: 305px;'>
+            <img id='mainFocus1' src='./img/prizeMain/topSelect.png' style='visibility: hidden' alt="">
+        </div>
+        <div class='focus' id='hands_x0_y0_mainFocus2_' style='left: 107px;top: 476px;'>
+            <img id='mainFocus2' src='./img/prizeMain/topSelect.png' style='visibility: hidden' alt="">
+        </div>
+        <div class='focus' id='hands_x0_y0_mainFocus3_' style='left: 58px;top: 634px;'>
+            <img id='mainFocus3' src='./img/prizeMain/moreSelect.png' style='visibility: hidden' alt="">
+        </div>
+        <div class='focus' id='hands_x0_y0_mainFocus4_' style='left: 217px;top: 634px;'>
+            <img id='mainFocus4' src='./img/prizeMain/moreSelect.png' style='visibility: hidden' alt="">
+        </div>
+        <div class='focus' id='hands_x0_y0_mainFocus5_' style='left: 791px;top: 562px;'>
+            <img id='mainFocus5' src='./img/prizeMain/voteBtnSelect.png' style='visibility: hidden' alt="">
+        </div>
+        <div class='focus' id='hands_x0_y0_mainFocus6_' style='left: 1092px;top: 40px;'>
+            <img id='mainFocus6' src='./img/prizeMain/tuijianSelect.png' style='width: 143px;visibility: hidden' alt="">
+        </div>
+        <!--弹窗-->
+        <div id="tips" style="visibility: hidden;z-index:9999;">
+            <img src="./img/tips/opacity.png" alt="">
+            <img src="./img/tips/vote.png" style="position: absolute;top: 83px;left: 335px;" alt="">
+            <p id="totalTicMonth"></p>
+            <p id="TVTic"></p>
+            <p id="phoneTic"></p>
+            <p id="totalTic"></p>
+        </div>
+        <!--投票次数用完弹窗-->
+        <div id="tips1" style="visibility: hidden;z-index:9999;">
+            <img src="./img/tips/opacity.png" alt="">
+            <img src="./img/tips/vote1.png" style="position: absolute;top: 83px;left: 335px;" alt="">
+            <p id="isGone"></p>
+        </div>
+        <div class='focus' id='hands_x0_y0_mainFocus7_' style='left: 505px;top: 472px;z-index: 10000'>
+            <img id='mainFocus7' src='./img/tips/voteBtnSelect.png' style='visibility: hidden' alt="">
+        </div>
+    </div>
+    <!-- 引入公共js开始 -->
+    <script src="../../../../js/loadCommomJs.js"></script>
+    <script src="../../../../js/actiComm.js"></script>
+    <!-- 引入公共js结束 -->
+    <script type="text/javascript" src="./js/videoDetail.js?v=20200414"></script>
+    <script type="text/javascript" src="./js/md5.js"></script>
+    <script type="text/javascript" src="./js/base64.js"></script>
+    <script type="text/javascript" src="./js/childMain.js?v=20210426021"></script>
+</body>
+</html>

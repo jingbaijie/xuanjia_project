@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name = "page-view-size" content = "1280*720">
+    <title>orderFail.html</title>
+    <style>
+        .main{
+            position: absolute;
+            width: 1280px;
+            height: 720px;
+            margin: 0px;
+            padding: 0px;
+            top: 0px;
+            left: 0px;
+            text-align: center;
+            background: url(img/main/mainBG.jpg) no-repeat;
+        }
+        div{
+            position: absolute;
+        } div{
+            position: absolute;
+        }
+		p{
+			width: 280px;
+			height: 50px;
+			margin: 0;
+			padding: 0;
+			line-height: 50px;
+			text-align: left;
+			font-size: 28px;
+			font-weight: bold;
+			color: #e6da97;
+		}
+		p span{
+			font-size: 38px;
+			color: #e6c50c;
+		}
+    </style>
+</head>
+<body>
+    <div class="main">
+		
+		<img id = "bgImg" src="./img/orderPage/orderFail.png" style = "width: 1280px;height: 720px;position: absolute;top: 0;left: 0;" alt="">
+        <div id="hands_x0_y0_postFocus0_" style="width:179px;height:78px;left:445px;top:376px;">
+            <img id="postFocus0" src="img/tanChuang/confirmFocus.png"  style="visibility: hidden;width:179px;height:78px;"   alt=""/>
+        </div>
+		<div id="hands_x0_y0_postFocus1_" style="width:179px;height:78px;left:662px;top:376px;">
+			<img id="postFocus1" src="img/tanChuang/cancelFocus.png"  style="visibility: hidden;width:179px;height:78px;"   alt=""/>
+        </div>
+    </div>
+</body>
+<script type = "text/javascript" src = "../../js/comm.js"></script>
+<script type = "text/javascript" src = "../../js/common1_1.js"></script>
+<script type = "text/javascript" src = "../../js/key1_3.js"></script>
+<script type = "text/javascript" src = "./js/actiComm.js"></script>
+<script>
+	actiObj.setLogForActivityBySelf("orderFailPIGTJ3");
+    var buttons=[
+        {
+            id: 'hands_x0_y0_postFocus0_',
+            clickHandler: 'javascript:toOrderAgain()',
+            left: 'disable',
+            right: 'hands_x0_y0_postFocus1_',
+            up: 'disable',
+            down:  'disable',
+            focusType: 7
+        },{
+            id: 'hands_x0_y0_postFocus1_',
+            clickHandler: 'javascript:backfunc()',
+            left: 'hands_x0_y0_postFocus0_',
+            right: 'disable',
+            up: 'disable',
+            down:  'disable',
+            focusType: 7
+        }
+    ];
+    focusInit();
+    var start=getFocusModel6("hands_x0_y0_postFocus0_");
+    start.defaultFocus();
+    function backfunc(){
+        window.location.href = "actipigManShootingMain.html";
+    }
+
+	function toOrder(ii){
+        var args = actiObj.trimArgs(allParams[parseInt(ii)]);
+        window.location.href = lianTongOrderUrl + "&" + args;
+    }
+	
+	function toOrderAgain(){
+		var isFirstFail = CT.getCookie("isFirstFail") + "";
+		if(isFirstFail != "no"){
+			CT.setCookie("isFirstFail","no");
+			var IdCard = CT.getCookie("IdCard");
+			if(parseInt(IdCard,10) > 0){
+				toOrder(parseInt(IdCard,10));
+			}else{
+				backfunc();
+			}
+		}else{
+			backfunc()
+		}
+	}
+</script>
+</html>

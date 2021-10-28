@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="page-view-size" content="1280*720">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/actiSuperFly9Main.css?v=2020111709">
+    <title>投票首页</title>
+</head>
+
+<body>
+    <div id="main">
+        <img src="img/mainPage/logo.png" alt="" class="logo">
+        <img src="img/mainPage/ipCartoon.png" alt="" class="ipCartoon">
+        <!-- 活动规则按钮 -->
+        <img src="img/mainPage/ruleBtn.png" alt="" class="ruleBtn">
+        <div id="hands_x0_y0_voteRuleFocus_">
+            <img src="img/mainPage/btnFocus.png" alt="" id="voteRuleFocus" style="visibility:hidden;">
+        </div>
+        <!-- 投票信息按钮 -->
+        <img src="img/mainPage/voteInfoBtn.png" alt="" class="voteInfoBtn">
+        <div id="hands_x0_y0_voteInfoBtnFocus_">
+            <img src="img/mainPage/btnFocus.png" alt="" id="voteInfoBtnFocus" style="visibility:hidden;">
+        </div>
+        <!-- 返回按钮 -->
+        <img src="img/mainPage/backBtn.png" alt="" class="backBtn">
+        <div id="hands_x0_y0_backBtnFocus_">
+            <img src="img/mainPage/backBtnFocus.png" alt="" id="backBtnFocus" style="visibility:hidden;">
+        </div>
+        <!-- 投票计数 -->
+        <div class="voteShow1">
+            <img src="img/mainPage/top/voteKuang.png" alt="" class="leftRank">
+            <img src="img/empty.png" alt="" class="topImg" id="topImg1">
+            <div class="rightKuang" style="width: 170px;height:26px;">
+                <div id="blueSlider1" class="blueSlider"></div>
+            </div>
+            <img src="img/mainPage/number/votedText.png" alt="" class="votedText">
+            <img src="img/mainPage/number/voteText.png" alt="" class="voteText">
+            <div class="numberShow" id="numberShow1">
+            </div>
+        </div>
+        <div class="voteShow2">
+            <img src="img/mainPage/top/voteKuang.png" alt="" class="leftRank">
+            <img src="img/empty.png" alt="" class="topImg" id="topImg2">
+            <div class="rightKuang" style="width: 170px;height:26px;">
+                <div id="blueSlider2" class="blueSlider"></div>
+            </div>
+            <img src="img/mainPage/number/votedText.png" alt="" class="votedText">
+            <img src="img/mainPage/number/voteText.png" alt="" class="voteText">
+            <div class="numberShow" id="numberShow2">
+            </div>
+        </div>
+        <div class="voteShow3">
+            <img src="img/mainPage/top/voteKuang.png" alt="" class="leftRank">
+            <img src="img/empty.png" alt="" class="topImg" id="topImg3">
+            <div class="rightKuang" style="width: 170px;height:26px;">
+                <div id="blueSlider3" class="blueSlider"></div>
+            </div>
+            <img src="img/mainPage/number/votedText.png" alt="" class="votedText">
+            <img src="img/mainPage/number/voteText.png" alt="" class="voteText">
+            <div class="numberShow" id="numberShow3">
+            </div>
+        </div>
+        <div class="voteShow4">
+            <img src="img/mainPage/top/voteKuang.png" alt="" class="leftRank">
+            <img src="img/empty.png" alt="" class="topImg" id="topImg4">
+            <div class="rightKuang" style="width: 170px;height:26px;">
+                <div id="blueSlider4" class="blueSlider"></div>
+            </div>
+            <img src="img/mainPage/number/votedText.png" alt="" class="votedText">
+            <img src="img/mainPage/number/voteText.png" alt="" class="voteText">
+            <div class="numberShow" id="numberShow4">
+            </div>
+        </div>
+        <div class="voteShow5">
+            <img src="img/mainPage/top/voteKuang.png" alt="" class="leftRank">
+            <img src="img/empty.png" alt="" class="topImg" id="topImg5">
+            <div class="rightKuang" style="width: 170px;height:26px;">
+                <div id="blueSlider5" class="blueSlider"></div>
+            </div>
+            <img src="img/mainPage/number/votedText.png" alt="" class="votedText">
+            <img src="img/mainPage/number/voteText.png" alt="" class="voteText">
+            <div class="numberShow" id="numberShow5">
+            </div>
+        </div>
+        <!-- 投票按钮 -->
+        <img src="img/mainPage/voteBtn/mibaoVote.png" alt="" id="voteBtn1"
+            style="position: absolute;left: 45px;top: 485px;">
+        <div id="hands_x0_y0_voteBtn1Focus_">
+            <img src="img/mainPage/voteBtn/mibaoVoteFocus.png" alt="" id="voteBtn1Focus" style="visibility:hidden;">
+        </div>
+        <img src="img/mainPage/voteBtn/aibaoVote.png" alt="" id="voteBtn2"
+            style="position: absolute;left: 240px;top: 560px;">
+        <div id="hands_x0_y0_voteBtn2Focus_">
+            <img src="img/mainPage/voteBtn/aibaoVoteFocus.png" alt="" id="voteBtn2Focus" style="visibility:hidden;">
+        </div>
+        <img src="img/mainPage/voteBtn/lebaoVote.png" alt="" id="voteBtn3"
+            style="position: absolute;left: 525px;top: 600px;">
+        <div id="hands_x0_y0_voteBtn3Focus_">
+            <img src="img/mainPage/voteBtn/lebaoVoteFocus.png" alt="" id="voteBtn3Focus" style="visibility:hidden;">
+        </div>
+        <img src="img/mainPage/voteBtn/duobaoVote.png" alt="" id="voteBtn4"
+            style="position: absolute;left: 785px;top: 555px;">
+        <div id="hands_x0_y0_voteBtn4Focus_">
+            <img src="img/mainPage/voteBtn/duobaoVoteFocus.png" alt="" id="voteBtn4Focus" style="visibility:hidden;">
+        </div>
+        <img src="img/mainPage/voteBtn/jingbaoVote.png" alt="" id="voteBtn5"
+            style="position: absolute;left: 1030px;top: 490px;">
+        <div id="hands_x0_y0_voteBtn5Focus_">
+            <img src="img/mainPage/voteBtn/jingbaoVoteFocus.png" alt="" id="voteBtn5Focus" style="visibility:hidden;">
+        </div>
+        <!-- 加一动画 -->
+        <img src="img/empty.png" alt="" id="addVote" style="position:absolute;left:100px;top:100px;">
+        <!-- ip焦点 -->
+        <div id="hands_x0_y0_ip1Focus_">
+            <img src="img/mainPage/ipFocus/miBaoChoose.png" alt="" id="ip1Focus" style="visibility:hidden;">
+        </div>
+        <div id="hands_x0_y0_ip2Focus_">
+            <img src="img/mainPage/ipFocus/aiBaoChoose.png" alt="" id="ip2Focus" style="visibility:hidden;">
+        </div>
+        <div id="hands_x0_y0_ip3Focus_">
+            <img src="img/mainPage/ipFocus/leBaoChoose.png" alt="" id="ip3Focus" style="visibility:hidden;">
+        </div>
+        <div id="hands_x0_y0_ip4Focus_">
+            <img src="img/mainPage/ipFocus/duoBaoChoose.png" alt="" id="ip4Focus" style="visibility:hidden;">
+        </div>
+        <div id="hands_x0_y0_ip5Focus_">
+            <img src="img/mainPage/ipFocus/jingBaoChoose.png" alt="" id="ip5Focus" style="visibility:hidden;">
+        </div>
+        <!-- 投票成功弹窗 -->
+        <div class="voteSuccess" id="voteSuccess" style="visibility:hidden;">
+            <img src="img/userInfoPage/closeBtn.png" alt="" id="sucCloseBtn">
+            <div id="hands_x0_y0_sucCloseBtnFocus_">
+                <img src="img/userInfoPage/closeBtnFocus.png" alt="" id="sucCloseBtnFocus" style="visibility:hidden;">
+            </div>
+            <!-- 底部背景 -->
+            <div id="voteSuccessBottomBG">
+                <!-- 用户信息 -->
+                <img src="img/userInfoPage/userInfo.png" alt="" id="userInfoTitle">
+                <div id="userInfo"></div>
+                <!-- 联系手机 -->
+                <img src="img/userInfoPage/contact.png" alt="" id="contactTitle">
+                <div id="telInput"></div>
+                <div id="hands_x0_y0_userPhoneFocus_">
+                    <img src="img/userInfoPage/inputFocus.png" alt="" id="userPhoneFocus" style="visibility:hidden;">
+                </div>
+                <!-- 确认 -->
+                <img src="img/userInfoPage/confirmBtn.png" alt="" id="confirmBtn">
+                <div id="hands_x0_y0_confirmBtnFocus_">
+                    <img src="img/userInfoPage/confirmBtnFocus.png" alt="" id="confirmBtnFocus" style="visibility:hidden;">
+                </div>
+                <!-- 删除 -->
+                <img src="img/userInfoPage/deleteBtn.png" alt="" id="deleteBtn">
+                <div id="hands_x0_y0_deleteBtnFocus_">
+                    <img src="img/userInfoPage/confirmBtnFocus.png" alt="" id="deleteBtnFocus"  style="visibility:hidden;">
+                </div>
+                <!-- 提示文字 -->
+                <div id="savetips" style="position: absolute;left: 390px;color: #333;top: 76px;font-size: 24px;"></div>
+            </div>
+        </div>
+        <!-- 机会用完弹窗 -->
+        <div id="chanceOutTip" style="visibility:hidden;">
+            <img src="img/userInfoPage/closeBtn.png" alt="" id="noChanceCloseBtn">
+            <div id="hands_x0_y0_noChanceBtnFocus_">
+                <img src="img/userInfoPage/closeBtnFocus.png" alt="" id="noChanceBtnFocus"  style="visibility:hidden;">
+            </div>
+        </div>
+    </div>
+    <!-- 引入公共js -->
+    <script type="text/javascript" src="../../../js/column.js"></script>
+    <script type="text/javascript" src="js/actiComm.js"></script>
+    <!-- 引入公共js结束 -->
+    <script type="text/javascript">
+        // 焦点数组
+        var buttons = [{
+            id: "hands_x0_y0_voteRuleFocus_",
+            clickHandler: "javascript:superFly9Vote.jumpPage(0)",
+            left: "disable",
+            right: "hands_x0_y0_backBtnFocus_",
+            up: "disable",
+            down: "hands_x0_y0_voteInfoBtnFocus_",
+            focusType: 7
+        }, {
+            id: "hands_x0_y0_voteInfoBtnFocus_",
+            clickHandler: "javascript:superFly9Vote.jumpPage(1)",
+            left: "disable",
+            right: "hands_x0_y0_backBtnFocus_",
+            up: "hands_x0_y0_voteRuleFocus_",
+            down: "hands_x0_y0_ip1Focus_",
+            focusType: 7
+        },
+        {
+            id: "hands_x0_y0_backBtnFocus_",
+            clickHandler: "javascript:backfunc()",
+            left: "hands_x0_y0_voteRuleFocus_",
+            right: "disable",
+            up: "disable",
+            down: "hands_x0_y0_ip5Focus_",
+            focusType: 7
+        },
+        {
+            id: "hands_x0_y0_sucCloseBtnFocus_",
+            clickHandler: "javascript:backfunc()",
+            left: "disable",
+            right: "disable",
+            up: "disable",
+            down: "hands_x0_y0_userPhoneFocus_",
+            focusType: 7
+        },
+        {
+            id: "hands_x0_y0_userPhoneFocus_",
+            otherFocusEvent: "javascript:superFly9Vote.onFocus(1)",
+            otherBlurEvent: "javascript:superFly9Vote.onFocus(0)",
+            left: "disable",
+            right: "disable",
+            up: "hands_x0_y0_sucCloseBtnFocus_",
+            down: "hands_x0_y0_confirmBtnFocus_",
+            focusType: 7
+        },
+        {
+            id: "hands_x0_y0_confirmBtnFocus_",
+            clickHandler: "javascript:superFly9Vote.saveFunc()",
+            otherBlurEvent: "javascript:superFly9Vote.saveBlur()",
+            left: "disable",
+            right: "hands_x0_y0_deleteBtnFocus_",
+            up: "hands_x0_y0_userPhoneFocus_",
+            down: "disable",
+            focusType: 7
+        },
+        {
+            id: "hands_x0_y0_deleteBtnFocus_",
+            clickHandler: "javascript:superFly9Vote.emptyFunc()",
+            left: "hands_x0_y0_confirmBtnFocus_",
+            right: "disable",
+            up: "hands_x0_y0_userPhoneFocus_",
+            down: "disable",
+            focusType: 7
+        },
+        {
+            id: "hands_x0_y0_noChanceBtnFocus_",
+            clickHandler: "javascript:backfunc()",
+            left: "disable",
+            right: "disable",
+            up: "disable",
+            down: "disable",
+            focusType: 7
+        }
+        ]
+		//从订购页回来重新刷新页面
+		function orderSucess() {
+			window.location.reload();
+		}
+
+		function orderFail() {
+			window.location.reload();
+		}
+    </script>
+    <script type="text/javascript" src="js/actiSuperFly9Main.js?v=20201110016"></script>
+</body>
+
+</html>
