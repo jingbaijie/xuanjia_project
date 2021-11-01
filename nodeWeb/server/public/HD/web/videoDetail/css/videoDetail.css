@@ -1,0 +1,185 @@
+*{
+    margin:0;
+    padding: 0;
+}
+.position{
+    position: absolute;
+}
+
+.vip{
+    left: 68px;
+    top: 2px;
+}
+#hands_x0_y0_DMXQvideo_{
+    left: 64px;
+    top: 58px;
+}
+
+.guessYou{
+    position: absolute;
+    top:400px;
+    left:62px;
+    font-size: 18px;
+    font-weight: bold;
+    color:white
+}
+/*卡通的详细信息*/
+#videoContentDiv{
+    width:710px;
+    height:140px;
+    left: 500px;
+    top: 56px;
+    color:white;
+}
+#videoContentDiv span{
+    font-size: 26px;
+    font-weight: bold;
+}
+#videoContent{
+    margin-top: 10px;
+    width: 720px;
+    height: 80px;
+    font-size: 21px;
+    overflow: hidden;
+}
+#NowWatchImage{
+    left: 1025px;
+    top: 198px;
+}
+#collectImage{
+    left: 1120px;
+    top: 198px;
+}
+.collectImage{
+    left: 1120px;
+    top: 198px;
+}
+#hands_x0_y0_DMXQGN0_{
+    left: 1025px;
+    top: 198px;
+    
+}
+#hands_x0_y0_DMXQGN1_{
+    left: 1120px;
+    top: 198px;
+   
+}
+#pageNum{
+    width:1200px;
+    height:30px;
+    position: absolute;
+    top:288px;
+    left:48px;
+}
+#pageBorder {
+    width:1200px;
+    height:30px;
+    position: absolute;
+    top:294px;
+    left:26px;
+
+}
+.pageNum {
+    float: left;
+    margin-left: 18px;
+    margin-top: 5px;
+    width: 179px;
+    height: 40px;
+    line-height: 40px;
+
+  
+    font-size: 20px;
+    text-align: center;
+    color: white;
+    background-image: url("../image/pageNumBg.png");
+}
+.pageColor{
+    color:yellow;
+}
+.pageNumBorder{
+    width: 90px;
+    height: 30px;
+    float: left;
+}
+#episode{
+    width: 1200px;
+    height: 45px;
+    position: absolute;
+    top:334px;
+    left:65px;
+    z-index: 999;
+}
+.episodes{
+    position: absolute;
+    width: 104px;
+    height: 54px;
+    font-size: 20px;
+    line-height: 54px;
+    text-align: center;
+    color: white;
+    background: url("../image/episode.png") no-repeat;
+}
+#episodeBorder{
+    position: absolute;
+    top:334px;
+    left:0px;
+}
+.episodeBorder{
+    width: 104px;
+    height: 54px;
+    float: left;
+}
+#recommend{
+    position: absolute;
+    top: 430px;
+    left: 60px;
+    width: 1186px;
+    height: 328px;
+    overflow: hidden;
+}
+
+.contentTitle {
+    position: absolute;
+    left: 0px;
+    top: 197px;
+    width: 168px;
+    height: 36px;
+    overflow: hidden;
+    color: #fff;
+    font-size: 18px;
+    text-align: center;
+    line-height: 36px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 0 0 16px 16px;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+#videoType img{
+    margin-right: 25px;
+    margin-top: 10px;
+}
+/*视频来源*/
+#videoSourceWrapper{
+    position: absolute;
+    width: 230px;
+    height: 35px;
+    left: 975px;
+    top: 60px;
+}
+.videoSourceText{
+    position: absolute;
+    width: 190px;
+    white-space: nowrap;
+    height: 35px;
+    line-height: 38px;
+    font-size: 18px;
+    color: #6e5b34;
+    left: 40px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.marqueeText{
+    position: absolute;
+    left: 85px;
+    width: 100px;
+}

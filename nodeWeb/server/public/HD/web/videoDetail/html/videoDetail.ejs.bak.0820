@@ -1,0 +1,273 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: sueRimn
+ * @Date: 2020-03-04 16:46:29
+ * @LastEditors: sueRimn
+ * @LastEditTime: 2020-03-05 20:25:32
+ -->
+<%- include ('../../components/header') %>
+<link rel="stylesheet" href="<%= basePageUrl %>/css/videoDetail.css">
+</head>
+<%
+	const commonPageInfo = basePageInfo.commonPageInfo;
+	const videoListJSonData = basePageInfo.cartoonVideoList;
+	const cartoonDetailData = basePageInfo.cartoonDetail;
+	const introduction = cartoonDetailData.cartoonIntroduction;
+	const recommend_1 = commonPageInfo.recommend_1;
+	const recRows = 2;
+	const recStep = 6;
+	const cartoonId = basePageInfo.reqQuery.cartoonId || 1;
+	const maxEpisodeListNum = 6;
+	const localImg = basePageInfo.localImg;
+	const curButtomList = [];
+	 
+	// 剔除推荐栏和本页面重复的卡通
+	for (let i = 0; i < recommend_1; i++) {
+		if (recommend_1[i].cartoonId == cartoonId) {
+			recommend_1.splice(i, 1);
+		}
+	}	
+	/**
+     *  处理分页数据
+     *  最多创建maxPageNum个分页光标，超过maxPageNum个多余的隐藏
+     */
+	const pageList = [];
+	let maxPageNum = Math.ceil(videoListJSonData.length / 10);
+	for (let i = 0; i < maxPageNum; i++) {
+		pageList.push(videoListJSonData.slice(10 * i, 10 * (i + 1)));
+	}
+	//显示第一屏的分页
+	if(maxPageNum > maxEpisodeListNum){
+		maxPageNum = maxEpisodeListNum;
+	}	
+	/**
+     * 设置集数的buttons
+     */
+	let episodeEnd =  1 + "-" + (10 < videoListJSonData.length ? 10 : videoListJSonData.length);
+	episodeEnd = parseInt(episodeEnd.slice(episodeEnd.indexOf("-") + 1, episodeEnd.length));
+	// 页面数据对象
+	const pageInfo = {
+		emptyImgUrl: "./HD/images/empty.png",
+		recommendBottom:recommend_1,
+		cartoonCname : cartoonDetailData.cartoonCname,
+		cartoonIntroduction : (introduction ? introduction : "").length > 100 ? (introduction.substring(0, 100) + "...") : introduction,
+		totalPage : Math.ceil(recommend_1.length / recStep - 1),
+	};
+
+	basePageInfo.transferObj = {
+		localImg,
+		videoListJSonData,
+		cartoonDetailData,
+		commonPageInfo,
+		cartoonId,
+		maxPageNum,
+		episodeEnd,
+		pageList,
+		maxEpisodeListNum,
+		curButtomList,
+		recStep,
+		recRows,
+		pageInfo
+	};
+%>
+<body style="background:transparent;">
+<!--背景-->
+<img id="BJ" src="<%= basePageInfo.bgImg %>" height="720" width="1280"/>
+<!--视频详情-->
+<div id="videoData">
+	<!--标题-->
+	<div class="position" id="videoContentDiv">
+		<span id="videoTitle"><%= pageInfo.cartoonCname %></span>
+		<div id="videoContent"><%= pageInfo.cartoonIntroduction %></div>
+		<div id="videoType" style="width:535px;height:85px;">
+			<% if(cartoonDetailData.tagsInfoList){ %>
+				<% cartoonDetailData.tagsInfoList.forEach(item=>{%>
+					<img src="<%= localImg %>label/<%= item.typeCname %>.png" />
+				<% }) %>
+			<% } %>
+		</div>
+	</div>
+	<%
+		basePageInfo.nodeButtons.push({
+			id: "hands_x0_y0_videoBorder_",
+			clickHandler: "javascript:page.toPlayVideo('smallVideo')",
+			left: "disable",
+			right: "hands_x0_y0_NowWatch_",
+			downEvent: "javascript:page.togglePage('video')",
+			up: "disable",
+			focusType: 7
+		}, {
+			id: "hands_x0_y0_NowWatch_",
+			clickHandler: "javascript:page.toPlayVideo('smallVideo')",
+			left: "hands_x0_y0_videoBorder_",
+			right: "hands_x0_y0_collectContent_",
+			downEvent: "javascript:page.togglePage()",
+			up: "disable",
+			focusType: 7
+		}, {
+			id: "hands_x0_y0_collectContent_",
+			clickHandler: "javascript:page.toggleCollectState()",
+			left: "hands_x0_y0_NowWatch_",
+			right: "disable",
+			downEvent: "javascript:page.togglePage()",
+			up: "disable",
+			focusType: 7
+		});
+	%>
+	<!--视频框-->
+	<div class="position" id="hands_x0_y0_videoBorder_" >
+		<img id="videoBorder" style="visibility: hidden;" src="<%= localImg %>videoBorder.png" />
+	</div>
+	<!--收藏，订购-->
+    <img class="position" id="NowWatchImage" src="<%= localImg %>play.png" />
+    <img class="position" id="collectImage"  src="<%= localImg %>nocollect.png" />
+	
+	<div class="position"  id="hands_x0_y0_NowWatch_">
+		<img id="NowWatch" style="visibility: hidden;" src="<%= localImg %>focus.png" />
+	</div>
+	<div class="position" id="hands_x0_y0_collectContent_">
+		<img id="collectContent" style="visibility: hidden;" src="<%= localImg %>focus.png" />
+	</div>
+	<!--全部集数-->
+	<div id="episodes">
+		<% if(videoListJSonData.length / 10 > 0){ %>
+			<div id="pageNum">
+				<% for (let i = 0; i < maxPageNum; i++) { %>
+					<%
+						const pageButton = {
+							id: "hands_x0_y0_page" + i + "_",
+							otherFocusEvent: "javascript:page.toggleEpisode(" + i + ")",
+							left: "hands_x0_y0_page" + (i - 1) + "_",
+							right: "hands_x0_y0_page" + (i + 1) + "_",
+							up: "hands_x0_y0_videoBorder_",
+							down: "hands_x0_y0_episode0_",
+							focusType: 7
+						};
+						if (i == 0) {
+							pageButton.left = "disable";
+							pageButton.leftEvent = "javascript:page.togglePage(1)";
+						}
+						if (i == maxPageNum - 1) {
+							pageButton.right = "disable";
+							pageButton.rightEvent = 'javascript:page.togglePage(' + (maxEpisodeListNum - 1) + ')';
+						}
+						basePageInfo.nodeButtons.push(pageButton);
+					%>
+					<div class='pageNum' id="pageNum<%= i %>" >
+						<%= (10 * i + 1) + "-" + (10 * (i + 1) < videoListJSonData.length ? 10 * (i + 1) : videoListJSonData.length) %>
+					</div>
+				<% } %>
+			</div>
+			<div id="pageBorder">
+				<% for (let i = 0; i < maxPageNum; i++) { %>
+					<div class='pageNumBorder position' id="hands_x0_y0_page<%= i %>_" 
+						style="top:-1px;left:<%= 40 +  i * (179 + 18) %>px;">
+						<img id="page<%= i %>" src="<%= localImg %>pageNumBorder.png" style='visibility: hidden'>
+					</div>
+				<% } %>
+			</div>
+		<% } %>
+		<div id="episode">
+			<% for (var i = 1,num = 0; i <= episodeEnd; i++,num++) { %>
+			
+				<div class='episodes' style='top:8px;left:<%= num*115 %>px;'>
+				<% if (videoListJSonData[i - 1].isFree == 0) { %> 
+					<!--免费图标-->
+				<%} else {  %>
+					<!--vip图标-->
+					<img class='position vip' src='<%= localImg %>vip.png'>
+				<% } %>
+				<%=i %>
+				</div>
+			
+			<% } %>
+		</div>
+		<div id="episodeBorder">
+			<% for (let i = 0; i < 10; i++) { %>
+				<%
+					const episodeButton = {
+						id: "hands_x0_y0_episode" + i + "_",
+						clickHandler: "javascript:page.toPlayVideo(" + i + ")",
+						otherFocusEvent: "javascript:page.initButtonRecShow(" + i + ")",
+						left: "hands_x0_y0_episode" + (i - 1) + "_",
+						right: "hands_x0_y0_episode" + (i + 1) + "_",
+						upEvent: "javascript:page.togglePage('episode')",
+						down: "hands_x0_y0_buttom0_",
+						focusType: 7
+					};
+					if (i == 0) {
+						episodeButton.left = "disable";
+					} else if (i == 9) {
+						episodeButton.right = "disable";
+					}
+					basePageInfo.nodeButtons.push(episodeButton);
+				%>
+				<div class='episodeBorder position' id="hands_x0_y0_episode<%= i %>_" 
+					style="top:7px;left:<%= 64 + i * 115 %>px;">
+					<img id=<%= "episode" + i %> style='visibility: hidden' src="<%= localImg %>episodeBorder.png" />
+				</div>
+			<% } %>
+		</div>
+	</div>
+	<!--翻页指示箭头-->
+	<img id="trunPageTipImg" style="visibility: hidden;position: absolute;top: 288px; left: 1230px;" 
+		src="<%= localImg %>rightArrow.png" />
+</div>
+<div class="guessYou">猜你喜欢看</div>
+<!--热点推荐-->
+<div id="recommend">
+	<% for (let j = 0; j < recRows; j++) { %>
+		<% for (let i = 0; i < recStep; i++) { %>
+			<%
+				var buttomButton = {
+                    id: "hands_x0_y0_buttom" + (i + j * recStep) + "_",
+                    clickHandler: "javascript:page.toVideoDetail(" + i + ")",
+                    left: "hands_x0_y0_buttom" + (i + j * recStep - 1) + "_",
+                    right: "hands_x0_y0_buttom" + (i + j * recStep + 1) + "_",
+                    upEvent: "javascript:page.buttomUpEvent(" + (i + j * recStep) + ")",
+                    downEvent: "javascript:page.buttomDownEvent(" + (i + j * recStep) + ")",
+                    otherFocusEvent: 'javascript:page.runText(' + (i + j * recStep) + ')',
+                    otherBlurEvent: 'javascript:page.stopText(' + (i + j * recStep) + ')',
+                    enFocus: false,
+                    focusType: 7
+                }
+                if (i == 0) {
+                    buttomButton.left = "disable";
+                }
+                if (i == recStep - 1) {
+                    buttomButton.right = "disable";
+                }
+                basePageInfo.nodeButtons.push(buttomButton);
+               	curButtomList.push(recommend_1[i]);
+			%>
+			<div class='position' style="top:<%= j * 250 %>px;left:<%= i * 200 %>px;">
+				<img id="recBotImg<%= i + j * recStep %>" src="<%= pageInfo.emptyImgUrl %>" 
+					style='border-radius: 16px; width: 168px; height: 233px;' />
+				<div id="contentTitle<%= i + j * recStep %>" class='contentTitle'></div>
+				<div id="freeBadge<%= i + j * recStep %>"></div>
+			</div>
+			<div class='position' id="hands_x0_y0_buttom<%= i + j * recStep %>_" 
+				style="top:<%= j * 250 %>px;left:<%= i * 200 %>px;width:168px;height:233px;">
+				<img id="buttom<%= i %>" style='width: 168px; height: 233px; visibility: hidden' 
+					src="<%= localImg %>contentFocus.png" />
+			</div>
+		<% } %>
+	<% } %>
+</div>
+<!--视频来源-->
+<div id="videoSourceWrapper">
+	<img id="videoSourceImg" class="position" src="<%= localImg %>sourceBG.png" />
+	<div class="videoSourceText">视频来源：</div>
+	<div id="videoSourceText" class="videoSourceText">
+		<% if(cartoonDetailData.cartoonProprietors){ %>
+			<div id="<%= cartoonDetailData.cartoonProprietors.length > 4 ? 'marqueeText1' : 'marqueeText' %>" class="marqueeText">
+				<%= cartoonDetailData.cartoonProprietors %>
+			</div>
+		<% } %>
+	</div>
+</div>
+<%- include('../../components/commJs') %>
+<script src="<%= basePageUrl %>/js/videoDetail.js"></script>
+</body>
+</html>

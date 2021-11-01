@@ -1,0 +1,30 @@
+.DS_Store
+node_modules/
+dist/
+/iptv-admin-operation/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+out
+log
+.idea
+
+
+# Editor directories and files
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+.history
+buildServer
+
+
+# Package Files #
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar

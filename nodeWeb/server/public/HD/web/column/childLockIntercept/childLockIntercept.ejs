@@ -1,0 +1,284 @@
+<%- include ("../../components/header") %> 
+    <style>
+        .box {
+            width: 1280px;
+            height: 720px;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        #beijing {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        #tongsuo {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div id="beijing">
+            <!--img/BG.jpg img/tankuang.png ../../../HD/images/empty.png-->
+            <img id="BJ" src="<%=basePageInfo.bgImg%>" alt="">
+        </div>
+        <div id="tongsuo">
+            <img id="inputImg" src="<%=basePageInfo.localImg%>tankuang.png" alt="">
+            <div id="phoneText0" alt=""
+                style="width: 60px;height: 60px;position:absolute;left:483px;top:286px;font-size: 30px;line-height: 71px;text-align: center;font-weight: bold">
+            </div>
+            <div id="phoneText1" alt=""
+                style="width: 60px;height: 60px;position:absolute;left:576px;top:286px;font-size: 30px;line-height: 71px;text-align: center;font-weight: bold">
+            </div>
+            <div id="phoneText2" alt=""
+                style="width: 60px;height: 60px;position:absolute;left:670px;top:286px;font-size: 30px;line-height: 71px;text-align: center;font-weight: bold">
+            </div>
+            <div id="phoneText3" alt=""
+                style="width: 60px;height: 60px;position:absolute;left:766px;top:286px;font-size: 30px;line-height: 71px;text-align: center;font-weight: bold">
+            </div>
+            <div id="hands_x0_y0_tsFocus0_" style="position: absolute;left:465px;top: 274px;">
+                <img id="tsFocus0" src="<%=basePageInfo.localImg%>shuru.png" alt=""
+                    style="position: absolute;left:0px;top: 0px;visibility: hidden;">
+            </div>
+            <div id="hands_x0_y0_tsFocus1_" style="position: absolute;left: 560px;top: 274px;">
+                <img id="tsFocus1" src="<%=basePageInfo.localImg%>shuru.png" alt=""
+                    style="position: absolute;left: 0;top: 0;visibility: hidden;">
+            </div>
+            <div id="hands_x0_y0_tsFocus2_" style="position: absolute;left: 654px;top: 274px;">
+                <img id="tsFocus2" src="<%=basePageInfo.localImg%>shuru.png" alt=""
+                    style="position: absolute;left: 0;top: 0;visibility: hidden;">
+            </div>
+            <div id="hands_x0_y0_tsFocus3_" style="position: absolute;left: 748px;top: 274px;">
+                <img id="tsFocus3" src="<%=basePageInfo.localImg%>shuru.png" alt=""
+                    style="position: absolute;left: 0;top: 0;visibility: hidden;">
+            </div>
+            <div id="hands_x0_y0_okFocus0_" style="position: absolute;left: 563px;top: 436px;">
+                <img id="okFocus0" src="<%=basePageInfo.localImg%>queding.png" alt=""
+                    style="position: absolute;left: 0;top: 0;visibility: hidden;">
+            </div>
+        </div>
+        <div id="hands_x0_y0_forgotPwdOrder_" style="position: absolute;top: 537px;left: 557px;"> 
+            <img src="<%= imgUrl + basePageInfo.commonPageInfo.recommend_2[0].recommendPic.picPath %>" alt="" 
+            style="position: absolute;">
+            <img id="forgotPwdOrder" src="<%= imgUrl + basePageInfo.commonPageInfo.recommend_2[0].recommendLabelpic.picPath %>" alt="" 
+            style="position: absolute;left: 0;top: 0;visibility: hidden;">
+        </div>
+        <div id="passTip" style="position: absolute;top: 600px;left: 407px;font-size: 22px;color: white;text-align: center;width: 500px;"> 
+            如需退订，请拨打96296客服热线，退订后再设置家长锁可以避免再次订购，谢谢 ！
+        </div>
+    </div>
+</body>
+
+</html>
+<%- include('../../components/commJs') %>
+<script>
+    var buttons = [
+        {
+            id: 'hands_x0_y0_tsFocus0_',
+            clickHandler: '',
+            left: 'hands_x0_y0_okFocus0_',
+            right: 'hands_x0_y0_tsFocus1_',
+            otherFocusEvent: '',
+            up: 'disable',
+            down: 'hands_x0_y0_okFocus0_',
+            focusType: 7
+        }, {
+            id: 'hands_x0_y0_tsFocus1_',
+            clickHandler: '',
+            left: 'hands_x0_y0_tsFocus0_',
+            right: 'hands_x0_y0_tsFocus2_',
+            otherFocusEvent: '',
+            up: 'disable',
+            down: 'hands_x0_y0_okFocus0_',
+            focusType: 7
+        }, {
+            id: 'hands_x0_y0_tsFocus2_',
+            clickHandler: '',
+            left: 'hands_x0_y0_tsFocus1_',
+            right: 'hands_x0_y0_tsFocus3_',
+            otherFocusEvent: '',
+            up: 'disable',
+            down: 'hands_x0_y0_okFocus0_',
+            focusType: 7
+        }, {
+            id: 'hands_x0_y0_tsFocus3_',
+            clickHandler: '',
+            left: 'hands_x0_y0_tsFocus2_',
+            right: 'hands_x0_y0_okFocus0_',
+            otherFocusEvent: '',
+            up: 'disable',
+            down: 'hands_x0_y0_okFocus0_',
+            focusType: 7
+        }, {
+            id: 'hands_x0_y0_okFocus0_',
+            clickHandler: 'javascript:toChildclock()',
+            left: 'disable',
+            right: 'disable',
+            otherFocusEvent: '',
+            up: 'hands_x0_y0_tsFocus0_',
+            down: 'hands_x0_y0_forgotPwdOrder_',
+            focusType: 7
+        }, {
+            id: 'hands_x0_y0_forgotPwdOrder_',
+            clickHandler: 'javascript:toForgetPwdPage()',
+            left: 'disable',
+            right: 'disable',
+            otherFocusEvent: '',
+            up: 'hands_x0_y0_okFocus0_',
+            down: 'disable',
+            focusType: 7
+        }
+    ];
+
+    /**
+     获取童锁信息
+     *http://122.193.8.108:8090/xjcartoon_BtopInterface_xuanli/UserTaskInterface/queryUserLockList?userId=4
+     *"http://112.45.191.87:8093/XuanLi_Cartoon_SCYD/"
+     *
+     */
+    var userLockMess = "";//用户锁
+    var userLockMessId = "";//用户锁Id
+    function getUserClockMess(callback) {
+        var userId = xjDataLog.getUserId() + "";
+
+        ajax.init({
+            url: AjaxConfig.interfaceUrl + "/findUserLockById",
+            method: "get",
+            params: {
+                "contentId": userId
+            },
+            async: false,
+            ContentType: "json",
+            success: function (data) {
+                userLockMess = data.data.lockMessage;;
+                userLockMessId = data.data.userId;
+                callback && callback(data);
+            },
+            fail: function (status) {
+            }
+        });
+
+    }
+    // // interface.findCommonPageInfo({
+    // interface.findRecCommonPageInfo({
+    //     params: {
+    //             contentName: 'tsyzym'
+    //         }
+    //     },
+    //     function (result) {
+    //         setLoggerInfo.pageInfoLog = result;
+    //         //保存页面的所有数据
+    //         AjaxConfig.commonPageInfo = result;
+            //CT.$('BJ').src = AjaxConfig.imgUrl + result.data.pageInfo.pageTemplatePic.picPath;
+            //CT.$('inputImg').src = AjaxConfig.imgUrl + result.data.recommend_1[0].recommendPic.picPath;
+            getUserClockMess(function () {
+                PAGE.focusInit();
+                var start = PAGE.getFocusModel6("hands_x0_y0_tsFocus0_");
+                start.defaultFocus();
+            });
+    // });
+    // 输入数字密码
+    changeNumObj.changeNum = function (num) {
+        var userPwd = "";
+        var keyObj = curFocus.FocusID;
+        var index = parseInt(keyObj.slice(-2));
+
+        if (keyObj == "hands_x0_y0_tsFocus" + index + "_") {
+            var size = userPwd.length;
+            if (!size) {
+                var addnum = userPwd;
+                userPwd = addnum + num;
+                CT.$("phoneText" + index).innerHTML = userPwd;
+
+                document.getElementById(curFocus.ImgID).style.visibility = "hidden";
+                if (index < 3) {
+                    var videoFocus = PAGE.getFocusModel6("hands_x0_y0_tsFocus" + (index + 1) + "_");
+                    videoFocus.defaultFocus();
+                } else if (index == 3) {
+                    /!* hands_x0_y0_okFocus0_ *!/
+                    var videoFocus = PAGE.getFocusModel6("hands_x0_y0_okFocus0_");
+                    videoFocus.defaultFocus();
+                }
+            }
+        }
+    }
+
+
+    var _lock = false;
+
+    //验证后执行事件类型
+    var toDoType = CT.requestValue('type');
+    function toChildclock() {
+        if (userLockMess) {
+            var message0 = document.getElementById("phoneText0").innerHTML;
+            var message1 = document.getElementById("phoneText1").innerHTML;
+            var message2 = document.getElementById("phoneText2").innerHTML;
+            var message3 = document.getElementById("phoneText3").innerHTML;
+            if (message0 != "" && message1 != "" && message2 != "" && message3 != "" && message0 != "*" && message1 != "*" && message2 != "*" && message3 != "*") {
+                CuruserLockMess = message0 + message1 + message2 + message3 + "";
+                if (userLockMess == CuruserLockMess) {
+                    if(_lock) {
+                        return;
+                    }
+                    _lock = true;
+                    setTimeout(function(){
+                        CT.BackPortalMainPage();
+                    },6000);
+                    orderJs.toPay();
+                    // if (toDoType == 'toOrder') {
+                    //     //订购调用
+                    //     var orderType = CT.requestValue('orderType');
+                    //     var orderMore = CT.requestValue('orderMore');
+                    //     // orderJs.deductMoney(orderType, orderMore);
+                    // } else {
+                    //     //默认订购调用
+                    //     var orderType = CT.requestValue('orderType');
+                    //     var orderMore = CT.requestValue('orderMore');
+                    //     // orderJs.deductMoney(orderType, orderMore);
+                    // }
+                } else {
+                    //验证失败
+                    CT.alertTip('密码错误，请重新输入！');
+                    clearuserPwd();
+                    var start = PAGE.getFocusModel6("hands_x0_y0_tsFocus0_");
+                    start.defaultFocus();
+                }
+
+                //toReplaceChildLock(userLockMessId,userLockMess);
+            } else {
+                CT.alertTip('密码错误，请重新输入！');
+                //clearuserPwd()
+            }
+
+
+
+
+
+        } else {
+            // window.location.href="./ChildLock.html"
+        }
+    }
+
+    function clearuserPwd() {
+        for (var i = 0; i < 4; i++) {
+            CT.$("phoneText" + i).innerHTML = "";
+        }
+    }
+    function backFunc() {
+        // CT.delCookie("columnBackUrl");
+        CT.backPage();
+    }
+
+    function toForgetPwdPage() {
+        CT.getAnterByIdOrAction({
+            contentName: "jzzxym"
+        });
+    }
+
+</script>

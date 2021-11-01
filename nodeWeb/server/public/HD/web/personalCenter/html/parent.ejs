@@ -1,0 +1,186 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: sueRimn
+ * @Date: 2020-03-04 16:46:29
+ * @LastEditors: sueRimn
+ * @LastEditTime: 2020-03-13 13:52:30
+ -->
+<%- include ('../../components/header') %>
+<link rel="stylesheet" href="<%= basePageUrl %>/css/personalCenter.css">
+</head>
+<%
+    const commonPageInfo = basePageInfo.commonPageInfo;
+    const localImg = basePageInfo.localImg;
+%>
+<body>
+    <!--背景-->
+    <img id="BJ" src="<%= basePageInfo.bgImg %>" height="720" width="1280" />
+    <!--左边分类-->
+    <%- include('../../components/nav/pcGeneralNav')%>
+     <!--右边显示数据-->
+     <div id="right">
+         <div id="parentBJ"
+             style="position:absolute;width: 865px;height: 100px; background: url(./HD/images/empty.png) no-repeat;">
+             <div id="hands_x0_y0_custom_"
+                 style="font-size: 20px;font-weight: bold; color:#FFF; text-align: center;width: 25%;line-height:60px;position: absolute;left:0px">
+                 <div id="custom" class="navItem"
+                     style="width:220px;height:68px;position: absolute; left: 16px; top: 13px;background: url(<%= localImg %>parentBarFocus.png)no-repeat;visibility: hidden;">
+                 </div>
+                 <div style="position: absolute;width:220px;visibility: visible;">家长定制</div>
+             </div>
+             <div id="hands_x0_y0_limittime_"
+                 style="font-size: 20px;font-weight: bold;color:#FFF;text-align: center;width: 25%;line-height:60px;position: absolute;left:25%">
+                 <div id="limittime" class="navItem"
+                     style="width:220px;height:68px;position: absolute;left: 16px; top: 13px;background: url(<%= localImg %>parentBarFocus.png)no-repeat;visibility: hidden;">
+                 </div>
+                 <div style="position: absolute;width:220px;visibility: visible;">时间定制</div>
+             </div>
+             <div id="hands_x0_y0_lock_"
+                 style="font-size: 20px;font-weight: bold;color:#FFF;text-align: center;width: 25%;line-height:60px;position: absolute;left:50%"><!--50% 37-->
+                 <div id="lock" class="navItem"
+                     style="width:220px;height:68px;position: absolute;left: 16px; top: 13px;background: url(<%= localImg %>parentBarFocus.png)no-repeat;visibility: hidden;">
+                 </div>
+                 <div style="position: absolute;width:220px;">家长锁</div>
+             </div>
+             <div id="hands_x0_y0_report_"
+                 style="font-size: 20px;font-weight: bold;color:#FFF;text-align: center;width: 25%;line-height:60px;position: absolute;left:75%">
+                 <div id="report" class="navItem"
+                     style="width:220px;height:68px;position: absolute;left: 16px; top: 13px;background: url(<%= localImg %>parentBarFocus.png)no-repeat;visibility: hidden;">
+                 </div>
+                 <div style="position: absolute;width:220px;visibility: visible;">宝贝成长计划</div>
+             </div>
+         </div>
+     </div>
+     <div id="tip"
+         style=" visibility: visible; position: absolute;font-size: 35px; font-weight: 800; color: #FFF; top: 364px;left: 712px;z-index: 99;">
+     </div>
+ 
+     <div id="custom_panel" class="panel" style="visibility: visible;">
+         <div id='cont' style="width:775px;margin: 0 auto;">
+ 
+         </div>
+         <div style="position: absolute;
+         font-size: 22px;
+         color:#FFF;
+         top: 495px;
+         left: 200px;
+         width: 448px;
+         height: 50px;
+         text-align: center;"><img style="position: absolute;
+         left: 13px;" src="<%= localImg %>light.png" />家长可以选择让小朋友看的内容哦！</div>
+     </div>
+ 
+     <div id="limittime_panel" class="panel">
+         <div style="width:430px;height:100px;margin: 0 auto;">
+             <div style="width:430px;height:40px;line-height:40px;font-size:24px; color: #FFF;text-align: center;">
+                 禁止观看时间段</div>
+             <div style="width:430px;height:40px;color: #FFF;text-align: center;">小朋友们要爱护自己的眼睛，不能熬夜哦！</div>
+         </div>
+         <div id="limit" style="width:530px;height:280px;margin: 0 auto;">
+         </div>
+     </div>
+ 
+     <div id="lock_panel" style="top:215px" class="panel">
+         <div id="calc"
+             style=" visibility: hidden;width: 280px;height: 70px;position: absolute;left: 285px;top: 65px;font-size: 40px;color: white;">
+             <span id="firstNum"></span>
+             <span id="operator" style="margin-left: 5px;"></span>
+             <span id="secondNum" style="margin-left: 5px;"></span>
+             <span id="" style="margin-left: 5px;"> = </span>
+             <span id="answerShow" style="margin-left: 5px;"></span>
+ 
+         </div>
+         <div id="lockbg"
+             style="margin: 0 auto; width:364px;height:364px; background: url(<%= imgUrl + commonPageInfo.recommend_4[0].recommendPic.picPath %>) no-repeat;">
+             <div id="lockTxt" style="font-size: 26px; color: white; padding: 30px; text-align: center;">
+                请解锁
+             </div>
+         </div>
+         <div id="pwd" style="visibility:inherit;">
+             <div id="numInput0"
+                 style="width:51px;height:51px;line-height:51px;position: absolute;top:70px;left:292px;text-align: center;color: #FFF;font-size: 24px;background:url(<%= localImg %>numF.png) no-repeat">
+             </div>
+             <div id="numInput1"
+                 style="width:51px;height:51px;line-height:51px;position: absolute;top:70px;left:357px;text-align: center;color: #FFF;font-size: 24px;background:url(<%= localImg %>numF.png) no-repeat">
+             </div>
+             <div id="numInput2"
+                 style="width:51px;height:51px;line-height:51px;position: absolute;top:70px;left:422px;text-align: center;color: #FFF;font-size: 24px;background:url(<%= localImg %>numF.png) no-repeat">
+             </div>
+             <div id="numInput3"
+                 style="width:51px;height:51px;line-height:51px;position: absolute;top:70px;left:488px;text-align: center;color: #FFF;font-size: 24px;background:url(<%= localImg %>numF.png) no-repeat">
+             </div>
+         </div>
+         <div id="hands_x0_y0_num0_" style="width:56px;height:56px;">
+             <div id="num0" class="num"
+                 style="visibility: hidden; position: absolute;top:120px;left:282px; width:56px;height:56px;background:url(<%= localImg %>numFocus.png) no-repeat">
+             </div>
+         </div>
+         <div id="hands_x0_y0_num1_" style="width:56px;height:56px;">
+             <div id="num1" class="num"
+                 style="visibility: hidden;position: absolute;top:120px;left:388px; width:56px;height:56px;background:url(<%= localImg %>numFocus.png) no-repeat">
+             </div>
+         </div>
+         <div id="hands_x0_y0_num2_" style="width:56px;height:56px;">
+             <div id="num2" class="num"
+                 style="visibility: hidden;position: absolute;top:120px;left:497px; width:56px;height:56px;background:url(<%= localImg %>numFocus.png) no-repeat">
+             </div>
+         </div>
+         <div id="hands_x0_y0_num3_" style="width:56px;height:56px;">
+             <div id="num3" class="num"
+                 style="visibility: hidden;position: absolute;top:166px;left:282px; width:56px;height:56px;background:url(<%= localImg %>numFocus.png) no-repeat">
+             </div>
+         </div>
+         <div id="hands_x0_y0_num4_" style="width:56px;height:56px;">
+             <div id="num4" class="num"
+                 style="visibility: hidden;position: absolute;top:166px;left:388px; width:56px;height:56px;background:url(<%= localImg %>numFocus.png) no-repeat">
+             </div>
+         </div>
+         <div id="hands_x0_y0_num5_" style="width:56px;height:56px;">
+             <div id="num5" class="num"
+                 style="visibility: hidden;position: absolute;top:166px;left:497px; width:56px;height:56px;background:url(<%= localImg %>numFocus.png) no-repeat">
+             </div>
+         </div>
+         <div id="hands_x0_y0_num6_" style="width:56px;height:56px;">
+             <div id="num6" class="num"
+                 style="visibility: hidden;position: absolute;top:210px;left:282px; width:56px;height:56px;background:url(<%= localImg %>numFocus.png) no-repeat">
+             </div>
+         </div>
+         <div id="hands_x0_y0_num7_" style="width:56px;height:56px;">
+             <div id="num7" class="num"
+                 style="visibility: hidden;position: absolute;top:210px;left:388px; width:56px;height:56px;background:url(<%= localImg %>numFocus.png) no-repeat">
+             </div>
+         </div>
+         <div id="hands_x0_y0_num8_" style="width:56px;height:56px;">
+             <div id="num8" class="num"
+                 style="visibility: hidden;position: absolute;top:210px;left:497px; width:56px;height:56px;background:url(<%= localImg %>numFocus.png) no-repeat">
+             </div>
+         </div>
+         <div id="hands_x0_y0_num9_" style="width:56px;height:56px;">
+             <div id="num9" class="num"
+                 style="visibility: hidden;position: absolute;top:256px;left:281px; width:56px;height:56px;background:url(<%= localImg %>numFocus.png) no-repeat">
+             </div>
+         </div>
+         <div id="hands_x0_y0_num10_" style="width:56px;height:56px;">
+             <div id="num10" class="num"
+                 style="visibility: hidden;position: absolute;top:256px;left:388px; width:56px;height:56px;background:url(<%= localImg %>numFocus.png) no-repeat">
+             </div>
+         </div>
+         <div id="hands_x0_y0_num11_" style="width:56px;height:56px;">
+             <div id="num11" class="num"
+                 style="visibility: hidden;position: absolute;top:256px;left:497px; width:56px;height:56px;background:url(<%= localImg %>numFocus.png) no-repeat">
+             </div>
+         </div>
+         <div id="passTip" style="position: absolute;top: 438px;left: 167px;font-size: 22px;color: white;text-align: center;width: 500px;"> 
+            如需退订，请拨打96296客服热线，退订后再设置家长锁可以避免再次订购，谢谢 ！
+         </div>
+     </div>
+     <div id="report_panel" class="panel" style="left:22px;top:30px">
+         
+     </div>
+ 
+     <%- include('../../components/commJs3') %>
+    <script src="<%= basePageUrl %>/js/parent.js"></script>
+ </body>
+ 
+ </html>

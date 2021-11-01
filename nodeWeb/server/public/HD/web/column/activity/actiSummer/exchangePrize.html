@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>积分兑礼品</title>
+    <link rel="stylesheet" type="text/css" href="css/exchange.css">
+</head>
+<body>
+<div class="main">
+    <!--我的积分-->
+    <div style="position: absolute;left: 10px;">
+        <img src="images/integral.png">
+        <div id="scoreNum" style="position: absolute;font-size: 36px;top: 60px;left: 100px;"></div>
+    </div>
+    <!--我的奖品-->
+    <div class="myPrize">
+        <img src="images/exchange/myPrize.png">
+        <div id="hands_x0_y0_myPrizeBtn_">
+            <img id="myPrizeBtn" src="images/exchange/phoneS.png" style="visibility: hidden">
+        </div>
+    </div>
+    <!--礼品兑换-->
+    <div class="prize0Pack">
+        <div id="hands_x0_y0_prize0S_" class="prize0Img">
+            <img src="images/exchange/prize_0.png">
+            <img id="prize0S" src="images/exchange/prizeS.png" style="visibility: hidden">
+        </div>
+        <div id="prizeNum0" class="prize0Num">
+            可兑换份数：1份
+        </div>
+    </div>
+    <div class="prize1Pack">
+        <div id="hands_x0_y0_prize1S_" class="prize1Img">
+            <img src="images/exchange/prize_1.png">
+            <img id="prize1S" src="images/exchange/prizeS.png" style="visibility: hidden">
+        </div>
+        <div id="prizeNum1" class="prize1Num">
+            可兑换份数：1份
+        </div>
+    </div>
+    <div class="prize2Pack">
+        <div id="hands_x0_y0_prize2S_" class="prize2Img">
+            <img src="images/exchange/prize_2.png">
+            <img id="prize2S" src="images/exchange/prizeS.png" style="visibility: hidden">
+        </div>
+        <div id="prizeNum2" class="prize2Num">
+            可兑换份数：1份
+        </div>
+    </div>
+    <div class="prize3Pack">
+        <div id="hands_x0_y0_prize3S_" class="prize3Img">
+            <img src="images/exchange/prize_3.png">
+            <img id="prize3S" src="images/exchange/prizeS.png" style="visibility: hidden">
+        </div>
+        <div id="prizeNum3" class="prize3Num">
+            可兑换份数：1份
+        </div>
+    </div>
+    <div class="prize4Pack">
+        <div id="hands_x0_y0_prize4S_" class="prize4Img">
+            <img src="images/exchange/prize_4.png">
+            <img id="prize4S" src="images/exchange/prizeS.png" style="visibility: hidden">
+        </div>
+        <div id="prizeNum4" class="prize4Num">
+            可兑换份数：1份
+        </div>
+    </div>
+    <div class="prize5Pack">
+        <div id="hands_x0_y0_prize5S_" class="prize5Img">
+            <img src="images/exchange/prize_5.png">
+            <img id="prize5S" src="images/exchange/prizeS.png" style="visibility: hidden">
+        </div>
+        <div id="prizeNum5" class="prize5Num">
+            可兑换份数：1份
+        </div>
+    </div>
+
+    <!--已兑换  图标-->
+    <div id="ydhIcon">
+        <img src="images/exchange/ydhIcon.png">
+    </div>
+
+    <!--已兑换  弹框-->
+    <div id="ydhPopup">
+        <img src="images/exchange/ydhPopup.png">
+        <div id="hands_x0_y0_ydhPopupS_">
+            <img id="ydhPopupS" src="images/exchange/popupS.png" style="visibility:hidden;">
+        </div>
+    </div>
+    <!--已兑完-->
+    <div id="ydwPopup">
+        <img src="images/exchange/ydwPopup.png">
+        <div id="hands_x0_y0_ydwPopupS_">
+            <img id="ydwPopupS" src="images/exchange/popupS.png" style="visibility:hidden;">
+        </div>
+    </div>
+    <!--积分不足-->
+    <div id="jfbzPopup">
+        <img src="images/exchange/jfbzPopup.png">
+        <div id="hands_x0_y0_jfbzPopupS_">
+            <img id="jfbzPopupS" src="images/exchange/popupS.png" style="visibility: hidden">
+        </div>
+    </div>
+    <!--兑换成功-->
+    <div id="dhcgPopup">
+        <img src="images/exchange/dhcgPopup.png">
+        <div id="hands_x0_y0_textFocus_">
+            <img id="textFocus" src="images/card/phoneTextS.png" style="visibility:hidden;width: 300px">
+        </div>
+        <!-- 保存 -->
+        <div id="hands_x0_y0_saveFocus_" style="position: absolute; left: 727px;top: 507px;">
+            <img id="saveFocus" src="images/card/phoneS.png" style="visibility: hidden;" alt=""/>
+        </div>
+        <!-- 清除 -->
+        <div id="hands_x0_y0_clearFocus_" style="position: absolute;left: 830px; top: 505px;">
+            <img id="clearFocus" src="images/card/phoneS.png"  style="visibility: hidden;"  alt=""/>
+        </div>
+        <!--输入框-->
+        <div id="dhcgPhoneText"></div>
+        <!--输入提示信息-->
+        <div id="phoneInfo"></div>
+    </div>
+    <!--我的奖品-->
+    <div id="myPrizePopup">
+        <img src="images/exchange/myPrizePopup.png">
+        <div class="myPrizeImg">
+            <img id="myPrizePic" src="images/empty.png">
+        </div>
+        <!--焦点框-->
+        <div id="telInput" class="telInput"></div>
+        <div id="hands_x0_y0_myPrizePhoneS_">
+            <img id="myPrizePhoneS" src="images/card/phoneTextS.png" style="visibility:hidden;">
+        </div>
+        <div id="hands_x0_y0_myPrizeSave_">
+            <img id="myPrizeSave" src="images/card/phoneS.png" style="visibility: hidden">
+        </div>
+        <div id="hands_x0_y0_myPrizeDel_">
+            <img id="myPrizeDel" src="images/card/phoneS.png" style="visibility: hidden">
+        </div>
+        <!--数字键盘界面-->
+        <div id="phoneTable" style="visibility: hidden;">
+            <div class="phoneOne">1</div>
+            <div class="phoneOne">2</div>
+            <div class="phoneOne">3</div>
+            <div class="phoneOne">4</div>
+            <div class="phoneOne">5</div>
+            <div class="phoneOne">6</div>
+            <div class="phoneOne">7</div>
+            <div class="phoneOne">8</div>
+            <div class="phoneOne">9</div>
+            <div class="phoneOne">删除</div>
+            <div class="phoneOne">0</div>
+            <div class="phoneOne">确认</div>
+        </div>
+        <!--    数字按键    -->
+        <div id="hands_x0_y0_phoneFocus1_" style="width: 102px; height: 92px; position: absolute; top: 80px; left: 435px">
+            <img id="phoneFocus1" src="./images/card/backSelect.png" style="width: 102px; height: 92px; visibility: hidden" alt="" />
+        </div>
+        <div id="hands_x0_y0_phoneFocus2_" style="width: 102px; height: 92px; position: absolute; top: 80px; left: 536px">
+            <img id="phoneFocus2" src="./images/card/backSelect.png" style="width: 102px; height: 92px; visibility: hidden" alt="" />
+        </div>
+        <div id="hands_x0_y0_phoneFocus3_" style="width: 102px; height: 92px; position: absolute; top: 80px; left: 640px">
+            <img id="phoneFocus3" src="./images/card/backSelect.png" style="width: 102px; height: 92px; visibility: hidden" alt="" />
+        </div>
+
+        <div id="hands_x0_y0_phoneFocus4_" style="width: 102px; height: 92px; position: absolute; top: 182px; left: 435px">
+            <img id="phoneFocus4" src="./images/card/backSelect.png" style="width: 102px; height: 92px; visibility: hidden" alt="" />
+        </div>
+        <div id="hands_x0_y0_phoneFocus5_" style="width: 102px; height: 92px; position: absolute; top: 182px; left: 536px">
+            <img id="phoneFocus5" src="./images/card/backSelect.png" style="width: 102px; height: 92px; visibility: hidden" alt="" />
+        </div>
+        <div id="hands_x0_y0_phoneFocus6_" style="width: 102px; height: 92px; position: absolute; top: 182px; left: 640px">
+            <img id="phoneFocus6" src="./images/card/backSelect.png" style="width: 102px; height: 92px; visibility: hidden" alt="" />
+        </div>
+        <div id="hands_x0_y0_phoneFocus7_" style="width: 102px; height: 92px; position: absolute; top: 278px; left: 435px">
+            <img id="phoneFocus7" src="./images/card/backSelect.png" style="width: 102px; height: 92px; visibility: hidden" alt="" />
+        </div>
+        <div id="hands_x0_y0_phoneFocus8_" style="width: 102px; height: 92px; position: absolute; top: 278px; left: 536px">
+            <img id="phoneFocus8" src="./images/card/backSelect.png" style="width: 102px; height: 92px; visibility: hidden" alt="" />
+        </div>
+        <div id="hands_x0_y0_phoneFocus9_" style="width: 102px; height: 92px; position: absolute; top: 278px; left: 640px">
+            <img id="phoneFocus9" src="./images/card/backSelect.png" style="width: 102px; height: 92px; visibility: hidden" alt="" />
+        </div>
+
+        <div id="hands_x0_y0_phoneFocusDel_" style="width: 102px; height: 92px; position: absolute; top: 379px; left: 435px">
+            <img id="phoneFocusDel" src="./images/card/backSelect.png" style="width: 102px; height: 92px; visibility: hidden" alt="" />
+        </div>
+        <div id="hands_x0_y0_phoneFocus0_" style="width: 102px; height: 92px; position: absolute; top: 379px; left: 536px">
+            <img id="phoneFocus0" src="./images/card/backSelect.png" style="width: 102px; height: 92px; visibility: hidden" alt="" />
+        </div>
+        <div id="hands_x0_y0_phoneFocusSure_" style="width: 102px; height: 92px; position: absolute; top: 379px; left: 640px">
+            <img id="phoneFocusSure" src="./images/card/backSelect.png" style="width: 102px; height: 92px; visibility: hidden" alt="" />
+        </div>
+        <div id="phoneText" ></div>
+        <div id="phoneTips"></div>
+
+    </div>
+    <!--空空如也-->
+    <div id="emptyPrize">
+        <img src="images/exchange/emptyPrize.png">
+    </div>
+
+
+</div>
+<script type = "text/javascript" src = "../../../../js/loadCommomJs.js"></script>
+<script type="text/javascript" src="../../../../js/actiComm.js"></script>
+<script type="text/javascript" src="js/credit.js"></script>
+<script>
+    buttons.push({
+        id:"hands_x0_y0_myPrizeBtn_",
+        clickHandler:'javascript:myPrizePopup()',
+        up:'disable',
+        down:'hands_x0_y0_prize0S_',
+        left:'hands_x0_y0_prize0S_',
+        right:'disable',
+        focusType:7
+    },{
+        id:"hands_x0_y0_ydhPopupS_",
+        clickHandler:'javascript:backFunc()',
+        up:'disable',
+        down:'disable',
+        left:'disable',
+        right:'disable',
+        focusType:7
+    },{
+        id:"hands_x0_y0_ydwPopupS_",
+        clickHandler:'javascript:backFunc()',
+        up:'disable',
+        down:'disable',
+        left:'disable',
+        right:'disable',
+        focusType:7
+    },{
+        id:"hands_x0_y0_jfbzPopupS_",
+        clickHandler:'javascript:backFunc()',
+        up:'disable',
+        down:'disable',
+        left:'disable',
+        right:'disable',
+        focusType:7
+    },{
+        id: "hands_x0_y0_textFocus_",
+        clickHandler: "",
+        otherFocusEvent: "javascript: textGetFocus()",
+        otherBlurEvent: "javascript: textLoseFocus()",
+        up: "disable",
+        down: "disable",
+        left: "disable",
+        right: "hands_x0_y0_saveFocus_",
+        focusType: 7
+    },{
+        id: "hands_x0_y0_saveFocus_",
+        clickHandler: "javascript: savePhone()",
+        up: "hands_x0_y0_backFocus_",
+        down: "disable",
+        left: "hands_x0_y0_textFocus_",
+        right: "hands_x0_y0_clearFocus_",
+        focusType: 7
+    },{
+        id: "hands_x0_y0_clearFocus_",
+        clickHandler: "javascript: delPhone()",
+        up: "disable",
+        down: "disable",
+        left: "hands_x0_y0_saveFocus_",
+        right: "disable",
+        focusType: 7
+    },{
+        id:'hands_x0_y0_myPrizePhoneS_',
+        otherFocusEvent: "javascript: phoneOnFocus()",
+        otherBlurEvent: "javascript: phoneLoseFocus()",
+        up:'disable',
+        down:'disable',
+        left:'disable',
+        right:'hands_x0_y0_myPrizeSave_',
+        focusType:7
+    },{
+        id:'hands_x0_y0_myPrizeSave_',
+        clickHandler:'javascript:saveFunc()',
+        up:'disable',
+        down:'disable',
+        left:'hands_x0_y0_myPrizePhoneS_',
+        right:'hands_x0_y0_myPrizeDel_',
+        focusType:7
+    },{
+        id:'hands_x0_y0_myPrizeDel_',
+        clickHandler:'javascript:phoneDel()',
+        up:'disable',
+        down:'disable',
+        left:'hands_x0_y0_myPrizeSave_',
+        right:'disable',
+        focusType:7
+    },{
+        id: "hands_x0_y0_phoneFocus0_",
+        clickHandler: "javascript: inputNum(0)",
+        up: "hands_x0_y0_phoneFocus8_",
+        down: "disable",
+        left: "hands_x0_y0_phoneFocusDel_",
+        right: "hands_x0_y0_phoneFocusSure_",
+        focusType: 7,
+    },{
+        id: "hands_x0_y0_phoneFocus1_",
+        clickHandler: "javascript: inputNum(1)",
+        up: "disable",
+        down: "hands_x0_y0_phoneFocus4_",
+        left: "disable",
+        right: "hands_x0_y0_phoneFocus2_",
+        focusType: 7,
+    },
+    {
+        id: "hands_x0_y0_phoneFocus2_",
+        clickHandler: "javascript: inputNum(2)",
+        up: "disable",
+        down: "hands_x0_y0_phoneFocus5_",
+        left: "hands_x0_y0_phoneFocus1_",
+        right: "hands_x0_y0_phoneFocus3_",
+        focusType: 7,
+    },
+    {
+        id: "hands_x0_y0_phoneFocus3_",
+        clickHandler: "javascript: inputNum(3)",
+        up: "disable",
+        down: "hands_x0_y0_phoneFocus6_",
+        left: "hands_x0_y0_phoneFocus2_",
+        right: "disable",
+        focusType: 7,
+    },
+    {
+        id: "hands_x0_y0_phoneFocus4_",
+        clickHandler: "javascript: inputNum(4)",
+        up: "hands_x0_y0_phoneFocus1_",
+        down: "hands_x0_y0_phoneFocus7_",
+        left: "disable",
+        right: "hands_x0_y0_phoneFocus5_",
+        focusType: 7,
+    },
+    {
+        id: "hands_x0_y0_phoneFocus5_",
+        clickHandler: "javascript: inputNum(5)",
+        up: "hands_x0_y0_phoneFocus2_",
+        down: "hands_x0_y0_phoneFocus8_",
+        left: "hands_x0_y0_phoneFocus4_",
+        right: "hands_x0_y0_phoneFocus6_",
+        focusType: 7,
+    },
+    {
+        id: "hands_x0_y0_phoneFocus6_",
+        clickHandler: "javascript: inputNum(6)",
+        up: "hands_x0_y0_phoneFocus3_",
+        down: "hands_x0_y0_phoneFocus9_",
+        left: "hands_x0_y0_phoneFocus5_",
+        right: "disable",
+        focusType: 7,
+    },
+    {
+        id: "hands_x0_y0_phoneFocus7_",
+        clickHandler: "javascript: inputNum(7)",
+        up: "hands_x0_y0_phoneFocus4_",
+        down: "hands_x0_y0_phoneFocusDel_",
+        left: "disable",
+        right: "hands_x0_y0_phoneFocus8_",
+        focusType: 7,
+    },
+    {
+        id: "hands_x0_y0_phoneFocus8_",
+        clickHandler: "javascript: inputNum(8)",
+        up: "hands_x0_y0_phoneFocus5_",
+        down: "hands_x0_y0_phoneFocus0_",
+        left: "hands_x0_y0_phoneFocus7_",
+        right: "hands_x0_y0_phoneFocus9_",
+        focusType: 7,
+    },
+    {
+        id: "hands_x0_y0_phoneFocus9_",
+        clickHandler: "javascript: inputNum(9)",
+        up: "hands_x0_y0_phoneFocus6_",
+        down: "hands_x0_y0_phoneFocusSure_",
+        left: "hands_x0_y0_phoneFocus8_",
+        right: "disable",
+        focusType: 7,
+    },
+    {
+        id: "hands_x0_y0_phoneFocusDel_",
+        clickHandler: "javascript: phoneDel()",
+        up: "hands_x0_y0_phoneFocus7_",
+        down: "disable",
+        left: "disable",
+        right: "hands_x0_y0_phoneFocus0_",
+        focusType: 7,
+    },
+    {
+        id: "hands_x0_y0_phoneFocusSure_",
+        clickHandler: "javascript: phoneSure()",
+        up: "hands_x0_y0_phoneFocus9_",
+        down: "disable",
+        left: "hands_x0_y0_phoneFocus0_",
+        right: "disable",
+        focusType: 7,
+    })
+    //准备6个按钮，不初始化按钮的点击事件
+    var prizeButtons = [{
+        id:"hands_x0_y0_prize0S_",
+        up:'hands_x0_y0_myPrizeBtn_',
+        down:'hands_x0_y0_prize3S_',
+        left:'disable',
+        right:'hands_x0_y0_prize1S_',
+        focusType:7
+    },{
+        id:"hands_x0_y0_prize1S_",
+        up:'hands_x0_y0_myPrizeBtn_',
+        down:'hands_x0_y0_prize4S_',
+        left:'hands_x0_y0_prize0S_',
+        right:'hands_x0_y0_prize2S_',
+        focusType:7
+    },{
+        id:"hands_x0_y0_prize2S_",
+        up:'hands_x0_y0_myPrizeBtn_',
+        down:'hands_x0_y0_prize5S_',
+        left:'hands_x0_y0_prize1S_',
+        right:'disable',
+        focusType:7
+    },{
+        id:"hands_x0_y0_prize3S_",
+        up:'hands_x0_y0_prize0S_',
+        down:'disable',
+        left:'disable',
+        right:'hands_x0_y0_prize4S_',
+        focusType:7
+    },{
+        id:"hands_x0_y0_prize4S_",
+        up:'hands_x0_y0_prize1S_',
+        down:'disable',
+        left:'hands_x0_y0_prize3S_',
+        right:'hands_x0_y0_prize5S_',
+        focusType:7
+    },{
+        id:"hands_x0_y0_prize5S_",
+        up:'hands_x0_y0_prize2S_',
+        down:'disable',
+        left:'hands_x0_y0_prize4S_',
+        right:'disable',
+        focusType:7
+    }]
+
+    //奖品初始后才能初始化页面
+    // PAGE.focusInit();
+    // PAGE.changeFocus("hands_x0_y0_prize0S_");
+
+    var prizes = [];//所有奖品
+    var allCreditNum = 0;//总积分
+    var hasPrice = false;//是否兑换奖品 false否
+    var userprizes = "";//用户奖品
+    var index = 0;//焦点索引
+    function initPage() {
+        /*鉴权*/
+        orderJs.columnGetAuth(function (data) {
+            if(data == '0'){
+                isOrder = 0;
+            }else {
+                isOrder = 1;
+            }
+        });
+
+        /*奖品列表*/
+        actiObj.getActivityPrize(function (data) {
+            prizes = data.data.records;
+            //todo: 按奖品价格排序
+            prizes.sort(function(a, b){
+                return b.prizePrice - a.prizePrice
+            });
+            for (var i = 0; i < prizeButtons.length; i++) {
+                var prize = prizes[i];
+                CT.$('prizeNum' + i).innerHTML = "可兑换份数：" + prize.prizeRemainNum + "份";
+                //循环设置button的点击事件,传入奖品id,积分,数量,并加入buttons
+                prizeButtons[i].clickHandler = 'javascript:cashPrize('+ i +',' + prize.id + ', ' + prize.rankId + ', ' + prize.prizeRemainNum + ')';
+                buttons.push(prizeButtons[i]);
+            }
+            PAGE.focusInit();//初始化焦点
+            PAGE.changeFocus("hands_x0_y0_prize0S_");
+
+            actiObj.getUserPrizeInfo(function (data) {
+                userprizes = data.data;
+                if (data && data.successFlg == 1 && data.data){//设置hasPrice为已中奖
+                    hasPrice = true;
+                    CT.$('ydhIcon').style.visibility = 'visible';
+                    if(userprizes[0].prizeCname == "火箭车通天赛道套装"){
+                        CT.$('ydhIcon').style.top = '150px';
+                        CT.$('ydhIcon').style.left = '350px';
+                    }else if(userprizes[0].prizeCname == "巨神战击队机甲玩具"){
+                        CT.$('ydhIcon').style.top = '150px';
+                        CT.$('ydhIcon').style.left = '630px';
+                    }else if(userprizes[0].prizeCname == "火箭车高速飞擎套装"){
+                        CT.$('ydhIcon').style.top = '150px';
+                        CT.$('ydhIcon').style.left = '930px';
+                    }else if(userprizes[0].prizeCname == "机灵宠物车周边玩具"){
+                        CT.$('ydhIcon').style.top = '400px';
+                        CT.$('ydhIcon').style.left = '350px';
+                    }else if(userprizes[0].prizeCname == "萌鸡可动公仔"){
+                        CT.$('ydhIcon').style.top = '400px';
+                        CT.$('ydhIcon').style.left = '630px';
+                    }else if(userprizes[0].prizeCname == "宇宙护卫队绘本"){
+                        CT.$('ydhIcon').style.top = '400px';
+                        CT.$('ydhIcon').style.left = '930px';
+                    }
+
+                }
+            });
+        });
+        getCredit();
+    }
+    initPage();
+    /*获取积分*/
+    function getCredit() {
+        getUserCredit(15,function(res){
+            if(res && res.successFlg == 1 && res.data){
+                allCreditNum = res.data.creditNum;
+                CT.$('scoreNum').innerHTML = allCreditNum;
+            }
+        });
+    }
+
+    /*兑奖奖品*/
+    function cashPrize(i,id,prizeCredit,num) {
+        index = i;
+        if(hasPrice){//已兑换礼品
+            CT.$('ydhPopup').style.visibility = "visible";
+            PAGE.changeFocus("hands_x0_y0_ydhPopupS_");
+        }else {
+            if (num > 0){//奖品数量大于0
+                if(allCreditNum > prizeCredit){//个人总积分大于奖品积分
+                    actiObj.setPrize(id, function(setMsg) {
+						if(setMsg && setMsg.data && setMsg.data.flag == 1){
+							hasPrice = true
+							CT.$('dhcgPopup').style.visibility = "visible";
+							PAGE.changeFocus("hands_x0_y0_textFocus_");
+							allCreditNum = allCreditNum - prizeCredit;
+							CT.$('scoreNum').innerHTML = allCreditNum;
+							setUserCredit(15,allCreditNum,function(data){
+								if(data){
+								}
+							});
+							actiObj.getUserPrizeInfo(function (data) {
+								userprizes = data.data;
+								if (data && data.successFlg == 1 && data.data){//设置hasPrice为已中奖
+									hasPrice = true;
+									CT.$('ydhIcon').style.visibility = 'visible';
+									if(userprizes[0].prizeCname == "火箭车通天赛道套装"){
+										CT.$('ydhIcon').style.top = '150px';
+										CT.$('ydhIcon').style.left = '350px';
+									}else if(userprizes[0].prizeCname == "巨神战击队机甲玩具"){
+										CT.$('ydhIcon').style.top = '150px';
+										CT.$('ydhIcon').style.left = '630px';
+									}else if(userprizes[0].prizeCname == "火箭车高速飞擎套装"){
+										CT.$('ydhIcon').style.top = '150px';
+										CT.$('ydhIcon').style.left = '930px';
+									}else if(userprizes[0].prizeCname == "机灵宠物车周边玩具"){
+										CT.$('ydhIcon').style.top = '400px';
+										CT.$('ydhIcon').style.left = '350px';
+									}else if(userprizes[0].prizeCname == "萌鸡可动公仔"){
+										CT.$('ydhIcon').style.top = '400px';
+										CT.$('ydhIcon').style.left = '630px';
+									}else if(userprizes[0].prizeCname == "宇宙护卫队绘本"){
+										CT.$('ydhIcon').style.top = '400px';
+										CT.$('ydhIcon').style.left = '930px';
+									}
+
+								}
+							});
+						}else{
+							CT.$('ydwPopup').style.visibility = "visible";
+							PAGE.changeFocus("hands_x0_y0_ydwPopupS_");
+						}
+                    })
+
+                }else {//积分不足
+                    CT.$('jfbzPopup').style.visibility = "visible";
+                    PAGE.changeFocus("hands_x0_y0_jfbzPopupS_");
+                }
+
+            }else {//已兑完
+                CT.$('ydwPopup').style.visibility = "visible";
+                PAGE.changeFocus("hands_x0_y0_ydwPopupS_");
+            }
+
+        }
+
+    }
+
+    /*我的奖品*/
+    function myPrizePopup() {
+        if(hasPrice){
+            CT.$('myPrizePopup').style.visibility = 'visible';
+            PAGE.changeFocus('hands_x0_y0_myPrizePhoneS_');
+            if(userprizes[0].prizeCname == "火箭车通天赛道套装"){
+                CT.$('myPrizePic').src = "images/exchange/myPrize_0.png";
+            }else if(userprizes[0].prizeCname == "巨神战击队机甲玩具"){
+                CT.$('myPrizePic').src = "images/exchange/myPrize_1.png";
+            }else if(userprizes[0].prizeCname == "火箭车高速飞擎套装"){
+                CT.$('myPrizePic').src = "images/exchange/myPrize_2.png";
+            }else if(userprizes[0].prizeCname == "机灵宠物车周边玩具"){
+                CT.$('myPrizePic').src = "images/exchange/myPrize_3.png";
+            }else if(userprizes[0].prizeCname == "萌鸡可动公仔"){
+                CT.$('myPrizePic').src = "images/exchange/myPrize_4.png";
+            }else if(userprizes[0].prizeCname == "宇宙护卫队绘本"){
+                CT.$('myPrizePic').src = "images/exchange/myPrize_5.png";
+            }
+			if(userprizes && userprizes[0] && userprizes[0].userPhone){
+				CT.$('phoneText').innerHTML = userprizes[0].userPhone;
+			}
+        }else {
+            CT.$('emptyPrize').style.visibility = 'visible';
+        }
+
+
+    }
+    /*兑换成功保存手机号*/
+    var textOnFocus = false;
+    var dhcgPhoneText = CT.$('dhcgPhoneText');
+    var phoneInfo = CT.$('phoneInfo');
+    var phoneNum = "";
+
+    function textGetFocus(){
+        textOnFocus = true;
+    }
+    function textLoseFocus(){
+        textOnFocus = false;
+    }
+    //监听用户遥控器输入的数字
+    changeNumObj.changeNum = function(ids){
+        ids = parseInt(ids);
+        if(curFocus.FocusID == "hands_x0_y0_textFocus_" && ids != NaN){
+            var size;
+            if(phoneNum==""){
+                size=0;
+            }else{
+                size= phoneNum.length;
+            }
+            if(size < 11||!size){
+                var addnum = phoneNum;
+                phoneNum = addnum + ids;
+            }
+            dhcgPhoneText.innerHTML=phoneNum;
+        }
+    }
+    /*清空手机号*/
+    function delPhone() {
+        phoneNum = "";
+        dhcgPhoneText.innerHTML=phoneNum;
+    }
+    /*保存手机号*/
+    function savePhone() {
+		var TEL_REGEXP = /^(13[0-9]|14[579]|15[0-3,5-9]|16[6]|17[0135678]|18[0-9]|19[89])\d{8}$/;
+        if(!(TEL_REGEXP.test(phoneNum))){
+
+            phoneInfo.innerHTML="您输入的手机号格式无效,请重新输入!";
+
+        }else {
+            actiObj.setUserPhone(phoneNum,function (data) {
+                if(data){
+                    phoneInfo.innerHTML="手机号码保存成功";
+                }
+            })
+        }
+    }
+
+    /*按返回键返回*/
+    function backFunc() {
+        if(CT.$('ydhPopup').style.visibility == 'visible'){
+            CT.$('ydhPopup').style.visibility = 'hidden';
+            PAGE.changeFocus("hands_x0_y0_prize" + index + "S_");
+        }else if(CT.$('ydwPopup').style.visibility == 'visible'){
+            CT.$('ydwPopup').style.visibility = 'hidden';
+            PAGE.changeFocus("hands_x0_y0_prize" + index + "S_");
+        }else if(CT.$('jfbzPopup').style.visibility == 'visible'){
+            CT.$('jfbzPopup').style.visibility = 'hidden';
+            PAGE.changeFocus("hands_x0_y0_prize" + index + "S_");
+        }else if(CT.$('dhcgPopup').style.visibility == 'visible'){
+            CT.$('dhcgPopup').style.visibility = 'hidden';
+            PAGE.changeFocus("hands_x0_y0_prize" + index + "S_");
+        }else if(CT.$('myPrizePopup').style.visibility == 'visible'){
+            CT.$('myPrizePopup').style.visibility = 'hidden';
+            CT.$('phoneTable').style.visibility = 'hidden';
+            CT.$('myPrizePhoneS').style.visibility = 'hidden';
+            PAGE.changeFocus('hands_x0_y0_myPrizeBtn_');
+        }else if(CT.$('emptyPrize').style.visibility == 'visible'){
+            CT.$('emptyPrize').style.visibility = 'hidden';
+            PAGE.changeFocus('hands_x0_y0_myPrizeBtn_');
+        }else {
+            CT.backPage();
+        }
+    }
+
+
+
+</script>
+<script type="text/javascript" src="js/savePhone.js?v=2020"></script>
+</body>
+</html>

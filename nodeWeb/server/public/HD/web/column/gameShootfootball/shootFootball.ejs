@@ -1,0 +1,97 @@
+<%- include ('../../components/header') %>
+    <style>
+        .main{
+            position: absolute;
+            width: 1280px;
+            height: 720px;
+            margin: 0;
+            padding: 0;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            text-align: center;
+            background : url("./HD/web/column/gameShootfootball/images/BG.jpg") no-repeat;
+        }
+        img {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div id="info" style="position:absolute;top: 500px;left: 30px;color:#fff;"></div>
+        <!--光圈移动-->
+        <img id="lightA" src="./HD/web/column/gameShootfootball/images/area.png" alt="" style="position:absolute;left: 592px;top: 371px;width: 105px;height: 14px;">
+        <!--守门人-->
+        <img id="protect_man" src="./HD/web/column/gameShootfootball/images/man/offen.png" alt="" style="position:absolute;left: 592px;top: 253px;">
+       
+		<!--箭头-->
+        <div id="arrow" class="arrow" style="position:absolute;left:582px;top:555px;">
+            <img style="position:absolute;left: 0;top: 0;" src="./HD/web/column/gameShootfootball/images/arrow/arrow.png" alt="">
+        </div>
+	   <!--足球-->
+        <img id="foot" src="./HD/web/column/gameShootfootball/images/foot.png" alt="" style="position:absolute;left: 600px;top: 662px;width: 36px;height: 36px;">
+        <!--踢球人-->
+        <div id="man" class="man" style="position:absolute;width: 167px;height: 336px;left:565px;top:370px;">
+            <img src="./HD/web/column/gameShootfootball/images/man_ready.png" alt="">
+        </div>
+	
+        <!--连续进球弹框-->
+        <div id="goal" style="position:absolute;left: 238px;top: 0;visibility: hidden;width:500px">
+            <img src="./HD/web/column/gameShootfootball/images/goal.png" alt="" style="position:absolute;left: 0;top: 0;">
+            <span id="goalNum" style="position:absolute;left: 465px;top: 35px;font-size: 48px;font-weight: 700;color:#1a86bb;text-align: center;">0</span>
+        </div>
+        <!--暂停的弹框-->
+        <div id="backing" style="position: absolute;width: 1280px;height: 720px;left: 0;top: 0;visibility: hidden;">
+            <img src="./HD/web/column/gameShootfootball/images/back.jpg" id="backBg" alt="" style="position: absolute;left: 0;top: 0;">
+            <div id="hands_x0_y0_backFocus0_" style="position: absolute;left: 469px;top: 382px;width: 136px;height: 57px;">
+                <img src="./HD/web/column/gameShootfootball/images/select.png" id="backFocus0" alt="" style="position: absolute;left: 0;top: 0;width: 136px;height: 57px;visibility: hidden;">
+            </div>
+            <div id="hands_x0_y0_backFocus1_" style="position: absolute;left: 671px;top: 382px;width: 136px;height: 57px;">
+                <img src="./HD/web/column/gameShootfootball/images/select.png" id="backFocus1" alt="" style="position: absolute;left: 0;top: 0;width: 136px;height: 57px;visibility: hidden;">
+            </div>
+        </div>
+        <div id="colorFlag" style="position:absolute;left: 0;top: 100px;">
+            <img src="./HD/web/column/gameShootfootball/images/colorflag1.png" alt="">
+        </div>
+    </div>
+    <div id="hands_x0_y0_iconFocus0_" style="position: absolute;left: 775px;top: 555px;width: 97px;height: 144px;">
+        <img src="./HD/web/column/gameShootfootball/images/empty.png" id="iconFocus0" alt="" style="position: absolute;left: 0;top: 0;width: 97px;height: 114px;visibility: hidden;">
+    </div>
+    <div id="hands_x0_y0_iconFocus1_" style="position: absolute;left: 572px;top: 380px;width: 136px;height: 57px;">
+        <img src="./HD/web/column/gameShootfootball/images/select.png" id="iconFocus1" alt="" style="position: absolute;left: 0;top: 0;width: 136px;height: 57px;visibility: hidden;">
+    </div>
+    <div  style="position: absolute;left: 0px;top:0px;width: 5px;height:5px;">
+        	<img src="./HD/web/column/gameShootfootball/images/over.jpg"id="overResultDrn"  alt="" style="position: absolute;left: 0;top: 0;width:1280px;height: 720px;visibility: hidden;">
+         <span id="overNum" style="position:absolute;left: 684px;top: 270px;font-size: 60px;font-weight: 700;color:#fff; visibility: hidden">0</span>
+    </div>
+	<!-- 引入公共js开始 -->
+	<%- include('../../components/commJs') %>
+	<!-- 引入公共js结束 -->
+    <script type = "text/javascript" src="<%= basePageUrl %>/js/main.js?v=2020"></script>
+    <script>
+    var shootBoolean=true;
+    //游戏逻辑
+	//音乐切换
+	var mainOgg = document.getElementById("mainOgg");
+	var changeOgg0 = document.getElementById("changeOgg0");
+	var changeOgg1 = document.getElementById("changeOgg1");
+	var changeOgg2 = document.getElementById("changeOgg2");
+	var changeOgg3 = document.getElementById("changeOgg3");
+	var changeOgg4 = document.getElementById("changeOgg4");
+	var shotOgg = document.getElementById("shotOgg");
+	var sucOgg = document.getElementById("sucOgg");
+	var deffOgg = document.getElementById("deffOgg");
+	var shotSucOgg = document.getElementById("shotSucOgg");
+
+	var changeSoundtimes=0;
+	function changeSound(){
+		
+	}
+
+    function backFunc(){
+		CT.backPage();
+	};
+    </script>
+</body>
+</html>

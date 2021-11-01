@@ -1,0 +1,23 @@
+﻿<!--
+ * @Description: 
+ * @Author: jwzx
+ * @Date: 2020-10-16 15:58:07
+ * @LastEditTime: 2020-10-16 17:13:52
+ * @LastEditors: jwzx
+-->
+<%- include ('../../components/header') %>
+  </head>
+  <body>
+    <!--引入公共js-->
+	<%- include('../../components/commJs') %>
+   	<script type="text/javascript">
+		//退出平台页面
+   		function backFunc(){
+			CT.exitPlatform();
+   		}
+		window.addEventListener('load',function(){
+            backFunc();
+		})
+   	</script>
+  </body>
+</html>

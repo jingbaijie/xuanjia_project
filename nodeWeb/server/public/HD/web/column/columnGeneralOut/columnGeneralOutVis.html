@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name = "page-view-size" content = "1280*720">
+    <link rel = "stylesheet" href = "./css/general.css?v=201907">
+    <link rel = "stylesheet" href = "./css/animation.css">
+    <title>通用专题</title>
+</head>
+<body style = "overflow: hidden;background: transparent;">
+    <div class = "main" id = "mainContent" style = "overflow: hidden;">
+        <!--   专题内容     -->
+        <div id = "columnContent" class = "withScreen" style = "top: 0px;left: 0;">
+
+            <!--     背景图       -->
+            <div id = "columnBG" class = "withScreen" style = "top: 0px;left: 0;"></div>
+            <!--     页面内容       -->
+            <div id = "columnInfo" class = "withScreen" style = "top: 0px;left: 0;">
+
+            </div>
+        </div>
+        <!--   空焦点，页面切换时使用     -->
+        <div id = "hands_x0_y0_emptyFocus_" style = "width: 2px;height: 2px;position: absolute;top: -2px;left: -2px;">
+            <img id = "emptyFocus" src = "./images/empty.png" style = "visibility: hidden;" alt="">
+        </div>
+    </div>
+</body>
+<script type = "text/javascript" src = "../../../js/loadCommomJs.js"></script>
+<script type = "text/javascript" src = "./js/reSetMessage.js"></script>
+<script type = "text/javascript" src = "./js/general.js"></script>
+<script>
+    //图片地址
+    var columnImgUrl = AjaxConfig.imgUrl;
+    //焦点名称
+    var columnGeneralFocusName = "generalFocus";
+    //column对象,包含创建Dom元素与专题跳转等基本功能(general.js)
+    var column = new GeneralColumn();
+    //动画对象,包含添加动画,创建动画等(general.js)
+    var columnAni = new ColumnAnimation();
+    //页面数组，存储重新解析后的各页面数据newOutJson
+    var pageJsonArr = [];
+    //页面原始数组OutJson
+    var pageMsgArr = [];
+    //当前页面信息在数组中的下标
+    var curPageNum = 0;
+    //切换前的上一级页面
+    var prePageNum = 0;
+    //卡通剧集信息
+    var OUT_LIST_JSON = [];
+    //当前页面视频是否正在播放
+    var curVideoPlaying = false;
+    //从眉头获取当前页面信息
+    var curPageEName = CT.getCookie("columnBackAction") || getGeneralAction();
+    CT.delCookie("columnBackAction");
+    //所有焦点信息
+    var buttons = [];
+    /**
+     * 获取当前页面英文名
+     * @returns {string|null}
+     */
+    function getGeneralAction(){
+        var reg = new RegExp("(^|&)contentEName=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if(r!=null){
+            return  unescape(r[2]);
+        }else{
+            return null;
+        }
+    }
+    /**
+     * 页面开始渲染
+     */
+    function setAllPage(){
+        allForStart(curPageEName);
+    }
+    setAllPage();
+    /**
+     * 页面加载完成后,初始化多帧动画,并且开启定时器(columnAni.startInterval)切换图片
+     * @param newOutJson
+     */
+    function getAnimation(newOutJson){
+        if(newOutJson.allMsg.otherDetailMsg.length > 0){
+            columnAni.getCSSType(newOutJson.allMsg.otherDetailMsg);
+        }
+        columnAni.startInterval(columnImgUrl,newOutJson.allMsg);
+    }
+    /**
+     * 根据当前焦点移动至对应位置
+     */
+    function setCurPageTop(){
+        //整体位移top
+        var allContentTop = parseInt(document.getElementById("columnContent").style.top);
+		//第一个页面top值
+		var alltPageTop = document.getElementById("columnBG").getElementsByTagName("div");
+		var firstPageTop = 0;
+		for(var i = 0; i < alltPageTop.length; i++){
+			if(parseInt(alltPageTop[i].style.top) < firstPageTop){
+				firstPageTop = parseInt(alltPageTop[i].style.top);
+			}
+		}
+        //当前页面针对整体的固定top
+        var curPageTop = parseInt(document.getElementById(curFocus.FocusID).parentNode.style.top);
+        //当前焦点固定top
+        var curFocusTop = parseInt(document.getElementById(curFocus.FocusID).style.top);
+        var curFocusHeight = parseInt(document.getElementById(curFocus.FocusID).style.height);
+        //获取页面总体长度
+        var totalHeight = 0;
+        for(var i = 0; i < pageJsonArr.length; i++){
+            totalHeight += parseInt(pageJsonArr[i].pageInfo.pageTemplateBgpic.picH);
+        }
+		
+        //页面最大向上位移top
+        var minTop = 0 - totalHeight + parseInt(pageJsonArr[pageJsonArr.length - 1].pageInfo.pageTemplateBgpic.picH);
+		//页面最大向下位移top
+		var maxTop = 0;
+		if(firstPageTop < 0){
+			maxTop = 0 - firstPageTop;
+		}
+		var totalBg = document.getElementById("columnBG").getElementsByTagName("div");
+		var minBgTop = 0;
+        for(var i = 0; i < totalBg.length; i++){
+            if(parseInt(totalBg[i].style.top) < minBgTop){
+				minBgTop = parseInt(totalBg[i].style.top);
+			}
+        }
+		minTop -= minBgTop;
+        //当前焦点与页面顶端的距离
+        var curFocusToTop = allContentTop + curPageTop + curFocusTop;
+        //最终整体位移
+        var targetTop = 0;
+        if(curFocusToTop < 50 || curFocusToTop +  curFocusHeight > 720){
+            if(curPageNum == "0" && curFocusToTop +  curFocusHeight <= 720){
+                targetTop = 0 - curPageTop;
+            }else{
+                targetTop = 150 - (curPageTop + curFocusTop);
+                if(targetTop < minTop){
+                    targetTop = minTop;
+                }
+            }
+			if(targetTop <= maxTop){
+				document.getElementById("columnContent").style.top = targetTop + "px";
+			}
+        }
+        //查看当前页面是否含有视频
+        curPageTop = parseInt(document.getElementById(curFocus.FocusID).parentNode.style.top);
+        allContentTop = parseInt(document.getElementById("columnContent").style.top);
+        if(!curVideoPlaying && curPageTop + allContentTop == 0){
+            curVideoPlaying = true;
+            checkColumnSmallVideoPlay();
+        }else if(curPageTop + allContentTop != 0 && curVideoPlaying){
+            hideColumnVideoPlay();
+        }
+
+    }
+    /**
+     * 检查是否有视频播放
+     *
+     */
+    function checkColumnSmallVideoPlay(){
+        var newOutJson = pageJsonArr[curPageNum];
+        var videoMsg = newOutJson.allMsg.otherDetailMsg;
+        for(var i = 0; i < videoMsg.length; i++){
+            if(videoMsg[i].videoType[0] == 0){
+                columnSmallVideoPlay(videoMsg[i].videoType);
+                break;
+            }
+        }
+    }
+    /**
+     * 进行小视频播放
+     * @param videoMsg   视频信息数组[是否有视频,width,height,top,left,卡通ID]
+     */
+    function columnSmallVideoPlay(videoMsg){
+        if(videoMsg[5]){
+            interface.findVideoListByCartoonId({
+                params: {
+                    cartoonId: videoMsg[5]
+                },
+                ajaxConfig: {
+                    async: true
+                }
+            }, function (cartoonData) {
+                if(cartoonData && cartoonData.errorCode == "1000"){
+                    OUT_LIST_JSON = cartoonData.data;
+                    var mediaCode = cartoonData.data[0].movieDetails[0].playUrl;
+                    videoPlayer.SmallPlay({
+                        playUrl: mediaCode,
+                        top: parseInt(videoMsg[3]),
+                        left: parseInt(videoMsg[4]),
+                        width: parseInt(videoMsg[1]),
+                        height: parseInt(videoMsg[2]),
+                        videoIndex: 0
+                    });
+                }
+            });
+        }
+    }
+    /**
+     * 跳转全屏播放
+     * 
+     */
+    function columnSmallVideoToScreen(){
+        if(OUT_LIST_JSON && OUT_LIST_JSON.length > 0){
+			var params = {
+				contentId: 15,
+				cartoonId: OUT_LIST_JSON[0].cartoonId,
+				videoId: OUT_LIST_JSON[0].id,
+				contentType: "video"
+			}
+			CT.getAnterByIdOrAction(params);
+		}
+    }
+    /**
+     * 隐藏小视频播放
+     * 
+     */
+    function hideColumnVideoPlay(){
+        curVideoPlaying = false;
+    }
+    /**
+    * 获取焦点时(除返回焦点),显示焦点选中显示详情图,设置当前焦点与详情图的动画类型并执行(columnAni.setCSSFocusType)
+    **/
+    function getFocusNow(ii){
+        //根据当前焦点移动页面位置
+        setCurPageTop();
+        //对当前页面的点击内容重新赋值
+        var newOutJson = pageJsonArr[curPageNum];
+        
+        if(newOutJson.allMsg.recommendMsg[ii].recommendPic && newOutJson.allMsg.recommendMsg[ii].recommendPic.length > 0){
+            var recDivId = newOutJson.allMsg.recommendMsg[ii].recommendPic[0].divId;
+            var recDivDom = document.getElementById(recDivId);
+            var recImgDom = document.getElementById(newOutJson.allMsg.recommendMsg[ii].recommendPic[0].imgId);
+            if(recImgDom){
+                recImgDom.style.visibility = "visible";
+            }
+        }
+        if(newOutJson.allMsg.recommendMsg[ii].recommendShowPic && newOutJson.allMsg.recommendMsg[ii].recommendShowPic.length > 0){
+            var divId = newOutJson.allMsg.recommendMsg[ii].recommendShowPic[0].divId;
+            var divDom = document.getElementById(divId);
+            var imgDom = document.getElementById(newOutJson.allMsg.recommendMsg[ii].recommendShowPic[0].imgId);
+            if(imgDom){
+                imgDom.style.visibility = "visible";
+            }
+        }
+        if(newOutJson.allMsg.recommendMsg[ii].recommendHidePic && newOutJson.allMsg.recommendMsg[ii].recommendHidePic.length > 0){
+            var secDivId = newOutJson.allMsg.recommendMsg[ii].recommendHidePic[0].divId;
+            var secDivDom = document.getElementById(secDivId);
+            var secImgDom = document.getElementById(newOutJson.allMsg.recommendMsg[ii].recommendHidePic[0].imgId);
+            if(secImgDom){
+                secImgDom.style.visibility = "visible";
+            }
+        }
+        openAniFlag(newOutJson.allMsg.recommendMsg[ii]);
+        columnAni.setCSSFocusType(newOutJson.allMsg.recommendMsg[ii]);
+    }
+    /**
+    * 失去焦点时(除返回焦点),显示焦点选中显示详情图,设置当前焦点与详情图的动画类型并执行(columnAni.setCSSFocusType)
+    * */
+    function loseFocusNow(ii){
+        /*if(column.isChangePage){
+            var newOutJson = pageJsonArr[prePageNum];
+            column.isChangePage = false;
+        }else{
+            var newOutJson = pageJsonArr[curPageNum];
+        }*/
+		var newOutJson = pageJsonArr[curPageNum];
+        if(newOutJson.allMsg.recommendMsg[ii].recommendPic && newOutJson.allMsg.recommendMsg[ii].recommendPic.length > 0){
+            var recDivId = newOutJson.allMsg.recommendMsg[ii].recommendPic[0].divId;
+            var recDivDom = document.getElementById(recDivId);
+            var recImgDom = document.getElementById(newOutJson.allMsg.recommendMsg[ii].recommendPic[0].imgId);
+            if(recImgDom){
+                recImgDom.style.visibility = "visible";
+                recImgDom.src =  columnImgUrl + newOutJson.allMsg.recommendMsg[ii].recommendPic[0].url;
+            }
+        }
+        if(newOutJson.allMsg.recommendMsg[ii].recommendLabelpic && newOutJson.allMsg.recommendMsg[ii].recommendLabelpic.length > 0){
+            var labelDivId = newOutJson.allMsg.recommendMsg[ii].recommendLabelpic[0].divId;
+            var labelDivDom = document.getElementById(labelDivId);
+            var labelImgDom = document.getElementById(newOutJson.allMsg.recommendMsg[ii].recommendLabelpic[0].imgId);
+            if(labelImgDom){
+                labelImgDom.src =  columnImgUrl + newOutJson.allMsg.recommendMsg[ii].recommendLabelpic[0].url;
+            }
+        }
+        if(newOutJson.allMsg.recommendMsg[ii].recommendShowPic && newOutJson.allMsg.recommendMsg[ii].recommendShowPic.length > 0){
+            var divId = newOutJson.allMsg.recommendMsg[ii].recommendShowPic[0].divId;
+            var divDom = document.getElementById(divId);
+            var imgDom = document.getElementById(newOutJson.allMsg.recommendMsg[ii].recommendShowPic[0].imgId);
+            if(imgDom){
+                imgDom.style.visibility = "hidden";
+                imgDom.src = columnImgUrl + newOutJson.allMsg.recommendMsg[ii].recommendShowPic[0].url;
+            }
+        }
+        if(newOutJson.allMsg.recommendMsg[ii].recommendHidePic && newOutJson.allMsg.recommendMsg[ii].recommendHidePic.length > 0){
+            var secDivId = newOutJson.allMsg.recommendMsg[ii].recommendHidePic[0].divId;
+            var secDivDom = document.getElementById(secDivId);
+            var secImgDom = document.getElementById(newOutJson.allMsg.recommendMsg[ii].recommendHidePic[0].imgId);
+            if(secImgDom){
+                secImgDom.style.visibility = "hidden";
+                secImgDom.src = columnImgUrl + newOutJson.allMsg.recommendMsg[ii].recommendHidePic[0].url;
+            }
+
+        }
+        closeAniFlag(newOutJson.allMsg.recommendMsg[ii]);
+        columnAni.setCSSBlurType(newOutJson.allMsg.recommendMsg[ii]);
+    }
+    /**
+     * 页面向上滑动
+     */
+    function moveUp(){
+        if(curPageNum > 0){
+            prePageNum = curPageNum;
+            column.isChangePage = true;
+            curPageNum--;
+            allForStart(pageJsonArr[curPageNum].actionName);
+        }
+    }
+    /**
+     * 页面向下滑动
+     */
+    function moveDown(){
+        if(curPageNum < pageJsonArr.length - 1){
+            prePageNum = curPageNum;
+            column.isChangePage = true;
+            curPageNum++;
+            allForStart(pageJsonArr[curPageNum].actionName);
+        }
+    }
+	/**
+     *打开动画开关（非CSS3动画类）
+	**/
+	function openAniFlag(aniMsg){
+		if(aniMsg.recommendPic.length > 0){
+            columnAni.aniFlagObj[aniMsg.recommendPic[0].divId] = 0;
+            /*if(columnAni.aniTimesObj[aniMsg.recommendPic[0].divId] == 2 || columnAni.aniTimesObj[aniMsg.recommendPic[0].divId] == undefined){
+                columnAni.aniTimesObj[aniMsg.recommendPic[0].divId] = aniMsg.animationTimes[0];
+            }*/
+			columnAni.aniChangeTimes[aniMsg.recommendPic[0].divId] = 1;
+		}
+		if(aniMsg.recommendLabelpic.length > 0){
+            columnAni.aniFlagObj[aniMsg.recommendLabelpic[0].divId] = 0;
+            /*if(columnAni.aniTimesObj[aniMsg.recommendLabelpic[0].divId] == 2 || columnAni.aniTimesObj[aniMsg.recommendLabelpic[0].divId] == undefined){
+                columnAni.aniTimesObj[aniMsg.recommendLabelpic[0].divId] = aniMsg.animationTimes[1];
+            }*/
+			columnAni.aniChangeTimes[aniMsg.recommendLabelpic[0].divId] = 1;
+		}
+		if(aniMsg.recommendShowPic.length > 0){
+            columnAni.aniFlagObj[aniMsg.recommendShowPic[0].divId] = 0;
+            /*if(columnAni.aniTimesObj[aniMsg.recommendShowPic[0].divId] == 2 || columnAni.aniTimesObj[aniMsg.recommendShowPic[0].divId] == undefined){
+                columnAni.aniTimesObj[aniMsg.recommendShowPic[0].divId] = aniMsg.animationTimes[2];
+            }*/
+			columnAni.aniChangeTimes[aniMsg.recommendShowPic[0].divId] = 1;
+		}
+		if(aniMsg.recommendHidePic.length > 0){
+            columnAni.aniFlagObj[aniMsg.recommendHidePic[0].divId] = 0;
+            /*if(columnAni.aniTimesObj[aniMsg.recommendHidePic[0].divId] == 2 || columnAni.aniTimesObj[aniMsg.recommendHidePic[0].divId] == undefined){
+                columnAni.aniTimesObj[aniMsg.recommendHidePic[0].divId] = aniMsg.animationTimes[3];
+            }*/
+			columnAni.aniChangeTimes[aniMsg.recommendHidePic[0].divId] = 1;
+		}
+	}
+    /**
+     *关闭动画开关（非CSS3动画类）
+     **/
+    function closeAniFlag(aniMsg){
+        if(aniMsg.recommendPic.length > 0 && columnAni.aniFlagObj[aniMsg.recommendPic[0].divId]){
+            columnAni.aniFlagObj[aniMsg.recommendPic[0].divId] = 2;
+        }
+        if(aniMsg.recommendLabelpic.length > 0 && columnAni.aniFlagObj[aniMsg.recommendLabelpic[0].divId]){
+            columnAni.aniFlagObj[aniMsg.recommendLabelpic[0].divId] = 2;
+        }
+        if(aniMsg.recommendShowPic.length > 0 && columnAni.aniFlagObj[aniMsg.recommendShowPic[0].divId]){
+            columnAni.aniFlagObj[aniMsg.recommendShowPic[0].divId] = 2;
+        }
+        if(aniMsg.recommendHidePic.length > 0 && columnAni.aniFlagObj[aniMsg.recommendHidePic[0].divId]){
+            columnAni.aniFlagObj[aniMsg.recommendHidePic[0].divId] = 2;
+        }
+    }
+    /**
+     * 按数字免费鉴权,测试用
+    * */
+	var freeAddr = "";
+	var testNumber = "";
+	function changeNum(num){
+		testNumber = testNumber + num;
+		if(testNumber == "1024"){
+			freeAddr = pageJsonArr[curPageNum].actionName;
+		}
+	}
+    /**
+     * 焦点点击确认跳转
+    * */
+    function goSomeWhere(ii){
+        hideColumnVideoPlay();
+        var OutJson = pageMsgArr[curPageNum];
+        CT.setCookie("columnBackFocus",curFocus.FocusID);
+        CT.setCookie("columnBackAction",OutJson.pageInfo.commPageEname);
+        PAGE.otherPageParam = "&contentId="+CT.requestValue("contentId")+"&contentEName="+CT.requestValue("contentEName")+"&contentCName="+CT.requestValue("contentCName")+"&curFocusId="+curFocus.FocusID;
+		CT.goPage();
+        if (OutJson.pageInfo.isFree == "0" || OutJson.recommend_1.isFree == "0" || freeAddr == pageJsonArr[curPageNum].actionName) {
+            if((OutJson.recommend_1.more1+"").indexOf("video") > -1){
+                columnSmallVideoToScreen();
+            }else{
+                CT.toAnterRecommendUrl(OutJson,"recommend_1",ii);
+            }
+        }else{
+            orderJs.columnGetAuth(function(data){
+                if(data == "0"){
+                    if((OutJson.recommend_1.more1+"").indexOf("video") > -1){
+                        columnSmallVideoToScreen();
+                    }else{
+                        CT.toAnterRecommendUrl(OutJson,"recommend_1",ii);
+                    }
+                }else{
+                    orderJs.columnToOrderPage(OutJson.pageInfo.commPageEname);
+                }
+            });
+        }
+    }
+    /**
+     *  返回方法
+    * */
+    function backfunc(){
+        CT.delCookie("columnBackFocus");
+        CT.delCookie("columnBackAction");
+        hideColumnVideoPlay();
+        var OutJson = pageMsgArr[curPageNum];
+        if(OutJson.recommend_2 && OutJson.recommend_2[0]){
+            CT.toAnterRecommendUrl(OutJson,"recommend_2",0);
+        }else{
+            CT.backPage();
+        }
+    }
+</script>
+</html>

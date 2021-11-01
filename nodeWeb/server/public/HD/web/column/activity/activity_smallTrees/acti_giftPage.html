@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="page-view-size" content="1280*720" />
+    <title>种树奖品列表页</title>
+    <link rel="stylesheet" href="./css/acti_giftPage.css">
+</head>
+<body>
+    <div class="mainBg">
+        <div id="rankscro" style="height: 260px">
+            <div id="rankList" class="nameList">
+            </div>
+        </div>
+        <!-- 手机输入框 -->
+        <div id="telInput" class="telInput"></div>
+        <div id="saveTips" class="saveTips"></div>
+        <!-- 手机号输入框 -->
+        <div>
+            <img src="./img/mainPage/empty.png" alt="">
+            <div id="hands_x0_y0_telFocus_">
+                <img id="telFocus" class="telFocus" src="./img/mainPage/focusImg/phoneNUmber.png" alt="">
+            </div>
+        </div>
+        <!-- 保存 -->
+        <div>
+            <img src="./img/mainPage/empty.png" alt="">
+            <div id="hands_x0_y0_saveFocus_">
+                <img id="saveFocus" class="saveFocus" src="./img/mainPage/focusImg/save.png" alt="">
+            </div>
+        </div>
+        <!-- 清除 -->
+        <div>
+            <img src="./img/mainPage/empty.png" alt="">
+            <div id="hands_x0_y0_clearFocus_">
+                <img id="clearFocus" class="clearFocus" src="./img/mainPage/focusImg/save.png" alt="">
+            </div>
+        </div>
+        <!-- 中奖信息 -->
+        <!-- 标题 -->
+        <div class="accountNumber">账号</div>
+        <div class="prize">奖品</div>
+        <div class="prizeInfo" id="prizeInfo"></div>
+        <!-- 用户Id -->
+        <div class="userInfo" id="userInfo"></div>
+         <!-- 返回焦点 -->
+         <div>
+            <img src="./img/mainPage/empty.png" alt="">
+            <div id="hands_x0_y0_backFocus_">
+                <img id="backFocus" class="backFocus" src="./img/mainPage/focusImg/quit.png" alt="">
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../../js/column.js"></script>
+<script type="text/javascript" src="./js/actiComm.js"></script>
+<script src="./js/prizeList.js"></script>
+<script src="./js/telinput.js"></script>
+<script src="./js/acti_giftPage.js"></script>
+<script>
+    // 返回函数
+    function backFunc() {
+        actiObj.actiCommonJumpUrl("./activity_treeGrowing.html");
+    }
+</script>
+</html>

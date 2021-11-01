@@ -1,0 +1,98 @@
+<%- include ('../../components/header') %>
+    <link href="<%= basePageUrl %>/css/district.css" type="text/css" rel="stylesheet"/>
+    <style>
+        .recommend,.recommendFocus {
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body style="background:transparent ;position:absolute;">
+
+<img id="bg" src="<%= basePageUrl %>/imgs/empty.png" />
+
+<%- include('../../components/commJs') %>
+<script src="<%= basePageUrl %>/js/district.js"></script>
+<script>
+    var commonPageInfo = basePageInfo.commonPageInfo;
+    var districtObj = {};
+    var districtPage = {
+        contentId: CT.requestValue('contentId') || 186,
+        pageInfo: commonPageInfo.pageInfo,
+        recommend_1: commonPageInfo.recommend_1,        // 页面信息
+        recommend_2: [],        //
+        recommend_3: [],        // 焦点和vip角标
+        imgUrl: "",             // 焦点图片
+        /** 分类 */
+        top: 10,                // 分类
+        left: 85,               // 分类
+        width: 222,             // 分类宽
+        height: 114,            // 分类高
+        interval: 0,           // 间隙
+        /** 分类 */
+        init: function(){
+            var _this = this;
+            // 页面信息
+            if(commonPageInfo.recommend_3){
+                _this.recommend_3 = commonPageInfo.recommend_3;
+                _this.imgUrl = commonPageInfo.recommend_3[0].recommendLabelpic.picPath;
+            }
+            // 生成页面
+            _this.generatePage();
+            /** 生成专区对象 */
+            districtObj = new District({
+                
+            });
+            districtObj.init();
+        },
+        /**
+         * 初始化页面
+         * */
+        generatePage: function () {
+            var _this = this;
+            // 生成背景图
+            if(_this.pageInfo.pageTemplateBgpic.picPath){
+                CT.$("bg").src = AjaxConfig.imgUrl + _this.pageInfo.pageTemplateBgpic.picPath;
+            }else {
+                CT.$("bg").src = "../imgs/cartoonBg.jpg"
+            }
+            // 生成分类
+            if(_this.recommend_1.length > 1){
+                var doms = "";
+                for(var i = 0; i < _this.recommend_1.length ; i++){
+                    var dom =
+                        '<div class="wrap">' +
+                        '<div id="classify' + i + '" style="position: absolute; top: ' + _this.top + 'px; left: ' + (_this.left + i * _this.width + _this.interval) + 'px; width: ' + _this.width + 'px; height: ' + _this.height + 'px;">' +
+                        '<img id = "classifyImg' + i + '" src = "' + AjaxConfig.imgUrl + _this.recommend_1[i].recommendPic.picPath + '"/>' +
+                        '</div>' +
+                        '<div id="hands_x0_y0_classifyFocus' + i + '_" class = "classifyFocus" style="position:absolute;z-index: 1;top: ' + _this.top + 'px; left: ' + (_this.left + i * _this.width + _this.interval) + 'px; width: ' + _this.width + 'px; height: ' + _this.height + 'px;">' +
+                        '<img src="' + AjaxConfig.imgUrl + _this.recommend_1[i].recommendLabelpic.picPath + '" class="classifyImage" id="classifyFocus' + i + '" style="visibility: hidden; width: ' + _this.width + 'px; height: ' + _this.height + 'px;">' +
+                        '</div>'+
+                        '</div>'
+                    doms += dom;
+                }
+                document.getElementsByTagName("body")[0].innerHTML += doms;
+
+                for(var i = 0; i < _this.recommend_1.length; i ++){
+                    var btn = {
+                        id:"hands_x0_y0_classifyFocus" + i + "_",
+                        //是否开启自动查询下一焦点功能
+                        //enMove : false,
+                        //clickHandler:'javascript:districtPage.toContentDetailUrl(' + (this.step * i + j) + ')',
+                        otherFocusEvent:'javascript:districtObj.getData(' + i + ')',
+                        //otherBlurEvent:'javascript:districtPage.stopText(' + (this.step * i + j) + ')',
+                        //right:"hands_x0_y0_recommendFocus" + (this.step * i + j + 1) + "_",
+                        //rightEvent:'javascript:navPage.midToRight(' + (this.step * i + j) + ')',
+                        //upEvent:'javascript:navPage.midToPrePage(' + (this.step * i + j) + ')',
+                        //downEvent:'javascript:navPage.midToNextPage(' + (this.step * i + j) + ')',
+                        focusType: 7
+                    };
+                    buttons.push(btn);
+                }
+            }
+        }
+    };
+    districtPage.init();
+
+</script>
+</body>
+</html>

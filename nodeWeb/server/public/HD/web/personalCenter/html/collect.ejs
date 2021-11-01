@@ -1,0 +1,149 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: sueRimn
+ * @Date: 2020-03-04 16:46:29
+ * @LastEditors: jwzx
+ * @LastEditTime: 2020-10-16 16:22:50
+ -->
+<%- include ('../../components/header') %>
+<link rel="stylesheet" href="<%= basePageUrl %>/css/personalCenter.css">
+</head>
+<%
+    const commonPageInfo = basePageInfo.commonPageInfo;
+    const localImg = basePageInfo.localImg;
+%>
+<body>
+    <!--背景-->
+    <img id="BJ" src="<%= basePageInfo.bgImg %>" height="720" width="1280" />
+    <!--缺醒图，没有内容时提示用户-->
+    <img id="emptyTip" src="<%= localImg %>emptyTip.png" height="720" width="1280"
+        style="position: absolute;left: 0px;top: 0px; visibility: hidden;" />
+    <!--左边分类-->
+    <%- include('../../components/nav/pcGeneralNav')%>
+    <!--右边显示数据-->
+    <div id="rightContentWrapper"
+        style="position: absolute; top:70px;left:349px;width: 930px;height: 650px;overflow: hidden;">
+        <!--清空收藏按钮-->
+        <div id="hands_x0_y0_DMEJcollectrecordempty_" class="recommendFocus"
+            style="position:absolute;z-index: 1;top:2px;left:730px;visibility: hidden;">
+            <img src="./HD/images/empty.png" class="focusImage" id="DMEJcollectrecordempty" alt=""
+                style="position: absolute;top: 0px;left: 0px;visibility: hidden;">
+        </div>
+    </div>
+    <%- include('../../components/commJs3') %>
+    <script src="<%= basePageUrl %>/js/collect.js"></script>
+    <script>
+        var commonPageInfo = basePageInfo.commonPageInfo;
+        var collectObj = {};
+        var collectPage = {
+            //用户id
+            userId: xjDataLog.getUserId(),
+            contentId: CT.requestValue('contentId') || 82,
+            pageInfo: {},
+            recommend_1: [], // 页面配图信息
+            recommend_2: [], //退出推荐
+            imgUrl: "", // 焦点图片
+            freeImgUrl: '', // 免费角标图片
+            vipImgUrl: '', // vip角标焦点图片
+            /** 分类 */
+            top: 10, // 分类
+            left: 100, // 分类
+            width: 222, // 分类宽
+            height: 114, // 分类高
+            interval: 0, // 间隙
+            /** 分类 */
+            init: function () {
+                var _this = this;
+                // 页面信息
+                _this.pageInfo = commonPageInfo.pageInfo;
+                _this.recommend_1 = commonPageInfo.recommend_1; //分类
+                if (commonPageInfo.recommend_1) {
+                    _this.recommend_1 = commonPageInfo.recommend_1;
+                    _this.imgUrl = _this.recommend_1[3].recommendFocuspic && AjaxConfig.imgUrl + _this.recommend_1[3].recommendFocuspic.picPath;
+                    _this.vipImgUrl = _this.recommend_1[3].recommendLabelpic && AjaxConfig.imgUrl + _this.recommend_1[3].recommendLabelpic.picPath;
+                    _this.freeImgUrl = _this.recommend_1[3].recommendPic && AjaxConfig.imgUrl + _this.recommend_1[3].recommendPic.picPath;
+
+                    //赋值清空收藏图片链接
+                    _this.collectShowImgUrl = _this.recommend_1[4].recommendPic && AjaxConfig.imgUrl + _this.recommend_1[4].recommendPic.picPath;
+                    _this.collectFocusImgUrl = _this.recommend_1[4].recommendPic && AjaxConfig.imgUrl + _this.recommend_1[4].recommendFocuspic.picPath;
+                    if (_this.collectShowImgUrl) {
+                        CT.$('hands_x0_y0_DMEJcollectrecordempty_').style.background = 'url(' + _this.collectShowImgUrl + ') no-repeat';
+                        CT.$('hands_x0_y0_DMEJcollectrecordempty_').style.width = _this.recommend_1[4].recommendPic.picW + 'px';
+                        CT.$('hands_x0_y0_DMEJcollectrecordempty_').style.height = _this.recommend_1[4].recommendPic.picH + 'px';
+                    }
+                    if (_this.collectShowImgUrl) {
+                        CT.$('DMEJcollectrecordempty').src = _this.collectFocusImgUrl;
+                    }
+
+                    _this.playFocusImgUrl = _this.recommend_1[1].recommendPic && AjaxConfig.imgUrl + _this.recommend_1[1].recommendPic.picPath; // 播放按钮图片
+                    _this.delFocusImgUrl = _this.recommend_1[2].recommendPic && AjaxConfig.imgUrl + _this.recommend_1[2].recommendPic.picPath; // 删除按钮图片
+                    _this.playImgUrl = _this.recommend_1[1].recommendFocuspic && AjaxConfig.imgUrl + _this.recommend_1[1].recommendFocuspic.picPath; // 播放按钮焦点图片
+                    _this.delImgUrl = _this.recommend_1[2].recommendFocuspic && AjaxConfig.imgUrl + _this.recommend_1[2].recommendFocuspic.picPath; // 删除按钮焦点图片
+                }
+                // 生成页面
+                _this.generatePage();
+            },
+            /**
+             * 初始化页面
+             * */
+            generatePage: function () {
+                var _this = this;
+                /** 生成（收藏分页）专区对象 */
+                collectObj = new District({
+                    showArrow: false,
+                    domLeft: 50, // 第一个元素
+                    domTop: 50, // 第一个元素
+                    domHeight: 233, // 图片高
+                    domWidth: 168, // 图片宽
+                    //focusImgDomHeight: 272,                 // 焦点图片高
+                    //focusImgDomWidth: 211,                  // 焦点图片宽
+                    //focusImgDomLeft: -12,                   // 焦点图片left
+                    //focusImgDomTop: 1,                      // 焦点图片top
+                    intervalR: 30, // 右边间隙
+                    intervalD: 25, // 下边间隙
+                    imgUrl: _this.imgUrl, // 焦点图片
+                    freeImgUrl: _this.freeImgUrl, // 免费角标图片
+                    vipImgUrl: _this.vipImgUrl, // vip角标焦点图片
+                    playImgUrl: _this.playImgUrl, // 播放按钮图片
+                    delImgUrl: _this.delImgUrl, // 删除按钮图片
+                    playFocusImgUrl: _this.playFocusImgUrl, // 播放按钮焦点图片
+                    delFocusImgUrl: _this.delFocusImgUrl, // 删除按钮焦点图片
+                    arrowLeft: 405, // 自定义箭头left
+                    version: 2, // 版本
+                    classifyNum: 1, // 分类数目，本页面弃用
+                    showRightArrow: true, // 显示箭头
+                    rowNum: 2, //分页行数
+                    step: 4, //分页列数
+                    boxWidth: 930, //容器的高
+                    boxHeight: 650, //容器的宽
+                    defaultFocus: 'hands_x0_y0_DMEJleftceterbutton3_', //默然焦点
+                });
+                collectObj.init();
+            }
+        };
+        CT.$('leftNavBtnLabel3').style.visibility = 'visible';
+        //生成元素
+
+        addEvent.on("pageEvent",function(e){
+            collectPage.init();
+        })
+
+        //定义左侧导航按钮向右事件:curBtnIndex：当前焦点下标
+        generalLeftNavObj.navBtnRighEventCallBack = function (curBtnIndex) {
+            //历史记录页
+            if (collectObj.allData.length) {
+                PAGE.changeFocus('hands_x0_y0_recommendFocus0_');
+            }
+        };
+
+        //定义左侧列表按钮获焦事件
+        generalLeftNavObj.navBtnOtherFocusEventCallBack = function (curBtnIndex) {
+            var _this = this;
+            //重新渲染分页展示数据
+            collectObj.curPage = 0;
+            collectObj.showData();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+html,body{
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+}
+.main{
+    width: 1280px;
+    height: 720px;
+    background: url(../images/bg.jpg) no-repeat;
+    position: relative;
+    left: 0px;
+    top: 0px;
+    overflow: hidden;
+}
+.scorePack{
+    position: absolute;
+    left: 10px;
+}
+#scoreNum{
+    position: absolute;
+    font-size: 36px;
+    top: 60px;
+    left: 0px;
+    width: 271px;
+    text-align: center;
+}
+#hands_x0_y0_descBtn_{
+    position: absolute;
+    left: 1050px;
+    top: 20px;
+}
+#descBtn{
+    position: absolute;
+    left: -10px;
+    top: -13px;
+}
+#hands_x0_y0_prevBtn_{
+    position: absolute;
+    top: 430px;
+    left: 50px;
+}
+#hands_x0_y0_prevBtn_ img{
+    position: absolute;
+}
+
+#hands_x0_y0_nextBtn_{
+    position: absolute;
+    left: 700px;
+    top: 435px;
+}
+#hands_x0_y0_nextBtn_ img{
+    position: absolute;
+}
+#prevDesc,#nextDesc{
+    top: 70px;
+    left: 6px;
+}
+#hands_x0_y0_gqPack_{
+    position: absolute;
+    left: 188px;
+    top: 310px;
+    width: 480px;
+    height: 320px;
+    overflow: hidden;
+    padding-left: 10px;
+}
+.title{
+    position: absolute;
+    left: 260px;
+}
+.gqDescPack{
+    position: absolute;
+    top: 36px;
+}
+.gqDescPack img{
+    position: absolute;
+}
+.gqDesc{
+    position: absolute;
+    left: -2px;
+    top: 20px;
+}
+
+#hands_x0_y0_rulePopup_{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    visibility: hidden;
+}
+#hands_x0_y0_ruleClose_{
+    position: absolute;
+    left: 948px;
+    top: 90px;
+}

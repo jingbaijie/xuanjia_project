@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name = "page-view-size" content = "1280*720">
+    <link rel = "stylesheet" href = "<%= basePageUrl %>/css/general.css">
+    <link rel = "stylesheet" href = "<%= basePageUrl %>/css/animation.css">
+    <title>通用专题</title>
+</head>
+<body>
+    <div class = "main" id = "mainContent" style="width: 1280px;height: 720px; position: absolute;top: 0;left: 0;margin: 0; padding: 0;overflow: hidden;">
+	    <!--背景图-->
+		<div style = "width: 1280px;height: 720px;position: absolute;top: 0;left: 0;">
+           <img id = "BJImg" src='./HD/images/empty.png'  style="width: 1280px; height: 720px;">
+        </div>
+        <div id = "recommendShowPicContent" style = "width: 1280px;height: 720px;position: absolute;top: 0;left: 0;">
+
+        </div>
+        <div id = "recommendHidePicContent" style = "width: 1280px;height: 720px;position: absolute;top: 0;left: 0;">
+
+        </div>
+        <div id = "addPicContent" style = "width: 1280px;height: 720px;position: absolute;top: 0;left: 0;">
+
+        </div>
+        <div id = "recommendPicContent" style = "width: 1280px;height: 720px;position: absolute;top: 0;left: 0;">
+
+        </div>
+        <div id = "focusContent" style = "width: 1280px;height: 720px;position: absolute; top: 0;left: 0;">
+
+        </div>
+    </div>
+</body>
+<!-- 引入公共js开始 -->
+<%- include('../../components/commJs') %>
+<script src="<%= basePageUrl %>/js/reSetMessage.js"></script>
+<script src="<%= basePageUrl %>/js/general.js"></script>
+<script>
+	//所有推荐数据
+    var newOutJson = {
+		//页面英文名
+		"actionName": "",
+		//页面名称等内容,对应通用页面设置,模板设置与模板库设置
+		"pageInfo": {},
+		/*
+		*所有推荐图片信息(数据类型为对象)
+		* allMsg对象包含下列值
+		*       recommendMsg(正文推荐,数据类型为数组)
+		*       outRecommendMsg(退出推荐,数据类型为数组)
+		*       otherDetailMsg(其余推荐,数据类型为数组)
+		*
+		*           上列推荐类型信息数组中,每个值均为对象,包含下列值
+		*               recommendId: 推荐ID(recommendId)后期生成的DOM元素ID与此类数据有关
+		*               animationType: 动画类型 长度为四的数组,数组中的每个值对应一类推荐图片的动画类型,0为无动画
+		*               focusMoveEvent:光标移动目标,长度为四的数组,四个值分别为上下左右移动目标,值为recommendId
+		*               recommendHidePic: 焦点选中隐藏图片,数据类型为数组,保存后台配置的同一类图片(消失图片)信息
+		*               recommendLabelpic: 焦点选中图片,数据类型为数组,保存后台配置的同一类图片(标签图片)信息
+		*               recommendPic: 焦点详情图片,数据类型为数组,保存后台配置的同一类图片(推荐图片)信息
+		*               recommendShowPic: 焦点选中显示图片,数据类型为数组,保存后台配置的同一类图片(显示图片)信息
+		*
+		*                   上列四类数据类型为数组的推荐图片数据(recommendHidePic,recommendLabelpic,recommendPic,recommendShowPic)中,
+		*                   每个值均为对象,包含下列值
+		*                       divId: 根据推荐图第一张图片信息生成的DIV元素,仅在数组中的第一个值中存在
+		*                       imgId: 根据推荐图第一张图片信息生成的img元素,仅在数组中的第一个值中存在
+		*                       url: 图片地址
+		*                       width: 图片宽度,从图片地址中获取(后台上传图片时会获取上传图片的宽与高,并将此信息拼入图片文件名中
+		*                       height: 图片高度
+		*                       xValue: left值
+		*                       yValue: top值
+		*/
+		"allMsg": {},
+		// 获取跳转详情信息
+		"jumpDetailInfo": []
+	};
+    //图片地址
+    var columnImgUrl = AjaxConfig.imgUrl ;//"http://180.96.20.178:28080/";
+    //焦点名称
+    var columnGeneralFocusName = "generalFocus";
+    //column对象,包含创建Dom元素与专题跳转等基本功能(general.js)
+    var column = new GeneralColumn();
+    //动画对象,包含添加动画,创建动画等(general.js)
+    var columnAni = new ColumnAnimation();
+    //所有焦点信息
+    var buttons = [];
+    //页面原始数据信息
+	var OutJson;
+	//存放所有推荐详情(recommendPic)DOM
+	var recommendPicContent = document.getElementById("recommendPicContent");
+	//存放所有焦点(recommendLabelPic)详情DOM
+	var focusContent = document.getElementById("focusContent");
+    //存放显示图片详情(recommendShowPic),对应推荐详情中的第三类图片推荐
+    var recommendShowPicContent = document.getElementById("recommendShowPicContent");
+    //存放显示图片详情(recommendHidePic),对应推荐详情中的第四类图片推荐
+    var recommendHidePicContent = document.getElementById("recommendHidePicContent");
+	/*
+	*
+	*从眉头获取专题action用以区分专题内容
+	*
+	*/
+	function getGeneralAction(){
+		var reg = new RegExp("(^|&)contentEName=([^&]*)(&|$)");
+		var r = window.location.search.substr(1).match(reg);
+		if(r!=null){
+			return  unescape(r[2]);
+		}else{
+			return null;
+		}
+	}
+	/*
+	*
+	* ajax请求专题配置内容,有内容进行页面渲染,无内容跳转首页
+	*
+	*/
+    function getAllMessage(){
+		newOutJson.actionName = getGeneralAction();
+		if(newOutJson.actionName != "" && newOutJson.actionName != null){
+			ajax.init({
+				url:AjaxConfig.interfaceUrl +'findRecCommonPageInfo',
+				method:'get',
+				params:{
+                    contentName: newOutJson.actionName
+				},
+				async:false,
+				ContentType:'json',
+				success:function(data){
+                    // 通用日志
+                    setLoggerInfo.pageInfoLog = data;
+					if(data.successFlg == "1"){
+                        OutJson = data.data;
+                    }else{
+					    OutJson = [];
+                    }
+					reSetMessage(OutJson);
+
+				},
+				fail:function(status){
+				}
+			});
+		}else{
+			backFunc();
+		}
+	}
+	getAllMessage();
+	/*
+	*
+	* 重置数据,所有数据(除跳转内容)都在newOutJson中,设置标题,设置背景
+	*
+	*/
+	function reSetMessage(data){
+		document.title = data.pageInfo.commPageCname + "---通用专题" ;
+        //document.getElementById("mainContent").style.background = "url('"+ columnImgUrl + data.pageInfo.pageTemplateBgpic.picPath +"')";
+		document.getElementById("BJImg").src = columnImgUrl + data.pageInfo.pageTemplateBgpic.picPath ;
+        newOutJson.pageInfo = data.pageInfo;
+		newOutJson.allMsg = updateMessage.updateMes(data);
+		// 跳转详情信息
+		newOutJson.jumpDetailInfo = data.recommend_1;
+		addRecAndDetailDom();
+	}
+    /*
+    * 根据newOutJson中的推荐信息渲染页面,所有单个数据均是div包裹img形式
+    * */
+    function addRecAndDetailDom(){
+        //选中焦点元素
+	    var focusHtml = column.createFocus(columnImgUrl,newOutJson.allMsg.recommendMsg,columnGeneralFocusName,"goSomeWhere");
+	    //未选中元素
+	    var focusRecPicHtml = column.createDetail(columnImgUrl,newOutJson.allMsg.recommendMsg,"recommendPic","focusPic","visible");
+	    //焦点选中显示详情图元素
+	    var focusRecShowPicHtml = column.createDetail(columnImgUrl,newOutJson.allMsg.recommendMsg,"recommendShowPic","focusShowPic","hidden");
+	    //焦点隐藏详情图
+	    var focusRecHidePicHtml = column.createDetail(columnImgUrl,newOutJson.allMsg.recommendMsg,"recommendHidePic","focusHidePic","hidden");
+	    //返回焦点元素
+	    var backHtml = column.createBackFocus(columnImgUrl,newOutJson.allMsg.outRecommendMsg,columnGeneralFocusName,"backFunc");
+	    //返回未选中元素
+	    var backRecPicHtml = column.createDetail(columnImgUrl,newOutJson.allMsg.outRecommendMsg,"recommendPic","backPic","visible");
+	    //返回选中显示详情图元素
+	    var backRecShowPicHtml = column.createDetail(columnImgUrl,newOutJson.allMsg.outRecommendMsg,"recommendShowPic","backShowPic","hidden");
+	    //返回隐藏详情图元素
+	    var backRecShowHideHtml = column.createDetail(columnImgUrl,newOutJson.allMsg.outRecommendMsg,"recommendHidePic","backHidePic","hidden");
+        //以下其余推荐图,均做动画或静态图显示
+	    var otherRecPic = column.createDetail(columnImgUrl,newOutJson.allMsg.otherDetailMsg,"recommendPic","otherPic","visible");
+	    var otherRecLabelPic = column.createDetail(columnImgUrl,newOutJson.allMsg.otherDetailMsg,"recommendLabelpic","otherLabelPic","visible");
+        var otherRecShowPic = column.createDetail(columnImgUrl,newOutJson.allMsg.otherDetailMsg,"recommendShowPic","otherShowPic","visible");
+        var otherRecHidePic = column.createDetail(columnImgUrl,newOutJson.allMsg.otherDetailMsg,"recommendHidePic","otherHidePic","visible");
+
+        focusContent.innerHTML = focusHtml + backHtml;
+        recommendPicContent.innerHTML = focusRecPicHtml + backRecPicHtml + otherRecPic;
+        recommendShowPicContent.innerHTML = otherRecLabelPic + focusRecShowPicHtml + backRecShowPicHtml + otherRecShowPic;
+        recommendHidePicContent.innerHTML = focusRecHidePicHtml + backRecShowHideHtml + otherRecHidePic;
+
+        //焦点初始化
+        PAGE.focusInit();
+        var generalBackFocus = CT.getCookie("generalBackFocus") + "";
+	    if(generalBackFocus != "" && generalBackFocus != "null" && generalBackFocus != "undefined" && document.getElementById(generalBackFocus)){
+            curFocus = PAGE.changeFocus(generalBackFocus);
+        }else if(buttons.length > 0){
+            curFocus = PAGE.changeFocus(buttons[0].id);
+        }
+	    getAnimation();
+	}
+	/*
+	* 页面加载完成后,初始化多帧动画,并且开启定时器(columnAni.startInterval)切换图片
+	* */
+    function getAnimation(){
+        /*if(newOutJson.allMsg.recommendMsg.length > 0){
+            columnAni.getAniType(newOutJson.allMsg.recommendMsg);
+        }
+        if(newOutJson.allMsg.outRecommendMsg.length > 0){
+            columnAni.getAniType(newOutJson.allMsg.outRecommendMsg);
+        }*/
+        if(newOutJson.allMsg.otherDetailMsg.length > 0){
+            columnAni.getCSSType(newOutJson.allMsg.otherDetailMsg);
+        }
+        columnAni.startInterval(columnImgUrl,newOutJson.allMsg);
+    }
+     /*
+    * 获取焦点时(除返回焦点),显示焦点选中显示详情图,设置当前焦点与详情图的动画类型并执行(columnAni.setCSSFocusType)
+    * */
+    function getFocusNow(ii){
+        if(newOutJson.allMsg.recommendMsg.length > 0 && newOutJson.allMsg.recommendMsg[ii].recommendLabelpic.length > 0){
+            if(newOutJson.allMsg.recommendMsg[ii].recommendPic.length > 0){
+				var recDivId = newOutJson.allMsg.recommendMsg[ii].recommendPic[0].divId;
+                var recDivDom = document.getElementById(recDivId);
+                if(recDivDom){
+                    recDivDom.style.visibility = "visible";
+                }
+			}
+			if(newOutJson.allMsg.recommendMsg[ii].recommendShowPic.length > 0){
+				openAniFlag(newOutJson.allMsg.recommendMsg[ii]);
+                var divId = newOutJson.allMsg.recommendMsg[ii].recommendShowPic[0].divId;
+                var divDom = document.getElementById(divId);
+                if(divDom){
+                    divDom.style.visibility = "visible";
+
+                }
+            }
+            if(newOutJson.allMsg.recommendMsg[ii].recommendHidePic.length > 0){
+                var secDivId = newOutJson.allMsg.recommendMsg[ii].recommendHidePic[0].divId;
+                var secDivDom = document.getElementById(secDivId);
+                if(secDivDom){
+                    secDivDom.style.visibility = "visible";
+                }
+
+            }
+            columnAni.setCSSFocusType(newOutJson.allMsg.recommendMsg[ii]);
+        }
+    }
+    /*
+    * 失去焦点时(除返回焦点),显示焦点选中显示详情图,设置当前焦点与详情图的动画类型并执行(columnAni.setCSSFocusType)
+    * */
+    function loseFocusNow(ii){
+        if(newOutJson.allMsg.recommendMsg.length > 0 && newOutJson.allMsg.recommendMsg[ii].recommendLabelpic.length > 0){
+            if(newOutJson.allMsg.recommendMsg[ii].recommendPic.length > 0){
+				var recDivId = newOutJson.allMsg.recommendMsg[ii].recommendPic[0].divId;
+                var recDivDom = document.getElementById(recDivId);
+                if(recDivDom){
+                    recDivDom.style.visibility = "visible";
+                }
+			}
+			if(newOutJson.allMsg.recommendMsg[ii].recommendShowPic.length > 0){
+                closeAniFlag(newOutJson.allMsg.recommendMsg[ii]);
+                var divId = newOutJson.allMsg.recommendMsg[ii].recommendShowPic[0].divId;
+                var divDom = document.getElementById(divId);
+				var imgDom = document.getElementById(newOutJson.allMsg.recommendMsg[ii].recommendShowPic[0].imgId);
+                if(divDom){
+                    divDom.style.visibility = "hidden";
+					imgDom.src = columnImgUrl + newOutJson.allMsg.recommendMsg[ii].recommendShowPic[0].url;
+                }
+            }
+            if(newOutJson.allMsg.recommendMsg[ii].recommendHidePic.length > 0){
+                var secDivId = newOutJson.allMsg.recommendMsg[ii].recommendHidePic[0].divId;
+                var secDivDom = document.getElementById(secDivId);
+				var secImgDom = document.getElementById(newOutJson.allMsg.recommendMsg[ii].recommendHidePic[0].imgId);
+                if(secDivDom){
+                    secDivDom.style.visibility = "hidden";
+					secImgDom.src = columnImgUrl + newOutJson.allMsg.recommendMsg[ii].recommendHidePic[0].url;
+                }
+
+            }
+            columnAni.setCSSBlurType(newOutJson.allMsg.recommendMsg[ii]);
+        }
+    }
+	 /*
+    * 返回按钮获取焦点时(除返回焦点),显示焦点选中显示详情图,设置当前焦点与详情图的动画类型并执行(columnAni.setCSSFocusType)
+    * */
+    function backGetFocus(ii){
+        if(newOutJson.allMsg.outRecommendMsg.length > 0 && newOutJson.allMsg.outRecommendMsg[ii].recommendLabelpic.length > 0){
+            if(newOutJson.allMsg.outRecommendMsg[ii].recommendPic.length > 0){
+				var recDivId = newOutJson.allMsg.outRecommendMsg[ii].recommendPic[0].divId;
+                var recDivDom = document.getElementById(recDivId);
+                if(recDivDom){
+                    recDivDom.style.visibility = "hidden";
+                }
+			}
+			if(newOutJson.allMsg.outRecommendMsg[ii].recommendShowPic.length > 0){
+				openAniFlag(newOutJson.allMsg.outRecommendMsg[ii]);
+                var divId = newOutJson.allMsg.outRecommendMsg[ii].recommendShowPic[0].divId;
+                var divDom = document.getElementById(divId);
+                if(divDom){
+                    divDom.style.visibility = "visible";
+                }
+            }
+            if(newOutJson.allMsg.outRecommendMsg[ii].recommendHidePic.length > 0){
+                var secDivId = newOutJson.allMsg.outRecommendMsg[ii].recommendHidePic[0].divId;
+                var secDivDom = document.getElementById(secDivId);
+                if(secDivDom){
+                    secDivDom.style.visibility = "visible";
+                }
+
+            }
+            columnAni.setCSSFocusType(newOutJson.allMsg.outRecommendMsg[ii]);
+        }
+    }
+    /*
+    * 返回按钮失去焦点时(除返回焦点),显示焦点选中显示详情图,设置当前焦点与详情图的动画类型并执行(columnAni.setCSSFocusType)
+    * */
+    function backLoseFocus(ii){
+        if(newOutJson.allMsg.outRecommendMsg.length > 0 && newOutJson.allMsg.outRecommendMsg[ii].recommendLabelpic.length > 0){
+            if(newOutJson.allMsg.outRecommendMsg[ii].recommendPic.length > 0){
+				var recDivId = newOutJson.allMsg.outRecommendMsg[ii].recommendPic[0].divId;
+                var recDivDom = document.getElementById(recDivId);
+                if(recDivDom){
+                    recDivDom.style.visibility = "visible";
+                }
+			}
+			if(newOutJson.allMsg.outRecommendMsg[ii].recommendShowPic.length > 0){
+                closeAniFlag(newOutJson.allMsg.outRecommendMsg[ii]);
+                var divId = newOutJson.allMsg.outRecommendMsg[ii].recommendShowPic[0].divId;
+                var divDom = document.getElementById(divId);
+                if(divDom){
+                    divDom.style.visibility = "hidden";
+                }
+
+            }
+            if(newOutJson.allMsg.outRecommendMsg[ii].recommendHidePic.length > 0){
+                var secDivId = newOutJson.allMsg.outRecommendMsg[ii].recommendHidePic[0].divId;
+                var secDivDom = document.getElementById(secDivId);
+                if(secDivDom){
+                    secDivDom.style.visibility = "hidden";
+                }
+
+            }
+            columnAni.setCSSBlurType(newOutJson.allMsg.outRecommendMsg[ii]);
+        }
+    }
+	/**
+     *打开动画开关（非CSS3动画类）
+	**/
+	function openAniFlag(aniMsg){
+		if(aniMsg.recommendPic.length > 0){
+            if(columnAni.aniFlagObj[aniMsg.recommendPic[0].divId] != undefined){
+                columnAni.aniFlagObj[aniMsg.recommendPic[0].divId] = 0;
+            }
+            if(columnAni.aniTimesObj[aniMsg.recommendPic[0].divId] == 2){
+                columnAni.aniTimesObj[aniMsg.recommendPic[0].divId] = 1;
+            }
+		}
+		if(aniMsg.recommendLabelpic.length > 0){
+			if(columnAni.aniFlagObj[aniMsg.recommendLabelpic[0].divId] != undefined){
+                columnAni.aniFlagObj[aniMsg.recommendLabelpic[0].divId] = 0;
+            }
+            if(columnAni.aniTimesObj[aniMsg.recommendLabelpic[0].divId] == 2){
+                columnAni.aniFlagObj[aniMsg.recommendLabelpic[0].divId] = 1;
+            }
+		}
+		if(aniMsg.recommendShowPic.length > 0){
+			if(columnAni.aniFlagObj[aniMsg.recommendShowPic[0].divId] != undefined){
+                columnAni.aniFlagObj[aniMsg.recommendShowPic[0].divId] = 0;
+            }
+            if(columnAni.aniTimesObj[aniMsg.recommendShowPic[0].divId] == 2){
+                columnAni.aniTimesObj[aniMsg.recommendShowPic[0].divId] = 1;
+            }
+		}
+		if(aniMsg.recommendHidePic.length > 0){
+			if(columnAni.aniFlagObj[aniMsg.recommendHidePic[0].divId] != undefined){
+                columnAni.aniFlagObj[aniMsg.recommendHidePic[0].divId] = 0;
+            }
+            if(columnAni.aniTimesObj[aniMsg.recommendHidePic[0].divId] == 2){
+                columnAni.aniTimesObj[aniMsg.recommendHidePic[0].divId] = 1;
+            }
+		}
+	}
+    /**
+     *关闭动画开关（非CSS3动画类）
+     **/
+    function closeAniFlag(aniMsg){
+        if(aniMsg.recommendPic.length > 0 && columnAni.aniFlagObj[aniMsg.recommendPic[0].divId]){
+            columnAni.aniFlagObj[aniMsg.recommendPic[0].divId] = 2;
+        }
+        if(aniMsg.recommendLabelpic.length > 0 && columnAni.aniFlagObj[aniMsg.recommendLabelpic[0].divId]){
+            columnAni.aniFlagObj[aniMsg.recommendLabelpic[0].divId] = 2;
+        }
+        if(aniMsg.recommendShowPic.length > 0 && columnAni.aniFlagObj[aniMsg.recommendShowPic[0].divId]){
+            columnAni.aniFlagObj[aniMsg.recommendShowPic[0].divId] = 2;
+        }
+        if(aniMsg.recommendHidePic.length > 0 && columnAni.aniFlagObj[aniMsg.recommendHidePic[0].divId]){
+            columnAni.aniFlagObj[aniMsg.recommendHidePic[0].divId] = 2;
+        }
+    }
+    /**
+     * 按数字免费鉴权,测试用
+    * */
+	var freeAddr = "";
+	var testNumber = "";
+	function changeNum(num){
+		testNumber = testNumber + num;
+		if(testNumber == "1024"){
+			freeAddr = newOutJson.actionName;
+		}
+	}
+    /**
+     * 焦点点击确认跳转
+    * */
+	var startTime = new Date().getTime();
+    function goSomeWhere(ii){
+        var _this = this;
+        CT.setCookie("generalBackFocus",curFocus.FocusID);
+		var columnFree = OutJson.pageInfo.more1;
+		if (columnFree == "free" || freeAddr == newOutJson.actionName) {
+			CT.setCookie("columnBackUrl",window.location.href);
+			CT.toAnterRecommendUrl(OutJson,"recommend_1",ii);
+        }else{
+		    var recommendId = newOutJson.allMsg.recommendMsg[ii].recommendId;
+			var str;
+			var id = curFocus.TempData.recommendDisplayValue;
+			ajax.init({
+				url:AjaxConfig.interfaceUrl +'findCartoonDetailById',
+				method:'get',
+				params:{
+                    id: id
+				},
+				async:false,
+				ContentType:'json',
+				success:function(res){
+					var outId = res.data.outId;
+					PAGE.otherPageParam = "&action=" + OutJson.pageInfo.commPageEname;
+					CT.goPage();
+                        // 跳转平台详情页面
+                        PAGE.otherPageParam = "&contentId="+basePageInfo.commonPageInfo.pageInfo.commPageId+"&contentEName="+basePageInfo.commonPageInfo.pageInfo.commPageEname+"&contentCName="+basePageInfo.commonPageInfo.pageInfo.commPageCname+"&curFocusId="+curFocus.FocusID; //+"\&mainTop="+CT.$("main").style.top;
+                        CT.goPage();
+                        CT.toAnterRecommendUrl(OutJson,"recommend_1",ii);
+                        return;
+                   
+				},
+				fail:function(status){
+				}
+			});
+			
+			CT.setCookie("columnBackUrl",window.location.href);
+			
+		}
+        
+    }
+	//从订购失败回来,江苏江西安徽APK订购页是浮在前端页面之上的,本页面因为一进页面就获取鉴权结果,所以需要重新刷新
+    function orderFail(){
+        window.location.reload();
+    }
+    //从订购成功回来,江苏江西安徽APK订购页是浮在前端页面之上的,本页面因为一进页面就获取鉴权结果,所以需要重新刷新
+    function orderSuccess(){
+        window.location.reload();
+    }
+
+
+    /**
+     *  返回方法
+     * */
+    function backFunc(){
+       
+        
+
+        CT.delCookie("columnBackUrl");
+        CT.setCookie("prePageFocusID",CT.requestValue("defaultFocus"));//返回到首页或其他页面，实现来哪去哪，在离开页面前会删掉此cookie
+        if(OutJson && OutJson.recommend_2 && OutJson.recommend_2[0]){
+            //删除但不跳转上一页面地址
+            CT.delPreMemoryPage();
+            CT.toAnterRecommendUrl(OutJson,"recommend_2",0);
+            return;
+        }else{
+
+        }
+        try {
+            CT.backPage();
+        }catch (e) {
+           
+        }
+
+    }
+</script>
+</html>

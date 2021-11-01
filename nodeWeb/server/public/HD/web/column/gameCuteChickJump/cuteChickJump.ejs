@@ -1,0 +1,293 @@
+<%- include ('../../components/header') %>
+    <style type="text/css">
+        *{
+            margin:0px;padding:0px;
+        }
+        body,#content{
+            position:absolute;top:0px;left:0px;width:1280px;height:720px;overflow: hidden;
+        }
+        .moveBG ,#flower{
+            position: absolute;
+            overflow: hidden;
+            left: 0px;
+            top: 0px;
+            width: 1280px;
+            height: 720px;
+        }
+        .flowerL{
+            position: absolute;
+            overflow: hidden;
+            left: 320px;
+            top: 0px;
+        }
+        .flowerR{
+            position: absolute;
+            overflow: hidden;
+            left: 800px;
+            top: 0px;
+        }
+        .moveBG img {
+            position: absolute;
+            width: 1280px;
+            height: 1440px;
+
+        }
+        .heroStand,.heroJump,.heroFail{
+            position: absolute;
+            overflow: hidden;
+            visibility: hidden;
+            left: 0px;
+            top: 0px;
+
+        }
+        .score{
+            position: absolute;
+            top:50px;
+            left: 100px;
+            text-align: center;
+        }
+        .windowC{
+            position: absolute;
+            top:50px;
+            left: 100px;
+            text-align: center;
+        }
+        .startC{
+            position: absolute;
+            top: 309px;
+            left: 564px;
+            text-align: center;
+        }
+        .windowScore{
+            position: absolute;
+            top: 400px;
+            left: 196px;
+            font-size: 40px;
+            color: yellow;
+            width: 600px;
+            text-align: center;
+        }
+    </style>
+
+</head>
+<body>
+    <div id="content">
+
+        <div class="moveBG" id="moveBG" >
+
+            <img src="./HD/web/column/gameCuteChickJump/image/BG1.jpg" id="allBG1" style="width: 1280px;height: 1440px;position: absolute;top: -2160px;left: 0px;" alt="">
+            <img src="./HD/web/column/gameCuteChickJump/image/BG2.jpg" id="allBG0" style="width: 1280px;height: 1440px;position: absolute;top: -720px;left: 0px;" alt="">
+        </div>
+        <div id="flowerArr">
+            <img src="./HD/web/column/gameCuteChickJump/image/flower/flower0.png" class="flowerL" style="top: -50px;"  alt="">
+            <img src="./HD/web/column/gameCuteChickJump/image/flower/flower0.png" class="flowerL" style="top: 100px;"  alt="">
+            <img src="./HD/web/column/gameCuteChickJump/image/flower/flower0.png" class="flowerL" style="top: 250px;" alt="">
+            <img src="./HD/web/column/gameCuteChickJump/image/flower/flower0.png" class="flowerL" style="top: 400px;" alt="">
+            <img src="./HD/web/column/gameCuteChickJump/image/flower/flower0.png" class="flowerL" style="top: 550px;"  alt="">
+            <img src="./HD/web/column/gameCuteChickJump/image/flower/flower0.png" class="flowerL" style="top: 700px;"  alt="">
+        </div>
+
+
+        <div id="heroJump" style="position: absolute;top:115px;left: 720px;">
+            <img src="./HD/web/column/gameCuteChickJump/image/role/armatureName_jump_0.png" class="heroJump"  style="visibility: visible" alt="">
+            <img src="./HD/web/column/gameCuteChickJump/image/role/armatureName_jump_1.png" class="heroJump" alt="">
+            <img src="./HD/web/column/gameCuteChickJump/image/role/armatureName_jump_2.png" class="heroJump" alt="">
+            <img src="./HD/web/column/gameCuteChickJump/image/role/armatureName_jump_3.png" class="heroJump" alt="">
+            <img src="./HD/web/column/gameCuteChickJump/image/role/armatureName_jump_4.png" class="heroJump" alt="">
+            <img src="./HD/web/column/gameCuteChickJump/image/role/armatureName_jump_5.png" class="heroJump" alt="">
+            <img src="./HD/web/column/gameCuteChickJump/image/role/armatureName_jump_6.png" class="heroJump" alt="">
+            <img src="./HD/web/column/gameCuteChickJump/image/role/armatureName_jump_7.png" class="heroJump" alt="">
+            <img src="./HD/web/column/gameCuteChickJump/image/role/armatureName_jump_8.png" class="heroJump" alt="">
+        </div>
+
+        <div id="heroFail" style="position: absolute;top:230px;left: 730px;">
+            <img src="./HD/web/column/gameCuteChickJump/image/role/dizzy0.png" class="heroFail" alt="">
+            <img src="./HD/web/column/gameCuteChickJump/image/role/dizzy1.png" class="heroFail" alt="">
+            <img src="./HD/web/column/gameCuteChickJump/image/role/dizzy2.png" class="heroFail" alt="">
+            <img src="./HD/web/column/gameCuteChickJump/image/role/dizzy3.png" class="heroFail" alt="">
+        </div>
+        <!--方向键-->
+        <div id="keyDownDirect">
+            <img src="image/ananb0.png" style="position: absolute;top: 500px;left: 177px;visibility: hidden" alt="">
+            <img src="image/ananb1.png" style="position: absolute;top: 500px;left: 948px;visibility: hidden" alt="">
+            <img src="image/xuanzka01.png" id="xuanL" style="position: absolute;top: 494px;left: 171px;visibility: hidden" alt="">
+            <img src="image/xuanzka01.png" id="xuanR" style="position: absolute;top: 496px;left: 943px;visibility: hidden" alt="">
+        </div>
+        <div id="hands_x0_y0_hero_" style="position: absolute;top:0px;left:49px;width:10px;height:10px;">
+            <img id="hero"  class="miss" src="./HD/web/column/gameCuteChickJump/image/empty.png" style="width:10px;height:10px;" />
+        </div>
+       
+        <div id="windowC" class="windowC">
+            <img src="./HD/web/column/gameCuteChickJump/image/window.png"id="windowScoreBG" style="visibility: hidden"  alt="">
+            <span id="windowScore" class="windowScore" style="visibility: hidden">500</span>
+        </div>
+        <div id="scoreBox" class="score">
+            <img src="./HD/web/column/gameCuteChickJump/image/zib02.png" alt="">
+            <span id="score"  style="color:yellow;font-size: 33px">0</span>
+        </div>
+        <div id="start" class="startC">
+            <img src="./HD/web/column/gameCuteChickJump/image/starts.png"id="startG" style="visibility: visible"  alt="">
+        </div>
+    </div>
+	<!-- 引入公共js开始 -->
+	<%- include('../../components/commJs') %>
+	<!-- 引入公共js结束 -->
+    <script type = "text/javascript" src="<%= basePageUrl %>/js/main.js?v=2020"></script>
+</body>
+<script>
+    var randomFlowerArr=[];
+    var scores=0;
+    var scoreEle=document.getElementById("score");
+    var flowerArrs=document.getElementById("flowerArr").getElementsByTagName("img");
+    var flowerLR=[320,750]
+    function randomFlowerArrFunc(){//生成随机数
+       var a=Math.floor(Math.random()*2);
+       randomFlowerArr.push(a);
+    }
+    for(var i=0;i<7;i++){
+		if(i == 3 || i == 4){
+			randomFlowerArr.push(1);
+		}else{
+			randomFlowerArrFunc();
+		}
+        
+    }
+    //生成花
+    var strFlower="";
+    for(var i=0;i<7;i++){
+        var b=Math.floor(Math.random()*2);
+		if(b==0){
+			strFlower+='<img src="./HD/web/column/gameCuteChickJump/image/flower/flower0.png" class="flowerL" style="top:'+(i*150-140+60)+'px;left:'+flowerLR[randomFlowerArr[i]]+'px;widht:196px;height:261px"  alt="">'
+
+		}else{
+			strFlower+='<img src="./HD/web/column/gameCuteChickJump/image/mushroom/mushroom0.png" class="flowerL" style="top:'+(i*150-140+60)+'px;left:'+flowerLR[randomFlowerArr[i]]+'px;widht:196px;height:261px"  alt="">'
+		}
+    }
+    document.getElementById("flowerArr").innerHTML=strFlower;
+
+    buttons.push({
+        id:'hands_x0_y0_hero_',
+      //  otherFocusEvent:'javascript:jumpTrue()',
+        clickHandler:'javascript:goOn()',
+        leftEvent:'javascript:jumpL()',
+        rightEvent: 'javascript:jumpR()',
+        upEvent: '',
+        downEvent : "",     //向下
+        focusType:7
+    },{
+        id:'hands_x0_y0_windowC_',
+        //otherFocusEvent:'javascript:jumpL()',
+        clickHandler:'javascript:goOn()',
+        left:'disable',
+        right: 'disable',
+        up: 'disable',
+        down : "disable",     //向下
+        focusType:7,
+    });
+    PAGE.focusInit();
+    PAGE.changeFocus("hands_x0_y0_hero_");
+    jumpL = function(){//左键方法
+		CT.$("heroJump").style.top = "50px";
+        if(!isKeyDown&&hero.state==0){
+            if(heroFailAnimator.next==true){
+                heroFailAnimator.next=false;
+            }
+            isKeyDown=true;
+            hero.targetP=0;
+            leftShan();
+            HeroJumpAnimatorStart();
+        }
+    };
+    jumpR = function(){
+		CT.$("heroJump").style.top = "50px";
+        if(!isKeyDown&&hero.state==0){
+            if(heroFailAnimator.next==true){
+                heroFailAnimator.next=false;
+            }
+            isKeyDown=true;
+            hero.targetP=1;
+            rightShan();
+            HeroJumpAnimatorStart();
+        }
+    };
+
+    function jumpTrue(){
+        randomFlowerArr[3]==0?(jumpL()):(jumpR());
+
+    }
+    function Hero(){
+        this.leftP={"top":50,"left":290};//人物左侧坐标
+        this.rightP={"top":50,"left":720},//人物右侧坐标
+        this.diffDistance=(this.rightP.left-this.leftP.left),
+        this.state=2,//0:站立，1：跳起，2，跌落
+        this.currentP=2,//0:left,1:right
+        this.targetP=0,//0:left,1:right
+        this.left=function(leftValue){//人物移动的方法
+            document.getElementById("heroJump").style.left=leftValue+"px";
+        };
+        this.BG1Move=-2160;//背景图1
+        this.BG0Move=-720;//背景图0
+        this.BGMove=150;//背景图每次跳跃移动的量
+        this.BG0Rank=0;//背景图0计数器
+        this.BG1Rank=0;//背景图1技术器
+        this.flowerRank=0;
+
+        this.flowerArrs=[[-140,0],[10,0],[160,0],[310,0],[460,0],[610,0],[760,0]];//[花的初始位置，花的计数器]，最终都是-140，n
+        this.moveBG=function(value){//背景图移动和花移动的方法
+            document.getElementById("allBG1").style.top=(this.BG1Move+this.BG1Rank*150+value)+"px";
+            document.getElementById("allBG0").style.top=(this.BG0Move+this.BG0Rank*150+value)+"px";
+            for(var i=0;i<flowerArrs.length;i++){
+                flowerArrs[i].style.top= this.flowerArrs[i][0]+this.flowerArrs[i][1]*150+value+"px";
+            }
+        }
+    }
+
+    var hero=new Hero();//创建对象
+    var isKeyDown=false;//按下按键是否结束
+
+    leftShan=function (){//
+        document.getElementById("xuanL").style.visibility="visible";
+        setTimeout(function () {
+            document.getElementById("xuanL").style.visibility="hidden";
+            isKeyDown=false;
+        },200)
+    };
+    rightShan=function (){
+        document.getElementById("xuanR").style.visibility="visible";
+        setTimeout(function () {
+            document.getElementById("xuanR").style.visibility="hidden";
+            isKeyDown=false;
+        },200)
+    };
+    function hidWindow(){
+        document.getElementById("windowScoreBG").style.visibility="hidden";
+        document.getElementById("windowScore").style.visibility="hidden";
+    }
+    function showWindow(){
+        document.getElementById("windowScore").innerHTML=scores;
+        document.getElementById("windowScoreBG").style.visibility="visible";
+        document.getElementById("windowScore").style.visibility="visible";
+    }
+
+    var isFirst=true;//是否是第一次点击
+    function goOn(){//点击确定再来一次
+        if(isFirst){//第一次点击开始框消失，游戏开始
+            hero.state=0;
+            isFirst=false;
+            document.getElementById("startG").style.visibility="hidden";
+            document.getElementById("keyDownDirect").getElementsByTagName("img")[0].style.visibility="visible";
+            document.getElementById("keyDownDirect").getElementsByTagName("img")[1].style.visibility="visible";
+        }else{//再来一次点击
+           if(hero.state==2){
+               hero.state=0;
+               hidWindow();
+               jumpTrue();
+           }
+        }
+
+    }
+	function backFunc(){
+		CT.backPage();
+    }
+</script>
+</html>

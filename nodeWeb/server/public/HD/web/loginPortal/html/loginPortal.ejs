@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="page-view-size" content="1280*720" />
+	<title>登陆页面</title>
+</head>
+
+<body>
+	<%
+		const commonPageInfo = basePageInfo.commonPageInfo;
+	%>
+	<!--引用公用JS-->
+	<%- include('../../components/commJs') %>
+	<script>
+		/**
+		 * 眉头拿action跳转(index传过来的)
+		 * 如果action=loginportal_2019v1跳转到首页，不等于loginportal_2019v1时跳转到相对应的专项链接
+		 */
+		alert('进入loginportal页面！');
+		if (commonPageInfo.recommend_1) {
+			CT.toAnterRecommendUrl(commonPageInfo.recommend_1[0]);
+		} else {
+			CT.BackPortalMainPage();
+		}
+	</script>
+</body>
+</html>

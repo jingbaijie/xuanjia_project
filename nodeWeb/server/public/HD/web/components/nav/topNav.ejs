@@ -1,0 +1,298 @@
+<% 
+    const commonPageInfo = basePageInfo.commonPageInfo;
+    const templateInfo = basePageInfo.findTemplateInfo;
+    var navInfo = navInfo ? navInfo : {isLogo:true,isMarquee:true,isPoster:true};
+    const navObj = {
+        buttons : [],
+        //logo信息
+        logoObj : commonPageInfo && commonPageInfo.pageInfo.commonPageInfo.recommend_1[0].recommendPic || {},
+        logoPos : {
+            left : 50,
+            top : 90,
+        },
+        //跑马灯数据
+        recommendMarquee:null,
+        // 广告数据
+        recommendPoster: null,
+        //是否显示logo
+        isLogo : navInfo.isLogo,
+        isMarquee : navInfo.isMarquee,
+        isPoster : navInfo.isPoster,
+        //导航数据
+        navArr : [],
+        //logo位置
+        init : function () {
+            const _this = this;
+            //跑马灯
+            const recommend_6 = commonPageInfo.recommend_6;
+            const recommend_4 = commonPageInfo.pageInfo.commonPageInfo.recommend_4;
+            if (_this.isMarquee) {
+                if (recommend_6 && recommend_6[0] && recommend_6[0].recommendPic) {
+                    //从本页面取广告数据
+                    this.recommendMarquee = recommend_6[0];
+                } else if (recommend_4 && recommend_4[0] && recommend_4[0].recommendPic) {
+                    //从页面公共数据取广告数据
+                    this.recommendMarquee = recommend_4[0];
+                }
+            }
+            if(_this.isPoster){
+                if (recommend_6 && recommend_6[1] && recommend_6[1].recommendPic) {
+                    //从本页面取广告数据
+                    this.recommendPoster = recommend_6[1];
+                } else if (recommend_4 && recommend_4[1] && recommend_4[1].recommendPic) {
+                    //从页面公共数据取广告数据
+                    this.recommendPoster = recommend_4[1];
+                }
+            }
+            //头部导航数据
+            const topNavBarArr = commonPageInfo.pageInfo.commonPageInfo.recommend_2 || [];
+            //用户定制下架眉头数据
+            const userDownNavArr = basePageInfo.findUserCustomByUserId;
+            //不能下架的眉头rankID（1：首页，8：免费专区）
+            var canNotDownNavStr = global.config.ajaxConf.navMustExistRankIdArr || [1,7,8];
+            if (userDownNavArr && userDownNavArr.length > 0) {
+                //遍历返回的禁用眉头ID的数组
+                for (var i = 0; i < userDownNavArr.length; i++) {
+                    //遍历返回的配置上线的眉头的数组
+                    for (var j = 0; j < topNavBarArr.length; j++) {
+                        var tempRankId = topNavBarArr[j].rankId + '';
+                        if (tempRankId == userDownNavArr[i] && canNotDownNavStr.indexOf(parseInt(tempRankId)) == -1) {
+                            //删除禁用眉头
+                            topNavBarArr.splice(j,1);
+                        }
+                    }
+                }
+            }
+            // 设置顶部导航参数           
+            const topNavBar = _this.setNavBar({
+                //数据
+                navArr :  topNavBarArr,
+                //分类名称
+                name : "DMSYDH",
+                //是否显示
+                isShow :  true,
+                //初始位置
+                top : 70,
+                left : 205,
+                width : 0,
+                height : 0,
+                //生成方向  1 横向 2 纵向
+                direction :  1,
+                //列数
+                col : topNavBarArr.length,
+                //行数
+                row :  1,
+                //列步长
+                colStep : 126,
+                //横向步长
+                rowStep : 0,
+            });
+            _this.navArr.push(topNavBar);
+        },
+        /**
+        * 
+        * 配置参数
+        * */
+        setNavBar : function (params) {
+            var _this = this;
+            params = params || {};
+            var demoObj = {
+                //数据
+                navArr : params.navArr ,
+                //分类名称
+                name : params.name || "test",
+                //是否显示
+                isShow :  params.isShow || false,
+                //初始位置
+                top : params.top || 0,
+                left : params.left || 0,
+                width : params.width || 0,
+                height : params.height || 0,
+                //生成方向  1 横向 2 纵向
+                direction : params.direction || 1,
+                //列数
+                col : params.col || 1,
+                //行数
+                row : params.row || 1,
+                //列步长
+                colStep : params.colStep || 0,
+                //横向步长
+                rowStep : params.rowStep || 0,
+            }
+            return demoObj ;
+        }
+    }
+    navObj.init();
+%>
+
+<!-- logo图片 -->
+<% if (navObj.isLogo) { %>
+    <img id="logoImg" src="<%= imgUrl + navObj.logoObj.picPath %>"
+        style="width: <%= navObj.logoObj.picW %>px; height: <%= navObj.logoObj.picH %>px; 
+        position: absolute; left: <%= navObj.logoPos.left %>px; top: <%= navObj.logoPos.top %>px;">
+<% } %>
+
+<!--跑马灯-->
+<% if(navObj.isMarquee){%>
+    <%
+        const marqueePic = navObj.recommendMarquee.recommendPic;
+    %>
+    <div style="width: <%= marqueePic.picW %>px; height: <%= marqueePic.picH %>px; 
+            background: url(<%= imgUrl + marqueePic.picPath %>) no-repeat; position: absolute; left: 40px; top: 10px;">
+        <marquee style="position: absolute; left: 40px; top: 0px; width: <%= marqueePic.picW - 40 %>px;
+                    height: <%= marqueePic.picH %>px; line-height: <%= marqueePic.picH %>px; 
+                    color: white; font-weight: bold; font-size: 16px;">
+            <%= navObj.recommendMarquee.recommendDisplayValue %>
+        </marquee>
+    </div>
+<% } %>
+<% if(navObj.recommendPoster) { %>
+    <%
+        const posterPic = navObj.recommendPoster.recommendPic;
+    %>
+    <div style="position: absolute;left: 820px;top: -5px;width: <%= posterPic.picW %> px;
+            height: <%= posterPic.picH %> px;background: url(<%= imgUrl + posterPic.picPath %>) no-repeat center center;">
+    </div>
+<% } %>
+
+<!-- 导航 -->
+<% navObj.navArr.forEach((element) => { %>
+    <% if(element.isShow) { %>
+        <div id="<%= element.name %>Div" style="position: absolute; left: 0px; top: 0px;">
+            <%
+                const col = element.col;
+                const row = element.row;
+                //过滤数据后的焦点信息
+                var keyInfo = JSON.parse(JSON.stringify(element));
+                delete keyInfo.navArr;
+                keyInfo = JSON.stringify(keyInfo);
+            %>
+            <% for (let r = 0; r < row; r++) { %>
+                <% for (let c = 0; c < col; c++) { %>
+                    <%
+                        let isShow = false;
+                        const num = r*col + c;
+                        const curData = element.navArr[num] || {};
+                        const button = {
+                            id : "hands_x0_y0_" + element.name + num + "_",
+                            TempData : curData,
+                            clickHandler : "javascript:topNavObj.navBtnClickEvent(" + keyInfo + ',' + num + ")",
+                            leftEvent:'javascript:topNavObj.navBtnArrowEvent("left",' + keyInfo + ',' + num + ')',
+                            rightEvent:'javascript:topNavObj.navBtnArrowEvent("right",' + keyInfo + ',' + num + ')',
+                            upEvent:'javascript:topNavObj.navBtnArrowEvent("up",' + keyInfo + ',' + num + ')',
+                            downEvent:'javascript:topNavObj.navBtnArrowEvent("down",' + keyInfo + ',' + num + ')',
+                            focusType: 7
+                        }
+                      //  basePageInfo.nodeButtons.push(button);
+                      navObj.buttons.push(button);
+                        if(curData.commpageId ==  templateInfo.pageId){
+                            isShow = true;
+                        }   
+                    %>        
+                    <img id="<%= element.name + "SelectedImg" + num %>"
+                        src="<%= (curData.recommendLabelpic ? imgUrl + curData.recommendLabelpic.picPath : "./HD/images/empty.png" )%>"
+                        style="width: <%= curData.recommendPic.picW %>px; height: <%= curData.recommendPic.picH %>px; 
+                        position: absolute; visibility: <%- isShow ? "visible" : "hidden" %>; 
+                        top: <%= element.top + r * element.rowStep %>px; left: <%= element.left + c * element.colStep %>px;">
+                    <img id="<%= element.name + num + "Img" %>" src="<%= imgUrl +  curData.recommendPic.picPath %>"
+                        style="width: <%= curData.recommendPic.picW %>px; height: <%= curData.recommendPic.picH %>px; 
+                        position: absolute; top: <%= element.top + r * element.rowStep %>px; 
+                        left: <%= element.left + c * element.colStep %>px;">
+                    <div id="<%= "hands_x0_y0_" + element.name + num + "_" %>" 
+                        style="width: <%= curData.recommendFocuspic.picW %>px; height: <%= curData.recommendFocuspic.picH %>px; 
+                        position: absolute; top: <%= element.top + r * element.rowStep %>px; 
+                        left: <%= element.left + c * element.colStep %>px;">
+                        <img id="<%= element.name + num %>" src="<%= imgUrl +  curData.recommendFocuspic.picPath %>"
+                            style="width: <%= curData.recommendFocuspic.picW %>px; 
+                            height: <%= curData.recommendFocuspic.picH %>px; visibility: hidden;">
+                    </div>
+                <% } %>
+            <% } %>
+        </div>
+    <% } %>
+<% }) %>
+
+
+
+<script>
+    var topNavObj = {
+        buttons : <%- JSON.stringify(navObj.buttons)%> || [],
+        //记录nav选中的序号
+        showNavSelectedId: 0,
+        //记录nav获焦的序号
+        showNavGetFocusId: 0,
+        commonPageInfo: basePageInfo.commonPageInfo ,
+        navArr : <%- JSON.stringify(navObj.navArr[0].navArr) %>,
+        /**
+        * 左侧nav导航按钮OK键触发事件
+        * @param params 
+        *   keyInfo:生成当前按钮的初始化信息。
+        *   keyIndex：生成当前按钮的序号。
+        * 使用方式：如有特殊响应事件需求，在自己页面重新定义函数： topNavObj.navBtnClickEvent: function (keyInfo,keyIndex) {...};
+        */
+        navBtnClickEvent : function(keyInfo,keyIndex){
+            var _this = this;
+            _this.showNavSelectedId = keyIndex;
+            //以下代码根据自己页面实际需求，可在自己页面重写
+            var moreObj = CT.getMoresObj(curFocus.TempData.more1);
+            if (moreObj.btnType == 'order') {//鉴权
+                var authObj = {
+                    callback: function(){
+                        //已订购
+                        page.toJump("topNav", keyIndex);
+                    }
+                }
+                orderJs.getAuth(authObj);
+            } else {
+                page.toJump("topNav", keyIndex);
+            }
+        },
+        /**
+        * nav导航按钮方向键触发事件
+        * @param params 
+        *   keyDirection：触发的方向键方向。
+        *   keyInfo:生成当前按钮的初始化信息。
+        *   keyIndex：生成当前按钮的序号。
+        * 使用方式：如有特殊响应事件需求，在自己页面重新定义函数：topNavObj.navBtnArrowEvent : function (keyDirection,keyInfo,keyIndex) {...};
+        */
+        navBtnArrowEvent : function(keyDirection,keyInfo,keyIndex){
+            var _this = topNavObj;
+            var curKeyDateArr = topNavObj.navArr || [];
+            //以下代码根据自己页面实际需求，可在自己页面重写
+            switch (keyDirection){
+                case 'left': 
+                    //导航栏按钮向左事件
+                    if (keyIndex > 0) {
+                        PAGE.changeFocus('hands_x0_y0_' + keyInfo.name + (keyIndex - 1) + '_');
+                    }
+                    break;
+                case 'right': 
+                    //导航栏按钮向右事件
+                    if (keyIndex == curKeyDateArr.length - 1) {
+                        //向右无响应
+                    }else{
+                        PAGE.changeFocus("hands_x0_y0_" + keyInfo.name + (keyIndex+1)+"_");
+                    }
+                    break;
+                case 'up': 
+                    //导航栏按钮向上事件
+                    //啥也不做
+                    break;
+                case 'down': 
+                    //导航栏按钮向下事件，自动获取向下焦点
+                    PAGE.ProximityPrinciple(keyDirection);
+                    break;
+                default :
+                    break;
+            }
+        },
+    }
+    for (var i = 0; i < topNavObj.navArr.length; i++) {
+        if (topNavObj.navArr[i].commpageId == parseInt(topNavObj.commonPageInfo.pageInfo.commonPageId)) {
+            topNavObj.showNavSelectedId = i;
+            topNavObj.showNavGetFocusId = i;
+        }
+    }
+
+    xjInitButtons = xjInitButtons.concat(topNavObj.buttons);
+</script>

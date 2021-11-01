@@ -1,0 +1,489 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: sueRimn
+ * @Date: 2020-03-04 16:46:29
+ * @LastEditors: sueRimn
+ * @LastEditTime: 2020-03-10 17:25:44
+ -->
+<%- include ('../../components/header') %>
+<link rel="stylesheet" href="<%= basePageUrl %>/css/personalCenter.css">
+</head>
+<%
+    const localImg = basePageInfo.localImg;
+    const babyInfo = {
+        insertOrupdate:0,
+        name:"未设置",
+        curBabySex:0,
+        babySex:"未设置",
+    }; 
+    basePageInfo.transferObj = babyInfo;
+    const commonPageInfo = basePageInfo.commonPageInfo;
+    const recommend_3 = commonPageInfo.recommend_3;
+    const recommend_4 = commonPageInfo.recommend_4;
+    const recommend_5 = commonPageInfo.recommend_5;
+    const recommend_6 = commonPageInfo.recommend_6;
+%>
+<body>
+    <!--背景-->
+    <img id="BJ" src="<%= basePageInfo.bgImg %>" height="720" width="1280" />
+    <!--左边分类-->
+    <%- include('../../components/nav/pcGeneralNav')%>
+    <div id="right">
+        <%
+            basePageInfo.nodeButtons.push({
+            id: "hands_x0_y0_DMEJname_",
+            clickHandler: "javascript:personalCenter.randomName()",
+            up: "disable",
+            left: "hands_x0_y0_DMEJleftceterbutton0_",
+            right: "disable",
+            down: "hands_x0_y0_boy_",
+            focusType: 7
+        }, {
+            id: "hands_x0_y0_boy_",
+            clickHandler: "javascript:personalCenter.putSex(1)",
+            up: "hands_x0_y0_DMEJname_",
+            left: "hands_x0_y0_DMEJleftceterbutton0_",
+            right: "hands_x0_y0_girl_",
+            down: "hands_x0_y0_inputAgeNum_",
+            focusType: 7
+        }, {
+            id: "hands_x0_y0_girl_",
+            clickHandler: "javascript:personalCenter.putSex(0)",
+            up: "hands_x0_y0_DMEJname_",
+            left: "hands_x0_y0_boy_",
+            right: "disable",
+            down: "hands_x0_y0_inputAgeNum_",
+            focusType: 7
+        }, {
+            id: "hands_x0_y0_inputAgeNum_",
+            clickHandler: "javascript:personalCenter.toSetAge()",
+            up: "hands_x0_y0_boy_",
+            left: "hands_x0_y0_DMEJleftceterbutton0_",
+            right: "disable",
+            down: "hands_x0_y0_inputPhoneNum_",
+            focusType: 7
+        }, {
+            id: "hands_x0_y0_inputPhoneNum_",
+            clickHandler: "javascript:personalCenter.toSetPhoneNum()",
+            up: "hands_x0_y0_inputAgeNum_",
+            left: "hands_x0_y0_DMEJleftceterbutton0_",
+            right: "disable",
+            down: "hands_x0_y0_like1_",
+            focusType: 7
+        
+        }, {
+            id: "hands_x0_y0_like1_",
+            clickHandler: "javascript:personalCenter.setHobby(1)",
+            up: "hands_x0_y0_inputPhoneNum_",
+            left: "hands_x0_y0_DMEJleftceterbutton0_",
+            right: "hands_x0_y0_like2_",
+            down: "hands_x0_y0_like4_",
+            focusType: 7
+        }, {
+            id: "hands_x0_y0_like2_",
+            clickHandler: "javascript:personalCenter.setHobby(2)",
+            up: "hands_x0_y0_inputPhoneNum_",
+            left: "hands_x0_y0_like1_",
+            right: "hands_x0_y0_like3_",
+            down: "hands_x0_y0_like5_",
+            focusType: 7
+        }, {
+            id: "hands_x0_y0_like3_",
+            clickHandler: "javascript:personalCenter.setHobby(3)",
+            up: "hands_x0_y0_inputPhoneNum_",
+            left: "hands_x0_y0_like2_",
+            right: "hands_x0_y0_like4_",
+            down: "hands_x0_y0_like6_",
+            focusType: 7
+        }, {
+            id: "hands_x0_y0_like4_",
+            clickHandler: "javascript:personalCenter.setHobby(4)",
+            up: "hands_x0_y0_like1_",
+            left: "hands_x0_y0_like3_",
+            right: "hands_x0_y0_like5_",
+            down: "hands_x0_y0_like7_",
+            focusType: 7
+        }, {
+            id: "hands_x0_y0_like5_",
+            clickHandler: "javascript:personalCenter.setHobby(5)",
+            up: "hands_x0_y0_like2_",
+            left: "hands_x0_y0_like4_",
+            right: "hands_x0_y0_like6_",
+            down: "hands_x0_y0_like8_",
+            focusType: 7
+        }, {
+            id: "hands_x0_y0_like6_",
+            clickHandler: "javascript:personalCenter.setHobby(6)",
+            up: "hands_x0_y0_like3_",
+            left: "hands_x0_y0_like5_",
+            right: "hands_x0_y0_like7_",
+            down: "hands_x0_y0_like9_",
+            focusType: 7
+        }, {
+            id: "hands_x0_y0_like7_",
+            clickHandler: "javascript:personalCenter.setHobby(7)",
+            up: "hands_x0_y0_like4_",
+            left: "hands_x0_y0_like6_",
+            right: "hands_x0_y0_like8_",
+            down: "disable",
+            focusType: 7
+        }, {
+            id: "hands_x0_y0_like8_",
+            clickHandler: "javascript:personalCenter.setHobby(8)",
+            up: "hands_x0_y0_like5_",
+            left: "hands_x0_y0_like7_",
+            right: "hands_x0_y0_like9_",
+            down: "disable",
+            focusType: 7
+        }, {
+            id: "hands_x0_y0_like9_",
+            clickHandler: "javascript:personalCenter.setHobby(9)",
+            up: "hands_x0_y0_like6_",
+            left: "hands_x0_y0_like8_",
+            right: "disable",
+            down: "disable",
+            focusType: 7
+        },);
+        %>
+        <div id="baby_info" class="position baby_info" style="">
+
+            <div id="babyAvatar" class="position" style="top:15px;left:42px;width:350px;height:100px;">
+                <div class="position pointsDiv" id="pointDiv" style="background: url(<%= imgUrl + recommend_3[1].recommendPic.picPath %>) no-repeat;">
+                    <div id="points" class="points" style="">
+                        
+                    </div>
+                </div>
+                <img id="avatar" class="position" style="top:17px; left:0px;" src="<%= imgUrl + recommend_3[4].recommendPic.picPath %>" alt="">
+                <img id="vipMark" class="position" style="visibility:hidden;top:38px; left:74px;" src="<%= imgUrl + recommend_3[0].recommendPic.picPath %>" alt="">
+            </div>
+
+            <div id="babyName" class="position babyName" style="background: url(<%= imgUrl + recommend_3[5].recommendPic.picPath %>) no-repeat;">
+                <div class="title position">昵&nbsp;&nbsp;&nbsp;&nbsp;称</div>
+                <div id="babyNameSpan" class="titleFocus" style="width:200px;"><span><%= babyInfo.name %></span></div>
+                <div id="hands_x0_y0_DMEJname_" style="background:url(<%= imgUrl + recommend_3[2].recommendPic.picPath %>) no-repeat; width:67px;height:67px;position: absolute;top:5px;left:255px;">
+                </div>
+                <div id="DMEJname" style="background:url(<%= imgUrl + recommend_3[2].recommendLabelpic.picPath %>) no-repeat; width:67px;height:67px;position: absolute;top:-4px;left:246px;visibility: hidden;">
+                </div>
+            </div>
+            
+            <div class="setSex_ position" id="setSex_" style="">
+                <div class="title">性&nbsp;&nbsp;&nbsp;&nbsp;别</div>
+                <div class="position" id="hands_x0_y0_boy_" style="width:140px;height:68px;background:url(<%= imgUrl + recommend_3[8].recommendPic.picPath %>) no-repeat;">
+                    <div class="titleFocus">
+                        男
+                    </div>
+                    <div id="boy" class="focusImg" style="background:url(<%= imgUrl + recommend_3[8].recommendLabelpic.picPath %>) no-repeat;">
+                    </div>
+                    <img id="boyMark" class="mark" style="visibility: hidden;" src="<%= imgUrl + recommend_3[3].recommendPic.picPath %>" alt="">
+                </div>
+                <div class="position" id="hands_x0_y0_girl_" style="width:140px;height:68px;left:160px; background:url(<%= imgUrl + recommend_3[8].recommendPic.picPath %>) no-repeat;">
+                    <div class="titleFocus">
+                        女
+                    </div>
+                    <div id="girl" class="focusImg" style="background:url(<%= imgUrl + recommend_3[8].recommendLabelpic.picPath %>) no-repeat;">
+                    </div>
+                    <img id="girlMark" class="mark" style="visibility: hidden;" src="<%= imgUrl + recommend_3[3].recommendPic.picPath %>" alt="">
+                </div>
+            </div>
+            
+            <div class="inputPhoneNum" id="hands_x0_y0_inputAgeNum_" style="top:258px;background: url(<%= imgUrl + recommend_6[0].recommendPic.picPath %>) no-repeat;">
+                <div class="title">年&nbsp;&nbsp;&nbsp;&nbsp;龄</div>
+                <div class="titleFocus" style="width:110px;">
+                    <span id="ageNum"></span>
+                </div>
+                <div class="focusImg" id="inputAgeNum" style="width: 198px;background:url(<%= imgUrl + recommend_6[0].recommendLabelpic.picPath %>) no-repeat">
+                </div>
+            </div>
+            
+            <div class="inputPhoneNum" id="hands_x0_y0_inputPhoneNum_" style="background: url(<%= imgUrl + recommend_3[7].recommendPic.picPath %>) no-repeat;">
+                <div class="title">手机号</div>
+                <div class="titleFocus" style="width:260px;"><span id="phoneNum"></span></div>
+                <div class="focusImg" id="inputPhoneNum" style="width: 330px;background:url(<%= imgUrl + recommend_3[7].recommendLabelpic.picPath %>) no-repeat">
+                </div>
+            </div>
+            
+            <div class="babyHobby">
+                <div class="title">喜&nbsp;&nbsp;&nbsp;&nbsp;好</div>
+                <div id="hands_x0_y0_like1_" class="ageDiv" style="background: url(<%= imgUrl + recommend_3[8].recommendPic.picPath %>) no-repeat;">
+                    <div class="titleFocus">
+                        儿歌
+                    </div>
+                    <div class="focusImg" id="like1" style="background:url(<%= imgUrl + recommend_3[8].recommendLabelpic.picPath %>) no-repeat">
+                    </div>
+                    <img id="likeMark1" class="mark" style="visibility:hidden;" src="<%= imgUrl + recommend_3[3].recommendPic.picPath %>" alt="">
+                </div>
+                <div id="hands_x0_y0_like2_" class="ageDiv" style="left:170px;background: url(<%= imgUrl + recommend_3[8].recommendPic.picPath %>) no-repeat;">
+                    <div class="titleFocus">
+                        玩具
+                    </div>
+                    <div id="like2" class="focusImg" style="background:url(<%= imgUrl + recommend_3[8].recommendLabelpic.picPath %>) no-repeat">
+                    </div>
+                    <img id="likeMark2" class="mark" style="visibility:hidden;" src="<%= imgUrl + recommend_3[3].recommendPic.picPath %>" alt="">
+                </div>
+                <div id="hands_x0_y0_like3_" class="ageDiv" style="left:340px;background: url(<%= imgUrl + recommend_3[8].recommendPic.picPath %>) no-repeat;">
+                    <div class="titleFocus">
+                        魔幻
+                    </div>
+                    <div id="like3" class="focusImg" style="background:url(<%= imgUrl + recommend_3[8].recommendLabelpic.picPath %>) no-repeat">
+                    </div>
+                    <img id="likeMark3" class="mark" style="visibility:hidden;" src="<%= imgUrl + recommend_3[3].recommendPic.picPath %>" alt="">
+                </div>
+                <div id="hands_x0_y0_like4_" class="ageDiv" style="top:61px;background: url(<%= imgUrl + recommend_3[8].recommendPic.picPath %>) no-repeat;">
+                    <div class="titleFocus">
+                        益智
+                    </div>
+                    <div id="like4" class="focusImg" style="background:url(<%= imgUrl + recommend_3[8].recommendLabelpic.picPath %>) no-repeat">
+                    </div>
+                    <img id="likeMark4" class="mark" style="visibility:hidden;" src="<%= imgUrl + recommend_3[3].recommendPic.picPath %>" alt="">
+                </div>
+                <div id="hands_x0_y0_like5_" class="ageDiv" style="top:61px;left:170px;background: url(<%= imgUrl + recommend_3[8].recommendPic.picPath %>) no-repeat;">
+                    <div class="titleFocus">
+                        汽车
+                    </div>
+                    <div id="like5" class="focusImg" style="background:url(<%= imgUrl + recommend_3[8].recommendLabelpic.picPath %>) no-repeat">
+                    </div>
+                    <img id="likeMark5" class="mark" style="visibility:hidden;" src="<%= imgUrl + recommend_3[3].recommendPic.picPath %>" alt="">
+                </div>
+                <div id="hands_x0_y0_like6_" class="ageDiv" style="top:61px;left:340px;background: url(<%= imgUrl + recommend_3[8].recommendPic.picPath %>) no-repeat;">
+                    <div class="titleFocus">
+                        奥特曼
+                    </div>
+                    <div id="like6" class="focusImg" style=";background:url(<%= imgUrl + recommend_3[8].recommendLabelpic.picPath %>) no-repeat">
+                    </div>
+                    <img id="likeMark6" class="mark" style="visibility:hidden;" src="<%= imgUrl + recommend_3[3].recommendPic.picPath %>" alt="">
+                </div>
+                <div id="hands_x0_y0_like7_" class="ageDiv" style="top:122px;background: url(<%= imgUrl + recommend_3[8].recommendPic.picPath %>) no-repeat;">
+                    <div class="titleFocus">
+                        机甲
+                    </div>
+                    <div id="like7" class="focusImg" style="background:url(<%= imgUrl + recommend_3[8].recommendLabelpic.picPath %>) no-repeat">
+                    </div>
+                    <img id="likeMark7" class="mark" style="visibility:hidden;" src="<%= imgUrl + recommend_3[3].recommendPic.picPath %>" alt="">
+                </div>
+                <div id="hands_x0_y0_like8_" class="ageDiv" style="top:122px;left:170px;background: url(<%= imgUrl + recommend_3[8].recommendPic.picPath %>) no-repeat;">
+                    <div class="titleFocus">
+                        动物
+                    </div>
+                    <div id="like8" class="focusImg" style="background:url(<%= imgUrl + recommend_3[8].recommendLabelpic.picPath %>) no-repeat">
+                    </div>
+                    <img id="likeMark8" class="mark" style="visibility:hidden;" src="<%= imgUrl + recommend_3[3].recommendPic.picPath %>" alt="">
+                </div>
+                <div id="hands_x0_y0_like9_" class="ageDiv" style="top:122px;left:340px;background: url(<%= imgUrl + recommend_3[8].recommendPic.picPath %>) no-repeat;">
+                    <div class="titleFocus">
+                        童话
+                    </div>
+                    <div id="like9" class="focusImg" style="background:url(<%= imgUrl + recommend_3[8].recommendLabelpic.picPath %>) no-repeat">
+                    </div>
+                    <img id="likeMark9" class="mark" style="visibility:hidden;" src="<%= imgUrl + recommend_3[3].recommendPic.picPath %>" alt="">
+                </div>
+            </div>
+        </div>
+
+        <div id="changePhoneNum" style="position: absolute;width: 720px;height: 550px;top: 33px;left: 140px;visibility: hidden;">
+            <h2 id="h2title" style="position: absolute;top: 0px;left: 217px;font-size: 28px;">手机号修改</h2>
+            <div class="input titleFocus" id="inputNum" style="line-height: 68px;background: url(<%= imgUrl + recommend_3[7].pageRecommendConfigTabVos[1].picLibraryTab.picPath %>) no-repeat ;width:573px;height:68px; position: absolute;left: 4px;top:60px;">
+                <span id="phoneNumText" style=""></span>
+                <div id="DMEJnameinput" style="background:url() no-repeat;visibility: hidden; width:600px;background-size: 500px;height:80px;">
+                </div>
+            </div>
+            <div id="inputTips" style="position: absolute;top: 142px;left: 41px;font-size: 20px;">
+                请使用遥控器输入11位数字
+            </div>
+            <div>
+                <div class="confirmBtn" id="hands_x0_y0_numConfirm_" style="width:573px;height:68px;background:url(<%= imgUrl + recommend_3[6].recommendPic.picPath %>) no-repeat;    position: absolute;left: 4px;top: 215px;">
+                    <div id="numConfirm" style=" background:url(<%= imgUrl + recommend_3[6].recommendLabelpic.picPath %>) no-repeat ;visibility: hidden;width:573px;height:68px; position: absolute;top: -2px;left:-2px;">
+                    </div>
+                </div>
+            </div>
+            <div id="keyBoard" style="width:656px; height:227px;position: absolute; top:310px; left:-38px; 
+            background:url(<%=  %>) no-repeat">
+                <div id="hands_x0_y0_num1_" style="width:68px;height:61px;position: absolute; top:38px; left:90px;background:url(<%= imgUrl + recommend_4[0].recommendPic.picPath %>) no-repeat; ">
+                    <div class="titleFocus" style="position: absolute;left: -13px;top:13px;">   
+                        1
+                    </div>
+                    <div id="num1" style="position: absolute;top: -2px;left: -2px;width:68px;height:61px;background:url(<%= imgUrl + recommend_4[0].recommendLabelpic.picPath %>) no-repeat; visibility: hidden;">
+                    </div>
+                </div>
+                <div id="hands_x0_y0_num2_" style="width:68px;height:61px;position: absolute; top:38px; left:188px;background:url(<%= imgUrl + recommend_4[0].recommendPic.picPath %>) no-repeat; ">
+                    <div class="titleFocus" style="position: absolute;left: -13px;top:13px;">
+                        2
+                    </div>
+                    <div id="num2" style="position: absolute;top: -2px;left: -2px;width:68px;height:61px;background:url(<%= imgUrl + recommend_4[0].recommendLabelpic.picPath %>) no-repeat; visibility: hidden;">
+                    </div>
+                </div>
+                <div id="hands_x0_y0_num3_" style="width:68px;height:61px;position: absolute; top:38px; left:286px;background:url(<%= imgUrl + recommend_4[0].recommendPic.picPath %>) no-repeat; ">
+                    <div class="titleFocus" style="position: absolute;left: -13px;top:13px;">
+                        3
+                    </div>
+                    <div id="num3" style="position: absolute;top: -2px;left: -2px;width:68px;height:61px;background:url(<%= imgUrl + recommend_4[0].recommendLabelpic.picPath %>) no-repeat; visibility: hidden;">
+                    </div>
+                </div>
+                <div id="hands_x0_y0_num4_" style="width:68px;height:61px;position: absolute; top:38px; left:384px;background:url(<%= imgUrl + recommend_4[0].recommendPic.picPath %>) no-repeat; ">
+                    <div class="titleFocus" style="position: absolute;left: -13px;top:13px;">
+                        4
+                    </div>
+                    <div id="num4" style="position: absolute;top: -2px;left: -2px;width:68px;height:61px;background:url(<%= imgUrl + recommend_4[0].recommendLabelpic.picPath %>) no-repeat; visibility: hidden;">
+                    </div>
+                </div>
+                <div id="hands_x0_y0_num5_" style="width:68px;height:61px;position: absolute; top:38px; left:482px;background:url(<%= imgUrl + recommend_4[0].recommendPic.picPath %>) no-repeat; ">
+                    <div class="titleFocus" style="position: absolute;left: -13px;top:13px;">
+                        5
+                    </div>
+                    <div id="num5" style="position: absolute;top: -2px;left: -2px;width:68px;height:61px;background:url(<%= imgUrl + recommend_4[0].recommendLabelpic.picPath %>) no-repeat; visibility: hidden;">
+                    </div>
+                </div>
+                <div id="hands_x0_y0_num6_" style="width:68px;height:61px;position: absolute; top:128px; left:53px;background:url(<%= imgUrl + recommend_4[0].recommendPic.picPath %>) no-repeat; ">
+                    <div class="titleFocus" style="position: absolute;left: -13px;top:13px;;">
+                        6
+                    </div>
+                    <div id="num6" style="position: absolute;top: -2px;left: -2px;width:68px;height:61px;background:url(<%= imgUrl + recommend_4[0].recommendLabelpic.picPath %>) no-repeat; visibility: hidden;">
+                    </div>
+                </div>
+                <div id="hands_x0_y0_num7_" style="width:68px;height:61px;position: absolute; top:128px; left:151px;background:url(<%= imgUrl + recommend_4[0].recommendPic.picPath %>) no-repeat; ">
+                    <div class="titleFocus" style="position: absolute;left: -13px;top:13px;">
+                        7
+                    </div>
+                    <div id="num7" style="position: absolute;top: -2px;left: -2px;width:68px;height:61px;background:url(<%= imgUrl + recommend_4[0].recommendLabelpic.picPath %>) no-repeat; visibility: hidden;">
+                    </div>
+                </div>
+                <div id="hands_x0_y0_num8_" style="width:68px;height:61px;position: absolute; top:128px; left:249px;background:url(<%= imgUrl + recommend_4[0].recommendPic.picPath %>) no-repeat; ">
+                    <div class="titleFocus" style="position: absolute;left: -13px;top:13px;">
+                        8
+                    </div>
+                    <div id="num8" style="position: absolute;top: -2px;left: -2px;width:68px;height:61px;background:url(<%= imgUrl + recommend_4[0].recommendLabelpic.picPath %>) no-repeat; visibility: hidden;">
+                    </div>
+                </div>
+                <div id="hands_x0_y0_num9_" style="width:68px;height:61px;position: absolute; top:128px; left:347px;background:url(<%= imgUrl + recommend_4[0].recommendPic.picPath %>) no-repeat; ">
+                    <div class="titleFocus" style="position: absolute;left: -13px;top:13px;">
+                        9
+                    </div>
+                    <div id="num9" style="position: absolute;top: -2px;left: -2px;width:68px;height:61px;background:url(<%= imgUrl + recommend_4[0].recommendLabelpic.picPath %>) no-repeat; visibility: hidden;">
+                    </div>
+                </div>
+                <div id="hands_x0_y0_num0_" style="width:68px;height:61px;position: absolute; top:128px; left:445px;background:url(<%= imgUrl + recommend_4[0].recommendPic.picPath %>) no-repeat; ">
+                    <div class="titleFocus" style="position: absolute;left: -13px;top:13px;">
+                        0
+                    </div>
+                    <div id="num0" style="position: absolute;top: -2px;left: -2px;width:68px;height:61px;background:url(<%= imgUrl + recommend_4[0].recommendLabelpic.picPath %>) no-repeat; visibility: hidden;">
+                    </div>
+                </div>
+                <div id="hands_x0_y0_delete_" style="width:68px;height:61px;position: absolute; top:128px; left:543px;background:url(<%= imgUrl + recommend_4[0].recommendPic.picPath %>) no-repeat; ">
+                    <div class="titleFocus" style="position: absolute;left: -15px;top:17px;">
+                        <img src="<%= imgUrl + recommend_4[0].recommendFocuspic.picPath %>" alt="">
+                    </div>
+                    <div id="delete" style="position: absolute;top: -2px;left: -2px;width:68px;height:61px;background:url(<%= imgUrl + recommend_4[0].recommendLabelpic.picPath %>) no-repeat; visibility: hidden;">
+                    </div>
+                </div>
+
+            </div>   
+        </div>
+
+
+        <div id="tip"></div>
+
+        <%
+            basePageInfo.nodeButtons.push({
+                id: "hands_x0_y0_num1_",
+                clickHandler: "javascript:personalCenter.inputNum(1)",
+                up: "hands_x0_y0_numConfirm_",
+                left: "disable",
+                right: "hands_x0_y0_num2_",
+                down: "hands_x0_y0_num6_",
+                focusType: 7
+            }, {
+                id: "hands_x0_y0_num2_",
+                clickHandler: "javascript:personalCenter.inputNum(2)",
+                up: "hands_x0_y0_numConfirm_",
+                left: "hands_x0_y0_num1_",
+                right: "hands_x0_y0_num3_",
+                down: "hands_x0_y0_num7_",
+                focusType: 7
+            }, {
+                id: "hands_x0_y0_num3_",
+                clickHandler: "javascript:personalCenter.inputNum(3)",
+                up: "hands_x0_y0_numConfirm_",
+                left: "hands_x0_y0_num2_",
+                right: "hands_x0_y0_num4_",
+                down: "hands_x0_y0_num8_",
+                focusType: 7
+            }, {
+                id: "hands_x0_y0_num4_",
+                clickHandler: "javascript:personalCenter.inputNum(4)",
+                up: "hands_x0_y0_numConfirm_",
+                left: "hands_x0_y0_num3_",
+                right: "hands_x0_y0_num5_",
+                down: "hands_x0_y0_num9_",
+                focusType: 7
+            }, {
+                id: "hands_x0_y0_num5_",
+                clickHandler: "javascript:personalCenter.inputNum(5)",
+                up: "hands_x0_y0_numConfirm_",
+                left: "hands_x0_y0_num4_",
+                right: "hands_x0_y0_num6_",
+                down: "hands_x0_y0_num0_",
+                focusType: 7
+            }, {
+                id: "hands_x0_y0_num6_",
+                clickHandler: "javascript:personalCenter.inputNum(6)",
+                up: "hands_x0_y0_num1_",
+                left: "hands_x0_y0_num5_",
+                right: "hands_x0_y0_num7_",
+                down: "disable",
+                focusType: 7
+            }, {
+                id: "hands_x0_y0_num7_",
+                clickHandler: "javascript:personalCenter.inputNum(7)",
+                up: "hands_x0_y0_num2_",
+                left: "hands_x0_y0_num6_",
+                right: "hands_x0_y0_num8_",
+                down: "disable",
+                focusType: 7
+            }, {
+                id: "hands_x0_y0_num8_",
+                clickHandler: "javascript:personalCenter.inputNum(8)",
+                up: "hands_x0_y0_num3_",
+                left: "hands_x0_y0_num7_",
+                right: "hands_x0_y0_num9_",
+                down: "disable",
+                focusType: 7
+            }, {
+                id: "hands_x0_y0_num9_",
+                clickHandler: "javascript:personalCenter.inputNum(9)",
+                up: "hands_x0_y0_num4_",
+                left: "hands_x0_y0_num8_",
+                right: "hands_x0_y0_num0_",
+                down: "disable",
+                focusType: 7
+            }, {
+                id: "hands_x0_y0_num0_",
+                clickHandler: "javascript:personalCenter.inputNum(0)",
+                up: "hands_x0_y0_num5_",
+                left: "hands_x0_y0_num9_",
+                right: "hands_x0_y0_delete_",
+                down: "disable",
+                focusType: 7
+            }, {
+                id: "hands_x0_y0_delete_",
+                clickHandler: "javascript:personalCenter.inputNum('del')",
+                up: "hands_x0_y0_num5_",
+                left: "hands_x0_y0_num0_",
+                right: "disable",
+                down: "disable",
+                focusType: 7
+            }, {
+                id: "hands_x0_y0_numConfirm_",
+                clickHandler: "javascript:personalCenter.confirmNum()",
+                up: "disable",
+                left: "disable",
+                right: "disable",
+                down: "hands_x0_y0_num1_",
+                focusType: 7
+            });
+        %>
+    </div>
+    
+    <%- include('../../components/commJs3') %>
+    <script src="<%= basePageUrl %>/js/personalCenter.js?1=<%-new Date().getTime() %100%>"></script>
+</body>
+</html>

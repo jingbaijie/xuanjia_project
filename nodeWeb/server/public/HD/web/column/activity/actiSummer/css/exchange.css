@@ -1,0 +1,211 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+html,body{
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+}
+.main{
+    width: 1280px;
+    height: 720px;
+    background: url(../images/exchange/bg.jpg) no-repeat;
+    position: relative;
+    left: 0px;
+    top: 0px;
+    overflow: hidden;
+}
+.prize0Pack{
+    position: absolute;
+    left: 215px;
+    top: 120px;
+}
+.prize1Pack{
+    position: absolute;
+    left: 500px;
+    top: 120px;
+}
+.prize2Pack{
+    position: absolute;
+    left: 785px;
+    top: 120px;
+}
+.prize3Pack{
+    position: absolute;
+    left: 215px;
+    top: 370px;
+}
+.prize4Pack{
+    position: absolute;
+    left: 500px;
+    top: 370px;
+}
+.prize5Pack{
+    position: absolute;
+    left: 785px;
+    top: 370px;
+}
+.prize0Img,.prize1Img,.prize2Img,.prize3Img,.prize4Img,.prize5Img{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+.prize0Img img,.prize1Img img,.prize2Img img,.prize3Img img,.prize4Img img,.prize5Img img{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+.prize0Num,.prize1Num,.prize2Num,.prize3Num,.prize4Num,.prize5Num{
+    position: absolute;
+    width: 150px;
+    left: 68px;
+    top: 260px;
+    color: #ffffff;
+}
+#prize0S,#prize1S,#prize2S,#prize3S,#prize4S,#prize5S{
+    top: 184px;
+    left: 24px;
+}
+#ydhPopup,#ydwPopup,#jfbzPopup,#dhcgPopup{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    visibility: hidden;
+}
+#hands_x0_y0_ydhPopupS_,#hands_x0_y0_ydwPopupS_,#hands_x0_y0_jfbzPopupS_{
+    position: absolute;
+    left: 550px;
+    top: 410px;
+}
+.myPrize{
+    position: absolute;
+    left: 1080px;
+    top: 30px;
+}
+#hands_x0_y0_myPrizeBtn_{
+    position: absolute;
+    top: -12px;
+    left: -10px;
+}
+#myPrizePopup{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    visibility: hidden;
+}
+#myPrizeImg{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+#myPrizeImg{
+    position: absolute;
+    left: 560px;
+    top: 280px;
+}
+.myPrizeImg{
+    position: absolute;
+    left: 560px;
+    top: 280px;
+}
+#ydhIcon{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    visibility: hidden;
+}
+
+
+/*我的奖品页面手机号*/
+
+/*数字键盘*/
+#phoneTable {
+    width: 306px;
+    height: 392px;
+    position: absolute;
+    top: 80px;
+    left: 435px;
+    background: #000;
+    opacity: 0.9;
+}
+.phoneOne {
+    width: 102px;
+    height: 98px;
+    opacity: 1;
+    margin: 0;
+    padding: 0;
+    float: left;
+    text-align: center;
+    line-height: 98px;
+    font-size: 24px;
+    color: #fff;
+}
+#phoneText {
+    width: 280px;
+    height: 50px;
+    position: absolute;
+    top: 520px;
+    left: 438px;
+    text-align: center;
+    line-height: 50px;
+    font-size: 28px;
+    z-index: 1;
+}
+#phoneTips {
+    position: absolute;
+    top: 580px;
+    left: 361px;
+    color: red;
+    font-size: 24px;
+}
+
+
+#hands_x0_y0_myPrizePhoneS_{
+    position: absolute;
+    left: 437px;
+    top: 510px;
+}
+#myPrizePhoneS{
+    width: 300px;
+}
+#hands_x0_y0_myPrizeSave_{
+    position: absolute;
+    left: 726px;
+    top: 502px;
+}
+#hands_x0_y0_myPrizeDel_{
+    position: absolute;
+    left: 830px;
+    top: 502px;
+}
+/*兑换成功 保存手机号*/
+#hands_x0_y0_textFocus_{
+    position: absolute;
+    left: 428px;
+    top: 514px;
+}
+#dhcgPhoneText{
+    position: absolute;
+    left: 480px;
+    top: 528px;
+    font-size: 26px;
+}
+#phoneInfo{
+    position: absolute;
+    left: 422px;
+    top: 600px;
+    color: red;
+    font-size: 30px;
+}
+#emptyPrize{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0px;
+    right: 0px;
+    visibility: hidden;
+    background-color: rgba(0,0,0,0.5);
+    text-align: center;
+    line-height: 1000px;
+}

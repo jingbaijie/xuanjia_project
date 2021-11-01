@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="page-view-size" content="1280*720" />
+    <title>种树游戏首页</title>
+    <link rel="stylesheet" href="./css/acti_mainPage.css">
+    <link rel="stylesheet" href="./css/acti_giftPage.css">
+</head>
+<body>
+    <div class="mainBg">
+        <!-- 订购用户/未订购用户浇水次数 -->
+         <div class="subsriber">
+            <span id="subsriber"></span>
+            <span>次</span>
+         </div>
+         <div class="unsubscribedUser">
+             <span id="unsubscribedUser"></span>
+             <span>次</span>
+         </div>
+         <!-- 剩余次数 -->
+         <div class="remainChance">
+             <span id="remainChance"></span>
+             <span>次</span>
+         </div>
+         <!-- 开始浇水 -->
+         <div class="startGame">
+             <img src="./img/mainPage/startGame.png" alt="">
+             <div class="startGameFocus" id="hands_x0_y0_startGameFocus_">
+                 <img id="startGameFocus" class="startGame" src="./img/mainPage/focusImg/tip.png" alt="">
+             </div>
+         </div>
+         <!-- 进度条 -->
+         <div class="loading">
+             <img src="./img/mainPage/loadingImg/0.png" alt="">
+             <img id="loadingImg" src="" alt="">
+         </div>
+
+         <!-- 周边降落玩具 -->
+         <!-- 机灵宠物车 -->
+         <div class="jlcwc" id="jlcwc">
+             <img src="./img/mainPage/giftPlayer/jlPlayer.png" alt="">
+        </div>
+         <!-- 爆冲火箭车 -->
+         <div class="bchjc" id="bchjc">
+             <img src="./img/mainPage/giftPlayer/bcPlayer.png" alt="">
+         </div>
+         <!--超级飞侠  -->
+         <div class="cjfx" id="cjfx">
+             <img src="./img/mainPage/giftPlayer/cjPlayer.png" alt="">
+         </div>
+
+         <!-- 规则页焦点 -->
+         <div>
+             <img src="./img/mainPage/empty.png" alt="">
+             <div id="hands_x0_y0_jumpRuleFocus_" >
+                 <img id="jumpRuleFocus" class="jumpRuleFocus" src="./img/mainPage/focusImg/rule.png" alt="" style="visibility: hidden;">
+             </div>
+         </div>
+         <!-- 奖品页焦点 -->
+         <div>
+            <img src="./img/mainPage/empty.png" alt="">
+            <div id="hands_x0_y0_jumpGiftFocus_" class="jumpGiftFocus">
+                <img id="jumpGiftFocus" src="./img/mainPage/focusImg/rule.png" alt="">
+            </div>
+        </div>
+        <!-- 树苗状态 -->
+        <div class="tree" id="treeWrapper">
+            <img id="tree" src="./img/mainPage/tree/1.png" alt="">
+        </div>
+        <!-- 树苗成长阶段弹窗 -->
+        <div class="growing">
+            <img id="growing" src="./img/mainPage/alertTip/growing.png" alt="">
+            <div id="hands_x0_y0_growingFocus_" class="growingFocus">
+                <img id="growingFocus" src="./img/mainPage/focusImg/tip.png" alt="">
+            </div>
+        </div>
+        <!-- 水壶 -->
+        <div class="water" id="water">
+            <img class="waterSrc" id="waterSrc1" src="./img/mainPage/water/1.png" style="display: block;" alt="">
+            <img class="waterSrc" id="waterSrc2" src="./img/mainPage/water/2.png" style="display: none;" alt="">
+            <img class="waterSrc" id="waterSrc3" src="./img/mainPage/water/3.png" style="display: none;" alt="">
+            <img class="waterSrc" id="waterSrc4" src="./img/mainPage/water/4.png" style="display: none;" alt="">
+            <img class="waterSrc" id="waterSrc5" src="./img/mainPage/water/5.png" style="display: none;" alt="">
+        </div>
+        <!-- 动画片单 -->
+        <!-- 超级飞侠 -->
+        <div class="superFlying">
+           <img id="superFlying" src="./img/mainPage/pityIMg/cjfx.png" alt=""> 
+           <div id="hands_x0_y0_superFlyingFocus_" class="superFlyingFocus">
+               <img id="superFlyingFocus" src="./img/mainPage/focusImg/choose.png" alt="">
+           </div>
+        </div>
+        <!-- 爆宠火箭车 -->
+        <div class="rocketCar">
+            <img id="rocketCar" src="./img/mainPage/pityIMg/bchjc.png" alt="">
+            <div id="hands_x0_y0_rocketCarFocus_" class="rocketCarFocus">
+                <img id="rocketCarFocus" src="./img/mainPage/focusImg/choose.png" alt="">
+            </div>
+        </div>
+        <!-- 萌鸡小队 -->
+        <div class="cuteChicken">
+            <img id="cuteChicken" src="./img/mainPage/pityIMg/mjxd.png" alt="">
+            <div id="hands_x0_y0_cuteChickenFocus_" class="cuteChickenFocus">
+                <img id="cuteChickenFocus" src="./img/mainPage/focusImg/choose.png" alt="">
+            </div>
+        </div>
+        <!-- 刺客伍六七 -->
+        <div class="assassin">
+            <img id="assassin" src="./img/mainPage/pityIMg/CK567.png" alt="">
+            <div id="hands_x0_y0_assassinFocus_" class="assassinFocus">
+                <img id="assassinFocus" src="./img/mainPage/focusImg/choose.png" alt="">
+            </div>
+        </div>
+        <!-- 宠物机灵车 -->
+        <div class="petCar">
+            <img id="petCar" src="./img/mainPage/pityIMg/cwjl.png" alt="">
+            <div id="hands_x0_y0_petCarFocus_" class="petCarFocus">
+                <img id="petCarFocus" src="./img/mainPage/focusImg/choose.png" alt="">
+            </div>
+        </div>
+        <!-- 弹框 -->
+        <!-- 未订购机会已使用完弹框 -->
+        <div class="noChance">
+            <img id="nochance" src="./img/mainPage/alertTip/user.png" alt="">
+            <div id="hands_x0_y0_noChanceFocus_">
+                <img id="noChanceFocus" class="noChanceFocus" src="./img/mainPage/focusImg/jumpVip.png" alt="">
+            </div>
+            <div>
+                <img src="./img/mainPage/empty.png" alt="">
+                <div id="hands_x0_y0_laterFocus_">
+                    <img id="laterFocus" class="laterFocus" src="./img/mainPage/focusImg/tip.png" alt="">
+                </div>
+            </div>
+        </div>
+
+        <!-- 已订购用户机会使用完弹框 -->
+        <div class="vipTip">
+            <img id="vipTip" src="./img/mainPage/alertTip/vip.png" alt="">
+            <div id="hands_x0_y0_seeAniFocus_">
+                <img id="seeAniFocus" class="seeAniFocus" src="./img/mainPage/focusImg/seeAni.png" alt="">
+            </div>
+            <div>
+                <img src="./img/mainPage/empty.png" alt="">
+                <div id="hands_x0_y0_backFocus_">
+                    <img id="backFocus" class="backFocus" src="./img/mainPage/focusImg/tip.png" alt="">
+                </div>
+            </div>
+        </div>
+
+        <!-- 中奖弹框 -->
+        <div class="gift" id="gift">
+            <img id="giftPic" src="./img/mainPage/alertTip/gift.png" alt="">
+            <!--我的ID-->
+            <div id="winningId">  </div>
+            <!--手机号-->
+            <div id="winningInfo">
+            </div>
+        </div>
+
+        <!-- 已订购用户 -->
+        <!-- 未中奖弹框 -->
+        <div class="loseGift">
+            <img id="loseGift" src="./img/mainPage/alertTip/wzj.png" alt="">
+            <div id="hands_x0_y0_loseGiftFocus_">
+                <img id="loseGiftFocus" class="loseGiftFocus" src="./img/mainPage/focusImg/tip.png" alt="">
+            </div>
+        </div>
+        <!-- 未订购用户未中奖弹框 -->
+        <div class="pity">
+            <img id="pity" src="./img/mainPage/alertTip/lose.png" alt="">
+            <div id="hands_x0_y0_pityFocus_">
+                <img id="pityFocus" class="pityFocus" src="./img/mainPage/focusImg/tip.png" alt="">
+            </div>
+        </div>
+        <!-- 小树已经完成种植过程弹框 -->
+        <div class="success">
+            <img id="success" src="./img/mainPage/alertTip/success.png" alt="">
+            <div id="hands_x0_y0_successFocus_">
+                <img id="successFocus" class="successFocus" src="./img/mainPage/focusImg/tip.png" alt="">
+            </div>
+        </div>
+        <!-- 更多精彩 -->
+        <div>
+            <img src="./img/mainPage/empty.png" alt="">
+            <div id="hands_x0_y0_moreFocus_">
+                <img id="moreFocus" class="moreFocus" src="./img/mainPage/focusImg/more.png" alt="">
+            </div>
+        </div>
+
+        <!-- 规则页 -->
+        <div class="rulePage" id="rulePage">
+            <img src="img/rulePage/rule.png">
+            <div id="hands_x0_y0_closeQuit_">
+                <img id="closeQuit" class="closeQuit" src="./img/mainPage/focusImg/quit.png" alt="" />
+            </div>
+        </div>
+        <!--我的奖品页-->
+        <div id="winningList" class="winningList" style="z-index: 10">
+            <img src="img/giftPage/prizeList.png" style="position: absolute"></img>
+            <!--中奖列表-->
+            <div id="rankscro" style="height: 260px">
+                <div id="rankList" class="nameList">
+
+                </div>
+            </div>
+            <!-- 标题 -->
+            <div class="accountNumber">账号</div>
+            <div class="prize">奖品</div>
+            <!-- 中奖信息 -->
+            <div class="prizeInfo" id="prizeInfo"></div>
+            <!-- 用户Id -->
+            <div class="userInfo" id="winningListId"></div>
+            <div id="winningListInfo">
+            </div>
+            <!-- 返回焦点 -->
+            <div style="position:absolute;">
+                <img src="./img/mainPage/empty.png" alt="">
+                <div id="hands_x0_y0_myBackFocus_">
+                    <img id="myBackFocus" class="myBackFocus" src="./img/mainPage/focusImg/quit.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script type = "text/javascript" src = "../../../../js/loadCommomJs.js"></script>
+<script type="text/javascript" src="../../../../js/actiComm.js"></script>
+<script type="text/javascript" src="../actiCommonPage/js/telinput.js?v=2020"></script>
+<script src="./js/acti_mainPage.js"></script>
+</html>

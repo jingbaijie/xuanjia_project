@@ -1,0 +1,156 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+html,body{
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+}
+.main{
+    width: 1280px;
+    height: 720px;
+    background: url(../images/lucky/bg.jpg) no-repeat;
+    position: relative;
+    left: 0px;
+    top: 0px;
+    overflow: hidden;
+}
+.ip{
+    position: absolute;
+    left: 100px;
+    top: 160px;
+}
+#hands_x0_y0_ipBtnS0_{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+#ipBtnS0,#ipBtnS1,#ipBtnS2,#ipBtnS3{
+    position: absolute;
+    left: -19px;
+    top: -23px;
+}
+#hands_x0_y0_ipBtnS1_{
+    position: absolute;
+    left: 0px;
+    top: 85px;
+}
+#hands_x0_y0_ipBtnS2_{
+    position: absolute;
+    left: 0px;
+    top: 170px;
+}
+#hands_x0_y0_ipBtnS3_{
+    position: absolute;
+    left: 0px;
+    top: 255px;
+}
+.luckDraw{
+    position: absolute;
+    left: 400px;
+    top: 190px;
+}
+#hands_x0_y0_startLucky_{
+    position: absolute;
+    left: 170px;
+    top: 150px;
+}
+#prizeS{
+    position: absolute;
+    left: 159px;
+    top: 135px;
+}
+.prize0{
+    position: absolute;
+    top: 35px;
+    left: 25px;
+}
+.prize1{
+    position: absolute;
+    top: 16px;
+    left: 193px;
+}
+.prize2{
+    position: absolute;
+    top: 35px;
+    left: 346px;
+}
+.prize3{
+    position: absolute;
+    top: 158px;
+    left: 340px;
+}
+.prize4{
+    position: absolute;
+    top: 318px;
+    left: 346px;
+}
+.prize5{
+    position: absolute;
+    top: 318px;
+    left: 186px;
+}
+.prize6{
+    position: absolute;
+    top: 300px;
+    left: 16px;
+}
+.prize7{
+    position: absolute;
+    top: 175px;
+    left: 25px;
+}
+#hands_x0_y0_myPrizeBtnS_{
+    position: absolute;
+    left: 1100px;
+    top: 50px;
+}
+#myPrizeBtnS{
+    position: absolute;
+    left: -18px;
+    top: -21px;
+}
+#startLucky{
+    position: absolute;
+    left: -1px;
+    top: -6px;
+}
+#jfPopup,#hyqyPopup,#wzjPopup,#snPoPup{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    visibility: hidden;
+}
+#hands_x0_y0_jfPopupS_,#hands_x0_y0_wzjPopupS_,#hands_x0_y0_snPoPupS_{
+    position: absolute;
+    top: 600px;
+    left: 550px;
+}
+#hands_x0_y0_hyqyPopupS_ {
+    position: absolute;
+    top: 580px;
+    left: 696px;
+}
+.number{
+    position: absolute;
+    left: 607px;
+    top: 356px;
+}
+#tyqCode{
+    position: absolute;
+    font-size: 30px;
+    left: 352px;
+    top: 595px;
+}
+#surplus{
+    position: absolute;
+    top: 665px;
+    left: 500px;
+}
+#surplusNum{
+    position: absolute;
+    left: 155px;
+    top: -5px;
+    font-size: 30px;
+}

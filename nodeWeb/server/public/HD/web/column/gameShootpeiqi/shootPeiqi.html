@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>社会人打枪</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="page-view-size" content ="1280*720" />
+    <style>
+        .main{
+            position: absolute;
+            width: 1280px;
+            height: 720px;
+            margin: 0;
+            padding: 0;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            text-align: center;
+            background : url("./images/BJ.png") no-repeat;
+        }
+        .score {
+            position:absolute;
+            left: 806px;
+            top: 128px;
+            font-size: 60px;
+            font-weight: 700;
+            color:#FFEE5B;
+        }
+    </style>
+</head>
+<body>
+    <div class="main" id="main">
+        <!--背景图-->
+        <img src="./images/BG.png" alt="" style="position: absolute;left: 54px;top: 132px;">
+        <!--子弹瞄准图-->
+        <img src="./images/shoot.png" id="shoot" alt="" style="z-index:10;position:absolute;left: 340px;top: 255px;">
+        <!--枪-->
+        <img src="./images/qiang01.png" alt="" style="position:absolute;left: 600px;top: 482px;">
+        <!--佩奇-->
+        <img id="pinkPei" src="./images/peiqi01.png" alt="" style="position:absolute;left: 750px;top: 475px;z-index:30;">
+        <!--得分-->
+        <span id="scoreNum" class="score">000</span>
+        <!--创建怪兽的地方-->
+        <div id="gift"></div>
+        <!--失败的弹窗-->
+        <div id="losePop" style="position:absolute;left: 271px;top: 200px;z-index:10;visibility: hidden;">
+            <img src="./images/again.png" alt="" style="position:absolute;left: 0;top: 0">
+        </div>
+        
+        <!--焦点-->
+        <div id="hands_x0_y0_iconFocus0_" style="position: absolute;left: 775px;top: 555px;width: 97px;height: 144px;">
+            <img src="./images/empty.png" id="iconFocus0" alt="" style="position: absolute;left: 0;top: 0;width: 97px;height: 114px;visibility: hidden;">
+        </div>
+        <div id="hands_x0_y0_iconFocus1_" style="position: absolute;left: 271px;top: 200px;width: 430px;height: 304px;z-index:20;">
+            <img src="./images/again.png" id="iconFocus1" alt="" style="position: absolute;left: 0;top: 0;width: 430px;height: 304px;visibility: hidden;">
+        </div>
+    </div>
+    <script type="text/javascript" src="../../../js/loadCommomJs.js"></script>
+    <script type="text/javascript" src="./js/main.js?v=2020"></script>
+</body>
+</html>

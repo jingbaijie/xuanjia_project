@@ -1,0 +1,166 @@
+*{
+    padding: 0;
+    margin: 0px;
+}
+body {
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    position: relative;
+}
+#wrapper{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 1280px;
+    height: 720px;
+    background-color: transparent;
+    color: white;
+    overflow: hidden;
+}
+div,img{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+.leftBtnListArea{
+    position: absolute;
+    left: 48px;
+    top: 302px;
+    width:155px;
+    height: 340px;
+    font-size: 22px;
+}
+/*全部内容中部接口获取推荐图div*/
+.contentDiv{
+    width: 168px;
+    height: 233px;
+    background-size: 119%;
+    background-position: -16px -12px;
+    border-radius: 16px;
+}
+.contentDivFocus{
+    left: 0;
+    top: 0;
+    width: 168px;
+}
+/*卡通名片，接口获取*/
+.all-content-data:before {
+    content: attr(data-content);
+    background: rgba(0,0,0,0.8);
+    width: 178px;
+    height: 36px;
+    position: absolute;
+    bottom: 2px;
+    left: 0px;
+    color: #fff;
+    font-size: 24px;
+    text-align: center;
+    line-height: 36px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    visibility: hidden;
+}
+/*卡通名片，固定推荐*/
+.fixed-content-data:before {
+    content: attr(data-content);
+    background: rgba(0,0,0,0.8);
+    width: 184px;
+    height: 36px;
+    position: absolute;
+    bottom: 8px;
+    left: 0px;
+    color: #fff;
+    font-size: 24px;
+    text-align: center;
+    line-height: 36px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    visibility: hidden;
+}
+.show-text:before{
+    visibility: visible;
+}
+.contentTitle {
+    position: absolute;
+    left: 0px;
+    top: 197px;
+    width: 168px;
+    height: 36px;
+    overflow: hidden;
+    color: #fff;
+    font-size: 18px;
+    text-align: center;
+    line-height: 36px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 0 0 16px 16px;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+.rightContentTitle {
+    position: absolute;
+    left: 0px;
+    top: 224px;
+    background: black;
+    opacity: 0.8;
+    width: 184px;
+    height: 36px;
+    color: #fff;
+    font-size: 24px;
+    text-align: center;
+    line-height: 36px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+.midContentTitle {
+    position: absolute;
+    left: 9px;
+    top: 188px;
+    background: black;
+    opacity: 0.8;
+    width: 372px;
+    height: 36px;
+    color: #fff;
+    font-size: 24px;
+    text-align: center;
+    line-height: 36px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    display: none;
+}
+.leftBtnText{
+    overflow: hidden;
+    line-height: 50px;
+    text-align: center;
+    width: 140px;
+    height: 50px;
+    font-size: 20px;
+}
+
+.freeBadge {
+    top: 0;
+    left: 0;
+    width:59px;
+    height: 30px;
+    background: url('../image/freeBadge.png')
+}
+.midContentSecondRowTop{
+    top: 260px;
+}
+.transformArrow{
+    transform: rotate(180deg)
+}
+#pageShowArea{
+    color: white;
+    font-size: 15px;
+    height: 30px;
+    line-height: 30px;
+    width: 100px;
+    position: absolute;
+    top: 115px;
+    left: 1180px;
+}

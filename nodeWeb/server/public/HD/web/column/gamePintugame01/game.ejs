@@ -1,0 +1,1136 @@
+<%- include ('../../components/header') %>
+    <style>
+        /* CSS Document */
+        body {
+            font-size:18px;
+            margin:0;
+            padding:0;
+            background-color: transparent;
+        }
+        div {
+            border:0;
+            margin:0;
+            padding:0;
+            box-sizing: border-box;
+        }
+        img {
+            border:0;
+            margin:0;
+            padding:0;
+        }
+
+        /*add css 2016-10-27   end*/
+
+        .main{
+            position: absolute;
+            width: 1280px;
+            height: 720px;
+            margin: 0;
+            padding: 0;
+            top: 0;
+            left: 0;
+            text-align: center;
+            background: url("./HD/web/column/gamePintugame01/image/starGame/background.png");
+        }
+        div {position: absolute;}
+        #game1{
+            width: 552px;
+            height:552px;
+            top: 114px;
+            left: 415px;
+        }
+        #game1>div{
+            width: 184px;
+            height: 184px;
+            position: absolute;
+        }
+        .block1{
+            width: 184px;
+            height: 184px;
+            overflow: hidden;
+            /*background: url("./HD/web/column/gamePintugame01/image/starGame/game.jpg")no-repeat 0px 0px;*/
+        }
+        .block2{
+            width: 184px;
+            height: 184px;
+            top:0px;
+            left:184px;
+            overflow: hidden;
+            /*background: url("./HD/web/column/gamePintugame01/image/starGame/game.jpg")no-repeat -184px 0px;*/
+        }
+        .block3{
+            width: 184px;
+            height: 184px;
+            overflow: hidden;
+            top:0px;
+            left:368px;
+            /*background: url("./HD/web/column/gamePintugame01/image/starGame/game.jpg")no-repeat -368px 0px;*/
+        }
+        .block4{
+            width: 184px;
+            height: 184px;
+            overflow: hidden;
+            top:184px;
+            left:0px;
+            /*background: url("./HD/web/column/gamePintugame01/image/starGame/game.jpg")no-repeat 0px -184px;*/
+        }
+        .block5{
+            width: 184px;
+            height: 184px;
+            overflow: hidden;
+            top:184px;
+            left:184px;
+           /* background: url("./HD/web/column/gamePintugame01/image/starGame/game.jpg")no-repeat -184px -184px;*/
+        }
+        .block6{
+            width: 184px;
+            height: 184px;
+            overflow: hidden;
+            top:184px;
+            left:368px;
+            /*background: url("./HD/web/column/gamePintugame01/image/starGame/game.jpg")no-repeat -368px -184px;*/
+        }
+        .block7{
+            width: 184px;
+            height: 184px;
+            overflow: hidden;
+            top:368px;
+            left:0px;
+            /*background: url("./HD/web/column/gamePintugame01/image/starGame/game.jpg")no-repeat 0px -368px;*/
+        }
+        .block8{
+            width: 184px;
+            height: 184px;
+            overflow: hidden;
+            top:368px;
+            left:184px;
+          /*  background: url("./HD/web/column/gamePintugame01/image/starGame/game.jpg")no-repeat -184px -368px;*/
+        }
+        .block9{
+            width: 184px;
+            height: 184px;
+            overflow: hidden;
+            top:368px;
+            left:368px;
+            /*background: url("./HD/web/column/gamePintugame01/image/starGame/game.jpg")no-repeat  -368px -368px ;*/
+        }
+        #loopimg{
+            width: 384px;
+            height: 720px;
+        }
+        #loopimg>div{
+            position: absolute;
+            width: 468px;
+            height: 724px;
+            top:0px;
+            left: -24px;
+        }
+        #loopimg>div>img{
+            width: 468px;
+            height: 724px;
+        }
+        #dialogue{
+            position: absolute;
+            width: 341px;
+            height: 180px;
+            top: 318px;
+            left: 46px;
+        }
+        #startGame{
+            width: 206px;
+            height: 96px;
+            top: 580px;
+            left: 105px;
+        }
+        #btnStartborder{
+            width: 206px;
+            height: 106px;
+            top: 574px;
+            left: 103px;
+        }
+        #timer-t{
+            width: 100px;
+            height: 41px;
+            top: 602px;
+            left: 126px;
+        }
+        #timer-t>img{
+            margin:0px;
+
+        }
+        .title{
+            width: 384px;
+            height: 103px;
+            top: 27px;
+            left: 490px;
+            z-index: 100;
+        }
+        #words{
+            width: 210px;
+            height: 170px;
+            top: 225px;
+            left: 1018px;
+        }
+        #lock{
+            top: 74px;
+            left: 1056px;
+        }
+        #lock_mask{
+            width:136px;
+            height:143px;
+        }
+        #lock_under{
+            width: 123px;
+    		height: 143px;
+    		top: 10px;
+    		left: 5px;
+        }
+        #lock_under>img{
+                width: 129px;
+    		height: 119px;
+    		border-radius: 26px;
+        }
+        #lock_border{
+            width:136px;
+            height:143px;
+        }
+        #main1{
+            /*visibility:visible;*/
+            display: block;
+        }
+        #main2{
+            position: absolute;
+            width: 1280px;
+            height: 720px;
+            margin: 0px;
+            padding: 0px;
+            top: 0px;
+            left: 0px;
+            text-align: center;
+            background: url("./HD/web/column/gamePintugame01/image/starGame/error.png");
+            /*visibility:hidden;*/
+            display:none;
+        }
+        #continue{
+            width: 231px;
+            height: 81px;
+            top: 391px;
+            left: 628px;
+            visibility:visible;
+        }
+        #back{
+            width: 84px;
+            height: 83px;
+            top: 72px;
+            left: 1045px;
+            visibility: hidden;
+        }
+    </style>
+</head>
+<body>
+<div class="main" id="main1">
+    <div id="startGame"  canstart="false">
+        <img src="./HD/web/column/gamePintugame01/image/starGame/btnStart0.png" alt="">
+    </div>
+    <div id="btnStartborder">
+        <img src="./HD/web/column/gamePintugame01/image/starGame/btnBorder.png" alt="">
+    </div>
+    <div id="timer-t" canstop="false" style="visibility: hidden;">
+        <img src="./HD/web/column/gamePintugame01/image/timer/9.png"  id="TenDigit"><img  id="SingleDigit" src="./HD/web/column/gamePintugame01/image/timer/9.png" alt=""><img id="ss"  src="./HD/web/column/gamePintugame01/image/timer/s.png">
+    </div>
+    <div class="title">
+        <img src="./HD/web/column/gamePintugame01/image/starGame/title1.png" alt="">
+    </div>
+    <div id="game1">
+        <div id="block1" class="block1">
+            <img src="" alt="" style="width:552px;height:552px;left:0px;top:0px;position: absolute;">
+            <img src="" alt="" style="position: absolute;top:0px;left:0px;">
+        </div>
+        <div id="block2"  class="block2">
+            <img src="" alt="" style="width:552px;height:552px;left:-184px;top:0px;position: absolute;">
+            <img src="" alt="" style="position: absolute;top:0px;left:0px;">
+
+        </div>
+        <div id="block3"  class="block3">
+
+            <img src="" alt="" style="width:552px;height:552px;left:-368px;top:0px;position: absolute;">
+            <img src="" alt="" style="position: absolute;top:0px;left:0px;">
+
+        </div>
+        <div id="block4"  class="block4">
+            <img src="" alt="" style="width:552px;height:552px;left:0px;top:-184px;position: absolute;">
+            <img src="" alt="" style="position: absolute;top:0px;left:0px;">
+        </div>
+        <div id="block5"  class="block5">
+
+            <img src="" alt="" style="width:552px;height:552px;left:-184px;top:-184px;position: absolute;">
+            <img src="" alt="" style="position: absolute;top:0px;left:0px;">
+        </div>
+        <div id="block6"  class="block6">
+
+            <img src="" alt="" style="width:552px;height:552px;left:-368px;top:-184px;position: absolute;">
+            <img src="" alt="" style="position: absolute;top:0px;left:0px;">
+        </div>
+
+
+        <div id="block7"  class="block7">
+
+            <img src="" alt="" style="width:552px;height:552px;left:0px;top:-368px;position: absolute;">
+            <img src="" alt="" style="position: absolute;top:0px;left:0px;">
+        </div>
+        <div id="block8"  class="block8">
+            <img src="" alt="" style="width:552px;height:552px;left:-184px;top:-368px;position: absolute;">
+            <img src="" alt="" style="position: absolute;top:0px;left:0px;">
+        </div>
+        <div id="block9"  class="block9">
+            <img src="" alt="" style="width:552px;height:552px;left:-368px;top:-368px;position: absolute;">
+            <img src="" alt="" style="position: absolute;top:0px;left:0px;">
+            <!--width: 184px;height: 184px;-->
+        </div>
+    </div>
+
+
+    <div id="loopimg" >
+        <div style="visibility: visible;">
+            <img src="./HD/web/column/gamePintugame01/image/starGame/0.png" alt="">
+        </div>
+        <div style="visibility:hidden;">
+            <img src="./HD/web/column/gamePintugame01/image/starGame/1.png" alt="">
+        </div>
+        <div style="visibility:hidden">
+            <img src="./HD/web/column/gamePintugame01/image/starGame/2.png" alt="">
+        </div >
+        <div style="visibility:hidden">
+            <img src="./HD/web/column/gamePintugame01/image/starGame/3.png" alt="">
+        </div>
+        <div style="visibility:hidden">
+            <img src="./HD/web/column/gamePintugame01/image/starGame/4.png" alt="">
+        </div>
+        <div style="visibility:hidden">
+            <img src="./HD/web/column/gamePintugame01/image/starGame/5.png" alt="">
+        </div>
+    </div>
+
+</div>
+<div id="main2" canclick="false" >
+    <div id="continue" canclick="true"  >
+        <img src="./HD/web/column/gamePintugame01/image/common/ellipse.png" alt="">
+    </div>
+    <div id="back" canclick="false" >
+        <img src="./HD/web/column/gamePintugame01/image/common/circle.png" alt="">
+    </div>
+</div>
+<!-- <div id="test" style="width:300px;height:200px;top:20px;left:40px; background: #ffffff;">
+</div> -->
+<div id="result" style="z-index:2">
+    <img src="./HD/web/column/gamePintugame01/image/window/background.png" style="width:1280px;height:720px;position:absolute;left:0px;top:0px;visibility: hidden"alt="">
+    <img src="./HD/web/column/gamePintugame01/image/window/backgroundshib.png" style="width:1280px;height:720px;position:absolute;left:0px;top:0px;visibility: hidden"alt="">
+</div>
+	<!-- 引入公共js开始 -->
+	<%- include('../../components/commJs') %>
+	<!-- 引入公共js结束 -->
+    <script type = "text/javascript" src="<%= basePageUrl %>/js/keydown1.js?v=20200115"></script>
+    <script>
+var result=document.getElementById("result").getElementsByTagName("img");
+
+function showSuccess(){
+		result[0].style.visibility="visible";
+		
+}
+function showFail(){
+	for(var i = 0; i < blockList.length; i++){
+		blockList[i].canMove = false;
+		blockList[i].img = false;
+		CT.$("block" + (i+1)).getElementsByTagName("img").src = "";
+	}
+	result[1].style.visibility="visible";
+}
+function hiddenResult(){
+	for(var i = 0; i < blockList.length; i++){
+		blockList[i].canMove = false;
+		blockList[i].img = false;
+		CT.$("block" + (i+1)).getElementsByTagName("img").src = "";
+	}
+	result[0].style.visibility="hidden";
+	result[1].style.visibility="hidden";
+}
+   var  imgArr=[
+        "./HD/web/column/gamePintugame01/image/starGame/game1.jpg",
+        "./HD/web/column/gamePintugame01/image/starGame/game2.jpg",
+        "./HD/web/column/gamePintugame01/image/starGame/game3.jpg",
+        "./HD/web/column/gamePintugame01/image/starGame/game4.jpg",
+        "./HD/web/column/gamePintugame01/image/starGame/game5.jpg",
+        "./HD/web/column/gamePintugame01/image/starGame/game6.jpg",
+        "./HD/web/column/gamePintugame01/image/starGame/game7.jpg",
+        "./HD/web/column/gamePintugame01/image/starGame/game8.jpg",
+        "./HD/web/column/gamePintugame01/image/starGame/game9.jpg",
+        "./HD/web/column/gamePintugame01/image/starGame/game10.jpg",
+        "./HD/web/column/gamePintugame01/image/starGame/game11.jpg",
+        "./HD/web/column/gamePintugame01/image/starGame/game12.jpg",
+        "./HD/web/column/gamePintugame01/image/starGame/game13.jpg",
+        "./HD/web/column/gamePintugame01/image/starGame/game14.jpg",
+        "./HD/web/column/gamePintugame01/image/starGame/game15.jpg",
+        "./HD/web/column/gamePintugame01/image/starGame/game16.jpg",
+        "./HD/web/column/gamePintugame01/image/starGame/game17.jpg",
+        "./HD/web/column/gamePintugame01/image/starGame/game18.jpg",
+        "./HD/web/column/gamePintugame01/image/starGame/game19.jpg",
+        "./HD/web/column/gamePintugame01/image/starGame/game20.jpg"];
+    function randomImgUrl(){
+        var urlIndex=Math.floor(Math.random()*imgArr.length);
+        var url1=imgArr[urlIndex];
+
+        var divImgList1=document.getElementById("game1").getElementsByTagName("div");
+        for(var i=0;i<divImgList1.length;i++){
+            divImgList1[i].getElementsByTagName("img")[0].src=url1;
+        }
+    }
+    randomImgUrl();
+   
+    </script>
+    <script>
+    var arrDiv=[];
+    var nowIndexList=[];
+    var canplay=true;
+    //随机生成0-9
+    function RandomArry(){
+        var arr=[0,1,2,3,4,5,6,7,8];
+		arrDiv=[];
+        while(arrDiv.length<9){
+            var index=Math.floor(Math.random()*arr.length);
+            arrDiv.push(arr.splice(index,1).toString()-0);
+        }
+    }
+    var b1={
+        id:"block1",
+        left:null,
+        top:null,
+        nowIndex:null,
+        canMove:true,
+        img:false,
+        canChange:false,
+        selected:"./HD/web/column/gamePintugame01/image/starGame/selected.png",
+        transition:"./HD/web/column/gamePintugame01/image/starGame/transition.png",
+        change:"./HD/web/column/gamePintugame01/image/common/change.png",
+        inti:function(){
+            var me=document.getElementById(this.id);
+            me.style.left=this.left+"px";
+            me.style.top=this.top+"px";
+        },
+        move:function(){
+            if(this.canChange){
+                document.getElementById(this.id).getElementsByTagName("img")[1].src=this.selected;
+            }else{
+                if(this.canMove){
+                    document.getElementById(this.id).getElementsByTagName("img")[1].src=this.transition;
+
+                }else{
+                    document.getElementById(this.id).getElementsByTagName("img")[1].src=this.change;
+                }
+            }
+        },
+        enterFuc:function(){
+            if(this.canChange){
+                document.getElementById(this.id).getElementsByTagName("img")[1].src=this.selected;
+                this.img=true;
+                this.canMove=false;
+            }
+        }
+    };
+    var b2={
+        id:"block2",
+        left:null,
+        top:null,
+        nowIndex:null,
+        canMove:false,
+        img:false,
+        canChange:false,
+        selected:"./HD/web/column/gamePintugame01/image/starGame/selected.png",
+        transition:"./HD/web/column/gamePintugame01/image/starGame/transition.png",
+        change:"./HD/web/column/gamePintugame01/image/common/change.png",
+        inti:function(){
+            var me=document.getElementById(this.id);
+            me.style.left=this.left+"px";
+            me.style.top=this.top+"px";
+        },
+        move:function(){
+            if(this.canChange){
+                document.getElementById(this.id).getElementsByTagName("img")[1].src=this.selected;
+            }else{
+                if(this.canMove){
+                    document.getElementById(this.id).getElementsByTagName("img")[1].src=this.transition;
+                }else{
+                    document.getElementById(this.id).getElementsByTagName("img")[1].src=this.change;
+                }
+            }
+        },
+        enterFuc:function(){
+            if(this.canChange){
+                document.getElementById(this.id).getElementsByTagName("img")[1].src=this.selected;
+                this.img=true;
+                this.canMove=false;
+            }
+        }
+    };
+    var b3={
+        id:"block3",
+        left:null,
+        top:null,
+        nowIndex:null,
+        canMove:false,
+        img:false,
+        canChange:false,
+        selected:"./HD/web/column/gamePintugame01/image/starGame/selected.png",
+        transition:"./HD/web/column/gamePintugame01/image/starGame/transition.png",
+        change:"./HD/web/column/gamePintugame01/image/common/change.png",
+        inti:function(){
+            var me=document.getElementById(this.id);
+            me.style.left=this.left+"px";
+            me.style.top=this.top+"px";
+
+        },
+        move:function(){
+            if(this.canChange){
+                document.getElementById(this.id).getElementsByTagName("img")[1].src=this.selected;
+            }else{
+                if(this.canMove){
+                    document.getElementById(this.id).getElementsByTagName("img")[1].src=this.transition;
+                }else{
+                    document.getElementById(this.id).getElementsByTagName("img")[1].src=this.change;
+                }
+            }
+        },
+        enterFuc:function(){
+            if(this.canChange){
+                document.getElementById(this.id).getElementsByTagName("img")[1].src=this.selected;
+                this.img=true;
+                this.canMove=false;
+            }
+        }
+    };
+    var b4={
+        id:"block4",
+        left:null,
+        top:null,
+        nowIndex:null,
+        canMove:false,
+        img:false,
+        canChange:false,
+        selected:"./HD/web/column/gamePintugame01/image/starGame/selected.png",
+        transition:"./HD/web/column/gamePintugame01/image/starGame/transition.png",
+        change:"./HD/web/column/gamePintugame01/image/common/change.png",
+        inti:function(){
+            var me=document.getElementById(this.id);
+            me.style.left=this.left+"px";
+            me.style.top=this.top+"px";
+        },
+        move:function(){
+            if(this.canChange){
+                document.getElementById(this.id).getElementsByTagName("img")[1].src=this.selected;
+            }else{
+                if(this.canMove){
+                    document.getElementById(this.id).getElementsByTagName("img")[1].src=this.transition;
+                }else{
+                    document.getElementById(this.id).getElementsByTagName("img")[1].src=this.change;
+                }
+            }
+        },
+        enterFuc:function(){
+            if(this.canChange){
+                document.getElementById(this.id).getElementsByTagName("img")[1].src=this.selected;
+                this.img=true;
+                this.canMove=false;
+            }
+        }
+    };
+    var b5={
+        id:"block5",
+        left:null,
+        top:null,
+        nowIndex:null,
+        canMove:false,
+        img:false,
+        canChange:false,
+        selected:"./HD/web/column/gamePintugame01/image/starGame/selected.png",
+        transition:"./HD/web/column/gamePintugame01/image/starGame/transition.png",
+        change:"./HD/web/column/gamePintugame01/image/common/change.png",
+        inti:function(){
+            var me=document.getElementById(this.id);
+            me.style.left=this.left+"px";
+            me.style.top=this.top+"px";
+        },
+        move:function(){
+            if(this.canChange){
+                document.getElementById(this.id).getElementsByTagName("img")[1].src=this.selected;
+            }else{
+                if(this.canMove){
+                    document.getElementById(this.id).getElementsByTagName("img")[1].src=this.transition;
+                }else{
+                    document.getElementById(this.id).getElementsByTagName("img")[1].src=this.change;
+                }
+            }
+        },
+        enterFuc:function(){
+            if(this.canChange){
+                document.getElementById(this.id).getElementsByTagName("img")[1].src=this.selected;
+                this.img=true;
+                this.canMove=false;
+            }
+        }
+    };
+    var b6={
+        id:"block6",
+        left:null,
+        top:null,
+        nowIndex:null,
+        canMove:false,
+        img:false,
+        canChange:false,
+        selected:"./HD/web/column/gamePintugame01/image/starGame/selected.png",
+        transition:"./HD/web/column/gamePintugame01/image/starGame/transition.png",
+        change:"./HD/web/column/gamePintugame01/image/common/change.png",
+        inti:function(){
+            var me=document.getElementById(this.id);
+            me.style.left=this.left+"px";
+            me.style.top=this.top+"px";
+        },
+        move:function(){
+            if(this.canChange){
+                document.getElementById(this.id).getElementsByTagName("img")[1].src=this.selected;
+            }else{
+                if(this.canMove){
+                    document.getElementById(this.id).getElementsByTagName("img")[1].src=this.transition;
+                }else{
+                    document.getElementById(this.id).getElementsByTagName("img")[1].src=this.change;
+                }
+            }
+        },
+        enterFuc:function(){
+            if(this.canChange){
+                document.getElementById(this.id).getElementsByTagName("img")[1].src=this.selected;
+                this.img=true;
+                this.canMove=false;
+            }
+        }
+    };
+    var b7={
+        id:"block7",
+        left:null,
+        top:null,
+        nowIndex:null,
+        canMove:false,
+        img:false,
+        canChange:false,
+        selected:"./HD/web/column/gamePintugame01/image/starGame/selected.png",
+        transition:"./HD/web/column/gamePintugame01/image/starGame/transition.png",
+        change:"./HD/web/column/gamePintugame01/image/common/change.png",
+        inti:function(){
+            var me=document.getElementById(this.id);
+            me.style.left=this.left+"px";
+            me.style.top=this.top+"px";
+        },
+        move:function(){
+            if(this.canChange){
+                document.getElementById(this.id).getElementsByTagName("img")[1].src=this.selected;
+            }else{
+                if(this.canMove){
+                    document.getElementById(this.id).getElementsByTagName("img")[1].src=this.transition;
+                }else{
+                    document.getElementById(this.id).getElementsByTagName("img")[1].src=this.change;
+                }
+            }
+        },
+        enterFuc:function(){
+            if(this.canChange){
+                document.getElementById(this.id).getElementsByTagName("img")[1].src=this.selected;
+                this.img=true;
+                this.canMove=false;
+            }
+        }
+    };
+    var b8={
+        id:"block8",
+        left:null,
+        top:null,
+        nowIndex:null,
+        canMove:false,
+        img:false,
+        canChange:false,
+        selected:"./HD/web/column/gamePintugame01/image/starGame/selected.png",
+        transition:"./HD/web/column/gamePintugame01/image/starGame/transition.png",
+        change:"./HD/web/column/gamePintugame01/image/common/change.png",
+        inti:function(){
+            var me=document.getElementById(this.id);
+            me.style.left=this.left+"px";
+            me.style.top=this.top+"px";
+        },
+        move:function(){
+            if(this.canChange){
+                document.getElementById(this.id).getElementsByTagName("img")[1].src=this.selected;
+            }else{
+                if(this.canMove){
+                    document.getElementById(this.id).getElementsByTagName("img")[1].src=this.transition;
+                }else{
+                    document.getElementById(this.id).getElementsByTagName("img")[1].src=this.change;
+                }
+            }
+        },
+        enterFuc:function(){
+            if(this.canChange){
+                document.getElementById(this.id).getElementsByTagName("img")[1].src=this.selected;
+                this.img=true;
+                this.canMove=false;
+            }
+        }
+    };
+    var b9={
+        id:"block9",
+        left:null,
+        top:null,
+        nowIndex:null,
+        canMove:false,
+        img:false,
+        canChange:false,
+        selected:"./HD/web/column/gamePintugame01/image/starGame/selected.png",
+        transition:"./HD/web/column/gamePintugame01/image/starGame/transition.png",
+        change:"./HD/web/column/gamePintugame01/image/common/change.png",
+        inti:function(){
+            var me=document.getElementById(this.id);
+            me.style.left=this.left+"px";
+            me.style.top=this.top+"px";
+        },
+        move:function(){
+            if(this.canChange){
+                document.getElementById(this.id).getElementsByTagName("img")[1].src=this.selected;
+            }else{
+                if(this.canMove){
+                    document.getElementById(this.id).getElementsByTagName("img")[1].src=this.transition;
+                }else{
+                    document.getElementById(this.id).getElementsByTagName("img")[1].src=this.change;
+                }
+            }
+        },
+        enterFuc:function(){
+            if(this.canChange){
+                document.getElementById(this.id).getElementsByTagName("img")[1].src=this.selected;
+                this.img=true;
+                this.canMove=false;
+            }
+        }
+    };
+    var blockList=[b1,b2,b3,b4,b5,b6,b7,b8,b9];
+    function random(mode){
+        for(var i=0;i<mode.length;i++){
+            mode[i].left=parseFloat(184*(arrDiv[i]%3));
+            mode[i].top=parseFloat(184*(Math.floor(arrDiv[i]/3)));
+            mode[i].nowIndex=arrDiv[i];
+            mode[i].inti();
+            mode[i].move();
+        }
+    }
+    var enterTheBtn=false;
+    function moveLeft(){
+        if(canplay&&enterTheBtn){
+            var nowId,beforeId;
+            for (var i=0;i<blockList.length;i++){
+                if(blockList[i].canMove){
+                    nowId=blockList[i];
+                    break;
+                }
+            }
+            if(!nowId){
+                for (var i=0;i<blockList.length;i++){
+                    if(blockList[i].img){
+                        nowId=blockList[i];
+                        break;
+                    }
+                }
+            }
+            if( nowId.nowIndex%3>0){
+                for(var i=0;i<blockList.length;i++){
+                    if((nowId.nowIndex-1)==blockList[i].nowIndex){
+                        beforeId=blockList[i];
+                        break;
+                    }
+                }
+                nowId.canMove=false;
+                nowId.move();
+                beforeId.canMove=true;
+                beforeId.move();
+            }
+        }
+
+    }
+    function moveRight(){
+        if(canplay&&enterTheBtn){
+            var nowId,beforeId;
+            for (var i=0;i<blockList.length;i++){
+                if(blockList[i].canMove){
+                    nowId=blockList[i];
+                    break;
+                }
+            }
+            if(!nowId){
+                for (var i=0;i<blockList.length;i++){
+                    if(blockList[i].img){
+                        nowId=blockList[i];
+                        break;
+                    }
+                }
+            }
+            if( nowId.nowIndex%3<2){
+                for(var i=0;i<blockList.length;i++){
+                    if((nowId.nowIndex/1+1)==blockList[i].nowIndex){
+                        beforeId=blockList[i];
+                        break;
+                    }
+                }
+                nowId.canMove=false;
+                nowId.move();
+                beforeId.canMove=true;
+                beforeId.move();
+            }
+        }
+
+    }
+    function moveUp(){
+        if(canplay&&enterTheBtn){
+            var nowId,beforeId;
+            for (var i=0;i<blockList.length;i++){
+                if(blockList[i].canMove){
+                    nowId=blockList[i];
+                    break;
+                }
+            }
+            if(!nowId){
+                for (var i=0;i<blockList.length;i++){
+                    if(blockList[i].img){
+                        nowId=blockList[i];
+                        break;
+                    }
+                }
+            }
+            if( Math.floor(nowId.nowIndex/3)>0){
+                //console.log(nowId.nowIndex-3);
+                for(var i=0;i<blockList.length;i++){
+                    if((nowId.nowIndex-3)==blockList[i].nowIndex){
+                        beforeId=blockList[i];
+                        break;
+                    }
+                }
+                nowId.canMove=false;
+                nowId.move();
+                beforeId.canMove=true;
+                beforeId.move();
+            }
+        }
+
+    }
+    function moveDown(){
+        if(canplay&&enterTheBtn){
+            var nowId,beforeId;
+            for (var i=0;i<blockList.length;i++){
+                if(blockList[i].canMove){
+                    nowId=blockList[i];
+                    break;
+                }
+            }
+            if(!nowId){
+                for (var i=0;i<blockList.length;i++){
+                    if(blockList[i].img){
+                        nowId=blockList[i];
+                        break;
+                    }
+                }
+            }
+            if( Math.floor(nowId.nowIndex/3)<2){
+                for(var i=0;i<blockList.length;i++){
+                    if((nowId.nowIndex/1+3)==blockList[i].nowIndex){
+                        beforeId=blockList[i];
+                        break;
+                    }
+                }
+                nowId.canMove=false;
+                nowId.move();
+                beforeId.canMove=true;
+                beforeId.move();
+            }
+        }
+
+    }
+    function okFunc(){
+        var nowId,beforeId;
+        if(canplay){
+        for(var i=0;i<blockList.length;i++){
+            if(blockList[i].img){
+                beforeId=blockList[i];
+                break;
+            	}
+        	}
+	        if(!beforeId){
+	            for(var i=0;i<blockList.length;i++){
+	                if(blockList[i].canMove){
+	                    nowId=blockList[i];
+	                    break;
+	                }
+	            }
+	            nowId.canChange=true;
+	            nowId.move();
+	            nowId.enterFuc();
+	        }else{
+	            for(var i=0;i<blockList.length;i++){
+	                if(blockList[i].canMove){
+	                    nowId=blockList[i];
+	                    break;
+	                }
+	            }
+	        }
+	        if(nowId&&beforeId){
+	            document.getElementById(nowId.id).style.zIndex=12;
+	            document.getElementById(beforeId.id).style.zIndex=10;
+	            var x1=nowId.left;
+	            var y1=nowId.top;
+	            var x2=beforeId.left;
+	            var y2=beforeId.top;
+	            Pythagoras(x1,y1,x2,y2,nowId,beforeId);
+	
+	        }
+        }
+        
+    }
+    function Pythagoras(x1,y1,x2,y2,nowId,beforeId){
+        var xPrecent=(x1-x2)/5;
+        var yPrecent=(y1-y2)/5;
+        var i=0;
+        var timer=setInterval(function(){
+            i++;
+            if(i<=5){
+                nowId.left=x1-i*xPrecent;
+                nowId.top=y1-i*yPrecent;
+                nowId.inti();
+                beforeId.left=x2+i*xPrecent;
+                beforeId.top=y2+i*yPrecent;
+                beforeId.inti();
+                canplay=false;
+
+            }else{
+                /*var cc=getAttributeCanChange();
+                var oldIndex=cc.getAttribute("nowindex");
+                var nowIndex=me.getAttribute("nowindex");
+                me.setAttribute("nowindex",oldIndex);
+                cc.setAttribute("nowindex",nowIndex);
+                cc.setAttribute("canChange","false");
+                me.id= "border2";
+                cc.id='';
+                canMove=true;
+                checkSuccess();*/
+                var nowindex=beforeId.nowIndex;
+                beforeId.nowIndex=nowId.nowIndex;
+                nowId.nowIndex=nowindex;
+                beforeId.canChange=false;
+                beforeId.img=false;
+                nowId.canChange=false;
+                beforeId.move();
+                nowId.move();
+                canplay=true;
+                document.getElementById(nowId.id).style.zIndex=1;
+                document.getElementById(beforeId.id).style.zIndex=1;
+//添加检测成功事件
+                clearInterval(timer);
+                i=0;
+                checkSuccess();
+            }
+        },10);
+    }
+    function checkSuccess(){
+        var succssArr=[0,1,2,3,4,5,6,7,8];
+        nowIndexList=[];
+        for(var i=0;i<blockList.length;i++){
+            nowIndexList.push(blockList[i].nowIndex);
+        }
+        if(succssArr.toString()==nowIndexList.toString()){
+            mainControl.successTime=true;
+           // document.getElementById("lock_mask").innerHTML="";
+            setTimeout(function(){
+                //window.location.href="http://www.baidu.com";
+                    	//stop();
+                  	//拼图成功
+                  	showSuccess();
+                  	mainControl.gameOver=true;
+                //window.location.href="success.html";
+                
+            },1000)
+            //成功后
+        }
+
+    }
+    var TenDigit=document.getElementById("TenDigit");
+    var SingleDigit=document.getElementById("SingleDigit");
+    var ss=document.getElementById("ss");
+    function changeTime(times) {
+            var h=Math.floor(times/10);
+            var s= times%10;
+            TenDigit.src = "./HD/web/column/gamePintugame01/image/timer/"+h+ ".png";
+            SingleDigit.src ="./HD/web/column/gamePintugame01/image/timer/"+s+ ".png";
+            ss.src='./HD/web/column/gamePintugame01/image/timer/s.png';
+    }
+    var replayTime;
+    var timet;
+    function loopImages(s){
+        var imgList=document.getElementById("loopimg").getElementsByTagName("div");
+        var t=0;
+        if(s){timet=s;}else {timet=99;}
+        var timerImg=setInterval(function(){
+            var nowIndexT=t%6;var beforeIndexT;
+            if(nowIndexT==0){
+                beforeIndexT=5;
+            }else{
+                beforeIndexT=nowIndexT-1;
+            }
+            if(mainControl.timeCanRun){
+                if( t%4==0){
+                    timet--;
+                    changeTime(timet);
+                }
+            }
+            if(mainControl.canDisplay){
+                clearInterval(timerImg);
+                replayTime=timet;
+            }
+            if(mainControl.successTime){
+             clearInterval(timerImg);
+            }
+            if(timet<10){
+                document.getElementById("startGame").getElementsByTagName("img")[0].src="./HD/web/column/gamePintugame01/image/starGame/btnStart2.png";
+            }
+            if(timet<=0){clearInterval(timerImg);t=0;
+					showFail();
+                  	mainControl.gameOver=true;
+                }
+            imgList[nowIndexT].style.visibility="visible";
+            imgList[beforeIndexT].style.visibility="hidden";
+            t++;
+        },250)
+    }
+    loopImages();
+    var mainControl={
+        canRandomPosition:false,
+        canDisplay:false,
+        timeCanRun:false,
+        continueGame:true,
+        goBackMain:false,
+        successTime:false,
+        gameOver:false,
+    }
+
+	 function intiStart(){
+     var arr=[0,1,2,3,4,5,6,7,8];
+       
+     arrDiv=arr;
+     b1.canMove=false;
+	 
+     b2.canMove=false;
+     b3.canMove=false;
+     b4.canMove=false;
+     b5.canMove=false;
+     b6.canMove=false;
+     b7.canMove=false;
+     b8.canMove=false;
+     random(blockList);
+        
+    }
+    function enterTotal(){//确认按钮
+		if(mainControl.gameOver){
+			randomImgUrl();
+			arrDiv=[];
+			nowIndexList=[];
+			canplay=true;
+			mainControl={
+				canRandomPosition:false,
+				canDisplay:false,
+				timeCanRun:false,
+				continueGame:true,
+				goBackMain:false,
+				successTime:false,
+				gameOver:false,
+			}
+			hiddenResult();
+			loopImages(99);
+			mainControl.canRandomPosition=false;
+			document.getElementById("btnStartborder").style.visibility="visible";
+			document.getElementById("startGame").getElementsByTagName("img")[0].src="./HD/web/column/gamePintugame01/image/starGame/btnStart0.png";
+			document.getElementById("timer-t").style.visibility="hidden";
+			changeTime(99);
+			intiStart();
+		}else{
+			if(!mainControl.canDisplay){
+				if(mainControl.canRandomPosition==false){
+					RandomArry();
+					enterTheBtn=true;//对上下左右键进行修订，防止报错
+					mainControl.canRandomPosition=true;
+					document.getElementById("btnStartborder").style.visibility="hidden";
+					document.getElementById("startGame").getElementsByTagName("img")[0].src="./HD/web/column/gamePintugame01/image/starGame/btnStart1.png";
+					document.getElementById("timer-t").style.visibility="visible";
+					mainControl.timeCanRun=true;
+					//b1.canMove=true;
+					b1.canMove=true;
+					random(blockList);
+					//document.getElementById("block1").getElementsByTagName("img")[0].src="./HD/web/column/gamePintugame01/image/starGame/transition.png";
+				}else {
+					okFunc();
+				}
+			}else{
+				if (mainControl.continueGame) {
+					replay();
+				}
+				if(mainControl.goBackMain){
+					goBack();
+				}
+			}
+		}
+	}
+
+    function upTotal() {
+        if (!mainControl.canDisplay) {
+            moveUp();
+        }
+        else {
+            if (!mainControl.goBackMain) {
+                mainControl.continueGame=false;
+                mainControl.goBackMain=true;
+                document.getElementById("continue").style.visibility = "hidden";
+                document.getElementById("back").style.visibility = "visible";
+            }
+        }
+    }
+    function downTotal(){
+        if (!mainControl.canDisplay) {
+            moveDown();
+        }
+        else {
+            if (!mainControl.continueGame) {
+                mainControl.goBackMain=false;
+                mainControl.continueGame=true;
+                document.getElementById("continue").style.visibility = "visible";
+                document.getElementById("back").style.visibility ="hidden";
+            }
+        }
+    };
+   
+    function replay(){
+        document.getElementById("main2").style.display="none";
+        document.getElementById("main1").style.display="block";
+        mainControl.canDisplay=false;
+        loopImages(replayTime);
+        //调用定时器
+    }
+    function goBack(){
+        //返回键盘
+         backFunc();
+    }
+    function backFunc(){
+		CT.backPage();
+	};
+    var curFocus={};
+</script>
+</body>
+</html>

@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>关卡1--签到领好礼</title>
+    <link rel="stylesheet" type="text/css" href="css/signIn.css"?v="11223">
+</head>
+<body>
+<div class="main">
+    <!--我的积分-->
+    <div style="position: absolute;left: 10px;">
+        <img src="images/integral.png">
+        <div id="scoreNum"></div>
+    </div>
+    <!--积分 + 10-->
+    <div class="scorePush">
+        <img id="scorePush" src="images/signIn/scorePush.png">
+    </div>
+    <!--签到-->
+    <div id="hands_x0_y0_signInBtnS_" class="signInBtn">
+        <img id="signInBtn" src="images/signIn/signInBtn.png">
+        <img id="signInBtnS" src="images/signIn/signInBtnS.png" style="visibility: hidden;">
+    </div>
+    <!--手-->
+    <div class="finger">
+        <img id="finger" src="images/signIn/finger0.png">
+    </div>
+    <!--天数-->
+    <div id="numberDay" class="numberDay">
+
+    </div>
+    <!--宝箱-->
+    <div class="chect">
+        <div id="load" class="load"></div>
+        <div class="chest0">
+            <div class="chestDay">3天</div>
+            <img id="chect0" src="images/signIn/chest/noChest.png">
+        </div>
+        <div class="chest1">
+            <div class="chestDay">7天</div>
+            <img id="chect1" src="images/signIn/chest/noChest.png">
+        </div>
+        <div class="chest2">
+            <div class="chestDay">15天</div>
+            <img id="chect2" src="images/signIn/chest/noChest.png">
+        </div>
+        <div class="chest3">
+            <div class="chestDay">30天</div>
+            <img id="chect3" src="images/signIn/chest/noChest.png">
+        </div>
+        <div class="chest4">
+            <div class="chestDay">45天</div>
+            <img id="chect4" src="images/signIn/chest/noChest.png">
+        </div>
+        <div class="chest5">
+            <div class="chestDay">60天</div>
+            <img id="chect5" src="images/signIn/chest/noChest.png">
+        </div>
+        <div class="chest6">
+            <div class="chestDay">70天</div>
+            <img id="chect6" src="images/signIn/chest/noChest.png">
+        </div>
+    </div>
+    <!--签到成功-->
+    <div id="qdcg">
+        <img src="images/signIn/popup/qdcgTip.png">
+        <div id="hands_x0_y0_jxyxBtnS_">
+            <img src="images/signIn/popup/jxyx.png">
+            <img id="jxyxBtnS" src="images/signIn/popup/btnS.png" style="visibility: hidden">
+        </div>
+        <div id="hands_x0_y0_toIpBtnS_">
+            <img src="images/signIn/popup/kdh.png">
+            <img id="toIpBtnS" src="images/signIn/popup/btnS.png" style="visibility:hidden;">
+        </div>
+    </div>
+    <!--已签到-->
+    <div id="yqd">
+        <img src="images/signIn/popup/yqdTip.png">
+        <div id="hands_x0_y0_mtzlBtnS_">
+            <img src="images/signIn/popup/mtzl.png">
+            <img id="mtzlBtnS" src="images/signIn/popup/btnS.png" style="visibility: hidden">
+        </div>
+    </div>
+    <!--七天会员免费体验券-->
+    <div id="qtmfhy">
+        <img src="images/signIn/popup/qtmfhy.png">
+        <div id="tyqCode"></div>
+        <div id="hands_x0_y0_confirmBtnS_">
+            <img src="images/signIn/popup/confirm.png">
+            <img id="confirmBtnS" src="images/signIn/popup/btnS.png" style="visibility: hidden">
+        </div>
+    </div>
+    <!--获得神秘礼物-->
+    <div id="smlw">
+        <img src="images/signIn/popup/smlw.png">
+        <div id="getScore"> +20积分 </div>
+        <div id="hands_x0_y0_smlwBtnS_">
+            <img src="images/signIn/popup/confirm.png">
+            <img id="smlwBtnS" src="images/signIn/popup/btnS.png" style="visibility: hidden;top: 9px;">
+        </div>
+    </div>
+    <!--我的卡券-->
+    <div id="hands_x0_y0_myPrizeBtnS_">
+        <img src="images/signIn/myPrizeBtn.png">
+        <img id="myPrizeBtnS" src="images/signIn/myPrizeBtnS.png" style="visibility: hidden">
+    </div>
+    
+
+
+</div>
+<!--<script type="text/javascript" src="js/common3_4.js"></script>
+<script type="text/javascript" src="js/key3_4.js"></script>
+<script type="text/javascript" src="js/actiComm.js"></script>-->
+
+<script type = "text/javascript" src = "../../../../js/loadCommomJs.js"></script>
+<script type="text/javascript" src="../../../../js/actiComm.js?v=2021"></script>
+<script type="text/javascript" src="js/credit.js"></script>
+<script>
+    buttons.push({
+        id:'hands_x0_y0_signInBtnS_',
+        clickHandler:'javascript:goSignIn()',
+        up:'disable',
+        downEvent:'javascript:isCodeBtn()',
+        left:'disable',
+        right:'disable',
+        focusType:7
+    },{
+        id:'hands_x0_y0_jxyxBtnS_',
+        clickHandler:'javascript:toHome()',
+        up:'disable',
+        down:'disable',
+        left:'disable',
+        right:'hands_x0_y0_toIpBtnS_',
+        focusType:7
+    },{
+        id:'hands_x0_y0_toIpBtnS_',
+        clickHandler:'javascript:toIP()',
+        up:'disable',
+        down:'disable',
+        left:'hands_x0_y0_jxyxBtnS_',
+        right:'disable',
+        focusType:7
+    },{
+        id:'hands_x0_y0_mtzlBtnS_',
+        clickHandler:'javascript:toHome()',
+        up:'disable',
+        down:'disable',
+        left:'disable',
+        right:'disable',
+        focusType:7
+    },{
+        id:'hands_x0_y0_confirmBtnS_',
+        clickHandler:'javascript:toHome()',
+        up:'disable',
+        down:'disable',
+        left:'disable',
+        right:'disable',
+        focusType:7
+    },{
+        id:'hands_x0_y0_smlwBtnS_',
+        clickHandler:'javascript:toHome()',
+        up:'disable',
+        down:'disable',
+        left:'disable',
+        right:'disable',
+        focusType:7
+    },{
+        id:'hands_x0_y0_myPrizeBtnS_',
+        clickHandler:'javascript:codePopup()',
+        up:'hands_x0_y0_signInBtnS_',
+        down:'disable',
+        left:'disable',
+        right:'disable',
+        focusType:7
+    })
+
+    PAGE.focusInit();//焦点初始化
+    PAGE.changeFocus("hands_x0_y0_signInBtnS_");
+
+    var userprizes = '';//奖品列表
+    var myScore = 0;//当前积分
+    var isOrder = 1;//是否订购,0表示已订购
+    var selectpicnum = 0;
+    var createTime = '';//当前日期
+    var userdatalist = {};
+    var allCreditNum = 0;//总积分
+    var prizes = [];//所有奖品
+
+    /*初始化*/
+    function initPage(){
+        //鉴权
+        orderJs.columnGetAuth(function (data) {
+            if(data == '0'){
+                isOrder = 0;
+            }else {
+                isOrder = 1;
+            }
+        });
+
+        /*奖品列表*/
+        actiObj.getActivityPrize(function (data) {
+            prizes = data.data.records;
+            actiObj.getUserPrizeInfo(function (data) {
+                userprizes = data;
+                actiObj.getChance(function (data) {
+                    createTime = data.data.createTime.substring(0, 10);
+                    actiObj.getUserDataList(function (data) {
+                        if (data.data && data.data.userActiData) {
+                            userdatalist = CT.stringToJson(data.data.userActiData);
+                            CT.$('numberDay').innerHTML = userdatalist.signInNum < 10 ? "00" + userdatalist.signInNum : userdatalist.signInNum < 100 ? "0" + userdatalist.signInNum : userdatalist.signInNum;
+                            showChest();
+                            if(userdatalist.tyqCode != ""){
+                                CT.$('hands_x0_y0_myPrizeBtnS_').style.visibility = 'visible';
+                            }
+                        } else {
+                            userdatalist = {
+                                signInNum: 0, //签到总天数
+                                signInDate: '',  //签到日期
+                                tyqCode:'' //免费券编码号
+                            }
+                            CT.$('numberDay').innerHTML = "000";
+                        }
+                        if (userdatalist.signInDate == createTime) {
+                            CT.$('signInBtn').src = 'images/signIn/signed.png';//已签到按钮
+                            CT.$('scorePush').style.visibility = 'hidden';//积分隐藏
+                        }
+                        actiObj.setUserDataList(CT.jsonToString(userdatalist));
+
+                    })
+                })
+            });
+        });
+
+
+        var timer = setInterval(function(){
+            CT.$('finger').src = 'images/signIn/finger' + (selectpicnum%2) + '.png'
+            selectpicnum++;
+        },200)
+
+        getCredit();
+    }
+    initPage();
+    /*焦点移动到卡券*/
+    function isCodeBtn() {
+        if(userdatalist.tyqCode != ""){//有卡券 可以移动
+            PAGE.changeFocus("hands_x0_y0_myPrizeBtnS_");
+        }
+    }
+    /*获取积分*/
+    function getCredit() {
+        getUserCredit(15,function(res){
+            if(res && res.successFlg == 1 && res.data){
+                allCreditNum = res.data.creditNum;
+                CT.$('scoreNum').innerHTML = allCreditNum;
+            }
+        });
+    }
+    /*显示已开启宝箱*/
+    function showChest() {
+        if (userdatalist.signInNum == 3) {
+            CT.$('load').style.width = '135px';
+            CT.$('chect0').src = "images/signIn/chest/openedChest.png";
+        }else if (userdatalist.signInNum == 7) {
+            CT.$('load').style.width = '260px';
+            CT.$('chect0').src = "images/signIn/chest/openedChest.png";
+            CT.$('chect1').src = "images/signIn/chest/openedChest.png";
+        }else if (userdatalist.signInNum == 15) {
+            CT.$('load').style.width = '390px';
+            CT.$('chect0').src = "images/signIn/chest/openedChest.png";
+            CT.$('chect1').src = "images/signIn/chest/openedChest.png";
+            CT.$('chect2').src = "images/signIn/chest/openedChest.png";
+        }else if (userdatalist.signInNum == 30) {
+            CT.$('load').style.width = '520px';
+            CT.$('chect0').src = "images/signIn/chest/openedChest.png";
+            CT.$('chect1').src = "images/signIn/chest/openedChest.png";
+            CT.$('chect2').src = "images/signIn/chest/openedChest.png";
+            CT.$('chect3').src = "images/signIn/chest/openedChest.png";
+        }else if (userdatalist.signInNum == 45) {
+            CT.$('load').style.width = '650px';
+            CT.$('chect0').src = "images/signIn/chest/openedChest.png";
+            CT.$('chect1').src = "images/signIn/chest/openedChest.png";
+            CT.$('chect2').src = "images/signIn/chest/openedChest.png";
+            CT.$('chect3').src = "images/signIn/chest/openedChest.png";
+            CT.$('chect4').src = "images/signIn/chest/openedChest.png";
+        }else if (userdatalist.signInNum == 60) {
+            CT.$('load').style.width = '780px';
+            CT.$('chect0').src = "images/signIn/chest/openedChest.png";
+            CT.$('chect1').src = "images/signIn/chest/openedChest.png";
+            CT.$('chect2').src = "images/signIn/chest/openedChest.png";
+            CT.$('chect3').src = "images/signIn/chest/openedChest.png";
+            CT.$('chect4').src = "images/signIn/chest/openedChest.png";
+            CT.$('chect5').src = "images/signIn/chest/openedChest.png";
+        }else if (userdatalist.signInNum == 70) {
+            CT.$('load').style.width = '880px';
+            CT.$('chect0').src = "images/signIn/chest/openedChest.png";
+            CT.$('chect1').src = "images/signIn/chest/openedChest.png";
+            CT.$('chect2').src = "images/signIn/chest/openedChest.png";
+            CT.$('chect3').src = "images/signIn/chest/openedChest.png";
+            CT.$('chect4').src = "images/signIn/chest/openedChest.png";
+            CT.$('chect5').src = "images/signIn/chest/openedChest.png";
+            CT.$('chect6').src = "images/signIn/chest/openedChest.png";
+        }
+    }
+    /*随机抽取*/
+    function randomPrize() {
+        if(Math.random() > 0.1 ){//中奖
+            var randomsum = 0;
+            for (var i=0; i<prizes.length; i++){
+                if(prizes[i].prizeRemainNum > 0){ //只有还有奖品的才参与抽奖
+                    randomsum += prizes[i].prizePercentage || 0;//奖品总概率
+                }
+            }
+            if (randomsum == 0) {
+                //所有的奖品都没有了
+                return false;
+            } else {
+                var result = Math.random() * randomsum;//随机抽取概率
+                var randomitem = 0;
+                for (var i = 0; i < prizes.length; i++) {
+                    if (prizes[i].prizeRemainNum > 0) {
+                        randomitem += prizes[i].prizePercentage || 0;//奖品总概率
+                        if (randomitem >= result) {//比较抽取的奖品属于哪个
+                            return prizes[i].id
+                        }
+                    }
+                }
+            }
+
+        }else {//未中奖
+            return false;
+        }
+    }
+
+    /*打开宝箱*/
+    function openChest() {
+        var signInNum =  userdatalist.signInNum;
+        if(isOrder == 0){//已订购用户打开宝箱
+            if(signInNum == 3){//8积分
+                allCreditNum = allCreditNum + 8;
+                setCredit(8);
+            }else if(signInNum == 7){
+                allCreditNum = allCreditNum + 28;
+                setCredit(28);
+            }else if(signInNum == 15){
+                allCreditNum = allCreditNum + 68;
+                setCredit(68);
+            }else if(signInNum == 30){
+                allCreditNum = allCreditNum + 148;
+                setCredit(148);
+            }else if(signInNum == 45){
+                allCreditNum = allCreditNum + 308;
+                setCredit(308);
+            }else if(signInNum == 60){
+                allCreditNum = allCreditNum + 708;
+                setCredit(708);
+            }else if(signInNum == 70){
+                allCreditNum = allCreditNum + 1408;
+                setCredit(1408);
+            }
+        }else {
+            if(signInNum == 3){//免费会员体验券   或 8积分
+                var hasPrice = randomPrize();
+                if(hasPrice == false){
+                    allCreditNum = allCreditNum + 8;
+                    setCredit(8);
+                }else {
+                    actiObj.setPrize(hasPrice, function() {
+                        showGetPrize();
+                    })
+                }
+            }else if(signInNum == 7){
+                allCreditNum = allCreditNum + 18;
+                setCredit(18);
+            }else if(signInNum == 15){
+                allCreditNum = allCreditNum + 38;
+                setCredit(38);
+            }else if(signInNum == 30){
+                allCreditNum = allCreditNum + 78;
+                setCredit(78);
+            }else if(signInNum == 45){
+                allCreditNum = allCreditNum + 158;
+                setCredit(158);
+            }else if(signInNum == 60){
+                allCreditNum = allCreditNum + 358;
+                setCredit(358);
+            }else if(signInNum == 70){
+                allCreditNum = allCreditNum + 758;
+                setCredit(758);
+            }
+        }
+    }
+    /*上传用户积分*/
+    function setCredit(num) {
+        CT.$('getScore').innerHTML = '+'+ num +'积分';
+        CT.$('smlw').style.visibility = 'visible';
+        PAGE.changeFocus("hands_x0_y0_smlwBtnS_");
+        setUserCredit(15,allCreditNum,function(data){
+            if(data){
+
+            }
+        });
+    }
+    /*立即签到*/
+    function goSignIn() {
+        if(userdatalist.signInDate == createTime){ //今日已签到
+            CT.$('yqd').style.visibility = 'visible';
+            PAGE.changeFocus("hands_x0_y0_mtzlBtnS_");
+        }else{//今日未签到
+            allCreditNum = allCreditNum + 10;
+            setUserCredit(15,allCreditNum,function(data){//签到存积分
+                if(data){
+                    userdatalist = {
+                        signInNum:userdatalist.signInNum + 1, //签到总天数
+                        signInDate: createTime,  //签到日期
+                        tyqCode:userdatalist.tyqCode//券编码号
+                    }
+                    actiObj.setUserDataList(CT.jsonToString(userdatalist));
+                    if(userdatalist.signInNum == 3 || userdatalist.signInNum == 7 || userdatalist.signInNum == 15 || userdatalist.signInNum == 30 ||userdatalist.signInNum == 45 || userdatalist.signInNum == 60 || userdatalist.signInNum == 75){
+                        openChest();//满足条件打开宝箱
+                    }else {
+                        CT.$('qdcg').style.visibility = 'visible';
+                        PAGE.changeFocus("hands_x0_y0_jxyxBtnS_");
+                    }
+                    CT.$('signInBtn').src = 'images/signIn/signed.png';//已签到按钮
+                    CT.$('scorePush').style.visibility = 'hidden';//积分隐藏
+                }
+            });
+
+        }
+    }
+    /*获取免费会员体验券*/
+    function showGetPrize() {
+        actiObj.getVipExperCode(function (res) {
+            if (res.data && res.data.cardNo) {
+                CT.$('qtmfhy').style.visibility = 'visible';
+                PAGE.changeFocus("hands_x0_y0_confirmBtnS_");
+                CT.$("tyqCode").innerHTML = res.data.cardNo;
+                userdatalist.tyqCode = res.data.cardNo
+                actiObj.setUserDataList(CT.jsonToString(userdatalist));
+            }else{
+                allCreditNum = allCreditNum + 8;
+                setCredit(8);
+            }
+        });
+    }
+    /*卡券编码*/
+    function codePopup() {
+        CT.$('qtmfhy').style.visibility = 'visible';
+        PAGE.changeFocus("hands_x0_y0_confirmBtnS_");
+        CT.$("tyqCode").innerHTML = userdatalist.tyqCode;
+    }
+
+    /*继续游戏*/
+    function toHome() {
+        CT.getActivityUrl(15);
+    }
+    /*看动画*/
+    function toIP() {
+        CT.BackPortalMainPage();//跳大厅首页
+    }
+
+    /*按返回键返回*/
+    function backFunc() {
+        if(CT.$('smlw').style.visibility == 'visible'){
+            CT.$('smlw').style.visibility = 'hidden';
+            PAGE.changeFocus("hands_x0_y0_signInBtnS_");
+            initPage();
+        }else {
+            CT.backPage();
+        }
+
+    }
+
+</script>
+
+</body>
+</html>

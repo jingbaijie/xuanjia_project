@@ -1,0 +1,185 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.main {
+  position: relative;
+  background: url(../img/exchangePage/main.png) no-repeat;
+  width: 1280px;
+  height: 720px;
+  overflow: hidden;
+}
+.petCarFocus {
+  position: absolute;
+  left: 215px;
+  top: 530px;
+  visibility: hidden;
+}
+.mjFocus {
+  position: absolute;
+  left: 440px;
+  top: 530px;
+  visibility: hidden;
+}
+.rocketCarFocus {
+  position: absolute;
+  left: 668px;
+  top: 530px;
+  visibility: hidden;
+}
+.secertPrizeFocus {
+  position: absolute;
+  left: 890px;
+  top: 530px;
+  visibility: hidden;
+}
+.wzjTip {
+  position: absolute;
+  visibility: hidden;
+  left: 0;
+  top: 0;
+}
+.wzjTipFocus {
+  position: absolute;
+  visibility: hidden;
+  left: 403px;
+  top: 522px;
+}
+.backTipFocus {
+  position: absolute;
+  visibility: hidden;
+  left: 697px;
+  top: 525px;
+}
+.prizeOver {
+  position: absolute;
+  visibility: hidden;
+  left: 0;
+  top: 0;
+}
+.againTip {
+  position: absolute;
+  visibility: hidden;
+  left: 0;
+  top: 0;
+}
+.againTipFocus {
+  position: absolute;
+  visibility: hidden;
+  left: 403px;
+  top: 522px;
+}
+.prizeTip {
+  position: absolute;
+  visibility: hidden;
+  left: 0;
+  top: 0;
+}
+.enter {
+  position: absolute;
+  visibility: hidden;
+  left: 702px;
+  top: 560px;
+}
+.enterFocus {
+  position: absolute;
+  visibility: hidden;
+  width: 140px;
+  left: -16px;
+  top: -14px;
+}
+.clear {
+  position: absolute;
+  visibility: hidden;
+  left: 857px;
+  top: 556px;
+}
+.clearFocus {
+  position: absolute;
+  visibility: hidden;
+  width: 140px;
+  left: -15px;
+  top: -10px;
+}
+.jlPrize {
+  position: absolute;
+  visibility: hidden;
+  left: 467px;
+  top: 270px;
+}
+.successTip {
+  position: absolute;
+  visibility: hidden;
+  left: 418px;
+  top: 64px;
+}
+.phoneNumber {
+  position: absolute;
+  visibility: hidden;
+  left: 302px;
+  top: 553px;
+}
+.phoneNumberFocus {
+  position: absolute;
+  visibility: hidden;
+  left: -12px;
+  top: -10px;
+}
+.telInput {
+  position: absolute;
+  color: #f38900;
+  font-size: 31px;
+  width: 310px;
+  left: 375px;
+  height: 78px;
+  top: 563px;
+  z-index: 3;
+}
+#saveTips {
+  position: absolute;
+  font-size: 26px;
+  color: #ff4462;
+  left: 379px;
+  top: 625px;
+}
+.mc{
+  position: absolute;
+  font-size: 23px;
+  color: #fda90b;
+  left: 339px;
+  top: 622px;
+}
+.jl{
+  position: absolute;
+  font-size: 23px;
+  color: #fda90b;
+  left: 602px;
+  top: 622px;
+}
+.dream{
+  position: absolute;
+  font-size: 23px;
+  color: #fda90b;
+  left: 768px;
+  top: 622px;
+}
+.jlChange{
+  position:absolute;
+  top: 545px;
+  left: 223px;
+}
+.mjChange{
+  position:absolute;
+  top: 545px;
+  left: 450px;
+}
+.rocketChange{
+  position:absolute;
+  top: 545px;
+  left: 678px;
+}
+.secertChange{
+  position:absolute;
+  top: 545px;
+  left: 900px;
+}

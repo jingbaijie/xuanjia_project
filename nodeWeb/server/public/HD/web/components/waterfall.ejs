@@ -1,0 +1,437 @@
+<%
+    const reqQuery = basePageInfo.reqQuery;
+    const waterfall = {
+        //按钮数组
+        buttons : [],
+        //默认初始Left值
+        defaultLeft: 40,
+        //默认初始元素上下间隔值
+        defaultSpaceCol: 20,
+        //默认初始元素左右间隔值
+        defaultSpaceRow: 20,
+        //默认初始焦点图元素左上错位值
+        defaultStartValue: 6,
+        //默认瀑布流展示高度
+        defaultHeight: 563,
+        //默认初始top值
+        defaultTop: 700,
+        //当前比较数组下标
+        comPareArrayIndex: 0,
+        //比较当前行的数组,如果当前行填满则清空数组
+        comPareArray: [{curRowNum: 0, h: 720}],
+        /**
+        * string 转成 json格式2
+        * @method CT.strToJson
+        * @param data  string类型的json
+        * @returns {{}}
+        * @example
+        *      CT.strToJson(data);
+        **/
+        strToJson: function (data) { //string 转成 json格式
+            var json = {};
+            if (typeof(data) === "string") {
+                var arr = data.split("&");
+                for (var i = 0, len = arr.length; i < len; i++) {
+                    var array = arr[i].split("=");
+                    //json[array[0]] = eval('(' + array[1] + ')');
+                    json[array[0]] = array[1];
+                }
+            }
+            return json;
+        },
+        /**
+        *   取more1数据,并返回一个对象
+        *   isShowSelectedImg=true 是否完全显示光标图片，默认false ，特例：小火车车身
+        *   isSetZIndex=true  是否设置z-index属性，默认false默认光标在下
+        *   isVideo=true 小视频坑位
+        *   toTop= true 回到顶部坑位
+        *   isShowFont=true显示推荐位的文字描述
+        *   @param more1
+        *   @returns {*}
+        */
+        getMore1: function (more1) {
+            var _this = this;
+            return more1 ? _this.strToJson(more1) : {};
+        },
+        getMoresObj: function (moreValueStr) {
+            var _this = this;
+            if (!moreValueStr) {
+                return {};
+            }
+            var obj = {};
+            var arr = moreValueStr.split('&');
+            for (var index = 0; index < arr.length; index++) {
+                var kayValArr = arr[index].split('=');
+                obj[kayValArr[0]] = kayValArr[1];
+            }
+            return obj;
+        },
+        /**
+        *    设置button
+        *    配置光标图片conf.selectBorderImgUrl表示光标可用
+        *    配置conf.isShowSelectedImg光标不可用（特例：小火车）
+        *    @param conf 序号
+        *    @returns {*}
+        */
+        setBtnObj: function (conf) {
+            var _this = this;
+            conf = conf || {}
+            var btn = null;
+            if (conf.selectBorderImgUrl && conf.isShowSelectedImg != 4) {
+                btn = {
+                    id: "hands_x0_y0_DMSYXLP" + (conf.index) + "_",
+                    focusType: 7,
+                    clickHandler: 'javascript:page.toJump("bottom",' + (conf.index) + ')',
+                    otherFocusEvent: "javascript:waterfall.focusEvent(" + (conf.index) + ")",
+                    otherBlurEvent: "javascript:waterfall.blurEvent(" + (conf.index) + ")",
+                    TempData: conf.TempData
+                }
+            } else {
+                btn = {
+                    id: "hands_x0_y0_DMSYXLP" + (conf.index) + "_",
+                    focusType: 7,
+                    enFocus: false
+                }
+            }
+            ;
+            var moreObj = _this.getMoresObj(conf.TempData.more2);
+        
+            if (moreObj.focusType) {
+                btn.focusType = parseInt(moreObj.focusType);
+                try {
+                    /*判断为低版本盒子
+                    if (btn.focusType == 6 && XJEPG.stbType == '1') {
+                    btn.focusType = 7;
+                    //_this.pinterestData[conf.index].recommendFocuspic && (CT.$('DMSYXLP' + conf.index).imgsrc = AjaxConfig.imgUrl + _this.pinterestData[conf.index].recommendFocuspic.picPath);
+                    }
+                    */
+                } catch (error) {
+
+                }
+            }
+            return btn;
+        },
+        /**
+        *  获取arr数组中值为minH的值在数组中的索引
+        *  @param arr 要比较的数组
+        *  @returns {*}
+        */
+        getMinHeightKey: function (arr) {
+            arr = arr || [{}];
+            var minIndex = 0;
+            for (var i = 0, len = arr.length; i < len; i++) {
+                if (arr[i].h < arr[minIndex].h) {
+                    minIndex = i;
+                }
+            }
+            return arr[minIndex];
+        },
+        /**
+        * 获取数组中值为MaxH的值在数组中的索引
+        * @param arr 要比较的数组
+        * @returns {*}
+        */
+        getMaxHeightKey: function (arr) {
+            arr = arr || [{}];
+            var Index = 0;
+            for (var i = 0, len = arr.length; i < len; i++) {
+                if (arr[i].h >= arr[Index].h) {
+                    Index = i;
+                }
+            }
+            return arr[Index];
+        },
+        /**
+        * 判断数组中的推荐位是否齐平
+        * 先求出平均值，如果最大值和平均值相差小于10，则表示齐平，10表示误差大小
+        * @param arr 要比较的数组
+        * @returns {*}
+        */
+        isAllEquall: function (arr) {
+            var _this = this;
+            arr = arr || [{}]
+            var sum = 0;
+            var averageNum = 0;
+            var len = arr.length;
+            for (var i = 0; i < len; i++) {
+                if (arr[i].h > 0) {
+                    sum += arr[i].h
+                }
+            }
+            if (sum == 0) {
+                return {result: true, averageNum: 0};
+            }
+            averageNum = sum / len;
+
+            if (_this.getMaxHeightKey(arr).h - averageNum > 10) {
+                return {result: false, averageNum: 0};
+            }
+            return {result: true, averageNum: averageNum};
+        },
+    }
+    //推荐位文字描述
+    let contentText = null;
+    //推荐位的显示图片 信息
+    let contentImgInfo = null;
+    //推荐位的光标图片 信息
+    let selectBorderImgInfo = null;
+    //存储创建元素
+    let elm = null;
+    //存储拼接的DOM
+    let obj = null;
+    //存储每个推荐位的按钮
+    let button = null;
+    //elm的 dom id
+    let domId = "";
+    let curClassDomInfo = {};
+    let curRowLeft = waterfall.defaultLeft;
+    let curRowTop = waterfall.defaultTop;
+    let diffVal = 0;
+    let isShowSelectedImg = 1;
+    let focusImgsrc = "";
+    let moreObj = "";
+%>
+<% recommendObj.forEach((element, i, arr) => { %>
+    <%
+    //推荐位文字描述,取cartoonName或picCname
+        contentText = (element.recommendPic && element.recommendPic.picCname) || "";
+        //推荐位的显示图片 信息，位防止报错，默认{"picCname": "","picH": "","picPath": "","picW": ""}
+        contentImgInfo = element.recommendPic || {"picCname": "", "picH": "", "picPath": "", "picW": ""};
+        selectBorderImgInfo = element.recommendLabelpic || {"picCname": "", "picH": "", "picPath": "", "picW": ""};
+        domId = "contentBox" + i;
+        focusImgsrc = imgUrl + selectBorderImgInfo.picPath;
+        moreObj = waterfall.getMoresObj(recommendObj[i].more2);
+
+        curClassDomInfo = {
+        // width : parseInt(selectBorderImgInfo.picW),
+        // height : parseInt(selectBorderImgInfo.picH),
+            width: parseInt(contentImgInfo.picW) + waterfall.defaultSpaceRow,
+            height: parseInt(contentImgInfo.picH) + waterfall.defaultSpaceCol,
+            width_1: parseInt(contentImgInfo.picW),
+            height_1: parseInt(contentImgInfo.picH)
+        }
+        if ((curRowLeft + curClassDomInfo.width) < 1280) {
+            curClassDomInfo.left = curRowLeft;//最左边
+            curClassDomInfo.top = curRowTop;//最左边
+            diffVal = waterfall.defaultStartValue;
+            if (curClassDomInfo.width == curClassDomInfo.width_1) {
+                diffVal = 0;
+            }
+            curClassDomInfo.left_1 = curRowLeft + diffVal;//最左边
+            curClassDomInfo.top_1 = curRowTop + diffVal;//最左边
+            waterfall.comPareArray[waterfall.comPareArrayIndex] = {
+                h: curRowTop + curClassDomInfo.height, //当前元素的 top + height 高度
+                left: curRowLeft, //当前元素的 left + width 宽度
+                width: curClassDomInfo.width,
+                domIndex: i, //当前元素当前在dom中的下标
+                curRowTop: curRowTop, //当前元素 top 值
+                curIndex: waterfall.comPareArrayIndex, //在当前数组下标
+            }
+            curRowLeft += curClassDomInfo.width;
+            waterfall.comPareArrayIndex++;
+        } else {
+        //寻找最小
+            var isAllEquallResult = waterfall.isAllEquall(waterfall.comPareArray);
+            if (isAllEquallResult.result) {
+                curRowLeft = waterfall.defaultLeft;
+                curRowTop = parseInt(isAllEquallResult.averageNum) + 1;
+                waterfall.comPareArray = [];
+                waterfall.comPareArrayIndex = 0;
+        //归零之后 加一
+                curClassDomInfo.left = curRowLeft; //最左边
+                curClassDomInfo.top = curRowTop; //最top
+                var diffVal = waterfall.defaultStartValue;
+                if (curClassDomInfo.width == curClassDomInfo.width_1) {
+                    diffVal = 0;
+                }
+                curClassDomInfo.left_1 = curRowLeft + diffVal; //最左边
+                curClassDomInfo.top_1 = curRowTop + diffVal; //最top
+                waterfall.comPareArray[waterfall.comPareArrayIndex] = {
+                    h: curRowTop + curClassDomInfo.height,
+                    left: curRowLeft,
+                    width: curClassDomInfo.width,
+                    domIndex: i,
+                    curRowTop: curRowTop,
+                    curIndex: waterfall.comPareArrayIndex,
+                }
+                waterfall.comPareArrayIndex++;
+            } else {
+                var getMinHObj = waterfall.getMinHeightKey(waterfall.comPareArray);
+                curRowTop = getMinHObj.h + curClassDomInfo.height;
+                curClassDomInfo.left = getMinHObj.left;
+                curClassDomInfo.top = getMinHObj.h;
+                curClassDomInfo.left_1 = getMinHObj.left + waterfall.defaultStartValue; //最左边
+                curClassDomInfo.top_1 = getMinHObj.h + waterfall.defaultStartValue; //最top
+                if ((curClassDomInfo.width + 10) >= getMinHObj.width) {
+                    curRowTop = waterfall.comPareArray[getMinHObj.curIndex].h + curClassDomInfo.height;
+                    waterfall.comPareArray[getMinHObj.curIndex].h = getMinHObj.h + curClassDomInfo.height;
+                } else {
+                    waterfall.comPareArray[getMinHObj.curIndex].left = getMinHObj.left + curClassDomInfo.width;
+                }
+                waterfall.comPareArray[waterfall.comPareArrayIndex] = {
+                    h: curRowTop,
+                    left: curRowLeft + curClassDomInfo.width,
+                    width: curClassDomInfo.width,
+                    domIndex: i,
+                    curRowTop: curRowTop,
+                    curIndex: waterfall.comPareArrayIndex,
+                }
+                waterfall.comPareArrayIndex++;
+            }
+            curRowLeft += curClassDomInfo.width;
+        }
+        if (i == arr.length - 1) {
+            waterfall.parentBoxHeight = curClassDomInfo.top + curClassDomInfo.height;
+        }
+        //创建按钮
+        let button = waterfall.setBtnObj({
+            index: i,
+            selectBorderImgUrl: selectBorderImgInfo.picPath,
+            isShowSelectedImg: isShowSelectedImg,
+            TempData: recommendObj[i]
+        })
+        waterfall.buttons.push(button);
+        // basePageInfo.nodeButtons.push(button);
+
+        // console.log('hands_x0_y0_DMSYXLP'+ i +'_',focusImgsrc)
+    %>
+        <img id='DMSYXLP<%= i %>Img'
+            style='width: <%= curClassDomInfo.width_1 %>px;height:<%= curClassDomInfo.height_1 %>px;
+            position: absolute;top:<%= curClassDomInfo.top_1 %>px;left:<%= curClassDomInfo.left_1 %>px;'
+            imgsrc='<%= imgUrl + contentImgInfo.picPath %>' src='./HD/images/empty.png'>
+
+        <div id='hands_x0_y0_DMSYXLP<%= i %>_'
+            style='position: absolute;top:<%= curClassDomInfo.top %>px;left:<%= curClassDomInfo.left %>px;
+            width:<%= curClassDomInfo.width %>px;height:<%= curClassDomInfo.height %>px;'>
+            <img id='DMSYXLP<%= i %>' 
+                style='visibility:<%= (waterfall.getMore1(element.recommendDisplayValue).isShowSelectedImg == 'true' ? 'visible' : 'hidden') %>'
+                imgsrc='<%= focusImgsrc  %>' src='./HD/images/empty.png'>
+            <div class='morePonts fontCss' id='addContentFont<%= i %>'
+                style='visibility:<%= (waterfall.getMore1(element).isShowFont == ' true' ? 'visible' : 'hidden') %>;
+                width:<%= (contentImgInfo.picW - 17)%>px;'>
+                <%= contentText %>
+            </div>
+            <%
+                if(recommendObj[i].booleanUp == 0){
+                    %>
+                    <img id="DMSYXLP<%= i %>_booleanDown" src="/<%-global.config.projectName%>/HD/images/booleanDown.png" style="display:block; position:absolute; right: 2%; top:2%;">
+                    <%
+                }
+            %>
+        </div>
+<% }) %>
+<div id="waterfallRecommendObj" style="width: 0;height: 0;visibility: hidden;"><%- JSON.stringify(recommendObj) %></div>
+<script>
+    
+    var waterfall = {
+        buttons: <%- JSON.stringify(waterfall.buttons) %> || [],
+        pinterestData : eval("(" + document.getElementById("waterfallRecommendObj").innerHTML + ")"),
+        reqQuery: <%- JSON.stringify(reqQuery) %>,
+        //父类
+        parentBoxHeight: <%=   waterfall.parentBoxHeight %> || 700,
+         //主要内容显示区域高度
+        mainShowAreaHight: 540,
+        alreadyLoadPBLImg : false,
+         /**
+         * 创建瀑布流元素
+         * */
+        loadPBL: function () {
+            var _this = this;
+            //是否已加载瀑布流图片
+            if (_this.alreadyLoadPBLImg) {
+                return;
+            }
+            _this.alreadyLoadPBLImg = true;
+            var nowFocusId = '';
+            try {
+                nowFocusId = curFocus.FocusID
+            } catch (error) {
+
+            }
+            //各个推荐位的定位
+            for (var i = 0, len = _this.pinterestData.length; i < len; i++) {
+                try {
+                    //加载瀑布流图片
+                    CT.$("DMSYXLP" + i + 'Img').src = CT.$("DMSYXLP" + i + 'Img').getAttribute('imgsrc');
+                    CT.$("DMSYXLP" + i).src = CT.$("DMSYXLP" + i).getAttribute('imgsrc');
+                } catch (error) {
+
+                }
+            }
+            //document.getElementsByTagName('body')[0].innerHTML += "<img id='downTipImg' style='position:absolute;top:650px;left:50px;' src='" + AjaxConfig.imgUrl + AjaxConfig.commonPageInfo.recommend_4[0].recommendPic.picPath + "'>"
+            if (_this.alreadyInitFocus && nowFocusId) {
+                //不是初始化页面
+                PAGE.focusInit();
+                nowFocusId && PAGE.getFocusModel6(nowFocusId).defaultFocus()
+            }
+        },
+
+        /**
+         *  移动选中光标
+         *  _this.mainShowAreaHight : 560
+         *  特殊需求:当瀑布流推荐位向上选中眉头时，要根据当前所属页面选择对应的眉头
+         *  先判断是否需要翻页，如果小于560时---不需要翻页：CT.$("main").style.top =  "0px";
+         *                      如果大于560时---需要翻页
+         *  如果大于560时，再判断总高度减去当前高度是否大于560，即是否存在完整的下一页， 如果小于等于560--- _this.isLoaded = true;
+         *                                                                               如果大于560--- _this.isLoaded = false;
+         *  特殊位置的处理：加载完成之后，需要判断是否存在_this.mainTop，如果存在CT.$("main").style.top = _this.mainTop;实现来哪去哪
+         *  移动光标的同时要判断是否需要关闭或播放小视频
+         *  移动光标的同时要判断是否滚动文字
+         *  @param num 序号
+         */
+        focusEvent: function (num) {
+            var _this = this;
+            //特殊需求：底部推荐向上选中当前内容的眉头
+            if ((curFocus.lastFocusId.indexOf("DMSYXLP") > -1 || curFocus.lastFocusId.indexOf("DMSYPH") > -1) && (curFocus.FocusID.indexOf("DMSYDH") > -1)) {
+                PAGE.changeFocus(_this.reqQuery.defaultFocus);
+                return;
+            }
+            //获取当前焦点的信息
+            var curClassDomInfo = CT.getCurClassObjInfo(CT.$(curFocus.FocusID));
+            //移动盒子main
+            if (curClassDomInfo.top >= _this.mainShowAreaHight) {
+                //加载瀑布流图片
+                _this.loadPBL();
+                if (_this.parentBoxHeight - curClassDomInfo.top >= _this.mainShowAreaHight) {
+                    CT.$("main").style.top = -(curClassDomInfo.top - 300) + "px"; //_this.defaultTop
+                } else {
+                    if (_this.mainTop) { //实现特殊位置的来哪去哪
+                        CT.$("main").style.top = _this.mainTop;
+                    } else {
+                        //如果当前dom 高度
+                        if (page.getMore1(curFocus.TempData.recommendDisplayValue).toTop == "true") {
+                            CT.$("main").style.top = -(curFocus.Y_Posi - page.defaultHeight + 22) + "px";
+                        } else {
+                            CT.$("main").style.top = -(curClassDomInfo.top - 300) + "px";
+                        }
+                    }
+                }
+                //隐藏首页第一屏下提示箭头
+                CT.$("downTipImg") && (CT.$("downTipImg").style.visibility = "hidden");
+            } else {
+                //展示首页第一屏
+                CT.$("main").style.top = "0px";
+                //显示首页第一屏下提示箭头
+                CT.$("downTipImg") && (CT.$("downTipImg").style.visibility = "visible");
+            }
+            _this.mainTop = false;
+            //是否滚动文字
+            if (CT.$("addContentFont" + num).innerHTML.length > 10 && CT.$("addContentFont" + num).style.visibility == "visible") {
+                CT.addClass(CT.$("addContentFont" + num), 'marquee_self');
+            }
+            //小视频的播放或隐藏
+            page.videoHidden(parseInt(CT.$("main").style.top.substring(0, CT.$("main").style.top.length - 2)));
+        },
+        /**
+         *  离开光标
+         *  离开光标的同时要关闭滚动文字
+         *  @param num 序号
+         */
+        blurEvent: function (num) {
+            var _this = this;
+            CT.removeClass(CT.$("addContentFont" + num), 'marquee_self');
+        },
+    }
+
+    xjInitButtons = xjInitButtons.concat(waterfall.buttons);
+</script>

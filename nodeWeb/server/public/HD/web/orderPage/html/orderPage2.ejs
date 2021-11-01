@@ -1,0 +1,243 @@
+﻿<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: sueRimn
+ * @Date: 2020-02-19 13:42:09
+ * @LastEditors: jwzx
+ * @LastEditTime: 2020-12-04 13:53:49
+ -->
+ <%- include ("../../components/header") %> 
+</head>
+
+
+<%
+    const commonPageInfo = basePageInfo.personalCenterPageInfo;
+    const localImg = basePageInfo.localImg;
+%>
+
+<body>
+	<div class="BG">
+		<img id="BGImg" src="<%= basePageInfo.bgImg %>" width=" 1280" height="720"
+			style="position: absolute;top:0px;left:0px;" />
+	</div>
+	<%- include('../../components/commJs') %>
+	<script type="text/javascript">
+	function createElem (data,idx) {
+		var ele_id = 'hands_x0_y0_orderFocus'+ idx +'_';
+		var focus_ele_id = 'orderFocus'+ idx;
+		var item_ele_id = 'orderitem'+ idx;
+		var __divEle = null;
+		var _exists = false;
+		if(CT.$(ele_id)) {
+			__divEle = CT.$(ele_id);
+			__divEle.innerHTML = "";
+			_exists = true;
+		} else {
+			__divEle = document.createElement("div");
+			__divEle.id = ele_id;
+		}
+		var __focusEle = document.createElement("img");
+		var __itemEle = document.createElement("img");
+		
+		__focusEle.id = focus_ele_id;
+		__itemEle.id = item_ele_id;
+
+		__divEle.style.position = "absolute";
+		__focusEle.style.position = "absolute";
+		__itemEle.style.position = "absolute";
+		__focusEle.style.display = "block";
+		__itemEle.style.display = "block";
+		__focusEle.style.zIndex = "50";
+		__itemEle.style.zIndex = "10";
+
+		var vos = data.pageRecommendConfigTabVos;
+		var vos_i = vos.length > 1 ? 1 : 0;
+
+		__divEle.style.left = vos[vos_i].xvalue + "px";
+		__divEle.style.top = vos[vos_i].yvalue + "px";
+		__divEle.style.width = vos[vos_i].picLibraryTab.picW + "px";
+		__divEle.style.height = vos[vos_i].picLibraryTab.picH + "px";
+
+		if(data.recommendPic) {
+			var item_ele_id = "orderItem" + idx;
+
+			__itemEle.src = AjaxConfig.imgUrl + data.recommendPic.picPath;
+
+			__itemEle.style.width = data.recommendPic.picW + "px";
+			__itemEle.style.height =data.recommendPic.picH + "px";
+			__itemEle.style.left = parseInt((vos[vos.length - 1].picLibraryTab.picW - data.recommendPic.picW) / 2) + "px";
+			__itemEle.style.top = parseInt((vos[vos.length - 1].picLibraryTab.picH - data.recommendPic.picH) / 2) + "px";
+			__divEle.appendChild(__itemEle);
+		} 
+		var focusable = false;
+		if(data.recommendLabelpic) {
+			__focusEle.src = AjaxConfig.imgUrl + data.recommendLabelpic.picPath;
+
+			__focusEle.style.width =data.recommendLabelpic.picW + "px";
+			__focusEle.style.height =data.recommendLabelpic.picH + "px";
+			
+			__focusEle.style.left = "0px";
+			__focusEle.style.top = "0px";
+			__focusEle.style.visibility = "hidden";
+			__divEle.appendChild(__focusEle);
+			focusable = true;
+		} 
+		__divEle.style.display = "block";
+		return {dom:__divEle,exists:_exists,option:{
+			id:ele_id,
+			width: vos[vos_i].picLibraryTab.picW,
+			height: vos[vos_i].picLibraryTab.picH,
+			top:vos[vos_i].yvalue,
+			left:vos[vos_i].xvalue,
+			focusable: focusable
+		}};
+	}
+	var idx = 1;
+	var mybtns = [];
+	var datas = {};
+	var defaultFocus = "";
+	while(AjaxConfig.commonPageInfo["recommend_" + idx]) {
+		var _recommend = AjaxConfig.commonPageInfo["recommend_" + idx];
+		if(_recommend.length > 0) {
+			for(var i = 0;i < _recommend.length;i++) {
+				try{
+					var newEle = createElem(_recommend[i],idx + "a" + i);
+					if(!newEle.exists) {
+						document.getElementsByTagName("body")[0].appendChild(newEle.dom);
+					}
+					mybtns.push(newEle.option);
+					if(!defaultFocus || (_recommend.more1 && _recommend.more1.indexOf('defaultFocus') >=0 )) {
+						defaultFocus = 'hands_x0_y0_orderFocus'+ idx + "a" + i +'_';
+					}
+					
+					datas['hands_x0_y0_orderFocus'+ idx + "a" + i +'_'] = _recommend[i];
+				} catch(e) {
+				}
+			}
+		}
+		idx ++;
+	}
+	var buttons = [];
+	var scala = 1280/720;
+	orderJs.getAreaOfUser(function(res,areaCode) {
+		if(areaCode && orderJs._activity_areaCodes.indexOf(areaCode) < 0) {
+			
+		}
+	});
+	//自定义按键
+	var buttons_map = {
+		"hands_x0_y0_orderFocus1a0_" : {
+			id: 'hands_x0_y0_orderFocus1a0_',
+			clickHandler: 'javascript:orderJs.toPay()',
+			up: 'disable',
+			right: 'disable',
+			left: 'disable',
+			down: 'disable',
+			focusType: 7
+		}
+	};
+	for(var i = 0;i < mybtns.length;i ++) {
+		var _option = mybtns[i];
+		if(!_option.focusable) continue;
+		var _btn = {
+			id: _option.id,
+			clickHandler: "javascript:goWhere()",
+			otherFocusEvent: "javascript:onWhere()",
+			up: 'disable',
+			right: 'disable',
+			left: 'disable',
+			down: 'disable',
+			focusType: 7,
+			TempData:datas[_option.id]
+		}
+		if(buttons_map[_option.id]) {
+			for(var key in buttons_map[_option.id]) {
+				_btn[key] = buttons_map[_option.id][key];
+			}
+		}
+		nearBy = {};
+		for(var j = 0; j < mybtns.length;j++) {
+			if(!mybtns[j].focusable || mybtns[j].id == _option.id) continue;
+			var _thisBy = Math.abs((mybtns[j].left + (mybtns[j].width / 2) - _option.left - _option.width / 2) * (mybtns[j].top + (mybtns[j].height / 2) - _option.top - _option.height / 2));
+			var _thisScal = Math.abs((mybtns[j].left + mybtns[j].width / 2 - _option.left - _option.width / 2) / (mybtns[j].top + mybtns[j].height / 2 - _option.top - _option.height / 2));
+			if(  (mybtns[j].top + mybtns[j].height / 2 - _option.top - _option.height / 2) == 0 
+					||   _thisScal > scala ) {
+				if(mybtns[j].left + mybtns[j].width / 2 < _option.left + _option.width / 2) {
+					if(!nearBy.leftEle) {
+						nearBy.leftEle = mybtns[j];
+						_btn.left = mybtns[j].id;
+					} else {
+						var __nearby = Math.abs((nearBy.leftEle.left + (nearBy.leftEle.width / 2) - _option.left) * (nearBy.leftEle.top + (nearBy.leftEle.height / 2) - _option.top - _option.height / 2));
+						if(_thisBy < __nearby) {
+							nearBy.leftEle = mybtns[j];
+							_btn.left = mybtns[j].id;
+						}
+					}
+				} else  {
+					if(!nearBy.rightEle) {
+						nearBy.rightEle = mybtns[j];
+						_btn.right = mybtns[j].id;
+					} else {
+						var __nearby = Math.abs((nearBy.rightEle.left + (nearBy.rightEle.width / 2) - _option.left) * (nearBy.rightEle.top + (nearBy.rightEle.height / 2) - _option.top - _option.height / 2));
+						if(_thisBy < __nearby) {
+							nearBy.rightEle = mybtns[j];
+							_btn.right = mybtns[j].id;
+						}
+					}
+				}			
+			} else {
+					if(mybtns[j].top + mybtns[j].height / 2 < _option.top + _option.height / 2) {
+					if(!nearBy.upEle) {
+						nearBy.upEle = mybtns[j];
+						_btn.up = mybtns[j].id;
+					} else {
+						var __nearby = Math.abs((nearBy.upEle.left + (nearBy.upEle.width / 2) - _option.left - _option.width / 2) * (nearBy.upEle.top + (nearBy.upEle.height / 2) - _option.top - _option.height / 2));
+						if(_thisBy < __nearby) {
+							nearBy.upEle = mybtns[j];
+							_btn.up = mybtns[j].id;
+						}
+					}
+				} else {
+					if(!nearBy.downEle) {
+						nearBy.downEle = mybtns[j];
+						_btn.down = mybtns[j].id;
+					} else {
+						var __nearby = Math.abs((nearBy.downEle.left + (nearBy.downEle.width / 2) - _option.left - _option.width / 2) * (nearBy.downEle.top + (nearBy.downEle.height / 2) - _option.top - _option.height / 2));
+						if(_thisBy < __nearby) {
+							nearBy.downEle = mybtns[j];
+							_btn.down = mybtns[j].id;
+						}
+					}
+				}
+			}
+		}
+		buttons.push(_btn);
+	}
+	function goWhere(){
+		if(!curFocus.TempData || !curFocus.TempData.commpageName || curFocus.TempData.more1.indexOf("backFunc") >= 0) {
+			backFunc();
+		} else {
+		//跳转
+			CT.toAnterRecommendUrl(curFocus.TempData);
+		}
+	}
+	function onWhere(){
+		if(curFocus.TempData && curFocus.TempData.more1 && curFocus.TempData.more1.indexOf("onjump") >= 0) {
+			CT.toAnterRecommendUrl(curFocus.TempData);
+		}
+	}
+	PAGE.focusInit();
+	var anterFocus = PAGE.getFocusModel6(defaultFocus);
+	anterFocus.defaultFocus();
+	
+
+	function backFunc() {// 返回
+		// CT.backPage();
+		//返回一级订购页
+		orderJs.toOrderPage();
+	}
+
+	</script>
+</body>
+
+</html>

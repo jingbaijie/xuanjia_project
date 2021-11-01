@@ -1,0 +1,49 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.main {
+  position: relative;
+  background: url(../img/newPlayer/bg.png) no-repeat;
+  width: 1280px;
+  height: 720px;
+  overflow: hidden;
+}
+.title {
+  position: absolute;
+  left: 375px;
+  top: 10px;
+}
+.videoOneFocus {
+  position: absolute;
+  visibility: hidden;
+  left: 87px;
+  top: 240px;
+}
+.videoTwoFocus {
+  position: absolute;
+  visibility: hidden;
+  left: 475px;
+  top: 240px;
+}
+.videoThreeFocus {
+  position: absolute;
+  visibility: hidden;
+  left: 865px;
+  top: 240px;
+}
+.marqueeOne {
+  position: absolute;
+  left: 105px;
+  top: 255px;
+}
+.marqueeTwo {
+  position: absolute;
+  left: 490px;
+  top: 255px;
+}
+.marqueeThree {
+  position: absolute;
+  left: 883px;
+  top: 255px;
+}

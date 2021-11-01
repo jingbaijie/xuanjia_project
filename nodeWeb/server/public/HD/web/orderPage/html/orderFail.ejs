@@ -1,0 +1,116 @@
+<%- include ('../../components/header') %>
+<link rel="stylesheet" href="../css/main.css" type="text/css"></link>
+
+
+  </head>
+    <%
+        const commonPageInfo = basePageInfo.personalCenterPageInfo;
+        const localImg = basePageInfo.localImg;
+    %>
+  <body>
+  <!-- BG背景图标 -->
+  <div class="BG">
+      <img src="<%= localImg %>empty.png" id="BGImg" width="1280" height="720"  />
+  </div>
+  <!-- 确定按钮 -->
+  <div class="post" style="position:absolute;top:563px;left:561px;display: none">
+      <img src="<%= localImg %>empty.png" id="post"/>
+  </div>
+  <!-- 焦点图片 -->
+  <div id="hands_x0_y0_okFocus_" style="position:absolute;top:560px;left:559px">
+      <img src="<%= localImg %>empty.png" style="width: 160px;height: 83px" id="okFocus"/>
+  </div>
+  <%- include('../../components/commJs') %>
+  <script type="text/javascript">
+        var page = {
+            imgUrl : AjaxConfig.imgUrl,//图片Ip地址
+            init: function () {
+                var _this = this;
+                _this.getCommonPageInfoToDo(AjaxConfig.commonPageInfo);
+            },
+            //得到 页面配置数据后的操作
+            getCommonPageInfoToDo:function(data){
+                var _this = this;
+                _this.commonPageInfo = data;
+                //设置背景图
+                if(_this.commonPageInfo.pageInfo.pageTemplateBgpic.picPath){
+                    CT.$("BGImg").src = _this.imgUrl + _this.commonPageInfo.pageInfo.pageTemplateBgpic.picPath;
+                }else {
+                    CT.$("BGImg").src = "./HD/images/empty.png";
+                }
+                //设置确定按钮
+                if(_this.commonPageInfo.recommend_1[0].recommendPic && _this.commonPageInfo.recommend_1[0].recommendPic.picPath){
+                    CT.$("post").src = _this.imgUrl + _this.commonPageInfo.recommend_1[0].recommendPic.picPath;
+                }else {
+                    CT.$("post").src = "./HD/images/empty.png";
+                }
+                //设置焦点图
+                if(_this.commonPageInfo.recommend_1[0].recommendLabelpic && _this.commonPageInfo.recommend_1[0].recommendLabelpic.picPath){
+                    CT.$("okFocus").src = _this.imgUrl + _this.commonPageInfo.recommend_1[0].recommendLabelpic.picPath;
+                }else {
+                    CT.$("okFocus").src = "./HD/images/empty.png";
+                }
+            }
+        };
+       		     /**
+                 * 页面访问日志和订购日志
+                 * */
+
+
+//         var backPrePage = CT.getCookie("backPrePage") || "";
+//
+//         var fromPage = xjDataLog.getPageUrlName(backPrePage);
+//         if (backPrePage.indexOf("cartoonId") > -1) {
+//                 var cartoonId = xjDataLog.querySearchUrlKey(backPrePage, "cartoonId");
+//                 fromPage += "_" + cartoonId;
+//         } else if (backPrePage.indexOf("gameId") > -1) {
+//                 var gameId = xjDataLog.querySearchUrlKey(backPrePage, "gameId");
+//                 fromPage += "_" + gameId;
+//         } else if (backPrePage.indexOf("activity") > -1) {
+//                 var activityId = xjDataLog.querySearchUrlKey(backPrePage, "activityId");
+//                 fromPage += "_activityId_" + activityId;
+//         }else{
+//                 var contentName = xjDataLog.querySearchUrlKey(backPrePage, "contentEName");
+//                  fromPage += "_" + contentName;
+//         }
+// //上传成功日志
+//         var params = {
+//             orderState: '1',
+//             contentName: fromPage
+//         };
+//         xjDataLog.uploadOrderSuccess(params);
+
+
+  		
+
+		var buttons=[
+  			{
+  			 id:'hands_x0_y0_okFocus_',
+			 clickHandler:'javascript:backFunc()',
+			 left:'disable',
+			 right:'disable',
+  	  	     up:'disable',
+  	  	     down:'disable',
+  	  	     focusType:7	
+  			}
+  		];
+
+  		PAGE.focusInit();
+		PAGE.changeFocus('hands_x0_y0_okFocus_');
+        page.init();
+	/*********************************************************************************************/
+		function backFunc() {// 返回键
+			CT.backPage();
+
+/*			var backPrePage = CT.getCookie("backPrePage")+"";
+			if(backPrePage.indexOf("http") != -1){
+				CT.delCookie("backPrePage");
+				CT.commonJumpUrl(backPrePage);
+			}else{
+				CT.backPage();
+			}
+*/			
+		}
+	</script>
+ </body>
+</html>

@@ -1,0 +1,148 @@
+/*10个数字div,字母div*/
+.numberDiv{
+	position: absolute;
+    top:0px;
+	left:0px;
+    width:450px;
+    height:560px;
+}
+/*数字和字母的样式*/
+.numberOrletter{
+	width:80px;
+    height:80px;
+    font-size: 26px;
+    line-height: 44px;
+    color: #FFFFFF;
+}
+/*数字和字母的边框*/
+.numberBj{
+    background: url("../image/numberBorder.png") no-repeat;
+}
+.letterBj{
+    background: url("../image/letterBorder.png") no-repeat;
+}
+/*数字边框*/
+.numberBorder{
+	top:0px;
+	left:0px;
+	width:80px;
+	height:80px;
+	background:url('../image/number.png');
+		visibility: hidden;
+}
+/*字母边框*/
+.letterBorder{
+	top:0px;
+	left:0px;
+	width:80px;
+	height:80px;
+	background:url('../image/letter.png') no-repeat;
+	visibility: hidden;
+}
+/*字母Div*/
+.letterTextDiv{
+	top:3px;
+	left:0px;
+	width:48px;
+	height:50px;
+	text-align:center
+}
+.btn{
+    border-radius: 8px;
+}
+/*搜索内容的div*/
+.userTextDiv{
+    position: absolute;
+    left:122px;
+    top: 40px;
+    width:260px;
+    height:50px;
+    font-size: 22px;
+    color: white;
+}
+/*热搜*/
+#hotSearch{
+    position: absolute;
+    left: 370px;
+    top: 87px;
+    width: 238px;
+    height: 600px;
+}
+/*热搜列表的每一项*/
+.hotText {
+    position: absolute;
+	top:0px;
+	left:38px;
+	width:230px;
+	height:64px;
+    color: white;
+    font-size: 21px;
+    line-height: 56px;
+    text-align: left;
+    margin-top: 10px;
+}
+.hotTextBoder {
+    top:11px;
+	left:20px;
+	width:255px;
+	height:50px;
+	visibility: hidden;
+}
+#recommend{
+    width:500px;
+    height: 580px;
+    position: absolute;
+    top:103px;
+    left:658px;
+}
+/*右侧推荐位的卡通名称*/
+.recommendTxt{    
+    border-radius: 0 0 10px 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: absolute;
+    top: 198px;
+    width: 168px;
+    height: 35px;
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    overflow: hidden;
+    line-height: 35px;
+}
+/*右侧推荐选中边框*/
+.rightRecommendBorder{
+    position: absolute;
+    top: -6px;
+    left: -6px;
+    width: 184px;
+    height: 246px;
+    background:url('../image/recommendBorder.png') no-repeat;
+    visibility: hidden;
+}
+
+#allSearch {
+    position: absolute;
+    left: 660px;
+    top: 46px;
+    color: #fff;
+    width: 364px;
+    font-size: 28px;
+    text-align: left;
+    font-weight: bold;
+}
+
+#searchAll {
+    position: absolute;
+    left: 866px;
+    top: 77px;
+    color: #fff;
+    width: 364px;
+    font-size: 28px;
+    text-align: right;
+    font-weight: bold;
+}
+#downArrow {
+    position: absolute;
+    top: 610px;
+    left: 908px;
+}

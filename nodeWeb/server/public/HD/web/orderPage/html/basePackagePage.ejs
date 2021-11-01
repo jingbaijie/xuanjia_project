@@ -1,0 +1,67 @@
+<!--
+ * @Description: 
+ * @Author: jwzx
+ * @Date: 2020-10-16 15:58:07
+ * @LastEditTime: 2020-11-25 14:33:14
+ * @LastEditors: jwzx
+-->
+<%- include ('../../components/header') %>
+<%
+
+    const localImg = basePageInfo.localImg;
+
+%>
+</head>
+<body>
+<img src="<%= basePageInfo.bgImg || "HD/images/empty.png" %>" id="errId" style="position: absolute; width: 1280px; height: 720px;">
+<div id="hands_x0_y0_focus_" style="width:20px;height:20px;top:77px;left:349px;">
+    <div id="focus" style="width:60px;height:60px;background:url(HD/images/empty.png)"></div>
+</div>
+<div align="center" id="errorCode" style="font-family:medium;color: #ff002c;font-size: 28px; display: none; position: absolute; text-align: center; width: 1200px; height: 233px;top:208px; left:80px; line-height:48px;">
+
+</div>
+<%- include('../../components/commJs') %>
+<script>
+    var errorCodes ={
+    "A300102":"T0KEN过期",
+    "A300104":"T0KEN错误",
+    "A300105":"T0KEN不存在",
+    "A300201":"没有任何产品包授权信息",
+    "B300201":"未查询到用户信息",
+    "B300202":"未查到用户的数字基本状态和互动基本状态信息",
+    "B300203":"用户数字基本状态欠费",
+    "B300204":"用户互动基本状态欠费",
+    "B300205":"用户数字基本状态异常",
+    "B300206":"用户互动基本状态异常",
+    "B300207":"用户数字基本状态和互动基本状态未知异常"
+}
+var error_code = basePageInfo.reqQuery.errCode || basePageInfo.reqQuery.errorCode;
+var errorTitle = errorCodes[error_code];
+if(error_code) {
+    CT.$("errorCode").style.display = "block";
+    errorTitle = (errorTitle ? errorTitle: "用户状态异常");
+    if(errorTitle.length > 12) {
+        errorTitle = "<span style='font-size:20px'>" + errorTitle + "</span>"
+        // CT.$("errorCode").style.fontSize = "12px";
+    //     errorTitle = errorTitle.substr(0,11) + "<br/>" + errorTitle.substr(11);
+    }
+    CT.$("errorCode").innerHTML = errorTitle + "</br>" + "错误码:" + error_code;
+}
+
+    var buttons = [{
+        id:"hands_x0_y0_focus_",
+        clickHandler:"javascript:backFunc()",
+        left:"disable",
+        up:"disable",
+        down:"disable",
+        right: "disable"
+    }];
+    PAGE.focusInit();
+    var start = PAGE.getFocusModel6("hands_x0_y0_focus_");
+    start.defaultFocus();
+    function backFunc() {
+        CT.backPage();
+    }
+</script>
+</body>
+</html>

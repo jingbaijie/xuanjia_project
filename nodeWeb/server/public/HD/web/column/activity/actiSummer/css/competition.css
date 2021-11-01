@@ -1,0 +1,96 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+html,body{
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+}
+.main{
+    width: 1280px;
+    height: 720px;
+    background: url(../images/competition/bg.jpg) no-repeat;
+    position: relative;
+    left: 0px;
+    top: 0px;
+    overflow: hidden;
+}
+#toFinishPack{
+    position: absolute;
+    top: 222px;
+    left: 660px;
+}
+#toOrderPack{
+    position: absolute;
+    top: 222px;
+    left: 120px;
+}
+#toRegisterPack{
+    position: absolute;
+    top: 222px;
+    left: 390px;
+}
+#toWatchPack{
+    position: absolute;
+    top: 222px;
+    left: 930px;
+}
+#toFinish,#toRegister,#toOrder,#toWatch,.toPic{
+    position: absolute;
+    left: 0px;
+    top: 0;
+}
+#toFinishPage,#toRegisterPage,#toOrderPage,#toWatchPage{
+    position: absolute;
+    top: 265px;
+    left: 100px;
+    width: 100px;
+    font-weight: bold;
+    color: #ffffff;
+
+}
+#hands_x0_y0_toOrderS_,#hands_x0_y0_toRegisterS_,#hands_x0_y0_toFinishS_,#hands_x0_y0_toWatchS_{
+    position: absolute;
+    top: 122px;
+    left: 0px;
+}
+#orderFinished,#registerFinished,#blessFinished,#watchFinished{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+#blessPopup{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    visibility: hidden;
+}
+#hands_x0_y0_bless01_{
+    position: absolute;
+    top: 168px;
+    left: 800px;
+}
+#hands_x0_y0_bless02_{
+    position: absolute;
+    top: 294px;
+    left: 800px;
+}
+#hands_x0_y0_bless03_{
+    position: absolute;
+    top: 420px;
+    left: 800px;
+}
+.numColor{
+    color: #fff800;
+}
+#yfsBtn01,#yfsBtn02,#yfsBtn03{
+    position: absolute;
+    left: 10px;
+    top: 15px;
+}
+#hands_x0_y0_blessEmpty_{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}

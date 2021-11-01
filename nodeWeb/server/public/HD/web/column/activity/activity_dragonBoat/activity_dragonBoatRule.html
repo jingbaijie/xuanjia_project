@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="page-view-size" content="1280*720">
+    <link rel = "stylesheet" href = "./css/activityComm.css">
+    <title>这个端午 fang粽一下</title>
+</head>
+<body>
+    <div class = "withScreen">
+        <!-- 背景 -->
+    <img id = "BJ" src = "./image/BG.jpg" class = "withScreen" alt="">
+    <!-- 树叶 -->
+    <img id = "leaf" class = "posDiv" src = "./image/leaf.png" style = "width: 471px;height: 306px;top: -123px;left: 753px;" alt="">
+    <!-- 空焦点 -->
+    <div id = "hands_x0_y0_emptyFocus_" class = "posDiv" style = "width: 2px;height: 2px;top: 20px;left: 20px;">
+        <img id = "emptyFocus" src = "./image/empty.png" style = "visibility: hidden;" alt="">
+    </div>
+    <!-- 我的粽子 -->
+    <div class = "allCredit">
+        <div id = "allCredit" class = "creditNum">0</div>
+    </div>
+    <!--    当前积分    -->
+    <div class = "curCredit">
+        <div id = "curCredit" class = "creditNum">0</div>
+    </div>
+    <!-- logo -->
+    <img id = "logo" src = "./image/logo.png?v=2021" class = "posDiv" style = "width: 361px;height: 145px;top: 32px;left: 465px;" alt="">
+    <!-- 左侧4个IP -->
+    <div id = "hands_x0_y0_ipFocus0_" class = "posDiv" style = "width: 134px;height: 134px;top: 75px;left: 40px;">
+        <img src = "./image/IP/jiangsu/ip_0.png" class = "ipImgs" alt="">
+        <img id = "ipFocus0" class = "posDiv" src = "./image/IP/jiangsu/ipS_0.png" style = "top: 0; left: 0;visibility: hidden;" alt="">
+    </div>
+    <div id = "hands_x0_y0_ipFocus1_" class = "posDiv" style = "width: 134px;height: 134px;top: 180px;left: 40px;">
+        <img src = "./image/IP/jiangsu/ip_1.png" class = "ipImgs" alt="">
+        <img id = "ipFocus1" class = "posDiv" src = "./image/IP/jiangsu/ipS_1.png" style = "top: 0; left: 0;visibility: hidden;" alt="">
+    </div>
+    <div id = "hands_x0_y0_ipFocus2_" class = "posDiv" style = "width: 134px;height: 134px;top: 300px;left: 40px;">
+        <img src = "./image/IP/jiangsu/ip_2.png" class = "ipImgs" alt="">
+        <img id = "ipFocus2" class = "posDiv" src = "./image/IP/jiangsu/ipS_2.png" style = "top: 0; left: 0;visibility: hidden;" alt="">
+    </div>
+    <div id = "hands_x0_y0_ipFocus3_" class = "posDiv" style = "width: 134px;height: 134px;top: 420px;left: 40px;">
+        <img src = "./image/IP/jiangsu/ip_3.png" class = "ipImgs" alt="">
+        <img id = "ipFocus3" class = "posDiv" src = "./image/IP/jiangsu/ipS_3.png" style = "top: 0; left: 0;visibility: hidden;" alt="">
+    </div>
+    <!--    炮焦点    -->
+    <div id = "hands_x0_y0_artilleryFocus_" class = "posDiv" style = "width: 218px;height: 211px;top: 355px;left: 168px;">
+        <img id = "artilleryImg" class = "posDiv" src = "./image/artillery/0.png" style = "visibility: visible;" alt="">
+        <img id = "artilleryFocus" class = "posDiv" src = "./image/artillery/0.png" style = "visibility: hidden;" alt="">
+    </div>
+    <!--    粽子IP    -->
+    <img id = "zongIP0" class = "posDiv" src = "./image/zongIP/0.png" style = "width: 136px;height: 155px;top: 145px;left: 295px" alt = "">
+    <img id = "zongIP1" class = "posDiv" src = "./image/zongIP/1.png" style = "width: 145px;height: 184px;top: 295px;left: 410px" alt = "">
+    <img id = "zongIP2" class = "posDiv" src = "./image/zongIP/2.png" style = "width: 148px;height: 176px;top: 180px;left: 625px" alt = "">
+    <img id = "zongIP3" class = "posDiv" src = "./image/zongIP/3.png" style = "width: 135px;height: 157px;top: 340px;left: 785px" alt = "">
+    <img id = "zongIP4" class = "posDiv" src = "./image/zongIP/4.png" style = "width: 130px;height: 152px;top: 150px;left: 895px" alt = "">
+    <!-- 粽子炮 -->
+    <img id = "bullet" class = "posDiv" src = "./image/bullet/0.png" style = "width: 60px;height: 60px;top: 335px;left: 162px;visibility: hidden;" alt="">
+    <!--  活动规则  -->
+    <div id = "hands_x0_y0_ruleFocus_" class = "posDiv" style = "width: 206px;height: 102px;top: 80px;left: 1050px;">
+        <img src = "./image/rule.png" class = "posDiv" alt="">
+        <img id = "ruleFocus" src = "./image/selected.png" style = "visibility: hidden;" alt="">
+    </div>
+    <!--  排行榜  -->
+    <div id = "hands_x0_y0_rankFocus_" class = "posDiv" style = "width: 206px;height: 102px;top: 165px;left: 1050px;">
+        <img src = "./image/rankList.png" class = "posDiv" alt="">
+        <img id = "rankFocus" src = "./image/selected.png" style = "visibility: hidden;" alt="">
+    </div>
+    <!--   萌鸡小队IP     -->
+    <img id = "chicken0" src = "./image/chicken0.png" style = "width: 153px;height: 200px;position: absolute;top: 415px;right: 85px;" alt="">
+    <img id = "chicken1" src = "./image/chicken1.png" alt="">
+
+    <!--  龙舟  -->
+    <img id = "dragonBoat" src = "./image/boat/0.png" style = "width: 279px;height: 224px;position: absolute;top: 500px;left: 120px;" alt="">
+    </div>
+    <img class = "withScreen" src = "./image/grayEmpty.png" alt="">
+    <div class = "withScreen">
+        <img class = "withScreen" src = "./image/rulePage.png" alt = "" style="width: 1040px;height: 630px;top: 30px;left: 100px;">
+        <!-- 返回 -->
+        <div id="hands_x0_y0_backFocus_" style="position: absolute;top: 29px;left: 1063px;">
+            <img id="backFocus" src="./image/backed.png" style = "visibility: hidden;" alt=""/>
+        </div>
+    </div>
+<!-- 引入公共的js开始 -->
+<script type = "text/javascript" src = "../../../../js/loadCommomJs.js"></script>
+<script type="text/javascript" src="../../../../js/actiComm.js?v=20212345"></script>
+<!--引入结束-->
+<script type="text/javascript">
+    var buttons = [
+        {
+            id: "hands_x0_y0_backFocus_",
+            clickHandler: "javascript: backFunc()",
+            up: "disable",
+            down: "disable",
+            left: "disable",
+            right: "disable",
+            focusType: 7
+        }
+    ];
+    PAGE.focusInit();
+    curFocus = PAGE.getFocusModel6("hands_x0_y0_backFocus_");
+    curFocus.defaultFocus();
+    //返回方法,返回至活动首页
+    function backFunc(){
+        var url = "./activity_dragonBoatMain.html";
+        actiObj.actiCommonJumpUrl(url);
+    }
+</script>
+</body>
+</html>

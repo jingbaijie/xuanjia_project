@@ -1,0 +1,28 @@
+{
+  "public": {
+    "not_found": "Strange, pages seem to disappear",
+    "server_maintenance": "The server is under maintenance, please visit later"
+  },
+  "user": {
+    "register_error": "Enter valid email address",
+    "register_success": "Register success",
+    "register_toLogin": "Login"
+  },
+  "login":{
+    "validateCode":"Emal code",
+    "title":"IPTV Management System.",
+    "loading":"Loading...",
+    "username":"Username",
+    "username_tip":"Incorrect username.",
+    "password":"Password",
+    "password_tip":"Incorrect password.",
+    "password_tip2":"Incorrect password.",
+    "button":"Sign up",
+    "success":"Login is successful.",
+    "fail":"Login fails!",
+    "remember":"Remember me",
+    "email":"Email validate",
+    "validatecode_tip":"Please input Email code"
+
+  }
+}

@@ -1,0 +1,252 @@
+<%- include ('../../components/header') %>
+</head>
+<%
+	const commonPageInfo = basePageInfo.commonPageInfo;
+	const recommend_1 = commonPageInfo.recommend_1;
+	const recommend_2 = commonPageInfo.recommend_2;
+	const recommend_3 = commonPageInfo.recommend_3;
+	const recommend_4 = commonPageInfo.recommend_4;
+	const recommend_5 = commonPageInfo.recommend_5;
+	const localImg = basePageInfo.localImg;
+%>
+<body style="background:transparent;">
+<!--背景-->
+<img id="BJ" src="<%= basePageInfo.bgImg %>" height="720" width="1280"/>
+
+<img id="showToy" src="" style="position: absolute;left:275px;top:190px;" alt="">
+
+<div id="hands_x0_y0_convertToy_" style="width:337px; height:305px; position: absolute; top: 401px;left: 771px;">
+    <img id="convertToy" src="<%= imgUrl + recommend_3[0].recommendPic.picPath %> " style="position: absolute; top: 0px;left: 0px; visibility:visible;">
+    <img id="convertToy1" src="<%= imgUrl + recommend_3[0].recommendLabelpic.picPath %> " style="position: absolute; top: 0px;left: 0px; visibility:hidden;">
+</div>
+
+<div id="phoneAlert" style="width:1280px; height:720px; position: absolute; top:0px;left:0px; visibility:hidden;
+background:url(<%= imgUrl + recommend_5[1].recommendPic.picPath %>) no-repeat;">
+    <div id="hands_x0_y0_phoneNum_" style="width:429px; height:99px; position: absolute; top: 509px;left:351px;">
+        <span id="phoneNumText" style="font-size: 30px; line-height: 99px; text-align: center; width: 429px; height: 99px;position: absolute;top: 0px;left: 0px;"></span>
+        <img id="phoneNum" src="<%= imgUrl + recommend_4[0].recommendPic.picPath %> " style="visibility:hidden;">
+    </div>
+    <div id="hands_x0_y0_commitPhoneNum_" style="width:187px; height:98px; position: absolute; top: 510px;left: 744px;">
+        <img id="commitPhoneNum" src="<%= imgUrl + recommend_4[1].recommendPic.picPath %> " style="visibility:hidden;">
+    </div>
+</div>
+
+</body>
+
+</html>
+<%- include('../../components/commJs3') %>
+<script>
+	
+addEvent.on("pageEvent", function (e) {
+    
+    init();
+
+});
+	
+    var prized = null
+    var prizeId = parseInt(CT.requestValue('gameId'));
+    var toyIndex = parseInt(CT.requestValue('defaultFocus').slice(21,23));
+    var commitId = null;
+    function init () {
+        interface.getPrizeListByUserId(
+            {
+                params:{
+                    prizeType: 3,
+                    outId: 1,
+                    userId: xjDataLog.getUserId()
+                }
+            },
+            function (res) {
+                CT.$("BJ").src = AjaxConfig.imgUrl + res.data[toyIndex].prizeFrom;
+                // CT.$("phoneAlert").style.background = 'url('+ AjaxConfig.imgUrl + res.data[toyIndex].more3 +') no-repeat';
+            }
+        );
+        //获取兑换状态
+        setTimeout(function(){
+            interface.getUserPrizeInfo(
+                {params:{
+                    prizeId: prizeId,
+                    userId: xjDataLog.getUserId(),
+                }},
+                function (res) {
+                    if (res && res.data && res.data.id && res.data.more1) {
+                        prized = false;
+                        commitId = res.data.id;
+                    } else {
+                        prized = true;
+                        if (res && res.data && res.data.id) {
+                            commitId = res.data.id;
+                        }
+                    }
+                }
+            );     
+        },200);
+    }
+
+    var buttons = [
+        {
+            id: 'hands_x0_y0_convertToy_',
+            clickHandler: 'javascript:showAlert()',
+            otherFocusEvent: "javascript:showButton()",
+            up: "disable",
+            down: "disable",
+            left: "disable",
+            right: "disable",
+            focusType: 7
+        }, {
+            id: 'hands_x0_y0_phoneNum_',
+            up: "disable",
+            down: "disable",
+            left: "disable",
+            right: "hands_x0_y0_commitPhoneNum_",
+            clickHandler: '',
+            focusType: 7
+        }, {
+            id: 'hands_x0_y0_commitPhoneNum_',
+            clickHandler: 'javascript:toCommit()',
+            up: "disable",
+            down: "disable",
+            left: "hands_x0_y0_phoneNum_",
+            right: "disable",
+            focusType: 7
+        }
+    ];
+
+    PAGE.focusInit();
+    PAGE.changeFocus("hands_x0_y0_convertToy_");
+
+    function showAlert(){
+        //点击扣积分
+        interface.changePrizeByPoints(
+            {params:{
+                prizeId: prizeId,
+                userId: xjDataLog.getUserId(),
+                activityId: 1
+            }},
+            function (res) {
+                console.log(res);
+                switch (Number(res.data)) {
+                    case 1:
+                        CT.alertTip("奖品余额不足",{time:1000});
+                        break;
+                    case 2:
+                        CT.alertTip("用户积分不足",{time:1000});
+                        break;
+                    case 3:
+                        CT.alertTip("奖品兑换时间未到或该奖品已兑换完",{time:1000});
+                        break;
+                    case 4:
+                        CT.$('phoneAlert').style.visibility = 'visible';
+                        PAGE.changeFocus("hands_x0_y0_phoneNum_");
+                        clearInterval(window["interval"]);
+                        break;
+                    case 5:
+                        CT.alertTip("兑换失败",{time:1000});
+                        break;
+                    case 6:
+                        if (prized == true) {
+                            CT.$('phoneAlert').style.visibility = 'visible';
+                            PAGE.changeFocus("hands_x0_y0_phoneNum_");
+                            clearInterval(window["interval"]);
+                        } else {
+                            CT.alertTip("已兑换过该奖品",{time:1000});
+                        }
+                        break;
+                    case 7:
+                        CT.alertTip("用户不存在或者无积分",{time:1000});
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+        );
+        //获取主键id
+        setTimeout(function(){
+            interface.getUserPrizeInfo(
+                {params:{
+                    prizeId: prizeId,
+                    userId: xjDataLog.getUserId(),
+                }},
+                function (res) {
+                    if (res && res.data && res.data.id && res.data.more1) {
+                        prized = false;
+                        commitId = res.data.id;
+                    } else {
+                        prized = true;
+                        if (res && res.data && res.data.id) {
+                            commitId = res.data.id;
+                        }
+                    }
+                }
+            );    
+        },200);
+    }
+
+    function toCommit() {
+        var phoneNum = CT.$("phoneNumText").innerText;
+        if (phoneNum.length > 7) {
+            interface.commitPhoneNum(
+                {params:{
+                    id: commitId,
+                    more1: phoneNum,
+                }},
+                function (res) {
+                    if (res.data == true) {
+                        CT.alertTip("提交电话号码成功",{time:1000});
+                        prized = false;
+                    } else {
+                        CT.alertTip("已领取过该奖品",{time:1000});
+                        prized = false;
+                    }
+                    console.log(res);
+                    setTimeout(function(){
+                        CT.getAnterByIdOrAction({
+                            contentName: "PointsMall"
+                        });
+                    },1000);
+                }
+            );
+        } else {
+            CT.alertTip("请填写完整的电话号码",{time:500});
+        }
+    }
+
+    function showButton () {
+        window["interval"] = setInterval(
+            function () {
+                if (CT.$("convertToy").style.visibility == "visible") {
+                    CT.$("convertToy1").style.visibility = "visible";
+                    CT.$("convertToy").style.visibility = "hidden";
+                } else {
+                    CT.$("convertToy").style.visibility = "visible";
+                    CT.$("convertToy1").style.visibility = "hidden";
+                }
+            }
+        ,300)
+    }
+
+    // 遥控器输入数字
+    changeNumObj.changeNum = function (num) {
+        var phoneNum = "";
+
+        var size = phoneNum.length;
+        if (!size && CT.$("phoneNumText").innerText.length < 11) {
+            phoneNum += num;
+            CT.$("phoneNumText").innerHTML += phoneNum;
+        }
+    }
+
+    function backFunc() {
+        if ( CT.$('phoneAlert').style.visibility == 'visible') {
+            CT.$('phoneAlert').style.visibility = 'hidden';
+            PAGE.changeFocus("hands_x0_y0_convertToy_");
+        } else {
+            CT.getAnterByIdOrAction({
+                contentName: "PointsMall"
+            });
+        }
+	}
+	
+
+</script>

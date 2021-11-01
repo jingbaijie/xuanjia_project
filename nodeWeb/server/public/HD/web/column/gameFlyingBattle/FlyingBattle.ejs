@@ -1,0 +1,137 @@
+<%- include ('../../components/header') %>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .barriers {
+        position: absolute;
+        left: 1015px;
+      }
+      #randomBomb {
+        z-index: 999;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 开始页面主题背景 -->
+    <div id="mainContent" style="background: url(<%= basePageUrl %>/img/bg.png) no-repeat; position: relative; top: 0; left: 0; width: 1280px; height: 720px">
+      <!-- 中间显示区域 -->
+      <div id="centerContent" style="background: url(<%= basePageUrl %>/img/sky.png) no-repeat; position: absolute; width: 882px; height: 548px; background-color: pink; left: 314px; top: 116px; overflow: hidden">
+        <!-- 随机炸弹 -->
+        <div id="randomBombContainer" style="position: absolute; top: 234px; left: 1050px; width: 149px; height: 138px; visibility: visible;z-index: 5;">
+          <img id="randomBomb" src="" />
+        </div>
+        <!-- 小飞机 -->
+        <!-- <div id="planeContainer" style="position: absolute; left: 70px; top: 220px; z-index: 2; width: 150px; height: 90px">
+          <img id="plane" src="./img/plane.png" />
+        </div> -->
+        <div id="hands_x0_y0_planeContainer_" style="position: absolute; left: 70px; top: 220px; z-index: 2; width: 160px; height: 90px">
+          <img id="planeContainer" src="<%= basePageUrl %>/img/plane.png" style="visibility: visible" />
+        </div>
+        <div id="bootContainer" style="position: absolute; z-index: 3; left: 70px; width: 200px; height: 200px">
+          <!-- 爆炸动画图片 -->
+          <img id="boot" src="" />
+        </div>
+      </div>
+      <div>
+        <!-- 飞机logo -->
+        <img src="<%= basePageUrl %>/img/logo.png" style="position: absolute; left: 41px; top: -23px" />
+      </div>
+      <div>
+        <img src="<%= basePageUrl %>/img/prompt.png" style="position: absolute; left: 7px; top: 79px" />
+      </div>
+      <!-- 开始游戏焦点 -->
+      <img src="<%= basePageUrl %>/img/start.png" style="position: absolute; left: -91px; top: 193px" />
+      <div id="hands_x0_y0_startGame_">
+        <img id="startGame" src="<%= basePageUrl %>/img/startFocus.png" style="position: absolute; left: -91px; top: 193px;visibility: hidden;" />
+      </div>
+      <!-- 弹框图片 -->
+      <!-- 跳到详情页 -->
+      <img id="ToCartoon" src="<%= basePageUrl %>/img/failAndAgain.png" style="position: absolute; visibility: hidden; z-index: 10; left: 434px; top: 154px" />
+      <div id="hands_x0_y0_jumpToDetails_">
+        <img id="jumpToDetails" src="<%= basePageUrl %>/img/select.png" style="position: absolute; visibility: hidden; z-index: 10; left: 496px; top: 445px" />
+      </div>
+      <!-- 再来一次 -->
+      <img id="fail" src="<%= basePageUrl %>/img/failAndAgain.png" style="position: absolute; visibility: hidden; z-index: 10; left: 126px; top: 35px" />
+      <div id="hands_x0_y0_failAndAgain_">
+        <img id="failAndAgain" src="<%= basePageUrl %>/img/select.png" style="position: absolute; visibility: hidden; z-index: 10; left:768px; top: 448px" />
+      </div>
+      <!-- 失败了 -->
+      <img id="over" src="<%= basePageUrl %>/img/gameOver.png" style="position: absolute; visibility: hidden; z-index: 10; left: 419px; top: 165px" />
+      <div id="hands_x0_y0_gameOver_">
+        <img id="gameOver" src="<%= basePageUrl %>/img/select.png" style="position: absolute; visibility: hidden; z-index: 10; left: 613px; top: 454px" />
+      </div>
+    </div>
+  </body>
+  <!-- 引入公共js -->
+  <%- include('../../components/commJs') %>                       
+  <script src="<%= basePageUrl %>/js/flyingBattle.js?v=14"></script>
+  <script>
+    var buttons = [
+      {
+        // 开始游戏
+        id: "hands_x0_y0_startGame_",
+        clickHandler: "javascript:startGame()",
+        upEvent: "javascript:",
+        downEvent: "javascript:",
+        up: "disable",
+        down: "disable",
+        left: "disable",
+        right: "disable",
+        focusType: 7,
+      },
+      {
+        // 小飞机
+        id: "hands_x0_y0_planeContainer_",
+        clickHandler: "javascript:",
+        upEvent: "javascript:plane.planeUp()",
+        downEvent: "javascript:plane.planeDown()",
+        up: "disable",
+        down: "disable",
+        left: "disable",
+        right: "disable",
+        focusType: 7,
+      },
+      // 跳卡通详情
+      {
+        id: "hands_x0_y0_jumpToDetails_",
+        clickHandler: "javascript:jumpCartoon()",
+        upEvent: "javascript:",
+        downEvent: "javascript:",
+        up: "disable",
+        down: "disable",
+        left: "disable",
+        right: "hands_x0_y0_failAndAgain_",
+        focusType: 7,
+      },
+      // 重来一次
+      {
+        id: "hands_x0_y0_failAndAgain_",
+        clickHandler: "javascript:reset()",
+        upEvent: "javascript:",
+        downEvent: "javascript:",
+        up: "disable",
+        down: "disable",
+        left: "hands_x0_y0_jumpToDetails_",
+        right: "disable",
+        focusType: 7,
+      },
+      {
+        // 游戏结束
+        id: "hands_x0_y0_gameOver_",
+        clickHandler: "javascript:gameFailed()",
+        upEvent: "javascript:",
+        downEvent: "javascript:",
+        up: "disable",
+        down: "disable",
+        left: "disable",
+        right: "disable",
+        focusType: 7,
+      },
+    ];
+    // 焦点初始化
+    PAGE.focusInit();
+    PAGE.changeFocus("hands_x0_y0_startGame_");
+  </script>
+</html>

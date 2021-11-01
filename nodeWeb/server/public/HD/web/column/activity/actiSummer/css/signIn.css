@@ -1,0 +1,160 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+html,body{
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+}
+.main{
+    width: 1280px;
+    height: 720px;
+    background: url(../images/signIn/bg.jpg) no-repeat;
+    position: relative;
+    left: 0px;
+    top: 0px;
+    overflow: hidden;
+}
+.scorePush{
+    position: absolute;
+    left: 373px;
+    top: 420px;
+}
+.signInBtn{
+    position: absolute;
+    top: 430px;
+    left: 420px;
+}
+.finger{
+    position: absolute;
+    left: 600px;
+    top: 440px;
+}
+.numberDay{
+    position: absolute;
+    font-size: 60px;
+    color: #ffffff;
+    top: 308px;
+    left: 818px;
+    letter-spacing: 33px;
+}
+.numberDay span{
+    margin: 0px 17px;
+}
+.chect{
+    position: absolute;
+    width: 880px;
+    height: 8px;
+    top: 620px;
+    left: 146px;
+    background: url(../images/signIn/chest/noLoad.png) no-repeat;
+}
+.load{
+    position: absolute;
+    height: 8px;
+    background-color: #ff6000;
+    width: 0px;
+    border-radius: 5px;
+}
+.chest0{
+    position: absolute;
+    top: -68px;
+    left: 20px;
+}
+.chest1{
+    position: absolute;
+    top: -68px;
+    left: 140px;
+}
+.chest2{
+    position: absolute;
+    top: -68px;
+    left: 270px;
+}
+.chest3{
+    position: absolute;
+    top: -68px;
+    left: 400px;
+}
+.chest4{
+    position: absolute;
+    top: -68px;
+    left: 530px;
+}
+.chest5{
+    position: absolute;
+    top: -68px;
+    left: 660px;
+}
+.chest6{
+    position: absolute;
+    top: -68px;
+    left: 790px;
+}
+.chestDay{
+    position: absolute;
+    left: 40px;
+    top: 62px;
+    color: #ffffff;
+}
+
+#qdcg,#yqd,#qtmfhy,#smlw{
+    position: absolute;
+    left: 0px;
+    top:0px;
+    background-color: rgba(0,0,0,0.7);
+    visibility: hidden;
+    z-index: 1;
+}
+#hands_x0_y0_jxyxBtnS_{
+    position: absolute;
+    left: 370px;
+    top: 515px;
+}
+#hands_x0_y0_toIpBtnS_{
+    position: absolute;
+    left: 650px;
+    top: 515px;
+}
+#hands_x0_y0_mtzlBtnS_,#hands_x0_y0_confirmBtnS_,#hands_x0_y0_smlwBtnS_{
+    position: absolute;
+    left: 510px;
+    top: 515px;
+}
+#jxyxBtnS,#toIpBtnS,#signInBtnS,#finger,#mtzlBtnS,#confirmBtnS,#smlwBtnS{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+#tyqCode{
+    position: absolute;
+    left: 500px;
+    top: 360px;
+    font-size: 26px;
+}
+#getScore{
+    position: absolute;
+    left: 550px;
+    top: 298px;
+    font-size: 48px;
+    color: #ff33a1;
+    font-weight: bold;
+}
+#scoreNum{
+    position: absolute;
+    font-size: 36px;
+    top: 60px;
+    left: 100px;
+}
+#hands_x0_y0_myPrizeBtnS_{
+    position: absolute;
+    left: 1050px;
+    top: 588px;
+    visibility: hidden;
+}
+#myPrizeBtnS{
+    position: absolute;
+    top: -22px;
+    left: -17px;
+}

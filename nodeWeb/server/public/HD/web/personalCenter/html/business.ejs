@@ -1,0 +1,47 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: sueRimn
+ * @Date: 2020-03-04 16:46:29
+ * @LastEditors: jwzx
+ * @LastEditTime: 2020-07-16 19:05:29
+ -->
+<%- include ('../../components/header') %>
+<link rel="stylesheet" href="<%= basePageUrl %>/css/personalCenter.css">
+</head>
+<%
+    const commonPageInfo = basePageInfo.commonPageInfo;
+    const localImg = basePageInfo.localImg;
+    basePageInfo.nodeButtons.push({
+        id: "hands_x0_y0_DMEJodernow_",
+        clickHandler: "javascript:business.toOrder()",
+        up: "disable",
+        left: "hands_x0_y0_DMEJleftceterbutton1_",
+        right: "disable",
+        down: "disable",
+        focusType: 7
+    })
+    
+%>
+
+<body>
+    <!--背景-->
+    <img id="BJ" src="<%= basePageInfo.bgImg %>" height="720" width="1280" />
+    <!--左边分类-->
+    <%- include('../../components/nav/pcGeneralNav')%>
+    <!--右边显示数据-->
+    <div id="orderBJ" style="width: 1280px;height:720px;position: absolute;top:0;left:0;
+        background-image:url(<%= imgUrl + commonPageInfo.recommend_1[0].recommendPic.picPath %>)">
+        <div id="hands_x0_y0_DMEJodernow_" style="position: absolute;background: url(<%= localImg %>order.png);top: 600px;
+		    left: 668px;width: 204px;height: 100px;">
+            <div id="DMEJodernow" style="width: 204px;height: 90px; position: absolute;visibility: hidden;
+		        background:url(<%= localImg %>orderFocus.png)">
+            </div>
+        </div>
+    </div>
+
+    <%- include('../../components/commJs3') %>
+    <script src="<%= basePageUrl %>/js/business.js"></script>
+</body>
+
+</html>

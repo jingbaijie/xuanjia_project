@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name = "page-view-size" content = "1280*720">
+    <title>福牛报喜</title>
+    <link rel="stylesheet" type="text/css" href="css/actiFuniu.css">
+</head>
+<body>
+<div class="main">
+    <!--翻牌-->
+    <div class="flopList">
+
+        <div id="hands_x0_y0_flopSelect0_" class="flop flop_0">
+            <img id="flopPic0" src="images/flop/Flop_0.png">
+            <img id="flopSelect0" src="images/flop/flopSelect.png" class="flopSelect">
+        </div>
+        <div id="hands_x0_y0_flopSelect1_" class="flop flop_1">
+            <img id="flopPic1" src="images/flop/Flop_0.png">
+            <img id="flopSelect1" src="images/flop/flopSelect.png" class="flopSelect" style="visibility: hidden">
+        </div>
+        <div id="hands_x0_y0_flopSelect2_" class="flop flop_2">
+            <img id="flopPic2" src="images/flop/Flop_0.png">
+            <img id="flopSelect2" src="images/flop/flopSelect.png" class="flopSelect" style="visibility: hidden">
+        </div>
+        <div id="hands_x0_y0_flopSelect3_" class="flop flop_3">
+            <img id="flopPic3" src="images/flop/Flop_0.png">
+            <img id="flopSelect3" src="images/flop/flopSelect.png" class="flopSelect" style="visibility: hidden">
+        </div>
+        <div id="hands_x0_y0_flopSelect4_" class="flop flop_4">
+            <img id="flopPic4" src="images/flop/Flop_0.png">
+            <img id="flopSelect4" src="images/flop/flopSelect.png" class="flopSelect" style="visibility: hidden">
+        </div>
+        <div id="hands_x0_y0_flopSelect5_" class="flop flop_5">
+            <img id="flopPic5" src="images/flop/Flop_0.png">
+            <img id="flopSelect5" src="images/flop/flopSelect.png" class="flopSelect" style="visibility: hidden">
+        </div>
+        <div id="hands_x0_y0_flopSelect6_" class="flop flop_6">
+            <img id="flopPic6" src="images/flop/Flop_0.png">
+            <img id="flopSelect6" src="images/flop/flopSelect.png" class="flopSelect" style="visibility: hidden">
+        </div>
+        <div id="hands_x0_y0_flopSelect7_" class="flop flop_7">
+            <img id="flopPic7" src="images/flop/Flop_0.png">
+            <img id="flopSelect7" src="images/flop/flopSelect.png" class="flopSelect" style="visibility: hidden">
+        </div>
+    </div>
+    <!--翻牌剩余次数-->
+    <div id="remainder" class="remainder">0</div>
+    <!--返回，规则，中奖名单-->
+    <div id="hands_x0_y0_backBtn_">
+        <img id="backBtn" src="images/select.png" style="visibility: hidden">
+    </div>
+    <div id="hands_x0_y0_ruleBtn_">
+        <img id="ruleBtn" src="images/select.png" style="visibility: hidden">
+    </div>
+    <div id="hands_x0_y0_winningBtn_">
+        <img id="winningBtn" src="images/select.png" style="visibility: hidden">
+    </div>
+    <!--规则-->
+    <div id="rulePic" class="rulePic" style="z-index: 1">
+        <img src="images/rulePic.png">
+    </div>
+    <!--中奖名单-->
+    <div id="winningList" class="winningList" style="z-index: 1">
+        <img src="images/winningList.jpg" style="position: absolute">
+        <!--中奖列表-->
+        <div id="rankscro" style="height: 260px">
+            <div id="rankList" class="nameList">
+                <div>
+                    <span style="display: inline-block;float: left;">wwww</span>
+                    <span style="display: inline-block;float: right;"> 宠物车周边玩具 </span>
+                </div>
+            </div>
+        </div>
+
+        <!--我的ID-->
+        <div id="winningListId">  </div>
+        <!--手机号-->
+        <div id="winningListInfo">
+
+        </div>
+    <!--    <div id="hands_x0_y0_winningPhone_">
+            <img id="winningPhone" src="images/phoneSelect.png" style="visibility: hidden">
+        </div>
+        &lt;!&ndash;保存&ndash;&gt;
+        <div id="hands_x0_y0_winningSave_">
+            <img id="winningSave" src="images/saveSelect.png" style="visibility: hidden">
+        </div>
+        &lt;!&ndash;清除&ndash;&gt;
+        <div id="hands_x0_y0_winningClear_">
+            <img id="winningClear" src="images/saveSelect.png" style="visibility: hidden">
+        </div>-->
+
+    </div>
+    <!--中奖弹框-->
+    <div id="hands_x0_y0_winningBox_" style="visibility: hidden;z-index: 1">
+        <img src="images/winningBox.png" class="winningBox">
+        <!--我的ID-->
+        <div id="winningId">  </div>
+        <!--手机号-->
+        <div id="winningInfo">
+        </div>
+        <!--IP-->
+        <div id="hands_x0_y0_IP0_">
+            <img src="images/ip/ip_0.png">
+            <img id="IP0" src="images/ip/ipSelect.png" class="ipSelect" style="visibility: hidden">
+        </div>
+        <div id="hands_x0_y0_IP1_">
+            <img src="images/ip/ip_1.png">
+            <img id="IP1" src="images/ip/ipSelect.png" class="ipSelect" style="visibility: hidden">
+        </div>
+        <div id="hands_x0_y0_IP2_">
+            <img src="images/ip/ip_2.png">
+            <img id="IP2" src="images/ip/ipSelect.png" class="ipSelect" style="visibility: hidden">
+        </div>
+        <div id="hands_x0_y0_IP3_">
+            <img src="images/ip/ip_3.png">
+            <img id="IP3" src="images/ip/ipSelect.png" class="ipSelect" style="visibility: hidden">
+        </div>
+        <div id="hands_x0_y0_moreIp_">
+            <img id="moreIp" src="images/ip/moreIP.png" style="visibility: hidden">
+        </div>
+
+    </div>
+    <!--未中奖弹框-->
+    <div id="hands_x0_y0_nowinningBox_" style="z-index: 1">
+        <img src="images/nowinningBox.png">
+        <!--IP-->
+        <div id="hands_x0_y0_wzjIP0_">
+            <img src="images/ip/ip_0.png">
+            <img id="wzjIP0" src="images/ip/ipSelect.png" class="ipSelect" style="visibility: hidden">
+        </div>
+        <div id="hands_x0_y0_wzjIP1_">
+            <img src="images/ip/ip_1.png">
+            <img id="wzjIP1" src="images/ip/ipSelect.png" class="ipSelect" style="visibility: hidden">
+        </div>
+        <div id="hands_x0_y0_wzjIP2_">
+            <img src="images/ip/ip_2.png">
+            <img id="wzjIP2" src="images/ip/ipSelect.png" class="ipSelect" style="visibility: hidden">
+        </div>
+        <div id="hands_x0_y0_wzjIP3_">
+            <img src="images/ip/ip_3.png">
+            <img id="wzjIP3" src="images/ip/ipSelect.png" class="ipSelect" style="visibility: hidden">
+        </div>
+        <div id="hands_x0_y0_wzjMoreIp_">
+            <img id="wzjMoreIp" src="images/ip/moreIP.png" style="visibility: hidden">
+        </div>
+    </div>
+    <!--抽奖次数用完弹框-->
+    <div id="regret">
+        <img src="images/regret.png">
+        <div id="hands_x0_y0_regretConfirm_">
+            <img id="regretConfirm" src="images/regretSelect.png" style="visibility: hidden">
+        </div>
+        <div id="hands_x0_y0_regretMor_">
+            <img id="regretMor" src="images/regretSelect.png" style="visibility: hidden">
+        </div>
+    </div>
+
+
+
+</div>
+
+<!--<script type="text/javascript" src="./js/common3_4.js?v=20190930"></script>
+<script type="text/javascript" src="./js/key3_4.js?v=20190930"></script>-->
+<script type = "text/javascript" src = "../../../../js/loadCommomJs.js"></script>
+<script type="text/javascript" src="../../../../js/actiComm.js"></script>
+<script type="text/javascript" src="../actiCommonPage/js/telinput.js?v=2020"></script>
+<script>
+    buttons.push({
+        id:'hands_x0_y0_flopSelect0_',
+        clickHandler:'javascript:game.open(0)',
+        up:'disable',
+        down:'hands_x0_y0_flopSelect4_',
+        left:'hands_x0_y0_backBtn_',
+        right:'hands_x0_y0_flopSelect1_',
+        focusType:7
+    },{
+        id:'hands_x0_y0_flopSelect1_',
+        clickHandler:'javascript:game.open(1)',
+        up:'disable',
+        down:'hands_x0_y0_flopSelect5_',
+        left:'hands_x0_y0_flopSelect0_',
+        right:'hands_x0_y0_flopSelect2_',
+        focusType:7
+    },{
+        id:'hands_x0_y0_flopSelect2_',
+        clickHandler:'javascript:game.open(2)',
+        up:'disable',
+        down:'hands_x0_y0_flopSelect6_',
+        left:'hands_x0_y0_flopSelect1_',
+        right:'hands_x0_y0_flopSelect3_',
+        focusType:7
+    },{
+        id:'hands_x0_y0_flopSelect3_',
+        clickHandler:'javascript:game.open(3)',
+        up:'disable',
+        down:'hands_x0_y0_flopSelect7_',
+        left:'hands_x0_y0_flopSelect2_',
+        right:'disable',
+        focusType:7
+    },{
+        id:'hands_x0_y0_flopSelect4_',
+        clickHandler:'javascript:game.open(4)',
+        up:'hands_x0_y0_flopSelect0_',
+        down:'disable',
+        left:'hands_x0_y0_backBtn_',
+        right:'hands_x0_y0_flopSelect5_',
+        focusType:7
+    },{
+        id:'hands_x0_y0_flopSelect5_',
+        clickHandler:'javascript:game.open(5)',
+        up:'hands_x0_y0_flopSelect1_',
+        down:'disable',
+        left:'hands_x0_y0_flopSelect4_',
+        right:'hands_x0_y0_flopSelect6_',
+        focusType:7
+    },{
+        id:'hands_x0_y0_flopSelect6_',
+        clickHandler:'javascript:game.open(6)',
+        up:'hands_x0_y0_flopSelect2_',
+        down:'disable',
+        left:'hands_x0_y0_flopSelect5_',
+        right:'hands_x0_y0_flopSelect7_',
+        focusType:7
+    },{
+        id:'hands_x0_y0_flopSelect7_',
+        clickHandler:'javascript:game.open(7)',
+        up:'hands_x0_y0_flopSelect3_',
+        down:'disable',
+        left:'hands_x0_y0_flopSelect6_',
+        right:'disable',
+        focusType:7
+    },{
+        id:'hands_x0_y0_backBtn_',
+        clickHandler:'javascript:backFunc()',
+        up:'disable',
+        down:'hands_x0_y0_ruleBtn_',
+        left:'disable',
+        right:'hands_x0_y0_flopSelect0_',
+        focusType:7
+    },{
+        id:'hands_x0_y0_ruleBtn_',
+        clickHandler:'javascript:rule()',
+        up:'hands_x0_y0_backBtn_',
+        down:'hands_x0_y0_winningBtn_',
+        left:'disable',
+        right:'hands_x0_y0_flopSelect0_',
+        focusType:7
+    },{
+        id:'hands_x0_y0_winningBtn_',
+        clickHandler:'javascript:winning()',
+        up:'hands_x0_y0_ruleBtn_',
+        down:'disable',
+        left:'disable',
+        right:'hands_x0_y0_flopSelect0_',
+        focusType:7
+    },{
+        id:'hands_x0_y0_IP0_',
+        clickHandler:'javascript:game.JumpIP(0)',
+        up:'hands_x0_y0_saveTelFocus_',
+        down:'disable',
+        left:'disable',
+        right:'hands_x0_y0_IP1_',
+        focusType:7
+    },{
+        id:'hands_x0_y0_IP1_',
+        clickHandler:'javascript:game.JumpIP(1)',
+        up:'hands_x0_y0_saveTelFocus_',
+        down:'disable',
+        left:'hands_x0_y0_IP0_',
+        right:'hands_x0_y0_IP2_',
+        focusType:7
+    },{
+        id:'hands_x0_y0_IP2_',
+        clickHandler:'javascript:game.JumpIP(2)',
+        up:'hands_x0_y0_saveTelFocus_',
+        down:'disable',
+        left:'hands_x0_y0_IP1_',
+        right:'hands_x0_y0_IP3_',
+        focusType:7
+    },{
+        id:'hands_x0_y0_IP3_',
+        clickHandler:'javascript:game.JumpIP(3)',
+        up:'hands_x0_y0_saveTelFocus_',
+        down:'disable',
+        left:'hands_x0_y0_IP2_',
+        right:'hands_x0_y0_moreIp_',
+        focusType:7
+    },{
+        id:'hands_x0_y0_moreIp_',
+        clickHandler:'javascript:MoreIP()',
+        up:'disable',
+        down:'disable',
+        left:'hands_x0_y0_IP3_',
+        right:'disable',
+        focusType:7
+    },{
+        id:'hands_x0_y0_wzjIP0_',
+        clickHandler:'javascript:game.JumpIP(0)',
+        up:'disable',
+        down:'disable',
+        left:'disable',
+        right:'hands_x0_y0_wzjIP1_',
+        focusType:7
+    },{
+        id:'hands_x0_y0_wzjIP1_',
+        clickHandler:'javascript:game.JumpIP(1)',
+        up:'disable',
+        down:'disable',
+        left:'hands_x0_y0_wzjIP0_',
+        right:'hands_x0_y0_wzjIP2_',
+        focusType:7
+    },{
+        id:'hands_x0_y0_wzjIP2_',
+        clickHandler:'javascript:game.JumpIP(2)',
+        up:'disable',
+        down:'disable',
+        left:'hands_x0_y0_wzjIP1_',
+        right:'hands_x0_y0_wzjIP3_',
+        focusType:7
+    },{
+        id:'hands_x0_y0_wzjIP3_',
+        clickHandler:'javascript:game.JumpIP(3)',
+        up:'disable',
+        down:'disable',
+        left:'hands_x0_y0_wzjIP2_',
+        right:'hands_x0_y0_wzjMoreIp_',
+        focusType:7
+    },{
+        id:'hands_x0_y0_wzjMoreIp_',
+        clickHandler:'javascript:MoreIP()',
+        up:'disable',
+        down:'disable',
+        left:'hands_x0_y0_wzjIP3_',
+        right:'disable',
+        focusType:7
+    },{
+        id:'hands_x0_y0_regretConfirm_',
+        clickHandler:'javascript:backFunc()',
+        up:'disable',
+        down:'disable',
+        left:'disable',
+        right:'hands_x0_y0_regretMor_',
+        focusType:7
+    },{
+        id:'hands_x0_y0_regretMor_',
+        clickHandler:'javascript:MoreIP()',
+        up:'disable',
+        down:'disable',
+        left:'hands_x0_y0_regretConfirm_',
+        right:'disable',
+        focusType:7
+    }
+    )
+
+
+
+</script>
+<script type="text/javascript" src="js/actiFuniu.js"></script>
+
+</body>
+</html>

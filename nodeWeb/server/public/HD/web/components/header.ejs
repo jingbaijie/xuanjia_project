@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="page-view-size" content="1280*720" />
+    <title><%= title %> </title>
+    <link rel="stylesheet" href="/<%= global.config.projectName   %>/HD/css/commCss.css">
+    <% 
+        const basePageInfoObj = basePageInfo || {};
+        let basePageInfo1 = {};
+        for (const key in basePageInfoObj) {
+            if(key != "nodeButtons"){
+                basePageInfo1[key] = basePageInfoObj[key];
+            }
+        }
+    
+    %> 
+    <script>
+
+        var basePageInfo = {};
+        
+        try {
+            // basePageInfo = eval("(" + document.getElementById("basePageInfoObj").innerHTML + ")");  
+            basePageInfo = <%- JSON.stringify(basePageInfo1)%>
+            
+        } catch (e) {
+            // loggerInfo("start>>error>>" + e);
+        }
+
+        //组件外的buttons 数组
+        var xjInitButtons = [];
+
+        function loggerInfo(args, method) {
+            var url = "/<%= global.config.projectName %>/log?";
+            var userId = '';
+            try {
+
+                userId = Utility.getSystemInfo("UID");
+                if (!userId) {
+                    userId = CITV.loginInfo.userId;
+                }
+            } catch (e) {
+                try {
+                    stbId = hardware.STB.serialNumber;
+                } catch (e) {
+        
+                }
+            }
+            if (method && method.toLocaleUpperCase() == "POST") {
+                var params = {
+                    "log": ""
+                };
+                if (typeof args == "object") {
+                    args.userId = userId;
+                    params.log = JSON.stringify(args);
+                } else {
+                    params.log = "userId:" + userId + "---" + args;
+                }
+                if (!args) {
+                   
+                    return;
+                }
+                try {
+                    oAjax = new XMLHttpRequest();
+                } catch (e) {
+                    oAjax = new ActiveXObject("Microsoft.XMLHTTP");
+                };
+                oAjax.open("POST", url, true);
+                /*/post相比get方式提交多了个这个*/
+                oAjax.setRequestHeader("Content-type", "application/json;charset=utf-8");
+                /*//post发送数据*/
+                oAjax.withCredentials = true;
+                oAjax.send(JSON.stringify(params));
+                oAjax.onreadystatechange = function () {
+                    /*/当状态为4的时候，执行以下操作*/
+                    if (oAjax.readyState == 4) {
+                        if (oAjax.status == 200) {
+                            // success && success(eval("(" + oAjax.responseText + ")"));
+                        } else {
+                            // fail && fail(status);
+                        }
+                    };
+                };
+            }else{
+                var img = new Image();
+                img.src = url + "log=" + "userId:" + userId + "---" + args + "---v=" + new Date().getTime();
+            }
+
+        }
+
+
+
+        function errorFun(msg) {
+            var txt = "";
+            txt += msg.path.length +  "|url:" +  (msg.srcElement.src || msg.path[0].src || msg.path[0].href || msg.filename || msg.path[0].outerHTML) + "|type:" + msg.type + "|message:" + (msg.error && msg.error.stack) + "|lineNo:" + msg.lineno + "|colNo:" + msg.colno;
+             loggerInfo(txt,"post");
+            return false;
+        };
+        window.addEventListener("error",errorFun,true);
+
+    </script>
+   

@@ -1,0 +1,326 @@
+
+<%- include ('../../components/header') %>
+<link rel="stylesheet" href="<%= basePageUrl %>/css/pointsMall.css">
+</head>
+<%
+	const commonPageInfo = basePageInfo.commonPageInfo;
+	const recommend_1 = commonPageInfo.recommend_1;
+	const recommend_2 = commonPageInfo.recommend_2;
+	const recommend_3 = commonPageInfo.recommend_3;
+	const recommend_4 = commonPageInfo.recommend_4;
+	const recommend_5 = commonPageInfo.recommend_5;
+	const recommend_6 = commonPageInfo.recommend_6;
+	const recommend_7 = commonPageInfo.recommend_7;
+	const recommend_8 = commonPageInfo.recommend_8;
+	const recommend_9 = commonPageInfo.recommend_9;
+	const recommend_10 = commonPageInfo.recommend_10;
+	const localImg = basePageInfo.localImg;
+%>
+<body style="background:transparent;">
+	<!--背景-->
+	<img id="BJ" src="<%= imgUrl + recommend_10[5].recommendPic.picPath %>" height="720" width="1280"/>
+	<div id="mengban" class="position mengban" style="visibility: hidden;background:url(<%= imgUrl + recommend_1[14].recommendPic.picPath %>) no-repeat;"></div>
+
+	<div id="orderAlert" class="position" style="height:720px;width:1280px;top:0px;left:0px;z-index:1;display: none;background:url(<%= imgUrl + recommend_9[3].recommendPic.picPath %>) no-repeat;">
+		<div id="hands_x0_y0_alertOrder_" class="position" style="height:84px;width:275px;top:505px;left:545px;visibility: visible;background:url(<%= imgUrl + recommend_9[2].recommendPic.picPath %>) no-repeat;">
+			<img id="alertOrder" class="position" style="visibility: hidden;top:-20px;left:-20px;" src="<%= imgUrl + recommend_9[2].recommendLabelpic.picPath %>" alt="">
+		</div>
+
+		<div id="hands_x0_y0_orderCancel_" class="position" style="width:80px;height:80px;top:40px;left:1150px;display: none;background:url(<%= imgUrl + recommend_9[1].recommendPic.picPath %>) no-repeat;">
+			<img id="orderCancel" class="position" style="visibility: hidden;top:-17px;left:-17px;" src="<%= imgUrl + recommend_9[1].recommendLabelpic.picPath %>" alt="">
+		</div>
+	</div>
+
+	<!-- 订购挽留 -->
+	<div id="orderBack" class="position" style="height:401px;width:467px;top:105px;left:405px;z-index:2;display: none;background:url(<%= imgUrl + recommend_8[5].recommendPic.picPath %>) no-repeat;">
+		<div id="hands_x0_y0_alertBack_" class="position" style="height:57px;width:170px;top:320px;left:50px;visibility: visble;background:url(<%= imgUrl + recommend_8[0].recommendPic.picPath %>) no-repeat;">
+			<img id="alertBack" class="position" style="visibility: hidden;top:-17px;left:-12px;" src="<%= imgUrl + recommend_8[0].recommendLabelpic.picPath %>" alt="">
+		</div>
+		<div id="hands_x0_y0_backOrder_" class="position" style="height:57px;width:170px;top:320px;left:255px;visibility: visble;background:url(<%= imgUrl + recommend_8[1].recommendPic.picPath %>) no-repeat;">
+			<img id="backOrder" class="position" style="visibility: hidden;top:-17px;left:-12px;" src="<%= imgUrl + recommend_8[1].recommendLabelpic.picPath %>" alt="">
+		</div>
+
+	</div>
+
+	<div id="registerAlert" class="position registerAlert" style="display:none;background:url(<%= imgUrl + recommend_5[0].recommendPic.picPath %>) no-repeat;">
+		<div id="registerInfo" class="position registerInfo" style="background:url(<%= imgUrl + recommend_5[10].recommendPic.picPath %>) no-repeat;">
+			
+		</div>
+
+		<div id="babyNameDiv" class="position" style="width:509px;height:40px;top:72px;left:0px;">
+			<div class="position title">
+				昵称
+			</div>
+			<div id="babyNameAlert" class="position setName" style="background:url(<%= imgUrl + recommend_3[2].recommendPic.picPath %>) no-repeat;">
+				未设置
+			</div>
+			<div id="hands_x0_y0_changeName_" class="position" style="width:35px;height:35px;top:4px;left:415px;background:url(<%= imgUrl + recommend_3[7].recommendPic.picPath %>) no-repeat;">
+				<img id="changeName" class="position" style="visibility: hidden;top:-9px;left:-9px;" src="<%= imgUrl + recommend_3[7].recommendLabelpic.picPath %>" alt="">
+			</div>
+		</div>
+		
+
+		<div id="babySexDiv" class="position" style="width:509px;height:40px;top:134px;left:0px;">
+			<div class="position title">
+				性别
+			</div>
+			<div id="hands_x0_y0_boy_" class="position" style="width:100px;height:35px;top:4px;left:132px;background:url(<%= imgUrl + recommend_5[1].recommendPic.picPath %>) no-repeat;">
+				<img id="boy" class="position" style="visibility: hidden;top:-9px;left:-9px;" src="<%= imgUrl + recommend_3[1].recommendLabelpic.picPath %>" alt="">
+				<img id="boyMark" class="position" style="visibility:hidden;" src="<%= imgUrl + recommend_5[1].recommendLabelpic.picPath %>" alt="">
+			</div>
+			<div id="hands_x0_y0_girl_" class="position" style="width:100px;height:35px;top:4px;left:270px;background:url(<%= imgUrl + recommend_5[4].recommendPic.picPath %>) no-repeat;">
+				<img id="girl" class="position" style="visibility: hidden;top:-9px;left:-9px;" src="<%= imgUrl + recommend_3[1].recommendLabelpic.picPath %>" alt="">
+				<img id="girlMark" class="position" style="visibility:hidden;" src="<%= imgUrl + recommend_5[4].recommendLabelpic.picPath %>" alt="">
+			</div>
+			<div id="sexTips" class="babyTips" style="visibility:hidden;">
+				请选择宝贝的性别哦~
+			</div>
+		</div>
+
+		<div id="babyAgeDiv" class="position" style="width:509px;height:40px;top:195px;left:0px;">
+			<div class="position title">
+				年龄
+			</div>
+			<div id="hands_x0_y0_setAge_" class="position setName" style="background:url(<%= imgUrl + recommend_3[6].recommendPic.picPath %>) no-repeat;">
+				<div id="ageText" class="position setName" style="top:0px;left:0px;">
+					请用遥控器输入年龄
+				</div>
+				<img id="setAge" class="position" style="visibility: hidden;top:-9px;left:-9px;" src="<%= imgUrl + recommend_3[6].recommendLabelpic.picPath %>" alt="">
+			</div>
+			<div id="ageTips" class="babyTips" style="visibility:hidden">
+				请输入正确的年龄哦~
+			</div>
+		</div>
+
+		<div id="phoneNumDiv" class="position" style="width:509px;height:40px;top:258px;left:0px;">
+			<div class="position title">
+				手机号
+			</div>
+			<div id="hands_x0_y0_setPhoneNum_" class="position setName" style="background:url(<%= imgUrl + recommend_3[6].recommendPic.picPath %>) no-repeat;">
+				<div id="phoneNumText" class="position setName" style="top:0px;left:0px;">
+					请用遥控器输入手机号码
+				</div>
+				<img id="setPhoneNum" class="position" style="visibility: hidden;top:-9px;left:-9px;" src="<%= imgUrl + recommend_3[6].recommendLabelpic.picPath %>" alt="">
+			</div>
+			<div id="phoneNumTips" class="babyTips" style="visibility:hidden">
+				请输入正确的手机号吗哦~
+			</div>
+		</div>
+
+		<div id="babyHobbyDiv" class="position" style="width:509px;height:40px;top:326px;left:5px;">
+			<div class="position title">
+				喜好
+			</div>
+			<div id="hands_x0_y0_like1_" class="setAge" style=top:4px;left:124px;background:url(<%= imgUrl + recommend_3[3].recommendPic.picPath %>) no-repeat;">
+				<div id="likeFocus1" class="setAge">
+				儿歌
+				</div>
+				<img id="likeMark1" class="position" style="visibility: hidden;top:0px;left:0px;" src="<%= imgUrl + recommend_5[3].recommendLabelpic.picPath %>" alt="">
+				<img id="like1" class="position" style="visibility: hidden;top:-9px;left:-9px;" src="<%= imgUrl + recommend_3[3].recommendLabelpic.picPath %>" alt="">
+			</div>
+			<div id="hands_x0_y0_like2_" class="setAge" style="top:4px;left:224px;background:url(<%= imgUrl + recommend_3[3].recommendPic.picPath %>) no-repeat;">
+				<div id="likeFocus2" class="setAge">
+				玩具
+				</div>
+				<img id="likeMark2" class="position" style="visibility: hidden;top:0px;left:0px;" src="<%= imgUrl + recommend_5[3].recommendLabelpic.picPath %>" alt="">
+				<img id="like2" class="position" style="visibility: hidden;top:-9px;left:-9px;" src="<%= imgUrl + recommend_3[3].recommendLabelpic.picPath %>" alt="">
+			</div>
+			<div id="hands_x0_y0_like3_" class="setAge" style="top:4px;left:324px;background:url(<%= imgUrl + recommend_3[3].recommendPic.picPath %>) no-repeat;">
+				<div id="likeFocus3" class="setAge">
+				魔幻
+				</div>
+				<img id="likeMark3" class="position" style="visibility: hidden;top:0px;left:0px;" src="<%= imgUrl + recommend_5[3].recommendLabelpic.picPath %>" alt="">
+				<img id="like3" class="position" style="visibility: hidden;top:-9px;left:-9px;" src="<%= imgUrl + recommend_3[3].recommendLabelpic.picPath %>" alt="">
+			</div>
+			<div id="hands_x0_y0_like4_" class="setAge" style="top:54px;left:124px;background:url(<%= imgUrl + recommend_3[3].recommendPic.picPath %>) no-repeat;">
+				<div id="likeFocus4" class="setAge">
+				益智
+				</div>
+				<img id="likeMark4" class="position" style="visibility: hidden;top:0px;left:0px;" src="<%= imgUrl + recommend_5[3].recommendLabelpic.picPath %>" alt="">
+				<img id="like4" class="position" style="visibility: hidden;top:-9px;left:-9px;" src="<%= imgUrl + recommend_3[3].recommendLabelpic.picPath %>" alt="">
+			</div>
+			<div id="hands_x0_y0_like5_" class="setAge" style="top:54px;left:224px;background:url(<%= imgUrl + recommend_3[3].recommendPic.picPath %>) no-repeat;">
+				<div id="likeFocus5" class="setAge">
+				汽车
+				</div>
+				<img id="likeMark5" class="position" style="visibility: hidden;top:0px;left:0px;" src="<%= imgUrl + recommend_5[3].recommendLabelpic.picPath %>" alt="">
+				<img id="like5" class="position" style="visibility: hidden;top:-9px;left:-9px;" src="<%= imgUrl + recommend_3[3].recommendLabelpic.picPath %>" alt="">
+			</div>
+			<div id="hands_x0_y0_like6_" class="setAge" style="top:54px;left:324px;background:url(<%= imgUrl + recommend_3[3].recommendPic.picPath %>) no-repeat;">
+				<div id="likeFocus6" class="setAge">
+				奥特曼
+				</div>
+				<img id="likeMark6" class="position" style="visibility: hidden;top:0px;left:0px;" src="<%= imgUrl + recommend_5[3].recommendLabelpic.picPath %>" alt="">
+				<img id="like6" class="position" style="visibility: hidden;top:-9px;left:-9px;" src="<%= imgUrl + recommend_3[3].recommendLabelpic.picPath %>" alt="">
+			</div>
+			<div id="hands_x0_y0_like7_" class="setAge" style="top:103px;left:124px;background:url(<%= imgUrl + recommend_3[3].recommendPic.picPath %>) no-repeat;">
+				<div id="likeFocus7" class="setAge">
+				机甲
+				</div>
+				<img id="likeMark7" class="position" style="visibility: hidden;top:0px;left:0px;" src="<%= imgUrl + recommend_5[3].recommendLabelpic.picPath %>" alt="">
+				<img id="like7" class="position" style="visibility: hidden;top:-9px;left:-9px;" src="<%= imgUrl + recommend_3[3].recommendLabelpic.picPath %>" alt="">
+			</div>
+			<div id="hands_x0_y0_like8_" class="setAge" style="top:103px;left:224px;background:url(<%= imgUrl + recommend_3[3].recommendPic.picPath %>) no-repeat;">
+				<div id="likeFocus8" class="setAge">
+				动物
+				</div>
+				<img id="likeMark8" class="position" style="visibility: hidden;top:0px;left:0px;" src="<%= imgUrl + recommend_5[3].recommendLabelpic.picPath %>" alt="">
+				<img id="like8" class="position" style="visibility: hidden;top:-9px;left:-9px;" src="<%= imgUrl + recommend_3[3].recommendLabelpic.picPath %>" alt="">
+			</div>
+			<div id="hands_x0_y0_like9_" class="setAge" style="top:103px;left:324px;background:url(<%= imgUrl + recommend_3[3].recommendPic.picPath %>) no-repeat;">
+				<div id="likeFocus9" class="setAge">
+				童话
+				</div>
+				<img id="likeMark9" class="position" style="visibility: hidden;top:0px;left:0px;" src="<%= imgUrl + recommend_5[3].recommendLabelpic.picPath %>" alt="">
+				<img id="like9" class="position" style="visibility: hidden;top:-9px;left:-9px;" src="<%= imgUrl + recommend_3[3].recommendLabelpic.picPath %>" alt="">
+			</div>
+			<div id="hobbyTips" class="babyTips" style="visibility:hidden;top:139px;">
+				选择宝贝的喜好，会让我们推荐的更准确哦~
+			</div>
+		</div>
+
+
+		<div id="hands_x0_y0_confirm_" class="position confirmBtn" style="background:url(<%= imgUrl + recommend_3[5].recommendPic.picPath %>) no-repeat;">
+			确认
+			<img id="confirm" class="position" style="visibility:hidden;top:-9px;left:-9px;" src="<%= imgUrl + recommend_3[5].recommendLabelpic.picPath %>" alt="">
+		</div>
+		<div id="hands_x0_y0_back_" class="position confirmBtn" style="left:293px;background:url(<%= imgUrl + recommend_3[5].recommendPic.picPath %>) no-repeat;">
+			返回
+			<img id="back" class="position" style="visibility:hidden;top:-9px;left:-9px;" src="<%= imgUrl + recommend_3[5].recommendLabelpic.picPath %>" alt="">
+		</div>
+
+		
+		<div id="showKeyboard" class="position showKeyboard" style="visibility: hidden;background:url(<%= imgUrl + recommend_4[1].recommendPic.picPath %>) no-repeat;">
+			<div id="hands_x0_y0_num1_" class="keyboardNum" style="top:38px;left:23px;background:url(<%= imgUrl + recommend_4[0].recommendPic.picPath %>) no-repeat;">
+				<div id="focusNum1" class="setNum">
+				1
+				</div>
+				<img id="num1" class="position" style="visibility: hidden;top:0px;left:0px;" src="<%= imgUrl + recommend_4[2].recommendPic.picPath %>" alt="">
+			</div>
+			<div id="hands_x0_y0_num2_" class="keyboardNum" style="top:38px;left:122px;background:url(<%= imgUrl + recommend_4[0].recommendPic.picPath %>) no-repeat;">
+				<div id="focusNum2" class="setNum">
+				2
+				</div>
+				<img id="num2" class="position" style="visibility: hidden;top:0px;left:0px;" src="<%= imgUrl + recommend_4[2].recommendPic.picPath %>" alt="">
+			</div>
+			<div id="hands_x0_y0_num3_" class="keyboardNum" style="top:38px;left:221px;background:url(<%= imgUrl + recommend_4[0].recommendPic.picPath %>) no-repeat;">
+				<div id="focusNum3" class="setNum">
+				3
+				</div>
+				<img id="num3" class="position" style="visibility: hidden;top:0px;left:0px;" src="<%= imgUrl + recommend_4[2].recommendPic.picPath %>" alt="">
+			</div>
+			<div id="hands_x0_y0_num4_" class="keyboardNum" style="top:38px;left:320px;background:url(<%= imgUrl + recommend_4[0].recommendPic.picPath %>) no-repeat;">
+				<div id="focusNum4" class="setNum">
+				4
+				</div>
+				<img id="num4" class="position" style="visibility: hidden;top:0px;left:0px;" src="<%= imgUrl + recommend_4[2].recommendPic.picPath %>" alt="">
+			</div>
+			<div id="hands_x0_y0_num5_" class="keyboardNum" style="top:110px;left:23px;background:url(<%= imgUrl + recommend_4[0].recommendPic.picPath %>) no-repeat;">
+				<div id="focusNum5" class="setNum">
+				5
+				</div>
+				<img id="num5" class="position" style="visibility: hidden;top:0px;left:0px;" src="<%= imgUrl + recommend_4[2].recommendPic.picPath %>" alt="">
+			</div>
+			<div id="hands_x0_y0_num6_" class="keyboardNum" style="top:110px;left:122px;background:url(<%= imgUrl + recommend_4[0].recommendPic.picPath %>) no-repeat;">
+				<div id="focusNum6" class="setNum">
+				6
+				</div>
+				<img id="num6" class="position" style="visibility: hidden;top:0px;left:0px;" src="<%= imgUrl + recommend_4[2].recommendPic.picPath %>" alt="">
+			</div>
+			<div id="hands_x0_y0_num7_" class="keyboardNum" style="top:110px;left:221px;background:url(<%= imgUrl + recommend_4[0].recommendPic.picPath %>) no-repeat;">
+				<div id="focusNum7" class="setNum">
+				7
+				</div>
+				<img id="num7" class="position" style="visibility: hidden;top:0px;left:0px;" src="<%= imgUrl + recommend_4[2].recommendPic.picPath %>" alt="">
+			</div>
+			<div id="hands_x0_y0_num8_" class="keyboardNum" style="top:110px;left:320px;background:url(<%= imgUrl + recommend_4[0].recommendPic.picPath %>) no-repeat;">
+				<div id="focusNum8" class="setNum">
+				8
+				</div>
+				<img id="num8" class="position" style="visibility: hidden;top:0px;left:0px;" src="<%= imgUrl + recommend_4[2].recommendPic.picPath %>" alt="">
+			</div>
+			<div id="hands_x0_y0_num9_" class="keyboardNum" style="top:182px;left:23px;background:url(<%= imgUrl + recommend_4[0].recommendPic.picPath %>) no-repeat;">
+				<div id="focusNum9" class="setNum">
+				9
+				</div>
+				<img id="num9" class="position" style="visibility: hidden;top:0px;left:0px;" src="<%= imgUrl + recommend_4[2].recommendPic.picPath %>" alt="">
+			</div>
+			<div id="hands_x0_y0_num10_" class="keyboardNum" style="top:182px;left:122px;background:url(<%= imgUrl + recommend_4[0].recommendPic.picPath %>) no-repeat;">
+				<div id="focusNum10" class="setNum">
+				0
+				</div>
+				<img id="num10" class="position" style="visibility: hidden;top:0px;left:0px;" src="<%= imgUrl + recommend_4[2].recommendPic.picPath %>" alt="">
+			</div>
+			<div id="hands_x0_y0_num11_" class="keyboardNum" style="top:182px;left:221px;background:url(<%= imgUrl + recommend_4[0].recommendPic.picPath %>) no-repeat;">
+				<div id="focusNum11" class="setNum">
+				清除
+				</div>
+				<img id="num11" class="position" style="visibility: hidden;top:0px;left:0px;" src="<%= imgUrl + recommend_4[2].recommendPic.picPath %>" alt="">
+			</div>
+			<div id="hands_x0_y0_num12_" class="keyboardNum" style="top:182px;left:320px;background:url(<%= imgUrl + recommend_4[0].recommendPic.picPath %>) no-repeat;">
+				<div id="focusNum12" class="setNum">
+				确认
+				</div>
+				<img id="num12" class="position" style="visibility: hidden;top:0px;left:0px;" src="<%= imgUrl + recommend_4[2].recommendPic.picPath %>" alt="">
+			</div>
+		</div>
+
+	</div>
+
+	<div id="movePage" class="position" style="top:0px;left:0px;width:1280px;height:1400px;">
+		
+		<img class="position" style="top:30px;left:250px;" src="<%= imgUrl + recommend_10[8].recommendPic.picPath %>" alt="">
+
+		<div id="rightTips" class="position rightTips" style="background:url(<%= imgUrl + recommend_10[7].recommendPic.picPath %>) no-repeat;">
+			成为会员更有专属礼品~
+		</div>
+
+		<div id="babyInfo" class="position babyInfo" style="">
+			<img id="avatar" class="position" style="top:0px;left:0px;" src="<%= imgUrl + recommend_1[10].recommendPic.picPath %>" alt="">
+			<img id="vipMark" class="position" style="top:6px;left:72px;visibility:hidden;" src="<%= imgUrl + recommend_1[1].recommendPic.picPath %>" alt="">
+			<div id="babyName" class="position babyName" >
+				未注册
+			</div>
+			<div id="points" class="position points" style="background:url(<%= imgUrl + recommend_10[1].recommendPic.picPath %>) no-repeat;">
+				0
+			</div>
+		</div>
+
+		<!--
+		<div id="hands_x0_y0_toRegister_" class="position" style="visibility:visible;width:119px;height:41px;top:127px;left:744px;background:url(<%= imgUrl + recommend_1[12].recommendPic.picPath %>) no-repeat;">
+			<img id="toRegister" class="focusImg" style="visibility: hidden;" src="<%= imgUrl + recommend_1[12].recommendLabelpic.picPath %>" alt="">
+			<div id="pointsTips1" class="position pointsTips" style="padding-left: 24px;background:url(<%= imgUrl + recommend_1[6].recommendPic.picPath %>) no-repeat;">
+				+30
+			</div>
+		</div>
+		-->
+		<div id="hands_x0_y0_toOrder_" class="position" style="visibility:visible;display:block;width:170px;height:55px;top:127px;left:900px;background:url(<%= imgUrl + recommend_10[2].recommendPic.picPath %>) no-repeat;">
+			<img id="toOrder" class="focusImg" style="visibility: hidden;" src="<%= imgUrl + recommend_10[2].recommendLabelpic.picPath %>" alt="">
+			<div id="pointsTips1" class="position pointsTips" style="padding-left: 24px;left:122px;background:url(<%= imgUrl + recommend_10[0].recommendPic.picPath %>) no-repeat;">
+				+30
+			</div>
+		</div>
+		<div id="hands_x0_y0_toMission_" class="position" style="width:148px;height:55px;top:127px;left:1091px;background:url(<%= imgUrl + recommend_10[6].recommendPic.picPath %>) no-repeat;">
+			<img id="toMission" class="focusImg" style="visibility: hidden;" src="<%= imgUrl + recommend_10[6].recommendLabelpic.picPath %>" alt="">
+		</div>
+
+		<div id="convert" class="position" style="width:1280px;height:520px;top:200px;left:0px; overflow: hidden;">
+			<div id="moveCovertDiv" class="position domPop" style="width:1280px;height:1400px;top:-15px;left:0px;">
+				
+			</div>
+
+
+		<div id="hands_x0_y0_registerSuc_" class="registerSuccess" style="visibility:hidden;background:url(<%= imgUrl + recommend_2[0].recommendPic.picPath %>) no-repeat;">
+			注册成功
+			<img id="registerSuc" class="position" style="top:133px;left:117px;" src="<%= imgUrl + recommend_2[1].recommendPic.picPath %>" alt="">
+		</div>
+	</div>
+
+</body>
+
+
+<%- include('../../components/commJs3') %>
+<script src="<%= basePageUrl %>/js/pointsMall.js"></script>
+<script src="<%= basePageUrl %>../../../js/actiComm.js"></script>
+</body>
+</html>

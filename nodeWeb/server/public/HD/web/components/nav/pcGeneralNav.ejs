@@ -1,0 +1,110 @@
+<!--
+ * @Description: 
+ * @Author: jwzx
+ * @Date: 2020-07-30 17:45:27
+ * @LastEditTime: 2020-10-20 17:27:11
+ * @LastEditors: jwzx
+-->
+<%
+    const navDataArr = basePageInfo.personalCenterPageInfo.recommend_1;
+%>
+<div id="leftNavList" style="top:70px;left:70px;height:470px;width:235px;position:absolute;">
+    <% for (let index = 0; index < navDataArr.length; index++) { %>
+        <% 
+           
+            const leftNavBtnData = navDataArr[index].recommendPic;
+            const leftNavBtnLabelData = navDataArr[index].recommendFocuspic || {};
+            const leftNavBtnFocusData = navDataArr[index].recommendLabelpic || {};
+        %>
+        <div id="hands_x0_y0_DMEJleftceterbutton<%= index %>_" 
+            style="position: absolute;top:<%= 30 + (20 + Number(leftNavBtnData.picH)) * index %>px;left:30px;
+                width:<%= leftNavBtnData.picW %>px;height:<%= leftNavBtnData.picH %>px;
+                background:url(<%= imgUrl + leftNavBtnData.picPath %>) no-repeat">
+            <img id="leftNavBtnLabel<%= index %>" src="<%= imgUrl + leftNavBtnLabelData.picPath %>"
+                style="position:absolute;top:0px;left:0px;width:<%= leftNavBtnLabelData.picW %>px;
+                    height:<%= leftNavBtnLabelData.picH %>px;visibility:hidden;" />
+            <img id="DMEJleftceterbutton<%= index %>" src="<%= imgUrl + leftNavBtnFocusData.picPath %>"
+                style="position:absolute;top:0px;left:0px;width:<%= leftNavBtnFocusData.picW %>px;
+                    height:<%= leftNavBtnFocusData.picH %>px;visibility:hidden;" />
+        </div>
+    <% } %>
+</div>
+
+
+<script>   
+
+
+
+    var generalLeftNavObj = {
+        //公共左侧导航列表数据数组
+        navDataArr: basePageInfo.personalCenterPageInfo.recommend_1,
+        info: basePageInfo.personalCenterPageInfo,
+        //节流延时器
+        throttleTimeout : null,
+        //节流延时器节流时长
+        throttleTimeoutTime : 300,
+        init : function(){
+            var _this = this;
+            for(var index = 0;index < _this.navDataArr.length;index++){
+                 //创建焦点
+                var  btn = {
+                    id: 'hands_x0_y0_DMEJleftceterbutton' + index + '_',
+                    otherFocusEvent: 'javascript:generalLeftNavObj.navBtnOtherFocusEvent(' + index + ')',
+                    left: 'disable',
+                    rightEvent: 'javascript:generalLeftNavObj.navBtnRighEvent(' + index + ')',
+                    up: 'hands_x0_y0_DMEJleftceterbutton' + (index - 1) + '_',
+                    down: 'hands_x0_y0_DMEJleftceterbutton' + (index + 1) + '_',
+                    TempData: _this.navDataArr[index]
+                }
+                if (index == 0) {
+                    btn.up = 'disable';
+                } else if (index == _this.navDataArr.length - 1) {
+                    btn.down = 'disable';
+                }
+                xjInitButtons.push(btn);
+            }
+        },
+        //左侧列表按钮向右事件回调，根据页面实际需求更改逻辑。
+        navBtnRighEventCallBack: function() {
+            PAGE.changeFocus("hands_x0_y0_DMEJname_");
+        },
+        navBtnRighEvent: function(curBtnIndex) {
+            var _this = this;
+            //左侧列表按钮向右事件回调，根据页面实际需求更改逻辑。
+            _this.navBtnRighEventCallBack(curBtnIndex);
+        },
+        //左侧列表按钮获焦事件回调，根据页面实际需求更改逻辑。
+        navBtnOtherFocusEventCallBack : null,
+        //左侧列表按钮获焦事件
+        navBtnOtherFocusEvent: function(curBtnIndex) {
+            var _this = this;
+            _this.curBtnIndex = curBtnIndex;
+            //显示当前分类
+            for (var index = 0; index < _this.navDataArr.length; index++) {
+                CT.$('leftNavBtnLabel' + index).style.visibility = 'hidden';
+            }
+            CT.$('leftNavBtnLabel' + curBtnIndex).style.visibility = 'visible';
+            if (curFocus.lastFocusId && curFocus.lastFocusId.indexOf('hands_x0_y0_DMEJleftceterbutton') > -1) {
+                //上一个焦点是左侧列表Btn
+                //跳转新的分类页
+                if(_this.throttleTimeout){
+                    clearTimeout(_this.throttleTimeout);
+                    _this.throttleTimeout = setTimeout(function() {
+                        CT.toAnterRecommendUrl(_this.navDataArr[_this.curBtnIndex]);
+                    }, _this.throttleTimeoutTime);
+                }else{
+                    _this.throttleTimeout = setTimeout(function() {
+                        CT.toAnterRecommendUrl(_this.navDataArr[_this.curBtnIndex]);
+                    }, _this.throttleTimeoutTime);
+                }
+            } else {
+                //上一个焦点是当前分类内容焦点
+                //根据页面需求重写，重写需求写到这里
+                _this.navBtnOtherFocusEventCallBack && _this.navBtnOtherFocusEventCallBack(curBtnIndex);
+            }
+        }
+    }
+
+    generalLeftNavObj.init();
+</script>
+

@@ -1,0 +1,64 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: sueRimn
+ * @Date: 2020-03-04 16:46:29
+ * @LastEditors: sueRimn
+ * @LastEditTime: 2020-03-13 16:13:04
+ -->
+<%- include ('../../components/header') %>
+<link rel="stylesheet" href="<%= basePageUrl %>/css/personalCenter.css">
+</head>
+<%
+    const commonPageInfo = basePageInfo.commonPageInfo;
+    const localImg = basePageInfo.localImg;
+%>
+
+<body>
+    <!--背景-->
+    <img id="BJ" src="<%= basePageInfo.bgImg %>" height="720" width="1280" />
+    <!--缺醒图，没有内容时提示用户-->
+    <img id="emptyTip" src="<%= localImg %>emptyTip.png" height="720" width="1280"
+        style="position: absolute;left: 0px;top: 0px; visibility: hidden;" />
+    <!--左边分类-->
+    <%- include('../../components/nav/pcGeneralNav')%>
+    <!--右边显示数据-->
+    <div id="rightContentWrapper"
+        style="position: absolute; top:70px;left:349px;width: 930px;height: 650px;overflow: hidden;">
+        <div id="rightContent" style="position: absolute; top:0px;left:0px;width: 930px;height: 650px;">
+            <!--时间轴-->
+            <div id="timeBar"
+                style="position: absolute;top: 30px;left: 30px;width: 3px;height: 620px;border-left: 1px solid #FFF;visibility: hidden;">
+                <div id="timePoint0"
+                    style="position: absolute;top:-18px;left: -14px;width:180px;height:40px;line-height: 40px;color: #FFF;visibility: hidden;">
+                    <img style="position: absolute; left: -1px;top: 0px;" src="<%= localImg %>timePoint.png">
+                    <div id="recordDateText0" style="position: absolute; left: 35px;top: -6px;"></div>
+                </div>
+                <div id="timePoint1"
+                    style="position: absolute;top:252px;left: -14px;width:180px;height:40px;line-height: 40px;color: #FFF;visibility: hidden;">
+                    <img style="position: absolute; left: -1px;top: 0px;" src="<%= localImg %>timePoint.png">
+                    <div id="recordDateText1" style="position: absolute; left: 35px;top: -6px;"></div>
+                </div>
+                <div id="timePoint2"
+                    style="position: absolute;top:523px;left: -14px;width:180px;height:40px;line-height: 40px;color: #FFF;visibility: hidden;">
+                    <img style="position: absolute; left: -1px;top: 0px;" src="<%= localImg %>timePoint.png">
+                    <div id="recordDateText2" style="position: absolute; left: 35px;top: -6px;">大家都在看</div>
+                </div>
+            </div>
+            <!--自动创建元素容器-->
+            <div id="rightCreateDomWarpper" style="position: absolute; top:0px;left:0px;width: 930px;height: 650px;">
+            </div>
+            <img id="rightArrow0" style="position: absolute; left: 865px;top: 140px;visibility: hidden;"
+                src="./HD/images/empty.png">
+            <img id="rightArrow1" style="position: absolute; left: 865px;top: 410px;visibility: hidden;"
+                src="./HD/images/empty.png">
+            <img id="rightArrow2" style="position: absolute; left: 865px;top: 680px;visibility: hidden;"
+                src="./HD/images/empty.png">
+
+        </div>
+    </div>
+
+    <%- include('../../components/commJs3') %>
+    <script src="<%= basePageUrl %>/js/history.js"></script>
+</body>
+</html>

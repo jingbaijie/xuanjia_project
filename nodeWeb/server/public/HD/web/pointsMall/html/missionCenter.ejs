@@ -1,0 +1,585 @@
+<%- include ('../../components/header') %>
+<link rel="stylesheet" href="<%= basePageUrl %>/css/pointsMall.css">
+</head>
+<%
+	const commonPageInfo = basePageInfo.commonPageInfo;
+	const recommend_1 = commonPageInfo.recommend_1;
+	const recommend_2 = commonPageInfo.recommend_2;
+	const localImg = basePageInfo.localImg;
+%>
+<body style="background:transparent;">
+<!--背景-->
+<img id="BJ" src="<%= recommend_1[24].recommendPic.picPath %>" height="720" width="1280"/>
+
+<img id="tips" class="position" src="<%= imgUrl + recommend_1[23].recommendPic.picPath %>" style="left:611px;top:76px;" alt="">
+<span id="tipsText" class="position" style="left:830px; top:83px; width: 234px;height: 21px;font-size: 22px;font-weight: 400;color: #A43106;line-height: 30px;text-align: center;">完成任务获得更多贝壳</span>
+
+<div id="mission" class="position" style="width:1042px;height:502px;left:145px;top:168px;">
+	<div id="mission1" class="position" style="top:37px;left:51px;width:940px;height:97px;background:url(<%= imgUrl + recommend_1[16].recommendPic.picPath %>) no-repeat;visibility: hidden;">
+		<div id="missionPoints1" class="position missionPoints" style="background:url(<%= imgUrl + recommend_1[19].recommendPic.picPath %>) no-repeat;">
+			+30贝壳
+		</div>
+		<div id="progress1" class="position progress" style="background:url(<%= imgUrl + recommend_2[1].recommendPic.picPath %>) no-repeat;">
+			<img id="redProgress1" class="position" style="width:0px;height:14px;top:0px;left:0px;" src="<%= imgUrl + recommend_2[1].recommendLabelpic.picPath %>" alt="">
+		</div>
+		<div id="progressNum1" class="position" style="top:31px;left:680px;">
+			<span id="redNum1" class="redNum">0</span>
+			<span class="purpleNum">/</span>
+			<span id="purpleNum1" class="purpleNum">1</span>
+		</div>
+		<div id="hands_x0_y0_toOrder_" class="position" style="width:145px;height:57px;top:24px;left:777px;background:url(<%= imgUrl + recommend_1[20].recommendPic.picPath %>) no-repeat;">
+			<img id="toOrder" class="focusImg" style="top: -17px; visibility: hidden;" src="<%= imgUrl + recommend_1[20].recommendLabelpic.picPath %>" alt="">
+		</div>
+	</div>
+
+	<div id="mission2" class="position" style="top:147px;left:51px;width:940px;height:97px;background:url(<%= imgUrl + recommend_1[15].recommendPic.picPath %>) no-repeat;visibility: hidden;">
+		<div id="missionPoints2" class="position missionPoints" style="background:url(<%= imgUrl + recommend_1[19].recommendPic.picPath %>) no-repeat;">
+			+30贝壳
+		</div>
+		<div id="progress2" class="position progress" style="background:url(<%= imgUrl + recommend_2[1].recommendPic.picPath %>) no-repeat;">
+			<img id="redProgress2" class="position" style="width:0px;height:14px;top:0px;left:0px;" src="<%= imgUrl + recommend_2[1].recommendLabelpic.picPath %>" alt="">
+		</div>
+		<div id="progressNum2" class="position" style="top:31px;left:680px;">
+			<span id="redNum2" class="redNum">0</span>
+			<span class="purpleNum">/</span>
+			<span id="purpleNum2" class="purpleNum">1</span>
+		</div>
+		<div id="hands_x0_y0_toRegister_" class="position" style="width:145px;height:57px;top:24px;left:777px;background:url(<%= imgUrl + recommend_1[22].recommendPic.picPath %>) no-repeat;">
+			<img id="toRegister" class="focusImg" style="top: -17px; visibility: hidden;" src="<%= imgUrl + recommend_1[22].recommendLabelpic.picPath %>" alt="">
+		</div>
+	</div>
+
+	<div id="mission3" class="position" style="top:257px;left:51px;width:940px;height:97px;background:url(<%= imgUrl + recommend_1[17].recommendPic.picPath %>) no-repeat;visibility: hidden;">
+		<div id="missionPoints3" class="position missionPoints" style="top:14px;background:url(<%= imgUrl + recommend_1[19].recommendPic.picPath %>) no-repeat;">
+			+2贝壳
+		</div>
+		<div id="progress3" class="position progress" style="background:url(<%= imgUrl + recommend_2[1].recommendLabelpic.picPath %>) no-repeat;">
+		</div>
+		<div id="progressNum3" class="position" style="top:31px;left:680px;">
+			<span id="redNum3" class="redNum">1</span>
+			<span class="purpleNum">/</span>
+			<span id="purpleNum3" class="purpleNum">1</span>
+		</div>
+		<!--
+		<div id="missionTips3" class="position missionTips">
+			成为会员，每天登陆可获得更多积分
+		</div>
+		-->
+		<div id="complete" class="position" style="width:62px;height:62px;top:16px;left:818px;background:url(<%= imgUrl + recommend_1[11].recommendPic.picPath %>) no-repeat;">
+		</div>
+	</div>
+
+	<div id="mission4" class="position" style="top:367px;left:51px;width:940px;height:97px;background:url(<%= imgUrl + recommend_1[18].recommendPic.picPath %>) no-repeat;visibility: hidden;">
+		<div id="missionPoints4" class="position missionPoints" style="top:14px;background:url(<%= imgUrl + recommend_1[19].recommendPic.picPath %>) no-repeat;">
+			+1贝壳
+		</div>
+		<div id="progress4" class="position progress" style="background:url(<%= imgUrl + recommend_2[1].recommendPic.picPath %>) no-repeat;">
+			<img id="redProgress4" class="position" style="width:33px;height:14px;top:0px;left:0px;" src="<%= imgUrl + recommend_2[1].recommendLabelpic.picPath %>" alt="">
+		</div>
+		<div id="progressNum4" class="position" style="top:31px;left:680px;">
+			<span id="redNum4" class="redNum">1</span>
+			<span class="purpleNum">/</span>
+			<span id="purpleNum4" class="purpleNum">3</span>
+		</div>
+		<!--
+		<div id="missionTips4" class="position missionTips">
+			成为会员，每天观看可获得更多积分
+		</div>
+		-->
+		<div id="hands_x0_y0_toWatch_" class="position" style="width:145px;height:57px;top:24px;left:777px;background:url(<%= imgUrl + recommend_1[21].recommendPic.picPath %>) no-repeat;">
+			<img id="toWatch" class="focusImg" style="top: -17px; visibility: hidden;" src="<%= imgUrl + recommend_1[21].recommendLabelpic.picPath %>" alt="">
+		</div>
+	</div>
+</div>
+
+</body>
+
+</html>
+<%- include('../../components/commJs3') %>
+<script>
+	
+addEvent.on("pageEvent", function (e) {
+	// basePageInfo.nodeButtons = basePageInfo.nodeButtons || [];
+	buttons = buttons || [];
+	try{
+		if(window.navigator.userAgent.toUpperCase().indexOf("WIN64") > 0) {
+			orderJs.auth_cache_info = {
+				//缓存标识
+				cacheId: null,
+				//鉴权返回值: result: -1 未鉴权,1: 鉴权已订购,其他:鉴权未通过;
+				result: 1,
+				//authTime: 当前缓存的鉴权时间;
+				authTime: new Date().getTime(),
+				//data,鉴权返回信息;
+				data: [],
+				//time_out:鉴权有效时间(毫秒) 0:长期有效
+				time_out: 0,
+				// cache_strategy:鉴权策略:默认(0或没有) 只缓存已订购用户; 1 只缓存未订购用户, 2 缓存所有;
+				cache_strategy: 2
+			};
+		// xjDataLog.getUserId = function(){return "04440714190000050"};
+		}
+	}catch(e){}
+	if(CT.requestValue("defaultFocus") == 'hands_x0_y0_select_') {
+		// CT.$("tips").src="<%= imgUrl + recommend_1[6].recommendPic.picPath %>";
+		CT.$("tipsText").innerHTML="积分不足,完成任务获得积分";
+	}
+	var authObj = {
+		successCallback: function () {
+			// CT.$("missionTips3").innerHTML = "每天登录,获得更多积分";
+			getTaskList(1);
+		},failCallback:function() {
+			getTaskList(0);
+		}
+	}
+	
+	var init_li = [];
+	orderJs.getAuth(authObj);
+
+	window['missonIdList'] = [1,3,2,4];
+	function getTaskList(isOrder){
+		//获取任务列表
+		isOrder = isOrder+"" == "1"? 1:0
+		interface.getTaskByUserId({params:
+			{
+				userId: xjDataLog.getUserId(),
+				prizeType: 2,
+				activityId:1,
+				isOrder: isOrder
+			}
+		},function(res){
+			if(!res || !res.data || res.data.length == 0) {
+				CT.alertTip("无可执行任务",{time:2000});
+				setTimeout(function(){
+					CT.backPage();
+				},2200)
+				return;
+			}
+			var top = 37;
+			for(var i =0; i < window['missonIdList'].length;i++){
+				var misson = null;
+				for(var j = 0;j < res.data.length;j++) {
+					if(res.data[j].id + "" == window['missonIdList'][i] + "") {
+						misson = res.data[j];
+						break;
+					}
+				}
+				if(!misson) {continue;}
+				// console.log(misson.id);
+				switch(misson.id + "") {
+					case "1":
+						CT.$("redNum1").innerHTML = misson.hasFinishedTimes || 0;
+						CT.$("purpleNum1").innerHTML = misson.sumTimes || 0;
+						CT.$("missionPoints1").innerHTML = " +" + (misson.points || 0) + "贝壳 ";
+						
+						//订购
+						if(isOrder== '1' && parseInt(misson.hasFinishedTimes) < parseInt(misson.sumTimes)){
+							interface.insertPoints({
+								params:{
+									userid:xjDataLog.getUserId(),
+									activityId:1,
+									taskid:misson.id,
+									prizeid:misson.prizeId,
+									isOrder:isOrder,
+									points: misson.points
+								},
+							},function(res){
+								CT.$("purpleNum1").innerHTML = 1;
+								CT.$("redProgress1").style.width = "100px";
+								CT.$('hands_x0_y0_toOrder_').innerHTML = "";
+								CT.$('hands_x0_y0_toOrder_').style.width = "62px";
+								CT.$('hands_x0_y0_toOrder_').style.left = "818px";
+								CT.$('hands_x0_y0_toOrder_').style.height = "62px";
+								CT.$('hands_x0_y0_toOrder_').style.top = "16px";
+								CT.$('hands_x0_y0_toOrder_').style.background = 'url(<%= imgUrl + recommend_1[11].recommendPic.picPath %>) no-repeat';
+							});
+						} else if(parseInt(misson.hasFinishedTimes) >= parseInt(misson.sumTimes)){
+							CT.$("redProgress1").style.width = "100px";
+							CT.$('hands_x0_y0_toOrder_').innerHTML = "";
+							CT.$('hands_x0_y0_toOrder_').style.width = "62px";
+							CT.$('hands_x0_y0_toOrder_').style.left = "818px";
+							CT.$('hands_x0_y0_toOrder_').style.height = "62px";
+							CT.$('hands_x0_y0_toOrder_').style.top = "16px";
+							CT.$('hands_x0_y0_toOrder_').style.background = 'url(<%= imgUrl + recommend_1[11].recommendPic.picPath %>) no-repeat';
+						} else {
+							buttons.push({
+								id: "hands_x0_y0_toOrder_",
+								clickHandler: "javascript:toOrder()",
+								left: "disable",
+								right: "disable",
+								focusType: 7
+							});
+						}
+						break;
+					case "3":
+						CT.$("redNum2").innerHTML = misson.hasFinishedTimes || 0;
+						CT.$("purpleNum2").innerHTML = misson.sumTimes || 0;
+						CT.$("missionPoints2").innerHTML = " +" + (misson.points || 0) + "贝壳 ";
+						if(misson.hasFinishedTimes >= misson.sumTimes) {
+							CT.$("redProgress2").style.width = "100px";
+							CT.$('hands_x0_y0_toRegister_').innerHTML = "";
+							CT.$('hands_x0_y0_toRegister_').style.width = "62px";
+							CT.$('hands_x0_y0_toRegister_').style.left = "818px";
+							CT.$('hands_x0_y0_toRegister_').style.height = "62px";
+							CT.$('hands_x0_y0_toRegister_').style.top = "16px";
+							CT.$('hands_x0_y0_toRegister_').style.background = 'url(<%= imgUrl + recommend_1[11].recommendPic.picPath %>) no-repeat';
+						} else {
+							buttons.push({
+								id: "hands_x0_y0_toRegister_",
+								clickHandler: "javascript:toRegister()",
+								left: "disable",
+								right: "disable",
+								focusType: 7
+							});
+						}
+						(function(_mission){
+							interface.getUserInfoList({params:{userid:xjDataLog.getUserId()}},
+								function(res){
+									if(!res || !res.data || res.data.length == 0 || res.data[0].more2+"" != '1') {
+									} else {
+										if(parseInt(_mission.hasFinishedTimes) < parseInt(_mission.sumTimes)){
+											interface.insertPoints({
+												params:{
+													userid:xjDataLog.getUserId(),
+													activityId:1,
+													taskid:_mission.id,
+													prizeid:_mission.prizeId,
+													isOrder:isOrder,
+													points: _mission.points
+												},
+											},function(res){
+											});
+										}
+									}
+								}
+							);
+						})(misson)
+					break;
+					case "2":
+						//登录写死
+						CT.$("missionPoints3").innerHTML = " +" + (misson.points || 0) + "贝壳 ";
+						if(parseInt(misson.hasFinishedTimes) < parseInt(misson.sumTimes)){
+							interface.insertPoints({
+								params:{
+									userid:xjDataLog.getUserId(),
+									activityId:1,
+									taskid:misson.id,
+									prizeid:misson.prizeId,
+									isOrder:isOrder,
+									points: misson.points
+								},
+							},function(res){
+							});
+						}
+						break;
+						case "4": 
+							//去观看
+							if(isOrder == 1) {
+								// CT.$("missionTips4").innerHTML = "会员观看,每天可获得" + (misson.sumTimes * misson.points) + "积分哦";
+							}
+						CT.$("missionPoints4").innerHTML = " +" + (misson.points || 0) + "贝壳 ";
+							CT.$("redNum4").innerHTML = misson.hasFinishedTimes || 0;
+							CT.$("purpleNum4").innerHTML = misson.sumTimes || 0;
+							CT.$("redNum4").innerHTML = misson.hasFinishedTimes || 0;
+							CT.$("purpleNum4").innerHTML = misson.sumTimes || 0;
+							if(parseInt(misson.hasFinishedTimes) < parseInt(misson.sumTimes)){
+								//去观看
+								buttons.push({
+									id: "hands_x0_y0_toWatch_",
+									clickHandler: "javascript:toWatch(\""+ isOrder +"\",\""+misson.id+"\",\"" + misson.prizeId + "\",\""+misson.points+"\")",
+									left: "disable",
+									right: "disable",
+									down: "disable",
+									focusType: 7
+								});
+								CT.$("redProgress4").style.width = parseInt( misson.hasFinishedTimes* 100 /misson.sumTimes) + "px";
+							} else {
+								CT.$('hands_x0_y0_toWatch_').innerHTML = "";
+								CT.$('hands_x0_y0_toWatch_').style.width = "62px";
+								CT.$('hands_x0_y0_toWatch_').style.left = "818px";
+								CT.$('hands_x0_y0_toWatch_').style.height = "62px";
+								CT.$('hands_x0_y0_toWatch_').style.top = "16px";
+								CT.$("redProgress4").style.width =  "100px";
+								CT.$('hands_x0_y0_toWatch_').style.background = 'url(<%= imgUrl + recommend_1[11].recommendPic.picPath %>) no-repeat';
+							}
+							break;
+
+				}
+				CT.$("mission" + (i + 1)).style.top = top + "px";
+				CT.$("mission" + (i + 1)).style.visibility = "visible";
+				top += 111;
+			}
+			PAGE.focusInit();
+			for(var i = 0;i < buttons.length;i++) {
+				if(CT.$(buttons[i].id) && CT.$(buttons[0].id).parentNode.style.visibility != 'hidden' && CT.$(buttons[i].id).innerHTML != ""){
+					var nextNode = PAGE.getModelByFocusId(buttons[i].id);
+					curFocus = nextNode;
+					curFocus.defaultFocus();
+					break;
+				}
+			}
+		});
+	}
+	
+
+});
+	
+
+
+    function toRegister(){
+		CT.goPage();
+		CT.getAnterByIdOrAction({
+            contentName: "PointsMall"
+        });
+    }
+
+    function toOrder() {
+		CT.goPage();
+		orderJs.toOrderPage();
+    }
+
+    function toWatch(isOrder,missonId,prizeId,points) {
+		interface.insertPoints({
+			params:{
+				userid: xjDataLog.getUserId(),
+				activityId: 1,
+				taskid: missonId,
+				prizeid: prizeId,
+				isOrder: isOrder,
+				points: points
+				// points: 30
+			},
+		},function(res){
+			CT.goPage();
+			if(basePageInfo.commonPageInfo.recommend_3 && basePageInfo.commonPageInfo.recommend_3.length > 1) {
+				CT.toAnterRecommendUrl(basePageInfo.commonPageInfo.recommend_3[new Date().getTime() % basePageInfo.commonPageInfo.recommend_3.length]);
+			} else {
+				var movieId = "3049";
+				if(basePageInfo.commonPageInfo.recommend_3 && basePageInfo.commonPageInfo.recommend_3.length == 1) {
+					movieId = basePageInfo.commonPageInfo.recommend_3[0].recommendDisplayValue;
+				}
+				interface.getBigDataRecCartoon_byMovieId({
+					params: {
+						movieId: movieId
+					}
+				}, function (result) {
+					if(result && result.data && result.data.length>0) {
+						CT.toAnterRecommendUrl(result.data[new Date().getTime() % result.data.length]);
+					}
+				});
+			}
+		});
+    }
+    function backFunc() {
+        // CT.delCookie("columnBackUrl");
+        CT.getAnterByIdOrAction({
+			contentName: "PointsMall"
+		});
+	}
+	
+
+
+	/**
+    * 获取int值
+    * @param {string} val 原值
+    * @param {int} defval 如果转换失败的默认值
+    */
+    getInt = function (val, defval) {
+      var _this = this;
+      try {
+         var res = parseInt(val);
+         if (isNaN(res)) {
+            if (defval) {
+               return _this.getInt(defval);
+            }
+         } else {
+            return res;
+         }
+      } catch (e) {
+
+      }
+      return 0;
+   }
+
+    /**
+    * 获取元素使用的样式值
+    * @param {*} obj 元素id或元素本身
+    * @param {*} attr 样式
+    */
+   getStyle = function (obj, attr) {
+      if (typeof (obj) === 'string') {
+         obj = CT.$(obj)
+      }
+      if (!obj) return "";
+      if (obj.currentStyle) {
+         obj.currentStyle[attr];
+         return obj.currentStyle[attr];
+      } else if (window.getComputedStyle) {
+         //非IE，
+         return window.getComputedStyle(obj, null)[attr];
+      } else {
+         return obj.style[attr];
+      }
+   }
+    //计算当前元素在父级元素的位置
+    function getPostionFunc(ele, parent){
+        if(typeof(ele) === 'string') { ele = CT.$(ele) }
+        if(typeof(parent) === 'string') { ele = CT.$(parent) }
+        if(!ele) return null;
+        var result = {
+            top: 0,
+            left:0,
+            width: getInt(getStyle(ele ,"width"),2),
+            height: getInt(getStyle(ele ,"height"),2),
+        }
+        while(ele && ((parent && ele != parent) || (parent.id && parent.id != ele.id)) && ele.parentNode.tagName != "body") {
+            if(getStyle(ele,"visibility") == 'hidden' || getStyle(ele,'display') == 'none') return null;
+            if(getStyle(ele ,"position") == "absolute") {
+                result.top += getInt(getStyle(ele ,"top"),0);
+                result.left += getInt(getStyle(ele ,"left"),0);
+            }
+            ele = ele.parentNode;
+        }
+        return result;
+	}
+	
+	findNextFocusNode = function(action,parent,curEle,children,state){
+		if(!curEle) curEle = CT.$(curFocus.FocusID);
+		if(!curEle) return;
+        if(curEle.tagName.toUpperCase() != 'DIV') return;
+		if(!parent) parent = curEle.parentNode;
+		if(!children) children = parent.children;
+
+        var nearby = { ele: null, value: [] };
+
+        var curPosition = getPostionFunc(curEle,parent);
+        curPosition.right = curPosition.left + curPosition.width;
+		curPosition.bottom = curPosition.top + curPosition.height;
+
+		for(var i = 0 ;i < children.length; i++) {
+			var _nextEle = children[i];
+			if(_nextEle == curEle || (_nextEle.id && _nextEle.id == curEle.id)) {
+				continue;
+			}
+			var nextCurpostion = getPostionFunc(_nextEle,parent);
+			if(!nextCurpostion) {
+				continue;
+			}
+			try{
+				nextCurpostion.right = nextCurpostion.left + nextCurpostion.width;
+				nextCurpostion.bottom = nextCurpostion.top + nextCurpostion.height;
+			} catch(e) {
+			}
+			var resPosition = actionFunc(curPosition,nextCurpostion,action);
+			if(!nextCurpostion || !resPosition) {
+				continue;
+			}
+			//如果当前不是焦点,找子节点
+			var _nextby = {};
+			if(!_nextEle.id || !PAGE.focusArr[_nextEle.id]) {
+				if(_nextEle.children.length > 0) {
+					_nextby = findNextFocusNode(action,parent,curEle,_nextEle.children,"toChildren");
+				}
+				if(_nextby && _nextby.ele) {
+					_nextEle = _nextby.ele;
+					resPosition = _nextby.value;
+				} else {
+					resPosition = [];
+				}
+			}
+
+			for(var j = 0 ;j < resPosition.length;j++) {
+				if(nearby.value.length < j || nearby.value[j] > resPosition[j]) {
+					nearby = { ele: _nextEle, value: resPosition };
+					break;
+				} else if(nearby.value[j]  < resPosition[j]){
+					break;
+				}
+			}
+		}
+		if((!nearby || !nearby.ele) && !state && curEle.parentNode.parentNode) {	//本层没有.向父级找
+			nearby = findNextFocusNode(action,curEle.parentNode.parentNode,curEle.parentNode,curEle.parentNode.parentNode.children);
+		}
+		return nearby;
+	}
+    /**
+     * 重写PAGE.ProximityPrinciple
+     * 
+     */
+
+    PAGE.ProximityPrinciple = function(action){
+
+		if(!PAGE.focusArr) return;
+		var _flag = true;
+		for(var key in PAGE.focusArr){
+			if(key) {
+				_flag = false;
+				break;
+			}
+		}
+		if(_flag) return;
+		// 给当前焦点重新赋值
+		var nearBy = findNextFocusNode(action)
+		if(nearBy && nearBy.ele) {
+			curFocus.defaultBlur();
+			curFocus = nearBy.ele.focusmodel;
+			var fid = curFocus.FocusID;
+			curFocus.lastFocusId = fid;
+			curFocus.defaultFocus();
+		}
+	}
+	
+    var actionFunc = function(curEle,nextEle,action) {
+        var number1 ;
+        var number2 ;
+        var number3 ;
+        var number4 ;
+        var number5 ;
+        var number6 ;
+        switch (action) {
+            case "left":
+                number1 = curEle.left,
+                number2 = nextEle.right,
+                number3 = curEle.top,
+                number4 = curEle.bottom,
+                number5 = nextEle.top, 
+                number6 = nextEle.bottom;
+                break
+            case "right":
+                number1 = nextEle.left,
+                number2 = curEle.right,
+                number3 = curEle.top,
+                number4 = curEle.bottom,
+                number5 = nextEle.top, 
+                number6 = nextEle.bottom;
+                break;
+            case "up":
+                number1 = curEle.top,
+                number2 = nextEle.bottom,
+                number3 = curEle.left,
+                number4 = curEle.right,
+                number5 = nextEle.left, 
+                number6 = nextEle.right;
+                break;
+            case "down":
+                number1 = nextEle.top,
+                number2 = curEle.bottom,
+                number3 = curEle.left,
+                number4 = curEle.right,
+                number5 = nextEle.left, 
+                number6 = nextEle.right;
+                break;
+        }
+        if(number1 >= number2) {
+            /**
+            * 自动焦点算法: 优先取两最近线的距离(线与线的距离),再取两线之间重合距离,最后取两线之间中心点距离.
+            */
+            var res3 = (number1 - number2) * (number1 - number2) + (number3 + number4 - number5 - number6) * (number3 + number4 - number5 - number6) / 4;
+            var res2 =  Math.max(number3,number5) - Math.min(number4,number6);
+            var _min_des = res2 <= 0 ? 0 : res2;
+            var res1 =   (number1 - number2) * (number1 - number2)   + _min_des * _min_des;
+            return [res1,res2,res3];
+        }
+        return null; 
+    }
+</script>

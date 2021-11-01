@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="page-view-size" content="1280*720"/>
+    <link rel="stylesheet" href="./css/main.css">
+    <title>startGame</title>
+    <style>
+        .main{
+            position: absolute;
+            width: 1280px;
+            height: 720px;
+            margin: 0px;
+            padding: 0px;
+            top: 0px;
+            left: 0px;
+            text-align: center;
+            overflow: hidden;
+            /*  background: url("image/BGY.jpg");*/
+
+        }
+
+    </style>
+
+</head>
+<body>
+	<main id="main" class="main">
+   		 <img src="./image/BGY.jpg" style="width: 1280px;height: 720px; position: absolute;top: 0px;left: 0px"alt="">
+   		 <div style="width:694px;height: 709px;background: url('image/pangz.png');position: absolute;top: 11px;left: 273px;">
+
+    </div>
+
+
+
+    <div id="fishDiv">
+        <img src="image/h1.png" style="position: absolute;top: 96px;left: 623px;" alt="">
+        <img src="image/l1.png" style="position: absolute;top: 208px;left: 733px;" alt="">
+        <img src="image/n1.png" style="position: absolute;top: 390px;left: 739px;" alt="">
+        <img src="image/y1.png" style="position: absolute;top: 496px;left: 621px;" alt="">
+        <img src="image/h1.png" style="position: absolute;top: 489px;left: 452px;" alt="">
+
+        <img src="image/l1.png" style="position: absolute;top: 367px;left: 340px;" alt="">
+
+        <img src="image/n1.png" style="position: absolute;top: 223px;left: 336px;" alt="">
+        <img src="image/y1.png" style="position: absolute;top: 104px;left: 460px;" alt="">
+        <img src="image/h1.png" style="position: absolute;top: 288px;left: 535px;" alt="">
+    </div>
+    <div id="jiafei">
+        <img src="image/kafei1.png" style="position: absolute;top: 27px;left: 941px;" alt="">
+    </div>
+
+    <div id="jiayou">
+        <img src="image/wenzi1.png" style="position: absolute;top: 34px;left: 815px;" alt="">
+    </div>
+    <div id="goodImg">
+        <img src="image/good3.png" style="position: absolute;top: 99px;left: 906px;" alt="">
+    </div>
+    <div id="fishPole"
+         style="width: 411px;height: 243px;position: absolute;top: 214px;left: 865px;">
+        <img src="image/1.png" style="position: absolute;top: 11px;left: -24px;/* opacity: 0.5; */" alt="">
+        <img src="image/yugan.png" style="position: absolute;top: 0px;left: 0px;/* opacity: 0.5; */" alt="">
+
+        <!-- <img src="image/3.png" style="position: absolute;top: 11px;left: -24px;/* opacity: 0.5; */" alt="">
+         <img src="image/6.png" style="position: absolute;top: 11px;left: -24px;/* opacity: 0.5; */" alt="">-->
+
+    </div>
+    <div id="window" style="position: absolute;top:0px;left:380px;width: 50px;">
+        <img src="image/again.png" id="again" style="visibility: hidden" alt="">
+    </div>
+</main>
+<!-- 引入公共js开始 -->
+<script type = "text/javascript" src = "../../../js/loadCommomJs.js?v=2019"></script>
+<script type="text/javascript" src="./js/keydown.js"></script>
+<script>
+    var fishDivs = document.getElementById("fishDiv").getElementsByTagName("img");
+    var jiafei = document.getElementById("jiafei").getElementsByTagName("img");
+    var jiayou = document.getElementById("jiayou").getElementsByTagName("img");
+    var goodImg = document.getElementById("goodImg").getElementsByTagName("img");
+    var fishPole = document.getElementById("fishPole").getElementsByTagName("img");
+    var again=document.getElementById("again");
+
+    function fishModel(img, top, left, src1, src2, src3, src4, src5, order, speed, top1, left1, top2, left2) {
+        this.img = img,
+            this.name = "";
+        this.orderBoolean = 1;
+        this.state = 1;//1:表示未被钓到，2表示上钩，3：表示已经钓到
+        this.order = order;//1,2,3,4,5
+        this.speed = speed;
+        this.top = top;
+        this.left = left;
+        this.srcs = [src1, src1, src2, src3, src4, src5];
+        this.checktop1 = this.top + top1;
+        this.checkleft1 = this.left + left1;
+        this.checktop2 = this.top + top2;
+        this.checkleft2 = this.left + left2;
+        this.endTop = 529;
+        this.endLeft = 964;
+        this.endMoveTop = parseInt((this.endTop - this.top)/5);
+        this.endMoveLeft = parseInt((this.endLeft - this.left)/5);
+        this.fishmoveT=0;
+    }
+
+    fishModel.prototype.openMouse = function () {
+
+        (this.order == 5) && (this.orderBoolean = -1);
+        (this.order == 0) && (this.orderBoolean = 1);
+        this.order = this.order + this.orderBoolean;
+        this.img.src = this.srcs[this.order];
+
+    };
+    fishModel.prototype.move = function () {
+        if(this.top<529&&this.left<964){
+            this.top=this.top+this.endMoveTop;
+            this.left=this.left + this.endMoveLeft;
+            this.img.style.top = this.top + "px";
+            this.img.style.left = this.left + "px";
+        }else {
+            this.state=3;
+
+        }
+
+    };
+    var fishArr = [];
+    var fish1 = new fishModel(fishDivs[0], 96, 623, 'image/h1.png', 'image/h2.png', 'image/h3.png', 'image/h4.png', 'image/h5.png', 2, 2, 56, 72, 118, 108);
+    var fish2 = new fishModel(fishDivs[1], 208, 733, 'image/l1.png', 'image/l2.png', 'image/l3.png', 'image/l4.png', 'image/l5.png', 5, 2, 56, 68, 119, 106);
+    var fish3 = new fishModel(fishDivs[2], 390, 739, 'image/n1.png', 'image/n2.png', 'image/n3.png', 'image/n4.png', 'image/n5.png', 4, 2, 57, 56, 106, 93);
+    var fish4 = new fishModel(fishDivs[3], 496, 621, 'image/y1.png', 'image/y2.png', 'image/y3.png', 'image/y4.png', 'image/y5.png', 1, 2, 60, 74, 114, 102);
+    var fish5 = new fishModel(fishDivs[4], 489, 451, 'image/h1.png', 'image/h2.png', 'image/h3.png', 'image/h4.png', 'image/h5.png', 3, 2, 56, 72, 118, 108);
+    var fish6 = new fishModel(fishDivs[5], 367, 340, 'image/l1.png', 'image/l2.png', 'image/l3.png', 'image/l4.png', 'image/l5.png', 2, 2, 56, 68, 119, 106);
+    var fish7 = new fishModel(fishDivs[6], 223, 336, 'image/n1.png', 'image/n2.png', 'image/n3.png', 'image/n4.png', 'image/n5.png', 5, 2, 57, 56, 106, 93);
+    var fish8 = new fishModel(fishDivs[7], 104, 460, 'image/y1.png', 'image/y2.png', 'image/y3.png', 'image/y4.png', 'image/y5.png', 0, 2, 60, 74, 114, 102);
+    var fish9 = new fishModel(fishDivs[8], 288, 535, 'image/h1.png', 'image/h2.png', 'image/h3.png', 'image/h4.png', 'image/h5.png', 4, 2, 56, 72, 118, 108);
+
+    fishArr = [fish1, fish2, fish3, fish4, fish5, fish6, fish7, fish8, fish9];
+
+    function fishArrOpenMous() {
+        for (var i = 0; i < fishArr.length; i++) {
+            if (fishArr[i].state == 1) {
+                if (setIntervarNum % fishArr[i].speed == 0) {
+                    fishArr[i].openMouse();
+                }
+
+            } else if (fishArr[i].state == 2) {
+                fishArr[i].img.src = fishArr[i].srcs[0];
+                fishArr[i].fishmoveT=fishArr[i].fishmoveT+1;
+                if(fishArr[i].fishmoveT>=5){
+                    fishArr[i].move();
+                }
+
+
+
+            }else if(fishArr[i].state == 3){
+                fishArr[i].img.style.visibility="hidden";
+                fishArr.splice(i,1);
+                pole.state=1;
+            }
+        }
+        changeJiaFei();
+
+    }
+
+
+    var jiafeiBoolean = false;
+
+    function changeJiaFei() {
+        if (setIntervarNum % 5 == 0) {
+            if (jiafeiBoolean == false) {
+                jiafeiBoolean = true;
+                jiafei[0].src = "image/kafei1.png";
+            } else {
+                jiafeiBoolean = false;
+                jiafei[0].src = "image/kafei2.png";
+            }
+
+        }
+
+        checkCatch();
+
+    }
+
+    function poleModel(imgTL, imgsrc, top, left, src1, src2, src3, src4, src5, src6, order, speed, leftSpeed, topSpeed) {
+        this.img = imgTL,
+            this.name = "";
+        this.leftLimit = 55;//top:8/480;left:55/873
+        this.rightLimit = 865;
+        this.topLimit = 8;
+        this.bottomLimit = 480;
+        this.orderBoolean = 1;
+        this.state = 1;//1:表示未被钓到，2表示上钩，3：表示已经钓到，4：表示已钓完
+        this.order = order;//1,2,3,4,5,6
+        this.speed = speed;
+        this.top = top;
+        this.left = left;
+        this.imgsrc = imgsrc;
+        this.leftSpeed = leftSpeed;//left方向上的移动
+        this.topSpeed = topSpeed;//上下方向的移动
+        this.srcs = [src1, src1, src2, src3, src4, src5, src6, src6];
+        this.polePoz = [[6, 133], [6, 133], [20, 135], [34, 135], [46, 135], [58, 136], [74, 133], [74, 133]];
+
+
+    }
+
+    poleModel.prototype.run = function () {
+
+        if (this.state == 1) {
+            (this.order == 7) && (this.orderBoolean = -1);
+            (this.order == 0) && (this.orderBoolean = 1);
+            this.order = this.order + this.orderBoolean;
+            this.imgsrc.src = this.srcs[this.order];
+
+        } else if (this.state == 2) {
+            this.imgsrc.src = this.srcs[3];
+
+        }
+
+
+    }
+    poleModel.prototype.leftMove = function () {
+        if (pole.state == 1) {
+            this.left = (this.left > (this.leftLimit + this.speed) ? this.left - this.speed : this.leftLimit);
+            this.img.style.top = this.top + "px";
+            this.img.style.left = this.left + 'px';
+        }
+    }
+    poleModel.prototype.rightMove = function () {
+        if (pole.state == 1) {
+            this.left = (this.left < (this.rightLimit - this.speed) ? this.left + this.speed : this.rightLimit);
+            this.img.style.top = this.top + "px";
+            this.img.style.left = this.left + 'px';
+        }
+    };
+    poleModel.prototype.topMove = function () {
+        if (pole.state == 1) {
+            this.top = (this.top > (this.topLimit + this.speed) ? this.top - this.speed : this.topLimit);
+            this.img.style.top = this.top + "px";
+            this.img.style.left = this.left + 'px';
+        }
+    };
+    poleModel.prototype.bottomMove = function () {
+        if (pole.state == 1) {
+            this.top = (this.top < (this.bottomLimit - this.speed) ? this.top + this.speed : this.bottomLimit);
+            this.img.style.top = this.top + "px";
+            this.img.style.left = this.left + 'px';
+        }
+
+    };
+    poleModel.prototype.catchFish = function () {
+        this.top += 5;
+    }
+
+    var pole = new poleModel(document.getElementById("fishPole"), fishPole[0], 214, 865, "image/1.png", "image/2.png", "image/3.png", "image/4.png", "image/5.png", "image/6.png", 2, 30, 100,100)
+
+    function checkCatch() {
+        if(fishArr.length<=0){
+            if(pole.state!=4){
+                pole.state = 4;
+                // window.location.href="gameOver.html";
+
+                again.style.visibility="visible";
+            }
+
+        }
+        for (var i = 0; i < fishArr.length; i++) {
+            if (fishArr[i].order == 5||fishArr[i].order == 4) {
+                if (fishArr[i].checktop1 < (pole.polePoz[pole.order][1] + pole.top + 11) &&
+                    fishArr[i].checktop2 > (pole.polePoz[pole.order][1] + pole.top + 11) &&
+                    fishArr[i].checkleft1 < (pole.polePoz[pole.order][0] + pole.left - 24) &&
+                    fishArr[i].checkleft2 > (pole.polePoz[pole.order][0] + pole.left - 24)) {
+
+                    fishArr[i].state = 2;
+                    fishArr[i].img.src = fishArr[i].srcs[3];
+                    fishArr[i].order = 3;
+                    pole.state = 2;
+                    fishArr[i].top = fishArr[i].top - 15;
+                    fishArr[i].img.style.top = (fishArr[i].top) + "px";
+                    pole.top = pole.top - 15;
+                    pole.img.style.top = pole.top + "px";
+
+                }
+
+            }
+
+        }
+
+        pole.run();
+    }
+ function  gotoStartAgain() {//重新开始游戏的方法
+     initGame();
+ }
+
+ function initGame(){//重新初始化
+     if(pole.state==4){
+         pole.state=1;
+         again.style.visibility="hidden";
+         document.getElementById("fishDiv").innerHTML=' <img src="image/h1.png" style="position: absolute;top: 96px;left: 623px;" alt="">\n' +
+             '        <img src="image/l1.png" style="position: absolute;top: 208px;left: 733px;" alt="">\n' +
+             '        <img src="image/n1.png" style="position: absolute;top: 390px;left: 739px;" alt="">\n' +
+             '        <img src="image/y1.png" style="position: absolute;top: 496px;left: 621px;" alt="">\n' +
+             '        <img src="image/h1.png" style="position: absolute;top: 489px;left: 452px;" alt="">\n' +
+             '\n' +
+             '        <img src="image/l1.png" style="position: absolute;top: 367px;left: 340px;" alt="">\n' +
+             '\n' +
+             '        <img src="image/n1.png" style="position: absolute;top: 223px;left: 336px;" alt="">\n' +
+             '        <img src="image/y1.png" style="position: absolute;top: 104px;left: 460px;" alt="">\n' +
+             '        <img src="image/h1.png" style="position: absolute;top: 288px;left: 535px;" alt="">';
+         fishArr = [];
+         fish1 = new fishModel(fishDivs[0], 96, 623, 'image/h1.png', 'image/h2.png', 'image/h3.png', 'image/h4.png', 'image/h5.png', 2, 2, 56, 72, 118, 108);
+         fish2 = new fishModel(fishDivs[1], 208, 733, 'image/l1.png', 'image/l2.png', 'image/l3.png', 'image/l4.png', 'image/l5.png', 5, 2, 56, 68, 119, 106);
+         fish3 = new fishModel(fishDivs[2], 390, 739, 'image/n1.png', 'image/n2.png', 'image/n3.png', 'image/n4.png', 'image/n5.png', 4, 2, 57, 56, 106, 93);
+         fish4 = new fishModel(fishDivs[3], 496, 621, 'image/y1.png', 'image/y2.png', 'image/y3.png', 'image/y4.png', 'image/y5.png', 1, 2, 60, 74, 114, 102);
+         fish5 = new fishModel(fishDivs[4], 489, 451, 'image/h1.png', 'image/h2.png', 'image/h3.png', 'image/h4.png', 'image/h5.png', 3, 2, 56, 72, 118, 108);
+         fish6 = new fishModel(fishDivs[5], 367, 340, 'image/l1.png', 'image/l2.png', 'image/l3.png', 'image/l4.png', 'image/l5.png', 2, 2, 56, 68, 119, 106);
+         fish7 = new fishModel(fishDivs[6], 223, 336, 'image/n1.png', 'image/n2.png', 'image/n3.png', 'image/n4.png', 'image/n5.png', 5, 2, 57, 56, 106, 93);
+         fish8 = new fishModel(fishDivs[7], 104, 460, 'image/y1.png', 'image/y2.png', 'image/y3.png', 'image/y4.png', 'image/y5.png', 0, 2, 60, 74, 114, 102);
+         fish9 = new fishModel(fishDivs[8], 288, 535, 'image/h1.png', 'image/h2.png', 'image/h3.png', 'image/h4.png', 'image/h5.png', 4, 2, 56, 72, 118, 108);
+
+         fishArr = [fish1, fish2, fish3, fish4, fish5, fish6, fish7, fish8, fish9];
+     }
+
+ }
+    var setIntervarNum = 0;
+    var TimerSetIntervar = setInterval(function () {
+        setIntervarNum++;
+        fishArrOpenMous();
+
+    }, 100);
+    var  sibackBoolean =true;
+	
+    function backfunc() {
+		CT.backPage();
+    }
+</script>
+
+
+</body>
+</html>

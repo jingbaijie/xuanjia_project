@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="page-view-size" content="1280*720" />
+    <title>益智亲子动画兑换页</title>
+    <link rel="stylesheet" href="./css/acti_exchange.css" />
+  </head>
+  <body>
+    <div class="main">
+      <!-- 卡片数量显示 -->
+      <div class="mc">您的卡片：萌鸡卡*<span id="mc">0</span></div>
+      <div class="jl">机灵卡*<span id="jl">0</span></div>
+      <div class="dream">梦想卡*<span id="dream">0</span></div>
+      <!-- 兑换焦点 -->
+      <!-- 机灵宠物车 -->
+      <div class="petCar">
+        <img class="jlChange" src="./img/exchangePage/change.png" alt="" />
+        <div id="hands_x0_y0_petCarFocus_">
+          <img id="petCarFocus" class="petCarFocus" src="./img/exchangePage/select.png" alt="" />
+        </div>
+      </div>
+      <!-- 萌鸡朵朵 -->
+      <div class="mj">
+        <img class="mjChange" src="./img/exchangePage/change.png" alt="" />
+        <div id="hands_x0_y0_mjFocus_">
+          <img id="mjFocus" class="mjFocus" src="./img/exchangePage/select.png" alt="" />
+        </div>
+      </div>
+      <!-- 火箭车 -->
+      <div class="rocketCar">
+        <img class="rocketChange" src="./img/exchangePage/change.png" alt="" />
+        <div id="hands_x0_y0_rocketCarFocus_">
+          <img id="rocketCarFocus" class="rocketCarFocus" src="./img/exchangePage/select.png" alt="" />
+        </div>
+      </div>
+      <!-- 神秘大礼包 -->
+      <div class="secertPrize">
+        <img class="secertChange" src="./img/exchangePage/change.png" alt="" />
+        <div id="hands_x0_y0_secertPrizeFocus_">
+          <img id="secertPrizeFocus" class="secertPrizeFocus" src="./img/exchangePage/select.png" alt="" />
+        </div>
+      </div>
+      <!-- 弹框 -->
+      <!-- 未中奖弹框 -->
+      <div class="wzjTip">
+        <img id="wzjTip" src="./img/alertTip/lose.png" alt="" />
+        <div id="hands_x0_y0_wzjTipFocus_">
+          <img id="wzjTipFocus" class="wzjTipFocus" src="./img/alertTip/select.png" alt="" />
+        </div>
+      </div>
+      <!-- 奖品已兑完弹框 -->
+      <div class="prizeOver">
+        <img id="prizeOver" src="./img/alertTip/prizeOver.png" alt="" />
+      </div>
+      <!-- 已兑换过奖品弹框 -->
+      <div class="againTip">
+        <img id="againTip" src="./img/alertTip/exchangeAgain.png" alt="" />
+        <div id="hands_x0_y0_againTipFocus_">
+          <img id="againTipFocus" class="againTipFocus" src="./img/alertTip/select.png" alt="" />
+        </div>
+      </div>
+      <!-- 弹框返回焦点 -->
+      <div class="backTip">
+        <img src="./img/empty.png" alt="" />
+        <div id="hands_x0_y0_backTipFocus_">
+          <img id="backTipFocus" class="backTipFocus" src="./img/alertTip/select.png" alt="" />
+        </div>
+      </div>
+      <!-- 中奖弹框 -->
+      <div class="prizeTip">
+        <img id="prizeTip" src="./img/exchangePage/bg.png" alt="" />
+        <!-- 确定按钮-->
+        <div class="enter">
+          <img id="enter" src="./img/exchangePage/enter.png" alt="" />
+          <div id="hands_x0_y0_enterFocus_">
+            <img id="enterFocus" class="enterFocus" src="./img/exchangePage/select.png" alt="" />
+          </div>
+        </div>
+      </div>
+      <!-- 删除按钮 -->
+      <div class="clear">
+        <img id="clear" src="./img/exchangePage/delete.png" alt="" />
+        <div id="hands_x0_y0_clearFocus_">
+          <img id="clearFocus" class="clearFocus" src="./img/exchangePage/select.png" alt="" />
+        </div>
+      </div>
+      <!-- 奖品展示 -->
+      <div class="jlPrize">
+        <img id="jlPrize" src="./img/exchangePage/jlPrize.png" alt="" />
+      </div>
+      <!-- 兑换成功标题 -->
+      <div class="successTip">
+        <img id="successTip" src="./img/exchangePage/title.png" alt="" />
+      </div>
+      <!-- 手机输入框 -->
+      <div id="telInput" class="telInput"></div>
+      <!-- 保存提示 -->
+      <div id="saveTips"></div>
+      <!-- 手机号焦点 -->
+      <div class="phoneNumber">
+        <img id="phoneNumber" src="./img/exchangePage/phoneNumber.png" alt="" />
+        <div id="hands_x0_y0_phoneNumberFocus_">
+          <img id="phoneNumberFocus" class="phoneNumberFocus" src="./img/exchangePage/phone.png" alt="" />
+        </div>
+      </div>
+      <!-- 空返回焦点 -->
+      <div>
+        <img src="./img/empty.png" alt="" />
+        <div id="hands_x0_y0_emptyBackFocus_">
+          <img id="emptyBackFocus" class="emptyBackFocus" src="./img/empty.png" alt="" />
+        </div>
+      </div>
+    </div>
+  </body>
+  <script type = "text/javascript" src = "../../../../js/loadCommomJs.js"></script>
+  <script type="text/javascript" src="../../../../js/actiComm.js"></script>
+  <script type="text/javascript" src="./js/acti_exchange.js?v=2"></script>
+</html>

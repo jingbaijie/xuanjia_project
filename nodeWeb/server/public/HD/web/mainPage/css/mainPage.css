@@ -1,0 +1,52 @@
+/*背景图片*/
+#BJ{
+position:absolute;
+top:0px;left:0px;
+z-index:-2;
+}
+/*小视频补洞图片*/
+#videoImg{
+position:absolute;
+top:165px;left:263px;
+z-index:-1;
+visibility:hidden;
+}
+/*统一光标*/
+#animation{
+position: absolute;
+top:0px;left:0px;
+width:0px;
+height:0px;
+}
+/*瀑布流DOM*/
+#main{
+	width: 1280px;
+	height: 720px;
+	position: absolute;
+	top:0px;
+	left:0px;
+	/*移动效果*/
+	transition:all 0.4s;
+	-webkit-transition:all 0.4s; 
+}
+/*每一个推荐位*/
+.bin img{
+	width: 100%;
+	height: 100%;
+}
+/*推荐位的文字描述*/
+.fontCss {
+    position: absolute;
+    bottom: 8px;
+    left: 9px;
+    background: black;
+	color: white;
+    font-size: 20px;
+    text-align: center;
+	height: 32px;
+    line-height: 32px;
+    overflow: hidden;
+    opacity: 0.8;
+	z-index:999;
+	border-radius: 10px;
+}

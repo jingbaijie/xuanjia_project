@@ -1,0 +1,273 @@
+<% 
+    const mlNavObj = {
+        buttons : [],
+        commonPageInfo : basePageInfo.commonPageInfo,
+        selectThemeDetailByUserId : basePageInfo.selectThemeDetailByUserId,
+        templateInfo : basePageInfo.findTemplateInfo,
+        //导航数据
+        navArr : [],
+        //按钮数组
+        //logo位置
+        init : function () {
+            //左侧导航数据
+            const leftNavBarArr = this.commonPageInfo.pageInfo.commonPageInfo.recommend_3 || [];
+            //设置左侧导航参数           
+            const leftNavBar = this.setNavBar({
+                //数据
+                navArr :  leftNavBarArr,
+                //分类名称
+                name : "DMSYGN",
+                //是否显示
+                isShow :  true,
+                //初始位置
+                top : 215,
+                left : 50,
+                width : 0,
+                height : 0,
+                //生成方向  1 横向 2 纵向
+                direction :  1,
+                //列数
+                col : 1,
+                //行数
+                row :  leftNavBarArr.length,
+                //横向步长
+                colStep : 0,
+                //纵向步长
+                rowStep : 90,
+            });
+            this.navArr.push(leftNavBar);
+        },
+        //配置参数
+        setNavBar : function (barObj) {
+            var _this = this;
+            barObj = barObj || {};
+            var navSetObj = {
+                //数据
+                navArr : barObj.navArr ,
+                //分类名称
+                name : barObj.name || "test",
+                //是否显示
+                isShow : barObj.isShow || false,
+                //初始位置
+                top : barObj.top || 0,
+                left : barObj.left || 0,
+                width : barObj.width || 0,
+                height : barObj.height || 0,
+                //生成方向  1 横向 2 纵向
+                direction : barObj.direction || 1,
+                //列数
+                col : barObj.col || 1,
+                //行数
+                row : barObj.row || 1,
+                //列步长
+                colStep : barObj.colStep || 0,
+                //横向步长
+                rowStep : barObj.rowStep || 0,
+            }
+            return navSetObj ;
+        }
+    }
+    mlNavObj.init();
+%>
+<!-- 导航 -->
+<% mlNavObj.navArr.forEach((element,index) => { %>
+    <% if(element.isShow) { %>
+        <div id="<%= element.name %>Div" style="position: absolute; left: 0px; top: 0px;">
+            <%
+                const col = element.col;
+                const row = element.row;
+                //过滤数据后的焦点信息
+                var keyInfo = JSON.parse(JSON.stringify(element));
+                delete keyInfo.navArr;
+                keyInfo = JSON.stringify(keyInfo);
+            %>
+            <% for (let r = 0; r < row; r++) { %>
+                <% for (let c = 0; c < col; c++) { %>
+                    <%
+                        let isShow = false;
+                        const num = r*col + c;
+                        const curData = element.navArr[num] || {};
+                        const button = {
+                            id : "hands_x0_y0_" + element.name + num + "_",
+                            TempData : curData,
+                            clickHandler : 'javascript:mainNavObj.navBtnClickEvent(' + keyInfo + ',' + index + ')',
+                            leftEvent:'javascript:mainNavObj.navBtnArrowEvent("left",' + keyInfo + ',' + num + ')',
+                            rightEvent:'javascript:mainNavObj.navBtnArrowEvent("right",' + keyInfo + ',' + num + ')',
+                            upEvent:'javascript:mainNavObj.navBtnArrowEvent("up",' + keyInfo + ',' + num + ')',
+                            downEvent:'javascript:mainNavObj.navBtnArrowEvent("down",' + keyInfo + ',' + num + ')',
+                            focusType: 7
+                        }
+                        // basePageInfo.nodeButtons.push(button);
+                        mlNavObj.buttons.push(button);
+
+                        if(curData.commpageId ==  mlNavObj.templateInfo.pageId){
+                            isShow = true;
+                        }   
+                    %>        
+                    <img id="<%= element.name + "SelectedImg" + num %>"
+                        src="<%= (curData.recommendLabelpic ? imgUrl + curData.recommendLabelpic.picPath : "./HD/images/empty.png" )%>"
+                        style="width: <%= curData.recommendPic.picW %>px; height: <%= curData.recommendPic.picH %>px; 
+                        position: absolute; visibility: <%- isShow ? "visible" : "hidden" %>; 
+                        top: <%= element.top + r * element.rowStep %>px; left: <%= element.left + c * element.colStep %>px;">
+                    <img id="<%= element.name + num + "Img" %>" src="<%= imgUrl +  curData.recommendPic.picPath %>"
+                        style="width: <%= curData.recommendPic.picW %>px; height: <%= curData.recommendPic.picH %>px; 
+                        position: absolute; top: <%= element.top + r * element.rowStep %>px; 
+                        left: <%= element.left + c * element.colStep %>px;">
+                    <div id="<%= "hands_x0_y0_" + element.name + num + "_" %>" 
+                        style="width: <%= curData.recommendFocuspic.picW %>px; height: <%= curData.recommendFocuspic.picH %>px; 
+                        position: absolute; top: <%= element.top + r * element.rowStep %>px; 
+                        left: <%= element.left + c * element.colStep %>px;">
+                        <img id="<%= element.name + num %>" src="<%= imgUrl +  curData.recommendFocuspic.picPath %>"
+                            style="width: <%= curData.recommendFocuspic.picW %>px; 
+                            height: <%= curData.recommendFocuspic.picH %>px; visibility: hidden;">
+                    </div>
+                <% } %>
+            <% } %>
+        </div>
+    <% } %>
+<% }) %>
+
+<script>
+    var mainNavObj = {
+        buttons : <%- JSON.stringify(mlNavObj.buttons)%> || [],
+        navArr: basePageInfo.commonPageInfo.pageInfo.commonPageInfo.recommend_3,
+        selectThemeDetailByUserId: <%- JSON.stringify(mlNavObj.selectThemeDetailByUserId) %> || (basePageInfo.selectThemeDetail && basePageInfo.selectThemeDetail[0]),
+        /**
+        * 左侧nav导航按钮OK键触发事件
+        * @param params 
+        *   keyInfo:生成当前按钮的初始化信息。
+        *   keyIndex：生成当前按钮的序号。
+        * 使用方式：如有特殊响应事件需求，在自己页面重新定义函数： mainNavObj.navBtnClickEvent: function (keyInfo,keyIndex) {...};
+        */
+        navBtnClickEvent : function(keyInfo, keyIndex){
+            var _this = this;
+            //以下代码根据自己页面实际需求，可在自己页面重写
+            if (curFocus.TempData.recommendDisplayType == 9) {
+                //占位符（特殊自定义）跳转类型
+                if (curFocus.TempData.recommendDisplayValue == '5') {
+                    //主题推荐位
+                    _this.showThemeList();
+                }
+            } else {
+                //正常跳转数据 if (curFocus.TempData.recommendDisplayType == 1) 
+                page.toJump("leftNav", keyIndex);
+            }
+        },
+        /**
+        * 左侧nav导航按钮方向键触发事件
+        * @param params 
+        *   keyDirection：触发的方向键方向。
+        *   keyInfo:生成当前按钮的初始化信息。
+        *   keyIndex：生成当前按钮的序号。
+        * 使用方式：如有特殊响应事件需求，在自己页面重新定义函数：mainNavObj.navBtnArrowEvent : function (keyDirection,keyInfo,keyIndex) {...};
+        */
+        navBtnArrowEvent : function(keyDirection,keyInfo,keyIndex){
+            var _this = mainNavObj;
+            var curKeyDateArr = _this.navArr|| [];
+            //以下代码根据自己页面实际需求，可在自己页面重写
+            switch (keyDirection) {
+                case 'left':
+                    // PAGE.changeFocus('hands_x0_y0_DMXHB0_');
+                    break;
+                case 'right':
+                    if (keyIndex <= 2) {
+                        PAGE.changeFocus('hands_x0_y0_DMSYKW0_');
+                    } else {
+                        PAGE.changeFocus('hands_x0_y0_DMSYKW1_');
+                    }
+                    break;
+                case 'up':
+                    if (keyIndex > 0) {
+                        PAGE.changeFocus('hands_x0_y0_' + keyInfo.name + (keyIndex - 1) + '_');
+                    }
+                    break;
+                case 'down':
+                    if (keyIndex < curKeyDateArr.length - 1) {
+                        PAGE.changeFocus('hands_x0_y0_' + keyInfo.name + (keyIndex + 1) + '_');
+                    }
+                    break;
+
+                default:
+                    break;
+            }
+        },
+        /**
+        * 显示主题列表
+        * */
+        showThemeList: function () {
+            var idx = 0;
+            var _focusId = "";
+            while(PAGE.focusArr["hands_x0_y0_themeBtn" + idx + "_"] && PAGE.focusArr["hands_x0_y0_themeBtn" + idx + "_"].focusmodel) {
+                PAGE.focusArr["hands_x0_y0_themeBtn" + idx + "_"].focusmodel.enFocus = true;
+                try{
+                    if(this.selectThemeDetailByUserId.id == PAGE.focusArr["hands_x0_y0_themeBtn" + idx + "_"].focusmodel.TempData.id) {
+                        _focusId = "hands_x0_y0_themeBtn" + idx + "_";
+                    }
+
+                }catch(e){}
+                idx ++;
+            }
+            if(idx == 0) return;
+            CT.$('DMSYGN2Img').style.zIndex = 1;
+            CT.show(CT.$('themeListAlert'));
+            // PAGE.focusArr["hands_x0_y0_themeBtn0_"].focusmodel.enFocus = true;
+            // PAGE.focusArr["hands_x0_y0_themeBtn1_"].focusmodel.enFocus = true;
+            // if(this.selectThemeDetailByUserId.id == 2){
+                PAGE.changeFocus(_focusId || ('hands_x0_y0_themeBtn' + (idx - 1)));
+            // } else {
+            //     PAGE.changeFocus('hands_x0_y0_themeBtn1_');
+            // }
+        },
+
+        /**
+        * 隐藏主题列表
+        * */
+        hideThemeList: function () {
+            CT.$('DMSYGN2Img').style.zIndex = 0;
+            CT.hide(CT.$('themeListAlert'));
+            // PAGE.focusArr["hands_x0_y0_themeBtn0_"].focusmodel.enFocus = false;
+            // PAGE.focusArr["hands_x0_y0_themeBtn1_"].focusmodel.enFocus = false;
+            var idx = 0;
+            while(PAGE.focusArr["hands_x0_y0_themeBtn" + idx + "_"] && PAGE.focusArr["hands_x0_y0_themeBtn" + idx + "_"].focusmodel) {
+                PAGE.focusArr["hands_x0_y0_themeBtn" + idx + "_"].focusmodel.enFocus = true;
+                if(CT.$('themeBtn' + idx)) {
+                    CT.$('themeBtn' + idx).style.visibility = "hidden";
+                }
+                idx ++;
+            }
+            // CT.$('themeBtn0').style.visibility = "hidden";
+            // CT.$('themeBtn1').style.visibility = "hidden";
+            PAGE.changeFocus('hands_x0_y0_DMSYGN2_');
+        },
+        /**
+        * 改变当前主题
+        * choseThemeObj：选择的主题的信息
+        * */
+        changeDefaultTheme: function (choseThemeObj) {
+            var _this = this;
+            choseThemeObj = choseThemeObj || {};
+            interface.updateExtraUserInfo({
+                params: {userId: xjDataLog.getUserId(), themeId: choseThemeObj.id},
+                ajaxConfig: {async: true}
+            }, function (res) {
+                //清除node端主题缓存
+                var clearData = {
+                    //必传参数，清除缓存的关键字
+                    keyWord: 'updateExtraUserInfo',
+                }
+                interface.clearNodeCache(clearData);
+                //记录当前主题
+                _this.curThemeObj = choseThemeObj;
+                _this.selectThemeDetailByUserId.id = choseThemeObj.id;
+                //更换主题
+                CT.changeTheme(AjaxConfig.commonPageInfo, 1);
+                //隐藏主题列表
+                _this.hideThemeList();
+
+               
+            }); 
+        },
+
+    }
+    xjInitButtons = xjInitButtons.concat(mainNavObj.buttons);
+</script>

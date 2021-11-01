@@ -1,0 +1,96 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.main {
+  position: relative;
+  background: url(../img/myCardsPage/bg.png) no-repeat;
+  width: 1280px;
+  height: 720px;
+  overflow: hidden;
+}
+.title {
+  position: absolute;
+  left: 337px;
+  top: 10px;
+}
+.mcCard {
+  position: absolute;
+  left: 100px;
+  top: 170px;
+}
+.mcWord {
+  position: absolute;
+  background-color: #fff;
+  width: 220px;
+  height: 50px;
+  left: 137px;
+  top: 517px;
+  border-radius: 33px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #faa332;
+  text-align: center;
+  line-height: 47px;
+}
+.mcWord span{
+    left: 137px;
+    top: 517px;
+    font-size: 26px;
+    font-weight: bold;
+    color: #faa332;
+  }
+.jlCard {
+  position: absolute;
+  left: 465px;
+  top: 170px;
+}
+.jlWord {
+  position: absolute;
+  background-color: #fff;
+  width: 220px;
+  height: 50px;
+  left: 500px;
+  top: 517px;
+  border-radius: 33px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #fc4348;
+  text-align: center;
+  line-height: 47px;
+}
+.jlWord  span{
+    background-color: #fff;
+    left: 500px;
+    top: 517px;
+    font-size: 26px;
+    font-weight: bold;
+    color: #fc4348;
+  }
+.dream {
+  position: absolute;
+  left: 838px;
+  top: 170px;
+}
+.dreamWord {
+  position: absolute;
+  background-color: #fff;
+  width: 220px;
+  height: 50px;
+  left: 880px;
+  top: 517px;
+  border-radius: 33px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #4da0ec;
+  text-align: center;
+  line-height: 47px;
+}
+.dreamWord span{
+    background-color: #fff;
+    left: 880px;
+    top: 517px;
+    font-size: 26px;
+    font-weight: bold;
+    color: #4da0ec;
+  }

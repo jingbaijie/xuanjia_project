@@ -1,0 +1,72 @@
+<%- include ('../../components/header') %>
+<style>
+	*{
+		padding: 0px;
+		margin: 0px;
+	}
+	body {
+		position: relative;
+		left: 0px;
+		top: 0px;
+		width: 1280px;
+		height: 720px;
+		overflow: hidden;
+	}
+	#wrapper{
+		position: absolute;
+		left: 0px;
+		top: 0px;
+		width: 1280px;
+		height: 720px;
+		background-color: transparent;
+		color: white;
+		overflow: hidden;
+	}
+	div,img{
+		position: absolute;
+		left: 0px;
+		top: 0px;
+	}
+	
+</style>
+</head>
+<body bgcolor="transparent">
+<!--背景图-->
+<!--页面内容-->
+<div id="wrapper">
+	<img id="BJ" style="position:absolute;top:0px;left:0px;width: 1280px;height: 720px;" 
+		src="<%= basePageInfo.bgImg %>" >
+</div>
+<%- include('../../components/commJs') %>
+<script src="<%= basePageUrl %>/js/oneKeyBroadcast.js?v=<%= new Date().getTime() %>"></script>
+<script type="text/javascript">
+	//眉头按钮点击响应函数
+	function toNextPage(type,num){
+        //CT.writeInfo("进入toNextPage啦啦啦")
+        if(type.indexOf("midTop") > -1){  //中部上部固定推荐内容
+			//先记录跳转离开之前的页面参数
+			PAGE.otherPageParam = "&curFocusId="+curFocus.FocusID + "&contentId=" + basePageInfo.commonPageInfo.pageInfo.commonPageId + "&parentId=" + CT.requestValue("parentId") + "&contentIdName=" + CT.requestValue("contentIdName")+"&contentEName="+basePageInfo.commonPageInfo.pageInfo.commPageEname+"&contentCName="+basePageInfo.commonPageInfo.pageInfo.commPageCname ;
+			CT.goPage();
+		    CT.toAnterRecommendUrl(page.commonPageInfo.data,"recommend_2",num);
+		}else if(type.indexOf("midRight")> -1){   //中间右侧固定推荐
+			//先记录跳转离开之前的页面参数
+			//PAGE.otherPageParam = "&curFocusId="+curFocus.FocusID + "&contentId=" + basePageInfo.commonPageInfo.pageInfo.commonPageId + "&parentId=" + CT.requestValue("parentId") + "&contentIdName=" + CT.requestValue("contentIdName");
+			PAGE.otherPageParam = "&curFocusId="+curFocus.FocusID + "&contentId=" + basePageInfo.commonPageInfo.pageInfo.commonPageId + "&parentId=" + CT.requestValue("parentId") + "&contentIdName=" + CT.requestValue("contentIdName") + "&startBtnIndex=" + page.startBtnIndex + "&curLabelBtnIndex=" + page.curLabelBtnIndex + "&curClassContentPageIndex=" + page.curClassContentPageIndex+"&contentEName="+basePageInfo.commonPageInfo.pageInfo.commPageEname+"&contentCName="+basePageInfo.commonPageInfo.pageInfo.commPageCname
+			CT.goPage();
+		    CT.toAnterRecommendUrl(page.commonPageInfo.data,"recommend_3",num);
+
+		}else if(type.indexOf("Mid")> -1){   //中间眉头
+            //CT.writeInfo("进入眉头跳转啦啦啦")
+		    CT.toAnterRecommendUrl(page.commonPageInfo.data.pageInfo.commonPageInfo,"recommend_2",num);
+		}else if(type.indexOf("Right")> -1){   //右侧眉头
+			//先记录跳转离开之前的页面参数  
+			PAGE.otherPageParam = "&curFocusId="+curFocus.FocusID + "&contentId=" + basePageInfo.commonPageInfo.pageInfo.commonPageId + "&parentId=" + CT.requestValue("parentId") + "&contentIdName=" + CT.requestValue("contentIdName")+"&contentEName="+basePageInfo.commonPageInfo.pageInfo.commPageEname+"&contentCName="+basePageInfo.commonPageInfo.pageInfo.commPageCname + "&startBtnIndex=" + page.startBtnIndex + "&curLabelBtnIndex=" + page.curLabelBtnIndex + "&curClassContentPageIndex=" + page.curClassContentPageIndex;
+				CT.goPage();
+		    CT.toAnterRecommendUrl(page.commonPageInfo.data.pageInfo.commonPageInfo,"recommend_3",num);
+		}
+	}
+    page.init();
+</script>
+
+</body>
+</html>

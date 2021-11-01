@@ -1,0 +1,105 @@
+<%- include ('../../components/header') %>
+    <style>
+        .main{
+            position: absolute;
+            width: 1280px;
+            height: 720px;
+            margin: 0;
+            padding: 0;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            text-align: center;
+            background : url("./HD/images/empty.png") no-repeat;
+        }
+        div{
+            position: absolute;
+            top:0;
+            left:0;
+        }
+        .contain {
+            position:absolute;
+            left: 0;
+            width: 1280px;
+            height: 800%;
+            /* transition:all 0.8s ease; */
+        }
+        .page {
+            position:absolute;
+            left: 66px;
+            top: 0;
+        }
+        .page img {
+            width:352px;
+            height: 198px;
+            position:absolute;
+            left:0;
+            top:0;
+        }
+		.marqueeC{
+			position: absolute;
+			left: 290px;
+			top: 145px;
+			width: 697px;
+			height: 50px;
+			overflow: hidden;
+			color: #fff;
+			font-size: 20px;
+			text-align: center;
+			line-height: 50px;
+		}
+    </style>
+<body>
+    <%
+        const commonPageInfo = basePageInfo.commonPageInfo;
+        const localImg = basePageInfo.localImg;
+    %>
+    <div class="main" id = "mainContent">
+		<img id = "mainBg" src="<%= imgUrl + commonPageInfo.pageInfo.pageTemplateBgpic.picPath %>" alt="" 
+        style="position:absolute;left: 0;top: 0;width: 1280px;height: 720px;">
+		<!--<div class = "marqueeC">
+			<marquee>未订购用户点击选中任意小游戏直接跳转订购，订购用户6个小游戏不限次数任意玩。</marquee>
+		</div>-->
+        <div class="box" style="position:absolute;left: 0;top: 204px;height: 470px;width: 1280px;overflow: hidden;">
+            <div class="contain" id="contain" style=" top: 0;">
+            </div>
+        </div>
+        <div class="icon" id="icon_bot" style="position:absolute;left: 615px;top: 660px;">
+            <img src="<%= localImg %>arrow_1.png" alt="" id="arrow_3" style="position:absolute;left: 0;top: 0;visibility: hidden;">
+            <img src="<%= localImg %>arrow_1.png" alt="" id="arrow_4" style="position:absolute;left: 0;top: 20px;visibility: hidden;">
+        </div>
+        <div class="icon" id="icon_top" style="position:absolute;left: 615px;top: 150px;">
+            <img src="<%= localImg %>arrow_2.png" id="arrow_1" alt="" style="position:absolute;left: 0;top: 0;visibility: hidden;">
+            <img src="<%= localImg %>arrow_2.png" id="arrow_2" alt="" style="position:absolute;left: 0;top: 20px;visibility: hidden;">
+        </div>
+
+        <div id="hands_x0_y0_iconFocus0_" style="position: absolute;left: 56px;top: 196px;">
+            <img src="<%= localImg %>select.png" id="iconFocus0" alt="" style="position: absolute;left: 0;top: 0;visibility: hidden;">
+        </div>
+        <div id="hands_x0_y0_iconFocus1_" style="position: absolute;left: 454px;top: 196px;">
+            <img src="<%= localImg %>select.png" id="iconFocus1" alt="" style="position: absolute;left: 0;top: 0;visibility: hidden;">
+        </div>
+        <div id="hands_x0_y0_iconFocus2_" style="position: absolute;left: 851px;top: 196px;">
+            <img src="<%= localImg %>select.png" id="iconFocus2" alt="" style="position: absolute;left: 0;top: 0;visibility: hidden;">
+        </div>
+        <div id="hands_x0_y0_iconFocus3_" style="position: absolute;left: 56px;top: 436px;">
+            <img src="<%= localImg %>select.png" id="iconFocus3" alt="" style="position: absolute;left: 0;top: 0;visibility: hidden;">
+        </div>
+        <div id="hands_x0_y0_iconFocus4_" style="position: absolute;left: 454px;top: 436px;">
+            <img src="<%= localImg %>select.png" id="iconFocus4" alt="" style="position: absolute;left: 0;top: 0;visibility: hidden;">
+        </div>
+        <div id="hands_x0_y0_iconFocus5_" style="position: absolute;left: 851px;top: 436px;">
+            <img src="<%= localImg %>select.png" id="iconFocus5" alt="" style="position: absolute;left: 0;top: 0;visibility: hidden;">
+        </div>
+    </div>
+	<!-- 引入公共js开始 -->
+    <%- include('../../components/commJs') %>
+    <!-- 引入公共js结束 -->
+    <script src="<%= basePageUrl %>/js/main.js?v=2021"></script>
+    <script>
+	function backFunc(){
+		CT.backPage();
+	}
+    </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<%- include ('../../components/header') %>
+<link rel="stylesheet" href="<%= basePageUrl %>/css/conversion.css">
+</head>
+<%
+	const commonPageInfo = basePageInfo.commonPageInfo;
+	const recommend_1 = commonPageInfo.recommend_1;
+	const localImg = basePageInfo.localImg;
+%>
+
+<body>
+    <!-- 会员背景图 -->
+    <img id="VIPBJ" src="" width="1280" height="720" style="visibility:hidden;" />
+    <!-- 非会员背景图 -->
+    <img id="BJ" src="" width="1280" height="720" style="visibility: visible;position: absolute;top: 0px;left: 0px;" />
+    <div id="hands_x0_y0_select_">
+        <img id="select" src="" style="position: absolute; top: 550px;left: 700px;width:317px;">
+        <img id="select1" src="" style="position: absolute; top: 550px;left: 700px;width:317px">
+    </div>
+    <!-- 二维码 -->
+    <div id="QRcode" style="position: absolute;top:0px;left: 0px;visibility: hidden;">
+        <img id="showQRcode" src="" alt="">
+    </div>
+</body>
+</html>
+<%- include('../../components/commJs3') %>
+<script src="<%= basePageUrl %>/js/conversionPage.js "></script>

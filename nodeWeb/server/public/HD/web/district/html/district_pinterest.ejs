@@ -1,0 +1,20 @@
+<%- include ('../../components/header') %>
+<link rel="stylesheet" href="<%= basePageUrl %>/css/district4.css">
+</head>
+<body style="background:transparent;position:absolute;">
+    <!--背景图-->
+	<img id="BJ" src="./HD/images/empty.png" />
+	<!--视频补洞-->
+	<img id="videoImg" style="width: 336px; height: 186px;position:absolute;top:164px;left:262px;z-index:-1;" src="../imgs/empty.png" style="visibility:hidden"/>
+    <!--推荐位图片-->
+    <div style="position: absolute;top:160px;overflow: hidden;width:1280px;height: 560px">
+		<div style="position: absolute;top:-160px;width:1280px;">
+			<div id="main" style="top:0px;width:1280px;">
+				 <!--动态插入推荐位-->
+			</div>
+		</div>
+	</div>
+    <%- include('../../components/commJs') %>
+	<script src="<%= basePageUrl %>/js/district_pinterest.js"></script>
+</body>
+</html>

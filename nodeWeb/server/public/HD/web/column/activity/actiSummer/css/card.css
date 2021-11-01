@@ -1,0 +1,118 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+html,body{
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+}
+.main{
+    width: 1280px;
+    height: 720px;
+    background: url(../images/card/bg.jpg) no-repeat;
+    position: relative;
+    left: 0px;
+    top: 0px;
+    overflow: hidden;
+}
+.cardList{
+    position: absolute;
+    left: 365px;
+    top: 140px;
+}
+.card0{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+.card1{
+    position: absolute;
+    top: 0px;
+    left: 200px;
+}
+.card2{
+    position: absolute;
+    top: 0px;
+    left: 400px;
+}
+.card3{
+    position: absolute;
+    top: 255px;
+    left: 0px;
+}
+.card4{
+    position: absolute;
+    top: 255px;
+    left: 200px;
+}
+.card5{
+    position: absolute;
+    top: 255px;
+    left: 400px;
+}
+.myCard{
+    position: absolute;
+    left: 1030px;
+    top: 467px;
+}
+.myCardNum{
+    position: absolute;
+    top: 155px;
+    font-size: 32px;
+    color: #ffffff;
+    left: 100px;
+    width: 50px;
+    text-align: center;
+}
+.dhBtn{
+    position: absolute;
+    left: 1050px;
+    top: 0px;
+}
+#hands_x0_y0_dhBtnS_{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+#hands_x0_y0_card0_,#hands_x0_y0_card1_,#hands_x0_y0_card2_,#hands_x0_y0_card3_,#hands_x0_y0_card4_,#hands_x0_y0_card5_{
+    position: absolute;
+    left: -10px;
+    top: 0px;
+}
+.cardPopup,.jfPopup,.mfPopup,.dhPopup,.slbzPopup,.ydhPopup,.ydwPopup,.dhcgPopup{
+    position: absolute;
+    left: 0;
+    top: 0;
+    visibility: hidden;
+}
+#hands_x0_y0_cardPopupS_,#hands_x0_y0_jfPopupS_,#hands_x0_y0_mfPopupS_,#hands_x0_y0_slbzConfirmS_{
+    position: absolute;
+    left: 548px;
+    top: 493px;
+}
+#hands_x0_y0_slbzConfirmS_,#hands_x0_y0_ydhConfirmS_,#hands_x0_y0_ydwConfirmS_{
+    position: absolute;
+    left: 541px;
+    top: 410px;
+}
+#hands_x0_y0_dhPopupS_{
+    position: absolute;
+    left: 563px;
+    top: 550px;
+}
+#myPrize{
+    display: none;
+    position: absolute;
+    left: 500px;
+    top: 654px;
+    color: #ffffff;
+    font-size: 32px;
+}
+#getScore{
+    position: absolute;
+    left: 620px;
+    top: 331px;
+    color: #ffffff;
+    font-size: 36px;
+}

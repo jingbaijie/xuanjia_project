@@ -1,0 +1,74 @@
+<%- include ('../../components/header') %>
+    <style>
+        .main{
+            position: absolute;
+            width: 1280px;
+            height: 720px;
+            margin: 0;
+            padding: 0;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            text-align: center;
+            background : url("./HD/web/column/gameShootSea/images/BGNewOne.jpg") no-repeat;
+        }
+        div{
+            position: absolute;
+            top:0;
+            left:0;
+        }
+    </style>
+</head>
+<body>
+    <div id="main" class="main">
+        <!--游戏次数-->
+        <div id="gameChance" style="position: absolute;left: 45px;top: 77px;width: 200px;height: 50px;">
+            <!--<img src="./HD/web/column/gameShootSea/images/blood.png" alt="" style="width: 48px;height: 44px;position: absolute;top: 0;left: 10px;">
+            <img src="./HD/web/column/gameShootSea/images/blood.png" alt="" style="width: 48px;height: 44px;position: absolute;top: 0;left: 60px;">
+            <img src="./HD/web/column/gameShootSea/images/blood.png" alt="" style="width: 48px;height: 44px;position: absolute;top: 0;left: 110px;">-->
+        </div>
+        <!--倒计时-->
+        <div id="countDown" style="position: absolute;width: 218px;height: 74px;left: 1000px;top:42px">
+            <img src="./HD/web/column/gameShootSea/images/countDown.png" alt="" style="position: absolute;left: 0;top: 0;width: 218px;height: 74px;">
+            <span style="position: absolute;left: 82px;top:4px;color: #fff;font-size: 45px;"><span id="countNum">30</span> 秒</span>
+        </div>
+        <!--积分-->
+        <div id="integral" style="position: absolute;left: 45px;top: 600px;width: 187px;height: 68px;">
+            <img src="./HD/web/column/gameShootSea/images/integral.png" alt="" style="position: absolute;left: 0;top: 0;width: 187px;height: 68px;">
+            <span id="integralNum" style="color:#E93526;font-size: 34px;position: absolute;left: 82px;top: 15px;font-weight: 600;">000</span>
+        </div>
+        <!--潜艇-->
+        <div id="hands_x0_y0_oscar_" style="position: absolute;left: 500px;top: 520px;width: 142px;height: 186px;">
+            <img src="./HD/web/column/gameShootSea/images/oscar.png" id="oscar" alt="" style="position: absolute;left: 0;top: 0;width: 142px;height: 186px;">
+        </div>
+        <!--小鱼-->
+        <div id="fish" style="position:relative;">
+        </div>
+        <!--不小心按错和返回的弹窗-->
+        <div id="backing" style="position: absolute;width: 751px;height: 488px;left: 265px;top: 90px;visibility: hidden;z-index:10;">
+            <img src="./HD/web/column/gameShootSea/images/back.png" id="backBg" alt="" style="position: absolute;left: 0;top: 0;visibility: hidden;">
+            <div id="hands_x0_y0_conFocus0_" style="position: absolute;left: 167px;top: 316px;width: 173px;height: 70px;visibility: hidden;">
+                <img src="./HD/web/column/gameShootSea/images/continue.png" id="conFocus0" alt="" style="position: absolute;left: 0;top: 0;width: 173px;height: 70px;visibility: hidden;">
+            </div>
+            <div id="hands_x0_y0_conFocus1_" style="position: absolute;left: 375px;top: 316px;width: 173px;height: 70px;visibility: hidden;">
+                <img src="./HD/web/column/gameShootSea/images/leave.png" id="conFocus1" alt="" style="position: absolute;left: 0;top: 0;width: 173px;height: 70px;visibility: hidden;">
+            </div>
+            <div id="hands_x0_y0_conFocus2_" style="position: absolute;left: 612px;top: 30px;width: 82px;height: 81px;visibility: hidden;">
+                <img src="./HD/web/column/gameShootSea/images/closed.png" id="conFocus2" alt="" style="position: absolute;left: 0;top: 0;width: 82px;height: 81px;visibility: hidden;">
+            </div>
+        </div>
+	<!--结束弹窗-->
+	<div id="endGame" style="position:absolute;width: 751px;height: 488px;left: 265px;top: 90px;visibility: hidden;z-index:10;">
+            <img src="./HD/web/column/gameShootSea/images/end.png" alt="position: absolute;left: 0;top: 0;">
+            <div id="hands_x0_y0_conFocus3_" style="position: absolute;left: 270px;top: 315px;width: 173px;height: 70px;">
+                <img src="./HD/web/column/gameShootSea/images/sure.png" id="conFocus3" alt="" style="position: absolute;left: 0;top: 0;width: 173px;height: 70px;visibility: hidden;">
+            </div>
+        </div>
+
+    </div>
+	<!-- 引入公共js开始 -->
+	<%- include('../../components/commJs') %>
+	<!-- 引入公共js结束 -->
+    <script type = "text/javascript" src="<%= basePageUrl %>/js/main.js?v=20201"></script>
+</body>
+</html>

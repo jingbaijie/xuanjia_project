@@ -1,0 +1,28 @@
+<!--
+ * @Description: 
+ * @Author: jwzx
+ * @Date: 2020-10-16 15:58:07
+ * @LastEditTime: 2020-10-16 17:13:25
+ * @LastEditors: jwzx
+-->
+<%- include ('../../components/header') %>
+</head>
+<%
+	const commonPageInfo = basePageInfo.commonPageInfo;
+	let BJUrl = "./HD/images/empty.png";
+	if(commonPageInfo.pageInfo && commonPageInfo.pageInfo.pageTemplateBgpic){
+		BJUrl = imgUrl + commonPageInfo.pageInfo.pageTemplateBgpic.picPath;
+	}
+%>
+<body style="margin: 0;padding: 0;">
+    <!--背景图-->
+	<img id="BJ" style="position:absolute;top:0px;left:0px;" src="<%= BJUrl %>" >
+	<!--四个推荐-->
+	<div id="topRecommend" style="width:1280px;height:720px;"></div>
+	<!--两个推荐，继续或离开-->
+	<div id="bottomRecommend" style="width:1280px;height:720px;"></div>
+	<!--引入公共js-->
+	<%- include('../../components/commJs') %>
+	<script src="<%= basePageUrl %>/js/interceptePage.js"></script>
+</body>
+</html>

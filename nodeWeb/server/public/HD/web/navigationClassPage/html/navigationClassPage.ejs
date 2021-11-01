@@ -1,0 +1,231 @@
+<%- include ('../../components/header') %>
+<link rel="stylesheet" href="<%= basePageUrl %>/css/navigationClassPage.css">
+</head>
+<%
+    const commonPageInfo = basePageInfo.commonPageInfo;
+    const localImg = basePageInfo.localImg;
+    const nCInfo = {
+       midFixedRecInfo : commonPageInfo.recommend_3 || {},
+       bgImgSrc:'',
+       edImgSrc:'',
+       foImgSrc:'',
+       leftBtnMaxNum : 5,
+    };
+    //热门推荐按钮图
+    try {
+        nCInfo.bgImgSrc = imgUrl + commonPageInfo.recommend_1[1].recommendPic.picPath;
+        nCInfo.edImgSrc = imgUrl + commonPageInfo.recommend_1[1].recommendLabelpic.picPath;
+        nCInfo.foImgSrc = imgUrl + commonPageInfo.recommend_1[1].recommendFocuspic.picPath;
+    } catch (error) {
+        nCInfo.bgImgSrc = localImg + 'hotRecommend.png';
+        nCInfo.edImgSrc = localImg + 'hotRecommend.png';
+        nCInfo.foImgSrc = localImg + 'hotRecommendFocus.png';
+    }
+    basePageInfo.transferObj = nCInfo;
+%>
+<body>
+    <!--页面内容-->
+    <div id="wrapper">
+        <img id="BJ" src="<%= basePageInfo.bgImg %>" style="position:absolute;top:0px;left:0px;width: 1280px;height: 720px;"/>
+        <!--导航栏-->
+        <%- include('../../components/nav/topNav')%>
+        <!--页面中部左侧卡通二级分类列表-->
+        <div id="leftLabelList" style="top: 65px;">
+            <!--按钮列表背景和logo-->
+            <img src="<%= imgUrl + commonPageInfo.recommend_1[0].recommendPic.picPath %>" id="btnListLOGO" 
+                alt="" style="position:absolute;left: 50px;top: 140px;">
+            <div id="hands_x0_y0_hotRecommendFocus_" style="position:absolute;left: 41px;top: 248px;">
+                <img id="hotRecommendBGImg" src="<%= nCInfo.bgImgSrc %>" style="">
+                <img id="hotRecommendEdImg" src="<%= nCInfo.edImgSrc %>" style="visibility: hidden;">
+                <img id="hotRecommendFocus" src="<%= nCInfo.foImgSrc %>" style="visibility: hidden;">
+            </div>
+            <!--中部左侧按钮列表上下指示箭头-->
+            <img src="./HD/images/empty.png" id="arrow_up" alt="" style="top: 290px;left: 101px;transform: rotate(180deg);z-index:2;visibility: hidden;">
+            <img src="./HD/images/empty.png" id="arrow_down" alt="" style="top: 570px;left: 101px;visibility: hidden;">
+
+            <!--当前分类显示进度-->
+            <div id="pageShowArea">
+                <span id='curPage'>0</span>
+                /
+                <span id='totalPage'>1</span>
+            </div> 
+
+            <!--中部中间卡通详情展示图和焦点图 height: 553px;top: 170px;-->
+            <div id="middleContent" style="width: 753px;left: 246px;top: 550px;">
+                <!--展示图及选中框-->
+                <!--第一排-->
+                <div class="contentDiv  morePonts " id="content0" style="position: absolute; left: 0px;top: 0px;">
+                    <img id="content_0_img" class="contentDiv" src="<%=basePageInfo.localImg %>empty.png" style="display: block; position: absolute; left: 0px; top: 0px;">
+                    <div id="contentTitle0" class="contentTitle"></div>
+                    <div id="freeBadge0" ></div>
+                </div>
+                <div id="hands_x0_y0_DMEJcontent0_" class="" style="position:absolute;left: 0px;top: 0px;">
+                    <img src="<%= localImg %>contentFocus.png" class="contentDivFocus" id="DMEJcontent0" alt="" style="visibility: hidden">
+                </div>
+                <div class="contentDiv morePonts " id="content1" style="position: absolute; left: 190px;top: 0px;">
+                    <img id="content_1_img" class="contentDiv" src="<%=basePageInfo.localImg %>empty.png" style="display: block; position: absolute; left: 0px; top: 0px;">
+                    <div id="contentTitle1" class="contentTitle"></div>
+                    <div id="freeBadge1" ></div>
+                </div>
+                <div id="hands_x0_y0_DMEJcontent1_" class="" style="position:absolute;left: 190px;top: 0px;">
+                    <img src="<%= localImg %>contentFocus.png" class="contentDivFocus" id="DMEJcontent1" alt="" style="visibility: hidden">
+                </div>
+                <div class="contentDiv morePonts " id="content2" style="position: absolute; left: 380px;top: 0px;">
+                    <img id="content_2_img" class="contentDiv" src="<%=basePageInfo.localImg %>empty.png" style="display: block; position: absolute; left: 0px; top: 0px;">
+                    <div id="contentTitle2" class="contentTitle"></div>
+                    <div id="freeBadge2" ></div>
+                </div>
+                <div id="hands_x0_y0_DMEJcontent2_" class="" style="position:absolute;left: 380px;top: 0px;">
+                    <img src="<%= localImg %>contentFocus.png" class="contentDivFocus" id="DMEJcontent2" alt="" style="visibility: hidden">
+                </div>
+                <div class="contentDiv morePonts " id="content3" style="position: absolute; left: 570px;top: 0px;">
+                    <img id="content_3_img" class="contentDiv" src="<%=basePageInfo.localImg %>empty.png" style="display: block; position: absolute; left: 0px; top: 0px;">
+                    <div id="contentTitle3" class="contentTitle"></div>
+                    <div id="freeBadge3" ></div>
+                </div>
+                <div id="hands_x0_y0_DMEJcontent3_" class="" style="position:absolute;left: 570px;top: 0px;">
+                    <img src="<%= localImg %>contentFocus.png" class="contentDivFocus" id="DMEJcontent3" alt="" style="visibility: hidden">
+                </div>
+                <div class="contentDiv morePonts " id="content4" style="position: absolute; left: 760px;top: 0px;">
+                    <img id="content_4_img" class="contentDiv" src="<%=basePageInfo.localImg %>empty.png" style="display: block; position: absolute; left: 0px; top: 0px;">
+                    <div id="contentTitle4" class="contentTitle"></div>
+                    <div id="freeBadge4" ></div>
+                </div>
+                <div id="hands_x0_y0_DMEJcontent4_" class="" style="position:absolute;left: 760px;top: 0px;">
+                    <img src="<%= localImg %>contentFocus.png" class="contentDivFocus" id="DMEJcontent4" alt="" style="visibility: hidden">
+                </div>
+                <!--第二排-->
+                <div class="contentDiv morePonts midContentSecondRowTop" id="content5" style=" position: absolute;left: 0px;">
+                    <img id="content_5_img" class="contentDiv" src="<%=basePageInfo.localImg %>empty.png" style="display: block; position: absolute; left: 0px; top: 0px;">
+                    <div id="contentTitle5" class="contentTitle"></div>
+                    <div id="freeBadge5" ></div>
+                </div>
+
+                <div id="hands_x0_y0_DMEJcontent5_" class="midContentSecondRowTop" style="position:absolute;left: 0px;">
+                    <img src="<%= localImg %>contentFocus.png" class="contentDivFocus" id="DMEJcontent5" alt="" style="visibility: hidden">
+                </div>
+                <div class="contentDiv morePonts midContentSecondRowTop" id="content6" style=" position: absolute;left: 190px;">
+                    <img id="content_6_img" class="contentDiv" src="<%=basePageInfo.localImg %>empty.png" style="display: block; position: absolute; left: 0px; top: 0px;">
+                    <div id="contentTitle6" class="contentTitle"></div>
+                    <div id="freeBadge6" ></div>
+                </div>
+                <div id="hands_x0_y0_DMEJcontent6_" class="midContentSecondRowTop" style="position:absolute;left: 190px;">
+                    <img src="<%= localImg %>contentFocus.png" class="contentDivFocus" id="DMEJcontent6" alt="" style="visibility: hidden">
+                </div>
+                <div class="contentDiv morePonts midContentSecondRowTop" id="content7" style=" position: absolute;left: 380px;">
+                    <img id="content_7_img" class="contentDiv" src="<%=basePageInfo.localImg %>empty.png" style="display: block; position: absolute; left: 0px; top: 0px;">
+                    <div id="contentTitle7" class="contentTitle"></div>
+                    <div id="freeBadge7" ></div>
+                </div>
+                <div id="hands_x0_y0_DMEJcontent7_" class="midContentSecondRowTop" style="position:absolute;left: 380px;">
+                    <img src="<%= localImg %>contentFocus.png" class="contentDivFocus" id="DMEJcontent7" alt="" style="visibility: hidden">
+                </div>
+                <div class="contentDiv morePonts midContentSecondRowTop" id="content8" style="position: absolute; left: 570px;">
+                    <img id="content_8_img" class="contentDiv" src="<%=basePageInfo.localImg %>empty.png" style="display: block; position: absolute; left: 0px; top: 0px;">
+                    <div id="contentTitle8" class="contentTitle"></div>
+                    <div id="freeBadge8" ></div>
+                </div>
+                <div id="hands_x0_y0_DMEJcontent8_" class="midContentSecondRowTop" style="position:absolute;left: 570px;">
+                    <img src="<%= localImg %>contentFocus.png" class="contentDivFocus" id="DMEJcontent8" alt="" style="visibility: hidden">
+                </div>
+                <div class="contentDiv morePonts midContentSecondRowTop" id="content9" style="position: absolute; left: 760px;">
+                    <img id="content_9_img" class="contentDiv" src="<%=basePageInfo.localImg %>empty.png" style="display: block; position: absolute; left: 0px; top: 0px;">
+                    <div id="contentTitle9" class="contentTitle"></div>
+                    <div id="freeBadge9" ></div>
+                </div>
+                <div id="hands_x0_y0_DMEJcontent9_" class="midContentSecondRowTop" style="position:absolute;left: 760px;">
+                    <img src="<%= localImg %>contentFocus.png" class="contentDivFocus" id="DMEJcontent9" alt="" style="visibility: hidden">
+                </div>
+                <!--第三排 height: 112px;top: 440px;-->
+                <div class="" id="content10" style="position: absolute; width: 178px;height: 0px;left: 0px;top: 0px;">
+                    <img id="content_10_img" class="contentDiv" src="<%=basePageInfo.localImg %>empty.png" style="display: block; position: absolute; left: 0px; top: 0px;">
+                </div>
+                <div class="" id="content11" style="position: absolute; width: 178px;height: 0px;left: 190px;top: 0px;">
+                    <img id="content_11_img" class="contentDiv" src="<%=basePageInfo.localImg %>empty.png" style="display: block; position: absolute; left: 0px; top: 0px;">
+                </div>
+                <div class="" id="content12" style="position: absolute; width: 178px;height: 0px;left: 380px;top: 0px;">
+                    <img id="content_12_img" class="contentDiv" src="<%=basePageInfo.localImg %>empty.png" style="display: block; position: absolute; left: 0px; top: 0px;">
+                </div>
+                <div class="" id="content13" style="position: absolute; width: 178px;height: 0px;left: 570px;top: 0px;">
+                    <img id="content_13_img" class="contentDiv" src="<%=basePageInfo.localImg %>empty.png" style="display: block; position: absolute; left: 0px; top: 0px;">
+                </div>
+                <div class="" id="content14" style="position: absolute; width: 178px;height: 0px;left: 570px;top: 0px;">
+                    <img id="content_14_img" class="contentDiv" src="<%=basePageInfo.localImg %>empty.png" style="display: block; position: absolute; left: 0px; top: 0px;">
+                </div>
+            </div>
+            <div id="leftBtnListArea" class="leftBtnListArea">
+                <%
+                    const recDate = commonPageInfo.recommend_1[2]; 
+                    let leftBtnBGImg = localImg + "btnBG.png";
+                    let leftBtnEd = localImg + "btnSelecting.png";
+                    let leftBtnFocus = localImg + "btnSelecting.png";
+                    if(recDate){
+                        if (recDate.recommendPic) {
+                            leftBtnBGImg = imgUrl + recDate.recommendPic.picPath;
+                        }
+                        if (recDate.recommendLabelpic) {
+                            leftBtnEd = imgUrl + recDate.recommendLabelpic.picPath;
+                        }
+                        if (recDate.recommendFocuspic) {
+                            leftBtnFocus = imgUrl + recDate.recommendFocuspic.picPath;
+                        }
+                    }
+                %>
+                <% for (var index = 0; index < nCInfo.leftBtnMaxNum; index++) { %>
+                    <div id="hands_x0_y0_DMEJleftcontentpagebutton<%= index %>_" style="position:absolute;
+                        left:0px;top:<%= 10 + 53 * index %>px;">
+                        <img id="leftBtnBGImg<%= index %>" style="visibility:hidden" src="<%= leftBtnBGImg %>" />
+                        <img id="leftBtnEd<%= index %>" style="visibility:hidden" src="<%= leftBtnEd %>" />
+                        <div id="leftBtnText<%= index %>" class="leftBtnText" style="position:absolute;"></div>
+                        <img id="DMEJleftcontentpagebutton<%= index %>" style="visibility:hidden" src="<%= leftBtnFocus %>" />
+                    </div>
+                <%}%>
+            </div>
+        </div>
+        <div id="hotRecommendWrapper">
+            <%for (var index = 0; index < nCInfo.midFixedRecInfo.length; index++) {%>
+                <div id="hands_x0_y0_DMEJhotrecommend<%= index %>_" style="position:absolute;
+                    top:<%= index > 4 ? 390 : 200 %>px;left:<%= 215 + index % 5 * 200 %>px;
+                    width:<%= nCInfo.midFixedRecInfo[index].recommendPic.picW %>px;
+                    height:<%= nCInfo.midFixedRecInfo[index].recommendPic.picH %>px;
+                    background:url('<%= imgUrl + nCInfo.midFixedRecInfo[index].recommendPic.picPath %>') no-repeat; ">
+                    <img id="DMEJhotrecommend<%= index %>" 
+                        src="<%= imgUrl + nCInfo.midFixedRecInfo[index].recommendLabelpic.picPath %>"
+                        style="visibility:hidden;position:absolute;top:0px;left:0px;" />
+                </div>
+            <%}%>
+        </div>
+    </div>
+</body>
+<%- include('../../components/commJs') %>
+<script src="<%= basePageUrl %>/js/navigationClassPage.js"></script>
+<script type="text/javascript">
+	//眉头按钮点击响应函数
+	function toNextPage(type,num){
+        //CT.writeInfo("进入toNextPage啦啦啦")
+        if(type.indexOf("midTop") > -1){  //中部上部固定推荐内容
+			//先记录跳转离开之前的页面参数
+			PAGE.otherPageParam = "&curFocusId="+curFocus.FocusID + "&contentId=" + basePageInfo.commonPageInfo.pageInfo.commonPageId + "&parentId=" + CT.requestValue("parentId") + "&contentIdName=" + CT.requestValue("contentIdName")+"&contentEName="+basePageInfo.commonPageInfo.pageInfo.commPageEname+"&contentCName="+basePageInfo.commonPageInfo.pageInfo.commPageCname ;
+			CT.goPage();
+		    CT.toAnterRecommendUrl(page.commonPageInfo.data,"recommend_2",num);
+		}else if(type.indexOf("midRight")> -1){   //中间右侧固定推荐
+			//先记录跳转离开之前的页面参数
+			//PAGE.otherPageParam = "&curFocusId="+curFocus.FocusID + "&contentId=" + basePageInfo.commonPageInfo.pageInfo.commonPageId + "&parentId=" + CT.requestValue("parentId") + "&contentIdName=" + CT.requestValue("contentIdName");
+			PAGE.otherPageParam = "&curFocusId="+curFocus.FocusID + "&contentId=" + basePageInfo.commonPageInfo.pageInfo.commonPageId + "&parentId=" + CT.requestValue("parentId") + "&contentIdName=" + CT.requestValue("contentIdName") + "&startBtnIndex=" + page.startBtnIndex + "&curLabelBtnIndex=" + page.curLabelBtnIndex + "&curClassContentPageIndex=" + page.curClassContentPageIndex+"&contentEName="+basePageInfo.commonPageInfo.pageInfo.commPageEname+"&contentCName="+basePageInfo.commonPageInfo.pageInfo.commPageCname
+			CT.goPage();
+		    CT.toAnterRecommendUrl(page.commonPageInfo.data,"recommend_3",num);
+
+		}else if(type.indexOf("Mid")> -1){   //中间眉头
+            //CT.writeInfo("进入眉头跳转啦啦啦")
+		    CT.toAnterRecommendUrl(page.commonPageInfo.data.pageInfo.commonPageInfo,"recommend_2",num);
+		}else if(type.indexOf("Right")> -1){   //右侧眉头
+			//先记录跳转离开之前的页面参数  
+			PAGE.otherPageParam = "&curFocusId="+curFocus.FocusID + "&contentId=" + basePageInfo.commonPageInfo.pageInfo.commonPageId + "&parentId=" + CT.requestValue("parentId") + "&contentIdName=" + CT.requestValue("contentIdName")+"&contentEName="+basePageInfo.commonPageInfo.pageInfo.commPageEname+"&contentCName="+basePageInfo.commonPageInfo.pageInfo.commPageCname + "&startBtnIndex=" + page.startBtnIndex + "&curLabelBtnIndex=" + page.curLabelBtnIndex + "&curClassContentPageIndex=" + page.curClassContentPageIndex;
+				CT.goPage();
+		    CT.toAnterRecommendUrl(page.commonPageInfo.data.pageInfo.commonPageInfo,"recommend_3",num);
+		}
+	}
+
+    page.init();
+</script>
+</html>

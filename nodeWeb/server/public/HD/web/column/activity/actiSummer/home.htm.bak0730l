@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>暑期活动首页</title>
+    <link rel="stylesheet" type="text/css" href="css/home.css"?v="11223">
+</head>
+<body>
+<div class="main">
+    <!--我的积分-->
+    <div class="scorePack">
+        <img src="images/integral.png">
+        <div id="scoreNum"></div>
+    </div>
+    <!--活动说明-->
+    <div id="hands_x0_y0_descBtn_">
+        <img src="images/descBtn.png">
+        <img id="descBtn" src="images/descBtnS.png" style="visibility: hidden">
+    </div>
+    <!--上下关-->
+    <div id="hands_x0_y0_prevBtn_">
+        <img src="images/left.png">
+        <img id="prevBtn" src="images/leftS.png" style="visibility:hidden;">
+        <img id="prevDesc" src="images/PREV.png">
+    </div>
+    <div id="hands_x0_y0_nextBtn_">
+        <img src="images/right.png">
+        <img id="nextBtn" src="images/rightS.png" style="visibility:hidden;">
+        <img id="nextDesc" src="images/NEXT.png">
+    </div>
+    <!--关卡-->
+    <div id="hands_x0_y0_gqPack_" class="gqPack">
+        <div id="mySlidesAll">
+            <div  class="mySlides" >
+                <img class="title" src="images/title0.png">
+                <div id="hands_x0_y0_gqDesc0_" class="gqDescPack">
+                    <img src="images/gq0.png">
+                </div>
+            </div>
+            <div  class="mySlides" style="display: none">
+                <img class="title" src="images/title0.png">
+                <div class="gqDescPack">
+                    <img src="images/gq1.png">
+                </div>
+            </div>
+            <div  class="mySlides" style="display: none">
+                <img class="title" src="images/title1.png">
+                <div class="gqDescPack">
+                    <img id="fkydjPic" src="images/lock.png">
+                </div>
+            </div>
+            <div  class="mySlides" style="display: none">
+                <img class="title" src="images/title1.png">
+                <div class="gqDescPack">
+                    <img id="gqsPic" src="images/lock.png">
+                </div>
+            </div>
+            <div  class="mySlides" style="display: none">
+                <img class="title" src="images/title3.png">
+                <div class="gqDescPack">
+                    <img src="images/lock.png">
+                </div>
+            </div>
+            <div  class="mySlides" style="display: none">
+                <img class="title" src="images/title4.png">
+                <div class="gqDescPack">
+                    <img src="images/lock.png">
+                </div>
+            </div>
+            <div  class="mySlides" style="display: none">
+                <img class="title" src="images/title5.png">
+                <div class="gqDescPack">
+                    <img src="images/lock.png">
+                </div>
+            </div>
+        </div>
+
+        <img id="gqPack" class="gqDesc" src="images/gqS.png" style="visibility: hidden">
+    </div>
+    <!--规则弹框-->
+    <div id="hands_x0_y0_rulePopup_">
+        <img src="images/rule.png">
+        <div id="hands_x0_y0_ruleClose_">
+            <img id="ruleClose" src="images/ruleClose.png" style="visibility: hidden">
+        </div>
+
+    </div>
+
+</div>
+
+<!--<script type="text/javascript" src="js/common3_4.js"></script>
+<script type="text/javascript" src="js/key3_4.js"></script>
+<script type="text/javascript" src="js/actiComm.js"></script>-->
+
+<script type = "text/javascript" src = "../../../../js/loadCommomJs.js"></script>
+<script type="text/javascript" src="../../../../js/actiComm.js?v=2021"></script>
+<script type="text/javascript" src="js/credit.js"></script>
+<script>
+    buttons.push({
+        id:'hands_x0_y0_descBtn_',
+        clickHandler:'javascript:rulePopup()',
+        up:'disable',
+        down:'hands_x0_y0_gqPack_',
+        left:'disable',
+        right:'disable',
+        focusType:7
+    },{
+        id:'hands_x0_y0_ruleClose_',
+        clickHandler:'javascript:backFunc()',
+        up:'disable',
+        down:'disable',
+        left:'disable',
+        right:'disable',
+        focusType:7
+    },{
+        id:'hands_x0_y0_gqPack_',
+        clickHandler:'javascript:okGQ()',
+        up:'hands_x0_y0_descBtn_',
+        down:'disable',
+        leftEvent:'javascript:slidePrev()',
+        rightEvent:'javascript:slideNext()',
+        focusType:7
+    })
+    PAGE.focusInit();//焦点初始化
+    PAGE.changeFocus("hands_x0_y0_gqPack_");
+
+
+    function Slide(elementId) {//幻灯片
+        this.elements = CT.$(elementId).children;
+        this.index = 0;
+        this.show();
+    }
+    Slide.prototype = {
+        hasNext: function() {//不是最后一个
+            return this.index !== this.elements.length - 1;
+        },
+        hasPrev: function() {//不是第一个
+            return this.index !== 0;
+        },
+        next: function() {//下一个
+            if (this.hasNext()) {
+                this.index++;
+                this.show();
+            }
+        },
+        prev: function() {//上一个
+            if (this.hasPrev()) {
+                this.index--;
+                this.show();
+            }
+        },
+        show: function() {//显示当前
+            if(CT.getCookie('slideIndex')){
+                this.index = CT.getCookie('slideIndex');
+            }
+            for (i = 0; i < this.elements.length; i++) {
+                this.elements[i].style.display = 'none';
+            }
+            this.elements[this.index].style.display = 'block';
+        }
+    }
+
+    var slide = new Slide('mySlidesAll');
+
+    var slideNext = function() {
+        slide.next();
+        if (!slide.hasNext()) {
+            //下一关 隐藏起来
+            CT.$("nextDesc").style.display = 'none';
+            CT.$("nextBtn").style.visibility = 'hidden';
+        }
+        //上一关 显示出来
+        CT.$("prevDesc").style.display = 'block';
+        CT.$("prevBtn").style.visibility = 'visible';
+
+    }
+    
+    var slidePrev = function() {
+        slide.prev();
+        if (!slide.hasPrev()) {
+            //上一关 隐藏起来
+            CT.$("prevDesc").style.display = 'none';
+            CT.$("prevBtn").style.visibility = 'hidden';
+        }
+        //下一关 显示出来
+        CT.$("nextDesc").style.display = 'block';
+        CT.$("nextBtn").style.visibility = 'visible';
+
+    }
+
+    //关卡状态
+    var gqStatus = [true, true, false, false, false];
+
+    //跳转对应关卡
+    function okGQ() {
+        if(gqStatus[slide.index]) {
+            CT.setCookie('slideIndex',slide.index);
+            CT.goPage();
+            if (slide.index ==  0) {//跳转第1关
+                CT.getActivityUrl(16);
+
+            } else if (slide.index == 1) {//跳转第2关
+                CT.getActivityUrl(17);
+            }else if (slide.index == 2) {//跳转第2关
+                CT.getActivityUrl(19);
+            }else if (slide.index == 3) {//跳转第2关
+                CT.getActivityUrl(20);
+            }//....
+        }
+    }
+
+    //初始化关卡
+    function initGQ() {
+        if (!slide.hasPrev()) {
+            //上一关 隐藏起来
+            CT.$("prevDesc").style.display = 'none';
+            CT.$("nextBtn").style.visibility = 'visible';
+        }
+
+       if (Date.now() >= Date.parse('2021-07-9')) {
+           CT.$('fkydjPic').src = 'images/gq2.png';
+           CT.$('gqsPic').src = 'images/gq3.png'
+           gqStatus[2] = true;
+           gqStatus[3] = true;
+        }
+
+        //获取积分
+        getUserCredit(15,function(res){
+            if(res && res.successFlg == 1 && res.data){
+                CT.$('scoreNum').innerHTML = res.data.creditNum;
+            }
+        });
+        CT.delCookie("slideIndex");
+    }
+    initGQ();
+    /*规则弹框*/
+    function rulePopup() {
+        CT.$('hands_x0_y0_rulePopup_').style.visibility = 'visible';
+        PAGE.changeFocus("hands_x0_y0_ruleClose_");
+    }
+    /*按返回键返回*/
+    function backFunc() {
+        if(CT.$('hands_x0_y0_rulePopup_').style.visibility == 'visible'){
+            CT.$('hands_x0_y0_rulePopup_').style.visibility = 'hidden';
+            PAGE.changeFocus("hands_x0_y0_descBtn_");
+        }else {
+            CT.backPage();
+        }
+
+    }
+</script>
+
+</body>
+</html>

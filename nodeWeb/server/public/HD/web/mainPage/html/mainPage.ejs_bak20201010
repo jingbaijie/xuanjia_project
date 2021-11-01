@@ -1,0 +1,427 @@
+
+<%- include ('../../components/header') %>
+<link rel="stylesheet" href="<%= basePageUrl %>/css/mainPage.css">
+</head>
+<%
+
+    const commonPageInfo = basePageInfo.commonPageInfo;
+
+    const pageInfo = {
+        // 瀑布流数据
+        pinterestData : commonPageInfo.recommend_5, 
+        init : function(){          
+            // 轮播图
+            if (commonPageInfo.recommend_7) {
+                this.recommendScroll = commonPageInfo.recommend_7;
+            }
+            // 第一屏固定五个推荐位
+            if (commonPageInfo.recommend_1) {
+                this.recommendFirstScreenFiexd = commonPageInfo.recommend_1;
+            }
+            // 排行榜
+            if (commonPageInfo.recommend_3) {
+                this.recommendRank = commonPageInfo.recommend_3;
+            }
+            // 视频区域
+            if (commonPageInfo.recommend_2) {
+                this.recommendPlayer = commonPageInfo.recommend_2;
+                this.recommendSmallVideoArr = this.recommendPlayer.slice(2, 7);
+            }
+        }
+    }
+    pageInfo.init();
+%>
+<body style="background:transparent ;position:absolute;">
+<!--背景图-->
+<img id="BJ" src="<%= basePageInfo.bgImg %>" />
+<!--视频补洞-->
+<img id="videoImg" style="position:absolute;top:237px;left:428px;"
+    src="<%= imgUrl + commonPageInfo.pageInfo.pageTemplatePic.picPath %>" style="visibility:visible" />
+<!--导航栏-->
+<%- include('../../components/nav/topNav')%>
+<!--推荐位图片-->
+<div style="position: absolute;top:185px;overflow:hidden;width:1280px;height: 535px">
+    <div style="position: absolute;top:-185px;width:1280px;">
+        <div id="main" style="top:0px;width:1280px;">
+            <div id="firstScreenWrapper"
+                style="position: absolute;left: 0px; top:px;width:1280px;height: 540px;">
+                <!--左栏-->
+                <%- include('./mainLeftNav')%>
+                <%
+                    //生成第一屏视频区域
+                    const videoRecData = pageInfo.recommendPlayer[7];
+                    const firstScreenVideoListPosArr = [
+                        { left: '458px', top: '221px' },
+                        { left: '458px', top: '269px' },
+                        { left: '458px', top: '319px' },
+                        { left: '458px', top: '368px' },
+                        { left: '458px', top: '417px' }
+                    ];
+                    const firstScreenVideoRecPosArr = [
+                        { left: '57px', top: '479px' },
+                        { left: '260px', top: '479px' }
+                    ];
+
+                    //创建小视频选中框按钮
+                    const num = commonPageInfo.pageInfo.commonPageInfo.recommend_2.length - 1;
+                    const navMaxIndex = num > 4 ? 4 : num;
+                    const videoButton = {
+                        id: 'hands_x0_y0_DMSYvideo_',
+                        clickHandler: 'javascript:page.toJump("firstScreenSmallVideo", page.nowSmallVideoIndex )',
+                        up: '',
+                        down: 'hands_x0_y0_firstScreenVideoRec0_',
+                        left: 'hands_x0_y0_DMSYKW0_',
+                        right: 'hands_x0_y0_DMSYvideolist0_',
+                        focusType: 7,
+                        TempData: pageInfo.recommendSmallVideoArr[0]
+                    };
+                    basePageInfo.nodeButtons.push(videoButton);
+                %>
+                <div id="videoAreaDom" style="width: 617px; height: 337px; position: absolute; top:0px; left: 390px;">
+                    <img src="<%= imgUrl + videoRecData.recommendPic.picPath  %>" 
+                        style="width: <%= videoRecData.recommendPic.picW%>px;
+                            height: <%= videoRecData.recommendPic.picH %>px;position: absolute;top:200px;left:0px;">
+                    <div id="hands_x0_y0_DMSYvideo_"
+                        style="position: absolute;top:200px;left:0px; width:<%= videoRecData.recommendLabelpic.picW %>px;
+                            height:<%= videoRecData.recommendLabelpic.picH %>px;">
+                        <img id="DMSYvideo" style="visibility:hidden"
+                            src="<%= imgUrl + videoRecData.recommendLabelpic.picPath %>">
+                    </div>
+                    <% pageInfo.recommendSmallVideoArr.forEach((element,i) => {%>
+                        <%
+                            //光标图对象
+                            const focusImgInfo = pageInfo.recommendSmallVideoArr[i].recommendLabelpic || {};
+                            //展示图对象
+                            const showImgInfo = pageInfo.recommendSmallVideoArr[i].recommendFocuspic || {};
+                            //创建按钮
+                            const listButton = {
+                                id: 'hands_x0_y0_DMSYvideolist' + i + '_',
+                                clickHandler: 'javascript:page.changeSmallVideo(' + i + ')',
+                                //otherFocusEvent: 'javascript:page.changeSmallVideo(' + i + ')',
+                                //otherBlurEvent: 'javascript:page.smallVideoFocusBlur(' + i + ')',
+                                left: "hands_x0_y0_DMSYvideo_",
+                                right: "hands_x0_y0_DMSYPH1_",
+                                up: 'hands_x0_y0_DMSYvideolist' + (i - 1) + '_',
+                                down: 'hands_x0_y0_DMSYvideolist' + (i + 1) + '_',
+                                focusType: 7,
+                                TempData: pageInfo.recommendSmallVideoArr[i]
+                            };
+                            if (i == 0) {
+                            // listButton.up = 'hands_x0_y0_DMSYDH' + (commonPageInfo.data.pageInfo.commonPageInfo.recommend_2.length - 1) + '_';
+                                listButton.up = '';
+                            }
+                            if (i == pageInfo.recommendSmallVideoArr.length - 1) {
+                                listButton.down = 'hands_x0_y0_firstScreenVideoRec1_';
+                            }
+                            basePageInfo.nodeButtons.push(listButton);                       
+                        %>
+                        <div id="hands_x0_y0_DMSYvideolist<%= i %>_" 
+                            style="position: absolute;top:<%= firstScreenVideoListPosArr[i].top %>;
+                                left:<%=firstScreenVideoListPosArr[i].left%>;width:<%= focusImgInfo.picW %>px;
+                                height:<%= focusImgInfo.picH %>px;">
+                            <img id="videoListBtnBG<%=i%>" style="width:<%=showImgInfo.picW%>px;
+                                height:<%=showImgInfo.picH%>px;position: absolute;top:0px;left:-7px;visibility:hidden;" 
+                                src="<%= imgUrl + showImgInfo.picPath %>">
+                            <div id="videoListText<%=i%>" style="width: 130px;height:45px;position: absolute;
+                                top:5px;left:10px;font-size:20px;color:white;line-height:45px;overflow:hidden;
+                                white-space:nowrap;text-overflow:ellipsis;">
+                                <%= pageInfo.recommendSmallVideoArr[i].recommendDisplayName %>
+                            </div>
+                            <img id="DMSYvideolist<%=i%>" style="visibility:hidden;position:absolute;left:-8px;" 
+                                src="<%= imgUrl + focusImgInfo.picPath %>">
+                        </div>
+                    <% }) %>
+
+                    <% for (let i = 0; i < 2; i++) { %>
+                        <%
+                            //光标图对象
+                            const focusImgInfo = pageInfo.recommendPlayer[i].recommendLabelpic;
+                            //展示图对象
+                            const showImgInfo = pageInfo.recommendPlayer[i].recommendPic;
+                            //角标图对象
+                            const cornerImgInfo = pageInfo.recommendPlayer[i].recommendFocuspic;
+                            //创建按钮
+                            const recButton = {
+                                id: 'hands_x0_y0_firstScreenVideoRec' + i + '_',
+                                clickHandler: 'javascript:page.toJump("firstScreenVideoRec",' + i + ')',
+                                up: 'hands_x0_y0_DMSYvideo_',
+                                focusType: pageInfo.defaultFocusType,
+                                TempData: pageInfo.recommendPlayer[i]
+                            };
+                            if (i == 0) {
+                                recButton.left = 'hands_x0_y0_DMSYKW1_';
+                                recButton.down = 'hands_x0_y0_DMSYKW2_';
+                            }
+                            if (i == 1) {
+                                recButton.down = 'hands_x0_y0_DMSYKW3_';
+                            }
+                            basePageInfo.nodeButtons.push(recButton);
+			console.log("wyy >>>>focusImgInfo>>>"+JSON.stringify(focusImgInfo));
+                        %>
+                        <div id="hands_x0_y0_firstScreenVideoRec<%=i%>_" 
+                            style="position: absolute;top:<%=firstScreenVideoRecPosArr[i].top%>;
+                                left:<%=firstScreenVideoRecPosArr[i].left%>;width:<%=focusImgInfo.picW%>px;
+                                height:<%=focusImgInfo.picH%>px;">
+                            <img id="firstScreenVideoRec<%=i%>" style="visibility:hidden" 
+                                src="<%= imgUrl + focusImgInfo.picPath %>">
+                            <% if(cornerImgInfo) { %>
+                                <img id="cornerImg<%=i%>" style="visibility:visible" 
+                                    src="<%=imgUrl + cornerImgInfo.picPath%>">
+                            <% } %>
+                        </div>
+                    <% } %>
+                </div>
+                <% 
+                    const firstScreenFiexdPosArr = [
+                        { left: '150px', top: '200px' }, 
+                        { left: '150px', top: '450px' }, 
+                        { left: '385px', top: '535px' }, 
+                        { left: '700px', top: '535px' }, 
+                        { left: '1010px', top: '450px' }
+                    ];
+                %>
+                <% pageInfo.recommendFirstScreenFiexd.forEach((element,i) => { %>
+                    <%
+                        const recommendDisplayValue = element.recommendDisplayValue;
+                        //光标图对象
+                        const focusImgInfo = element.recommendLabelpic;
+                        //展示图对象
+                        const showImgInfo = element.recommendPic;
+                        //角标图对象
+                        const cornerImgInfo = element.recommendFocuspic;
+                            //创建按钮
+                        const fixButton = {
+                            id: 'hands_x0_y0_DMSYKW' + i + '_',
+                            clickHandler: 'javascript:page.toJump("firstScreenFiexd",' + i + ')',
+                            otherFocusEvent: 'javascript:waterfall.focusEvent(0)',
+                            downEvent: 'javascript:page.firstSrcDownEvent(' + i + ')',
+                            focusType: 7,
+                            TempData: element
+                        };
+                        switch (i) {
+                            case 0:
+                                fixButton.up = '';
+                                fixButton.left = 'hands_x0_y0_DMSYGN0_';
+                                fixButton.right = 'hands_x0_y0_DMSYvideo_';
+                                break;
+                            case 1:
+                                fixButton.up = 'hands_x0_y0_DMSYKW0_';
+                                fixButton.left = 'hands_x0_y0_DMSYGN2_';
+                                fixButton.right = 'hands_x0_y0_DMSYKW2_';
+                                break;
+                            case 2:
+                                fixButton.up = 'hands_x0_y0_firstScreenVideoRec0_';
+                                fixButton.left = 'hands_x0_y0_DMSYKW1_';
+                                fixButton.right = 'hands_x0_y0_DMSYKW3_';
+                                break;
+                            case 3:
+                                fixButton.up = 'hands_x0_y0_firstScreenVideoRec1_';
+                                fixButton.left = 'hands_x0_y0_DMSYKW2_';
+                                fixButton.right = 'hands_x0_y0_DMSYKW4_';
+                                break;
+                            case 4:
+                                fixButton.up = 'hands_x0_y0_DMSYPH5_';
+                                //fixButton.down = 'hands_x0_y0_DMSYKW1_';
+                                fixButton.left = 'hands_x0_y0_DMSYKW3_';
+                                fixButton.right = 'disable';
+                                break;
+
+                            default:
+                                break;
+                        }
+                        basePageInfo.nodeButtons.push(fixButton);
+                    %>
+                    <div id='hands_x0_y0_DMSYKW<%= i %>_' style='position: absolute;
+                        top:<%= firstScreenFiexdPosArr[i].top %> ;left:<%= firstScreenFiexdPosArr[i].left %>;
+                        width:<%= focusImgInfo.picW %>px;height:<%= focusImgInfo.picH %>px;'>
+                        <img id='DMSYKW<%= i %>Img' style='width: <%= showImgInfo.picW %>px;
+                            height:<%= showImgInfo.picH %>px;position: absolute;top:6px;left:6px;'
+                            src='<%= imgUrl + showImgInfo.picPath %>'>
+                        <img id='DMSYKW<%= i %>' style='visibility:hidden'
+                            src='<%= imgUrl + focusImgInfo.picPath %>'>
+                        <% if(cornerImgInfo){ %>
+                            <img id='cornerImg<%= i %>' style='visibility:visible'
+                                src='<%= imgUrl + cornerImgInfo.picPath %>'>
+                        <% } %>
+                    </div>
+                <% }) %>
+
+                <div id="rankDom" style="width: 220px;height: 230px;position: absolute;top: 0;left: 0px;">
+                    <% 
+                        const firstScreenRankPosArr = [
+                            { left: '1015px', top: '201px' },
+                            { left: '1055px', top: '199px' },
+                            { left: '1142px', top: '200px' },
+                            { left: '1015px', top: '308px' },
+                            { left: '1015px', top: '351px' },
+                            { left: '1015px', top: '394px' }
+                        ];
+                    %>
+                    <% pageInfo.recommendRank.forEach((element,i) => { %>
+                        <%
+                            const focusImgInfo = element.recommendLabelpic;
+                            //展示图对象
+                            const showImgInfo = element.recommendPic;
+                            //角标图对象
+                            const cornerImgInfo = element.recommendFocuspic;
+                            const focusType = 8;
+                            const diffWidth = 0;
+                            const diffHeight = 0;
+                            const zIndex = 0;
+
+                            //创建按钮
+                            const rankButton = {
+                                id: 'hands_x0_y0_DMSYPH' + i + '_',
+                                clickHandler: 'javascript:page.toJump("firstScreenFiexd",' + i + ')',
+				                otherFocusEvent: 'javascript:page.rankFocus(' + i + ')',
+                		        otherBlurEvent: 'javascript:page.rankBlur(' + i + ')',
+                                right: 'disable',
+                                left: 'hands_x0_y0_DMSYvideolist0_',
+                                up: 'hands_x0_y0_DMSYPH' + (i - 1) + '_',
+                                down: 'hands_x0_y0_DMSYPH' + (i + 1) + '_',
+                                focusType: focusType,
+                                TempData: element
+                            };
+                            if (i == 0) {
+                                // rankButton.up = 'hands_x0_y0_DMSYDH' + (commonPageInfo.pageInfo.commonPageInfo.recommend_2.length - 1) + '_';
+                                rankButton.up = '';
+                                rankButton.down = 'hands_x0_y0_DMSYPH3_';
+                                rankButton.right = 'hands_x0_y0_DMSYPH1_';
+                            }
+                            if (i == 1) {
+                                rankButton.up = 'hands_x0_y0_DMSYDH' + (commonPageInfo.pageInfo.commonPageInfo.recommend_2.length - 1) + '_';
+                                rankButton.down = 'hands_x0_y0_DMSYPH3_';
+                                rankButton.left = 'hands_x0_y0_DMSYPH0_';
+                                rankButton.right = 'hands_x0_y0_DMSYPH2_';
+                            }
+                            if (i == 2) {
+                                rankButton.up = 'hands_x0_y0_DMSYDH' + (commonPageInfo.pageInfo.commonPageInfo.recommend_2.length - 1) + '_';
+                                rankButton.down = 'hands_x0_y0_DMSYPH3_';
+                                rankButton.left = 'hands_x0_y0_DMSYPH1_';
+                            }
+                            if (i == pageInfo.recommendRank.length - 1) {
+                                rankButton.down = 'hands_x0_y0_DMSYKW4_';
+                            }
+                            basePageInfo.nodeButtons.push(rankButton);
+                        %>
+                        <div id='hands_x0_y0_DMSYPH<%= i %>_'
+                            style='position: absolute;top:<%= firstScreenRankPosArr[i].top %>;left :<%= firstScreenRankPosArr[i].left %>;width:<%= focusImgInfo.picW %>px;height:<%= focusImgInfo.picH %>px;'>
+                            <img id='DMSYPHShow<%= i %>'
+                                style='width:<%= showImgInfo.picW %>px;height:<%= showImgInfo.picH %>px;position: absolute;top:0px;left:0px;'
+                                src='<%= imgUrl + showImgInfo.picPath %>'>
+                            <img id='DMSYPH<%= i %>'
+                                style='position: absolute;visibility:hidden;top:-6px;left:-6px;z-index:<%= zIndex %>'
+                                src='<%= imgUrl + focusImgInfo.picPath %>'>
+                        </div>
+                    <% }) %>
+                </div>
+            </div>
+            <%- include ('../../components/waterfall',{recommendObj:pageInfo.pinterestData}) %>
+        </div>
+    </div>
+</div>
+<%
+    const xhbXFCData = commonPageInfo.recommend_10;
+    if(!xhbXFCData){
+        basePageInfo.logError(504)
+    }
+
+    //创建小视频选中框按钮
+    const xhbButtons = [{
+        id: 'hands_x0_y0_DMXHB0_',
+        clickHandler: 'javascript:page.showXhbXFC()',
+        otherFocusEvent: 'javascript:page.xhbBtnGetFocus()',
+        //enMove : 'false',
+        left: 'disable',
+        top: 'disable',
+        up: 'disable',
+        down: 'disable',
+        //right: 'hands_x0_y0_navBelowFocus2_',
+        rightEvent: 'javascript:page.xhbFocusRight()',
+        focusType: 7,
+        TempData: xhbXFCData[2]
+    }, {
+        id: 'hands_x0_y0_DMXHB2_',
+        clickHandler: 'javascript:page.toJump("xhbAlert")',
+        enMove: 'false',
+        enFocus : false,
+        left: 'hands_x0_y0_DMXHB0_',
+        top: 'hands_x0_y0_DMXHB1_',
+        up: 'hands_x0_y0_DMXHB1_',
+        down: 'disable',
+        right: 'disable',
+        focusType: 7,
+        TempData: xhbXFCData[1]
+    }, {
+        id: 'hands_x0_y0_DMXHB1_',
+        clickHandler: 'javascript:PAGE.changeFocus("hands_x0_y0_DMXHB0_")',
+        enMove: 'false',
+        enFocus : false,
+        left: 'disable',
+        top: 'disable',
+        up: 'disable',
+        down: 'hands_x0_y0_DMXHB2_',
+        right: 'disable',
+        focusType: 7,
+        TempData: xhbXFCData[0]
+    }];
+    for (let index = 0; index < xhbButtons.length; index++) {
+        basePageInfo.nodeButtons.push(xhbButtons[index]);
+    }
+%>
+<% if(xhbXFCData ){ %>
+    <div id="hands_x0_y0_DMXHB0_" style="position: absolute;top:350px;left:0px;">
+        <img id="xhbShowImg" style="position: absolute;top:0px;left:0px;" 
+            src="<%= imgUrl + xhbXFCData[2].recommendPic.picPath %>">
+        <img id="DMXHB0" style="position: absolute;top:0px;left:0px;visibility: hidden;" 
+            src="<%= imgUrl + xhbXFCData[2].recommendLabelpic.picPath %>">
+    </div>
+    <div id="xhbAlertDiv" style="position: absolute;top:0px;left:0px;width:1280px;height:720px;z-index: 2;
+        visibility: hidden;background: url('<%= imgUrl + xhbXFCData[0].recommendPic.picPath %>') no-repeat;">
+        <div id="hands_x0_y0_DMXHB2_" style="position: absolute;top:471px;left:535px;">
+            <img id="DMXHB2" style="position: absolute;top:0px;left:0px;visibility: hidden;" 
+                src="<%= imgUrl + xhbXFCData[1].recommendLabelpic.picPath %>">
+        </div>
+        <div id="hands_x0_y0_DMXHB1_" style="position: absolute;top:77px;left:857px;">
+            <img id="DMXHB1" style="position: absolute;top:0px;left:0px;visibility: hidden;" 
+                src="<%= imgUrl + xhbXFCData[0].recommendLabelpic.picPath %>">
+        </div>
+    </div>
+<% } 
+    var headExt = commonPageInfo.recommend_11;
+    if(headExt) {
+       %>
+    <div id="headerAddBtn" style="position: absolute;top: 0;left: 0">
+        <img src = '<%= imgUrl + headExt[0].recommendPic.picPath %>' style = 'width: 457px;height: 90px;position: absolute;top: -10px;left: 830px;'>
+        <div id = 'hands_x0_y0_addHeaderFocus0_' style = 'width: 457px;height: 90px;position: absolute;top: -10px;left: 830px;'>
+            <div id = 'addHeaderFocus0' style = 'background-image:url("<%= imgUrl + headExt[0].recommendLabelpic.picPath %>"); width: 457px;height: 90px;visibility: hidden;'>
+            </div>
+        </div>
+    </div><%
+        var documentHeaderIdx = 0;
+        for(var i = 0; i < basePageInfo.nodeButtons.length;i++) {
+            if(basePageInfo.nodeButtons[i].id && basePageInfo.nodeButtons[i].id.indexOf("hands_x0_y0_DMSYDH") >=0) {
+                basePageInfo.nodeButtons[i].up = "hands_x0_y0_addHeaderFocus0_";
+                basePageInfo.nodeButtons[i].upEvent = "";
+                var idx = parseInt(basePageInfo.nodeButtons[i].id.replace("hands_x0_y0_DMSYDH",""));
+                documentHeaderIdx = idx > documentHeaderIdx ? idx:documentHeaderIdx;
+            }
+        }
+        basePageInfo.nodeButtons.push({
+            id: "hands_x0_y0_addHeaderFocus0_",
+            clickHandler: 'javascript:page.toJump("hands_x0_y0_addHeaderFocus0_")',
+            up: "disable",
+            down: 'hands_x0_y0_DMSYDH' + documentHeaderIdx + '_',
+            right: "disable",
+            down: 'hands_x0_y0_DMSYDH' + documentHeaderIdx + '_',
+            focusType: 7,
+            TempData: headExt[0]
+        });
+    }
+    var xjDate = new Date().getTime();
+%>
+<!--引入公共js-->
+<%- include('../../components/commJs') %>
+<script src="<%= basePageUrl %>/js/pinterest.js?v=<%= xjDate %>"></script>
+</body>
+</html>

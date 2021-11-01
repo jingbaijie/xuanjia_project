@@ -1,0 +1,83 @@
+<%- include ('../../components/header') %>
+<link rel="stylesheet" href="<%= basePageUrl %>/css/convertRec.css">
+</head>
+<%
+	const commonPageInfo = basePageInfo.commonPageInfo;
+	const recommend_1 = commonPageInfo.recommend_1;
+	const recommend_2 = commonPageInfo.recommend_2;
+	const localImg = basePageInfo.localImg;
+%>
+
+<body>
+    <img id="BJ" src="<%= basePageInfo.bgImg %>" width="1280" height="720" style="visibility: visible;position: absolute;top: 0px;left: 0px;" />
+    <div id="hands_x0_y0_select_">
+        <img id="select" src="<%= imgUrl + recommend_1[0].recommendPic.picPath %>" style="position: absolute; top: 550px;left: 700px;width:317px;">
+        <img id="select1" src="<%= imgUrl + recommend_1[0].recommendLabelpic.picPath %>" style="position: absolute; top: 550px;left: 700px;width:317px">
+    </div>
+    <!-- 二维码 -->
+    <div id="QRcode" style="position: absolute;top:0px;left: 0px;visibility: hidden;">
+        <img id="showQRcode" src="<%= imgUrl + recommend_2[0].recommendPic.picPath %>" alt="">
+    </div>
+</body>
+</html>
+<%- include('../../components/commJs3') %>
+<script>
+	
+addEvent.on("pageEvent", function (e) {
+    
+    init();
+
+});
+	
+    function init () {
+        var _this = this;
+        //获取兑换状态
+        PAGE.focusInit();
+        PAGE.changeFocus(_this.defaultFocus)
+        setInterval(_this.showAd, 500);
+    }
+
+    var buttons = [
+        {
+            id: "hands_x0_y0_select_",
+            clickHandler: "javascript:showQRcode()",
+            up: "disable",
+            down: "disable",
+            left: "disable",
+            right: "disable",
+            focusType: 7
+        }
+    ];
+
+    PAGE.focusInit();
+    PAGE.changeFocus("hands_x0_y0_select_");
+
+    /* 显示二维码 */
+    function showQRcode() {
+        var _this = this;
+        CT.$('QRcode').style.visibility="visible";
+    }
+
+    /* 选择按钮动画 */
+    function showAd() {
+        var _this = this
+        if (CT.$("select").style.visibility == "visible") {
+            CT.$("select1").style.visibility = "visible";
+            CT.$("select").style.visibility = "hidden";
+        } else {
+            CT.$("select").style.visibility = "visible";
+            CT.$("select1").style.visibility = "hidden";
+        }
+    }
+
+    function backFunc() {
+        if (CT.$('QRcode').style.visibility=="hidden") {
+            // CT.backPage();
+            CT.getAnterByIdOrAction({
+                contentName: "PointsMall"
+            });
+        } else {
+            CT.$('QRcode').style.visibility = "hidden";
+        }
+	}
+</script>

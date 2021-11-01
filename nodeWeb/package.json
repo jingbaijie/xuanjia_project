@@ -1,0 +1,22 @@
+{
+  "name": "channelweb",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://192.168.2.253/jwzx/nodeweb.git"
+  },
+  "author": "jwzx",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-clean": "^0.4.0",
+    "gulp-if": "^3.0.0",
+    "gulp-zip": "^5.0.2"
+  },
+  "dependencies": {}
+}

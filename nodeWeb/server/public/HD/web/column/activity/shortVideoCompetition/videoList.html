@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="page-view-size" content="1280*720">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>江苏有线徐州短视频大赛</title>
+    <link rel="stylesheet" href="css/videoList.css?v=20201112020">
+</head>
+
+<body>
+    <div id="main">
+        <ul id="videotitleList">
+            <li id="videoTitle0">焊缝徐来，首届汉文化论坛未记录，首届汉文化论</li>
+            <div id="hands_x0_y0_videoTitleFocus0_">
+                <img src="img/tanFocus.png" alt="" id="videoTitleFocus0" style="visibility: hidden;"/>
+            </div>
+            <li id="videoTitle1">焊缝徐来，首届汉文化论坛未记录</li>
+            <div id="hands_x0_y0_videoTitleFocus1_">
+                <img src="img/tanFocus.png" alt="" id="videoTitleFocus1" style="visibility: hidden;">
+            </div>
+            <li id="videoTitle2">焊缝徐来，首届汉文化论坛未记录</li>
+            <div id="hands_x0_y0_videoTitleFocus2_">
+                <img src="img/tanFocus.png" alt="" id="videoTitleFocus2" style="visibility: hidden;">
+            </div>
+            <li id="videoTitle3">焊缝徐来，首届汉文化论坛未记录</li>
+            <div id="hands_x0_y0_videoTitleFocus3_">
+                <img src="img/tanFocus.png" alt="" id="videoTitleFocus3" style="visibility: hidden;">
+            </div>
+            <li id="videoTitle4">焊缝徐来，首届汉文化论坛未记录</li>
+            <div id="hands_x0_y0_videoTitleFocus4_">
+                <img src="img/tanFocus.png" alt="" id="videoTitleFocus4" style="visibility: hidden;">
+            </div>
+            <li id="videoTitle5">焊缝徐来，首届汉文化论坛未记录</li>
+            <div id="hands_x0_y0_videoTitleFocus5_">
+                <img src="img/tanFocus.png" alt="" id="videoTitleFocus5" style="visibility: hidden;">
+            </div>
+        </ul>
+        <div id="turnPage">
+            <div id="lastPageBtn">&lt;上一页</div>
+            <div id="hands_x0_y0_lastPageBtnFocus_">
+                <img src="img/tanFocus.png" alt="" id="lastPageBtnFocus" style="visibility: hidden;width: 100px;">
+            </div>
+            <div id="pageNum">2</div>
+            <div id="nextPageBtn">下一页&gt;</div>
+            <div id="hands_x0_y0_nextPageBtnFocus_">
+                <img src="img/tanFocus.png" alt="" id="nextPageBtnFocus" style="visibility: hidden;width: 100px;">
+            </div>
+			<div class="totalNum">共<span id="totalNum">2</span>页</div>
+        </div>
+    </div>
+    <script type="text/javascript" src="../../../../js/loadCommomJs.js"></script>
+    <!--<script type="text/javascript" src="js/common3_4.js"></script>
+    <script type="text/javascript" src="js/key3_4.js"></script>
+    <script type="text/javascript" src="js/ajax.js"></script>-->
+    <script type="text/javascript">
+        //焦点数组
+        var buttons = [
+            {
+                id: "hands_x0_y0_lastPageBtnFocus_",
+                clickHandler: "javascript:shortVideoCompetition.jumpLastPage()",
+                otherFocusEvent: "javascript:shortVideoCompetition.onFocus(1,'last')",
+				otherBlurEvent: "javascript:shortVideoCompetition.onFocus(0,'last')",
+                left: "disable",
+                right: "hands_x0_y0_nextPageBtnFocus_",
+                up: "disable",
+                upEvent:"javascript:shortVideoCompetition.nextPageBtnUpEvent()",
+                down: "disable",
+                focusType: 7
+            },
+            {
+                id: "hands_x0_y0_nextPageBtnFocus_",
+                clickHandler: "javascript:shortVideoCompetition.jumpNextPage()",
+                otherFocusEvent: "javascript:shortVideoCompetition.onFocus(1,'next')",
+				otherBlurEvent: "javascript:shortVideoCompetition.onFocus(0,'next')",
+                left: "hands_x0_y0_lastPageBtnFocus_",
+                right: "disable",
+                up: "disable",
+                upEvent:"javascript:shortVideoCompetition.nextPageBtnUpEvent()",
+                down: "disable",
+                focusType: 7
+            }
+        ]
+		//videoObj.close();
+    </script>
+    <script type="text/javascript" src="js/shortVideoCompetition.js?v=2020111201026"></script>
+</body>
+
+</html>

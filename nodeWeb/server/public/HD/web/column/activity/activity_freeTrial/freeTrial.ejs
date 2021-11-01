@@ -1,0 +1,246 @@
+<%- include ('../../components/header') %>
+<body>
+    <%
+        const commonPageInfo = basePageInfo.commonPageInfo;
+        const localImg = basePageInfo.localImg;
+    %>
+    <div class = "main">
+        <!--马上体验-->
+        <div id = "hands_x0_y0_sureFocus_" style = "width: 249px;height: 101px;position: absolute;top: 585px;left: 320px">
+            <img id = "sureFocus" src="./images/empty.png" style = "width: 249px;height: 101px;visibility: hidden;" alt="">
+        </div>
+        <!--残忍拒绝-->
+        <div id = "hands_x0_y0_cancelFocus_" style = "width: 249px;height: 101px;position: absolute;top: 585px;left: 750px">
+            <img id = "cancelFocus" src="./images/empty.png" style = "width: 249px;height: 101px;visibility: hidden;" alt="">
+        </div>
+        <!--输入弹框-->
+        <div class = "confirmDiv" id = "inputDiv">
+            <!--背景-->
+            <img id = "inputImg" class = "coverImg" src = "./images/inputChange.png" style = "visibility: hidden;" alt="">
+            <!--输入框-->
+            <div id="exChangeText"></div>
+            <!--马上体验-->
+            <div id = "hands_x0_y0_inputFocus0_" style = "width: 179px;height: 80px;position: absolute;top: 460px;left: 459px">
+                <img id = "inputFocus0" src="./images/empty.png" style = "width: 179px;height: 80px;visibility: hidden;" alt="">
+            </div>
+            <!--残忍拒绝-->
+            <div id = "hands_x0_y0_inputFocus1_" style = "width: 179px;height: 80px;position: absolute;top: 460px;left: 660px">
+                <img id = "inputFocus1" src="./images/empty.png" style = "width: 179px;height: 80px;visibility: hidden;" alt="">
+            </div>
+            <!-- 输入框焦点 -->
+            <div id="hands_x0_y0_inputFocus2_" style="width:370px;height:80px;position: absolute;left: 467px;top: 348px;">
+                <img id="inputFocus2" src="./images/empty.png" style="width: 370px; height: 80px;visibility: hidden;"  alt=""/>
+            </div>
+        </div>
+        <!--提醒弹框-->
+        <div class = "confirmDiv" id = "tipsDiv">
+            <!--背景-->
+            <img id = "tipsImg" class = "coverImg" src = "./images/empty.png" style = "visibility: hidden;" alt="">
+            <!--弹框焦点-->
+            <div id = "hands_x0_y0_confirmFocus_" style = "width: 179px;height: 89px;position: absolute;top: 460px;left: 550px">
+                <img id = "confirmFocus" src="./images/empty.png" style = "width: 179px;height: 89px;visibility: hidden;" alt="">
+            </div>
+            <!--输入错误弹框焦点-->
+            <div id = "hands_x0_y0_inputConFocus_" style = "width: 179px;height: 89px;position: absolute;top: 460px;left: 550px">
+                <img id = "inputConFocus" src="./images/empty.png" style = "width: 179px;height: 89px;visibility: hidden;" alt="">
+            </div>
+            <!--兑换成功弹框焦点-->
+            <div id = "hands_x0_y0_successFocus_" style = "width: 213px;height: 104px;position: absolute;top: 531px;left: 763px">
+                <img id = "successFocus" src="./images/empty.png" style = "width: 213px;height: 104px;visibility: hidden;" alt="">
+            </div>
+        </div>
+        <!--显示移动焦点 如果焦点移动卡顿,则移除class: rePulse  transition:all 0.5s;-webkit-transition:all 0.3s;-->
+        <div  id="animationFocus" class = "rePulse" style="position:absolute;top: 0; left: 0;background-repeat: no-repeat">
+        </div>
+		<!--<div  id="divtest" style="position:absolute;top: 10px; left: 10px;width:1000px;height:500px;color:red;font-weight:bold;font-size:note26px">
+        </div>-->
+		
+    </div>
+</body>
+<!-- 引入公共js开始 -->
+<%- include('../../components/commJs') %>
+<!-- 引入公共js结束 -->
+<script type = "text/javascript" src = "./js/freeTrial.js?v=202183212334"></script>
+<script>
+    var buttons = [
+        //马上体验按钮
+        {
+            id: "hands_x0_y0_sureFocus_",
+            otherFocusEvent: "javascript: freeTrial.move('./images/mainSelected.png')",
+            clickHandler: "javascript: canInput()",
+            up: "disable",
+            down: "disable",
+            left: "disable",
+            right: "hands_x0_y0_cancelFocus_",
+            focusType: 7
+        },
+        //残忍拒绝按钮
+        {
+            id: "hands_x0_y0_cancelFocus_",
+            otherFocusEvent: "javascript: freeTrial.move('./images/mainSelected.png')",
+            clickHandler: "javascript: backfunc()",
+            up: "disable",
+            down: "disable",
+            left: "hands_x0_y0_sureFocus_",
+            right: "disable",
+            focusType: 7
+        },
+        //提示弹框返回按钮
+        {
+            id: "hands_x0_y0_confirmFocus_",
+            otherFocusEvent: "javascript: freeTrial.move('./images/otherSelected.png')",
+            clickHandler: "javascript: freeTrial.hideConfirm()",
+            up: "disable",
+            down: "disable",
+            left: "disable",
+            right: "disable",
+            focusType: 7
+        },
+        //输入提示框返回按钮
+        {
+            id: "hands_x0_y0_inputConFocus_",
+            otherFocusEvent: "javascript: freeTrial.move('./images/otherSelected.png')",
+            clickHandler: "javascript: freeTrial.reSetExchange()",
+            up: "disable",
+            down: "disable",
+            left: "disable",
+            right: "disable",
+            focusType: 7
+        },
+        //绑定成功确认按钮
+        {
+            id: "hands_x0_y0_successFocus_",
+            otherFocusEvent: "javascript: freeTrial.move('./images/exchangeSelected.png')",
+            clickHandler: "javascript: backToMain()",
+            up: "disable",
+            down: "disable",
+            left: "disable",
+            right: "disable",
+            focusType: 7
+        },
+        //输入框输入焦点
+        {
+            id: "hands_x0_y0_inputFocus0_",
+            otherFocusEvent: "javascript: freeTrial.move('./images/otherSelected.png')",
+            clickHandler: "javascript: freeTrial.judgeExchange()",
+            up: "hands_x0_y0_inputFocus2_",
+            down: "disable",
+            left: "disable",
+            right: "hands_x0_y0_inputFocus1_",
+            focusType: 7
+        },
+        //输入框兑换焦点
+        {
+            id: "hands_x0_y0_inputFocus1_",
+            otherFocusEvent: "javascript: freeTrial.move('./images/otherSelected.png')",
+            clickHandler: "javascript: freeTrial.hideInput()",
+            up: "hands_x0_y0_inputFocus2_",
+            down: "disable",
+            left: "hands_x0_y0_inputFocus0_",
+            right: "disable",
+            focusType: 7
+        },
+        //输入框返回焦点
+        {
+            id: "hands_x0_y0_inputFocus2_",
+            otherFocusEvent: "javascript: freeTrial.move('./images/phoneText.png')",
+            otherBlurEvent: "javascript: loseTextFocus()",
+            clickHandler: "javascript: freeTrial.hideInput()",
+            up: "disable",
+            down: "hands_x0_y0_inputFocus0_",
+            left: "hands_x0_y0_inputFocus0_",
+            right: "disable",
+            focusType: 7
+        }
+    ];
+    //方法与焦点初始化
+    var freeTrial = new Column();
+	var isClick = true;
+    PAGE.focusInit();
+    PAGE.changeFocus("hands_x0_y0_sureFocus_");
+    /**
+     *马上体验点击事件,鉴权是否为已订购用户
+     **/
+    function canInput(){
+		if(isClick){
+			isClick = false;
+			//鉴权
+			orderJs.columnGetAuth(function(data){	
+				if(data == "0"){
+					freeTrial.showConfirm("hands_x0_y0_confirmFocus_","./images/ordered.png");
+					isClick = true;
+				}else{
+					freeTrial.showInput();
+				}
+			})
+		}
+    }
+
+
+    /**
+     * 输入框输入焦点失去焦点时不再接收用户输入的数字
+     **/
+    function loseTextFocus(){
+        isOnFocus = false;
+    }
+
+    /**
+     * 按键返回方法
+     *
+     */
+    function backfunc(){
+        //如果提示框显示,隐藏提示框
+		if(CT.$("tipsImg").style.visibility == "visible"){
+			freeTrial.hideConfirm();
+		//如果输入框显示,隐藏输入框
+		}else if(CT.$("inputImg").style.visibility == "visible"){
+			freeTrial.hideInput();
+		}else{
+			CT.backPage();
+		}
+    }
+
+    /**
+     * 绑定成功确认按钮返回首页
+     */
+	function backToMain(){
+		CT.BackPortalMainPage();
+	}
+    /**********************************   输入兑换码  ****************************************/
+    var exChangeText=document.getElementById("exChangeText").innerHTML;
+    //去除空格
+    function Trim(str,is_global)
+    {
+        var result;
+        result = str.replace(/(^\s+)|(\s+$)/g,"");
+        if(is_global.toLowerCase() === "g")
+        {
+            result = result.replace(/\s/g,"");
+        }
+        return result;
+    };
+    exChangeText=Trim(exChangeText,"g");
+    var  exChangeNum=exChangeText;
+
+    /**
+     * 将输入的数字显示在屏幕上
+     * @param ids
+     */
+    changeNumObj.changeNum = function(ids){
+        if(isOnFocus){
+            var size;
+            if(exChangeNum ===""){
+                size=0;
+            }else{
+                size= exChangeNum.length;
+            }
+
+            if(size < 16||!size){
+                var addnum = exChangeNum;
+                exChangeNum = addnum + ids;
+            }
+            document.getElementById("exChangeText").innerHTML=exChangeNum;
+        }
+    };
+</script>
+</html>

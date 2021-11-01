@@ -1,0 +1,225 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+.main{
+    width: 1280px;
+    height: 720px;
+    background: url(../images/bg.jpg) no-repeat;
+    position: relative;
+    left: 0px;
+    top: 0px;
+    overflow: hidden;
+}
+.flopList{
+    position: absolute;
+    top: 185px;
+    left: 245px;
+}
+.flop{
+    position: absolute;
+}
+.flop img{
+    position: absolute;
+}
+.flop_0{
+    top: 0;
+    left: 0px;
+}
+.flop_1{
+    top: 0px;
+    left: 175px;
+}
+.flop_2{
+    top: 0px;
+    left: 395px;
+}
+.flop_3{
+    top: 0px;
+    left: 570px;
+}
+.flop_4{
+    top: 208px;
+    left: 0px;
+}
+.flop_5{
+    top: 208px;
+    left: 175px;
+}
+.flop_6{
+    top: 208px;
+    left: 395px;
+}
+.flop_7{
+    top: 208px;
+    left: 570px;
+}
+.remainder{
+    position: absolute;
+    color: #ffffff;
+    left: 595px;
+    top: 648px;
+    font-size: 24px;
+}
+#hands_x0_y0_backBtn_{
+    position: absolute;
+    left: 20px;
+    top: 21px;
+}
+#hands_x0_y0_ruleBtn_{
+    position: absolute;
+    left: 21px;
+    top: 93px;
+}
+#hands_x0_y0_winningBtn_{
+    position: absolute;
+    top: 165px;
+    left: 20px;
+}
+.flopSelect{
+    top: 33px;
+    left: 7px;
+}
+.rulePic{
+    position: absolute;
+    left: 0;
+    top: 0;
+    visibility: hidden;
+}
+.winningList{
+    position: absolute;
+    left: 0;
+    top: 0;
+    visibility: hidden;
+}
+#hands_x0_y0_winningBox_,.winningBox{
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+#hands_x0_y0_phoneSelect_{
+    position: absolute;
+    left: 528px;
+    top: 374px;
+}
+#hands_x0_y0_saveBtn_{
+    position: absolute;
+    left: 608px;
+    top: 432px;
+}
+#hands_x0_y0_clearBtn_{
+    position: absolute;
+    left: 714px;
+    top: 432px;
+}
+#hands_x0_y0_IP0_,#hands_x0_y0_wzjIP0_{
+    position: absolute;
+    left: 172px;
+    top: 546px;
+}
+#hands_x0_y0_IP1_,#hands_x0_y0_wzjIP1_{
+    position: absolute;
+    left: 376px;
+    top: 546px;
+}
+#hands_x0_y0_IP2_,#hands_x0_y0_wzjIP2_{
+    position: absolute;
+    left: 580px;
+    top: 546px;
+}
+#hands_x0_y0_IP3_,#hands_x0_y0_wzjIP3_{
+    position: absolute;
+    left: 784px;
+    top: 546px;
+}
+#hands_x0_y0_wzjMoreIp_,#hands_x0_y0_moreIp_{
+    position: absolute;
+    left: 1015px;
+    top: 595px;
+}
+#hands_x0_y0_IP0_ img,#hands_x0_y0_IP1_ img,#hands_x0_y0_IP2_ img,#hands_x0_y0_IP3_ img,#hands_x0_y0_wzjIP0_ img,#hands_x0_y0_wzjIP1_ img,#hands_x0_y0_wzjIP2_ img,#hands_x0_y0_wzjIP3_ img,#hands_x0_y0_moreIp_ img,#hands_x0_y0_wzjMoreIp_ img{
+    position: absolute;
+}
+.ipSelect{
+    left: -6px;
+    top: -9px;
+}
+#hands_x0_y0_nowinningBox_{
+    position: absolute;
+    left: 0;
+    top: 0;
+    visibility: hidden;
+    z-index: 1;
+}
+/*中奖名单*/
+#rankscro{
+    position: absolute;
+    left: 300px;
+    top: 200px;
+    width: 700px;
+    height: 260px;
+    overflow: hidden;
+}
+.nameList{
+    color: black;
+    width: 700px;
+}
+#myId{
+    position: absolute;
+    top: 500px;
+    left: 430px;
+    font-size: 22px;
+}
+#hands_x0_y0_winningPhone_{
+    position: absolute;
+    top: 530px;
+    left: 440px;
+}
+#hands_x0_y0_winningSave_{
+    position: absolute;
+    top: 525px;
+    left: 740px;
+}
+#hands_x0_y0_winningClear_{
+    position: absolute;
+    top: 525px;
+    left: 840px;
+}
+#winningListId{
+    position: absolute;
+    left: 450px;
+    top: 500px;
+    color: #ffffff;
+    font-size: 22px;
+}
+#winningId{
+    position: absolute;
+    left: 550px;
+    top: 345px;
+    color: #ffffff;
+    font-size: 22px;
+}
+#regret{
+    position: absolute;
+    top: 0;
+    left: 0;
+    visibility: hidden;
+    z-index: 1;
+}
+#regret img{
+    position: absolute;
+}
+#hands_x0_y0_regretConfirm_{
+    position: absolute;
+    left: 460px;
+    top: 388px;
+}
+#hands_x0_y0_regretMor_{
+    position: absolute;
+    left: 635px;
+    top: 391px;
+
+}
+#saveTipMsg{
+    width: 200px;
+}

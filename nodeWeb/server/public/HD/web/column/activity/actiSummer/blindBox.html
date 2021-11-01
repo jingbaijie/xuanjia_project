@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>盲盒拆拆拆</title>
+    <link rel="stylesheet" type="text/css" href="css/blindBox.css">
+</head>
+<body>
+<div class="main">
+    <!--我的积分-->
+    <div style="position: absolute;left: 10px;">
+        <img src="images/integral.png">
+        <div id="scoreNum" style="position: absolute;font-size: 36px;top: 60px;left: 100px;"></div>
+    </div>
+    <!--logo-->
+    <div class="logo">
+        <img src="images/blindBox/logo.png">
+    </div>
+    <!--选他按钮-->
+    <div id="hands_x0_y0_chooseBtn0_">
+        <img src="images/blindBox/chooseBtn.png">
+        <img id="chooseBtn0" src="images/blindBox/chooseBtnS.png" style="visibility: hidden">
+    </div>
+    <div id="hands_x0_y0_chooseBtn1_">
+        <img src="images/blindBox/chooseBtn.png">
+        <img id="chooseBtn1" src="images/blindBox/chooseBtnS.png" style="visibility: hidden">
+    </div>
+    <div id="hands_x0_y0_chooseBtn2_">
+        <img src="images/blindBox/chooseBtn.png">
+        <img id="chooseBtn2" src="images/blindBox/chooseBtnS.png" style="visibility: hidden">
+    </div>
+    <div id="hands_x0_y0_chooseBtn3_">
+        <img src="images/blindBox/chooseBtn.png">
+        <img id="chooseBtn3" src="images/blindBox/chooseBtnS.png" style="visibility: hidden">
+    </div>
+    <!--开奖动画按钮-->
+    <div id="hands_x0_y0_openBtnS_">
+        <img src="images/blindBox/openBtn.png">
+        <img id="openBtnS" src="images/blindBox/openBtnS.png" style="visibility: hidden">
+    </div>
+    <!--动画-->
+    <div id="animationBall">
+        <img id="ball" src="images/blindBox/ball_0.png">
+    </div>
+    <!--未中奖-->
+    <div id="wzjPopup">
+        <img src="images/blindBox/hyhPopup.png">
+        <div id="hands_x0_y0_wzjConfirmSBtn_">
+            <img src="images/blindBox/confirm.png">
+            <img id="wzjConfirmSBtn" src="images/blindBox/confirmS.png">
+        </div>
+    </div>
+    <!--积分-->
+    <div id="jfPopup">
+        <img src="images/blindBox/jfPopup.png">
+        <img id="integralImg" src="images/empty.png">
+        <div id="hands_x0_y0_jfConfirmSBtn_">
+            <img src="images/blindBox/confirm.png">
+            <img id="jfConfirmSBtn" src="images/blindBox/confirmS.png">
+        </div>
+    </div>
+    <!--免费片单权益-->
+    <div id="mfgkPopup">
+        <img src="images/blindBox/mfgkPopup.png">
+        <div id="hands_x0_y0_mfgkConfirmSBtn_">
+            <img src="images/blindBox/confirm.png">
+            <img id="mfgkConfirmSBtn" src="images/blindBox/confirmS.png">
+        </div>
+    </div>
+    <!--机会用完-->
+    <div id="noChancePopup">
+        <img src="images/blindBox/noChancePopup.png">
+        <div id="hands_x0_y0_noChanceSBtn_">
+            <img src="images/blindBox/confirm.png">
+            <img id="noChanceSBtn" src="images/blindBox/confirmS.png">
+        </div>
+    </div>
+
+
+</div>
+
+
+<script type = "text/javascript" src = "../../../../js/loadCommomJs.js"></script>
+<script type="text/javascript" src="../../../../js/actiComm.js?v=2021"></script>
+<script type="text/javascript" src="js/credit.js"></script>
+<script>
+    buttons.push({
+        id:'hands_x0_y0_chooseBtn0_',
+        clickHandler:'javascript:openBlindBox(0)',
+        up:'disable',
+        down:'disable',
+        left:'disable',
+        right:'hands_x0_y0_chooseBtn1_',
+        focusType:7
+    },{
+        id:'hands_x0_y0_chooseBtn1_',
+        clickHandler:'javascript:openBlindBox(1)',
+        up:'disable',
+        down:'disable',
+        left:'hands_x0_y0_chooseBtn0_',
+        right:'hands_x0_y0_chooseBtn2_',
+        focusType:7
+    },{
+        id:'hands_x0_y0_chooseBtn2_',
+        clickHandler:'javascript:openBlindBox(2)',
+        up:'disable',
+        down:'disable',
+        left:'hands_x0_y0_chooseBtn1_',
+        right:'hands_x0_y0_chooseBtn3_',
+        focusType:7
+    },{
+        id:'hands_x0_y0_chooseBtn3_',
+        clickHandler:'javascript:openBlindBox(3)',
+        up:'disable',
+        down:'disable',
+        left:'hands_x0_y0_chooseBtn2_',
+        right:'disable',
+        focusType:7
+    },{
+        id:'hands_x0_y0_openBtnS_',
+        clickHandler:'javascript:openCard(0)',
+        up:'disable',
+        down:'disable',
+        left:'disable',
+        right:'disable',
+        focusType:7
+    },{
+        id:'hands_x0_y0_wzjConfirmSBtn_',
+        clickHandler:'javascript:backFunc()',
+        up:'disable',
+        down:'disable',
+        left:'disable',
+        right:'disable',
+        focusType:7
+    },{
+        id:'hands_x0_y0_jfConfirmSBtn_',
+        clickHandler:'javascript:backFunc()',
+        up:'disable',
+        down:'disable',
+        left:'disable',
+        right:'disable',
+        focusType:7
+    },{
+        id:'hands_x0_y0_mfgkConfirmSBtn_',
+        clickHandler:'javascript:toIp()',
+        up:'disable',
+        down:'disable',
+        left:'disable',
+        right:'disable',
+        focusType:7
+    },{
+        id:'hands_x0_y0_noChanceSBtn_',
+        clickHandler:'javascript:backFunc()',
+        up:'disable',
+        down:'disable',
+        left:'disable',
+        right:'disable',
+        focusType:7
+    })
+    PAGE.focusInit();//焦点初始化
+    PAGE.changeFocus("hands_x0_y0_chooseBtn0_");
+
+    var ballNum = 0;//
+    var ballTop = 0;//球下落
+    var allCreditNum = 0;//总积分
+    var boxIndex = 0;//盲盒索引
+    var interval; //定时器
+    var activityChance = 0;//游戏次数
+    var isOrder = 1;//是否订购
+    var boxPrize = [
+        {
+            name:"mfgkqy",
+            gl:1
+        },
+        {
+            name:"integral",
+            gl:8
+        },
+        {
+            name:"wzj",
+            gl:1
+        }
+    ];//盲盒奖品   免费观看权益     积分    卡牌一个
+    /*初始化*/
+    function initPage(){
+        /*鉴权*/
+        orderJs.columnGetAuth(function (data) {
+            if(data == '0'){
+                isOrder = 0;
+            }else {
+                isOrder = 1;
+            }
+        });
+
+        /*获得次数*/
+        actiObj.getChance(function (data) {
+            activityChance = data.data.activityChance;
+        })
+        getCredit();
+        CT.delCookie("actiJumpFreeDetailsPage");
+    }
+    initPage();
+    /*获得积分*/
+    function getCredit() {
+        getUserCredit(15,function(res){
+            if(res && res.successFlg == 1 && res.data){
+                allCreditNum = res.data.creditNum;
+                CT.$('scoreNum').innerHTML = allCreditNum;
+            }
+        });
+    }
+    /*打开盲盒*/
+    function openBlindBox(i) {
+        if(isOrder == '0'){//已订购用户拆盲盒
+            if(activityChance < 3){//每天三次拆盲盒机会
+                boxIndex = i
+                CT.$('animationBall').style.visibility = 'visible';
+                PAGE.changeFocus("hands_x0_y0_openBtnS_");
+                interval = setInterval(function () {
+                    animationBall();
+                },200);
+            }else {//今日机会用完
+                CT.$('noChancePopup').style.visibility = 'visible';
+                PAGE.changeFocus("hands_x0_y0_noChanceSBtn_");
+            }
+			 actiObj.setChance(function (data) {//存储机会
+                activityChance ++;
+            })
+
+        }else {//跳订购
+            CT.goPage();
+            orderJs.columnToOrderPage("actiSummer");
+        }
+
+    }
+    /*随机抽取奖品*/
+    function randomBoxPrize() {
+        var randomsum = 0;
+        for (var i = 0; i < boxPrize.length; i++){
+            randomsum += boxPrize[i].gl || 0;//奖品总概率
+        }
+        var result = Math.random() * randomsum;//随机抽取概率
+        var randomitem = 0;
+        for (var i = 0; i < boxPrize.length; i++) {
+            randomitem += boxPrize[i].gl || 0;//奖品总概率
+            if (randomitem >= result) {//比较抽取的奖品属于哪个
+                return boxPrize[i].name
+            }
+        }
+    }
+    /*打开动画*/
+    function animationBall() {
+        if (ballTop > 130){
+            if(ballNum > 9){//动画结束  抽奖
+                clearInterval(interval);
+                CT.$('animationBall').style.visibility = 'hidden';
+                var hasBoxPrize = randomBoxPrize();
+                if(hasBoxPrize  == 'wzj'){//未中奖
+                    CT.$('wzjPopup').style.visibility = 'visible';
+                    PAGE.changeFocus("hands_x0_y0_wzjConfirmSBtn_");
+                }else if (hasBoxPrize == 'mfgkqy'){//免费会员权益
+                    CT.$('mfgkPopup').style.visibility = 'visible';
+                    PAGE.changeFocus("hands_x0_y0_mfgkConfirmSBtn_");
+                }else if(hasBoxPrize == 'integral'){//积分
+                    CT.$('jfPopup').style.visibility = 'visible';
+                    PAGE.changeFocus("hands_x0_y0_jfConfirmSBtn_");
+                    var result = Math.random();
+                    if(result > 0.1){
+                        CT.$('integralImg').src = "images/blindBox/integral_18.png";
+                        allCreditNum = allCreditNum + 18;
+                    }else if(result > 0.4) {
+                        CT.$('integralImg').src = "images/blindBox/integral_28.png";
+                        allCreditNum = allCreditNum + 28;
+                    }else if(result > 0.8) {
+                        CT.$('integralImg').src = "images/blindBox/integral_38.png";
+                        allCreditNum = allCreditNum + 38;
+                    }else if(result > 0.99) {
+                        CT.$('integralImg').src = "images/blindBox/integral_88.png";
+                        allCreditNum = allCreditNum + 88;
+                    }
+                    CT.$('scoreNum').innerHTML = allCreditNum;
+                    setUserCredit(15,allCreditNum,function(data){
+                        if(data){
+
+                        }
+                    });
+                }
+            }else {//动画
+                CT.$('ball').src="images/blindBox/ball_"+(ballNum%2)+".png"
+                ballNum ++;
+            }
+        }else {//球下落
+            ballTop += 50;
+            CT.$('ball').style.top = ballTop + "px";
+        }
+    }
+    /*跳IP*/
+    function toIp() {
+        //存免费片单 跳免费片单
+        CT.setCookie("actiJumpFreeDetailsPage");
+        var cartoonId = ['1387','800','1603']
+        var i = Math.floor(Math.random() * 3);
+        CT.goPage();
+        var commpageId = 3;
+        var cartoonData={recommendDisplayType:1,recommendDisplayValue:cartoonId[i],commpageId:commpageId};
+        CT.toAnterRecommendUrl(cartoonData);
+    }
+
+
+    /*按返回键返回*/
+    function backFunc() {
+        if(CT.$('wzjPopup').style.visibility == 'visible'){
+            CT.$('wzjPopup').style.visibility = 'hidden';
+            PAGE.changeFocus("hands_x0_y0_chooseBtn" + boxIndex +"_");
+        }else if(CT.$('jfPopup').style.visibility == 'visible'){
+            getCredit();
+            CT.$('jfPopup').style.visibility = 'hidden';
+            PAGE.changeFocus("hands_x0_y0_chooseBtn" + boxIndex +"_");
+        }else if(CT.$('noChancePopup').style.visibility == 'visible'){
+            CT.$('noChancePopup').style.visibility = 'hidden';
+            PAGE.changeFocus("hands_x0_y0_chooseBtn" + boxIndex +"_");
+        }else {
+            CT.backPage();
+        }
+
+    }
+
+    
+</script>
+
+</body>
+</html>

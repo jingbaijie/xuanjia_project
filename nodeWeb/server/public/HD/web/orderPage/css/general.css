@@ -1,0 +1,62 @@
+.main{
+    width: 1280px;
+    height: 720px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+/*渐渐*/
+.littleByLittle{
+    transition: opacity 1s ease-in-out;
+    -o-transition: opacity 1s ease-in-out;
+    -webkit-transition: opacity 1s ease-in-out;
+    -moz-transition: opacity 1s ease-in-out;
+}
+@keyframes reRing {
+    from{
+        transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+    }
+}
+/*************** 所有循环执行CSS动画 *******************/
+.ringImg{
+    animation: reRing 3s linear infinite;
+    -webkit-animation: reRing 3s linear infinite;
+    -moz-animation: reRing 3s linear infinite;
+    -o-animation: reRing 3s linear infinite;
+}
+.rePulse {
+    animation: pulse 2s infinite linear;
+    -webkit-animation: pulse 2s linear infinite;
+    -moz-animation: pulse 2s linear infinite;
+    -o-animation: pulse 2s linear infinite;
+}
+.reShake{
+    animation: shake 2s infinite linear;
+    -webkit-animation: shake 2s linear infinite;
+    -moz-animation: shake 2s linear infinite;
+    -o-animation: shake 2s linear infinite;
+}
+.reFlash{
+    animation: flash 2s infinite linear;
+    -webkit-animation: flash 2s linear infinite;
+    -moz-animation: flash 2s linear infinite;
+    -o-animation: flash 2s linear infinite;
+}
+.reSwing{
+    animation: swing 2s infinite linear;
+    -webkit-animation: swing 2s linear infinite;
+    -moz-animation: swing 2s linear infinite;
+    -o-animation: swing 2s linear infinite;
+}

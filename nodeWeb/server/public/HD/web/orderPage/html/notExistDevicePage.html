@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../../../css/commCss.css">
+    <title>设备不存在提示页</title>
+</head>
+<body>
+<img src="../image/404.jpg?v=1" id="errId" style="position: absolute; width: 1280px; height: 720px;">
+<div id="hands_x0_y0_focus_" style="width:20px;height:20px;top:77px;left:349px;">
+    <div id="focus" style="width:60px;height:60px;background:url(../img/empty.png)"></div>
+</div>
+
+<script type="text/javascript" src="../../../js/loadCommomJs.js"></script>
+<script>
+    var buttons = [{
+        id:"hands_x0_y0_focus_",
+        clickHandler:"javascript:backFunc()",
+        left:"disable",
+        up:"disable",
+        down:"disable",
+        right: "disable"
+    }];
+    PAGE.focusInit();
+    var start = PAGE.getFocusModel6("hands_x0_y0_focus_");
+    start.defaultFocus();
+     interface.findCommonPageInfo({params:{"contentName":"notExistDevicePage"}},function(data){
+                        // 通用日志
+                        setLoggerInfo.pageInfoLog = data;
+                        AjaxConfig.commonPageInfo = data;
+                        if(data.data.pageInfo.pageTemplateBgpic){
+                            CT.$("errId").src = AjaxConfig.imgUrl + data.data.pageInfo.pageTemplateBgpic.picPath
+                        }else{
+                            CT.$("errId").src = "../image/404.jpg?v=" + new Date().getTime();
+                        }
+      });
+    function backFunc() {
+        var backUrlList = "[\"/HD/web/mainPage/html/mainPage.html?1=1568273336760&contentId=1&contentEName=main_2019v1&contentCName=首页&curFocusId=hands_x0_y0_addContent0_&mainTop=0px\"]"
+        backUrlList = encodeURIComponent(backUrlList);
+        CT.setCookie('backUrlList', backUrlList);
+        CT.backPage();
+    }
+</script>
+</body>
+</html>

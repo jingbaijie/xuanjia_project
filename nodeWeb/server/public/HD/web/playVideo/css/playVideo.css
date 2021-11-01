@@ -1,0 +1,207 @@
+/*进度条背景*/
+#player-progress{
+    position: absolute;
+    bottom: 0px;
+    left:0px;
+    width:1280px;
+    height:147px;
+    color: #FFFFFF;
+    font-size: 22px;
+    background: url("../image/other/bottomBlackBar.png");
+    visibility: hidden;
+}
+/*当前时间*/
+#curTime{
+    position: absolute;
+    top:30px;
+    font-size: 22px;
+    left:50px;
+    color: white;
+}
+/*总时间*/
+#totalTime{
+    position: absolute;
+    top:30px;
+    font-size: 22px;
+    left:1115px;
+    color: white;
+}
+/*收藏*/
+#collect{
+    position: absolute;
+    top:81px;
+    left:382px;
+}
+/*上一集*/
+#preSet{
+    position: absolute;
+    top:83px;
+    left:470px;
+}
+/*暂停*/
+#pause{
+    position: absolute;
+    top:60px;
+    left:585px;
+}
+/*下一集*/
+#nextSet{
+    position: absolute;
+    top:83px;
+    left:727px;
+}
+/*选集*/
+#selectSet{
+    position: absolute;
+    top:81px;
+    left:822px;
+}
+/*进度条DIV*/
+#progress{
+    position: absolute;
+    top:38px;
+    left:153px;
+    width:945px;
+    height:15px;
+    overflow: hidden;
+    border-radius:30px;
+
+}
+/*进度条*/
+.progressImg{
+    position: absolute;
+    top:1px;
+    left:0px;
+}
+/*顶部 显示当前播放的卡通的名称*/
+#videoName{
+    position: absolute;
+    top: -573px;
+    left:0px;
+    text-indent: 40px;
+    width:1280px;
+    height:76px;
+    color: #FFFFFF;
+    font-size: 24px;
+    background: url("../image/other/topBlackBar.png") no-repeat;
+    line-height: 76px;
+}
+/*左边集数*/
+#episodes{
+    position: absolute;
+    top:0px;
+    left:0px;
+    width:356px ;
+    height:720px;
+    padding-top: 70px;
+    visibility: hidden;
+    background: url("../image/other/videoListBG.png");
+}
+/*左边选集--卡通名称的p标签,当前播放的视频*/
+.pTxt{
+    background: #777676;
+    width: 314px;
+    height: 63px;
+    position: absolute;
+    top: -5px;
+    left: 20px;
+    line-height: 63px;
+}
+/*暂停快进*/
+#control{
+    position: absolute;
+    top:-300px;
+    left:550px;
+    width:140px ;
+    height:140px;
+
+}
+
+/*声音背景*/
+#voice{
+    position: absolute;
+    top:190px;
+    right:30px;
+    width:90px ;
+    height:437px;
+    background: url("../image/other/voiceBJ.png");
+    font-size: 36px;
+    color: white;
+}
+/*声音*/
+.voiceImg{
+    position: absolute;
+    bottom:58px;
+    left:38px;
+    width:16px;
+}
+/*+-*/
+#voiceAdd{
+    position: absolute;
+    top:14px;
+    left:35px;
+}
+#voiceDown{
+    position: absolute;
+    top:385px;
+    left:40px;
+}
+#nextEpi {
+    position: absolute;
+    top: 216px;
+    left: 526px;
+    width: 250px;
+    height: 50px;
+    line-height: 50px;
+    background-color: rgba(52, 52, 52, 0.3);
+    color: #fff;
+    text-align: center;
+    font-weight: bold;
+    font-size: 22px;
+}
+/* 海报推荐位 */
+#recPosterWrapper{
+    position: absolute;
+    top: -400px;
+    left: 260px;
+    width: 765px;
+    height: 413px;
+    background-image: url("../image/other/recommendBG.png");
+}
+#recTex{
+    position: absolute;
+    top: 40px;
+    left: 20px;
+    width: 730px;
+    height: 21px;
+    line-height: 21px;
+    color: white;
+    text-align: center;
+}
+.recPoster{
+    position: absolute;
+    top: 90px;
+    left: 32px;
+}
+.recPosterImg{
+    width: 168px;
+    height: 233px;
+}
+#recBackWrapper{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 765px;
+}
+.recBackBtn{
+    position: absolute;
+    top: 340px;
+}
+#progressBar{
+    position: absolute;
+    top: 573px;
+    visibility: hidden;
+}
+#recBG{
+    top: -573px;
+}

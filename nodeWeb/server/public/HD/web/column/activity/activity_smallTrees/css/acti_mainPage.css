@@ -1,0 +1,345 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.mainBg {
+  position: relative;
+  background: url(../img/mainPage/bj.jpg) no-repeat;
+  width: 1280px;
+  height: 720px;
+}
+.subsriber {
+  position: absolute;
+  color: #fff;
+  top: 378px;
+  left: 227px;
+  font-size: 30px;
+}
+.unsubscribedUser {
+  position: absolute;
+  color: #fff;
+  top: 429px;
+  left: 227px;
+  font-size: 30px;
+}
+.remainChance {
+  position: absolute;
+  color: #fff;
+  top: 479px;
+  left: 225px;
+  font-size: 30px;
+}
+.startGame {
+  position: absolute;
+  top: 580px;
+  left: 520px;
+}
+.loading {
+  position: absolute;
+  top: 670px;
+  left: 400px;
+  width: 505px;
+  height: 37px;
+}
+.loading img {
+  position: absolute;
+}
+.jlcwc {
+  position: absolute;
+  bottom: 168px;
+  left: 346px;
+  width: 220px;
+  height: 220px;
+}
+.jlcwc img{
+  width: 100%;
+}
+.bchjc {
+  position: absolute;
+  left: 790px;
+  bottom: 335px;
+  width: 220px;
+  height: 220px;
+}
+.bchjc img{
+  width: 100%;
+}
+.cjfx {
+  position: absolute;
+  bottom: 377px;
+  left: 305px;
+  width: 220px;
+  height: 220px;
+}
+.cjfx img{
+  width: 100%;
+}
+.water {
+  position: absolute;
+  left: 834px;
+  top: 460px;
+  width: 250px;
+  height: 250px;
+/*  z-index: 2;*/
+}
+.water img{
+  width: 100%;
+}
+.startGameFocus {
+  position: absolute;
+  visibility: hidden;
+  top: -587px;
+  left: -515px;
+}
+.startGame {
+  width: 250px;
+}
+.jumpRuleFocus {
+  position: absolute;
+  visibility: hidden;
+  left: 1107px;
+  top: 44px;
+}
+.jumpGiftFocus {
+  position: absolute;
+  visibility: hidden;
+  left: 1107px;
+  top: 180px;
+}
+.tree {
+  position: absolute;
+  left: 50%;
+  bottom: 140px;
+  width: 110px;
+  height: 187px;
+  margin-left: -55px;
+}
+.tree img{
+  width: 100%;
+}
+.growing {
+  position: absolute;
+  visibility: hidden;
+  top: 0;
+}
+.growingFocus {
+  position: absolute;
+  visibility: hidden;
+  left: 530px;
+  top: 585px;
+}
+#superFlying {
+  position: absolute;
+  visibility: hidden;
+  top: 320px;
+  left: 220px;
+  z-index: 2;
+}
+.superFlyingFocus {
+  position: absolute;
+  visibility: hidden;
+  left: 207px;
+  top: 305px;
+  z-index: 2;
+}
+#rocketCar {
+  position: absolute;
+  visibility: hidden;
+  top: 320px;
+  left: 390px;
+  z-index: 2;
+}
+.rocketCarFocus {
+  position: absolute;
+  visibility: hidden;
+  left: 377px;
+  top: 304px;
+  z-index: 2;
+}
+#cuteChicken {
+  position: absolute;
+  visibility: hidden;
+  top: 320px;
+  left: 560px;
+  z-index: 2;
+}
+.cuteChickenFocus {
+  position: absolute;
+  visibility: hidden;
+  left: 546px;
+  top: 305px;
+  z-index: 2;
+}
+#assassin {
+  position: absolute;
+  visibility: hidden;
+  top: 320px;
+  left: 730px;
+  z-index: 2;
+}
+.assassinFocus {
+  position: absolute;
+  visibility: hidden;
+  left: 716px;
+  top: 305px;
+  z-index: 2;
+}
+#petCar {
+  position: absolute;
+  visibility: hidden;
+  top: 320px;
+  left: 900px;
+  z-index: 2;
+}
+.petCarFocus {
+  position: absolute;
+  visibility: hidden;
+  left: 887px;
+  top: 304px;
+  z-index: 2;
+}
+.noChance {
+  position: absolute;
+  visibility: hidden;
+  top: 0;
+}
+.noChanceFocus {
+  position: absolute;
+  visibility: hidden;
+  left: 335px;
+  top: 502px;
+}
+.laterFocus {
+  position: absolute;
+  visibility: hidden;
+  left: 685px;
+  top: 525px;
+}
+.vipTip {
+  position: absolute;
+  visibility: hidden;
+  top: 0;
+}
+.seeAniFocus {
+  position: absolute;
+  visibility: hidden;
+  top: 510px;
+  left: 360px;
+}
+.backFocus {
+  position: absolute;
+  visibility: hidden;
+  top: 525px;
+  left: 685px;
+}
+.gift {
+  position: absolute;
+  visibility: hidden;
+  top: 0;
+}
+.emptyFocus {
+  position: absolute;
+  visibility: hidden;
+  left: 745px;
+  top: 479px;
+}
+.saveFocus {
+  position: absolute;
+  visibility: hidden;
+  left: 639px;
+  top: 476px;
+}
+.loseGift {
+  position: absolute;
+  visibility: hidden;
+  top: 0;
+}
+.loseGiftFocus {
+  position: absolute;
+  visibility: hidden;
+}
+.success {
+  position: absolute;
+  visibility: hidden;
+  top: 0;
+}
+.successFocus {
+  position: absolute;
+  visibility: hidden;
+  left: 530px;
+  top: 583px;
+}
+.pity {
+  position: absolute;
+  visibility: hidden;
+  top: 0;
+}
+.pityFocus {
+  position: absolute;
+  visibility: hidden;
+  left: 530px;
+  top: 584px;
+}
+.phoneNumberFocus {
+  position: absolute;
+  visibility: hidden;
+  left: 540px;
+  top: 420px;
+}
+.telInput {
+  position: absolute;
+  left: 569px;
+  top: 438px;
+  color: black;
+  font-size: 28px;
+  z-index: 10;
+}
+.saveTips {
+  position: absolute;
+  color: black;
+  z-index: 20;
+  left: 456px;
+  top: 495px;
+  font-size: 20px;
+}
+.moreFocus {
+  position: absolute;
+  visibility: hidden;
+  left: 1068px;
+  top: 502px;
+}
+
+
+
+/*规则*/
+.rulePage{
+  position: absolute;
+  left: 0;
+  top: 0;
+  visibility: hidden;
+  z-index: 10;
+}
+.closeQuit{
+  position: absolute;
+  left: 1125px;
+  top: 35px;
+}
+/*我的奖品页*/
+.winningList{
+  position: absolute;
+  left: 0;
+  top: 0;
+  visibility: hidden;
+}
+.winningInfo{
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+#winningId{
+  position: absolute;
+  top: 391px;
+  left: 560px;
+  color: #ffffff;
+  font-size: 24px;
+}

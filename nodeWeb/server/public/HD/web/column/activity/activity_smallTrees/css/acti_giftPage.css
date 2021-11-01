@@ -1,0 +1,87 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#rankscro {
+  position: absolute;
+  left: 300px;
+  top: 200px;
+  width: 700px;
+  height: 260px;
+  overflow: hidden;
+}
+.nameList {
+  color: #fff;
+  font-size: 21px;
+  width: 700px;
+}
+.telInput {
+  position: absolute;
+  color: black;
+  font-size: 25px;
+  left: 494px;
+  top: 633px;
+}
+.saveTips {
+  position: absolute;
+  left: 543px;
+  top: 670px;
+  color: #000;
+  font-size: 24px;
+}
+.telFocus {
+  position: absolute;
+  visibility: hidden;
+  left: 456px;
+  top: 616px;
+}
+.saveFocus {
+  position: absolute;
+  visibility: hidden;
+  left: 754px;
+  top: 612px;
+}
+.clearFocus {
+  position: absolute;
+  visibility: hidden;
+  left: 858px;
+  top: 615px;
+}
+#prizeInfo {
+  position: absolute;
+  color: #ffffff;
+  font-size: 20px;
+  left: 870px;
+  top: 585px;
+  width: 200px;
+}
+.userInfo {
+  position: absolute;
+  left: 472px;
+  top: 579px;
+  font-size: 30px;
+  color: #ffffff;
+}
+.accountNumber {
+  position: absolute;
+  left: 314px;
+  top: 139px;
+  color: #fff;
+  font-size: 25px;
+  width: 150px;
+}
+.prize {
+  position: absolute;
+  left: 906px;
+  top: 139px;
+  color: #fff;
+  font-size: 25px;
+  width: 150px;
+}
+.myBackFocus {
+  position: absolute;
+  visibility: hidden;
+  left: 1124px;
+  top: 35px;
+}

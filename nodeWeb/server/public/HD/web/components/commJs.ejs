@@ -1,0 +1,50 @@
+<!--
+ * @Description: 
+ * @Author: jwzx
+ * @Date: 2020-10-09 10:11:53
+ * @LastEditTime: 2020-10-28 10:07:10
+ * @LastEditors: jwzx
+-->
+
+<% 
+   const basePageInfoObj = basePageInfo || {};
+   let commomJsArr = ["config",'common3_4','ajax','key3_4','interface','logData','orderJs','videoPlayer'];
+//   let commomJsArr = ["config"];
+   const commonJsUrl = "/" + global.config.projectName + "/HD/js/";
+ 
+   //时间戳
+   const commonJsCurTime = new Date().getTime();
+   //按天
+   // const commonJsCurTime = new Date().getDate();
+   let basePageInfo1 = {};
+   for (const key in basePageInfoObj) {
+      if(key != "nodeButtons"){
+         basePageInfo1[key] = basePageInfoObj[key];
+      }
+   }
+%>
+
+<script>
+   
+	function Number(v){
+	  return +v;
+	}
+	function String(v) {
+	  return v+"";
+	}
+</script>
+<%
+ commomJsArr.forEach(element => { %>
+   <script type="text/javascript" src="<%= commonJsUrl + element  %>.js?v=<%= commonJsCurTime %>"></script>
+<% }) 
+%>
+<!--<script type="text/javascript" src="/<%= global.config.projectName %>/HD/commonJs/main.js?v=<%= commonJsCurTime %>"></script>-->
+<script>
+      setLoggerInfo.pageInfoLog = basePageInfo.commonPageInfo;
+      AjaxConfig.commonPageInfo = basePageInfo.commonPageInfo;   
+      buttons = buttons.concat(xjInitButtons);
+      basePageInfo.transferObj = <%- JSON.stringify(basePageInfo.transferObj ? basePageInfo.transferObj : {} ) %> || {};
+      basePageInfo.nodeButtons = <%- JSON.stringify(basePageInfo.nodeButtons || []) %> || [];
+      
+    
+</script>

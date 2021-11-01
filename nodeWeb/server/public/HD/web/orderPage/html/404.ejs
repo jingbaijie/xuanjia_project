@@ -1,0 +1,39 @@
+<!--
+ * @Description: 
+ * @Author: jwzx
+ * @Date: 2020-07-01 16:30:57
+ * @LastEditTime: 2020-08-06 14:49:30
+ * @LastEditors: jwzx
+--> 
+<%- include ("../../components/header") %> 
+</head>
+
+<body>
+   
+
+    <img src="<%= basePageUrl %>/image/404.jpg" style="position: absolute; width: 1280px; height: 720px;">
+    <div id="hands_x0_y0_focus_" style="width:20px;height:20px;top:77px;left:349px;">
+        <div id="focus" style="width:60px;height:60px;background:url(./HD/images/empty.png)"></div>
+    </div>
+     
+    <%- include('../../components/commJs') %>
+    <script>
+        var buttons = [{
+            id: "hands_x0_y0_focus_",
+            clickHandler: "javascript:backFunc()",
+            left: "disable",
+            up: "disable",
+            down: "disable",
+            right: "disable"
+        }];
+        PAGE.focusInit();
+        var start = PAGE.getFocusModel6("hands_x0_y0_focus_");
+        start.defaultFocus();
+
+        function backFunc() {
+            CT.BackPortalMainPage()
+        }
+    </script>
+</body>
+
+</html>

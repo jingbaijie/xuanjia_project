@@ -1,0 +1,529 @@
+﻿<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: sueRimn
+ * @Date: 2020-02-19 13:42:09
+ * @LastEditors: jwzx
+ * @LastEditTime: 2020-08-18 13:26:59
+ -->
+<%- include ("../../components/header") %> 
+</head>
+
+
+<%
+    const commonPageInfo = basePageInfo.personalCenterPageInfo;
+	const localImg = basePageInfo.localImg;
+%>
+
+<body>
+	<div class="BG" style="background:url(<%= basePageInfo.bgImg %>) no-repeat;width:1280px;height:720px;position: absolute;top:0px;left:0px;">
+<!--		<img id="BGImg" src="<%= basePageInfo.bgImg %>" width=" 1280" height="720"
+			style="position: absolute;top:0px;left:0px;" />
+-->
+	</div>
+	<div id= "pop_window" style="display: block; position: absolute; left: 0px; top: 0px; height: 720px; width: 1280px;visibility: hidden; z-index: 100;">
+	</div>
+	<%
+	function getCreateDivStr (data,idx) {
+		var ele_id = 'hands_x0_y0_orderFocus'+ idx +'_';
+		var focus_ele_id = 'orderFocus'+ idx;
+		var item_ele_id = 'orderitem'+ idx;
+		var vos = data.pageRecommendConfigTabVos;
+		var vos_i = vos.length > 1 ? 1 : 0;
+		var focusable = false;
+		var vLeft = vos[vos_i].xvalue + "px";
+		var vTop = vos[vos_i].yvalue + "px";
+		var vWidth = vos[vos_i].picLibraryTab.picW + "px";
+		var vHeight = vos[vos_i].picLibraryTab.picH + "px";
+
+		var resultStr = "<div id=\"" + ele_id + "\" style='position:absolute; display: block; left:"+vLeft+";top:" + vTop + "; width: " + vWidth + "; height:" + vHeight + "'>" ;
+			
+		if(data.recommendPic) {
+			var iSrc = imgUrl + data.recommendPic.picPath;
+
+			var iWidth = data.recommendPic.picW + "px";
+			var iHeight =data.recommendPic.picH + "px";
+			var iLeft = vos[0].xvalue -  vos[vos_i].xvalue+ "px";
+			var iTop = vos[0].yvalue - vos[vos_i].yvalue + "px";
+			
+			// var iLeft = parseInt((vos[vos.length - 1].picLibraryTab.picW - data.recommendPic.picW) / 2) + "px";
+			// var iTop = parseInt((vos[vos.length - 1].picLibraryTab.picH - data.recommendPic.picH) / 2) + "px";
+			resultStr += "<img id='" + item_ele_id + "' src='" + iSrc + "' style='position:absolute; display:block; z-index:10; left:"+ iLeft+";top:" + iTop + "; width: " + iWidth + "; height:" + iHeight + "'>"
+		}
+		if(data.recommendLabelpic) {
+			var item_ele_id = "orderItem" + idx;
+
+			var fSrc = imgUrl + data.recommendLabelpic.picPath;
+
+			var fWidth = data.recommendLabelpic.picW + "px";
+			var fHeight =data.recommendLabelpic.picH + "px";
+			var fLeft = "0px";
+			var fTop = "0px";
+			resultStr += "<img id='" + focus_ele_id + "' src='" + fSrc + "' style='position:absolute; display:block; z-index:50; left:"+ fLeft+";top:" + fTop + "; width: " + fWidth + "; height:" + fHeight + ";visibility:hidden;'>"
+			focusable = true;
+		}
+		resultStr += "</div>";
+		return {domStr: resultStr,option:{
+			id:ele_id,
+			width: vos[vos_i].picLibraryTab.picW,
+			height: vos[vos_i].picLibraryTab.picH,
+			top:vos[vos_i].yvalue,
+			left:vos[vos_i].xvalue,
+			focusable: focusable
+		}};
+	}
+	var idx = 1;
+	var mybtns = [];
+	var datas = {};
+	var defaultFocus = "";
+	//退出事件挂靠在 more1配有 backFunc 的按键上事件上
+	let backFuncEven = '';
+	while(basePageInfo.commonPageInfo["recommend_" + idx]) {
+		var _recommend = basePageInfo.commonPageInfo["recommend_" + idx];
+		if(_recommend.length > 0) {
+			for(var i = 0;i < _recommend.length;i++) {
+				try{
+					var newEle = getCreateDivStr(_recommend[i],idx + "a" + i);
+						// document.getElementsByTagName("body")[0].appendChild(newEle.dom);
+					%>
+<%-newEle.domStr%>
+					<%
+					mybtns.push(newEle.option);
+					if(defaultFocus == '' || (_recommend[i].more1 && _recommend[i].more1.indexOf('defaultFocus') >=0)) {
+						defaultFocus = 'hands_x0_y0_orderFocus'+ idx + "a" + i +'_';
+					}
+					if(backFuncEven == '' && _recommend[i].more1 &&  _recommend[i].more1.indexOf('backFunc') >=0 ) {
+						backFuncEven = _recommend[i];
+					}
+					datas['hands_x0_y0_orderFocus'+ idx + "a" + i +'_'] = _recommend[i];
+				} catch(e) {
+				}
+			}
+		}
+		idx ++;
+	}
+	
+	var buttons = [];
+	var scala = 1280/720;
+	for(var i = 0;i < mybtns.length;i ++) {
+		var _option = mybtns[i];
+		if(!_option.focusable) continue;
+		var _btn = {
+			id: _option.id,
+			clickHandler: "javascript:goWhere()",
+			otherFocusEvent: "javascript:onWhere()",
+			up: 'disable',
+			right: 'disable',
+			left: 'disable',
+			down: 'disable',
+			focusType: 7,
+			TempData:datas[_option.id]
+		}
+
+		var nearBy = {};
+		for(var j = 0; j < mybtns.length;j++) {
+			if(!mybtns[j].focusable || mybtns[j].id == _option.id) continue;
+			var _x_dic = (mybtns[j].left + (mybtns[j].width / 2) - _option.left - _option.width / 2);
+			var _y_dic = (mybtns[j].top + (mybtns[j].height / 2) - _option.top - _option.height / 2);
+			var _thisBy = _x_dic * _x_dic + _y_dic * _y_dic;
+			// _thisBy = _thisBy == 0 ? Math.abs( (mybtns[j].left + (mybtns[j].width / 2) - _option.left - _option.width / 2) || (mybtns[j].top + (mybtns[j].height / 2) - _option.top - _option.height / 2)) : _thisBy;
+			var _thisScal = ((mybtns[j].top + mybtns[j].height / 2 - _option.top - _option.height / 2) == 0) || Math.abs((mybtns[j].left + mybtns[j].width / 2 - _option.left - _option.width / 2) / (mybtns[j].top + mybtns[j].height / 2 - _option.top - _option.height / 2));
+			if( _thisScal == true ||  _thisScal > scala ) {
+				if(mybtns[j].left + mybtns[j].width / 2 < _option.left + _option.width / 2) {
+					if(!nearBy.leftEle) {
+						nearBy.leftEle = mybtns[j];
+						_btn.left = mybtns[j].id;
+					} else {
+						// var __nearby = Math.abs((nearBy.leftEle.left + (nearBy.leftEle.width / 2) - _option.left) * (nearBy.leftEle.top + (nearBy.leftEle.height / 2) - _option.top - _option.height / 2));
+						
+						var _x2_dic = (nearBy.leftEle.left + (nearBy.leftEle.width / 2) - _option.left);
+						var _y2_dic = (nearBy.leftEle.top + (nearBy.leftEle.height / 2) - _option.top - _option.height / 2);
+						var __nearby = _x2_dic * _x2_dic + _y2_dic * _y2_dic;
+						if(_thisBy < __nearby) {
+							nearBy.leftEle = mybtns[j];
+							_btn.left = mybtns[j].id;
+						}
+					}
+				} else  {
+					if(!nearBy.rightEle) {
+						nearBy.rightEle = mybtns[j];
+						_btn.right = mybtns[j].id;
+					} else {
+						// var __nearby = Math.abs((nearBy.rightEle.left + (nearBy.rightEle.width / 2) - _option.left) * (nearBy.rightEle.top + (nearBy.rightEle.height / 2) - _option.top - _option.height / 2));
+						var _x2_dic = (nearBy.rightEle.left + (nearBy.rightEle.width / 2) - _option.left);
+						var _y2_dic = (nearBy.rightEle.top + (nearBy.rightEle.height / 2) - _option.top - _option.height / 2);
+						var __nearby = _x2_dic * _x2_dic + _y2_dic * _y2_dic;
+						if(_thisBy < __nearby) {
+							nearBy.rightEle = mybtns[j];
+							_btn.right = mybtns[j].id;
+						}
+					}
+				}			
+			} else {
+					if(mybtns[j].top + mybtns[j].height / 2 < _option.top + _option.height / 2) {
+					if(!nearBy.upEle) {
+						nearBy.upEle = mybtns[j];
+						_btn.up = mybtns[j].id;
+					} else {
+						// var __nearby = Math.abs((nearBy.upEle.left + (nearBy.upEle.width / 2) - _option.left - _option.width / 2) * (nearBy.upEle.top + (nearBy.upEle.height / 2) - _option.top - _option.height / 2));
+						var _x2_dic = (nearBy.upEle.left + (nearBy.upEle.width / 2) - _option.left);
+						var _y2_dic = (nearBy.upEle.top + (nearBy.upEle.height / 2) - _option.top - _option.height / 2);
+						var __nearby = _x2_dic * _x2_dic + _y2_dic * _y2_dic;
+						if(_thisBy < __nearby) {
+							nearBy.upEle = mybtns[j];
+							_btn.up = mybtns[j].id;
+						}
+					}
+				} else {
+					if(!nearBy.downEle) {
+						nearBy.downEle = mybtns[j];
+						_btn.down = mybtns[j].id;
+					} else {
+						// var __nearby = Math.abs((nearBy.downEle.left + (nearBy.downEle.width / 2) - _option.left - _option.width / 2) * (nearBy.downEle.top + (nearBy.downEle.height / 2) - _option.top - _option.height / 2));
+						var _x2_dic = (nearBy.downEle.left + (nearBy.downEle.width / 2) - _option.left);
+						var _y2_dic = (nearBy.downEle.top + (nearBy.downEle.height / 2) - _option.top - _option.height / 2);
+						var __nearby = _x2_dic * _x2_dic + _y2_dic * _y2_dic;
+						if(_thisBy < __nearby) {
+							nearBy.downEle = mybtns[j];
+							_btn.down = mybtns[j].id;
+						}
+					}
+				}
+			}
+		}
+		buttons.push(_btn);
+	}
+	%>
+	<%- include('../../components/commJs') %>
+	<script type="text/javascript">
+		buttons = [];
+	</script>
+		<%
+			for(var i = 0; i < buttons.length;i++) {
+				%>
+	<script type="text/javascript">
+			buttons.push( <%- JSON.stringify(buttons[i] ? buttons[i] : {} ) %>);
+	</script>
+				<%
+			}
+		%>
+	<script type="text/javascript">
+		var pop_pageInfo={};
+		var pageInfo = {};
+		var old_focus;
+		function getCreateDivStr (data,idx) {
+			var ele_id = 'hands_x0_y0_order2Focus'+ idx +'_';
+			var focus_ele_id = 'order2Focus'+ idx;
+			var item_ele_id = 'order2Item'+ idx;
+			var vos = data.pageRecommendConfigTabVos;
+			var vos_i = vos.length > 1 ? 1 : 0;
+			var focusable = false;
+			var vLeft = vos[vos_i].xvalue + "px";
+			var vTop = vos[vos_i].yvalue + "px";
+			var vWidth = vos[vos_i].picLibraryTab.picW + "px";
+			var vHeight = vos[vos_i].picLibraryTab.picH + "px";
+
+			var resultStr = "<div id=\"" + ele_id + "\" style='position:absolute; display: block; left:"+vLeft+";top:" + vTop + "; width: " + vWidth + "; height:" + vHeight + "'>" ;
+				
+			if(data.recommendPic) {
+				var iSrc = AjaxConfig.imgUrl + data.recommendPic.picPath;
+
+				var iWidth = data.recommendPic.picW + "px";
+				var iHeight =data.recommendPic.picH + "px";
+				
+				var iLeft = vos[0].xvalue -  vos[vos_i].xvalue+ "px";
+				var iTop = vos[0].yvalue - vos[vos_i].yvalue + "px";
+				// var iLeft = parseInt((vos[vos.length - 1].picLibraryTab.picW - data.recommendPic.picW) / 2) + "px";
+				// var iTop = parseInt((vos[vos.length - 1].picLibraryTab.picH - data.recommendPic.picH) / 2) + "px";
+				resultStr += "<img id='" + item_ele_id + "' src='" + iSrc + "' style='position:absolute; display:block; z-index:10; left:"+ iLeft+";top:" + iTop + "; width: " + iWidth + "; height:" + iHeight + "'>"
+			}
+			if(data.recommendLabelpic) {
+				var item_ele_id = "orderItem" + idx;
+
+				var fSrc = AjaxConfig.imgUrl + data.recommendLabelpic.picPath;
+
+				var fWidth = data.recommendLabelpic.picW + "px";
+				var fHeight =data.recommendLabelpic.picH + "px";
+				var fLeft = "0px";
+				var fTop = "0px";
+				resultStr += "<img id='" + focus_ele_id + "' src='" + fSrc + "' style='position:absolute; display:block; z-index:50; left:"+ fLeft+";top:" + fTop + "; width: " + fWidth + "; height:" + fHeight + ";visibility:hidden;'>"
+				focusable = true;
+			}
+			resultStr += "</div>";
+			return {domStr: resultStr,option:{
+				id:ele_id,
+				width: vos[vos_i].picLibraryTab.picW,
+				height: vos[vos_i].picLibraryTab.picH,
+				top:vos[vos_i].yvalue,
+				left:vos[vos_i].xvalue,
+				focusable: focusable
+			}};
+		}
+
+		function setPopPage(_pageInfo){
+			pageInfo = _pageInfo;
+			if(pageInfo.isReady != true) {
+				CT.$("pop_window").innerHTML = "<img src='" + AjaxConfig.imgUrl + pageInfo.pageInfo.pageTemplateBgpic.picPath + "'/>";
+				var idx = 1;
+				var mybtns = [];
+				var datas = {};
+				pageInfo.defaultFocus = "";
+				while(pageInfo['recommend_' + idx]) {
+					var _recommend = pageInfo["recommend_" + idx];
+					if(_recommend.length > 0) {
+						for(var i = 0;i < _recommend.length;i++) {
+							try{
+								var newEle = getCreateDivStr(_recommend[i],idx + "a" + i);
+								CT.$("pop_window").innerHTML += newEle.domStr;
+								mybtns.push(newEle.option);
+								if(!pageInfo.defaultFocus || (_recommend[i].more1 && _recommend.more1[i].indexOf('defaultFocus') >=0 )) {
+									pageInfo.defaultFocus = 'hands_x0_y0_order2Focus'+ idx + "a" + i +'_';
+								}
+								datas['hands_x0_y0_order2Focus'+ idx + "a" + i +'_'] = _recommend[i];
+							} catch(e) {
+							}
+						}
+					}
+					idx ++;
+				} 
+				
+				//自定义按键
+				var buttons_map = {
+					"hands_x0_y0_order2Focus1a0_" : {
+						id: 'hands_x0_y0_order2Focus1a0_',
+						clickHandler: 'javascript:toPay()',
+						//clickHandler: 'javascript:alert("orderJs.toPay()")',
+						up: 'disable',
+						right: 'disable',
+						left: 'disable',
+						down: 'disable',
+						focusType: 7
+					}
+				};
+				var scala = 1280/720;
+				for(var i = 0;i < mybtns.length;i ++) {
+					var _option = mybtns[i];
+					if(!_option.focusable) continue;
+					var _btn = {
+						id: _option.id,
+						clickHandler: "javascript:goWhere()",
+						otherFocusEvent: "javascript:onWhere()",
+						up: 'disable',
+						right: 'disable',
+						left: 'disable',
+						down: 'disable',
+						focusType: 7,
+						TempData:datas[_option.id]
+					}
+					if(buttons_map[_option.id]) {
+						for(var key in buttons_map[_option.id]) {
+							_btn[key] = buttons_map[_option.id][key];
+						}
+					}
+					console.log(_option.id);
+					var nearBy = {};
+					for(var j = 0; j < mybtns.length;j++) {
+						if(!mybtns[j].focusable || mybtns[j].id == _option.id) continue;
+						var _x_dic = (mybtns[j].left + (mybtns[j].width / 2) - _option.left - _option.width / 2);
+						var _y_dic = (mybtns[j].top + (mybtns[j].height / 2) - _option.top - _option.height / 2);
+						var _thisBy = _x_dic * _x_dic + _y_dic * _y_dic;
+						// _thisBy = _thisBy == 0 ? Math.abs( (mybtns[j].left + (mybtns[j].width / 2) - _option.left - _option.width / 2) || (mybtns[j].top + (mybtns[j].height / 2) - _option.top - _option.height / 2)) : _thisBy;
+						var _thisScal = ((mybtns[j].top + mybtns[j].height / 2 - _option.top - _option.height / 2) == 0) || Math.abs((mybtns[j].left + mybtns[j].width / 2 - _option.left - _option.width / 2) / (mybtns[j].top + mybtns[j].height / 2 - _option.top - _option.height / 2));
+						if( _thisScal == true ||  _thisScal > scala ) {
+							if(mybtns[j].left + mybtns[j].width / 2 < _option.left + _option.width / 2) {
+								if(!nearBy.leftEle) {
+									nearBy.leftEle = mybtns[j];
+									_btn.left = mybtns[j].id;
+								} else {
+									// var __nearby = Math.abs((nearBy.leftEle.left + (nearBy.leftEle.width / 2) - _option.left) * (nearBy.leftEle.top + (nearBy.leftEle.height / 2) - _option.top - _option.height / 2));
+									
+									var _x2_dic = (nearBy.leftEle.left + (nearBy.leftEle.width / 2) - _option.left);
+									var _y2_dic = (nearBy.leftEle.top + (nearBy.leftEle.height / 2) - _option.top - _option.height / 2);
+									var __nearby = _x2_dic * _x2_dic + _y2_dic * _y2_dic;
+									if(_thisBy < __nearby) {
+										nearBy.leftEle = mybtns[j];
+										_btn.left = mybtns[j].id;
+									}
+								}
+							} else  {
+								if(!nearBy.rightEle) {
+									nearBy.rightEle = mybtns[j];
+									_btn.right = mybtns[j].id;
+								} else {
+									// var __nearby = Math.abs((nearBy.rightEle.left + (nearBy.rightEle.width / 2) - _option.left) * (nearBy.rightEle.top + (nearBy.rightEle.height / 2) - _option.top - _option.height / 2));
+									var _x2_dic = (nearBy.rightEle.left + (nearBy.rightEle.width / 2) - _option.left);
+									var _y2_dic = (nearBy.rightEle.top + (nearBy.rightEle.height / 2) - _option.top - _option.height / 2);
+									var __nearby = _x2_dic * _x2_dic + _y2_dic * _y2_dic;
+									if(_thisBy < __nearby) {
+										nearBy.rightEle = mybtns[j];
+										_btn.right = mybtns[j].id;
+									}
+								}
+							}			
+						} else {
+								if(mybtns[j].top + mybtns[j].height / 2 < _option.top + _option.height / 2) {
+								if(!nearBy.upEle) {
+									nearBy.upEle = mybtns[j];
+									_btn.up = mybtns[j].id;
+								} else {
+									// var __nearby = Math.abs((nearBy.upEle.left + (nearBy.upEle.width / 2) - _option.left - _option.width / 2) * (nearBy.upEle.top + (nearBy.upEle.height / 2) - _option.top - _option.height / 2));
+									var _x2_dic = (nearBy.upEle.left + (nearBy.upEle.width / 2) - _option.left);
+									var _y2_dic = (nearBy.upEle.top + (nearBy.upEle.height / 2) - _option.top - _option.height / 2);
+									var __nearby = _x2_dic * _x2_dic + _y2_dic * _y2_dic;
+									if(_thisBy < __nearby) {
+										nearBy.upEle = mybtns[j];
+										_btn.up = mybtns[j].id;
+									}
+								}
+							} else {
+								if(!nearBy.downEle) {
+									nearBy.downEle = mybtns[j];
+									_btn.down = mybtns[j].id;
+								} else {
+									// var __nearby = Math.abs((nearBy.downEle.left + (nearBy.downEle.width / 2) - _option.left - _option.width / 2) * (nearBy.downEle.top + (nearBy.downEle.height / 2) - _option.top - _option.height / 2));
+									var _x2_dic = (nearBy.downEle.left + (nearBy.downEle.width / 2) - _option.left);
+									var _y2_dic = (nearBy.downEle.top + (nearBy.downEle.height / 2) - _option.top - _option.height / 2);
+									var __nearby = _x2_dic * _x2_dic + _y2_dic * _y2_dic;
+									if(_thisBy < __nearby) {
+										nearBy.downEle = mybtns[j];
+										_btn.down = mybtns[j].id;
+									}
+								}
+							}
+						}
+					}
+					buttons.push(_btn);
+				}
+				pageInfo.isReady = true;
+				PAGE.focusInit();
+			}
+			CT.$("pop_window").style.visibility = "visible";
+			return pageInfo;
+			
+		}
+		var _lock = false;
+		var _lock_timer = undefined;
+		//当前进入一级订购页时间
+		var entryOrderTime = new Date().getTime();
+
+		var lockMessage = undefined;//童锁标识
+		interface.findUserLockById({ contentId: orderJs.getUserId() }, function (data) {
+            if (data.data && data.data.lockMessage) {
+                lockMessage = data.data.lockMessage;
+            }
+        });
+		//订购
+		function toPay() {
+			//订购封装.5秒内只能有一次触发订购事件
+			if(_lock) return;
+			clearTimeout(_lock_timer);
+			_lock_timer = setTimeout(function(){
+				//超时,返回首页
+				CT.BackPortalMainPage()
+			},60000);
+			_lock = true;
+			if (lockMessage) {
+                //需要验证童锁 需要配置跳转童锁页
+				CT.toAnterRecommendUrl(curFocus.TempData);
+			} else {
+				//直接订购
+				orderJs.toPay()
+			}
+		}
+
+		function goWhere(){
+			if(_lock) return;
+			clearTimeout(_lock_timer);
+			_lock_timer = setTimeout(function(){
+				_lock = false;
+			},1000);
+			_lock = true;
+			if( !curFocus.TempData || (!curFocus.TempData.commpageName && !curFocus.TempData.more1) || curFocus.TempData.more1.indexOf("backFunc") >= 0) {
+				backFunc();
+			} else {
+				if(curFocus.TempData.more1.indexOf("pop") >= 0) {
+					old_focus = curFocus.FocusID;
+					//上报一级订购页跳二级订购页按键触发
+					try{
+						var p = new logCollParam(parseInt(((new Date().getTime()) - entryOrderTime) / 1000));
+						p.focusLocation = "orderPage2"
+						xjDataLog.logCollection(p);
+					} catch(e){
+
+					}
+					if(!pop_pageInfo[curFocus.TempData.commpageName]) {
+						interface.findRecCommonPageInfo({contentName:curFocus.TempData.commpageName},function(pageInfo){
+							var key_name = curFocus.TempData.commpageName;
+
+							pop_pageInfo[key_name] = setPopPage(pageInfo.data);
+							var anterFocus = PAGE.getFocusModel6(pop_pageInfo[key_name].defaultFocus);
+							anterFocus.defaultFocus();
+							
+						})
+					} else {
+						setPopPage(pop_pageInfo[curFocus.TempData.commpageName]);
+						var anterFocus = PAGE.getFocusModel6(pop_pageInfo[curFocus.TempData.commpageName].defaultFocus);
+						anterFocus.defaultFocus();
+					}
+				} else if(curFocus.TempData.more1.indexOf("orderPage") >= 0) {
+					orderJs.toOrderPage();
+				} else if(curFocus.TempData.more1.indexOf("order") >= 0) {
+					orderJs.getAuth(function(){
+						CT.toAnterRecommendUrl(curFocus.TempData);
+					});
+					// CT.toAnterRecommendUrl(curFocus.TempData);
+				} else if(curFocus.TempData.more1.indexOf("javascript:") >= 0) {
+					var excuteStr = curFocus.TempData.more1;
+					excuteStr = excuteStr.substring(excuteStr.indexOf("javascript:"));
+					var lastIdx = excuteStr.indexOf(";") ;
+					if(lastIdx > 0) {
+						excuteStr = excuteStr.substring(0,lastIdx);
+					}
+					PAGE.exeCode(excuteStr);
+				} else {
+					//跳转
+					CT.toAnterRecommendUrl(curFocus.TempData);
+				}
+			}
+			clearTimeout(_lock_timer);
+			_lock_timer = setTimeout(function(){
+				_lock = false;
+			},100);
+		}
+		function onWhere(){
+			if(curFocus.TempData && curFocus.TempData.more1 && curFocus.TempData.more1.indexOf("onjump") >= 0) {
+				goWhere();
+			}
+		}
+		PAGE.focusInit();
+		var anterFocus = PAGE.getFocusModel6('<%-defaultFocus%>');
+		anterFocus.defaultFocus();
+		
+
+		function backFunc() {// 返回
+			if(CT.$("pop_window").style.visibility == "visible") {
+				CT.$("pop_window").style.visibility = "hidden";
+				var anterFocus = PAGE.getFocusModel6(old_focus || '<%-defaultFocus%>');
+				anterFocus.defaultFocus();
+				entryOrderTime = new Date().getTime();
+			} else {
+				var backFuncEven = '';
+				try{
+					backFuncEven = <%-JSON.stringify(backFuncEven?backFuncEven:{})%>;
+					//<%=JSON.stringify(backFuncEven)%>
+				}catch(e){}
+				if(backFuncEven) {
+					for(var key in backFuncEven) {
+						//跳转
+						CT.toAnterRecommendUrl(backFuncEven);
+						return;
+					}
+				} 
+				CT.backPage();
+			}
+	}
+
+	</script>
+</body>
+
+</html>

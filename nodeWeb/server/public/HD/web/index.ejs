@@ -1,0 +1,153 @@
+<!--
+ * @Description: 
+ * @Author: jwzx
+ * @Date: 2020-10-09 10:11:52
+ * @LastEditTime: 2020-12-05 10:19:59
+ * @LastEditors: jwzx
+-->
+<%- include ('./components/header') %>
+
+</head>
+
+<body style="background:transparent ;position:absolute;">
+	<% 
+		let bgUrl = basePageInfo.pageInfo && basePageInfo.pageInfo.pageTemplateBgpic && (imgUrl +  basePageInfo.pageInfo.pageTemplateBgpic.picPath)	;
+		if(!bgUrl){
+			bgUrl =   "/" + global.config.projectName  +"/HD/images/startuplogo.png";
+		}
+	%> 
+
+	<img id="BJ" src="<%= bgUrl%>" />
+
+	<!--引用公用JS-->
+	<%- include('./components/commJs',{basePageInfo}) %>
+
+	<script>
+
+
+	//清除所有cookie
+	CT.clearAllCookie();
+	/**
+	 * 眉头拿action跳转
+	 * 如果action不等于loginportal_2019v1，可能是专项链接的跳转，直接跳转到指定链接
+	 */
+	var action = CT.requestValue("action") || "loginportal_2019v1";	
+	//pid
+	var pid = CT.requestValue("pid");
+	if (pid) {
+		CT.setCookie("pid", pid);
+	}
+	var jumpTime = 1000;
+	if(pid == 'dg1') {
+		jumpTime = 0;
+	}
+		
+	setTimeout(function(){
+		//获取EPG信息
+		//保存进入平台时window.history的长度，退出平台时使用。
+		CT.setCookie('platFormStartHisLen', window.history.length);
+		//userId
+		CT.delCookie("userId");
+		var userId = CT.requestValue('user_id');
+		if (userId && userId != -1) {
+			CT.setCookie("userId", userId);
+		} else {
+			userId = xjDataLog.getUserId();
+		}
+
+		//userToken
+		var userToken = CT.requestValue("UserToken");
+		if (userToken) {
+			CT.setCookie("userToken", userToken);
+		}
+		//机顶盒stbId
+		var stbId = CT.requestValue("StbId");
+		if (stbId) {
+			CT.setCookie("stbId", stbId);
+		}
+		//机顶盒StbType
+		var stbType = CT.requestValue("StbType");
+		if (stbType) {
+			CT.setCookie("stbType", stbType);
+		}
+		//机顶盒IP
+		var userIp = CT.requestValue("IP");
+		if (userIp) {
+			CT.setCookie("userIp", userIp);
+		}
+		//跳转至EPG需传递BackURL
+		var epgBackUrl = CT.requestValue("BackURL");
+		if (epgBackUrl) {
+			CT.setCookie("epgBackUrl", epgBackUrl);
+		}
+
+		//记录来index之前的页面
+		var backUrl = "";
+		backUrl = CT.requestValue("ReturnURL");
+		backUrl = encodeURIComponent(backUrl);
+		CT.setCookie("mainBackUrl", backUrl);
+		//删除记忆页面地址cookie
+		CT.setCookie('backUrlList', '');
+		CT.delCookie('backUrlList');
+
+
+		//添加新用户
+		xjDataLog.insertUserInfo();
+		/**
+		 * 登入埋点
+		 * */
+		xjDataLog.uploadLoginOut({
+			"pageCname": "登录页面",
+			"pageEname": action,
+			"loginType": "login"
+		});
+		//删除上一页面信息
+		CT.delCookie("prePageInfo");
+
+		!function () {
+			var contentIdArr = action.split('_');
+			var len = contentIdArr.length;
+			var type = len > 1 ? contentIdArr[1] : '';
+			var jumpTime = 500;
+			var e = basePageInfo || {};
+			// 非专项链接跳转
+			interface.changeThemeSwitch = false;
+			if (type == 0 || type == 1) {
+				var outJson = {
+					recommendDisplayType: len > 1 ? parseInt(contentIdArr[1]):'',
+					recommendDisplayValue: len > 2 ? parseInt(contentIdArr[2]) :''
+				}
+				AjaxConfig.commonPageInfo = e;
+				setLoggerInfo.pageInfoLog = e;
+				CT.toAnterRecommendUrl(outJson);
+			} else {//专项链接跳转方式
+				if (pid == 'dg1') {
+					orderJs.getAuth(function(){
+						// 通用日志
+						CT.BackPortalMainPage();
+					},function(){
+						CT.setCookie("backUrlList","[\" " + AjaxConfig.defaultMainUrl+"\"]");
+						//return true 是会跳转到订购页的.
+						return true;
+					});
+					return;
+				}
+				AjaxConfig.commonPageInfo = e;
+				setLoggerInfo.pageInfoLog = e;
+				//通用跳转
+				if (e.recommend_1) {
+					CT.toAnterRecommendUrl(e.recommend_1[0]);
+				} else {
+					CT.BackPortalMainPage();
+				}
+			}
+
+		}();
+
+	},jumpTime)
+
+	</script>
+	
+</body>
+
+</html>

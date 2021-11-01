@@ -1,0 +1,95 @@
+<!--
+ * @Description: 
+ * @Author: jwzx
+ * @Date: 2020-11-26 16:23:18
+ * @LastEditTime: 2020-11-26 18:40:55
+ * @LastEditors: jwzx
+-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+
+<HEAD>
+	<TITLE>游戏测试</TITLE>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<meta name="page-view-size" content="1280*720" />
+
+	<style>
+		*{
+			padding: 0;
+			margin:0;
+			box-sizing: border-box;
+			-webkit-box-sizing: border-box;
+		}
+		html,body {
+			padding: 50px;
+			width:1280px ;
+			height: 720px;
+		}
+
+		.gameName {
+			font-family: 幼圆, Arial;
+			left: 20px;
+			padding:10px;
+			text-align: left;
+			font-size: 20px;
+			color: #FFFFFF;
+			font-weight: bold;
+			text-decoration: none;
+			float: left;
+			display: inline-block;
+
+		}
+
+		a {
+			color: #FFFFFF;
+			text-decoration: none;
+		}
+
+		a:hover {
+			color: #FFFFFF;
+			text-decoration: none;
+		}
+
+		a:visited {
+			color: #FFFFFF;
+			text-decoration: none;
+		}
+	</style>
+</HEAD>
+
+<BODY bgcolor="#303133">
+
+	<script src="HD/js/loadCommomJs.js"></script>
+	<script>
+		ajax.init({
+			url: AjaxConfig.interfaceUrl + "findCommonPageInfo",
+			method: "get",
+			params: {
+				contentName: "operationPage",
+				time: new Date().getTime()
+			},
+
+			success: function (json) {
+
+				var divBox = document.createElement("div");
+				for (var key in json.data.recommend_1) {
+
+					var div = '<div class="gameName" ><a  href="' + json.data.recommend_1[key].recommendDisplayValue + '">' +key + ":" + json.data.recommend_1[key].recommendTrackName  + '</a></div>'
+					divBox.innerHTML += div;
+				}
+				document.body.appendChild(divBox);
+
+			},
+			fail: function (status) {
+
+				callback && callback(status);
+			}
+		})
+		function backFunc() {
+			CT.backPage();
+		}
+	</script>
+</BODY>
+
+</HTML>

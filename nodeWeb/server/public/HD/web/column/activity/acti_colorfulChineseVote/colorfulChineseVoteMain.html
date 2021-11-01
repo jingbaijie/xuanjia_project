@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="page-view-size" content="1280*720">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>七彩语文杯投票活动</title>
+    <link rel="stylesheet" href="css/colorfulChineseVote.css?v=20200823">
+</head>
+
+<body>
+    <div id="mainBox">
+        <!-- 上部 -->
+        <img src="img/logo.png" alt="" id="logoImg">
+        <img src="img/theme.png" alt="" id="titleImg">
+        <img src="img/qrcode.png" alt="" id="qrcodeImg">
+        <!-- 输入框 -->
+        <img src="img/search.png" alt="" id="searchBG">
+        <div id="searchInput" style="left: 950px;">输入姓名首字母简写或者编号</div>
+        <!-- 输入框焦点 -->
+        <div id="hands_x0_y0_searchFocus_">
+            <img src="img/searchFocus1.png" alt="" id="searchFocus">
+        </div>
+        <!-- 删除按钮 -->
+        <img id="emptyBtn" src="img/deleteBtn.png">
+        <!-- 删除按钮焦点 -->
+        <div id="hands_x0_y0_emptyBtnFocus_">
+            <img src="img/deleteFocus1.png" alt="" id="emptyBtnFocus" style="visibility: hidden;">
+        </div>
+        <!-- 活动详情按钮 -->
+        <img src="img/detailBtn.png" alt="" id="ruleBtn" style="left:150px;">
+        <!-- 复赛视频按钮 -->
+        <!-- <img src="img/secondRoundBtn.jpg" alt="" id="secondRoundBtn"> -->
+        <!-- 活动详情 -->
+        <div id="hands_x0_y0_ruleBtnFocus_" style="left:135px;">
+            <img src="img/detailBtnFocus.png" alt="" id="ruleBtnFocus"
+                style="width: 170px;height: 65px;visibility: hidden;">
+        </div>
+        <!-- 复赛视频焦点 -->
+        <div id="hands_x0_y0_secondRoundBtnFocus_">
+            <img src="img/voteFocus.png" alt="" id="secondRoundBtnFocus" style="width: 180px;height: 70px;visibility: hidden;">
+        </div>
+        <!--左边排行榜 -->
+        <ul id="rankListParent">
+            <!-- 动画 -->
+            <img id="addVotes" src="img/empty.png" style="position:absolute;left:100px;top:10px;z-index: 2;">
+        </ul>
+        <!-- 右边按时间列表 -->
+        <div class="listBG"></div>
+        <div id="listBG">
+            <ul id="listUl">
+				
+            </ul>
+            <!-- 底部按键提示文字和按钮 -->
+            <div class="keydownTip">请按遥控器“上页”、“下页”、“返回”键操作。</div>
+			<img id="preBtn" src="img/preBtn.png" style="position:absolute;left:700px;top:450px;">
+			<div id="hands_x0_y0_preBtnFocus_">
+				<img src="img/changePageFocus.png" alt="" id="preBtnFocus" style="position:absolute;left:683px;top:433px;visibility: hidden;">
+			</div>
+			<img id="nextBtn" src="img/nextBtn.png" style="position:absolute;left:805px;top:450px;">
+			<div id="hands_x0_y0_nextBtnFocus_">
+				<img src="img/changePageFocus.png" alt="" id="nextBtnFocus" style="position:absolute;left:786px;top:433px;visibility: hidden;">
+			</div>
+        </div>
+        <!-- 键盘 -->
+        <ul id="keyBoardBG">
+            <!-- 删除、完后按钮 -->
+            <li style="width: 76px;height: 55px;position: absolute;left: 700px;top: 220px;background:url(img/keyBoard/closeBtn.png) no-repeat;">
+                <div id="hands_x0_y0_keyDeleteBtnFocus_" style="position: absolute;left: 0px;top: 0px;">
+                    <img src="img/keyBoard/keyFocus.png" alt="" id="keyDeleteBtnFocus" style="visibility: hidden;">
+                </div>
+                <span id="keyDeleteBtn" style="position: absolute;left: 25px;top: 0px;z-index: 2;color: #ffffff;font-size: 40px;">×</span>
+            </li>
+            <li style="width: 119px;height: 55px;position: absolute;left: 800px;top: 220px;background:url(img/keyBoard/finishBtn.png) no-repeat;background-size: 100% 100%;">
+                <div id="hands_x0_y0_keyFinishBtnFocus_" style="position: absolute;left: 0px;top: 0px;">
+                    <img src="img/keyBoard/finishFocus.png" alt="" id="keyFinishBtnFocus" style="visibility: hidden;width: 119px;height: 55px;">
+                </div>
+                <span id="keyFinishBtn" style="position: absolute;left: 35px;top: 10px;z-index: 2;color: #ffffff;font-size: 25px;">完成</span>
+            </li>
+        </ul>
+        <!-- 弹窗 -->
+        <div id="tipBG" style="visibility:hidden;">
+            <img src="img/chanceOut.png" alt="" id="tipImg">
+        </div>
+        <!-- 空焦点 -->
+        <div id="hands_x0_y0_blankFocus_">
+            <img src="img/empty.png" alt="" id="blankFocus" style="visibility:hidden;">
+        </div>
+    </div>
+    <script type="text/javascript" src="../../../../js/loadCommomJs.js"></script>
+	<script type="text/javascript" src="js/key3_4.js"></script>
+    <script type="text/javascript" src="js/actiComm.js"></script>
+    <script type="text/javascript" src="js/base64.js"></script>
+    <script type="text/javascript" src="js/md5.js"></script>
+	<!--<script type="text/javascript" src="js/common3_4.js"></script>-->
+    <script type="text/javascript">
+        // 焦点数组
+        var buttons = [{
+            id: "hands_x0_y0_ruleBtnFocus_",
+            clickHandler: "javascript:colorFulChineseVote.jumpPage(0)",
+            left: "disable",
+            right: "disable",
+            up: "disable",
+            down: "hands_x0_y0_rankVoteBtn0Focus_",
+            focusType: 7
+        }, {
+            id: "hands_x0_y0_secondRoundBtnFocus_",
+            clickHandler: "javascript:colorFulChineseVote.jumpPage(1)",
+            left: "disable",
+            right: "disable",
+            up: "disable",
+            down: "disable",
+            focusType: 7
+        }, {
+            id: "hands_x0_y0_searchFocus_",
+            clickHandler: "javascript:colorFulChineseVote.keyBoardShowFunc()",
+            left: "disable",
+            right: "hands_x0_y0_emptyBtnFocus_",
+            up: "disable",
+            down: "disable",
+			downEvent:"javascript:colorFulChineseVote.searchEmptyDownEvent()",
+            focusType: 7
+        }, {
+            id: "hands_x0_y0_emptyBtnFocus_",
+            clickHandler: "javascript:colorFulChineseVote.emptyFunc()",
+            left: "hands_x0_y0_searchFocus_",
+            right: "disable",
+            up: "disable",
+            down: "disable",
+			downEvent:"javascript:colorFulChineseVote.searchEmptyDownEvent()",
+            focusType: 7
+        },{
+            id: "hands_x0_y0_keyDeleteBtnFocus_",
+            clickHandler: "javascript:colorFulChineseVote.keyDeleteFunc()",
+            left: "hands_x0_y0_key35Focus_",
+            right: "hands_x0_y0_keyFinishBtnFocus_",
+            up: "hands_x0_y0_key26Focus_",
+            down: "disable",
+            focusType: 7
+        },{
+            id: "hands_x0_y0_keyFinishBtnFocus_",
+            clickHandler: "javascript:colorFulChineseVote.keyFinishFunc()",
+            left: "hands_x0_y0_keyDeleteBtnFocus_",
+            right: "disable",
+            up: "hands_x0_y0_key27Focus_",
+            down: "disable",
+            focusType: 7  
+        },{
+            id: "hands_x0_y0_blankFocus_",
+            left: "disable",
+            right: "disable",
+            up: "disable",
+            down: "disable",
+            focusType: 7
+        },{
+			id: "hands_x0_y0_preBtnFocus_",
+			clickHandler: "javascript:colorFulChineseVote.preBtnFunc()",
+            left: "disable",
+            right: "hands_x0_y0_nextBtnFocus_",
+            up: "disable",			
+            down: "disable",
+            focusType: 7
+		},{
+			id: "hands_x0_y0_nextBtnFocus_",
+			clickHandler: "javascript:colorFulChineseVote.nextBtnFunc()",
+            left: "hands_x0_y0_preBtnFocus_",
+            right: "disable",
+            up: "disable",
+			upEvent:"javascript:colorFulChineseVote.nextBtnUpEvent()",
+            down: "disable",
+            focusType: 7
+		}];		
+    </script>
+    <script type="text/javascript" src="js/interfaceVote.js?v=2"></script>
+    <script type="text/javascript" src="js/colorfulChineseVoteMain.js?v=20200821020"></script>
+	<script>
+		CT.writeInfo(xjDataLog.getUserId()+"_____"+userId);
+	</script>
+</body>
+
+</html>

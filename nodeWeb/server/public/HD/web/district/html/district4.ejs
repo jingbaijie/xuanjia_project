@@ -1,0 +1,51 @@
+<%- include ('../../components/header') %>
+    <link rel="stylesheet" href="<%= basePageUrl %>/css/district4.css">
+</head>
+<body style="background:transparent ;position:absolute;">
+    <!--背景图-->
+	<img id="BJ" src="./HD/images/empty.png" />
+	<!--视频补洞-->
+	<img id="videoImg" style="width: 336px; height: 186px;position:absolute;top:164px;left:262px;z-index:-1;" src="../imgs/empty.png" style="visibility:hidden"/>
+    <!--推荐位图片-->
+    <div style="position: absolute;top:160px;overflow: hidden;width:1280px;height: 560px">
+		<div style="position: absolute;top:-160px;width:1280px;">
+			<div id="main" style="top:0px;width:1280px;">
+				 <!--动态插入推荐位-->
+			</div>
+		</div>
+	</div>
+    <!--引入公用js-->
+    <%- include('../../components/commJs') %>
+    <script src="<%= basePageUrl %>/js/district4.js"></script>
+    <script>
+        try {
+            CT.writeInfo("盒子STBType>>>>>>>>>>>>>>>>>>STBType=" + Authentication.CUGetConfig("STBType"));
+        }catch (e){
+
+        }
+
+        CT.writeInfo("用户UserId>>>>>>>>>>>>>>>>>>UserId=" + xjDataLog.getUserId());
+
+        var CHANGEMUN ="";
+        var backmain = escape(window.location.href);
+        var changeNumObj = {
+            changeNum: function (num) {
+                CHANGEMUN = CHANGEMUN + num + '';
+                xjDataLog.writeInfo("地址>>>>>>>>>>>CHANGEMUN=" + CHANGEMUN)
+                if(CHANGEMUN == "12311"){
+                    xjDataLog.writeInfo("进入跳转>>>>>>>>>>>>>>>>>>>>>>>>>>");
+                    CT.goPage();
+                    xjDataLog.writeInfo("地址>>>>>>>>>>>projectUrl=" + AjaxConfig.projectUrl)
+                    window.location.href = AjaxConfig.projectUrl + "/HD/web/column/columnGeneral/columnGeneral.html?contentId=100&contentEName=springRecommendPage_mhdwc&contentCName=梦幻动物城&action=springRecommendPage_mhdwc&v=1565935486454&defaultFocus=&isback=1";
+                }else if(CHANGEMUN == "12322"){
+                    CT.getActivityUrl(10);
+                }else if(CHANGEMUN == "12366"){
+                    CT.goPage();
+                    window.location.href = AjaxConfig.projectUrl + "/HD/web/test/html/test.html"
+                }
+            }
+        };
+    </script>
+</body>
+
+</html>

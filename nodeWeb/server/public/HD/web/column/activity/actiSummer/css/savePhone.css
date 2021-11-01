@@ -1,0 +1,61 @@
+
+/*数字键盘*/
+#phoneTable {
+    width: 306px;
+    height: 392px;
+    position: absolute;
+    top: 80px;
+    left: 435px;
+    background: #000;
+    opacity: 0.9;
+}
+.phoneOne {
+    width: 102px;
+    height: 98px;
+    opacity: 1;
+    margin: 0;
+    padding: 0;
+    float: left;
+    text-align: center;
+    line-height: 98px;
+    font-size: 24px;
+    color: #fff;
+}
+#phoneText {
+    width: 280px;
+    height: 50px;
+    position: absolute;
+    top: 478px;
+    left: 438px;
+    text-align: center;
+    line-height: 50px;
+    font-size: 28px;
+    z-index: 1;
+}
+#phoneTips {
+    position: absolute;
+    top: 550px;
+    left: 361px;
+    color: red;
+    font-size: 24px;
+}
+
+
+#hands_x0_y0_myPrizePhoneS_{
+    position: absolute;
+    left: 437px;
+    top: 469px;
+}
+#myPrizePhoneS{
+    width: 300px;
+}
+#hands_x0_y0_myPrizeSave_{
+    position: absolute;
+    left: 735px;
+    top: 462px;
+}
+#hands_x0_y0_myPrizeDel_{
+    position: absolute;
+    left: 840px;
+    top: 464px;
+}

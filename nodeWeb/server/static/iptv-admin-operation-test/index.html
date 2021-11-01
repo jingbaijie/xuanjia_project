@@ -1,0 +1,53 @@
+<!--
+ * @Description: 
+ * @Author: jwzx
+ * @Date: 2020-07-30 09:48:26
+ * @LastEditTime: 2020-07-30 09:58:58
+ * @LastEditors: jwzx
+--> 
+<!DOCTYPE html><html><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=Access-Control-Allow-Origin content=*><title>炫佳IPTV运营管理平台</title><link href=./static/css/app.44f2d8e5b218b9916272481569e0ea54.css rel=stylesheet></head><body><div id=app></div><script type=text/javascript>// (function(globle) {
+        //     globle.configs = {
+        //         /**
+        //          *  频道后台管理平台服务器路径配置信息
+        //          * 
+        //          *  字段说明
+        //          *  static_IMAGES_BASEURL   : 静态资源服务。图片
+        //          *  axios_BASEURL           : 后台管理API接口服务器
+        //          *  axios_TIMEOUT           : 后台管理API接口响应超时 单位/毫秒  
+        //          *  downloadSeriesUrl       : 下载节目集模板
+        //          *  downloadProgramUrl      : 下载节目子集模板
+        //          *  downloadProgressUrl     : 下载进度条
+        //          * 
+        //          * **/
+        //         axios_TIMEOUT: 1000 * 600,
+        //         static_IMAGES_BASEURL: 'http://180.96.20.178:6098/',
+        //         axios_BASEURL: 'http://180.96.20.178:6098/iptv-admin-api/',
+        //         downloadSeriesUrl: `114.220.176.196:8190/iptv-admin-api-v1.3/mediaTemplate/节目集模版.xlsx`,
+        //         downloadProgramUrl: `http://114.220.176.196:8190/iptv-admin-api-v1.3/mediaTemplate/节目子集模板.xls`,
+        //         downloadProgressUrl: `ws://114.220.176.196:8190/iptv-admin-api-v1.3/admin/operation/websocket/mediaImport`
+        //     }
+        // })(window);
+
+        (function(globle) {
+            globle.configs = {
+                /**
+                 *  频道后台管理平台服务器路径配置信息
+                 * 
+                 *  字段说明
+                 *  static_IMAGES_BASEURL   : 静态资源服务。图片
+                 *  axios_BASEURL           : 后台管理API接口服务器
+                 *  axios_TIMEOUT           : 后台管理API接口响应超时 单位/毫秒  
+                 *  downloadSeriesUrl       : 下载节目集模板
+                 *  downloadProgramUrl      : 下载节目子集模板
+                 *  downloadProgressUrl     : 下载进度条
+                 * 
+                 * **/
+                axios_TIMEOUT: 1000 * 600,
+                static_IMAGES_BASEURL: 'http://192.168.2.248:18080',
+                projectName : "/iptv-admin-operation-test/",
+                axios_BASEURL: 'http://192.168.2.248:18088/admin/',
+                downloadSeriesUrl: `http://192.168.2.248:18088/admin/mediaTemplate/节目集模版.xlsx`,
+                downloadProgramUrl: `http://192.168.2.248:18088/admin/mediaTemplate/节目子集模板.xls`,
+                downloadProgressUrl: `ws://192.168.2.248:18088/admin/admin/operation/websocket/mediaImport`
+            }
+        })(window);</script><script type=text/javascript src=./static/js/manifest.b5c7cb29283f6ae378a3.js></script><script type=text/javascript src=./static/js/vendor.f3af127c7479ef2c5cd8.js></script><script type=text/javascript src=./static/js/app.eb6b5d00cc87965d1b53.js></script></body></html>

@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="page-view-size" content="1280*720">
+    <link rel = "stylesheet" href = "./css/activityComm.css?v=123">
+    <title>这个端午 fang粽一下</title>
+</head>
+<body>
+<div class = "withScreen">
+    <!-- 背景 -->
+    <img id = "BJ" src = "./image/BG.jpg" class = "withScreen" alt="">
+    <!-- 树叶 -->
+    <img id = "leaf" class = "posDiv" src = "./image/leaf.png" style = "width: 471px;height: 306px;top: -123px;left: 753px;" alt="">
+    <!-- 空焦点 -->
+    <div id = "hands_x0_y0_emptyFocus_" class = "posDiv" style = "width: 2px;height: 2px;top: 20px;left: 20px;">
+        <img id = "emptyFocus" src = "./image/empty.png" style = "visibility: hidden;" alt="">
+    </div>
+    <!-- 我的粽子 -->
+    <div class = "allCredit">
+        <div id = "allCredit" class = "creditNum">0</div>
+    </div>
+    <!--    当前积分    -->
+    <div class = "curCredit">
+        <div id = "curCredit" class = "creditNum">0</div>
+    </div>
+    <!-- logo -->
+    <img id = "logo" src = "./image/logo.png?v=2021" class = "posDiv" style = "width: 361px;height: 145px;top: 32px;left: 465px;" alt="">
+    <!-- 左侧4个IP -->
+    <div id = "hands_x0_y0_ipFocus0_" class = "posDiv" style = "width: 134px;height: 134px;top: 75px;left: 40px;">
+        <img src = "./image/IP/jiangsu/ip_0.png" class = "ipImgs" alt="">
+        <img id = "ipFocus0" class = "posDiv" src = "./image/IP/jiangsu/ipS_0.png" style = "top: 0; left: 0;visibility: hidden;" alt="">
+    </div>
+    <div id = "hands_x0_y0_ipFocus1_" class = "posDiv" style = "width: 134px;height: 134px;top: 180px;left: 40px;">
+        <img src = "./image/IP/jiangsu/ip_1.png" class = "ipImgs" alt="">
+        <img id = "ipFocus1" class = "posDiv" src = "./image/IP/jiangsu/ipS_1.png" style = "top: 0; left: 0;visibility: hidden;" alt="">
+    </div>
+    <div id = "hands_x0_y0_ipFocus2_" class = "posDiv" style = "width: 134px;height: 134px;top: 300px;left: 40px;">
+        <img src = "./image/IP/jiangsu/ip_2.png" class = "ipImgs" alt="">
+        <img id = "ipFocus2" class = "posDiv" src = "./image/IP/jiangsu/ipS_2.png" style = "top: 0; left: 0;visibility: hidden;" alt="">
+    </div>
+    <div id = "hands_x0_y0_ipFocus3_" class = "posDiv" style = "width: 134px;height: 134px;top: 420px;left: 40px;">
+        <img src = "./image/IP/jiangsu/ip_3.png" class = "ipImgs" alt="">
+        <img id = "ipFocus3" class = "posDiv" src = "./image/IP/jiangsu/ipS_3.png" style = "top: 0; left: 0;visibility: hidden;" alt="">
+    </div>
+    <!--    炮焦点    -->
+    <div id = "hands_x0_y0_artilleryFocus_" class = "posDiv" style = "width: 218px;height: 211px;top: 355px;left: 168px;">
+        <img id = "artilleryImg" class = "posDiv" src = "./image/artillery/0.png" style = "visibility: visible;" alt="">
+        <img id = "artilleryFocus" class = "posDiv" src = "./image/artillery/0.png" style = "visibility: hidden;" alt="">
+    </div>
+    <!--    粽子IP    -->
+    <img id = "zongIP0" class = "posDiv" src = "./image/zongIP/0.png" style = "width: 136px;height: 155px;top: 145px;left: 295px" alt = "">
+    <img id = "zongIP1" class = "posDiv" src = "./image/zongIP/1.png" style = "width: 145px;height: 184px;top: 295px;left: 410px" alt = "">
+    <img id = "zongIP2" class = "posDiv" src = "./image/zongIP/2.png" style = "width: 148px;height: 176px;top: 180px;left: 625px" alt = "">
+    <img id = "zongIP3" class = "posDiv" src = "./image/zongIP/3.png" style = "width: 135px;height: 157px;top: 340px;left: 785px" alt = "">
+    <img id = "zongIP4" class = "posDiv" src = "./image/zongIP/4.png" style = "width: 130px;height: 152px;top: 150px;left: 895px" alt = "">
+    <!-- 粽子炮 -->
+    <img id = "bullet" class = "posDiv" src = "./image/bullet/0.png" style = "width: 60px;height: 60px;top: 335px;left: 162px;visibility: hidden;" alt="">
+    <!--  活动规则  -->
+    <div id = "hands_x0_y0_ruleFocus_" class = "posDiv" style = "width: 206px;height: 102px;top: 80px;left: 1050px;">
+        <img src = "./image/rule.png" class = "posDiv" alt="">
+        <img id = "ruleFocus" src = "./image/selected.png" style = "visibility: hidden;" alt="">
+    </div>
+    <!--  排行榜  -->
+    <div id = "hands_x0_y0_rankFocus_" class = "posDiv" style = "width: 206px;height: 102px;top: 165px;left: 1050px;">
+        <img src = "./image/rankList.png" class = "posDiv" alt="">
+        <img id = "rankFocus" src = "./image/selected.png" style = "visibility: hidden;" alt="">
+    </div>
+    <!--   萌鸡小队IP     -->
+    <img id = "chicken0" src = "./image/chicken0.png" style = "width: 153px;height: 200px;position: absolute;top: 415px;right: 85px;" alt="">
+    <img id = "chicken1" src = "./image/chicken1.png" alt="">
+
+    <!--  龙舟  -->
+    <img id = "dragonBoat" src = "./image/boat/0.png" style = "width: 279px;height: 224px;position: absolute;top: 500px;left: 120px;" alt="">
+    <!-- 弹窗 -->
+    <div id = "confirmDiv" class = "withScreen" style = "visibility: hidden;">
+        <!-- 弹窗背景 -->
+        <img id = "conBg" class = "withScreen" src = "./image/grayEmpty.png" alt="">
+        <div id = "conText">
+            <!-- 没有试玩机会弹窗 -->
+            <div id = "noTry" class = "posDiv"  style = "visibility: hidden;">
+                <div class = "conTitle">试玩机会用完了</div>
+                <div class = "conTip1">恭喜你获得<span id = "noTryCredit" class = "conCredit">1</span>积分</div>
+                <div class = "conTip2">订购首页产品可增加游戏机会呦~</div>
+                <div id = "hands_x0_y0_noTryToOrder_" class = "withScreen" style = "width: 260px;height: 109px;top: 340px;left: 40px;">
+                    <img class = "posDiv" src = "./image/confirm/toOrder.png" alt="">
+                    <img id = "noTryToOrder" class = "posDiv" src = "./image/confirm/selected.png" style = "visibility: hidden;" alt="">
+                </div>
+                <div id = "hands_x0_y0_noTryToRank_" class = "withScreen" style = "width: 260px;height: 109px;top: 340px;left: 330px;">
+                    <img class = "posDiv" src = "./image/confirm/rankList.png" alt="">
+                    <img id = "noTryToRank" class = "posDiv" src = "./image/confirm/selected.png" style = "visibility: hidden;" alt="">
+                </div>
+            </div>
+            <!-- 没有机会弹窗 -->
+            <div id = "noChan" class = "posDiv"  style = "visibility: hidden;">
+                <div class = "conTitle">今日机会已用完</div>
+                <div class = "conTip1">小朋友，今日机会已用完，明天再来挑战吧！</div>
+                <div id = "hands_x0_y0_noChanToMain_" class = "withScreen" style = "width: 260px;height: 109px;top: 340px;left: 40px;">
+                    <img class = "posDiv" src = "./image/confirm/more.png" alt="">
+                    <img id = "noChanToMain" class = "posDiv" src = "./image/confirm/selected.png" style = "visibility: hidden;" alt="">
+                </div>
+                <div id = "hands_x0_y0_noChanCancel_" class = "withScreen" style = "width: 260px;height: 109px;top: 340px;left: 330px;">
+                    <img class = "posDiv" src = "./image/confirm/cancel.png" style = "top: 26px;left: 14px;" alt="">
+                    <img id = "noChanCancel" class = "posDiv" src = "./image/confirm/selected.png" style = "visibility: hidden;" alt="">
+                </div>
+            </div>
+            <!-- 一局游戏结束弹窗 -->
+            <div id = "noGame" class = "posDiv"  style = "visibility: hidden;">
+                <div class = "conTitle">游戏结束</div>
+                <div class = "conTip1">恭喜您获得<span id = "noGameCredit" class = "conCredit">1</span>积分！</div>
+                <div id = "hands_x0_y0_noGameOneMore_" class = "withScreen" style = "width: 260px;height: 109px;top: 340px;left: 40px;">
+                    <img class = "posDiv" src = "./image/confirm/oneMore.png" style = "top: 26px;left: 14px;" alt="">
+                    <img id = "noGameOneMore" class = "posDiv" src = "./image/confirm/selected.png" style = "visibility: hidden;" alt="">
+                </div>
+                <div id = "hands_x0_y0_noGameRank_" class = "withScreen" style = "width: 260px;height: 109px;top: 340px;left: 330px;">
+                    <img class = "posDiv" src = "./image/confirm/rankList.png" alt="">
+                    <img id = "noGameRank" class = "posDiv" src = "./image/confirm/selected.png" style = "visibility: hidden;" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 剩余游戏次数 -->
+    <div class="gameChance">
+        <div id="gameChance"> 0 </div>
+    </div>
+
+  <!--打印-->
+    <div id="error" style="position: absolute;left: 300px;top: 200px;font-size: 30px;color: red;"></div>
+</div>
+<!-- 引入公共的js开始 -->
+<script type = "text/javascript" src = "../../../../js/loadCommomJs.js"></script>
+<script type="text/javascript" src="../../../../js/actiComm.js?v=20212345"></script>
+<!--引入结束-->
+<script type="text/javascript">
+    var buttons = [
+        {
+            id: "hands_x0_y0_emptyFocus_",
+            clickHandler: "",
+            up: "disable",
+            down: "disable",
+            left: "disable",
+            right: "disable",
+            focusType: 7
+        },{
+            id: "hands_x0_y0_ipFocus0_",
+            clickHandler: "javascript: actiPage.toIP(820)",
+            up: "disable",
+            down: "hands_x0_y0_ipFocus1_",
+            left: "disable",
+            right: "hands_x0_y0_artilleryFocus_",
+            focusType: 7
+        },{
+            id: "hands_x0_y0_ipFocus1_",
+            clickHandler: "javascript: actiPage.toIP(1604)",
+            up: "hands_x0_y0_ipFocus0_",
+            down: "hands_x0_y0_ipFocus2_",
+            left: "disable",
+            right: "hands_x0_y0_artilleryFocus_",
+            focusType: 7
+        },{
+            id: "hands_x0_y0_ipFocus2_",
+            clickHandler: "javascript: actiPage.toIP(217)",
+            up: "hands_x0_y0_ipFocus1_",
+            down: "hands_x0_y0_ipFocus3_",
+            left: "disable",
+            right: "hands_x0_y0_artilleryFocus_",
+            focusType: 7
+        },{
+            id: "hands_x0_y0_ipFocus3_",
+            clickHandler: "javascript: actiPage.toIP(520)",
+            up: "hands_x0_y0_ipFocus2_",
+            down: "disable",
+            left: "disable",
+            right: "hands_x0_y0_artilleryFocus_",
+            focusType: 7
+        },{
+            id: "hands_x0_y0_artilleryFocus_",
+            clickHandler: "javascript: actiPage.artillShoot()",
+            otherFocusEvent: "javascript: actiPage.artillGetFocus()",
+            otherBlurEvent: "javascript: actiPage.artillLoseFocus()",
+            up: "disable",
+            down: "disable",
+            left: "hands_x0_y0_ipFocus3_",
+            right: "hands_x0_y0_rankFocus_",
+            focusType: 7
+        },{
+            id: "hands_x0_y0_ruleFocus_",
+            clickHandler: "javascript: actiPage.toRule()",
+            up: "disable",
+            down: "hands_x0_y0_rankFocus_",
+            left: "hands_x0_y0_artilleryFocus_",
+            right: "disable",
+            focusType: 7
+        },{
+            id: "hands_x0_y0_rankFocus_",
+            clickHandler: "javascript: actiPage.toRank()",
+            up: "hands_x0_y0_ruleFocus_",
+            down: "disable",
+            left: "hands_x0_y0_artilleryFocus_",
+            right: "disable",
+            focusType: 7
+        },{
+            id: "hands_x0_y0_noTryToOrder_",
+            clickHandler: "javascript: actiPage.toOrder()",
+            up: "disable",
+            down: "disable",
+            left: "disable",
+            right: "hands_x0_y0_noTryToRank_",
+            focusType: 7
+        },{
+            id: "hands_x0_y0_noTryToRank_",
+            clickHandler: "javascript: actiPage.toRank()",
+            up: "disable",
+            down: "disable",
+            left: "hands_x0_y0_noTryToOrder_",
+            right: "disable",
+            focusType: 7
+        },{
+            id: "hands_x0_y0_noChanToMain_",
+            clickHandler: "javascript: actiPage.jumpToMain()",
+            up: "disable",
+            down: "disable",
+            left: "disable",
+            right: "hands_x0_y0_noChanCancel_",
+            focusType: 7
+        },{
+            id: "hands_x0_y0_noChanCancel_",
+            clickHandler: "javascript: actiPage.hideConfirm()",
+            up: "disable",
+            down: "disable",
+            left: "hands_x0_y0_noChanToMain_",
+            right: "disable",
+            focusType: 7
+        },{
+            id: "hands_x0_y0_noGameOneMore_",
+            clickHandler: "javascript: actiPage.hideConfirm()",
+            up: "disable",
+            down: "disable",
+            left: "disable",
+            right: "hands_x0_y0_noGameRank_",
+            focusType: 7
+        },{
+            id: "hands_x0_y0_noGameRank_",
+            clickHandler: "javascript: actiPage.toRank()",
+            up: "disable",
+            down: "disable",
+            left: "hands_x0_y0_noGameOneMore_",
+            right: "disable",
+            focusType: 7
+        }
+    ];
+
+    function ActiPage(){
+        this.allCreditNum = 0;//当前用户所有积分
+        this.curCreditNum = 0;//该局游戏当前积分
+        this.lastChance = 0;//用户剩余机会
+        this.haveTryChance = false;//用户是否有试玩机会
+        this.isOrder = 1;//默认 未订购   0 已订购
+        this.tryDate = new Date().getMonth() + "" + new Date().getDate();//今日日期:月+日,如:5月26号-->426
+        this.pageInter = null;//运动定时器
+        this.allZongImg = [//五个粽子IP信息,用于随机重置粽子IP
+            {
+                src: "./image/zongIP/0.png",
+                width: "145px",
+                height: "158px"
+            },{
+                src: "./image/zongIP/1.png",
+                width: "135px",
+                height: "145px"
+            },{
+                src: "./image/zongIP/2.png",
+                width: "130px",
+                height: "160px"
+            },{
+                src: "./image/zongIP/3.png",
+                width: "164px",
+                height: "197px"
+            },{
+                src: "./image/zongIP/4.png",
+                width: "136px",
+                height: "145px"
+            }
+        ];
+        this.cartoonIPs = [];//4个卡通IP
+        this.bulletCan = false;//子弹是否可以移动
+        this.boomCan = false;//子弹是否可以爆炸
+        this.artilleryCan = false;//炮筒可切换角度
+        this.boomFlag = 0;//子弹爆炸标志
+        this.chickenFlag = 0;//右侧小蓝鸡移动标志
+        this.dragonBoatFlag = 0;//龙舟移动标志，0：正向移动，1：反向移动
+        this.dragonBoatImgFlag = 0;//龙舟移动时切换的图片标志
+        this.boatMoveArr = [120,850],//龙舟移动的最远与最近距离
+        this.boatMoveDis = 50;//龙舟每次移动的距离
+        this.leafFlag = 0;//树叶移动标志
+        this.artilleryFlag = 0;//炮筒切换标志
+        this.artilleryCur = 0;//炮筒当前落标
+        this.artilleryStartArr = [//粽子炮弹初始位置
+            [335,285],
+            [355,285],
+            [380,295],
+            [390,300]
+        ];
+        this.artilleryMoveArr = [//粽子炮弹移动路径
+            [170,1280,6],//[最高点，最远点,向上运动平均基数]
+            [280,2000,20],
+            [300,1000,20],
+            [320,1280,30]
+        ];
+        this.leaf = document.getElementById("leaf");//树叶DOM
+        this.allCredit = document.getElementById("allCredit");//用户所有积分DOM
+        this.curCredit = document.getElementById("curCredit");//用户当局游戏积分DOM
+        this.bullet = document.getElementById("bullet");//粽子子弹DOM
+        this.bulletCurTop = 0;//当前粽子子弹的top值
+        this.bulletCurLeft = 0;//当前粽子子弹的left值
+        this.bulletCurWidth = 0;//当前粽子子弹的width值
+        this.bulletCurHeight = 0;//当前粽子子弹的height值
+        this.artilleryImg = document.getElementById("artilleryImg");//炮焦点未选中DOM
+        this.artillery = document.getElementById("artilleryFocus");//炮焦点选中DOM
+        this.chicken0 = document.getElementById("chicken0");//右侧小蓝鸡DOM
+        this.dragonBoat = document.getElementById("dragonBoat");//底部龙舟DOM
+        this.zongIPs = [//粽子IP的状态及DOM
+            {
+                beHit: false,//已被射击到
+                dom: document.getElementById("zongIP0"),//DOM
+            },{
+                beHit: false,
+                dom: document.getElementById("zongIP1"),
+            },{
+                beHit: false,
+                dom: document.getElementById("zongIP2"),
+            },{
+                beHit: false,
+                dom: document.getElementById("zongIP3"),
+            },{
+                beHit: false,
+                dom: document.getElementById("zongIP4"),
+            }
+        ];
+        this.zongIPTop = 0;//当前粽子IP的top值
+        this.zongIPLeft = 0;//当前粽子IP的left值
+        this.zongIPWidth = 0;//当前粽子IO的width值
+        this.zongIPHeight = 0;//当前粽子IP的Height值
+        this.zongIPBoom = -1;//被撞击了的粽子下标
+        this.haveChance = 0;//机会
+        this.userdatalist = {};// 机会
+    }
+
+    ActiPage.prototype = {
+        init: function(){//页面数据及焦点初始化
+            var _this = this;
+            this.setZong();//设置粽子IP内容
+            this.interStart();//开始页面动画
+            //鉴权
+            orderJs.columnGetAuth(function (data) {
+                if(data == "0"){
+                    _this.isOrder = 0;
+                }
+                //获取用户试玩机会
+                actiObj.getUserDataList(function(userData){
+                    if (userData && userData.data) {
+                        _this.userdatalist =CT.stringToJson(userData.data.userActiData);
+                        if (_this.userdatalist.time == _this.tryDate) { 
+                            if(_this.isOrder == 0){
+                                if(_this.userdatalist.ipList.length > 0){
+                                    _this.haveChance = 3 + _this.userdatalist.ipList.length;
+                                }else {
+                                    _this.haveChance = 3;
+                                }
+                            }else {
+                                _this.haveChance = 0;
+                                if(_this.userdatalist.tryDate == _this.tryDate){//今日机会已使用
+                                    _this.haveTryChance = false;
+                                }else {
+                                    _this.haveTryChance = true;
+                                    _this.haveChance ++;
+                                }
+                            }
+                        } else { //如果记录的数据不是当天数据，初始化当天数据
+							 _this.userdatalist = {
+									tryDate: '',
+									time:_this.tryDate,
+									ipList:[],
+								}
+							if(_this.isOrder == 0){
+								_this.haveChance = 3;
+							}else {
+								 _this.haveTryChance = true;
+								 _this.haveChance ++;
+							}
+						}
+                    } else {
+						 _this.userdatalist = {
+                                tryDate: '',
+                                time:_this.tryDate,
+                                ipList:[],
+                            }
+                        if(_this.isOrder == 0){
+                            _this.haveChance = 3;
+                        }else {
+							 _this.haveTryChance = true;
+							 _this.haveChance ++;
+                        }
+                    }
+                    //actiObj.setUserDataList(CT.jsonToString(_this.userdatalist))
+                    /*if(userData && userData.data.userActiData == _this.tryDate){
+                        _this.haveTryChance = false;
+                    }else{
+                        _this.haveTryChance = true;
+                    }*/
+                    //获取用户当前积分
+                    actiObj.getUserCredit(function(creditData){
+                        if(creditData && creditData.data && creditData.data.creditNum){
+                            _this.allCreditNum = parseInt(creditData.data.creditNum,10);
+                        }
+                        _this.allCredit.innerHTML = _this.allCreditNum;
+                        //获取用户当前已使用机会
+                        actiObj.getChance(function(chanceData){
+                            if(chanceData){
+                                var usedChance = chanceData.data.activityChance;
+                            }else{
+                                var usedChance = 0;
+                            }
+							
+                            _this.lastChance = _this.haveChance - usedChance;
+                            if(_this.lastChance < 0)_this.lastChance = 0;
+                            CT.$('gameChance').innerHTML = _this.lastChance;
+                            PAGE.focusInit();
+                            if(curFocus){
+                                curFocus.defaultBlur();
+                            }
+                            var lastActiF = CT.getCookie("lastActiF");
+                            CT.delCookie("lastActiF");
+                            if(lastActiF && document.getElementById(lastActiF)){
+                                curFocus = PAGE.changeFocus(lastActiF);
+                            }else{
+                                curFocus = PAGE.changeFocus("hands_x0_y0_artilleryFocus_");
+                            }
+                            curFocus.defaultFocus();
+                        });
+                    });
+                });
+
+            });
+
+        },
+        /**
+         * 初始化各运动动画
+         */
+        interStart: function(){
+            var _this = this;
+            if(this.pageInter != null){
+                clearInterval(this.pageInter);
+            }
+            this.pageInter = setInterval(function(){
+                _this.otherDomMove();
+                if(_this.bulletCan){
+                    _this.bulletMove();
+                }
+                if(_this.boomCan){
+                    _this.showBoom();
+                }
+                if(_this.artilleryCan){
+                    _this.artiLLeryChange()
+                }
+            },200);
+        },
+        /**
+         * 炮筒切动画
+         */
+        artiLLeryChange: function(){
+            if(this.artilleryFlag%5 == 0){
+                this.artilleryCur ++;
+                if(this.artilleryCur >= 4){
+                    this.artilleryCur = 0;
+                }
+                this.artillery.src = "./image/artillery/"+ this.artilleryCur +".png";
+            }
+            this.artilleryFlag++;
+        },
+        /**
+         * 子弹移动及撞击，超界判断
+         */
+        bulletMove: function(){
+            var _this = this;
+            var beHit = false;//有粽子IP被撞击到
+            this.bulletCurTop = parseInt(this.bullet.style.top);
+            this.bulletCurLeft = parseInt(this.bullet.style.left)
+            this.bulletCurWidth = parseInt(this.bullet.style.width) - 20;
+            this.bulletCurHeight = parseInt(this.bullet.style.height) - 20;
+            for(var i = 0; i < this.zongIPs.length; i++){
+                if(!this.zongIPs[i].beHit){
+                    this.zongIPTop = parseInt(this.zongIPs[i].dom.style.top);
+                    this.zongIPLeft = parseInt(this.zongIPs[i].dom.style.left);
+                    this.zongIPWidth = parseInt(this.zongIPs[i].dom.style.width) - 20;
+                    this.zongIPHeight = parseInt(this.zongIPs[i].dom.style.height) - 20;
+                    if((this.bulletCurTop >= this.zongIPTop && this.bulletCurTop < this.zongIPTop + this.zongIPHeight) || (this.bulletCurTop + this.bulletCurHeight > this.zongIPTop && this.bulletCurTop + this.bulletCurHeight < this.zongIPTop + this.zongIPHeight)){
+                        if(this.bulletCurLeft <= this.zongIPLeft && this.bulletCurLeft + this.bulletCurWidth > this.zongIPLeft)beHit = true,this.zongIPBoom = i;
+                        if(this.bulletCurLeft >= this.zongIPLeft && this.bulletCurLeft < this.zongIPLeft + this.zongIPWidth)beHit = true,this.zongIPBoom = i;
+                    }
+                }
+            }
+            if(!beHit){
+                if(this.bulletCurLeft >= this.artilleryMoveArr[this.artilleryCur][1] || this.bulletCurLeft >= 1280){
+                    this.bulletCan = false;
+                    this.bulletHide();
+                }else{
+                    if(this.bulletCurLeft <= this.artilleryMoveArr[this.artilleryCur][1]/2){
+                        if(this.bulletCurTop >= this.artilleryMoveArr[this.artilleryCur][0]){
+                            this.bullet.style.top = this.bulletCurTop - this.artilleryMoveArr[this.artilleryCur][0]/this.artilleryMoveArr[this.artilleryCur][2] + "px";
+                        }
+                        this.bullet.style.left = this.bulletCurLeft + this.artilleryMoveArr[this.artilleryCur][1]/40 + "px";
+                    }else{
+                        this.bullet.style.top = this.bulletCurTop + this.artilleryMoveArr[this.artilleryCur][0]/this.artilleryMoveArr[this.artilleryCur][2] + "px";
+                        this.bullet.style.left = this.bulletCurLeft + this.artilleryMoveArr[this.artilleryCur][1]/40 + "px";
+                    }
+                }
+            }else{
+                this.bulletCan = false;
+                this.bullet.src = "./image/bullet/1.png";
+                this.boomCan = true;
+            }
+        },
+        /**
+         * 其余背景物体移动
+         */
+        otherDomMove: function(){
+            var _this = this;
+            /*背景中的树叶移动*/
+            this.leafFlag ++;
+            if(this.leafFlag%3 == 0){
+                this.leaf.style.visibility = "hidden";
+            }else{
+                this.leaf.style.visibility = "visible";
+            }
+            /*小鸡移动*/
+            this.chickenFlag++;
+            if(this.chickenFlag%4 > 1){
+                this.chicken0.style.top = "415px";
+                this.chicken0.style.right = "85px";
+            }else{
+                this.chicken0.style.top = "405px";
+                this.chicken0.style.right = "95px";
+            }
+            /*龙舟移动*/
+            if(parseInt(this.dragonBoat.style.left) >= this.boatMoveArr[1]){
+                this.dragonBoatFlag = 0;
+            }
+            if(parseInt(this.dragonBoat.style.left) <= this.boatMoveArr[0]){
+                this.dragonBoatFlag = 1;
+            }
+            this.dragonBoatImgFlag ++;
+            if(this.dragonBoatFlag == 1){
+                if(this.dragonBoatImgFlag%2 == 0){
+                    this.dragonBoat.src = "./image/boat/0.png";
+                }else{
+                    this.dragonBoat.src = "./image/boat/1.png";
+                }
+                this.dragonBoat.style.left = parseInt(this.dragonBoat.style.left) + this.boatMoveDis + "px";
+            }else{
+                if(this.dragonBoatImgFlag%2 == 0){
+                    this.dragonBoat.src = "./image/boat/2.png";
+                }else{
+                    this.dragonBoat.src = "./image/boat/3.png";
+                }
+                this.dragonBoat.style.left = parseInt(this.dragonBoat.style.left) - this.boatMoveDis + "px";
+            }
+        },
+        //隐藏子弹并回复原位
+        bulletHide: function(){
+            this.bullet.style.visibility = "hidden";
+            this.bullet.src = "./image/bullet/0.png";
+            this.bullet.style.width = "60px";
+            this.bullet.style.height = "60px";
+            this.bullet.style.top = "335px";
+            this.bullet.style.top = "162px";
+            this.showConfirm();
+        },
+        //展示爆炸动画
+        showBoom: function(){
+            if(this.boomFlag > 2){
+                this.boomCan = false;
+                this.boomFlag = 0;
+                this.zongIPs[this.zongIPBoom].beHit = true;
+                this.zongIPs[this.zongIPBoom].dom.style.visibility = "hidden";
+                this.bulletHide();
+                this.setCredit();
+            }else{
+                this.bullet.src = "./image/bomm/"+ this.boomFlag +".png";
+                this.bullet.style.width = "255px";
+                this.bullet.style.width = "247px";
+                this.boomFlag ++;
+            }
+        },
+        //设置粽子IP内容
+        setZong: function(){
+            var startArr = [0,1,2,3,4];
+            var targetArr = [];
+            var targetIndex = 0;
+            for(var i = 0; i < 5; i++){
+                targetIndex = Math.floor(Math.random()*startArr.length);
+                targetArr.push(startArr[targetIndex]);
+                startArr.splice(targetIndex,1)
+            }
+            for(var i = 0; i < 5; i++){
+                this.zongIPs[i].beHit = false;
+                this.zongIPs[i].dom.src = this.allZongImg[targetArr[i]].src;
+                this.zongIPs[i].dom.style.width = this.allZongImg[targetArr[i]].width;
+                this.zongIPs[i].dom.style.height = this.allZongImg[targetArr[i]].height;
+                this.zongIPs[i].dom.style.visibility = "visible";
+            }
+        },
+        //上传用户积分
+        setCredit: function(){
+            this.curCreditNum ++;
+            this.curCredit.innerHTML = this.curCreditNum;
+            this.allCreditNum ++;
+            this.allCredit.innerHTML = this.allCreditNum;
+			actiObj.setUserCredit(this.allCreditNum,function(data){
+                if(data){
+                    
+                }
+            });
+        },
+        //IP跳转或者厂家跳转
+        toIP: function(ii){
+            var _this = this;
+            if(this.isOrder == 0){
+                PAGE.otherPageParam = window.location.search.substring(1);
+                var cartoonId = ii;
+                CT.goPage();
+                var commpageId = 3;
+                var cartoonData={recommendDisplayType:1,recommendDisplayValue:cartoonId,commpageId:commpageId};
+                if(_this.userdatalist.ipList.indexOf(ii) == -1){//数组中没有就存储一个
+                    _this.userdatalist.ipList.push(ii);
+                }
+                actiObj.setUserDataList(JSON.stringify(_this.userdatalist),function (data) {
+                    CT.toAnterRecommendUrl(cartoonData);
+                });
+            }else{
+                this.toOrder();
+            }
+            
+        },
+        //射击事件
+        artillShoot: function(){
+            var _this = this;
+            var canShoot = false;
+            if(this.isOrder == 0){
+                if(this.lastChance > 0){//剩余次数 大于 0
+                    canShoot = true;
+                    actiObj.setChance();
+                    this.lastChance --;
+                    CT.$('gameChance').innerHTML = this.lastChance;
+                }else{
+                    this.showConfirm("noChan")
+                }
+            }else{
+                if(this.haveTryChance){//有试玩机会
+                    this.haveTryChance = false;
+                    _this.userdatalist.tryDate = _this.tryDate;
+                    actiObj.setUserDataList(JSON.stringify(_this.userdatalist));
+                    canShoot = true;
+                    if(this.lastChance > 0){
+                        this.lastChance --;
+                        CT.$('gameChance').innerHTML = this.lastChance;
+                    }
+                }else{//没有机会去订购
+                    this.toOrder();
+                }
+            }
+            if(canShoot){
+                actiObj.changeFocus("hands_x0_y0_emptyFocus_");
+                this.bullet.style.top = this.artilleryStartArr[this.artilleryCur][0] + "px";
+                this.bullet.style.left = this.artilleryStartArr[this.artilleryCur][1] + "px";
+                this.bullet.style.visibility = "visible";
+                this.bullet.src = "./image/bullet/1.png";
+                this.bulletCan = true;
+            }
+        },
+        //炮筒焦点获焦事件
+        artillGetFocus: function(){
+            this.artilleryImg.style.visibility = "hidden";
+            this.artilleryCan = true;
+        },
+        //炮筒焦点失焦事件
+        artillLoseFocus: function(){
+            this.artilleryCan = false;
+            this.artilleryImg.src = this.artillery.src;
+            this.artilleryImg.style.visibility = "visible";
+        },
+        //跳转规则页
+        toRule: function(){
+            CT.setCookie("lastActiF",curFocus.FocusID);
+            var url = "./activity_dragonBoatRule.html";
+            actiObj.actiCommonJumpUrl(url);
+
+        },
+        //跳转排行榜页
+        toRank: function(){
+			if(curFocus.FocusID == "hands_x0_y0_rankFocus_"){
+                CT.setCookie("lastActiF",curFocus.FocusID);
+            }
+            var url = "./activity_dragonBoatRank.html";
+            actiObj.actiCommonJumpUrl(url);
+        },
+        //跳转订购
+        toOrder: function(){
+            PAGE.otherPageParam = window.location.search.substring(1);
+            CT.goPage();
+            orderJs.columnToOrderPage("activity_dragonBoat");
+        },
+        //跳转首页
+        jumpToMain: function(){
+            CT.BackPortalMainPage();
+        },
+        //展示弹窗
+        showConfirm: function(conName){
+            if(!conName){
+                if(this.isOrder == 0){ //已订购
+                    conName = "noGame";
+                }else{
+                    conName = "noTry";
+                }
+            }
+            CT.$("confirmDiv").style.visibility = "visible";
+            switch(conName){
+                case "noTry":
+                    if(this.zongIPBoom != -1){
+                        CT.$("noTryCredit").innerHTML = 1;
+                    }else{
+                        CT.$("noTryCredit").innerHTML = 0;
+                    }
+                    this.zongIPBoom = -1;
+                    CT.$("noTry").style.visibility = "visible";
+                    PAGE.changeFocus("hands_x0_y0_noTryToOrder_");
+                    break;
+                case "noChan":
+                    CT.$("noChan").style.visibility = "visible";
+                    PAGE.changeFocus("hands_x0_y0_noChanToMain_");
+                    break;
+                case "noGame":
+                    if(this.zongIPBoom != -1){
+                        CT.$("noGameCredit").innerHTML = 1;
+                    }else{
+                        CT.$("noGameCredit").innerHTML = 0;
+                    }
+                    this.zongIPBoom = -1;
+                    CT.$("noGame").style.visibility = "visible";
+                    PAGE.changeFocus("hands_x0_y0_noGameOneMore_");
+                    break;
+                default:
+                    CT.$("confirmDiv").style.visibility = "hidden";
+                    break;
+            }
+
+        },
+        //隐藏弹窗
+        hideConfirm: function(){
+            PAGE.changeFocus("hands_x0_y0_artilleryFocus_");
+            CT.$("confirmDiv").style.visibility = "hidden";
+            CT.$("noTry").style.visibility = "hidden";
+            CT.$("noChan").style.visibility = "hidden";
+            CT.$("noGame").style.visibility = "hidden";
+            var allIpDes = true;//所有粽子IP全部被击中
+            for(var i= 0; i < this.zongIPs.length; i++){
+                if(!this.zongIPs[i].beHit) {
+                    allIpDes = false;
+                }
+            }
+            if(allIpDes){
+                this.setZong();
+            }
+        }
+
+    };
+    var actiPage = new ActiPage();
+    actiPage.init();
+    //返回方法
+    function backFunc(){
+        if(CT.$("confirmDiv").style.visibility == "visible"){
+            actiPage.hideConfirm();
+        }else{
+            CT.backPage();
+        }
+    }
+</script>
+</body>
+</html>

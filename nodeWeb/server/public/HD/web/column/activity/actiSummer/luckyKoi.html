@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>锦鲤抽奖</title>
+    <link rel="stylesheet" type="text/css" href="css/luckyKoi.css">
+</head>
+<body>
+<div class="main">
+    <!--我的积分-->
+    <div class="scorePack">
+        <img src="images/integral.png">
+        <div id="scoreNum" style="position: absolute;font-size: 36px;top: 60px;left: 100px;"></div>
+    </div>
+    <!--IP-->
+    <div class="ip">
+        <div id="hands_x0_y0_ipBtnS0_">
+            <img src="images/lucky/ipS0.png">
+            <img id="ipBtnS0" src="images/lucky/ipS.png" style="visibility: hidden">
+        </div>
+        <div id="hands_x0_y0_ipBtnS1_">
+            <img src="images/lucky/ipS1.png">
+            <img id="ipBtnS1" src="images/lucky/ipS.png" style="visibility: hidden">
+        </div>
+        <div id="hands_x0_y0_ipBtnS2_">
+            <img src="images/lucky/ipS2.png">
+            <img id="ipBtnS2" src="images/lucky/ipS.png" style="visibility: hidden">
+        </div>
+        <div id="hands_x0_y0_ipBtnS3_">
+            <img src="images/lucky/ipS3.png">
+            <img id="ipBtnS3" src="images/lucky/ipS.png" style="visibility: hidden">
+        </div>
+    </div>
+    <!--我的卡券-->
+    <div id="hands_x0_y0_myPrizeBtnS_" style="visibility: hidden">
+        <img src="images/signIn/myPrizeBtn.png">
+        <img id="myPrizeBtnS" src="images/signIn/myPrizeBtnS.png" style="visibility: hidden">
+    </div>
+    <!--抽奖-->
+    <div class="luckDraw">
+        <!--开始-->
+        <div id="hands_x0_y0_startLucky_">
+            <img src="images/lucky/start.png">
+            <img id="startLucky" src="images/lucky/startS.png" style="visibility: hidden">
+        </div>
+        <img id="prizeS" src="images/lucky/prizeS.png">
+        <!--奖品-->
+        <div class="prize0" >
+            <img src="images/lucky/prizeJf18.png">
+        </div>
+        <div class="prize1">
+            <img src="images/lucky/thankYou.png">
+        </div>
+        <div class="prize2">
+            <img src="images/lucky/prizeJf38.png">
+        </div>
+        <div class="prize3">
+            <img src="images/lucky/prizeHyqy7.png">
+        </div>
+        <div class="prize4">
+            <img src="images/lucky/prizeJf28.png">
+        </div>
+        <div class="prize5">
+            <img src="images/lucky/prizeJf18.png">
+        </div>
+        <div class="prize6">
+            <img src="images/lucky/prizeHyqy7.png">
+        </div>
+        <div class="prize7">
+            <img src="images/lucky/prizeJf88.png">
+        </div>
+    </div>
+    <!--机会-->
+    <div id="surplus">
+        <img src="images/lucky/surplusNum.png">
+        <div id="surplusNum"> </div>
+    </div>
+
+    <!--获得积分弹窗-->
+    <div id="jfPopup">
+        <img src="images/lucky/popup/JfPopup.png">
+        <img id="jfNumber" class="number" src="images/empty.png">
+        <div id="hands_x0_y0_jfPopupS_">
+            <img src="images/lucky/popup/confirm.png" style="position:absolute;">
+            <img id="jfPopupS" src="images/lucky/popup/confirmS.png" style="visibility: hidden;position: absolute;left: -15px;top: -16px;">
+        </div>
+    </div>
+    <!--获得会员权益-->
+    <div id="hyqyPopup">
+        <img src="images/lucky/popup/hyqyPopup.png">
+        <img class="number" src="images/lucky/popup/7day.png">
+        <div id="tyqCode"></div>
+        <div id="hands_x0_y0_hyqyPopupS_">
+            <img src="images/lucky/popup/confirm.png" style="position:absolute;">
+            <img id="hyqyPopupS" src="images/lucky/popup/confirmS.png"  style="visibility: hidden;position: absolute;left: -15px;top: -16px;">
+        </div>
+    </div>
+    <!--未中奖-->
+    <div id="wzjPopup">
+        <img src="images/lucky/popup/wzjPopup.png">
+        <div id="hands_x0_y0_wzjPopupS_">
+            <img src="images/lucky/popup/confirm.png" style="position:absolute;">
+            <img id="wzjPopupS" src="images/lucky/popup/confirmS.png"  style="visibility: hidden;position: absolute;left: -15px;top: -16px;">
+        </div>
+    </div>
+    <!--今日机会已用完-->
+    <div id="snPoPup">
+        <img src="images/lucky/popup/snPoPup.png">
+        <div id="hands_x0_y0_snPoPupS_">
+            <img src="images/lucky/popup/confirm.png" style="position:absolute;">
+            <img id="snPoPupS" src="images/lucky/popup/confirmS.png"  style="visibility: hidden;position: absolute;left: -15px;top: -16px;">
+        </div>
+    </div>
+
+
+</div>
+<!--<script type="text/javascript" src="js/common3_4.js"></script>
+<script type="text/javascript" src="js/key3_4.js"></script>
+<script type="text/javascript" src="js/actiComm.js"></script>-->
+
+
+<script type = "text/javascript" src = "../../../../js/loadCommomJs.js"></script>
+<script type="text/javascript" src="../../../../js/actiComm.js"></script>
+<script type="text/javascript" src="js/credit.js"></script>
+<script>
+    buttons.push({
+        id:'hands_x0_y0_startLucky_',
+        clickHandler:'javascript:LuckyGame.start()',
+        upEvent:'javascript:evalPrizeBtnS()',
+        down:'disable',
+        leftEvent:'javascript:evalIpBtnS()',
+        rightEvent:'javascript:evalPrizeBtnS()',
+        focusType:7
+    },{
+        id:'hands_x0_y0_myPrizeBtnS_',
+        clickHandler:'javascript:LuckyGame.showTyqCode()',
+        up:'disable',
+        downEvent:'javascript:evalStartBtnS()',
+        leftEvent:'javascript:evalStartBtnS()',
+        right:'disable',
+        focusType:7
+    },{
+        id:'hands_x0_y0_ipBtnS0_',
+        clickHandler:'javascript:LuckyGame.toIp(384)',
+        up:'disable',
+        down:'hands_x0_y0_ipBtnS1_',
+        left:'disable',
+        rightEvent:'javascript:evalStartBtnS()',
+        focusType:7
+    },{
+        id:'hands_x0_y0_ipBtnS1_',
+        clickHandler:'javascript:LuckyGame.toIp(1487)',
+        up:'hands_x0_y0_ipBtnS0_',
+        down:'hands_x0_y0_ipBtnS2_',
+        left:'disable',
+        rightEvent:'javascript:evalStartBtnS()',
+        focusType:7
+    },{
+        id:'hands_x0_y0_ipBtnS2_',
+        clickHandler:'javascript:LuckyGame.toIp(1387)',
+        up:'hands_x0_y0_ipBtnS1_',
+        down:'hands_x0_y0_ipBtnS3_',
+        left:'disable',
+        rightEvent:'javascript:evalStartBtnS()',
+        focusType:7
+    },{
+        id:'hands_x0_y0_ipBtnS3_',
+        clickHandler:'javascript:LuckyGame.toIp(827)',
+        up:'hands_x0_y0_ipBtnS2_',
+        down:'disable',
+        left:'disable',
+        rightEvent:'javascript:evalStartBtnS()',
+        focusType:7
+    },{
+        id:'hands_x0_y0_jfPopupS_',
+        clickHandler:'javascript:backFunc()',
+        up:'disable',
+        down:'disable',
+        left:'disable',
+        right:'disable',
+        focusType:7
+    },{
+        id:'hands_x0_y0_hyqyPopupS_',
+        clickHandler:'javascript:backFunc()',
+        up:'disable',
+        down:'disable',
+        left:'disable',
+        right:'disable',
+        focusType:7
+    },{
+        id:'hands_x0_y0_wzjPopupS_',
+        clickHandler:'javascript:backFunc()',
+        up:'disable',
+        down:'disable',
+        left:'disable',
+        right:'disable',
+        focusType:7
+    },{
+        id:'hands_x0_y0_snPoPupS_',
+        clickHandler:'javascript:backFunc()',
+        up:'disable',
+        down:'disable',
+        left:'disable',
+        right:'disable',
+        focusType:7
+    })
+
+    PAGE.focusInit();//焦点初始化
+    PAGE.changeFocus("hands_x0_y0_startLucky_");
+
+
+    /*锦鲤抽奖游戏*/
+    function LuckyGame() {
+        this.prizesList = ["Jf18","thankYou","Jf38","Hyqy7","Jf28","Jf18","Hyqy7","Jf88"];//抽到的奖品
+        this.prizes = [];//
+        this.selectImg = CT.$('prizeS');//选中框
+        this.isOrder = 1;//是否订购   0已订购
+        this.createTime = ""; //创建日期
+        this.userdatalist = {};
+        this.isHave = false;//是否抽奖中  true 是
+        this.allCreditNum = 0;//总积分
+        this.positions = [
+            { left: -2, top: -6 },
+            { left: 159, top: -6 },
+            { left: 320, top: -6 },
+            { left: 320, top: 135 },
+            { left: 320, top: 276 },
+            { left: 159, top: 276 },
+            { left: -2, top: 276 },
+            { left: -2, top: 135 },
+        ]
+    }
+    LuckyGame.prototype = {
+        initPage:function(){
+            var _this = this;
+            /*鉴权*/
+            orderJs.columnGetAuth(function (data) {
+                if(data == '0'){
+                    _this.isOrder = 0;
+                }else {
+                    _this.isOrder = 1;
+                }
+                /*奖品列表*/
+                actiObj.getChance(function (data) {
+                    _this.createTime = data.data.createTime.substring(0, 10);
+                    actiObj.getUserDataList(function (data) {
+                        if (data.data) {
+                            _this.userdatalist = JSON.parse(data.data.userActiData);
+                            if(_this.userdatalist.tyqCode != ""){
+                                CT.$('hands_x0_y0_myPrizeBtnS_').style.visibility = 'visible';
+                            }
+                        } else {
+                            _this.userdatalist = {
+                                allNumber:0,//获得今日的总次数
+                                ysyNumber:0,//今日已使用的次数
+                                tyqCode:'' ,//免费券编码号
+                                time: this.createTime
+                            }
+                        }
+                        //如果记录的数据不是当天数据，初始化当天数据
+                        if (_this.userdatalist.time != _this.createTime) {
+                            _this.userdatalist = {
+                                allNumber:0,//获得今日的总次数
+                                ysyNumber:0,//今日已使用的次数
+                                tyqCode:'' ,//免费券编码号
+                                time: _this.createTime
+                            };
+                        }
+                        if(_this.isOrder == 1) {//未订购用户每天1次机会
+                            _this.userdatalist.allNumber = 1;
+                        }else if(_this.isOrder == 0) {//已订购用户每天3次机会
+                            _this.userdatalist.allNumber = 3;
+                        }
+                        CT.$('surplusNum').innerHTML = _this.userdatalist.allNumber - _this.userdatalist.ysyNumber;
+                        actiObj.setUserDataList(JSON.stringify(_this.userdatalist));
+                    })
+                })
+            });
+
+
+
+            /*获取总积分*/
+            getUserCredit(15,function(res){
+                if(res && res.successFlg == 1 && res.data){
+                    _this.allCreditNum = res.data.creditNum;
+                    CT.$('scoreNum').innerHTML = _this.allCreditNum;
+                }
+            });
+        },
+        start:function () {//开始
+            if(this.isHave) return;
+            this.isHave = true;
+            if(this.userdatalist.allNumber > this.userdatalist.ysyNumber){//抽奖
+                this.userdatalist.ysyNumber++;  //用掉一次机会
+                CT.$('surplusNum').innerHTML = this.userdatalist.allNumber - this.userdatalist.ysyNumber;
+                actiObj.setUserDataList(JSON.stringify(this.userdatalist));
+                var randomIndex = Math.floor(Math.random() * this.prizesList.length);
+                if(this.userdatalist.tyqCode != "" && (randomIndex == 3 || randomIndex ==6)){//已中过体验券就不能中了
+                    randomIndex = 1;
+                }
+                var queue = [];
+                queue.unshift({ index: randomIndex, delay: 0 });
+                var targRing = (Math.floor(Math.random()*3)) + 3;
+                for(var i =0; i<targRing; i++){
+                    for(var j =this.prizesList.length-1; j>=0; j--){
+                        queue.unshift({ index: j, delay: 100 })
+                    }
+                }
+                this.play(queue,randomIndex);
+
+            }else {//没有次数了
+                CT.$('snPoPup').style.visibility = 'visible';
+                PAGE.changeFocus("hands_x0_y0_snPoPupS_");
+                this.isHave = false;
+            }
+        },
+        play:function (queue,randomIndex) {//中奖提示弹框
+            var _this = this;
+            var ani = queue.shift();
+            this.selectImg.style.left = this.positions[ani.index].left + 'px';
+            this.selectImg.style.top = this.positions[ani.index].top + 'px';
+            if(queue.length){
+                setTimeout(function() {
+                    _this.play(queue,randomIndex)
+                }, ani.delay);
+            }else {
+                if(randomIndex == '0' || randomIndex == '2' || randomIndex == '4' || randomIndex == '5' || randomIndex == '7'){//积分
+                    CT.$('jfPopup').style.visibility = "visible";
+                    PAGE.changeFocus("hands_x0_y0_jfPopupS_");
+                    if(randomIndex == '0' || randomIndex == '5'){//18积分
+                        CT.$('jfNumber').style.top = "410px";
+                        CT.$('jfNumber').src = "images/lucky/popup/18.png";
+                        _this.allCreditNum = _this.allCreditNum + 18;
+                        this.setCredit(_this.allCreditNum);
+
+                    }else if(randomIndex == '2'){//38
+                        CT.$('jfNumber').style.top = "410px";
+                        CT.$('jfNumber').src = "images/lucky/popup/38.png";
+                        _this.allCreditNum = _this.allCreditNum + 38;
+                        this.setCredit(_this.allCreditNum);
+                    }
+                    else if(randomIndex == '4'){//28
+                        CT.$('jfNumber').style.top = "410px";
+                        CT.$('jfNumber').src = "images/lucky/popup/28.png";
+                        _this.allCreditNum = _this.allCreditNum + 28;
+                        this.setCredit(_this.allCreditNum);
+                    }
+                    else if(randomIndex == '7'){//88
+                        CT.$('jfNumber').style.top = "410px";
+                        CT.$('jfNumber').src = "images/lucky/popup/88.png";
+                        _this.allCreditNum = _this.allCreditNum + 88;
+                        this.setCredit(_this.allCreditNum);
+                    }
+                }else if(randomIndex == '1'){//谢谢参与
+                    CT.$('wzjPopup').style.visibility = "visible";
+                    PAGE.changeFocus("hands_x0_y0_wzjPopupS_");
+                }else if(randomIndex == '3' || randomIndex == '6'){//七天会员权益
+                    actiObj.getVipExperCode(function (res) {
+                        if (res.data && res.data.cardNo) {
+                            CT.$('hyqyPopup').style.visibility = "visible";
+                            PAGE.changeFocus("hands_x0_y0_hyqyPopupS_");
+                            CT.$("tyqCode").innerHTML = res.data.cardNo;
+                            _this.userdatalist.tyqCode = res.data.cardNo;
+                            actiObj.setUserDataList(JSON.stringify(_this.userdatalist));
+                            CT.$('hands_x0_y0_myPrizeBtnS_').style.visibility = 'visible';
+                        }else {
+                            CT.$('wzjPopup').style.visibility = "visible";
+                            PAGE.changeFocus("hands_x0_y0_wzjPopupS_");
+                        }
+                    });
+                }
+                this.isHave = false;
+            }
+        },
+        setCredit:function(allCreditNum){//更新积分
+            CT.$('scoreNum').innerHTML = allCreditNum;
+            setUserCredit(15,allCreditNum,function(data){
+                if(data){
+
+                }
+            });
+        },
+
+        toIp:function (cartoonId) {//跳IP
+            CT.goPage();
+            var commpageId = 3;
+            var cartoonData={recommendDisplayType:1,recommendDisplayValue:cartoonId,commpageId:commpageId};
+            CT.toAnterRecommendUrl(cartoonData);
+        },
+        showTyqCode:function () {//我的卡券
+            var _this = this;
+            CT.$('hyqyPopup').style.visibility = "visible";
+            PAGE.changeFocus("hands_x0_y0_hyqyPopupS_");
+            CT.$("tyqCode").innerHTML = _this.userdatalist.tyqCode;
+        }
+
+    }
+    var LuckyGame = new LuckyGame();
+    LuckyGame.initPage();
+
+
+    /*移动到我的卡券按钮上*/
+    function evalPrizeBtnS() {
+        if(CT.$('hands_x0_y0_myPrizeBtnS_').style.visibility == 'visible'){
+            PAGE.changeFocus("hands_x0_y0_myPrizeBtnS_");
+            CT.$('prizeS').style.visibility = "hidden";
+        }
+    }
+    /*移动到开始按钮上*/
+    function evalStartBtnS() {
+        PAGE.changeFocus("hands_x0_y0_startLucky_");
+        CT.$('prizeS').style.visibility = "visible";
+
+    }
+    /*移动到开始按钮上*/
+    function evalIpBtnS() {
+        PAGE.changeFocus("hands_x0_y0_ipBtnS0_");
+        CT.$('prizeS').style.visibility = "hidden";
+    }
+
+    /*按返回键返回*/
+    function backFunc() {
+        if(CT.$('jfPopup').style.visibility == 'visible'){
+            CT.$('prizeS').style.left = '159px';
+            CT.$('prizeS').style.top = '135px';
+            CT.$('jfPopup').style.visibility = 'hidden';
+            PAGE.changeFocus("hands_x0_y0_startLucky_");
+        }else if(CT.$('wzjPopup').style.visibility == 'visible'){
+            CT.$('prizeS').style.left = '159px';
+            CT.$('prizeS').style.top = '135px';
+            CT.$('wzjPopup').style.visibility = 'hidden';
+            PAGE.changeFocus("hands_x0_y0_startLucky_");
+        }else if(CT.$('hyqyPopup').style.visibility == 'visible'){
+            CT.$('prizeS').style.visibility = "visible";
+            CT.$('prizeS').style.left = '159px';
+            CT.$('prizeS').style.top = '135px';
+            CT.$('hyqyPopup').style.visibility = 'hidden';
+            PAGE.changeFocus("hands_x0_y0_startLucky_");
+        }else if(CT.$('snPoPup').style.visibility == 'visible'){
+            CT.$('snPoPup').style.visibility = 'hidden';
+            PAGE.changeFocus("hands_x0_y0_startLucky_");
+        }else {
+            CT.backPage();
+        }
+
+    }
+
+
+
+</script>
+
+</body>
+</html>

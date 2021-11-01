@@ -1,0 +1,135 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>orderReturnPage订购回来中转页</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="page-view-size" content="1280*720"  />
+<link rel="stylesheet" href="../css/main.css" type="text/css"/>
+
+<body>
+
+<script type = "text/javascript" src = "../../../js/loadCommomJs.js"></script>
+<script type="text/javascript">
+
+
+	var page = {
+	    mediaCode: CT.requestValue("mediaCode") || 0,                     // 中转页面鉴权code，从url中取
+        commonPageInfo: null,                                             // 页面信息
+        contentEName: null,                                               // 页面英文名
+        contentId: null,                                                  // 页面contentId
+	    init: function () {
+	        var _this = this;
+			// 获取页面信息
+            if(CT.requestValue("contentEName")){
+                _this.contentEName = CT.requestValue("contentEName");
+                interface.findCommonPageInfo({params:{"contentName":_this.contentEName}},function(res){
+                    // 通用日志
+                    // 通用日志
+                    setLoggerInfo.pageInfoLog = res;
+                        AjaxConfig.commonPageInfo = res;
+                    //interface.loggerInfo("获取到中转页面页面信息>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+                    _this.getCommonPageInfoToDo(res);
+                });
+            }else if(CT.requestValue("contentId")){
+                _this.contentId = CT.requestValue("contentId");
+                interface.findCommonPageInfo({params:{"contentId":_this.contentId}},function(res){
+                    // 通用日志
+                    setLoggerInfo.pageInfoLog = res;
+                    AjaxConfig.commonPageInfo = res;
+                    //interface.loggerInfo("获取到中转页面页面信息>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+                    _this.getCommonPageInfoToDo(res);
+                });
+            }
+        },
+        //得到 页面配置数据后的操作 鉴权
+        getCommonPageInfoToDo:function(res){
+            var _this = this;
+
+	   var resultCode = CT.requestValue("resultCode");
+	   var errorMessage = CT.requestValue("errorMessage");
+
+            /**
+             * 页面访问日志和订购日志
+             * */
+
+
+            var backPrePage = CT.getCookie("backPrePage") || "";
+
+            var fromPage = xjDataLog.getPageUrlName(backPrePage);
+            if (backPrePage.indexOf("cartoonId") > -1) {
+                var cartoonId = xjDataLog.querySearchUrlKey(backPrePage, "cartoonId");
+                fromPage += "_" + cartoonId;
+            } else if (backPrePage.indexOf("gameId") > -1) {
+                var gameId = xjDataLog.querySearchUrlKey(backPrePage, "gameId");
+                fromPage += "_" + gameId;
+            } else if (backPrePage.indexOf("activity") > -1) {
+                var activityId = xjDataLog.querySearchUrlKey(backPrePage, "activityId");
+                fromPage += "_activityId_" + activityId;
+            }else{
+                var contentName = xjDataLog.querySearchUrlKey(backPrePage, "contentEName");
+                fromPage += "_" + contentName;
+            }
+            //上传成功日志
+            var params = {
+                orderState: resultCode + "",
+                contentName: fromPage,
+                more1 : errorMessage
+            };
+            xjDataLog.uploadOrderSuccess(params);
+
+
+
+
+
+	   switch(resultCode + ""){
+		case "0":
+            CT.getAnterByIdOrAction({
+                contentId: "springRectxtqmmendPage_dgcgy"
+            });
+		break;
+		case "-1":
+            CT.getAnterByIdOrAction({
+                contentId: "orderFail_2019v1"
+            });
+		break;
+		case "1":
+           CT.backPage();
+		break;
+		default :
+            CT.getAnterByIdOrAction({
+                contentId: "404_2019v1"
+            });
+ 
+	
+	
+	    }
+
+        },
+        commonJumpUrl: function (type) {
+	        var _this = this;
+            if(type == 'Suc'){
+                // 跳订购成功页面
+                CT.toAnterRecommendUrl(_this.commonPageInfo,"recommend_1",0);
+            }else {
+                // 跳订购失败页面
+                CT.toAnterRecommendUrl(_this.commonPageInfo,"recommend_1",1);
+            }
+        }
+	};
+
+   
+
+    /**
+     * 初始化
+     * */
+    window.onload = function () {
+        page.init();
+    };
+	function backfunc(){
+	    CT.backPage();
+	}
+</script>
+</body>
+</html>
+ 
+ 

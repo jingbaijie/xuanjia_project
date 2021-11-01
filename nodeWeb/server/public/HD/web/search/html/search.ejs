@@ -1,0 +1,240 @@
+
+<%- include ('../../components/header') %>
+<link rel="stylesheet" href="<%= basePageUrl %>/css/search.css">
+</head>
+<%
+    const commonPageInfo = basePageInfo.commonPageInfo;
+    const localImg = basePageInfo.localImg;
+    const searchInfo = {
+        //字母按键的定位
+        letterPosition: [{
+                top: 164,
+                left: 73,
+                value: 'A'
+            }, {
+                top: 164,
+                left: 140,
+                value: 'B'
+            }, {
+                top: 164,
+                left: 209,
+                value: 'C'
+            }, {
+                top: 164,
+                left: 276,
+                value: 'D'
+            },
+            {
+                top: 232,
+                left: 73,
+                value: 'E'
+            }, {
+                top: 232,
+                left: 140,
+                value: 'F'
+            }, {
+                top: 232,
+                left: 209,
+                value: 'G'
+            }, {
+                top: 232,
+                left: 276,
+                value: 'H'
+            },
+            {
+                top: 302,
+                left: 73,
+                value: 'I'
+            }, {
+                top: 302,
+                left: 140,
+                value: 'J'
+            }, {
+                top: 302,
+                left: 209,
+                value: 'K'
+            }, {
+                top: 302,
+                left: 276,
+                value: 'L'
+            },
+            {
+                top: 370,
+                left: 73,
+                value: 'M'
+            }, {
+                top: 370,
+                left: 140,
+                value: 'N'
+            }, {
+                top: 370,
+                left: 209,
+                value: 'O'
+            }, {
+                top: 370,
+                left: 276,
+                value: 'P'
+            },
+            {
+                top: 436,
+                left: 73,
+                value: 'Q'
+            }, {
+                top: 436,
+                left: 140,
+                value: 'R'
+            }, {
+                top: 436,
+                left: 209,
+                value: 'S'
+            }, {
+                top: 436,
+                left: 276,
+                value: 'T'
+            },
+            {
+                top: 503,
+                left: 73,
+                value: 'U'
+            }, {
+                top: 503,
+                left: 140,
+                value: 'V'
+            }, {
+                top: 503,
+                left: 209,
+                value: 'W'
+            }, {
+                top: 503,
+                left: 276,
+                value: 'X'
+            },
+            {
+                top: 570,
+                left: 73,
+                value: 'Y'
+            }, {
+                top: 570,
+                left: 140,
+                value: 'Z'
+            }
+        ],
+        //数字按键的定位
+        numberPosition: [{
+            top: 180,
+                left: 68
+            }, {
+                top: 180,
+                left: 162
+            }, {
+                top: 180,
+                left: 255
+            }, {
+                top: 270,
+                left: 68
+            }, {
+                top: 270,
+                left: 162
+            }, {
+                top: 270,
+                left: 255
+            }, {
+                top: 373,
+                left: 68
+            }, {
+                top: 373,
+                left: 162
+            }, {
+                top: 373,
+                left: 255
+            }, {
+                top: 467,
+                left: 68
+            }],
+    };
+    basePageInfo.localImg = localImg;
+%>
+<body>
+    <!--背景-->
+    <img id="BJ" src="<%= basePageInfo.bgImg %>" height="720" width="1280" />
+	<div style="position: absolute;width: 277px;
+    height: 38px;
+    left:60px;
+    top: 43px;border-bottom: 1px solid #FFF ;"></div>
+	<div style="position: absolute;width: 38px;height: 38px; left: 78px;top:37px;background:url(<%= localImg %>searchIcon.png) no-repeat">
+	</div>
+	<!--搜索输入框-->
+	<div class="userTextDiv">
+		<span id="userText"></span>
+		<span id="userText1" style="position: absolute;left: 0px;top: 0px;">请输入节目首字母</span>
+	</div>
+	<!--删除按钮-->
+	<div class="btn" id="hands_x0_y0_del_"
+		style="width:104px;height:48px;top:95px;left:78px;background:url(<%= localImg %>delete.png) no-repeat">
+		<div id="del" style="width:104px;height:48px;background:url(<%= localImg %>delBorder.png) no-repeat"></div>
+	</div>
+	<!--清空按钮-->
+	<div class="btn" id="hands_x0_y0_clear_"
+		style="width:104px;height:48px;top:95px;left:215px;background:url(<%= localImg %>clear.png) no-repeat">
+		<div id="clear"
+			style="visibility: hidden;;width:104px;height:48px;background:url(<%= localImg %>clearBorder.png) no-repeat">
+		</div>
+	</div>
+	<!-- 文字 -->
+	<div id="allSearch">
+		<img style="float:left;" src="<%= localImg %>guessYouLike.png"/>
+		<div style="margin-left:10px;float:left;font-size: 20px;">猜你喜欢</div>
+	</div>
+	<div id="searchAll">
+	</div>
+	
+	<!--26个字母-->
+	<div id="letter" class="numberDiv" style="visibility: visible;">
+        <%for (var i = 0; i < 26; i++) {%>
+            <div class='btn letterBj numberOrletter' id="hands_x0_y0_letter<%=i%>_" 
+                style="top:<%= searchInfo.letterPosition[i].top %>px;left:<%= searchInfo.letterPosition[i].left %>px;">
+                <div class='letterBorder' id="letter<%= i %>"></div>
+                <div class='btn letterTextDiv'>
+                    <span id="letterSpan<%= i %>"><%= searchInfo.letterPosition[i].value %></span>
+                </div>
+            </div>
+        <%}%>
+    </div>
+    <!--10个数字-->
+	<div id="number" class="numberDiv" style="visibility: hidden;">
+        <%for (var i = 0; i < 10; i++) {%>
+            <div class='btn numberBj numberOrletter' id="hands_x0_y0_number<%= i %>_" 
+                style="top:<%= searchInfo.numberPosition[i].top %>px;left:<%= searchInfo.numberPosition[i].left %>px;">
+                <div class='btn numberBorder' id="number<%= i %>"></div>
+                <span class='btn' id="numberSpan<%= i %>" style='top:19px;left:32px;'><%= i %></span>
+            </div>
+        <%}%>
+    </div>
+	
+	<!--数字字母切换按钮-->
+	<div class="btn" id="hands_x0_y0_changeNumber_"
+		style="top:624px;left:50px;width:150px;height:66px;background:url(<%= localImg %>numberBottom.png)">
+		<div id="changeNumber"
+			style="visibility: hidden;width:150px;height:66px;background:url(<%= localImg %>numberLetterB.png)"></div>
+	</div>
+	<div class="btn" id="hands_x0_y0_changeLetter_"
+		style="top:624px;left:185px;width:150px;height:66px;background:url(<%= localImg %>letterBottom.png)">
+		<div class="btn" id="changeLetter"
+			style="visibility: hidden;width:150px;height:66px;background:url(<%= localImg %>numberLetterB.png)"></div>
+	</div>
+	<!--中间热搜-->
+	<div id="hotSearch"></div>
+	<!--右边搜索结果 先显示6个固定的推荐图片-->
+	<div id="recommend"></div>
+		<img  id="downArrow" src="<%= localImg %>down.png">
+	</div>
+
+	<div style="width: 200px;height: 60px;position: absolute;left: 400px;top:42px">
+		<img style="float: left"  src="<%= localImg %>hotIcon.png"/>
+		<div style="float: left;margin-left: 10px;margin-top: 5px;"><span style="font-size: 20px;color: white;font-weight: bold;">大家都在看</span></div>
+	</div>
+    <%- include('../../components/commJs') %>
+    <script src="<%= basePageUrl %>/js/search.js"></script>
+</body>
+
+</html>

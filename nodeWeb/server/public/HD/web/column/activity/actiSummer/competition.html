@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>关卡6积分大比拼</title>
+    <link rel="stylesheet" type="text/css" href="css/competition.css">
+</head>
+<body>
+<div class="main">
+    <!--我的积分-->
+    <div style="position: absolute;left: 10px;">
+        <img src="images/integral.png">
+        <div id="scoreNum" style="position: absolute;font-size: 36px;top: 60px;left: 100px;"></div>
+    </div>
+    <!--去订购-->
+    <div id="toOrderPack">
+        <div id="toOrder">
+            <img class="toPic" src="images/competition/toOrder.png">
+            <div id="hands_x0_y0_toOrderS_">
+                <img id="toOrderS" src="images/competition/toS.png" style="visibility: hidden">
+            </div>
+            <img id="orderFinished" src="images/competition/finished.png" style="visibility: hidden">
+        </div>
+        <div id="toOrderPage"> <span id="orderNum" class="numColor"> 0 </span> / 1</div>
+    </div>
+    <!--去注册-->
+    <div id="toRegisterPack">
+        <div id="toRegister">
+            <img class="toPic" src="images/competition/toRegister.png">
+            <div id="hands_x0_y0_toRegisterS_">
+                <img id="toRegisterS" src="images/competition/toS.png" style="visibility: hidden">
+            </div>
+            <img id="registerFinished" src="images/competition/finished.png" style="visibility: hidden">
+        </div>
+        <div id="toRegisterPage"> <span id="registerNum" class="numColor"> 0 </span> / 1</div>
+    </div>
+    <!--去送祝福-->
+    <div id="toFinishPack">
+        <div id="toFinish">
+            <img class="toPic" src="images/competition/toFinish.png">
+            <div id="hands_x0_y0_toFinishS_">
+                <img id="toFinishS" src="images/competition/toS.png" style="visibility: hidden">
+            </div>
+            <img id="blessFinished" src="images/competition/finished.png" style="visibility: hidden">
+        </div>
+        <div id="toFinishPage"> <span id="blessNum" class="numColor"> 0 </span> / 3</div>
+    </div>
+
+    <!--去观看-->
+    <div id="toWatchPack">
+        <div id="toWatch">
+            <img class="toPic" src="images/competition/toWatch.png">
+            <div id="hands_x0_y0_toWatchS_">
+                <img id="toWatchS" src="images/competition/toS.png" style="visibility: hidden">
+            </div>
+            <img id="watchFinished" src="images/competition/finished.png" style="visibility: hidden">
+        </div>
+        <div id="toWatchPage"> <span id="watchNum" class="numColor"> 0 </span> / 3</div>
+    </div>
+
+    <!--祝福语弹出-->
+    <div id="blessPopup">
+        <img src="images/competition/finishPopup.png">
+        <div id="hands_x0_y0_bless01_">
+            <img id="yfsBtn01" src="images/competition/yfsBtn.png" style="visibility: hidden">
+            <img id="bless01" src="images/competition/finishS.png" style="visibility:hidden;">
+        </div>
+        <div id="hands_x0_y0_bless02_">
+            <img id="yfsBtn02" src="images/competition/yfsBtn.png" style="visibility: hidden">
+            <img id="bless02" src="images/competition/finishS.png" style="visibility:hidden;">
+        </div>
+        <div id="hands_x0_y0_bless03_">
+            <img id="yfsBtn03" src="images/competition/yfsBtn.png" style="visibility: hidden">
+            <img id="bless03" src="images/competition/finishS.png" style="visibility:hidden;">
+        </div>
+        <div id="hands_x0_y0_blessEmpty_">
+            <img id="blessEmpty" src="images/empty.png" style="visibility: hidden;">
+        </div>
+    </div>
+    <!--空焦点-->
+    <div id="hands_x0_y0_empty_" style="position: absolute;left: 0px;top: 0px">
+        <img id="empty" src="images/empty.png">
+    </div>
+    <!--打印-->
+    <div id="error" style="position: absolute; left: 200px;top: 200px;color: red;font-size: 32px;"></div>
+    <div id="error1" style="position: absolute; left: 200px;top: 300px;color: red;font-size: 32px;"></div>
+
+</div>
+
+<script type = "text/javascript" src = "../../../../js/loadCommomJs.js"></script>
+<script type="text/javascript" src="../../../../js/actiComm.js"></script>
+<script type="text/javascript" src="js/credit.js"></script>
+<script>
+    buttons.push({
+        id:"hands_x0_y0_toOrderS_",
+        clickHandler:'javascript:toOrderS()',
+        up:'disable',
+        down:'disable',
+        left:'disable',
+        rightEvent:'javascript:toRight(0)',
+        focusType:7
+    },{
+        id:"hands_x0_y0_toRegisterS_",
+        clickHandler:'javascript:toRegisterS()',
+        up:'disable',
+        down:'disable',
+        leftEvent:'javascript:toLeft(1)',
+        rightEvent:'javascript:toRight(1)',
+        focusType:7
+    },{
+        id:"hands_x0_y0_toFinishS_",
+        clickHandler:'javascript:toFinishS()',
+        up:'disable',
+        down:'disable',
+        leftEvent:'javascript:toLeft(2)',
+        rightEvent:'javascript:toRight(2)',
+        focusType:7
+    },{
+        id:"hands_x0_y0_toWatchS_",
+        clickHandler:'javascript:toWatchS()',
+        up:'disable',
+        down:'disable',
+        leftEvent:'javascript:toLeft(3)',
+        right:'disable',
+        focusType:7
+    },{
+        id:"hands_x0_y0_bless01_",
+        clickHandler:'javascript:toBless(1)',
+        up:'disable',
+        downEvent:'javascript:toDown(0)',
+        left:'disable',
+        right:'disable',
+        focusType:7
+    },{
+        id:"hands_x0_y0_bless02_",
+        clickHandler:'javascript:toBless(2)',
+        upEvent:'javascript:toUp(1)',
+        downEvent:'javascript:toDown(1)',
+        leftEvent:'disable',
+        right:'disable',
+        focusType:7
+    },{
+        id:"hands_x0_y0_bless03_",
+        clickHandler:'javascript:toBless(3)',
+        upEvent:'javascript:toUp(2)',
+        downEvent:'javascript:toDown(2)',
+        leftEvent:'disable',
+        right:'disable',
+        focusType:7
+    },{
+        id:"hands_x0_y0_blessEmpty_",
+        clickHandler:'javascript:backFunc()',
+        up:'disable',
+        down:'disable',
+        left:'disable',
+        right:'disable',
+        focusType:7
+    },{
+        id:"hands_x0_y0_empty_",
+        up:'disable',
+        down:'disable',
+        left:'disable',
+        right:'disable',
+        focusType:7
+    })
+    PAGE.focusInit();//焦点初始化
+    PAGE.changeFocus("hands_x0_y0_toOrderS_");
+
+    var isOrder = 1;//是否订购  0 已订购 1 未订购
+    var allCreditNum = 0;//总积分
+    var userdatalist = {};
+    var createTime = "";
+    var blessNum = 0;//祝福语完成数
+
+    /*初始化*/
+    function initPage() {
+        /*鉴权*/
+        orderJs.columnGetAuth(function (data) {
+            if(data == '0'){
+                isOrder = 0;
+            }else {
+                isOrder = 1;
+            }
+            /*次数*/
+            actiObj.getChance(function (data) {
+                createTime = data.data.createTime.substring(0, 10);
+                actiObj.getUserDataList(function (data) {
+                    if (data.data) {
+                        userdatalist = JSON.parse(data.data.userActiData);
+                    } else {
+                        userdatalist = {
+                            isOrder:false,//是否订购
+                            isRegister:false,//是否注册
+                            isFinishS:{
+                                bless01:false,//祝福语 1
+                                bless02:false, //祝福语 2
+                                bless03:false, //祝福语 3
+                            },//是否完成
+                            toWatch: 0,//去观看次数
+                            time:createTime
+                        }
+                    }
+                    //如果记录的数据不是当天数据，初始化当天数据
+                    if (userdatalist.time != createTime) {
+                        userdatalist.isFinishS.bless01 = false;
+                        userdatalist.isFinishS.bless02 = false;
+                        userdatalist.isFinishS.bless03 = false;
+                        userdatalist.toWatch = 0;
+                        CT.$('blessNum').innerHTML = blessNum;
+                    }else {
+                        if(userdatalist.isFinishS.bless01 == true){
+                            blessNum ++;
+                            CT.$('blessNum').innerHTML = blessNum;
+                            blessButtons[0] = false;
+                            toBlessChange();
+                        }
+                        if(userdatalist.isFinishS.bless02 == true){
+                            blessNum ++;
+                            CT.$('blessNum').innerHTML = blessNum;
+                            blessButtons[1] = false;
+                            toBlessChange();
+                        }
+                        if(userdatalist.isFinishS.bless03 == true){
+                            blessNum ++;
+                            CT.$('blessNum').innerHTML = blessNum;
+                            blessButtons[2] = false;
+                            toBlessChange();
+                        }
+                        //祝福完成的  焦点设置 去观看
+                        if(blessNum >= 3){
+                            CT.$('blessFinished').style.visibility = 'visible';
+                            bigButtons[2] = false;
+                            toFirstChange();
+                        }
+                    }
+                    actiObj.setUserDataList(JSON.stringify(userdatalist));
+
+                    //初始化页面展示
+                    if(userdatalist.isOrder){
+                        CT.$('orderFinished').style.visibility = 'visible';
+                        CT.$('orderNum').innerHTML = 1;
+                        bigButtons[0] = false;
+                        toFirstChange();
+                    }
+                    if(userdatalist.isRegister){
+                        CT.$('registerNum').innerHTML = 1;
+                        bigButtons[1] = false;
+                        toFirstChange();
+                    }
+                    CT.$('watchNum').innerHTML = userdatalist.toWatch;
+                    if(userdatalist.toWatch >=3){
+                        CT.$('watchFinished').style.visibility = 'visible';
+                        bigButtons[3] = false;
+                        toFirstChange();
+                    }
+                    getCredit();
+                })
+            })
+        });
+
+
+    }
+    initPage()
+
+    /*获取积分*/
+    function getCredit() {
+        getUserCredit(15,function(res){
+            if(res && res.successFlg == 1 && res.data){
+                allCreditNum = res.data.creditNum;
+                CT.$('scoreNum').innerHTML = allCreditNum;
+            }
+            if(isOrder == 0){//已订购用户  焦点设置在去注册
+                CT.$('orderFinished').style.visibility = 'visible';
+                CT.$('orderNum').innerHTML = 1;
+                bigButtons[0] = false;
+                toFirstChange();
+
+                if(CT.getCookie("toOrderS") == "toOrderS"){//从去订购订购成功的 获取1888积分  同时设置为已订购完成
+                    allCreditNum = allCreditNum + 1888;
+                    setCredit(allCreditNum);
+                    CT.$('scoreNum').innerHTML = allCreditNum;//显示总积分
+                    userdatalist.isOrder = true;
+                    actiObj.setUserDataList(JSON.stringify(userdatalist));
+                    CT.$('orderNum').innerHTML = 1;
+                    CT.delCookie("toOrderS");
+                }
+            }
+
+            /*获取个人注册信息*/
+            interface.getUserInfoList({ params: { userid: xjDataLog.getUserId() } }, function (res) {
+                //是否有数据
+                if (res && res.data && res.data.length != 0) {
+                    CT.$('registerFinished').style.visibility = 'visible';
+                    CT.$('registerNum').innerHTML = 1;
+                    bigButtons[1] = false;
+                    toFirstChange();
+                    if(CT.getCookie("toRegisterS") == "toRegisterS"){//从去注册注册成功的 焦点设置在去完成祝福
+                        allCreditNum = allCreditNum + 888;
+                        setCredit(allCreditNum);
+                        userdatalist.isRegister = true;
+                        actiObj.setUserDataList(JSON.stringify(userdatalist));
+                        CT.delCookie("toRegisterS");
+                    }
+
+                }
+            })
+
+
+        });
+    }
+
+    /*去订购*/
+    function toOrderS() {
+        CT.setCookie("toOrderS","toOrderS");
+        CT.goPage();
+        orderJs.columnToOrderPage("actiSummer");
+    }
+    /*去注册*/
+    function toRegisterS() {
+        CT.setCookie("toRegisterS","toRegisterS");
+        CT.goPage();
+        var params = {contentId: 40, curFocusId: undefined, contentType: "page", contentName: "grzxybtj"};
+        CT.getAnterByIdOrAction(params);
+    }
+    /*去完成*/
+    function toFinishS() {
+        blessNum = 0;
+        CT.$('blessPopup').style.visibility = "visible";
+        if(userdatalist.isFinishS.bless01 == true){
+            CT.$('yfsBtn01').style.visibility = 'visible';
+            blessNum ++;
+            CT.$('blessNum').innerHTML = blessNum;
+            blessButtons[0] = false;
+        }
+        if(userdatalist.isFinishS.bless02 == true){
+            CT.$('yfsBtn02').style.visibility = 'visible';
+            blessNum ++;
+            CT.$('blessNum').innerHTML = blessNum;
+            blessButtons[1] = false;
+        }
+        if(userdatalist.isFinishS.bless03 == true){
+            CT.$('yfsBtn03').style.visibility = 'visible';
+            blessNum ++;
+            CT.$('blessNum').innerHTML = blessNum;
+            blessButtons[2] = false;
+
+        }
+        toBlessChange();
+    }
+    /*去观看*/
+    function toWatchS() {
+
+        userdatalist.toWatch ++;
+        if(userdatalist.toWatch <= 3){
+            CT.$('watchNum').innerHTML = userdatalist.toWatch;
+            actiObj.setUserDataList(JSON.stringify(userdatalist));
+            allCreditNum = allCreditNum + 50;
+            setCredit(allCreditNum);
+
+            var cartoonId = ['2143','1508','1790'];
+            var i = Math.floor(Math.random() * 2);
+            CT.goPage();
+            var commpageId = 3;
+            var cartoonData={recommendDisplayType:1,recommendDisplayValue:cartoonId[i],commpageId:commpageId};
+            CT.toAnterRecommendUrl(cartoonData);
+
+
+        }
+
+    }
+    /*发送祝福语*/
+    function toBless(i) {
+        if(i == 1 && userdatalist.isFinishS.bless01 == false){
+            allCreditNum = allCreditNum + 100;
+            setCredit(allCreditNum);
+            CT.$('scoreNum').innerHTML = allCreditNum;//显示总积分
+            userdatalist.isFinishS.bless01 = true;//true 已发送
+            userdatalist.time = createTime;
+            actiObj.setUserDataList(JSON.stringify(userdatalist));
+            CT.$('yfsBtn01').style.visibility = 'visible';
+            blessNum ++;
+            CT.$('blessNum').innerHTML = blessNum;
+            blessButtons[0] = false;
+            toBlessChange();
+        }else if(i == 2 && userdatalist.isFinishS.bless02 == false){
+            allCreditNum = allCreditNum + 100;
+            setCredit(allCreditNum);
+            CT.$('scoreNum').innerHTML = allCreditNum;//显示总积分
+            userdatalist.isFinishS.bless02 = true;
+            userdatalist.time = createTime;
+            actiObj.setUserDataList(JSON.stringify(userdatalist));
+            CT.$('yfsBtn02').style.visibility = 'visible';
+            blessNum ++;
+            CT.$('blessNum').innerHTML = blessNum;
+            blessButtons[1] = false;
+            toBlessChange();
+        }else if(i == 3 && userdatalist.isFinishS.bless03 == false){
+            allCreditNum = allCreditNum + 100;
+            setCredit(allCreditNum);
+            CT.$('scoreNum').innerHTML = allCreditNum;//显示总积分
+            userdatalist.isFinishS.bless03 = true;
+            userdatalist.time = createTime;
+            actiObj.setUserDataList(JSON.stringify(userdatalist));
+            CT.$('yfsBtn03').style.visibility = 'visible';
+            blessNum ++;
+            CT.$('blessNum').innerHTML = blessNum;
+            blessButtons[2] = false;
+            toBlessChange();
+        }
+    }
+
+
+    /*增加积分*/
+    function setCredit(allCreditNum) {
+        setUserCredit(15,allCreditNum,function(data){
+            if(data){
+            }
+        });
+    }
+
+    /*焦点*/
+    var bigButtons = [ 'hands_x0_y0_toOrderS_', 'hands_x0_y0_toRegisterS_', 'hands_x0_y0_toFinishS_', 'hands_x0_y0_toWatchS_' ];
+
+    /*左移*/
+    function toLeft(index) {
+        for (var i = index - 1; i >= 0; i--) {
+            if (bigButtons[i]) {
+                PAGE.changeFocus(bigButtons[i]);
+                break;
+            }
+        }
+    }
+
+    /*右移*/
+    function toRight(index) {
+        for (var i = index + 1; i < bigButtons.length; i++) {
+            if (bigButtons[i]) {
+                PAGE.changeFocus(bigButtons[i]);
+                break;
+            }
+        }
+    }
+
+    function toFirstChange() {
+        for (var i = 0; i < bigButtons.length; i++) {
+            if (bigButtons[i]) {
+                PAGE.changeFocus(bigButtons[i]);
+                return;
+            }
+        }
+        PAGE.changeFocus("hands_x0_y0_empty_");
+    }
+    /*祝福语焦点*/
+    var blessButtons = [ 'hands_x0_y0_bless01_', 'hands_x0_y0_bless02_', 'hands_x0_y0_bless03_'];
+    /*祝福语焦点 上移*/
+    function toUp(index) {
+        for (var i = index-1; i>=0; i--){
+            if(blessButtons[i]){
+                PAGE.changeFocus(blessButtons[i]);
+                break;
+            }
+        }
+    }
+    /*祝福语焦点 下移*/
+    function toDown(index) {
+        for(var i = index + 1; i < blessButtons.length; i++ ){
+            if(blessButtons[i]){
+                PAGE.changeFocus(blessButtons[i]);
+                break;
+            }
+        }
+    }
+
+    function toBlessChange() {
+        for (var i = 0; i < blessButtons.length; i++){
+            if(blessButtons[i]){
+                PAGE.changeFocus(blessButtons[i]);
+                return;
+            }
+        }
+        PAGE.changeFocus("hands_x0_y0_blessEmpty_")
+    }
+
+
+    /*按返回键返回*/
+    function backFunc() {
+        if(CT.$('blessPopup').style.visibility == 'visible'){
+            CT.$('blessPopup').style.visibility = 'hidden';
+            CT.$('yfsBtn01').style.visibility = 'hidden';
+            CT.$('yfsBtn02').style.visibility = 'hidden';
+            CT.$('yfsBtn03').style.visibility = 'hidden';
+            if(blessNum >= 3){
+                CT.$('blessFinished').style.visibility = 'visible';
+                bigButtons[2] = false;
+                toFirstChange();
+            }else {
+                PAGE.changeFocus("hands_x0_y0_toFinishS_");
+            }
+        }else {
+            CT.backPage();
+        }
+    }
+
+</script>
+</body>
+</html>

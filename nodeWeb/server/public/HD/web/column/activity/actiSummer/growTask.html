@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>关卡2--成长小任务</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+        html,body{
+            width: 1280px;
+            height: 720px;
+            overflow: hidden;
+        }
+        .main{
+            width: 1280px;
+            height: 720px;
+            background: url(images/grow/bg.jpg) no-repeat;
+            position: relative;
+            left: 0px;
+            top: 0px;
+            overflow: hidden;
+        }
+        .scorePack{
+            position: absolute;
+            left: 10px;
+        }
+        #scoreNum{
+            position: absolute;
+            font-size: 36px;
+            top: 60px;
+            left: 100px;
+        }
+        .tips{
+            position: absolute;
+            top: 90px;
+            left: 140px;
+        }
+        .grow{
+            position: absolute;
+            top: 190px;
+            left: 363px;
+        }
+        #hands_x0_y0_goBtn_{
+            position: absolute;
+            top: 565px;
+            left: 450px;
+        }
+        #hands_x0_y0_goBtnS_{
+            position: absolute;
+            top: -15px;
+            left: -16px;
+        }
+        #scoreTisp{
+            position: absolute;
+            top: 520px;
+            left: 630px;
+        }
+        #hands_x0_y0_tipsPopup_{
+            position: absolute;
+            visibility: hidden;
+        }
+        #hands_x0_y0_tipsPopupS_{
+            position: absolute;
+            top: 398px;
+            left: 550px;
+        }
+    </style>
+</head>
+
+<body>
+<div class="main">
+    <!--我的积分-->
+    <div class="scorePack">
+        <img src="images/integral.png">
+        <div id="scoreNum"></div>
+    </div>
+    <!--任务背景图-->
+    <div class="grow">
+        <img id="growBg" src="images/grow/grow0.png">
+    </div>
+    <!--任务框-->
+    <div class="tips">
+        <img id="tips" src="images/grow/tips0.png">
+    </div>
+    <!--马上就去-->
+    <div id="hands_x0_y0_goBtn_">
+        <img src="images/grow/go.png">
+        <div id="hands_x0_y0_goBtnS_">
+            <img id="goBtnS" src="images/grow/goS.png" style="visibility: hidden">
+        </div>
+    </div>
+    <!--积分-->
+    <div id="scoreTisp">
+        <img src="images/grow/scoreTisp.png">
+    </div>
+    <!--记得明天来完成任务提示-->
+    <div id="hands_x0_y0_tipsPopup_">
+        <img src="images/grow/tipsPopup.png">
+        <div id="hands_x0_y0_tipsPopupS_">
+            <img id="tipsPopupS" src="images/grow/tipsPopupS.png" style="visibility: hidden">
+        </div>
+    </div>
+
+</div>
+
+
+<!--<script type="text/javascript" src="js/common3_4.js"></script>
+<script type="text/javascript" src="js/key3_4.js"></script>
+<script type="text/javascript" src="js/actiComm.js"></script>-->
+
+<script type = "text/javascript" src = "../../../../js/loadCommomJs.js"></script>
+<script type="text/javascript" src="../../../../js/actiComm.js?v=2021"></script>
+<script type="text/javascript" src="js/credit.js"></script>
+<script>
+    buttons.push({
+        id:'hands_x0_y0_goBtnS_',
+        clickHandler:'javascript:goFinish()',
+        up:'disable',
+        down:'disable',
+        left:'disable',
+        right:'disable',
+        focusType:7
+    },{
+        id:'hands_x0_y0_tipsPopupS_',
+        clickHandler:'javascript:tipsPopupS()',
+        up:'disable',
+        down:'disable',
+        left:'disable',
+        right:'disable',
+        focusType:7
+    })
+    PAGE.focusInit();//焦点初始化
+    PAGE.changeFocus("hands_x0_y0_goBtnS_");
+
+    var allCreditNum = 0;//总积分
+    var isOrder = 1;// 0 已订购
+    var createTime = '';//创建日期
+    var userdatalist = [];
+    var isGrow = false;//今日未做任务，true今日已完成任务
+    
+    function initPage() {
+        /*鉴权*/
+        orderJs.columnGetAuth(function (data) {
+            if(data == '0'){
+                isOrder = 0;
+            }else {
+                isOrder = 1;
+            }
+        });
+        actiObj.getChance(function (data) {
+            createTime = data.data.createTime.substring(0, 10);
+            actiObj.getUserDataList(function (data) {
+                if (data && data.data && data.data.userActiData) {
+                    userdatalist = CT.stringToJson(data.data.userActiData);
+                } else {
+                    userdatalist = {
+                        isGrowDate: ''  //签到日期
+                    }
+                }
+                if(userdatalist.isGrowDate == createTime){//当天已完成任务  气泡显示爸爸妈妈我们一起看动画
+                    CT.$('tips').src = 'images/grow/finish.png';
+                    CT.$('scoreTisp').style.visibility = 'hidden';
+                    isGrow = true;
+                }else {
+                    randomGrow();
+                    randomTips();
+                }
+                actiObj.setUserDataList(CT.jsonToString(userdatalist));
+            })
+        })
+        getCredit();
+    }
+    initPage();
+    /*获取积分*/
+    function getCredit() {
+        getUserCredit(15,function(res){
+            if(res && res.successFlg == 1 && res.data){
+                allCreditNum = res.data.creditNum;
+                CT.$('scoreNum').innerHTML = allCreditNum;
+            }
+        });
+    }
+    /*随机显示任务背景图*/
+    function randomGrow() {
+        var i =Math.floor((Math.random() * 3));
+        CT.$('growBg').src = 'images/grow/grow'+ i +'.png'
+    }
+    /*随机显示任务提示框*/
+    function randomTips() {
+        var j =Math.floor((Math.random() * 4));
+        CT.$('tips').src = 'images/grow/tips'+ j +'.png'
+    }
+    
+    /*去完成任务*/
+    function goFinish() {
+        if(isGrow){ //进日已完成任务去看动画
+            if(isOrder == 0){
+                var cartoonId = ['800','1190','1585','845']
+                var i = Math.floor(Math.random() * 4);
+                CT.goPage();
+                var commpageId = 3;
+                var cartoonData={recommendDisplayType:1,recommendDisplayValue:cartoonId[i],commpageId:commpageId};
+                CT.toAnterRecommendUrl(cartoonData);
+            }else {
+                CT.goPage();
+                orderJs.columnToOrderPage("actiSummer");
+            }
+
+        }else { //今日未完成任务 做任务
+            allCreditNum = allCreditNum + 10;
+            setUserCredit(15,allCreditNum,function(data){
+                if(data){
+                    isGrow = true;
+                    userdatalist = {
+                        isGrowDate: createTime  //签到日期
+                    }
+                    actiObj.setUserDataList(CT.jsonToString(userdatalist));
+                    CT.$('hands_x0_y0_tipsPopup_').style.visibility = 'visible';
+                    PAGE.changeFocus("hands_x0_y0_tipsPopupS_");
+                }
+            });
+        }
+    }
+    /*任务完成确认*/
+    function tipsPopupS() {
+        CT.$('scoreTisp').style.visibility = 'hidden';
+        CT.$('tips').src = 'images/grow/finish.png'
+        CT.$('hands_x0_y0_tipsPopup_').style.visibility = 'hidden';
+        PAGE.changeFocus("hands_x0_y0_goBtnS_");
+        getCredit();
+    }
+
+    /*按返回键返回*/
+    function backFunc() {
+        CT.backPage();
+    }
+    
+    
+
+</script>
+
+</body>
+</html>
