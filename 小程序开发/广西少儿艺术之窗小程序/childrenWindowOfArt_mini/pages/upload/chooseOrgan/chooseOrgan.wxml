@@ -1,0 +1,24 @@
+<!--pages/common/search/search.wxml-->
+<view class="container">
+  <!-- 固定部分 -->
+  <view class="search_fiexd">
+    <!-- 搜索框 -->
+    <view class="search_box">
+      <image class="serach_icon" src="../../../static/images/common/search/search.png" ></image>
+      <input class="search_input" placeholder="搜索你想注册的机构" focus="{{focus}}" value="{{search_input_value}}" bindconfirm="search" bindfocus="searchInput_focus" bindblur="searchInput_blur" ></input>
+      <view class="cancelBtn" bindtap="cancel_search">取消</view>
+    </view>
+  </view>
+  <!-- 展示数据列表 -->
+  <view class="search_result_list">
+    <!-- 机构 -->
+    <view wx:if="{{search_type == 1}}" wx:for="{{search_result}}" class="search_result_item_organ" wx:key="index" catchtap="clickListDom" data-index="{{index}}">
+      <image class="organ_bg" src="/static/images/organ/organ-bg.png"></image>
+      <image class="img_organization" src="{{imgUrl + item.cpDetailPic.picPath}}" ></image>
+      <view class="organization_name">{{item.cpCname}}</view>
+    </view>
+  </view>
+  <view class="search_empty_tip" wx:if="{{alreadyInit && !search_result.length}}">搜索结果为空</view>
+</view>
+
+<!-- <navigation-bar default-data="{{defaultData}}"></navigation-bar> -->

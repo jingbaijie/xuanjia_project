@@ -1,0 +1,7 @@
+<view class="line">
+  <view class="line_box" bindtap="{{myTitleObj.bindEvent}}">
+    <image src="{{myTitleObj.leftIcon}}" class="leftIcon"></image>
+    <text>{{myTitleObj.text}}</text>
+    <image src="/static/images/user/rightArrow.png" class="rightArrow"></image>
+  </view>
+</view>

@@ -1,0 +1,17 @@
+/* pages/user/myFavorite/myFavorite.wxss */
+.xj_container{width: 100%;padding-left: 30rpx;padding-right: 30rpx;box-sizing: border-box;border-top: 1px solid #E6E6E6;}
+.top_title{width: 100%;height: 80rpx;display: flex;font-size: 34rpx;color: #333333;align-items: center;justify-content: space-around;}
+.navBar{width: 60rpx;height: 8rpx;border-radius: 4rpx;background: #6F80EC;}
+.navBar_box{width: 100%;display: flex;}
+/* 机构收藏列表 */
+.institutionList{margin-top: 20rpx;display: flex;flex-wrap: wrap;justify-content: space-between;}
+.institutionItem{width: 335rpx;height: 142rpx;margin-bottom: 30rpx;position: relative;}
+.institutionImg{position:absolute;left:0rpx;top:0rpx;width:100%;height:100%;display:flex;align-items:center;justify-content:center;}
+.institutionBG{position:absolute;left:0rpx;top:0rpx;width:100%;height:100%;}
+/* 视频收藏 */
+.watchItem image{width: 334rpx;height: 189rpx;border-radius: 12rpx;}
+.watchItem text{color: #333333;font-size: 26rpx;margin-top: 20rpx;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;width: 334rpx;}
+.watchItem{display: flex;flex-direction: column;margin-bottom: 30rpx;}
+.videoList{display: flex;justify-content: space-between;flex-wrap: wrap;margin-top: 20rpx;}
+/* 无收藏 */
+.defaultBox{width: 100%;display: flex;justify-content: center;}

@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "Mine_list":"/commpents/Mine_list/Mine_list"
+  },
+  "navigationStyle":"custom",
+  "navigationBarTextStyle":"white",
+  "navigationBarTitleText":"我的"
+}

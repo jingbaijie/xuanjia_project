@@ -1,0 +1,55 @@
+/* pages/organ/student/student.wxss */
+.studentPage{}
+/* 学员信息 */
+.student-Info{display: flex;padding: 50rpx 30rpx;border-top: 1px solid #E5E5E5;}
+.student-head image{width: 114rpx; height: 114rpx;border-radius: 50%;}
+.student-details{margin-left: 20rpx;}
+.student-name{font-size: 34rpx;font-weight: 500;color: #333333;}
+.student-age{background: linear-gradient(-90deg, #36D1DC, #5B86E5);width: 72px;height: 30px; border-radius: 6px;color: #ffffff;display: flex;align-items: center;justify-content: center;font-size: 22px;margin-top: 10rpx;}
+.girl{background: linear-gradient(-90deg, #ff9966, #ff5e62);}
+.student-age image{width: 28rpx;height: 31rpx;margin-right: 10rpx;}
+.student-organ{flex: 1;text-align: right;}
+.student-organ image{width: 155rpx;}
+/* tab切换 */
+.tab {
+  position: relative;
+  width: 140rpx;
+  text-align: center;
+  padding: 10rpx 0;
+}
+.topTabSwiper {
+  display: flex;
+  justify-content: space-evenly;
+  border-bottom: 1px solid #ccc;
+  zoom: 1;
+}
+ 
+.tabBorer {
+  position: absolute;
+  top: 58rpx;
+  left: 5rpx;
+  width: 130rpx;
+  height: 8rpx;
+  background: #6F80EC;
+  border-radius: 8rpx;
+}
+ 
+.swiper {
+  width: 100%;
+}
+ 
+.swiper_con {
+  text-align: center;
+  padding: 40rpx 30rpx;
+}
+/* 推荐视频 */
+.recVideoPack{display: flex;justify-content: space-between;flex-wrap: wrap;}
+.recVideoItem{padding-bottom: 30rpx;}
+.recVideoImg,.recVideoImg image{width: 334rpx; height: 189rpx;border-radius: 12rpx;}
+.recVideoName{font-size: 26rpx;font-weight: 400;padding-top: 20rpx;color: #333333;width: 300rpx; overflow: hidden;}
+/* 标题模块 */
+.namePack{display: flex;justify-content: space-between;padding-bottom: 20rpx;padding-top: 20rpx;}
+.namePack .namePackLeft{display: flex;}
+.namePack .iconImg image{width: 41rpx;height: 40rpx;}
+.namePack .title{font-size: 30rpx;font-weight: 500; color: #333333;}
+.namePack .more{ font-size: 26rpx;font-weight: 400; color: #808080;}

@@ -1,0 +1,56 @@
+<!--pages/organ/student/student.wxml-->
+<view class="studentPage">
+  <!-- 顶部学员头像 名称  年龄 -->
+  <view class="student-Info">
+    <view class="student-head"><image wx:if="{{studentDetail.iconPic.picPath}}" src="{{imgUrl + studentDetail.iconPic.picPath}}"></image></view>
+    <view class="student-details">
+      <view class="student-name">{{studentDetail.cartoonCname ? studentDetail.cartoonCname : '烟雨烟尘'}}</view>
+      <view class="student-age {{studentDetail.actorDisplay == 0 ? 'girl':''}}">
+        <image src="../../../static/images/organ/sexIcon.png"></image>
+        <text>{{studentDetail.writerDisplay}}</text>
+      </view>
+    </view>
+    <view class="student-organ" id="{{studentDetail.cpId}}" bindtap="jumpdetails"><image wx:if="{{studentDetail.cplLogPic.picPath}}" src="{{imgUrl + studentDetail.cplLogPic.picPath}}" mode="widthFix"></image></view>
+  </view>
+  <!-- 视频推荐   图片推荐 -->
+  <view>
+    <!-- <view class='topTabSwiper'>
+        <view class='tab  {{currentData == 0 ? "tabBorer" : ""}}'  data-current = "0" bindtap='checkCurrent'>视频推荐</view>
+        <view class='tab  {{currentData == 1 ? "tabBorer" : ""}}'  data-current = "1" bindtap='checkCurrent'>图片推荐</view>
+    </view> -->
+    <view class='topTabSwiper'>
+        <view class='tab'  data-current = "0" bindtap='checkCurrent'>
+          <text>视频推荐</text>
+          <view class=' {{currentData == 0 ? "tabBorer" : ""}}'></view>
+        </view>
+        <view class='tab'  data-current = "1" bindtap='checkCurrent'>
+          <text>图片推荐</text>
+          <view class=' {{currentData == 1 ? "tabBorer" : ""}}'></view>
+        </view>
+    </view>
+    <swiper current="{{currentData}}" class='swiper' style="height:600px;" duration="300" bindchange="bindchange">
+      <swiper-item>
+        <view class='swiper_con'>
+            <view class="recVideoPack">
+              <view class="recVideoItem" wx:for="{{studentDetail.videoList}}" wx:key="index">
+                <view class="recVideoImg" id="{{item.videoId}}" bindtap="jumpPage"><image src="{{imgUrl + item.videoPic}}"></image></view>
+                <view class="recVideoName">{{item.videoCname}}</view>
+              </view>
+            </view>
+        </view>
+      </swiper-item>
+      <swiper-item>
+        <view class='swiper_con'>
+            <view class="recVideoPack">
+              <view class="recVideoItem" wx:for="{{studentDetail.picList}}" wx:key="index">
+                <view class="recVideoImg" bindtap="onPreview" data-src="{{imgUrl + item.playUrl}}"><image src="{{imgUrl + item.playUrl}}"></image></view>
+                <view class="recVideoName">{{item.videoCname}}</view>
+              </view>
+            </view>
+        </view>
+      </swiper-item>
+    </swiper>
+  
+  </view>
+
+</view>

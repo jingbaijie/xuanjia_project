@@ -1,0 +1,9 @@
+<!--pages/organ/moreVideo/moreVideo.wxml-->
+<view class="moreVideoPage">
+  <view class="recVideoPack">
+      <view class="recVideoItem"  wx:for="{{moreVideo}}" wx:key="index">
+        <view class="recVideoImg"  id="{{item.videoId}}" bindtap="jumpPage"><image wx:if="{{item.videoPic}}" src="{{imgUrl + item.videoPic}}"></image></view>
+        <view class="recVideoName">{{item.videoCname}}</view>
+      </view>
+    </view>
+</view>

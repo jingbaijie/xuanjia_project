@@ -1,0 +1,31 @@
+<view class="xj_container">
+  <view class="top_title">
+    <text style="font-weight:{{collectType==0?'bold':'400'}};" bindtap="getCollectList" data-type="0">机构</text>
+    <text style="font-weight:{{collectType==1?'bold':'400'}};" bindtap="getCollectList" data-type="1">视频</text>
+  </view>
+  <view class="navBar_box" style="position:relative;">
+    <view class="navBar" wx:if="{{collectType==0}}" style="position:absolute;left: 140rpx;"></view>
+    <view class="navBar" wx:if="{{collectType==1}}" style="position:absolute;right: 140rpx;"></view>
+  </view>
+  <!--机构收藏列表 -->
+  <view class="institutionList" wx:if="{{collectType==0}}">
+    <view wx:for="{{collectList}}" wx:key="index" class="institutionItem" catchtap="toInstituteDetail" data-cpId="{{item.id}}">
+      <image src="/static/images/organ/organ-bg.png" class="institutionBG"></image>
+      <view class="institutionImg">
+        <image src="{{picUrl+item.detailPicPath}}" style="width:50%;height:50%;"></image>
+      </view>
+    </view>
+  </view>
+  <!-- 视频收藏列表 -->
+  <view class="videoList" wx:if="{{collectType==1}}">
+    <view class="watchItem" wx:for="{{collectList}}" wx:key="index" catchtap="toVideoDetail"
+      data-videoId="{{item.content_id}}">
+      <image src="{{picUrl+item.picPath}}"></image>
+      <text>{{item.cpIntroduction}}</text>
+    </view>
+  </view>
+  <!-- 默认无收藏 -->
+  <view class="defaultBox" wx:if="{{collectList.length==0}}">
+    <image src="/static/images/user/noCollect.png" mode="widthFix"></image>
+  </view>
+</view>

@@ -1,0 +1,79 @@
+{
+  "pages": [
+    "pages/home/index/index",
+    "pages/organ/cityType/cityType",
+    "pages/organ/index/index",
+    "pages/upload/uploadFile/uploadFile",
+    "pages/common/search/search",
+    "pages/common/cropper/cropper",
+    "pages/common/cropper1/cropper1",
+    "pages/user/index/index",
+    "pages/upload/uploadRegister/uploadRegister",
+    "pages/upload/protocol/protocol",
+    "pages/recommend/recommendPage/recommendPage",
+    "pages/home/cityType/cityType",
+    "pages/organ/details/details",
+    "pages/organ/moreStudent/moreStudent",
+    "pages/organ/moreVideo/moreVideo",
+    "pages/organ/student/student",
+    "pages/organ/videoDetails/videoDetails",
+    "pages/organ/morePicList/morePicList",
+    "pages/home/moreStudent/moreStudent",
+    "pages/home/moreVideo/moreVideo",
+    "pages/upload/chooseOrgan/chooseOrgan",
+    "pages/user/watchHistory/watchHistory",
+    "pages/user/myFavorite/myFavorite",
+    "pages/home/jqqd/jqqd",
+    "pages/user/myWorks/myWorks",
+    "pages/user/aboutUs/aboutUs"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTitleText": "Weixin",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#6C7AFF",
+    "list": [
+      {
+        "iconPath": "./static/images/tab/homeIcon.png",
+        "selectedIconPath": "./static/images/tab/homeIconS.png",
+        "pagePath": "pages/home/index/index",
+        "text": "首页"
+      },
+      {
+        "iconPath": "./static/images/tab/organIcon.png",
+        "selectedIconPath": "./static/images/tab/organIconS.png",
+        "pagePath": "pages/organ/index/index",
+        "text": "机构"
+      },
+      {
+        "iconPath": "./static/images/tab/uploadIcon.png",
+        "selectedIconPath": "./static/images/tab/uploadIcon.png",
+        "pagePath": "pages/upload/uploadFile/uploadFile",
+        "text": "上传"
+      },
+      {
+        "iconPath": "./static/images/tab/recIcon.png",
+        "selectedIconPath": "./static/images/tab/recIconS.png",
+        "pagePath": "pages/recommend/recommendPage/recommendPage",
+        "text": "推荐"
+      },
+      {
+        "iconPath": "./static/images/tab/myIcon.png",
+        "selectedIconPath": "./static/images/tab/myIconS.png",
+        "pagePath": "pages/user/index/index",
+        "text": "我的"
+      }
+    ]
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "请点击确定"
+    }
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

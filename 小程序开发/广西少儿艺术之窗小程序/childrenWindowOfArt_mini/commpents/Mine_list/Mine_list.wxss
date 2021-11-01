@@ -1,0 +1,6 @@
+/* 列表 */
+.line{padding-left: 85rpx;padding-right: 50rpx;box-sizing: border-box;}
+.line_box{width: 100%;height: 108rpx;display: flex;align-items: center;border-bottom: 1rpx solid #F3F3F3;}
+.line .leftIcon{width: 34rpx;height: 35rpx;margin-right: 48rpx;}
+.line text{font-size: 30rpx;color: #333333;margin-right: 390rpx;}
+.line .rightArrow{width: 15rpx;height: 25rpx;}

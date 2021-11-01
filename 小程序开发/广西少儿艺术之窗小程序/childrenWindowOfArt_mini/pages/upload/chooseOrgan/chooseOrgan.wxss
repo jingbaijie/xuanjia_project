@@ -1,0 +1,212 @@
+/* pages/common/search/search.wxss  */
+.container{
+  padding: 0;
+}
+.search_fiexd{
+  position: fixed;
+  opacity: 1;
+  background-color: white;
+  z-index: 1;
+}
+.search_box{
+  width: 750rpx;
+  height: 56rpx;
+  padding: 40rpx 0 0rpx 0;
+}
+.serach_icon{
+  width: 30rpx;
+  height: 30rpx;
+  position: absolute;
+  left: 54rpx;
+  top: 55rpx;
+}
+.search_input{
+  position: absolute;
+  left: 30rpx;
+  top: 40rpx;
+  width: 530rpx;
+  height: 56rpx;
+  border: 1rpx solid #E2E2E2;
+  border-radius: 28rpx;
+  font-size: 24rpx;
+  padding-left: 70rpx;
+}
+.cancelBtn{
+  position: absolute;
+  left: 656rpx;
+  top: 54rpx;
+  color: #999999 ;
+  font-size: 24rpx;
+  width: 50rpx;
+}
+.serach_tab{
+  width: 750rpx;
+  height: 102rpx;
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  color: #333333;
+  text-align: center;
+  margin-top: 19rpx;
+}
+.tab_organization{
+  width: 80rpx;
+  height: 55rpx;
+  font-size: 31rpx;
+  line-height: 32rpx;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  display: flex;
+}
+.tab_student{
+  width: 80rpx;
+  height: 55rpx;
+  font-size: 31rpx;
+  line-height: 32rpx;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  display: flex;
+}
+.tab_viedeo{
+  width: 80rpx;
+  height: 55rpx;
+  font-size: 31rpx;
+  line-height: 32rpx;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  display: flex;
+}
+.tab_bar{
+  width: 60rpx;
+  height: 8rpx;
+  background: #6F80EC;
+  border-radius: 4rpx;
+}
+.search_empty_tip{
+  background-color: white;text-align: center;padding-top: 20rpx;
+}
+/* 热门推荐 */
+.hotRecommend_wrapper{
+  width: 750rpx;
+  margin-top: 70rpx;
+}
+.hotRecommend{
+  margin-left: 31rpx;
+  height: 30rpx;
+  font-size: 30rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 500;
+  color: #333333;
+}
+.hotRecommend_list{
+  padding: 26rpx 18rpx;
+  width: 750rpx;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.hotRecommend_listDom{
+  height: 54rpx;
+  background: #F5F5F5;
+  margin: 12rpx;
+  font-size: 24rpx;
+  line-height: 54rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #666666;
+  text-align: center;
+  padding: 0rpx 22rpx;
+}
+/* 展示列表 */
+.search_result_list{
+  width: 750rpx;
+  padding: 135rpx 20rpx 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.organList{
+  width: 167rpx;
+  height: 71rpx;
+}
+.search_result_item_organ{
+  width: 335rpx;
+  height: 142rpx;
+  margin: 30rpx 10rpx;
+  position: relative;
+}
+.organ_bg{
+  width: 335rpx;
+  height: 142rpx;
+  position: absolute;
+  top: 0rpx;
+  left: 0rpx;
+}
+.img_organization{
+  width: 320rpx;
+  height: 100rpx;
+  position: absolute;
+  top: 22rpx;
+  left: 7rpx;
+}
+.organization_name{
+  width: 320rpx;
+  position: absolute;
+  top: 135rpx;
+  left: 7rpx;
+  height: 50rpx;
+  font-size: 26rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #333333;
+  line-height: 50rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.search_result_item_student{
+  width: 216rpx;
+  height: 360rpx;
+  border-radius: 12rpx;
+  margin: 15rpx 10rpx;
+  position: relative;
+}
+.img_student{
+  width: 216rpx;
+  height: 314rpx;
+  border-radius: 12rpx;
+}
+.student_name{
+  width: 216rpx;
+  height: 25rpx;
+  font-size: 26rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #333333;
+  line-height: 40rpx;
+}
+.search_result_item_video{
+  width: 334rpx;
+  height: 235rpx;
+  margin: 15rpx 10rpx;
+  position: relative;
+}
+.img_video{
+  width: 334rpx;
+  height: 189rpx;
+  border-radius: 12rpx;
+}
+.video_name{
+  width: 334rpx;
+  height: 25rpx;
+  font-size: 26rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #333333;
+  line-height: 40rpx;
+}

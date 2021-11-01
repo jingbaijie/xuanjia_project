@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    
+},
+  "navigationBarTitleText": "选择注册机构",
+  "navigationBarTextStyle": "black",
+  "enablePullDownRefresh": true,
+  "enableReachBottom": true
+}

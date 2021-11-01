@@ -1,0 +1,14 @@
+.xj_container{width: 100%;padding-left: 30rpx;padding-right: 30rpx;box-sizing: border-box;border-top: 1px solid #E6E6E6;}
+/* 默认图片 */
+.defaultStatus{display: flex;flex-direction: column;justify-content: center;align-items: center;margin-top: 150rpx;width: 100%;}
+.defaultStatus text{color: #999999;font-size: 26rpx;margin-bottom: 50rpx;}
+.defaultStatus .releaseBtn{width: 280rpx;height: 65rpx;background: #6C7AFF;color: #ffffff;font-size: 26rpx;border-radius: 32rpx;display: flex;justify-content: center;align-items: center;}
+.myWorksItemBox{width:690rpx;border-radius:10rpx;box-shadow: #666666 0rpx 0rpx 10rpx;margin-bottom: 30rpx;}
+.myWorksItemTop{display:flex;border-bottom:1rpx solid #EBEBEB;margin-left:22rpx;padding-top:30rpx;padding-bottom:30rpx;box-sizing:border-box;}
+.worksImg{width:194rpx;height:109rpx;border-radius:12rpx;}
+.worksTextInfo{display:flex;flex-direction:column;margin-left:18rpx;}
+.worksTextInfo .title{margin-bottom:25rpx;color:#333333;font-size:32rpx;}
+.worksTextInfo .author{color:#888888;font-size:22rpx;}
+.btnBox{display:flex;padding-top:20rpx;padding-bottom:20rpx;box-sizing:border-box;padding-right:35rpx;box-sizing:border-box;justify-content:flex-end;}
+.deleteBtn{width:155rpx;height:54rpx;color:#BCBCBC;border-radius:26rpx;display:flex;justify-content:center;align-items:center;border:3rpx solid #BCBCBC;margin-right:32rpx;}
+.statusShow{width:155rpx;height:54rpx;color:#ffffff;border-radius:26rpx;display:flex;justify-content:center;align-items:center;}

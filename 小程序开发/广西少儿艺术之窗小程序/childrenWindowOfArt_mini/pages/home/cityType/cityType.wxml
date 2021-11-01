@@ -1,0 +1,9 @@
+<!--pages/organ/cityType/cityType.wxml-->
+<view class="cityTypePage">
+  <view class="cityTypeItem" id="0" bindtap="selectCity">
+    <view class="{{cityId==0 ? 'active':''}}">广西省</view>
+  </view>
+  <view class="cityTypeItem" wx:for="{{areaList}}" wx:key="key" wx:for-index="index">
+    <view id="{{item.id}}" bindtap="selectCity" class="{{item.id == cityId ? 'active':'' }}">{{item.name}}</view>
+  </view>
+</view>

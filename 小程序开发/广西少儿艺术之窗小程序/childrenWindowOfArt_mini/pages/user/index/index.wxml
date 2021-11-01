@@ -1,0 +1,28 @@
+<view class="xj_container" style="position:relative;">
+  <!-- 背景 -->
+  <image class="userBG" src="/static/images/user/bg.jpg" mode="widthFix"></image>
+  <view class="navigate" style="position: absolute;top: {{statusBarHeight*2}}rpx;left: 0rpx;">
+    <text class="navigateText">我的</text>
+  </view>
+  <!-- 头像和昵称 -->
+  <view class="headPic_nickname">
+    <image src="{{headerPic?headerPic:'/static/images/user/noLogin.png'}}" class="headPic" bindtap="onTabItemTap"></image>
+    <text class="nickname" bindtap="onTabItemTap">{{nickName?nickName:"点击登录"}}</text>
+  </view>
+  <!-- 观看历史、我的喜欢 -->
+  <view class="history_myFavorite">
+    <view catchtap="watchHistory">
+      <image src="/static/images/user/seeHistory.png" style="width:54rpx;height:43rpx;"></image>
+      <text>观看历史</text>
+    </view>
+    <view catchtap="myFavorite">
+      <image src="/static/images/user/myFavorite.png" style="width:50rpx;height:46rpx;"></image>
+      <text>我的喜欢</text>
+    </view>
+  </view>
+  <!-- 列表 -->
+  <Mine_list myTitleObj="{{ruzhuObj}}"></Mine_list>
+  <Mine_list myTitleObj="{{contactObj}}"></Mine_list>
+  <Mine_list myTitleObj="{{myWorksObj}}"></Mine_list>
+  <Mine_list myTitleObj="{{aboutUsObj}}"></Mine_list>
+</view>

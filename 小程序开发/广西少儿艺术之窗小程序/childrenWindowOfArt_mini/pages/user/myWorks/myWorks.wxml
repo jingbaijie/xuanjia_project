@@ -1,0 +1,26 @@
+<!--pages/user/myWorks/myWorks.wxml-->
+<view class="xj_container">
+  <view class="defaultStatus" wx:if="{{worksList.length==0}}">
+    <image src="/static/images/user/noWorks.png" mode="widthFix"></image>
+    <text>你还没有作品，快去发布你的第一条作品吧</text>
+    <view class="releaseBtn" bindtap="toReleaseWorks">发布作品</view>
+  </view>
+  <!-- 作品列表 -->
+  <view class="myWorksList" style="margin-top:40rpx;">
+    <view class="myWorksItemBox" wx:for="{{worksList}}" wx:key="index">
+      <view class="myWorksItemTop">
+        <image class="worksImg" src="{{(item.status==0 || item.status==3)?'/static/images/user/noPass.png':(item.status==1?'/static/images/user/underReview.png':(item.uploadTagCode=='shipinzuopin'?picUrl+item.uploadDetailList[1].filePath:picUrl+item.uploadDetailList[0].filePath))}}"></image>
+        <view class="worksTextInfo">
+          <text class="title">{{item.title}}</text>
+          <text class="author">{{item.uploaderName}}</text>
+        </view>
+      </view>
+      <view class="btnBox">
+        <view class="deleteBtn" wx:if="{{item.status==0 || item.status==3}}" bindtap="deleteWorks" data-batchNo="{{item.batchNo}}" data-index="{{index}}">删除</view>
+        <view class="statusShow" style="background:#FF4046;" wx:if="{{item.status==0 || item.status==3}}">未通过</view>
+        <view class="statusShow" style="background:#00B578;" wx:if="{{item.status==1}}">审核中</view>
+        <view class="statusShow" style="background:#6C7AFF;" wx:if="{{item.status==2}}">已发布</view>
+      </view>
+    </view>
+  </view>
+</view>

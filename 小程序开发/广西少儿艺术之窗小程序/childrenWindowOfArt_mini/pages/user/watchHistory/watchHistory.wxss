@@ -1,0 +1,7 @@
+/* pages/user/watchHistory/watchHistory.wxss */
+.xj_container{width: 100%;padding-left: 30rpx;padding-right: 30rpx;box-sizing: border-box;border-top: 1px solid #E6E6E6;padding-top: 40rpx;}
+.watchItem image{width: 334rpx;height: 189rpx;border-radius: 12rpx;}
+.watchItem text{color: #333333;font-size: 26rpx;margin-top: 20rpx;}
+.watchItem{display: flex;flex-direction: column;margin-bottom: 30rpx;}
+.watchList{display: flex;justify-content: space-between;flex-wrap: wrap;}
+  

@@ -1,0 +1,2 @@
+/* pages/home/jqqd/jqqd.wxss */
+.jqqdPage{display: flex; justify-content: space-around;padding-top: 200rpx;border-top: 1rpx solid #E6E6E6;}

@@ -1,0 +1,10 @@
+/* pages/organ/moreVideo/moreVideo.wxss */
+.moreVideoPage{padding: 30rpx;border-top: 1rpx solid #E6E6E6;}
+/* 推荐视频 推荐图片 */
+.recVideoPack{display: flex;justify-content: space-between;flex-wrap: wrap;}
+.recVideoItem{padding-bottom: 30rpx;}
+.recVideoImg,.recVideoImg image{width: 334rpx; height: 189rpx;border-radius: 12rpx;}
+.recVideoName{font-size: 26rpx;font-weight: 400;padding-top: 20rpx;color: #333333;width: 300rpx;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;}

@@ -1,0 +1,127 @@
+<!--pages/upload/uploadFile/uploadFile.wxml-->
+<view class="pageWrapper">
+  <!-- 眉头固定部分 -->
+  <view class="nameWrapper">
+    <view class="userName">{{_loginStuName || '请选择学员登录'}}</view>
+    <image class="changeImg" catchtap="changeUserListStatus" data-userlist_display="1" src="/static/images/upload/change.png"></image>
+  </view>
+  <view class="studentNum">学号：<view>{{_loginStuNum || '未登录'}}</view></view>
+  <!-- 视频上传 图片上传 导航栏 -->
+  <view class="uploadNav">
+    <view class="navText">
+      <view catchtap="changeUploadType" data-uploadtype="0" >视频上传</view>
+      <view  class="tabBar" wx:if="{{uploadType == 0}}"></view>
+    </view>
+    <view class="navText">
+      <view catchtap="changeUploadType" data-uploadtype="1" >图片上传</view>
+      <view  class="tabBar" wx:if="{{uploadType == 1}}"></view>
+    </view>
+  </view>
+  <view class="inputItem">
+    <view class="labelCol"></view>
+    <view class="inputName">作品名称：</view>
+    <input type="text" class="inputDom" placeholder-class="input_placeholder" maxlength="30" placeholder="请输入作品名称，30字以内" value="{{opus_name}}" bindblur="updateOpusName" ></input>
+  </view>
+  <!-- 视频上传模块 -->
+  <view class="videoWrapper" wx:if="{{uploadType == 0}}" bindtouchstart="monitorGesture_start" bindtouchend="monitorGesture_end">
+    <!-- 上传视频 -->
+    <view class="inputItem">
+      <view class="labelCol"></view>
+      <view class="inputName">上传视频：</view>
+      <view class="uploadTip_gray">(视频大小不超过500MB)</view>
+    </view>
+    <view class="uploadDom" catchtap="choseUploadFile">
+      <view class="video-box" wx:if="{{temporary_video}}">
+        <video wx:if="{{userListShowStatus != 1}}" controls="{{false}}" show-center-play-btn="{{false}}" show-play-btn="{{false}}" src="{{temporary_video}}" id="myVideo" class="my-video">
+        </video>
+      </view>
+      <image wx:if="{{!temporary_video}}" class="uploadLabelImg" src="/static/images/upload/uploadLabel.png"></image>
+      <view wx:if="{{!temporary_video}}" class="uploadLabelText" >上传视频</view>
+    </view>
+    <!-- 上传图片 -->
+    <view class="inputItem">
+      <view class="labelCol"></view>
+      <view class="inputName">上传视频封面：</view>
+      <view class="uploadTip_gray">(图片大小不超过5M)</view>
+    </view>
+    <view class="uploadDom" catchtap="chooseImage">
+      <image class="uploadLabelImg" src="/static/images/upload/uploadLabel.png" wx:if="{{!coverImgUrl}}" ></image>
+      <view class="uploadLabelText"  wx:if="{{!coverImgUrl}}" >上传照片</view>
+      <image class="uploadDom" src="{{coverImgUrl}}" wx:if="{{coverImgUrl}}" ></image>
+    </view>
+  </view>
+
+  <!-- 图片上传模块 -->
+  <view  wx:if="{{uploadType == 1}}" bindtouchstart="monitorGesture_start" bindtouchend="monitorGesture_end">
+    <!-- 上传图片 -->
+    <view class="inputItem">
+      <view class="labelCol"></view>
+      <view class="inputName">上传图片：</view>
+      <view class="uploadTip_gray">(图片大小不超过5M)</view>
+    </view>
+    <view class="uploadDom1" catchtap="chooseImage">
+      <image class="uploadLabelImg" src="/static/images/upload/uploadLabel.png" wx:if="{{!opus_imgUrl}}" ></image>
+      <view class="uploadLabelText" wx:if="{{choseImg_status == 0}}"  wx:if="{{!opus_imgUrl}}" >上传照片</view>
+      <image class="opus_imgUrl" src="{{opus_imgUrl}}" wx:if="{{opus_imgUrl}}" ></image>
+      <view wx:if="{{opus_imgUrl}}" class="opus_imgUrl_mask">
+        <image class="enlarge_img" src="/static/images/upload/scale.png" catchtap="enlargeImg"></image>
+        <image class="delete_img" src="/static/images/upload/delete.png" catchtap="deleteImg"></image>
+      </view>
+    </view>
+    <view class="uploadDom1_mask" wx:if="{{choseImg_status == 1}}">
+      <image class="scaleImg" src="/static/images/upload/scale.png"></image>
+      <image class="deleteImg" src="/static/images/upload/delete.png"></image>
+    </view>
+  </view>
+
+  <!-- 确认按钮 -->
+  <view>
+    <button class="okBtn" catchtap="confirmSubmission">确认</button>
+  </view>
+  <!-- 上传视频提示语 -->
+  <view class="uploadVideo_tipWrapper"  wx:if="{{uploadType == 0}}">
+    <view class="uploadVideo_tipText0">*</view>
+    <view class="uploadVideo_tipText1">每次仅能上传1个视频，请提交后再次上传</view>
+  </view>
+
+  <!-- 切换用户列表 -->
+  <view class="userListWrapper_BG" wx:if="{{userListShowStatus == 1}}"></view>
+  <view style="position: absolute;top: 0;">
+    <view class="userListWrapper" wx:if="{{userListShowStatus == 1}}">
+      <!-- 标题弹窗列表容器 -->
+      <view class="studentManage_list">
+        <!-- 标题行 -->
+        <view class="titleWrapper">
+          <!-- 标题 -->
+          <view class="userList_title">学员管理</view>
+          <view class="exitFont"  catchtap="changeUserListStatus" data-userlist_display="0" >×</view>
+        </view>
+        <!-- 已有学员渲染 -->
+        <view class="studentDomWrapper" wx:for="{{student_info_list}}" catchtap="changeStuLogin" data-stu_info="{{item}}"  wx:key="index">
+          <view class="userDomLeft">
+            <image class="userIcon" src="{{imgUrl + item.iconPic.picPath}}" ></image>
+            <view class="userDomMid">
+              <view class="userDom_name">{{item.cartoonCname}}</view>
+              <view class="userDom_num">{{item.cspInfo.cpCode + item.outId}}</view>
+            </view>
+          </view>
+          <view class="curUserTip" wx:if="{{item.id == _loginStuNum}}">当前使用</view>
+        </view>
+        <!-- 添加新学员 -->
+        <view class="addNewAccount_wrapper" catchtap="addNewStu">
+          <image class="addNewAccount_img" src="/static/images/upload/uploadLabel.png"></image>
+          <view class="addNewAccount_text" >添加学员</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 放大后的图片 -->
+  <view class="enlarge_img_wrapper" wx:if="{{uploadType && enlarge_img_url}}" catchtap="cancelEnlargeImg">
+    <image class="enlarge_img_dom" src="{{enlarge_img_url}}"></image>
+  </view>
+</view>
+
+
+
+
+

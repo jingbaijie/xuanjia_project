@@ -1,0 +1,120 @@
+<!--pages/home/index/index.wxml-->
+<navigation-bar></navigation-bar>
+<view class="container">
+  <!-- 搜索 -->
+  <view class="search-box">
+    <view class="search-city" id="searchCity" bindtap="jumpPage">
+      <image src="../../../static/images/tab/fixedIcon.png"></image>{{city}}
+    </view>
+    <view class="search-bar">
+        <icon class="search-icon" type="search" size="30" color="#ffffff"></icon>
+        <input type="text" class="search-input" placeholder="搜索你感兴趣的内容" placeholder-style="color:#ffffff" bindtap="jumpSearch" />
+    </view>
+  </view>
+  <!-- 内容 -->
+  <view class="containerPack">
+     <!-- 顶部内容 -->
+      <view class="allcontent">
+        <!-- 幻灯片 -->
+        <view class="page-section page-section-spacing swiper">
+          <swiper indicator-dots="true" autoplay="false" interval="2000" duration="500" >
+            <block wx:for="{{findRecCommonPageInfo.recommend_2}}" wx:key="index">
+              <swiper-item>
+                <view class="swiper-item"  id="{{item.recommendDisplayValue}}" data-type="{{item.recommendDisplayType}}" bindtap="jumpType">
+                  <image class="banner-img" src="{{imgUrl + item.recommendPic.picPath}}"></image>
+                </view>
+              </swiper-item>
+            </block>
+          </swiper>
+        </view>
+        <!-- 机构优选  精彩活动 -->
+        <view class="recmmend_1">
+          <view class="recjgyx" wx:for="{{findRecCommonPageInfo.recommend_3}}" wx:key="index">
+            <image src="{{imgUrl + item.recommendPic.picPath}}" id="{{item.recommendDisplayValue}}" data-type="{{item.recommendDisplayType}}" bindtap="jumpType"></image>
+          </view>
+        </view>
+        <!-- 找机构  找宝贝  找视频 -->
+        <view class="recmmend_2">
+          <view class="recFindBaby" wx:for="{{findRecCommonPageInfo.recommend_4}}" wx:key="index">
+            <image src="{{imgUrl + item.recommendPic.picPath}}" id="{{index + 1}}" bindtap="jumpSearchType"></image>
+          </view>
+        </view>
+      </view>
+      <!-- 分割线 -->
+      <view class="splitLine"></view>
+      <!-- 活跃机构 -->
+      <view class="hyjg">
+        <view class="namePack">
+          <view class="namePackLeft">
+            <view class="iconImg">
+              <image src="../../../static/images/tab/hyjgIcon.png"></image>
+            </view>
+            <view class="title">{{recCommonPageByCity.recommend_1[0].more3}}</view>
+          </view>
+          <view class="more" id="organAll" bindtap="jumpPage">更多 ></view>
+        </view>
+        <view class="jgPack">
+          <block  wx:for="{{recCommonPageByCity.recommend_1}}" wx:key="item" wx:for-index="index">
+            <view class="jgItem" wx:if="{{index > 0}}" id="{{item.recommendDisplayValue}}" bindtap="jumpOrganDetails">
+              <image class="organ-bg" src="../../../static/images/organ/organ-bg.png"></image>
+              <view class="organ-logo">
+                <image class="logoPic"  src="{{imgUrl + item.recommendPic.picPath}}"></image>
+              </view>
+            </view>
+          </block>
+      
+        </view>
+      </view>
+      <!-- 分割线 -->
+      <view class="splitLine"></view>
+      <!-- 宝贝风采 -->
+      <view class="bbfc">
+        <view class="namePack">
+          <view class="namePackLeft">
+            <view class="iconImg">
+              <image src="../../../static/images/tab/bbfcIcon.png"></image>
+            </view>
+            <view class="title">{{recCommonPageByCity.recommend_2[0].more3}}</view>
+          </view>
+          <view class="more" id='studentAll' bindtap="jumpPage">更多 ></view>
+        </view>
+        <view class="bbfcPack">
+          <block  wx:for="{{recCommonPageByCity.recommend_2}}" wx:key="item" wx:for-index="index">
+            <view class="bbfcItem" wx:if="{{index > 0}}" >
+              <view class="babyImg" id="{{item.recommendDisplayValue}}" bindtap="jumpStudentPage">
+                <image src="{{imgUrl + item.recommendPic.picPath}}"></image>
+              </view>
+              <view class="babyName">{{item.recommendPic.picCname}}</view>
+            </view>
+          </block>
+        </view>
+      </view>
+      <!-- 分割线 -->
+      <view class="splitLine"></view>
+      <!--推荐视频  -->
+      <view class="recVideo">
+        <view class="namePack">
+          <view class="namePackLeft">
+            <view class="iconImg">
+              <image src="../../../static/images/tab/recVideoIcon.png"></image>
+            </view>
+            <view class="title">{{recCommonPageByCity.recommend_3[0].more3}}</view>
+          </view>
+          <view class="more" id='videoAll' bindtap="jumpPage">更多 ></view>
+        </view>
+        <view class="recVideoPack">
+          <block wx:for="{{recCommonPageByCity.recommend_3}}" wx:key="item" wx:for-index="index">
+            <view class="recVideoItem" wx:if="{{index > 0}}">
+              <view class="recVideoImg" id="{{item.recommendDisplayValue}}" bindtap="jumpVideoDetailsPage">
+              <image src="{{imgUrl + item.recommendPic.picPath}}"></image>
+              </view>
+              <view class="recVideoName">{{item.recommendPic.picCname}}</view>
+            </view>
+          </block>
+      
+        </view>
+
+      </view>
+  </view>
+ 
+</view>

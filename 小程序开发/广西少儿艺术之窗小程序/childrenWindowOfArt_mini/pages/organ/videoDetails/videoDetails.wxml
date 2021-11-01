@@ -1,0 +1,67 @@
+
+<view class="studentPage">
+  <!-- 学员视频 -->
+  <video wx:if="{{videoDetail.movieDetails && videoDetail.movieDetails[0].playUrl}}" 
+      id="myVideo"
+      src="{{xjURL}}" 
+      poster="{{imgUrl + videoDetail.iconPic.picPath}}"
+      controls='true'
+      bindplay='insertHistory'
+      data-player_id="myVideo"
+    ></video>
+    <image class="videoPicUrl" wx:else src="{{imgUrl + videoDetail.iconPic.picPath}}"></image>
+  <!-- 视频信息 -->
+  <view class="videoInfo">
+    <view class="videoInfo-title">{{videoDetail.videoCname}}</view>
+    <view class="videoInfo-logo" id="{{videoDetail.cpId}}" bindtap="jumpdetails"><image wx:if="{{videoDetail.cpLogoPic.picPath}}" src="{{imgUrl + videoDetail.cpLogoPic.picPath}}" mode="widthFix"></image></view>
+    <view class="videoInfo-icon">
+      <view class="videoInfo-icon-l">
+        <image src="../../../static/images/organ/lookIcon.png" ></image>
+        <!-- videoDetail.wechatVideoExtraInfo.playTimes >= 0 ? videoDetail.wechatVideoExtraInfo.playTimes : '0' -->
+        <text> {{videoDetail.wechatVideoExtraInfo.playTimes}} 次观看</text>
+      </view>
+      <view class="videoInfo-icon-r">
+        <view class="videoInfo-icon-r-like" id="{{starFlag == 0 ? '1':'2'}}" bindtap="onOperateVideo">
+          <image wx:if="{{starFlag == 0}}" src="../../../static/images/organ/likeIcon.png"></image>
+          <image wx:else src="../../../static/images/organ/likeIconS.png"></image>
+          <!--star >= 0 ? star:'0'  -->
+          <text>{{star}}</text>
+        </view>
+        <view class="videoInfo-icon-r-collect" id="{{collectionFlag == 0 ? '3':'4'}}" bindtap="onOperateVideo">
+          <image wx:if="{{collectionFlag == 0}}" src="../../../static/images/organ/collectIcon.png"></image>
+          <image wx:else src="../../../static/images/organ/collectIconS.png"></image>
+          <!-- collection >= 0 ? collection:'0' -->
+          <text>{{collection}}</text>
+        </view>
+        <view class="videoInfo-icon-r-relay" >
+          <button  open-type='share'  type="default" size="mini" class="mini-btn">
+            <image src="../../../static/images/organ/relayIcon.png"></image>
+          </button>
+          <!-- share >= 0 ? share:'0' -->
+          <text>{{share}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 分割线 -->
+  <view class="splieLine" wx:if="{{videoDetail.recommendList.length}}"></view>
+  <!--推荐视频  -->
+  <view class="recVideo" wx:if="{{videoDetail.recommendList.length}}">
+    <view class="namePack">
+      <view class="namePackLeft">
+        <view class="iconImg">
+          <image src="../../../static/images/tab/recVideoIcon.png"></image>
+        </view>
+        <view class="title">推荐视频</view>
+      </view>
+    </view>
+    <view class="recVideoPack">
+      <view class="recVideoItem" wx:for="{{videoDetail.recommendList}}" wx:key="index">
+        <view class="recVideoImg" id="{{item.id}}" bindtap="jumpVideoDetailsPage"><image wx:if="{{item.videoPicPath}}" src="{{imgUrl + item.videoPicPath}}"></image></view>
+        <view class="recVideoName">{{item.videoCname}}</view>
+      </view>
+    </view>
+
+  </view>
+
+</view>

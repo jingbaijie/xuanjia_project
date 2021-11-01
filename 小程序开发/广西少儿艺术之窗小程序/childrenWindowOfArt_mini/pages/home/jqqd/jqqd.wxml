@@ -1,0 +1,5 @@
+<!--pages/home/jqqd/jqqd.wxml-->
+<view class="jqqdPage">
+  <image src="../../../static/images/jqqd.png"></image>
+</view>
+ 

@@ -1,0 +1,71 @@
+<!--pages/upload/uploadRegister/uploadRegister.wxml-->
+<!-- 上传注册导航 -->
+<view class="uploadNav_wrapper">
+  <view>
+    <view class="navText" style="font-size: {{userType == 0 ? 34 : 31}}rpx;" catchtap="choseUserType" data-userType="0">老用户</view>
+    <view wx:if="{{userType == 0}}" class="tabBar"></view>
+  </view>
+  <view>
+    <view class="navText" style="font-size: {{userType == 1 ? 34 : 31}}rpx;" catchtap="choseUserType" data-userType="1">新用户</view>
+    <view wx:if="{{userType == 1}}" class="tabBar"></view>
+  </view>
+</view>
+
+<!-- 登录展示部分 -->
+<view  bindtouchstart="monitorGesture_start" bindtouchend="monitorGesture_end">
+  <!-- 登录或注册 -->
+  <view class="tipText">请先按照要求填写完所有信息后，再上传作品</view>
+  <view class="studentNum" wx:if="{{userType == 0}}" >
+    <view class="labelCol"></view>
+    <view class="inputName">学员学号：</view>
+    <input type="text" class="inputDom" placeholder-class="input_placeholder" placeholder="请输入学号" value="{{studentNum}}" bindblur="updateInputVal" data-key_name="studentNum"></input>
+  </view>
+  <view class="inputItem">
+    <view class="labelCol"></view>
+    <view class="inputName">学员姓名：</view>
+    <input type="text" class="inputDom" placeholder-class="input_placeholder" placeholder="请输入姓名" value="{{userName}}" bindblur="updateInputVal" data-key_name="userName"></input>
+  </view>
+  <view class="newUser_wrapper" wx:if="{{userType == 1}}">
+    <view class="inputItem">
+      <view class="labelCol"></view>
+      <view class="inputName">学员性别：</view>
+      <view class="inputDom" style="border: 0;">
+        <radio-group bindchange="checkSex">
+          <radio value="1">男</radio>
+          <radio value="0" style="margin-left: 30rpx;">女</radio>
+        </radio-group>
+      </view>
+      <!-- <input type="text" class="inputDom" placeholder-class="input_placeholder" placeholder="请输入性别" value="{{userSex}}" bindblur="updateInputVal" data-key_name="userSex"></input> -->
+    </view>
+    <view class="inputItem">
+      <view class="labelCol"></view>
+      <view class="inputName">学员年龄：</view>
+      <input type="number" class="inputDom" placeholder-class="input_placeholder" placeholder="请输入年龄" value="{{userAge}}" bindblur="updateInputVal" data-key_name="userAge"></input>
+    </view>
+    <view class="inputItem">
+      <view class="labelCol"></view>
+      <view class="inputName">选择机构：</view>
+      <input type="text" class="inputDom" placeholder-class="input_placeholder" placeholder="请点击搜索并选择学员所在机构" value="{{organ_name}}" catchtap="goChooseOrganPage" ></input>
+      <view class="">
+      </view>
+    </view>
+    <view>
+      <view class="uploadTip">上传学员照片：</view>
+      <view class="uploadTip_gray">(图片大小不超过5M)</view>
+      <view class="choseCoverImg" catchtap="choseCoverImg">
+        <image class="uploadTipImg" wx:if="{{!coverImgUrl}}" src="../../../static/images/upload/camera.png"></image>
+        <image class="coverImg" src="{{coverImgUrl}}" wx:if="{{coverImgUrl}}" ></image>
+      </view>
+    </view>
+  </view>
+  <!-- 协议与确认 -->
+  <view class="agreementWrapper" catchtap="agreeOn">
+    <radio color="#6C7AFF" checked="{{agreement_checked}}"></radio>
+    <view class="agreementFont" >我已阅读、知悉并同意</view>
+    <view class="agreementFont" style="color: #6C7AFF ;" catchtap="toPortocolPage">《相关协议》</view>
+  </view>
+  <view>
+    <button class="okBtn" catchtap="confirmSubmission">确认</button>
+  </view>
+</view>
+

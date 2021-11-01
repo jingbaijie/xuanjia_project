@@ -1,0 +1,6 @@
+{
+  "usingComponents": {},
+  "navigationBarTitleText": "全部机构",
+  "enableReachBottom": true,
+  "onReachBottomDistance":50
+}

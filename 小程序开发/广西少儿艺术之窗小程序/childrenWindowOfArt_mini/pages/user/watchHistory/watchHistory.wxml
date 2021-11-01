@@ -1,0 +1,11 @@
+<view class="xj_container">
+  <view wx:if="{{historyList.length>0}}" class="watchList">
+    <view class="watchItem" wx:for="{{historyList}}" wx:key="index" catchtap="toVideoDetail" data-videoId="{{item.videoId}}">
+      <image src="{{picUrl+item.mediaPic}}"></image>
+      <text>{{item.mediaName}}</text>
+    </view>
+  </view>
+  <view wx:else style="width:100%;display:flex;justify-content:center;">
+    <image src="/static/images/user/noHistory.png" mode="widthFix"></image>
+  </view>
+</view>

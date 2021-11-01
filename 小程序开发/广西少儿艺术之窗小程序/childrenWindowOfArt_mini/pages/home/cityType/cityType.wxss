@@ -1,0 +1,4 @@
+/* pages/organ/cityType/cityType.wxss */
+.cityTypePage{display: flex;flex-wrap: wrap;justify-content: space-around;}
+.cityTypeItem{width: 210rpx;height: 100rpx; line-height: 100rpx;border: 3px dashed #6C7AFF;box-shadow:10rpx 10rpx 5rpx #A4ADFF;border-radius: 12px;text-align: center;margin-top: 35rpx;}
+.active{background: #F1EDFF;color: #5E3AFE;}

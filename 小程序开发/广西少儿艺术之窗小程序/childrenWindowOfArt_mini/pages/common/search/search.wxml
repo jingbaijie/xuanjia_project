@@ -1,0 +1,63 @@
+<!--pages/common/search/search.wxml-->
+<view class="container">
+  <!-- 固定部分 -->
+  <view class="search_fiexd">
+    <!-- 搜索框 -->
+    <view class="search_box">
+      <image class="serach_icon" src="../../../static/images/common/search/search.png" ></image>
+      <input class="search_input" placeholder="搜索你感兴趣的内容" focus="{{focus}}" value="{{search_input_value}}" bindconfirm="search" bindfocus="searchInput_focus" bindblur="searchInput_blur" ></input>
+      <view class="cancelBtn" bindtap="cancel_search">取消</view>
+    </view>
+    <!-- 搜索分类 -->
+    <view class="serach_tab" wx:if="{{!focus}}">
+      <view class="tab_organization">
+        <view bindtap="change_tab" data-search_type="1">机构</view>
+        <view class="tab_bar" wx:if="{{search_type == 1}}"></view>
+      </view>
+      <view class="tab_student">
+        <view bindtap="change_tab" data-search_type="2">学员</view>
+        <view class="tab_bar" wx:if="{{search_type == 2}}"></view>
+      </view>
+      <view class="tab_viedeo">
+        <view  bindtap="change_tab" data-search_type="3">视频</view>
+        <view class="tab_bar" wx:if="{{search_type == 3}}"></view>
+      </view>
+    </view>
+    <!-- 热门搜索 -->
+    <view class="hotRecommend_wrapper" wx:if="{{focus}}">
+      <view class="hotRecommend">热门搜索</view>
+      <view class="hotRecommend_list">
+        <view class="hotRecommend_listDom" catchtap="goHotRecommendPage" data-hot_search_type="1" data-id="{{item.id}}" wx:for="{{hot_search_obj.cp}}" wx:key="index">
+          {{item.name}}
+        </view>
+        <view class="hotRecommend_listDom" catchtap="goHotRecommendPage" data-hot_search_type="2"  data-id="{{item.id}}" wx:for="{{hot_search_obj.stu}}" wx:key="index">
+          {{item.name}}
+        </view>
+        <view class="hotRecommend_listDom" catchtap="goHotRecommendPage" data-hot_search_type="3"  data-id="{{item.id}}" wx:for="{{hot_search_obj.video}}" wx:key="index">
+          {{item.name}}
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 展示数据列表 -->
+  <view class="search_result_list" wx:if="{{!focus}}" bindtouchstart="touchStartEvent" bindtouchend="touchEndEvent" >
+    <!-- 机构 -->
+    <view wx:if="{{search_type == 1}}" wx:for="{{search_result}}" class="search_result_item_organ" wx:key="index" catchtap="clickListDom" data-index="{{index}}">
+      <image class="organ_bg" src="/static/images/organ/organ-bg.png"></image>
+      <image class="img_organization" src="{{imgUrl + item.cpDetailPic.picPath}}" ></image>
+    </view>
+    <!-- 学员 -->
+    <view wx:if="{{search_type == 2}}" wx:for="{{search_result}}" class="search_result_item_student" wx:key="index">
+      <image class="img_student" src="{{imgUrl + item.cartoonPic.picPath}}"  catchtap="clickListDom" data-index="{{index}}"></image>
+      <view class="student_name">{{item.cartoonCname}}</view>
+    </view>
+    <!-- 视频 -->
+    <view wx:if="{{search_type == 3}}" wx:for="{{search_result}}" class="search_result_item_video" wx:key="index">
+      <image class="img_video" src="{{imgUrl + item.videoPic}}"  catchtap="clickListDom" data-index="{{index}}"></image>
+      <view class="video_name">{{item.videoCname}}</view>
+    </view>
+  </view>
+  <view class="search_empty_tip" wx:if="{{!search_result.length}}">搜索结果为空</view>
+</view>
+
+<!-- <navigation-bar default-data="{{defaultData}}"></navigation-bar> -->

@@ -1,0 +1,170 @@
+/* pages/upload/uploadRegister/uploadRegister.wxss */
+/* 导航 */
+.uploadNav_wrapper{
+  width: 750rpx;
+  height: 85rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  border-top: 1rpx solid #E5E5E5;
+  border-bottom: 1rpx solid #E5E5E5;
+  text-align: center;
+  line-height: 44rpx;
+  font-size: 31rpx;
+}
+.navText{
+  height: 81rpx;
+  line-height: 85rpx;
+}
+.tabBar{
+  width: 130rpx;
+  height: 8rpx;
+  background: #6F80EC;
+  border-radius: 4rpx;
+}
+.tipText{
+  margin-top: 22rpx;
+  margin-bottom: 3rpx;
+  text-indent: 30rpx;
+  width: 750rpx;
+  height: 74rpx;
+  line-height: 74rpx;
+  font-size: 26rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 500;
+  color: #333333;
+} 
+
+.studentNum{
+  width: 750rpx;
+  height: 57rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  margin: 22rpx 0;
+}
+.inputItem{
+  width: 750rpx;
+  height: 57rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  margin: 22rpx 0;
+}
+.labelCol{
+  margin-left: 30rpx;
+  width: 5rpx;
+  height: 25rpx;
+  background: #6C7AFF;
+}
+.inputName{
+  height: 57rpx;
+  line-height: 57rpx;
+  font-size: 26rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #333333;
+  margin: 0 0rpx 0 12rpx;
+}
+.inputDom{
+  width: 542rpx;
+  height: 57rpx;
+  border: 1rpx solid #E2E2E2;
+  border-radius: 6rpx;
+}
+.input_placeholder{
+  width: 500rpx;
+  height: 23rpx;
+  font-size: 24rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #CCCCCC;
+  line-height: 36rpx;
+  text-indent: 20rpx;
+}
+.uploadTip{
+  width: 750rpx;
+  height: 25rpx;
+  font-size: 26rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 500;
+  color: #333333;
+  line-height: 36rpx;
+  text-indent: 30rpx;
+  margin: 24rpx 0 16rpx 0;
+}
+.uploadTip_gray{
+  text-indent: 30rpx;
+  width: 750rpx;
+  height: 24rpx;
+  font-size: 24rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #999999;
+  line-height: 36rpx;
+}
+.choseCoverImg{
+  width: 690rpx;
+  height: 360rpx;
+  border: 1rpx solid #CCCCCC;
+  border-radius: 6rpx;
+  margin: 25rpx 30rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.uploadTipImg{
+  width: 80rpx;
+  height: 68rpx;
+}
+.coverImg{
+  width: 248rpx;
+  height: 360rpx;
+  max-width: 690rpx;
+  max-height: 360rpx;
+}
+.agreementWrapper{
+  display: flex;
+  margin-top: 49rpx;
+  flex-direction: row;
+  justify-content: center;
+}
+radio .wx-radio-input{
+  width: 20rpx;
+  height: 20rpx;
+}
+.agreementFont{
+  margin-top: 12rpx;
+  font-size: 24rpx;
+  font-family: Source Han Sans CN;
+  font-weight: 500;
+  color: #333333;
+  line-height: 24rpx;
+}
+.okBtn{
+  width: 690rpx !important;
+  height: 71rpx !important;
+  line-height: 41rpx;
+  margin-top: 40rpx;
+  margin-bottom: 120rpx;
+  background: #6C7AFF !important;
+  border-radius: 6rpx !important;
+  font-size: 36rpx !important;
+  font-family: Source Han Sans CN !important;
+  font-weight: 500 !important;
+  color: #FFFFFF !important;
+}
+.agreementContent{
+  position: absolute;
+  top: 0;
+  width: 750rpx;
+  height: 100vh;
+  background-color:#F2F2F2 ;
+  opacity: 1;
+  z-index: 9999;
+  text-align: center;
+  padding: 20rpx;
+}

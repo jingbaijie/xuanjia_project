@@ -1,0 +1,16 @@
+/* pages/organ/index/index.wxss */
+page{
+  height: 100%
+}
+.organPage{background: #ffffff;}
+.line{border-top: 1px solid #E6E6E6; height: 40rpx;}
+.cityPack{display: flex;align-items: center;height: 66rpx;line-height: 66rpx; background: #F5F5F5; padding: 0rpx 30rpx;}
+.fixedIcon{width: 25rpx; height: 31rpx;}
+.cityName{font-size: 30rpx;font-weight: 500;color: #333333;padding-left: 10rpx;padding-right: 32rpx;box-sizing: border-box;}
+.cityTitle{font-size: 22rpx; font-family: Source Han Sans CN;font-weight: 400;color: #808080;}
+.switchIcon{width: 77rpx; height: 20rpx;padding-left: 315rpx;}
+.organList{display: flex;flex-wrap: wrap;}
+.organItem{width: 335rpx;height: 142rpx;padding-top: 30rpx;padding-left: 25rpx;}
+.organ-bg{position: absolute;width: 335rpx;height: 142rpx;}
+.organ-logo{position: absolute; z-index: 1;width: 335rpx;height: 142rpx;display: flex; align-items: center;justify-content: center;}
+.logoPic{width: 209rpx;height: 72rpx;}

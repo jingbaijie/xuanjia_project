@@ -1,0 +1,22 @@
+<!--pages/organ/index/index.wxml-->
+<view class="organPage">
+<!-- 线 -->
+<view class="line"></view>
+<!-- 当前定位 -->
+  <!-- <view class="cityPack">
+    <image class="fixedIcon" src="../../../static/images/organ/organFixed.png"></image>
+    <view class="cityName">南宁市</view>
+    <view class="cityTitle">当前定位城市</view>
+    <image class="switchIcon" src="../../../static/images/organ/organSwitch.png" bindtap="jumpPage"></image>
+  </view> -->
+  <!-- 机构列表 -->
+  <view class="organList">
+    <view class="organItem" wx:for="{{organList}}" wx:key="index" >
+      <image class="organ-bg" src="../../../static/images/organ/organ-bg.png"></image>
+      <view class="organ-logo" id="{{item.cpId}}" bindtap="jumpdetails">
+        <image class="logoPic"  src="{{imgUrl + item.cpDetailPic.picPath}}"></image>
+      </view>
+     
+    </view>
+  </view>
+</view>

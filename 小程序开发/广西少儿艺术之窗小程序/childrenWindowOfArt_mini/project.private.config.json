@@ -1,0 +1,84 @@
+{
+  "setting": {},
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "name": "首页",
+          "pathName": "pages/home/index/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "搜索页",
+          "pathName": "pages/common/search/search",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "上传文件页",
+          "pathName": "pages/upload/uploadFile/uploadFile",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "上传登录注册页",
+          "pathName": "pages/upload/uploadRegister/uploadRegister",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "上传协议页面",
+          "pathName": "pages/upload/protocol/protocol",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "裁剪页",
+          "pathName": "pages/common/cropper/cropper",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "全部机构页",
+          "pathName": "pages/organ/index/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "推荐页",
+          "pathName": "pages/recommend/recommendPage/recommendPage",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "选择机构页",
+          "pathName": "pages/upload/chooseOrgan/chooseOrgan",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/home/index/index",
+          "pathName": "pages/home/index/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/user/myWorks/myWorks",
+          "pathName": "pages/user/myWorks/myWorks",
+          "query": "",
+          "scene": null
+        }
+      ]
+    }
+  }
+}

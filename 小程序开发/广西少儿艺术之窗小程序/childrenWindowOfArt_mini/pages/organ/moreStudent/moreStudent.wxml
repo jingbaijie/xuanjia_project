@@ -1,0 +1,11 @@
+<!--pages/organ/allStudent/allStudent.wxml-->
+<view class="allStudentPage">
+  <view class="bbfcPack">
+      <view class="bbfcItem"  wx:for="{{moreStudent}}" wx:key="index" >
+        <view class="babyImg" id="{{item.id}}" bindtap="jumpStudentPage">
+          <image  wx:if="{{item.iconPic.picPath}}" src="{{imgUrl + item.iconPic.picPath}}"></image>
+        </view>
+        <view class="babyName">{{item.cartoonCname}}</view>
+      </view>
+  </view>
+</view>

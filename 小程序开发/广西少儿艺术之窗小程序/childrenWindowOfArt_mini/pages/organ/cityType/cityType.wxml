@@ -1,0 +1,6 @@
+<!--pages/organ/cityType/cityType.wxml-->
+<view class="cityTypePage">
+  <view class="cityTypeItem {{}}" wx:for="{{15}}" wx:key="key" wx:for-index="index">
+    <view class="{{index==0 ? 'active':''}}">南宁市</view>
+  </view>
+</view>

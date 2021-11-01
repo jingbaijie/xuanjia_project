@@ -1,0 +1,127 @@
+<!--pages/organ/details/details.wxml-->
+<view class="detailsPage">
+  <!-- 机构视频 -->
+  <view class="organVideo">
+    <video wx:if="{{xjURL}}"
+      id="xjVideo" 
+      src="{{xjURL}}" 
+      controls
+      bindplay="showNetwrorkTpye"
+      data-player_id="xjVideo"
+    ></video>
+    <image class="videoUrl" wx:elif="{{picUrl}}" src="../../../static/images/organ/organJqqd.jpg"></image>
+  </view>
+  <!--页面信息 -->
+  <view class="pageInfo">
+    <!--机构详请  -->
+    <view class="organDetailsPack">
+      <view class="details-up">
+        <view class="details-up-left">
+          <view class="organ-name">
+            <text class="name">{{organDetail.CpDetail.cpCname}}</text>
+            <block wx:if="{{collected == 0}}">
+              <view class="iscollect wsc" id="{{collected}}" bindtap="onCollectCp">收藏</view>
+            </block>
+            <block wx:if="{{collected == 1}}">
+              <view class="iscollect" id="{{collected}}" bindtap="onCollectCp">已收藏</view>
+            </block>
+           
+          </view>
+          <view class="organ-desc">{{organDetail.CpDetail.cpIntroduction}}</view>
+          <view class="organ-tagList">
+            <view class="organ-tagItem tagActive-{{index}}"  wx:for="{{cpLabel}}" wx:key="index">
+              <block wx:if="{{index < 6}}">
+                {{item}}
+              </block>
+            </view>
+          </view>
+          <view class="organ-age">
+            <text class="organ-age-icon">■</text>
+            <text class="organ-age-dese">适合年龄 {{organDetail.CpDetail.ageTag}}</text>
+          </view>
+        </view>
+        <image class="details-up-eqCode"  wx:if="{{organDetail.CpDetail.qrcodePic.picPath}}" src="{{imgUrl + organDetail.CpDetail.qrcodePic.picPath}}"></image>
+      </view>
+      <view class="details-down">
+        <text class="details-down-icon">■</text>
+        <text class="details-down-desc"> 地址：{{organDetail.CpDetail.cpDetailAddress}}</text>
+      </view>
+  
+
+    </view>
+    <!-- 分割线 -->
+    <view class="splie" wx:if="{{organDetail.stuList.length}}"></view>
+     <!-- 优秀学员 -->
+    <view class="bbfc" wx:if="{{organDetail.stuList.length}}">
+      <view class="namePack">
+        <view class="namePackLeft">
+          <view class="iconImg">
+            <image src="../../../static/images/organ/yxxyIcon.png"></image>
+          </view>
+          <view class="title">优秀学员</view>
+        </view>
+        <view class="more" id="moreStudent" bindtap="jumpPage">更多 ></view>
+      </view>
+      <view class="bbfcPack">
+        <block wx:for="{{organDetail.stuList}}" wx:key="index">
+          <view class="bbfcItem" wx:if="{{index < 3}}"  >
+            <view class="babyImg" id="{{item.id}}" bindtap="jumpStudentPage">
+              <image  wx:if="{{item.iconPic.picPath}}" src="{{imgUrl + item.iconPic.picPath}}"></image>
+            </view>
+            <view class="babyName">{{item.cartoonCname}}</view>
+          </view>
+        </block>
+      </view>
+    </view>
+    <!-- 分割线 -->
+    <view class="splie" wx:if="{{organDetail.videoList.length}}"></view>
+    <!--推荐视频  -->
+    <view class="recVideo" wx:if="{{organDetail.videoList.length}}">
+      <view class="namePack">
+        <view class="namePackLeft">
+          <view class="iconImg">
+            <image src="../../../static/images/organ/recIcon.png"></image>
+          </view>
+          <view class="title">推荐视频</view>
+        </view>
+        <view class="more" id="moreVideo" bindtap="jumpPage">更多 ></view>
+      </view>
+      <view class="recVideoPack">
+       <block wx:for="{{organDetail.videoList}}" wx:key="index">
+        <view class="recVideoItem" wx:if="{{index < 4}}"  >
+          <view class="recVideoImg" id="{{item.videoId}}" bindtap="jumpVideoDetailsPage"><image wx:if="{{item.videoPic}}" src="{{imgUrl + item.videoPic}}"></image></view>
+          <view class="recVideoName">{{item.videoCname}}</view>
+        </view>
+       </block>
+      
+      </view>
+
+    </view>
+    <!-- 分割线 -->
+    <view class="splie" wx:if="{{organDetail.picList.length}}"></view>
+    <!--推荐图片  -->
+    <view class="recVideo" wx:if="{{organDetail.picList.length}}">
+      <view class="namePack">
+        <view class="namePackLeft">
+          <view class="iconImg">
+            <image src="../../../static/images/organ/recIcon.png"></image>
+          </view>
+          <view class="title">推荐图片</view>
+        </view>
+        <view class="more" id="morePic" bindtap="jumpPage">更多 ></view>
+      </view>
+      <view class="recVideoPack">
+        <view class="recVideoItem" wx:for="{{organDetail.picList}}" wx:key="index">
+        <block wx:if="{{index < 3}}">
+          <view class="recVideoImg"><image   wx:if="{{item.playUrl}}"  src="{{imgUrl + item.playUrl}}" bindtap="onPreview" data-src="{{imgUrl + item.playUrl}}"></image></view>
+          <view class="recVideoName">{{item.videoCname}}</view>
+        </block>
+        </view>
+      </view>
+
+    </view>
+
+  </view>
+
+
+</view>

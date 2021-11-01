@@ -1,0 +1,4 @@
+.xj_container{width: 100%;padding-left: 30rpx;padding-right: 30rpx;box-sizing: border-box;border-top: 1px solid #E6E6E6;padding-top: 52rpx;}
+.xj_container image{width: 100%;}
+.xj_container .title{color:#313131;font-size:36rpx;font-weight:bold;margin-bottom:32rpx;}
+.xj_container .paragraph{color: #333333;text-indent:2em;font-size: 30rpx;margin-bottom: 25rpx;}

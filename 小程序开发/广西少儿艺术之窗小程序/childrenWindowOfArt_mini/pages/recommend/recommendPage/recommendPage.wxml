@@ -1,0 +1,62 @@
+<view id="pageWrapper" >
+  <!-- 固定眉头 -->
+  <view class="fiexdWrapper">
+    <!-- 搜索框 -->
+    <view class="search_bar">
+        <icon class="search_icon" type="search" size="30" color="#ffffff"></icon>
+        <input type="text" class="search_input" catchtap="goSearchPage" placeholder="搜索你感兴趣的内容" placeholder-style="color:#ffffff" />
+    </view>
+    <!-- 切换内容导航栏 -->
+    <view class="navTabBar">
+      <view class="navText">
+        <view catchtap="changeShowType" data-show_type="0" >视频广场</view>
+        <view  class="tabBar" wx:if="{{show_type == 0}}"></view>
+      </view>
+      <view class="navText">
+        <view catchtap="changeShowType" data-show_type="1" >图片广场</view>
+        <view  class="tabBar" wx:if="{{show_type == 1}}"></view>
+      </view>
+    </view>
+  </view>
+  <!-- 显示内容 -->
+  <view class="contentWrapper">
+    <!-- 展示列表 -->
+    <view class="showList" bindtouchstart="touchStartEvent" bindtouchend="touchEndEvent" > 
+      <!-- 展示数据单元 -->
+      <view class="showUnit" wx:for="{{show_type == 0 ? dataInfo_0.records : dataInfo_1.records}}" wx:key="index">
+        <!-- 图片或视频，视频名 写死的测试 {{item.playUrl}}  && curPlayDomId.match(/[0-9]+/g)[0] == index-->
+        <view >
+          <video id="{{video_player_pre + index}}" wx:if="{{ show_type == 0 && item.truePlayUrl && play_status == 'yes' && curPlayDomId == video_player_pre + index }}" class="videoOrPic" controls="true" bindplay="playCurVideo" data-video_dom_id="{{video_player_pre + index}}" data-index="{{index}}" data-is_play="yes" src="{{item.truePlayUrl}}" ></video>
+          <image class="video_cover_img" wx:if="{{ show_type == 0 && (curPlayDomId != video_player_pre + index || play_status == 'no') }}" src="{{ imgUrl + item.iconPic.picPath }}"></image>
+          <view class="video_cover_view"  wx:if="{{ show_type == 0 && (curPlayDomId != video_player_pre+ index || play_status == 'no') }}" >
+            <image class="video_play_img"  src="/static/images/common/icon/playLabel.png" catchtap="playCurVideo" data-video_dom_id="{{video_player_pre + index}}" data-index="{{index}}"></image>
+          </view>
+          <!-- <image class="video_cover_img" wx:if="{{show_type == 0}}" src="{{ imgUrl + item.iconPic.picPath }}"></image> -->
+          <image wx:if="{{show_type == 1}}" mode="scaleToFill"  class="videoOrPic" src="{{imgUrl + item.playUrl}}" bindtap="previewImg" data-src="{{imgUrl + item.playUrl}}" ></image>
+          <view class="contentName">{{ item.videoCname }}</view>
+        </view>
+        <!-- 机构名和点赞收藏转发 -->
+        <view class="unit_bottom">
+          <view class="oganName" catchtap="toOrganPage" data-organ_id="{{item.cpId}}">{{item.cpName}}</view>
+          <view class="unit_bottom_right">
+            <view class="thumbUp_wrapper">
+              <image class="interaction_img" src="/static/images/organ/{{ item.starFlag == 0 ? 'likeIcon' : 'likeIconS'}}.png" catchtap="interactClick"  data-type_value="1" data-data_index="{{index}}"></image>
+              <view class="interaction_text">{{item.wechatVideoExtraInfo.star}}</view>
+            </view>
+            <view class="collect_wrapper">
+              <image class="interaction_img" src="/static/images/organ/{{ item.collectionFlag == 0 ? 'collectIcon' : 'collectIconS'}}.png" catchtap="interactClick"  data-type_value="3" data-data_index="{{index}}"></image>
+              <view class="interaction_text">{{item.wechatVideoExtraInfo.collection}}</view>
+            </view>
+            <view class="share_wrapper">
+              <button  open-type='share'  type="default" size="mini" class="mini-btn" catchtap="interactClick"  data-type_value="5" data-data_index="{{index}}">
+                <!-- <image src="../../../static/images/organ/relayIcon.png"></image> catchtap="interactClick"  data-type_value="5" data-data_index="{{index}}"-->
+                <image class="interaction_img" src="/static/images/organ/relayIcon.png" ></image>
+              </button>
+              <view class="interaction_text">{{item.wechatVideoExtraInfo.share}}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

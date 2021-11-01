@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    
+},
+  "navigationBarTitleText": "搜索",
+  "navigationBarTextStyle": "black",
+  "enablePullDownRefresh": true,
+  "enableReachBottom": true
+}

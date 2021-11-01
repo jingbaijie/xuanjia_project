@@ -1,0 +1,5 @@
+<!--commpents/navbar/index.wxml-->
+<view class="nav-bar" style="height:{{navBarHeight}}px;">
+  <view class="nav-barTitle">  {{navBarTitle}} </view>
+</view>
+

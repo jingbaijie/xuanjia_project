@@ -1,0 +1,47 @@
+/* pages/home/index/index.wxss */
+.containerPack{margin-top: 120rpx;height: 100%;}
+.container {height: 100%;padding-top: 165rpx; box-sizing: border-box;background-color: #6C7AFF;} 
+.allcontent{ padding: 20rpx 30rpx 20rpx 30rpx;border-radius: 15rpx;border-radius:50rpx 50rpx 0rpx 0rpx; background-color: #ffffff;}
+.search-box {width: 100%; height: 100rpx;display: flex;justify-content: space-around;align-items: center;padding-bottom:14rpx;position: fixed;background-color: #6C7AFF;z-index: 100;}
+.search-input {width: 561rpx; height: 60rpx;color: #ffffff;background: rgba(0, 0, 0, 0.3);border-radius: 30px;text-align: center;}
+.search-bar{position: relative;}
+.search-icon{ position: absolute;left: 10px;top: 0px;}
+.search-city{color: #ffffff;display: flex;align-items: center;}
+.search-city image{width: 25rpx; height: 31rpx;padding-right: 10rpx;}
+swiper{height: 332rpx;}
+swiper-item{border-radius: 30rpx;}
+.banner-img{width: 100%;height: 332rpx; border-radius: 30rpx;}
+/* 机构优选   精彩活动 */
+.recmmend_1{display: flex; justify-content: space-between;align-items: center;overflow: hidden;padding-top: 40rpx;}
+.recjgyx,.recjgyx image,.recjchd,.recjchd image{width: 330rpx;height: 170rpx;}
+.recjgyx image,.recjchd image{ border-radius: 10rpx;}
+/* 找宝贝  找机构   找视频 */
+.recmmend_2{display: flex;justify-content: space-between;align-items: center;overflow: hidden; padding-top: 30rpx;}
+.recFindBaby,.recFindBaby image,.recFindOrgan,.recFindOrgan image,.recFindVideo,.recFindVideo image{width: 216rpx;height: 260rpx;}
+.recFindBaby image,.recFindOrgan image,.recFindVideo image{border-radius: 10rpx;}
+/* 分割线 */
+.splitLine{width: 750rpx;height: 16rpx;background: #F5F7FB;}
+/* 活跃机构 */
+.hyjg,.bbfc,.recVideo{ background-color: #ffffff;padding: 30rpx;}
+.jgPack{display: flex; flex-wrap: wrap;justify-content: space-between;}
+.jgItem{width: 335rpx;height: 142rpx;}
+.organ-bg{position: absolute;width: 335rpx;height: 142rpx;}
+.organ-logo{position: absolute; z-index: 1;width: 335rpx;height: 142rpx;display: flex; align-items: center;justify-content: center;}
+.logoPic{width: 209rpx;height: 72rpx;}
+/* 宝贝风采 */
+.bbfcPack{ display: flex; justify-content: space-between;flex-wrap: nowrap;}
+.bbfcItem{display: flex;flex-wrap: wrap;}
+.babyImg,.babyImg image{width: 216rpx;height: 314rpx; border-radius: 12rpx;}
+.babyName{font-size: 26rpx; font-weight: 400;color: #333333;width: 200rpx;text-overflow :ellipsis; white-space :nowrap; overflow : hidden;}
+/* 推荐视频 */
+.recVideoPack{display: flex;justify-content: space-between;flex-wrap: wrap;}
+.recVideoItem{padding-bottom: 30rpx;}
+.recVideoImg,.recVideoImg image{width: 334rpx; height: 189rpx;border-radius: 12rpx;}
+.recVideoName{font-size: 26rpx;font-weight: 400;padding-top: 20rpx;color: #333333;width: 300rpx;text-overflow :ellipsis; white-space :nowrap; overflow : hidden;}
+/* 标题模块 */
+.namePack{display: flex;justify-content: space-between;padding-bottom: 20rpx;}
+.namePack .namePackLeft{display: flex;}
+.namePack .iconImg image{width: 41rpx;height: 40rpx;}
+.namePack .title{font-size: 30rpx;font-weight: 500; color: #333333;}
+.namePack .more{ font-size: 26rpx;font-weight: 400; color: #808080;}
+
