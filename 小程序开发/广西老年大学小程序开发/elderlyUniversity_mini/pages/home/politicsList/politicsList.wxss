@@ -1,0 +1,13 @@
+/* pages/home/politicsList/politicsList.wxss */
+.container{background-color: white;}
+.flg{width: 42rpx;height: 40rpx;margin-left: 18rpx;margin-top: 48rpx;}
+.pol-item{display: flex;justify-content: space-between;}
+.pol-item-content{display: flex;}
+.pol-list{margin: 0 30rpx;margin-top: 32rpx;}
+.pol-item{background-color: rgba(237, 237, 237, 1);margin-top: 20rpx;height: 134rpx;}
+.more{line-height: 134rpx;}
+.more-img{width: 12rpx;height: 22rpx;}
+.flg-box{line-height: 134rpx;}
+.date{font-size: 30rpx;color: rgba(69, 69, 69, 1);}
+.title{font-size: 36rpx;color: rgba(49, 49, 49, 1);font-weight: 700;}
+.title-box{margin-top: 30rpx;margin-left: 34rpx;}

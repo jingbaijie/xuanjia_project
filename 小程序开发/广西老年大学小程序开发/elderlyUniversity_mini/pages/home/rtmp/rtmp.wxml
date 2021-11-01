@@ -1,0 +1,4 @@
+<!-- pages/home/rtmp/rtmp.wxml -->
+<view>
+    <web-view class="web_view" src="https://cibn.tvjoy.cn/WeChatXHB/html/rtmpGet/html/elder.html"></web-view>
+</view>

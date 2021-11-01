@@ -1,0 +1,11 @@
+/* pages/home/personDetail/personDetail.wxss */
+.container{background-color: white;}
+.person-msg{display: flex;justify-content: space-around;padding: 30rpx;}
+.person-photo{width: 332rpx;height: 250rpx;border-radius: 10px;}
+.tip{width: 30rpx;height: 28rpx;}
+.person-detail{padding: 50rpx;color: rgba(49, 49, 49, 1);font-size: 30rpx;line-height: 48rpx;font-family: 'SourceHanSansCN-Regular';text-indent:2em}
+.person-name-box{display: flex;font-size: 36rpx;line-height: 74rpx;justify-content: space-around;margin: 0 20rpx;border-bottom: 1rpx solid rgba(200, 200, 200, 1);}
+.person-name-list{display: flex;}
+.person-jj{font-size: 30rpx;color: rgba(49, 49, 49, 1);padding: 20rpx 12rpx 12rpx 12rpx;}
+.person-jj-box{margin-left: 24rpx;background-color: rgba(237, 237, 237, 1);border-radius: 10rpx;}
+.person-all{width: 750rpx;height: 1350rpx;}

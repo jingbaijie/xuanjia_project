@@ -1,0 +1,49 @@
+<view class="topBg">
+  <view style="height:100%;">
+    <input type="text" placeholder="输入作品名称" placeholder-style="color:#999;font-size:30rpx;" bindconfirm="search" value="{{keyWords}}"/>
+  </view>
+</view>
+<!-- 没有上传作品 -->
+<view class="noUpload xj_container" wx:if="{{status==2}}">
+  <image src="/static/img/user/noUpload.png"></image>
+  <view>当前还没有作品哦</view>
+  <view>快参加活动，上传作品展示自己吧~</view>
+  <view class="uploadBtn" style="font-weight:400;" bindtap="toUpLoad">上传作品</view>
+</view>
+<!-- 已发布 -->
+<view class="myWorksList xj_container" wx:elif="{{status==3}}">
+  <view class="list" wx:for="{{curMyWorksList}}" wx:key="index">
+    <view class="leftImage">
+      <image
+        src="{{imgUrl+(item.uploadDetailList[0].mediaType=='picture'?item.uploadDetailList[0].filePath:item.uploadDetailList[1].filePath)}}"
+        bindtap="previewImage" data-index="{{index}}"></image>
+      <view class="likeVisitNum">
+        <image
+          src="{{item.uploadDetailList[0].mediaType=='picture'?'../../../static/img/user/look.png':'../../../static/img/user/liked.png'}}">
+        </image>
+        <text>{{item.uploadDetailList[0].mediaType=='picture'?(item.playViews==null?0:item.playViews):(item.likeNum==null?0:item.likeNum)}}</text>
+      </view>
+    </view>
+    <view class="rightText">
+      <view>
+        <image src="/static/img/icon/worksName.png"></image>
+        <text>{{item.title}}</text>
+      </view>
+      <view>
+        <image src="/static/img/icon/biaoqian.png"></image>
+        <text>{{item.uploadTagCname}}作品</text>
+      </view>
+      <view>
+        <image src="{{item.booleanUp==2?'/static/img/icon/shangjia.png':'/static/img/icon/xiajia.png'}}"></image>
+        <text>{{item.booleanUp==2?'已上架':'待上架'}}</text>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="myWorksList xj_container" wx:if="{{status==1}}">
+  <view class="defaultPage">
+    <image src="/static/img/user/noRelease.png" style="width:260rpx;height:283rpx;"></image>
+    <view>当前作品还在审核中哦</view>
+    <view>作品上架后可以查看作品</view>
+  </view>
+</view>

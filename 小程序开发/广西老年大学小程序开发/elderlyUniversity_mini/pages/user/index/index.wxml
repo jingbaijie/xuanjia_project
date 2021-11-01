@@ -1,0 +1,33 @@
+<view class="headPic_name">
+  <image src="{{headPic?headPic:'/static/img/user/noLogin.png'}}" style="border-radius:50% 50%;"></image>
+  <text>{{name?name:"未登录"}}</text>
+</view>
+<!-- 灰色间隔 -->
+<view class="space_grey"></view>
+<!-- 列表 -->
+<view class="xj_container">
+  <mine_title leftIcon="/static/img/user/myWorks.png" titleText="我的作品" clickEvent="toMyWorks"></mine_title>
+  <mine_title leftIcon="/static/img/user/time.png" titleText="观看历史" clickEvent="watchHistory"></mine_title>
+  <block wx:if="{{name}}">
+    <button class="userInfo_item" style="width: 100%;font-weight:normal;" plain hover-class="none"
+      open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" disabled="{{isBindPhone?true:false}}">
+      <view class="leftIcon_text">
+        <image src="/static/img/user/phone.png"></image>
+        <text>{{phoneText?phoneText:"绑定手机"}}</text>
+      </view>
+      <image class="rightIcon" src="/static/img/user/moreIcon.png"></image>
+    </button>
+  </block>
+  <block wx:else>
+    <button class="userInfo_item" style="width: 100%;font-weight:normal;" plain hover-class="none"
+      bindtap="getUserProfile">
+      <view class="leftIcon_text">
+        <image src="/static/img/user/phone.png"></image>
+        <text>{{phoneText?phoneText:"绑定手机"}}</text>
+      </view>
+      <image class="rightIcon" src="/static/img/user/moreIcon.png"></image>
+    </button>
+  </block>
+  <mine_title leftIcon="/static/img/user/customerService.png" titleText="联系客服" clickEvent="contactService"></mine_title>
+  <mine_title leftIcon="/static/img/user/aboutUs.png" titleText="关于我们" clickEvent="aboutUs"></mine_title>
+</view>

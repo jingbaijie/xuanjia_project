@@ -1,0 +1,7 @@
+/* pages/home/regional/regional.wxss */
+.container{background-color: white;}
+.item-img{width: 332rpx;height: 208rpx;}
+.zb{width: 24rpx;height: 30rpx;}
+.reg-list{display: flex;justify-content: space-around;flex-wrap: wrap;padding-top: 40rpx;}
+.reg-list-name{display: flex;line-height: 72rpx;font-size: 30rpx;margin-left: 16rpx;}
+.name{margin-left: 18rpx;}

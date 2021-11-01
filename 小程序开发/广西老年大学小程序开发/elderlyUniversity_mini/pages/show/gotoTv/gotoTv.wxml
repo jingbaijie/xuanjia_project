@@ -1,0 +1,4 @@
+<view class="xj_container">
+  <image src="{{actiPoster}}" class="gotoTv_poster" mode="widthFix"></image>
+  <navigator class="jump_uploadPage" url="{{activityUrl}}" hover-class="none" style="background-color:{{btnColor}};" open-type="navigate">{{btnText}}</navigator>
+</view>

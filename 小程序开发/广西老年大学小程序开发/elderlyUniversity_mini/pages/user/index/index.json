@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "mine_title":"/components/mine_title/mine_title"
+  },
+  "navigationBarTitleText": "个人信息"
+}

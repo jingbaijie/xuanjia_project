@@ -1,0 +1,7 @@
+/* pages/interest/index/index.wxss */
+page{background-color: rgba(239, 239, 239, 1);}
+
+.course-item-img {width: 332rpx;height: 186rpx;}
+.course-box {display: flex;justify-content: space-around;flex-wrap: wrap;padding-top: 40rpx;}
+.course-item {margin-bottom: 20rpx;}
+.course-item1{width: 332rpx;}

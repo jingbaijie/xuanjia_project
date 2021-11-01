@@ -1,0 +1,7 @@
+/* pages/home/person/person.wxss */
+.person-list{display: flex;justify-content: flex-start;flex-wrap: wrap;background-color: white;padding-top: 20rpx;}
+.person-item{padding: 10rpx 21rpx 0 21rpx;}
+.person-photo{width: 332rpx;height: 250rpx;border-radius: 10px;}
+.person-msg{display: flex;line-height: 60rpx;padding-left: 10rpx;}
+.tip{width: 30rpx;height: 28rpx;}
+.person-name{padding-left: 20rpx;}

@@ -1,0 +1,78 @@
+{
+  "pages": [
+    "pages/home/index/index",
+    "pages/home/freeFilm/freeFilm",
+    "pages/home/politics/politics",
+    "pages/home/politicsList/politicsList",
+    "pages/home/politicsDetail/politicsDetail",
+    "pages/home/person/person",
+    "pages/home/personDetail/personDetail",
+    "pages/home/regional/regional",
+    "pages/home/regionalDetail/regionalDetail",
+    "pages/home/review/review",
+    "pages/home/video/video",
+    "pages/home/rtmp/rtmp",
+    "pages/home/search/search",
+    "pages/interest/index/index",
+    "pages/interest/course/course",
+    "pages/show/index/index",
+    "pages/show/gotoTv/gotoTv",
+    "pages/show/uploadWorks/uploadWorks",
+    "pages/show/cutCover/cutCover",
+    "pages/show/currentActiList/currentActiList",
+    "pages/show/currentActiDetail/currentActiDetail",
+    "pages/show/worksShow/worksShow",
+    "pages/user/index/index",
+    "pages/user/watchHistory/watchHistory",
+    "pages/user/aboutUs/aboutUs",
+    "pages/login/login",
+    "pages/we-cropper/we-cropper",
+    "pages/show/cropper/cropper",
+    "pages/user/myWorks/myWorks",
+    "pages/home/myWorks/myWorks"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#701C10",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#313131",
+    "selectedColor": "#701C10",
+    "list": [{
+        "iconPath": "./static/img/tab/home.png",
+        "selectedIconPath": "./static/img/tab/home1.png",
+        "pagePath": "pages/home/index/index",
+        "text": "首页"
+      },
+      {
+        "iconPath": "./static/img/tab/interest.png",
+        "selectedIconPath": "./static/img/tab/interest1.png",
+        "pagePath": "pages/interest/index/index",
+        "text": "我要学习"
+      },
+      {
+        "iconPath": "./static/img/tab/show.png",
+        "selectedIconPath": "./static/img/tab/show1.png",
+        "pagePath": "pages/show/index/index",
+        "text": "我要展示"
+      },
+      {
+        "iconPath": "./static/img/tab/user.png",
+        "selectedIconPath": "./static/img/tab/user1.png",
+        "pagePath": "pages/user/index/index",
+        "text": "我的"
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": 2000000000
+  },
+  "debug": false,
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "useExtendedLib": {
+    "kbone": true,
+    "weui": true
+  }
+}

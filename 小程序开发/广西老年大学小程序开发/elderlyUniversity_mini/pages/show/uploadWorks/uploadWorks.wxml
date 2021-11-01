@@ -1,0 +1,88 @@
+<!-- 个人信息相关 -->
+<view class="xj_container">
+  <Title_upload myTitleName="作者姓名：" errorTip="{{authorNameTip}}"></Title_upload>
+  <view class="input_numLimit">
+    <input type="text" placeholder-class="placeholderStyle" placeholder="请在这里输入您的真实姓名" class="inputStyle" type="text" maxlength="15" bindinput="getAuthorName" bindblur="authorNameBlur" value="{{authorName}}"/>
+    <text class="numLimit"><text id="name_num">{{authorNameLen}}</text>/15</text>
+  </view>
+  <Title_upload myTitleName="联系方式：" errorTip="{{phoneTip}}"></Title_upload>
+  <input type="text" placeholder-class="placeholderStyle" placeholder="请在这里输入能够联系到您的号码" class="inputStyle noLimitNumInput" type="number" maxlength="11" bindblur="contactStyleBlur" value="{{phoneNum}}" bindfocus="contactInputFocus"/>
+  <Title_upload myTitleName="作品名称：" errorTip="{{worksNameTip}}"></Title_upload>
+  <view class="input_numLimit">
+    <input type="text" placeholder-class="placeholderStyle" placeholder="请在这里输入您的作品名称" class="inputStyle" type="text" bindinput="getWorksName" bindblur="worksNameBlur" maxlength="15" value="{{worksName}}"/>
+    <text class="numLimit"><text id="name_num">{{worksNameLen}}</text>/15</text>
+  </view>
+</view>
+<!-- 灰色间隔线 -->
+<view class="grey_solid"></view>
+<!-- 作品相关 -->
+<view class="xj_container">
+  <Title_upload myTitleName="作品标签："></Title_upload>
+  <view class="type_list">
+    <view class="type_option {{currentTypeData.rankId==index?'checked':'unchecked'}}" wx:for="{{worksTypeArr}}" wx:key="index"
+      bindtap="chooseWorksType" data-index="{{index}}">{{item.tagCname}}</view>
+  </view>
+</view>
+<!-- 灰色间隔线 -->
+<view class="grey_solid"></view>
+<view class="xj_container">
+<!-- 选择可以上传视频标签 -->
+  <block wx:if="{{currentTypeData.videoSupport==1}}">
+    <Title_upload myTitleName="请选择作品封面"></Title_upload>
+    <!-- 选择作品封面 -->
+    <view class="uploadModule">
+      <view class="uploadModule_unit" bindtap="coverDeleteShow" wx:if="{{worksCover}}">
+        <image src="{{worksCover}}" class="contentPart" id="worksCoverShow" mode="widthFix"></image>
+        <image src="/static/img/show/delete.png" class="deleteIcon" style="display:{{isClickCover?'block':'none'}};" catchtap="deleteCover"></image>
+      </view>
+      <view class="uploadModule_unit" bindtap="chooseWorksCover" wx:else>
+        <image src="/static/img/show/defaultImg.png" class="contentPart"></image>
+      </view>      
+    </view>
+    <Title_upload myTitleName="请选择视频"></Title_upload>
+    <!-- 请选择视频 -->
+    <view class="uploadModule">     
+      <view class="uploadModule_unit" wx:if="{{temporaryVideo}}" bindtap="videoDeleteShow">
+        <video src="{{temporaryVideo}}" controls show-fullscreen-btn="{{false}}"  play-btn-position="{{center}}" show-center-play-btn="{{true}}" class="contentPart" enable-play-gesture="{{true}}"></video>
+        <image src="/static/img/show/delete.png" class="deleteIcon" style="display:{{isClickVideo?'block':'none'}};" catchtap="deleteVideo"></image>
+      </view>   
+      <view class="uploadModule_unit" bindtap="chooseVideo" wx:else>
+        <image src="/static/img/show/defaultVideo.png" class="contentPart"></image>
+      </view>   
+    </view>
+  </block>
+  <!-- 选择上传图片标签 -->
+  <block wx:if="{{currentTypeData.videoSupport==0}}">
+    <Title_upload myTitleName="请选择作品"></Title_upload>
+    <!-- 请选择作品 -->
+    <view class="uploadModule">
+      <view class="uploadModule_unit" bindtap="chooseWorks" style="display:{{currentWorksArr.length>=3?'none':'block'}};">
+        <image src="/static/img/show/defaultImg.png" class="contentPart"></image>
+      </view>
+      <view class="uploadModule_unit" wx:for="{{currentWorksArr}}" wx:key="index" bindtap="worksImgDeletShow" data-index="{{index}}">
+        <image src="{{item.path}}" class="contentPart"></image>
+        <image src="/static/img/show/delete.png" class="deleteIcon" style="display:{{currentWorksIndex==index?'block':'none'}}" catchtap="deleteCurrentWorksImg" data-index="{{index}}"></image>
+      </view>
+    </view>
+  </block>
+  <!-- 取消和上传 -->
+  <view class="cancel_upload">
+    <navigator url="/pages/show/gotoTv/gotoTv" class="btn" open-type="navigateBack">
+      取消
+    </navigator>
+    <view class="btn" bindtap="uploadFormInfo">
+      上传
+    </view>
+  </view>
+</view>
+<!-- 弹窗提示 -->
+<view class="tipBG" style="visibility:{{uploadTip?'visible':'hidden'}};"> 
+  <view class="tip_kuang">
+    <image src="/static/img/show/smile.png" class="smileIcon"></image>  
+    <view class="tipText">
+      <text style="color:#6C1D08;font-size:60rpx;">作品上传成功!</text>
+      <text style="color:#313131;font-size:30rpx;margin-top:20rpx;">通过审核的作品在活动结束后统一展示哦~</text>
+    </view>
+    <navigator url="/pages/show/index/index" hover-class="none" class="tipConfirmBtn" open-type="switchTab">确定</navigator>
+  </view>
+</view>

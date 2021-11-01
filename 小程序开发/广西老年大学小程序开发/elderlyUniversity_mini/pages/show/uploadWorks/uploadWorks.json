@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "Title_upload":"/components/Title_upload/Title_upload"
+  },
+  "navigationBarTitleText":"上传作品"
+}

@@ -1,0 +1,5 @@
+/* pages/interest/course/course.wxss */
+.course-box{background-color: rgba(255, 255, 255, 1);padding: 40rpx 30rpx;}
+.course-title{color: rgba(0, 0, 0, 1);font-size: 32rpx;font-weight: 700;padding-left: 10rpx;margin-top: 40rpx;}
+.course-item{background-color: rgba(239, 239, 239, 1);display: flex;margin-bottom: 14rpx;padding: 12rpx 10rpx 14rpx 10rpx;justify-content: space-between;}
+.course-img{width: 270rpx;height: 152rpx;}

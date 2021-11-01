@@ -1,0 +1,54 @@
+/* pages/home/freeFilm/freeFilm.wxss */
+
+.search-box {height: 50rpx;background-color: #701C10;display: flex;justify-content: space-around;padding-bottom:14rpx;}
+.search-input {height: 50rpx;width: 618rpx;background-color: white;border-radius: 100rpx;text-align: center;}
+.search-img {width: 36rpx;height: 36rpx;position: absolute;top: 7rpx;right: 80rpx}
+
+.swiper-box{background-color: white;}
+.banner-img-box {text-align: center;padding-top: 14rpx;}
+.banner-img {width: 95%;height: 270rpx;border-radius: 20px;}
+
+.list-title {
+    margin-left: 15px;
+    font-size: 15px;
+    color: #313131;
+    font-weight: 700;
+    display: flex;
+    padding: 10px 0;
+}
+
+.title-text {
+    padding-left: 7px;
+}
+
+.list-more-img {
+    width: 6px;
+    height: 10px;
+}
+
+.list-top {
+    display: flex;
+    justify-content: space-between;
+}
+
+.list-more {
+    display: flex;
+    padding: 10px 15px 10px 0;
+}
+
+.list-more-img-box {
+    padding-left: 5px;
+}
+
+.title-img {
+    width: 3px;
+    height: 11px;
+    border-radius: 50px;
+}
+
+
+.rb-box {display: flex;justify-content: space-around;flex-wrap: wrap;padding: 15rpx;}
+.rb-list{padding-bottom: 30rpx;border-radius: 15rpx;}
+.rb-list-img {width: 166px;height: 235px;border-radius: 15rpx;}
+
+.hsjd{background-color: white;margin-top: 10rpx;}

@@ -1,0 +1,88 @@
+<view class="xj_container">
+  <!-- 轮播图 -->
+  <swiper indicator-dots autoplay indicator-active-color="#701C10" indicator-color="rgba(188,188,188,1)" circular>
+    <swiper-item wx:for="{{bannerData}}" wx:key="index" bindtap="bannerJump" data-recommendType="{{item.recommendDisplayType}}" data-videoId="{{item.recommendDisplayValue}}" bindtap="fullScreenPlayByVideoId">
+      <image src="{{imgUrl+item.recommendPic.picPath}}"></image>
+    </swiper-item>
+  </swiper>
+  <!-- 表演视频 -->
+  <view class="sayToParty">
+    <view class="top" wx:if="{{videoData.length>0}}">
+      <text class="leftText">表演视频</text>
+      <!--更多 -->
+      <navigator url="/pages/show/worksShow/worksShow?tagCode=biaoyan&schedule=1" hover-class="none">
+        <text class="rightText">更多</text>
+        <image class="moreIcon" src="/static/img/show/moreIcon.png"></image>
+      </navigator>
+    </view>
+    <view class="sayToParty_list">
+      <view class="sayToParty_item" wx:for="{{videoData}}" wx:key="index" data-cartoonId="{{item.cartoonId}}" bindtap="fullScreenPlay">
+        <image src="{{item.picUrl}}"></image>
+        <text>{{item.text}}</text>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 间隔 -->
+<view class="space_grey" wx:if="{{drawData}}"></view>
+<!-- 绘画作品 -->
+<view class="xj_container" wx:if="{{drawData}}">
+  <view class="sayToParty">
+    <view class="top">
+      <text class="leftText">绘画作品</text>
+      <!--更多 -->
+      <navigator url="/pages/show/currentActiList/currentActiList?tagCode=huihua&schedule=1" hover-class="none">
+        <text class="rightText">更多</text>
+        <image class="moreIcon" src="/static/img/show/moreIcon.png"></image>
+      </navigator>
+    </view>
+    <view class="sayToParty_list">
+      <view class="sayToParty_item" wx:for="{{drawData}}" wx:key="index">
+        <image src="{{imgUrl+item.uploadDetailList[0].filePath}}"></image>
+        <text>{{item.title}}</text>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 间隔 -->
+<view class="space_grey" wx:if="{{writingData}}"></view>
+<!-- 书法作品 -->
+<view class="xj_container" wx:if="{{writingData}}">
+  <view class="sayToParty">
+    <view class="top">
+      <text class="leftText">书法作品</text>
+      <!--更多 -->
+      <navigator url="/pages/show/currentActiList/currentActiList?tagCode=shufa&schedule=1" hover-class="none">
+        <text class="rightText">更多</text>
+        <image class="moreIcon" src="/static/img/show/moreIcon.png"></image>
+      </navigator>
+    </view>
+    <view class="sayToParty_list">
+      <view class="sayToParty_item" wx:for="{{writingData}}" wx:key="index">
+        <image src="{{imgUrl+item.uploadDetailList[0].filePath}}"></image>
+        <text>{{item.title}}</text>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 间隔 -->
+<view class="space_grey" wx:if="{{photographData}}"></view>
+<!-- 摄影作品 -->
+<view class="xj_container" wx:if="{{photographData}}">
+  <view class="sayToParty">
+    <view class="top">
+      <text class="leftText">摄影作品</text>
+      <!--更多 -->
+      <navigator url="/pages/show/currentActiList/currentActiList?tagCode=sheying&schedule=1" hover-class="none">
+        <text class="rightText">更多</text>
+        <image class="moreIcon" src="/static/img/show/moreIcon.png"></image>
+      </navigator>
+    </view>
+    <view class="sayToParty_list">
+      <view class="sayToParty_item" wx:for="{{photographData}}" wx:key="index">
+        <image src="{{imgUrl+item.uploadDetailList[0].filePath}}"></image>
+        <text>{{item.title}}</text>
+      </view>
+    </view>
+  </view>
+</view>

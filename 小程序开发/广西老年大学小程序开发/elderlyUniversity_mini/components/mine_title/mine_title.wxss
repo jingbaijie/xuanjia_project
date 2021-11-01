@@ -1,0 +1,5 @@
+.userInfo_item{display: flex;justify-content: space-between;border-bottom: 1rpx solid #ACACAC;align-items: center;padding: 28rpx 0rpx;box-sizing: border-box;}
+.userInfo_item .leftIcon_text{display: flex;align-items: center;}
+.userInfo_item .leftIcon_text .leftIcon{width: 50rpx;height: 48rpx;}
+.userInfo_item .leftIcon_text .titleText{color: #282828;font-size: 36rpx;margin-left: 10rpx;}
+.userInfo_item .rightIcon{width: 12rpx;height: 20rpx;}

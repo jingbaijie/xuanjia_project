@@ -1,0 +1,16 @@
+<!-- pages/home/regional/regional.wxml -->
+<view class="container">
+    <view class="reg-list">
+        <view class="reg-item" wx:for="{{contentList}}" wx:key="index" bindtap="itemClick" data-name="{{item.recommendPic.picCname}}">
+            <view>
+                <image class="item-img" src="{{imgUrl+item.recommendPic.picPath}}"></image>
+            </view>
+            <view class="reg-list-name">
+                <view>
+                    <image class="zb" src="../../../static/img/home/zb.png"></image>
+                </view>
+                <view class="name">{{item.recommendPic.picCname}}</view>
+            </view>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,8 @@
+<view class="xj_container">
+  <view class="worksList">
+    <view wx:for="{{currentVideoData}}" wx:key="index" class="worksList_item" data-cartoonId="{{item.cartoonId}}" bindtap="fullScreenPlay">
+      <image src="{{item.picUrl}}"></image>
+      <text>{{item.text}}</text>
+    </view>
+  </view>
+</view>

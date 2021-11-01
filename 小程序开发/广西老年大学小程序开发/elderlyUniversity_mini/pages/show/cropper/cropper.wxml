@@ -1,0 +1,10 @@
+<image-cropper id="image-cropper" bindload="cropperload" bindimageload="loadimage" bindtapcut="clickcut" limit_move="{{limit_move}}" disable_rotate="{{disable_rotate}}" width="{{width}}" height="{{height}}" imgSrc="{{src}}" angle="{{angle}}" disable_width="{{true}}" max_width="{{max_width}}" max_height="{{max_height}}" disable_height="{{disable_height}}" disable_ratio="{{disable_ratio}}">
+</image-cropper>
+<view catchtouchstart='rotate' catchtouchend='end' data-type="rotate" style="position:fixed;left:20rpx;bottom:200rpx;z-index:10;margin-left:40rpx;">
+  <image src="/static/img/rotate.png" style="width:100rpx;height:100rpx;"></image>
+</view>
+<view class='bottom'>
+  <view bindtap="cancel">取消</view>  
+  <view bindtap="original">还原</view>  
+  <view bindtap='submit'>完成</view>
+</view>

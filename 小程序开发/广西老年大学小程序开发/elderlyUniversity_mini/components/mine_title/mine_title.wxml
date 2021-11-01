@@ -1,0 +1,7 @@
+<view class="userInfo_item" bindtap="{{clickEvent}}">
+  <view class="leftIcon_text">
+    <image src="{{leftIcon}}" class="leftIcon"></image>
+    <text class="titleText">{{titleText}}</text>
+  </view>
+  <image class="rightIcon" src="/static/img/user/moreIcon.png"></image>
+</view>

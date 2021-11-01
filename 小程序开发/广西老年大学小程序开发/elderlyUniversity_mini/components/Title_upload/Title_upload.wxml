@@ -1,0 +1,4 @@
+<view class="titleLine">
+  <text class="titleText">{{myTitleName}}</text>
+  <text class="errorTip">{{errorTip}}</text>
+</view>

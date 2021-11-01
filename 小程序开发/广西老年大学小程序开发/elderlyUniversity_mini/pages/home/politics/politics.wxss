@@ -1,0 +1,18 @@
+/* pages/home/politics/politics.wxss */
+/* 轮播图 */
+.swiper-box{background-color: white;}
+.banner-img-box {text-align: center;padding-top: 14rpx;}
+.banner-img {width: 95%;height: 270rpx;border-radius: 20px;}
+
+.xyxc{margin-top: 10rpx;background-color: white;}
+.list-more-img {width: 12rpx;height: 20rpx;}
+.list-top {display: flex;justify-content: space-between}
+.list-more {display: flex;padding: 20rpx 30rpx 20rpx 0;}
+
+.title-img {width: 6rpx;height: 22rpx;border-radius: 100rpx;}
+.rb-box {display: flex;justify-content: space-around;flex-wrap: wrap;font-size: 30rpx;}
+.rb-list-img {width: 332rpx;height: 184rpx;}
+.list-title {margin-left: 30rpx;font-size: 30rpx;color: #313131;font-weight: 700;display: flex;padding: 20rpx 0;}
+.title-text {padding-left: 14rpx;}
+
+.rb-title{line-height: 48rpx;margin-left: 18rpx;margin-bottom: 20rpx;width: 332rpx;}

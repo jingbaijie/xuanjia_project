@@ -1,0 +1,38 @@
+<!-- pages/home/politics/politics.wxml -->
+<view class="container">
+    <!-- 轮播图 -->
+    <view class="swiper-box">
+        <swiper autoplay="{{true}}" circular="{{true}}" previous-margin="30rpx" next-margin="30rpx" indicator-dots="{{true}}" indicator-color="rgba(188, 188, 188, 1)" indicator-active-color="rgb(112,28,16)">
+            <block wx:for="{{bannerList}}" wx:key="*this">
+                <swiper-item bindtap="jumpPage" id="{{item.rankId}}" data-videoid="{{item.recommendDisplayValue}}" data-name="{{item.recommendDisplayName}}" data-index="{{index}}" data-type="banner">
+                    <view class="banner-img-box">
+                        <image class="banner-img" src="{{imgUrl+item.recommendPic.picPath}}"></image>
+                    </view>
+                </swiper-item>
+            </block>
+        </swiper>
+    </view>
+    <!-- 今日热播 -->
+    <view class="xyxc">
+        <view class="list-top">
+            <view class="list-title">
+                <view class="title-img-box">
+                    <image class="title-img" src="../../../static/img/home/red_.png"></image>
+                </view>
+                <view class="title-text">校园宣传片</view>
+            </view>
+            <view class="list-more">
+                <view></view>
+                <view class="list-more-img-box">
+                    <!-- <image class="list-more-img" src="../../../static/img/home/more.png"></image> -->
+                </view>
+            </view>
+        </view>
+        <view class="rb-box">
+            <view class="rb-list" wx:for="{{szList}}" wx:key="index" bindtap="jumpPage" id="rb" data-videoid="{{item.recommendDisplayValue}}" data-type="list" data-index="{{index}}">
+                <image class="rb-list-img" src="{{imgUrl+item.recommendPic.picPath}}"></image>
+                <view class="rb-title">{{item.recommendDisplayName}}</view>
+            </view>
+        </view>
+    </view>
+</view>

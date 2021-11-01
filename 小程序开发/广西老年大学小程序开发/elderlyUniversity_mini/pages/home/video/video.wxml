@@ -1,0 +1,55 @@
+<!-- <view>{{jjj}}</view> -->
+<!-- <video id="xjVideo" initial-time="{{initialTime}}" class="viedo" direction="90" src="https://lndx.tvjoy.cn:28443/videos/枪上膛/枪上膛.m3u8" autoplay="{{true}}" ad-unit-id="00023" poster-for-crawler="" bindadplay="onAdplay" bindadload="onAdload" bindadclose="onAdclose" bindaderror="onAdError"></video> -->
+<!-- <video id="xjVideo" initial-time="{{initialTime}}" class="viedo" direction="90" src="http://112.25.69.66:8291/NewDisk/MIGU_CDP_XHB/test/test/test.m3u8" autoplay="{{true}}" ad-unit-id="00023" poster-for-crawler="" bindadplay="onAdplay" bindadload="onAdload" bindadclose="onAdclose" bindaderror="onAdError"></video> -->
+<video id="xjVideo"  initial-time="{{initialTime}}" class="viedo" direction="90"
+    src="{{xjURL}}" autoplay="{{true}}" ad-unit-id="00023" poster-for-crawler="" bindadplay="onAdplay"
+    bindadload="onAdload" bindadclose="onAdclose" bindaderror="onAdError" show-fullscreen-btn="true"></video>
+<!-- <video id="video" class="viedo" direction="90" src="{{URL}}"></video> -->
+<!-- <web-view class="web_view" src="https://lndx.tvjoy.cn:28443/iptv-web/HD/web/rtmpDemo/main.html?v=545545445455445"></web-view> -->
+<!-- 片单名称 -->
+<view class="sheetName_icon xj_container">
+    <view class="sheetName">{{cartoonInfo[0].cartoonInfo.cartoonCname}}</view>
+    <view class="rightIcon">
+        <image src="../../../static/img/{{isLike?'thumbsed.png':'noThumbs.png'}}" style="margin-right:20rpx;"
+            bindtap="giveThumbUp"></image>
+        <button plain="true" size="mini" open-type="share">
+            <image src="../../../static/img/shareIcon.png"></image>
+        </button>
+    </view>
+</view>
+<view class="xj_container" style="margin-top:10rpx;">
+    <text style="margin-right:30rpx;">{{videoPlayNum}}次播放</text>
+    <text>{{likeNum}}点赞</text>
+</view>
+<view class="xj_container" style="margin-top:40rpx;margin-bottom:20rpx;font-size: 30rpx;font-weight:bold;">
+    {{fromPage=='course'?'课程':'播放'}}列表：
+</view>
+<scroll-view class="videoList" scroll-x="true">
+    <view style="width:30rpx;height:100%;display:inline-block;"></view>
+    <view class="listCss {{index==currentClickIndex?'choosed':'noChoose'}}" wx:for="{{cartoonInfo}}" wx:key="index"
+        bindtap="toSingleVideo" data-videoId="{{item.id}}">
+        <view>{{item.videoCname}}</view>
+    </view>
+</scroll-view>
+<!-- 分割线 -->
+<view style="width:100%;height:1rpx;background:#999;margin:30rpx;"></view>
+<!-- 下部推荐 -->
+<!-- 更多课程 -->
+<view class="xj_container" wx:if="{{fromPage=='course'}}">
+    <view style="margin-top:20rpx;margin-bottom:20rpx;font-size: 30rpx;font-weight:bold;">更多课程</view>
+    <view class="course_list">
+        <view wx:for="{{recommendRandomList}}" wx:key="index" bindtap="toCourse" data-cartoonId="{{item.recommendDisplayValue}}" data-title="{{item.recommendDisplayName}}">
+            <image src="{{imgUrl+item.recommendPic.picPath}}"></image>
+        </view>        
+    </view>
+</view>
+<!-- 更多精彩 -->
+<view class="xj_container" wx:elif="{{fromPage==0}}">
+    <view style="margin-top:20rpx;margin-bottom:20rpx;font-weight:bold;font-size:30rpx;">更多精彩</view>
+    <view class="excellent_list">
+        <view wx:for="{{recommendRandomList}}" wx:key="index" data-cartoonId="{{item.id}}" bindtap="toFullScreenPlay">
+            <image src="{{imgUrl+item.detailPic.picPath}}"></image>
+            <text>{{item.cartoonCname}}</text>
+        </view>        
+    </view>
+</view>

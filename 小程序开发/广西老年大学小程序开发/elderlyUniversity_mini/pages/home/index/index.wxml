@@ -1,0 +1,74 @@
+<!-- pages/home/index/index.wxml -->
+<view class="container">
+  <!-- 搜索框 -->
+  <view class="search-box">
+    <input class="search-input" placeholder="输入您需要观看的片单" bindtap="focusHandle"></input>
+    <!-- <image class="search-img" src="../../../static/img/home/fdj.png"></image> -->
+  </view>
+  <!-- 轮播图 -->
+  <view class="swiper-box">
+    <swiper autoplay="{{true}}" circular="{{true}}" previous-margin="30rpx" next-margin="30rpx"
+      indicator-dots="{{true}}" indicator-color="rgba(188, 188, 188, 1)" indicator-active-color="rgb(112,28,16)">
+      <block wx:for="{{bannerList}}" wx:key="index">
+        <swiper-item>
+          <view class="banner-img-box" bindtap="jumpPage" id="banner" data-videoid="{{item.recommendDisplayValue}}"
+            data-isrtmp="{{item.more4}}">
+            <image class="banner-img" src="{{imgUrl+item.recommendPic.picPath}}"></image>
+          </view>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <!-- 分类列表 -->
+  <view class="cate-box">
+    <view class="cate-list" bindtap="jumpPage" id="{{item.rankId}}" wx:for="{{cateList}}" wx:key="index">
+      <image class="cate-list-img" src="{{imgUrl+item.recommendPic.picPath}}"></image>
+      <view>{{item.more1}}</view>
+    </view>
+  </view>
+  <!-- 热门活动 -->
+  <view class="jchg">
+    <view class="list-top">
+      <view class="list-title">
+        <view class="title-img-box">
+          <image class="title-img" src="../../../static/img/home/red_.png"></image>
+        </view>
+        <view class="title-text">{{backListTitle.more1}}</view>
+      </view>
+      <!-- <view class="list-more" bindtap="jumpPage" id="more">
+        <view>{{backListTitle.more2}}</view>
+        <view class="list-more-img-box">
+          <image class="list-more-img" src="../../../static/img/home/more.png"></image>
+        </view>
+      </view> -->
+    </view>
+    <view class="jc-box">
+      <view class="jc-list" wx:for="{{backList}}" wx:key="index" wx:for-item="item" bindtap="jumpPage" id="back" data-pageType="{{item.commpageName}}">
+        <image class="jc-list-img" src="{{imgUrl+item.recommendPic.picPath}}"></image>
+      </view>
+    </view>
+  </view>
+  <!-- 今日热播 -->
+  <view class="jrrb">
+    <view class="list-top">
+      <view class="list-title">
+        <view class="title-img-box">
+          <image class="title-img" src="../../../static/img/home/red_.png"></image>          
+        </view>
+        <view class="title-text">{{hotListTitle.more1}}</view>
+      </view>
+      <!-- <view class="list-more" bindtap="jumpPage" id="more1">
+        <view>{{hotListTitle.more2}}</view>
+        <view class="list-more-img-box">
+          <image class="list-more-img" src="../../../static/img/home/more.png"></image>
+        </view>
+      </view> -->
+    </view>
+    <view class="rb-box">
+      <view class="rb-list" wx:for="{{hotList}}" wx:key="index" wx:for-item="item" bindtap="jumpPage" id="hot" data-index="{{index}}">
+        <image class="rb-list-img" src="{{imgUrl+item.recommendPic.picPath}}"></image>
+        <text>{{item.recommendDisplayName}}</text>
+      </view>
+    </view>
+  </view>
+</view>

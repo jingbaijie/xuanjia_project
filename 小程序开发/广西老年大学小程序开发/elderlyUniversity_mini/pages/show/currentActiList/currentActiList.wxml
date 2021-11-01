@@ -1,0 +1,9 @@
+<!-- 列表 -->
+<view class="xj_container">
+  <view class="sayToParty_list">
+    <view class="sayToParty_item" wx:for="{{currentPicData}}" wx:key="index">
+      <image src="{{imgUrl+item.uploadDetailList[0].filePath}}" bindtap="previewImage" data-index="{{index}}"></image>
+      <text>{{item.title}}</text>
+    </view>
+  </view>
+</view>

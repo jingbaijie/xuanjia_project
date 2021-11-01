@@ -1,0 +1,10 @@
+/* pages/home/search/search.wxss */
+.search-box {height: 50rpx;background-color: #701C10;display: flex;justify-content: space-around;padding-bottom:14rpx;}
+.search-input {height: 50rpx;width: 618rpx;background-color: white;border-radius: 100rpx;text-align: center;}
+.search-img {width: 36rpx;height: 36rpx;position: absolute;top: 7rpx;right: 80rpx}
+
+.search-result{display: flex;flex-wrap: wrap;padding: 40rpx 30rpx;justify-content: space-between;background-color: white;}
+.search-result-img{width: 332rpx;height: 184rpx;}
+.search-result-item{width: 332rpx;height: 264rpx;margin-bottom: 20rpx;color: rgba(49, 49, 49, 1);font-size: 30rpx;}
+
+.search-result-null{background-color: white;text-align: center;padding-top: 20rpx;}

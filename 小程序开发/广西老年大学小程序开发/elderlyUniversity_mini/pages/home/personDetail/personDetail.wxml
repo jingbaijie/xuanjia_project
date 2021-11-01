@@ -1,0 +1,23 @@
+<!-- pages/home/personDetail/personDetail.wxml -->
+<view class="container">
+    <!-- <view class="person-msg">
+        <view>
+            <image class="person-photo" src="{{imgUrl+currentData.labelPic.picPath}}"></image>
+        </view>
+        <view class="person-jj-box">
+            <view class="person-name-box">
+                <view class="person-name-list">
+                    <view>
+                        <image class="tip" src="https://cibn.tvjoy.cn/WeChatXHB/image/elderlyUniversity_mini/home/person/tip.png"></image>
+                    </view>
+                    <view>{{currentData.name}}</view>
+                </view>
+            </view>
+            <view class="person-jj">
+                <view>{{currentData.job}}</view>
+            </view>
+        </view>
+    </view>
+    <view class="person-detail">{{currentData.detailIntroduction}}</view> -->
+    <image class="person-all" src="{{imgUrl+currentData.labelPic.picPath}}"></image>
+</view>

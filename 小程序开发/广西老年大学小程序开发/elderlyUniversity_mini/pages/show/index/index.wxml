@@ -1,0 +1,38 @@
+<view class="xj_container">
+  <!-- 轮播图 -->
+  <swiper indicator-dots autoplay indicator-active-color="#701C10" indicator-color="rgba(188,188,188,1)" circular>
+    <swiper-item wx:for="{{bannerArr}}" wx:key="index" catchtap="bannerJump" data-index="{{index}}">
+      <image src="{{item.img}}"></image>
+    </swiper-item>
+  </swiper>
+  <!-- 我想对党说 -->
+  <view class="sayToParty">
+    <view class="top">
+      <text class="leftText">{{lastItemTheme}}</text>
+      <!--更多 -->
+      <navigator url="/pages/show/currentActiDetail/currentActiDetail?lastItemTheme={{lastItemTheme}}" hover-class="none">
+        <text class="rightText">更多</text>
+        <image class="moreIcon" src="/static/img/show/moreIcon.png"></image>
+      </navigator>
+    </view>
+    <view class="sayToParty_list">
+      <view class="sayToParty_item" wx:for="{{lastItemRec}}" wx:key="index" data-videoId="{{item.videoId}}" bindtap="fullScreenPlay">
+        <image src="{{item.img}}"></image>
+        <text>{{item.text}}</text>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 间隔 -->
+<view class="space_grey"></view>
+<!-- 作品展示 -->
+<view class="works_show xj_container">
+  <view class="top">
+    <text class="leftText">作品展示</text>
+  </view>
+  <view class="worksCover_list">
+    <view class="worksCover_item" wx:for="{{pastWorkShow}}" wx:key="index" bindtap="worksTypeJump" data-tagCode="{{item.more1}}">
+      <image src="{{imgUrl + item.recommendPic.picPath}}"></image>
+    </view>
+  </view>
+</view>

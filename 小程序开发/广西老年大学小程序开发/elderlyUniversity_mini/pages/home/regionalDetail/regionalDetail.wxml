@@ -1,0 +1,71 @@
+<!-- pages/home/regionalDetail/regionalDetail.wxml -->
+<view class="container" wx:if="{{false}}">
+    <view class="top">
+        <view>
+            <image class="top-img" src="https://cibn.tvjoy.cn/WeChatXHB/image/elderlyUniversity_mini/home/reg/js/xx.png"></image>
+        </view>
+        <view class="top-title">南宁市老年大学</view>
+        <view class="code-box">
+            <view>南宁市老年大学创建于1989年4月,学校现有本部校区(青秀区滨湖路)、南宁市妇女活动中心分校(西乡塘区大学路)、南宁市兴宁区分校（兴宁区共和路)。</view>
+            <view class="img-box">
+                <image class="code" src="https://cibn.tvjoy.cn/WeChatXHB/image/elderlyUniversity_mini/home/reg/js/code.jpg"></image>
+            </view>
+        </view>
+    </view>
+    <!-- 学校荣誉 -->
+    <view class="jchg">
+        <view class="list-top">
+            <view class="list-title">
+                <view class="title-img-box">
+                    <image class="title-img" src="https://cibn.tvjoy.cn/WeChatXHB/image/elderlyUniversity_mini/home/index/red_.png"></image>
+                </view>
+                <view class="title-text">学校荣誉</view>
+            </view>
+            <view class="list-more" bindtap="listClick" id="more">
+                <view>更多</view>
+                <view class="list-more-img-box">
+                    <image class="list-more-img" src="https://cibn.tvjoy.cn/WeChatXHB/image/elderlyUniversity_mini/home/index/more.png"></image>
+                </view>
+            </view>
+        </view>
+        <view class="jc-box">
+            <view class="jc-list">
+                <image class="jc-list-img" src="https://cibn.tvjoy.cn/WeChatXHB/image/elderlyUniversity_mini/home/reg/js/ry1.png"></image>
+            </view>
+            <view class="jc-list">
+                <image class="jc-list-img" src="https://cibn.tvjoy.cn/WeChatXHB/image/elderlyUniversity_mini/home/reg/js/ry2.png"></image>
+            </view>
+        </view>
+    </view>
+    <!-- 学员风采 -->
+    <view class="jrrb">
+        <view class="list-top">
+            <view class="list-title">
+                <view class="title-img-box">
+                    <image class="title-img" src="https://cibn.tvjoy.cn/WeChatXHB/image/elderlyUniversity_mini/home/index/red_.png"></image>
+                </view>
+                <view class="title-text">学员风采</view>
+            </view>
+            <view class="list-more">
+                <view>更多</view>
+                <view class="list-more-img-box">
+                    <image class="list-more-img" src="https://cibn.tvjoy.cn/WeChatXHB/image/elderlyUniversity_mini/home/index/more.png"></image>
+                </view>
+            </view>
+        </view>
+        <view class="rb-box">
+            <view class="rb-list">
+                <image class="rb-list-img" src="https://cibn.tvjoy.cn/WeChatXHB/image/elderlyUniversity_mini/home/reg/js/fc1.png"></image>
+            </view>
+            <view class="rb-list">
+                <image class="rb-list-img" src="https://cibn.tvjoy.cn/WeChatXHB/image/elderlyUniversity_mini/home/reg/js/fc2.png"></image>
+            </view>
+        </view>
+    </view>
+</view>
+<view class="container2" wx:else>
+    <image class="jqqd-img" src="{{imgUrl+pageData.pageTemplateBgpic.picPath}}"></image>
+
+    <view class="lndxjsz">老年大学建设中</view>
+    <view class="jqqd-text">敬请期待</view>
+</view>

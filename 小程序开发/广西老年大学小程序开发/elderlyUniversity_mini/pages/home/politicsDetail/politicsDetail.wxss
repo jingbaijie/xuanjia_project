@@ -1,0 +1,7 @@
+/* pages/home/politicsDetail/politicsDetail.wxss */
+.h1{font-size: 36rpx;font-weight: 700;line-height: 50rpx;}
+.con-box{padding: 40rpx 30rpx;}
+.h2{color: rgba(49, 49, 49, 1);font-size: 30rpx;font-weight: 700;text-indent: 2em;line-height: 50rpx;padding: 0 20rpx;}
+.content{color: rgba(49, 49, 49, 1);font-size: 30rpx;text-indent: 2em; padding: 0 20rpx;}
+
+.pic{width: 750rpx;height: 1350rpx;}

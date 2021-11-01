@@ -1,0 +1,5 @@
+.xj_container{width: 100%;padding: 40rpx 30rpx;box-sizing: border-box;}
+.worksList{display: flex;justify-content: space-between;flex-wrap: wrap;}
+.worksList .worksList_item{display: flex;flex-direction: column;margin-bottom: 30rpx;width: 332rpx;}
+.worksList .worksList_item image{width: 100%;height: 185rpx;}
+.worksList .worksList_item text{margin-top: 15rpx;margin-left: 18rpx;margin-right: 18rpx;overflow: hidden;text-overflow: ellipsis;-webkit-box-orient: vertical;-webkit-line-clamp: 2;display: -webkit-box;}

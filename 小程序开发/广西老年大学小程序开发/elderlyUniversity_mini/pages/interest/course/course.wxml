@@ -1,0 +1,12 @@
+<!-- pages/interest/course/course.wxml -->
+<view class="course-box">
+    <view class="course-list">
+        <view class="course-item" wx:for="{{courseList}}" wx:key="index" bindtap="clickHandle"
+            id="{{item.movieDetails[0].videoId}}">
+            <view class="course-title">{{item.videoCname}}</view>
+            <view>
+                <image class="course-img" src="{{imgUrl+item.labelPic.picPath}}"></image>
+            </view>
+        </view>
+    </view>
+</view>

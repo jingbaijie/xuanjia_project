@@ -1,0 +1,4 @@
+.titleText::before{width: 8rpx;height: 30rpx;content: "";display: inline-block;background-color: #6C1D08;border-radius: 25%;margin-right: 15rpx;}  
+.titleText{font-size: 34rpx;color: #4F4E4E;display: flex;align-items: center;}
+.errorTip{font-size: 34rpx;color: red;}
+.titleLine{display: flex;align-items: center;}

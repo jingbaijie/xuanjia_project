@@ -1,0 +1,99 @@
+<view class="topBg">
+  <view style="height:100%;">
+    <input type="text" placeholder="输入作品名称" placeholder-style="color:#999;font-size:30rpx;" bindconfirm="search"
+      value="{{keyWords}}" />
+  </view>
+</view>
+<!-- 标题 -->
+<view class="title" wx:if="{{waitReleaseList.length>0 || releasedList.length>0}}">
+  <view data-type="7" bindtap="{{releaseType==7?'':'chooseType'}}" style="font-weight:{{releaseType==7?'bold':'400'}}">
+    待发布</view>
+  <view data-type="2" bindtap="{{releaseType==2?'':'chooseType'}}" style="font-weight:{{releaseType==2?'bold':'400'}}">
+    已发布</view>
+</view>
+<!-- 待发布（当前点击待发布栏，待发布栏有数据）-->
+<view class="myWorksList xj_container" wx:if="{{releaseType==7 && waitReleaseList.length>0}}">
+  <mp-slideview buttons="{{[{type: 'warn',text: '删除',data:index}]}}" bindbuttontap="slideButtonTap" disable="{{item.status==1?true:false}}" wx:for="{{isSearch?searchList:waitReleaseList}}" wx:key="index">
+    <view class="list">
+      <view class="leftImage" bindtap="{{item.status==1?'previewImage':''}}" data-index="{{index}}">
+        <image
+          src="{{item.status==1?imgUrl+(item.uploadDetailList[0].mediaType=='picture'?item.uploadDetailList[0].filePath:item.uploadDetailList[1].filePath):'/static/img/user/noPass.png'}}">
+        </image>
+      </view>
+      <view class="rightText">
+        <view>
+          <image src="/static/img/icon/worksName.png"></image>
+          <text>{{item.title}}</text>
+        </view>
+        <view>
+          <image src="/static/img/icon/biaoqian.png"></image>
+          <text>{{item.uploadTagCname}}作品</text>
+        </view>
+        <view>
+          <image src="{{item.status==1?'/static/img/icon/shenhezhong.png':'/static/img/icon/nopass.png'}}"></image>
+          <text>{{item.status==1?'待审核':'审核不通过'}}</text>
+        </view>
+      </view>
+      <!-- 删除按钮 -->
+      <view class="deleteBtn" wx:if="{{item.status!=1}}" bindtap="deleteNoPass" data-index="{{index}}">删除</view>
+    </view>
+  </mp-slideview>
+  <view wx:if="{{isSearch && searchList.length==0 && !searchDelete}}" style="text-align: center;font-size:30rpx;">
+    当前搜索内容不存在
+  </view>
+</view>
+<!-- 待发布和已发布都无数据，提示上传作品 -->
+<view class="noUpload xj_container" wx:elif="{{releaseStatus==2}}">
+  <image src="/static/img/user/noUpload.png"></image>
+  <view>当前还没有作品哦</view>
+  <view>快参加活动，上传作品展示自己吧~</view>
+  <view class="uploadBtn" style="font-weight:400;" bindtap="toUpLoad">上传作品</view>
+</view>
+<!-- 已发布（当前点击已发布栏，且已发布栏有数据） -->
+<view class="myWorksList xj_container" wx:elif="{{releaseType==2 && releasedList.length>0}}">
+  <view class="list" wx:for="{{isSearch?searchList:releasedList}}" wx:key="index">
+    <view class="leftImage">
+      <image
+        src="{{imgUrl+(item.uploadDetailList[0].mediaType=='picture'?item.uploadDetailList[0].filePath:item.uploadDetailList[1].filePath)}}"
+        bindtap="previewImage" data-index="{{index}}"></image>
+      <view class="likeVisitNum">
+        <image
+          src="{{item.uploadDetailList[0].mediaType=='picture'?'../../../static/img/user/look.png':'../../../static/img/user/liked.png'}}">
+        </image>
+        <text>{{item.uploadDetailList[0].mediaType=='picture'?(item.playViews==null?0:item.playViews):(item.likeNum==null?0:item.likeNum)}}</text>
+      </view>
+    </view>
+    <view class="rightText">
+      <view>
+        <image src="/static/img/icon/worksName.png"></image>
+        <text>{{item.title}}</text>
+      </view>
+      <view>
+        <image src="/static/img/icon/biaoqian.png"></image>
+        <text>{{item.uploadTagCname}}作品</text>
+      </view>
+      <view>
+        <image src="{{item.booleanUp==2?'/static/img/icon/shangjia.png':'/static/img/icon/xiajia.png'}}"></image>
+        <text>{{item.booleanUp==2?'已上架':'待上架'}}</text>
+      </view>
+    </view>
+  </view>
+  <view wx:if="{{isSearch && searchList.length==0}}" style="text-align: center;font-size:30rpx;">
+    当前搜索内容不存在
+  </view>
+</view>
+<!-- 待发布有数据，已发布无数据，点击已发布栏时提示正在审核中 -->
+<view class="myWorksList xj_container" wx:elif="{{releaseType==2 && releaseStatus==3}}">
+  <view class="defaultPage">
+    <image src="/static/img/user/noRelease.png" style="width:260rpx;height:283rpx;"></image>
+    <view>当前作品还在审核中哦</view>
+    <view>作品上架后可以查看作品</view>
+  </view>
+</view>
+<!-- 当前点击待发布栏，待发布栏无数据，已发布栏有数据 -->
+<view class="myWorksList xj_container" wx:elif="{{releaseType==7 && releaseStatus==1}}">
+  <view class="defaultPage">
+    <image src="/static/img/user/uploadSuc.png" style="width:260rpx;height:283rpx;"></image>
+    <view>当前作品发布成功,快去查看吧~</view>
+  </view>
+</view>

@@ -1,0 +1,3 @@
+.xj_container{width: 100%;height: 100%;padding: 30rpx 30rpx 0rpx 30rpx;box-sizing: border-box;}
+.gotoTv_poster{width: 100%;}
+.jump_uploadPage{width: 100%;height: 80rpx;background-color: #85270E;color: #FFFFFF;font-size: 38rpx;border-radius: 10rpx;display: flex;align-items: center;justify-content: center;margin-top: 40rpx;}

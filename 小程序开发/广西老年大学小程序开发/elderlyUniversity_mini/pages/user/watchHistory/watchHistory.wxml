@@ -1,0 +1,11 @@
+<!-- 列表 -->
+<view class="xj_container">
+  <view class="sayToParty_list">
+    <view class="sayToParty_item" wx:for="{{listData}}" wx:key="index" bindtap="toVideoList" data-cartoonId="{{item.contentId}}" data-index="{{index}}">
+      <image src="{{imgUrl+item.mediaPic}}"></image>
+      <text>{{item.mediaName}}</text>
+    </view>
+  </view>
+  <!-- 默认图片 -->
+  <image src="/static/img/user/default.png"  style="margin-top:200rpx;" wx:if="{{default}}"></image>
+</view>

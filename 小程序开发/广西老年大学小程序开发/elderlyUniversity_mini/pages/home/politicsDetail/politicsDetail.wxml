@@ -1,0 +1,4 @@
+<!-- pages/home/politicsDetail/politicsDetail.wxml -->
+<view class="container">
+    <image class="pic" src="{{imgUrl+currentData.detailPic.picPath}}"></image>
+</view>

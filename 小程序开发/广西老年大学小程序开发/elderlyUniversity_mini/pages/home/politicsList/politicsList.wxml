@@ -1,0 +1,19 @@
+<!-- pages/home/politicsList/politicsList.wxml -->
+<view class="container">
+    <view class="pol-list">
+        <view class="pol-item" wx:for="{{showList}}" wx:key="index" bindtap="itemClick" id="{{item.id}}">
+            <view class="pol-item-content">
+                <view class="flg-box">
+                    <image class="flg" src="../../../static/img/home/wz.png"></image>
+                </view>
+                <view class="title-box">
+                    <view class="title">{{item.title}}</view>
+                    <view class="date">2021-02-09</view>
+                </view>
+            </view>
+            <view class="more">
+                <image class="more-img" src="../../../static/img/home/more.png"></image>
+            </view>
+        </view>
+    </view>
+</view>

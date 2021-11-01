@@ -1,0 +1,14 @@
+<!-- pages/home/person/person.wxml -->
+<view class="container">
+    <view class="person-list">
+        <view wx:for="{{personList}}" wx:key="index" class="person-item" bindtap="itemClick" id="{{item.rankId}}">
+            <image class="person-photo" src="{{imgUrl+item.recommendPic.picPath}}"></image>
+            <view class="person-msg">
+                <view>
+                    <image class="tip" src="../../../static/img/home/tip.png"></image>
+                </view>
+                <view class="person-name">{{item.more1}}</view>
+            </view>
+        </view>
+    </view>
+</view>

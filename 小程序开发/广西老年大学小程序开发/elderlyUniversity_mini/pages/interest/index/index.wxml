@@ -1,0 +1,11 @@
+<!-- pages/interest/index/index.wxml -->
+<view class="container">
+    <view class="course-box">
+        <view class="course-item" wx:for="{{cateList}}" wx:key="index" bindtap="clickHandle" id="{{item.recommendDisplayValue}}" data-title="{{item.recommendDisplayName}}">
+            <view>
+                <image class="course-item-img" src="{{imgUrl+item.recommendPic.picPath}}"></image>
+            </view>
+        </view>
+        <view class="course-item1" wx:if="{{showItem}}"></view>
+    </view>
+</view>

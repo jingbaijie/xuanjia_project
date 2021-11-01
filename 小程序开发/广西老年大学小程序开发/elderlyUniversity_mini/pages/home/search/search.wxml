@@ -1,0 +1,16 @@
+<!-- pages/home/search/search.wxml -->
+<view class="container">
+    <!-- 搜索框 -->
+    <view class="search-box">
+        <input class="search-input" placeholder="输入您需要观看的片单" bindconfirm="search" focus="{{focus}}"></input>
+        <!-- <image class="search-img" src="../../../static/img/home/fdj.png"></image> -->
+    </view>
+    <!-- 搜索结果 -->
+    <view class="search-result" wx:if="{{searchData.length>0}}">
+        <view class="search-result-item" wx:for="{{searchData}}" wx:key="index" bindtap="jumpPage" id="banner{{item.rankId}}" data-name="{{item.contentName}}" data-contentid="{{item.contentId}}">
+            <image class="search-result-img" src="{{imgUrl+item.contentPic}}"></image>
+            <view>{{item.contentName}}</view>
+        </view>
+    </view>
+    <view class="search-result-null" wx:if="{{hideTips}}">搜索结果为空</view>
+</view>

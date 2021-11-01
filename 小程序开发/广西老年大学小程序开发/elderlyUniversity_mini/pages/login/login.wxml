@@ -1,0 +1,10 @@
+<view class="loginBg">
+  <view class="getAuthorizeInfo">
+    <view class="text_tip">
+      <view class="first">广西老年大学</view>
+      <view class="second">亲爱的用户，您好</view>
+      <view class="third">初次使用小程序请先登录</view>
+    </view>
+    <view class="loginBtn" bindtap="getUserProfile">微信登录</view>
+  </view>
+</view>
