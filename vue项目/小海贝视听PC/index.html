@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="static/favicon.ico">
+    <title>小海贝</title>
+  </head>
+  <script>
+    var ua = navigator.userAgent;
+    var ipad = ua.match(/(iPad).*OS\s([\d_]+)/);
+    isIphone = !ipad && ua.match(/(iPhone\sOS)\s([\d_])/);
+    isAndroid = ua.match(/(Android)\s+([\d.]+)/);
+    isMobile = isIphone || isAndroid;
+    if(isMobile){
+      window.location.href = "https://www.tvjoy.cn/tvjoy-phone/";
+    }
+    // window.addEventListener('resize',function(){
+    //   if(document.documentElement.getBoundingClientRect().width < 540){
+    //     window.location.href = "http://www.tvjoy.cn/tvjoy-phone/";
+    //   }
+    // })
+  </script>
+  <body>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+    <script type="text/javascript">
+      (function(globle) {
+          globle.configs = {
+              //IP  
+              // axios_BASEURL: 'http://192.168.2.251:18080/webapi/',
+              // pic_BASEURL:'http://192.168.2.251:18080/'
+              //后端开发人员李小永本地
+              // axios_BASEURL: 'http://192.168.3.95:18080/webapi/',
+              // pic_BASEURL:'http://www.tvjoy.cn/'
+              //正式
+              axios_BASEURL: 'https://www.tvjoy.cn/webapi/',
+              pic_BASEURL:'https://www.tvjoy.cn/'
+          }
+      })(window);
+  </script>
+  </body>
+  <style>
+    body{
+      overflow-x: hidden;
+    }
+  </style>
+</html>
