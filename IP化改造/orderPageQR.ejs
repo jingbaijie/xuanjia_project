@@ -1,0 +1,502 @@
+﻿
+    <%- include ("../../components/header") %> 
+    <%       
+        
+        const localImg = basePageInfo.localImg;
+    %>     
+    <style>
+        #mainContent {
+            width: 1280px;
+            height: 720px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        .QRcodeContainer {
+            position: absolute;
+            top: 283px;
+            left: 142px;
+            width: 225px;
+            height: 200px;
+            z-index: 199;
+        }
+
+        .productList img {
+            position: absolute;
+        }
+
+        #tips {
+            width: 1280px;
+            height: 720px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-image: url(<%= localImg %>tips.png);
+		    display:none;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <div id="debugTxt"
+        style="position: absolute;top:100px;left: 50px; border:1px solid red;background-color: rgba(197, 201, 199, 0.8);width: 1100px;height: 550px;z-index: 100000;">
+    </div> -->
+    <div class="main" id="mainContent">
+        <div style="width: 1280px;height: 720px;position: absolute;top: 0;left: 0;">
+            <img id="BJImg" src='<%= basePageInfo.bgImg %>' style="width: 1280px; height: 720px;" />
+        </div>
+        <div class="QRcodeContainer">
+            <img id="QRcode" src="<%= localImg %>empty.png" style="width:225px;height:200px">
+        </div>
+        <div id="productList" class="productList" style="position: absolute;left:464px;top:240px;"></div>
+
+        <!--配置的其他-->
+    <%
+    var idx = 4;
+    var recommend = {};
+    var xjButton = [];
+    while(recommend = basePageInfo.commonPageInfo["recommend_" + idx]) {
+        for(var i = 0; i < recommend.length;i++) {
+            (function(idx,i,data){
+                var focus_ele_id = "btnsA" +idx + "A" + i;
+                var ele_id = "hands_x0_y0_btnsA" +idx + "A" + i + "_";
+                var item_ele_id = "orderitemA" +idx + "A" + i;
+                // {"id":24717,"booleanUp":2,"booleanFree":1,"recommendDisplayType":88,"recommendDisplayValue":"","recommendDisplayName":"","recommendTrackName":null,"recommendPic":{"picCname":"电视账户支付","picPath":"/cloud-pic-test/active/20210408/20210408164345438_r6tzd.png","picW":"246","picH":"52","id":8601},"recommendLabelpic":{"picCname":"电视账户支付拷贝2","picPath":"/cloud-pic-test/active/20210408/20210408164345765_ys4nh.png","picW":"291","picH":"98","id":8603},"recommendFocuspic":null,"isFree":1,"animation":null,"onfocus":1,"movetop":null,"movedown":null,"moveleft":null,"moveright":null,"rankId":4,"commpageId":null,"commpageName":null,"createTime":"2021-04-08 17:05:12","filemTime":null,"pageRecommendConfigTabVos":[{"picLibraryTab":{"picCname":"电视账户支付","picPath":"/cloud-pic-test/active/20210408/20210408164345438_r6tzd.png","picW":"246","picH":"52","id":8601},"picType":0,"more1":null,"more2":null,"more3":null,"more4":null,"xvalue":null,"yvalue":null},{"picLibraryTab":{"picCname":"电视账户支付拷贝2","picPath":"/cloud-pic-test/active/20210408/20210408164345765_ys4nh.png","picW":"291","picH":"98","id":8603},"picType":1,"more1":null,"more2":null,"more3":null,"more4":null,"xvalue":null,"yvalue":null}],"more1":"","more2":"","more3":"","more4":""}
+                            
+                            
+                var vos = data.pageRecommendConfigTabVos;
+                var vos_i = vos.length > 1 ? 1 : 0;
+                var focusable = false;
+                var vLeft = vos[vos_i].xvalue + "px";
+                var vTop = vos[vos_i].yvalue + "px";
+                var vWidth = vos[vos_i].picLibraryTab.picW + "px";
+                var vHeight = vos[vos_i].picLibraryTab.picH + "px";
+
+                var resultStr = "<div id=\"" + ele_id + "\" style='position:absolute; display: block; left:"+vLeft+";top:" + vTop + "; width: " + vWidth + "; height:" + vHeight + "'>" ;
+                    
+                if(data.recommendPic) {
+                    var iSrc = imgUrl + data.recommendPic.picPath;
+
+                    var iWidth = data.recommendPic.picW + "px";
+                    var iHeight =data.recommendPic.picH + "px";
+                    var iLeft = vos[0].xvalue -  vos[vos_i].xvalue+ "px";
+                    var iTop = vos[0].yvalue - vos[vos_i].yvalue + "px";
+                    
+                    // var iLeft = parseInt((vos[vos.length - 1].picLibraryTab.picW - data.recommendPic.picW) / 2) + "px";
+                    // var iTop = parseInt((vos[vos.length - 1].picLibraryTab.picH - data.recommendPic.picH) / 2) + "px";
+                    resultStr += "<img id='" + item_ele_id + "' src='" + iSrc + "' style='position:absolute; display:block; z-index:10; left:"+ iLeft+";top:" + iTop + "; width: " + iWidth + "; height:" + iHeight + "'>"
+                }
+                if(data.recommendLabelpic) {
+                    var item_ele_id = "orderItem" + idx;
+
+                    var fSrc = imgUrl + data.recommendLabelpic.picPath;
+
+                    var fWidth = data.recommendLabelpic.picW + "px";
+                    var fHeight =data.recommendLabelpic.picH + "px";
+                    var fLeft = "0px";
+                    var fTop = "0px";
+                    resultStr += "<img id='" + focus_ele_id + "' src='" + fSrc + "' style='position:absolute; display:block; z-index:50; left:"+ fLeft+";top:" + fTop + "; width: " + fWidth + "; height:" + fHeight + ";visibility:hidden;'>"
+                    focusable = true;
+                }
+                resultStr += "</div>";
+                %>
+                <%-resultStr%>
+                <%
+                var button = {id : ele_id, clickHandler: "javascript:goWhere()", TempData: data};
+                xjButton.push(button);
+            })(idx,i,recommend[i])
+        }
+        idx++;
+    }
+%>
+        <div id="tips">
+            <div id="hands_x0_y0_cancel_"
+                style="position: absolute;width: 135px;height: 53px; top: 490px;left: 450px;background-image: url(<%= localImg %>cancel.png)">
+                <img id="cancel" style="position: absolute;visibility: hidden;" src="<%= localImg %>cancelFocus.png">
+            </div>
+            <div id="hands_x0_y0_confirm_"
+                style="position: relative;width: 135px;height: 53px;top: 490px;left: 640px;background-image: url(<%= localImg %>confirm.png)">
+                <img id="confirm" style="position: absolute;visibility: hidden;" src="<%= localImg %>confirmFocus.png">
+            </div>
+        </div>
+    </div>
+    <div id="leftOrderArrow" style="display:block; position: absolute; left:10px;top:335px;width:60px;height:89px;"><img width='62' height="89" id='leftOrderArrow_img' src='<%= localImg %>leftarrow.png'/></div>
+</body>
+<!-- 引入公共js开始 -->
+
+<%- include('../../components/commJs') %>
+<script src="/<%-global.config.projectName%>/HD/js/autoFocus.js"></script>
+<!-- 引入公共js结束 -->
+<script>
+
+
+
+
+
+    // 800600178007 炫力少儿_87元/4个月_江苏
+    // 800600178008 炫力少儿_174元/8个月_江苏
+    // 800600178009 炫力少儿_348元/16个月_江苏
+    // 800500115290 炫力少儿促销174元（6送1）_江苏_客户级套餐
+    // 800500115291 炫力少儿促销348元（12送2）_江苏_客户级套餐
+
+
+
+    var orderType = CT.requestValue("contentType");
+    var queryTimer = null;
+    var resProductMap = {}; //Map集合,用来存放从接口获取的产品包信息
+    var saveClick = null;
+    var productCodeList = ["800600122669","800600177542","800600178007","800600178008","800600178009","800600178027"];//显示顺序
+    //这是后来添加的焦点图和原图
+    orderJs.productImg["800600177875"] = "product6.png";
+    orderJs.productFocus["800600177875"] = "product6_focus.png";
+    orderJs.productImg["800600177876"] = "product7.png";
+    orderJs.productFocus["800600177876"] = "product7_focus.png";
+    orderJs.productImg["800600178007"] = "product8.png";
+    orderJs.productFocus["800600178007"] = "product8_focus.png";
+    orderJs.productImg["800600178008"] = "product9.png";
+    orderJs.productFocus["800600178008"] = "product9_focus.png";
+    orderJs.productImg["800600178009"] = "product10.png";
+    orderJs.productFocus["800600178009"] = "product10_focus.png";
+
+    var _show_module = "";
+    //向左移动 跳转到余额订购页
+    leftToOrderPage =  function(){  
+        orderJs.toOrderPage();
+    }
+    var showLeftArrTime = undefined;
+    showLeftArr = function(){
+        clearTimeout(showLeftArrTime);
+        showLeftArrTime = setTimeout(function(){
+            if(CT.$('leftOrderArrow').style.display != 'block') {
+                CT.$('leftOrderArrow').style.display = "block";
+            } else {
+                CT.$('leftOrderArrow').style.display = "none";
+            }
+            showLeftArr();
+        },800);
+    }
+
+    function updateCode(index) {
+        //停留1S以上再刷新二维码
+        saveClick && clearTimeout(saveClick)
+        saveClick = setTimeout(function () {
+            if(!resProductMap[productCodeList[index]]) {
+                return;
+            }
+            orderJs.getQRCode({
+                product_id: productCodeList[index],
+                fee_id: resProductMap[productCodeList[index]].fee_id,
+                offer_id: resProductMap[productCodeList[index]].offer_id,
+                video_id: "xxx",
+                notify_url: "xxx",
+                third_order_id: "xxx"
+            }, function (resp) {
+                if (resp && resp.resultCode == 0) {
+                    CT.$("QRcode").src = resp.order_url;
+                    queryTimer && clearInterval(queryTimer)
+                    queryTimer = setInterval(function () {
+                        orderJs.queryQRCodeState(resp.order_id, function (res) {
+                            if (res && res.resultCode == 0) {
+                                try{
+                                    loggerInfo('order qrCode pay result:' + CT.jsonToString(resp));
+                                    xjDataLog.uploadOrderSuccess({
+                                        productId: productCodeList[index],
+                                        orderState: "0",
+                                        orderId : resp.order_id,
+                                        more1:"扫码支付",
+                                        //计费方式，1包月，2按次
+                                        autoSub: 2,
+                                    });
+                                    //大数据入库
+                                    xjDataLog.uploadOrderSuccessBigData({
+                                        productId: productCodeList[index],
+                                        orderState: "0",
+                                        more3 : resp.order_id,
+                                        more1:"扫码支付"
+                                    });
+                                }catch(e){
+
+                                }
+				
+                                //0订购成功
+                                orderJs.toOrderSucPage()
+                            }
+                        });
+                    }, 3000);
+			        //1未支付，其他失败
+                    xjDataLog.uploadOrderSuccess({
+                        productId: productCodeList[index].name,
+                        orderState: "9",
+                                more1:"扫码支付等待_"+resProductMap[productCodeList[index]].name,
+                        more3 : Number(orderType)?'全省':'南京'
+                    });
+                    //大数据入库
+                    xjDataLog.uploadOrderSuccessBigData({
+                        productId: productCodeList[index],
+                        orderState: "9",
+                        more1:"扫码支付等待_"+resProductMap[productCodeList[index]].name,
+                        more3 : (Number(orderType)?'全省':'南京'),
+                    });
+                }
+            })
+        }, 1000)
+    }
+   function hideTip(){
+       try{
+            //上传拦截弹框显示日志
+            var p = new logCollParam();
+            p.contentType = "order";
+            p.contentEname = AjaxConfig.commonPageInfo.pageInfo.commPageEname;
+            p.contentCname = AjaxConfig.commonPageInfo.pageInfo.commPageCname;
+            p.prevPageContentType = "order";
+            p.prevPageEname = "qrCodeOrderExitAlertTip";
+            p.prevPageCname = "二维码订购页退出弹框提示";
+            xjDataLog.logCollection(p);
+       }catch(e){}
+		CT.$("tips").style.display = "none";
+		PAGE.changeFocus("hands_x0_y0_product0_");
+	}
+    function sweepCode() {
+        CT.$("tips").style.display = "none";
+		// var btn=[]
+        var button = undefined;
+        for (var i = 0; i < productCodeList.length; i++) {
+            if(!resProductMap[productCodeList[i]]) {
+                continue;
+            }
+            if(button) {
+                buttons.push(button);
+            }
+            button = {
+                id: 'hands_x0_y0_product' + i + '_',
+                focusType: 7,
+                otherFocusEvent: "javascript:updateCode(" + i + ")",
+                leftEvent: "javascript:leftToOrderPage()"
+            };
+        }
+        if(button) {
+            button.down = "disable";
+            buttons.push(button);
+        }
+        PAGE.focusInit();
+        PAGE.changeFocus("hands_x0_y0_product0_");
+        for(var i = 0 ;i < 10; i ++) {
+            if(CT.$("hands_x0_y0_product" + i + "_")) {
+                PAGE.changeFocus("hands_x0_y0_product" + i + "_");
+                break;
+            }
+        }
+    }
+    var _lock = false;
+    var _lock_timer = undefined;
+    function goWhere(){
+        if(_lock) return;
+        clearTimeout(_lock_timer);
+        _lock_timer = setTimeout(function(){
+            _lock = false;
+        },1000);
+        _lock = true;
+        if( !curFocus.TempData || (!curFocus.TempData.commpageName && !curFocus.TempData.more1) || curFocus.TempData.more1.indexOf("backFunc") >= 0) {
+            backFunc();
+        } else {
+            if(curFocus.TempData.more1.indexOf("pop") >= 0) {
+                old_focus = curFocus.FocusID;
+                //上报一级订购页跳二级订购页按键触发
+                try{
+                    var p = new logCollParam(parseInt(((new Date().getTime()) - entryOrderTime) / 1000));
+                    p.focusLocation = "orderPage2"
+                    xjDataLog.logCollection(p);
+                } catch(e){
+
+                }
+                if(!pop_pageInfo[curFocus.TempData.commpageName]) {
+                    interface.findRecCommonPageInfo({contentName:curFocus.TempData.commpageName},function(pageInfo){
+                        var key_name = curFocus.TempData.commpageName;
+
+                        pop_pageInfo[key_name] = setPopPage(pageInfo.data);
+                        var anterFocus = PAGE.getFocusModel6(pop_pageInfo[key_name].defaultFocus);
+                        anterFocus.defaultFocus();
+                        
+                    })
+                } else {
+                    setPopPage(pop_pageInfo[curFocus.TempData.commpageName]);
+                    var anterFocus = PAGE.getFocusModel6(pop_pageInfo[curFocus.TempData.commpageName].defaultFocus);
+                    anterFocus.defaultFocus();
+                }
+            } else if(curFocus.TempData.more1.indexOf("orderPage") >= 0) {
+                orderJs.toOrderPage();
+            } else if(curFocus.TempData.more1.indexOf("order") >= 0) {
+                orderJs.getAuth(function(){
+                    CT.toAnterRecommendUrl(curFocus.TempData);
+                });
+                // CT.toAnterRecommendUrl(curFocus.TempData);
+            } else if(curFocus.TempData.more1.indexOf("javascript:") >= 0) {
+                var excuteStr = curFocus.TempData.more1;
+                excuteStr = excuteStr.substring(excuteStr.indexOf("javascript:"));
+                var lastIdx = excuteStr.indexOf(";") ;
+                if(lastIdx > 0) {
+                    excuteStr = excuteStr.substring(0,lastIdx);
+                }
+                PAGE.exeCode(excuteStr);
+            } else {
+                //跳转
+                CT.toAnterRecommendUrl(curFocus.TempData);
+            }
+        }
+        clearTimeout(_lock_timer);
+        _lock_timer = setTimeout(function(){
+            _lock = false;
+        },100);
+    }
+    
+    /**
+     *  返回方法
+     * */
+    function backFunc(type,idx) {
+        if(type == 'cancel' || CT.$("tips").style.display != 'none') {
+            // var returnUrl =orderJs.getOrderReturnUrl();
+            // returnUrl += "&resultCode=-1&errorMessage=900_QRcancel";
+            // PAGE.redirect( returnUrl);
+            //  CT.backPage();
+            //返回一级订购页
+            // orderJs.toOrderPage();
+            try{
+                var recommendBacks = basePageInfo.commonPageInfo["recommend_3"];
+                if(!idx || idx <= 0) {idx = 0;}
+                if(recommendBacks && recommendBacks.length > idx) {
+                    var recommendBack = recommendBacks[idx];
+                    var backCitycode = CT.requestValue("citycode",recommendBack.more1) ;
+
+                    if(backCitycode && backCitycode != '') {
+                        orderJs.getAreaOfUser(function(res,areaCode){
+                            if(areaCode.indexOf(backCitycode) == 0) {
+                                CT.toAnterRecommendUrl(recommendBack);
+                            } else {
+                                backFunc(type,idx + 1)
+                            }
+                        });
+                        return;
+                    }
+                }
+            }catch(ex){}
+            //返回到余额订购页
+            leftToOrderPage();
+		//	CT.commonJumpUrl(orderJs.getOrderReturnUrl() + "&resultCode=1&errorMessage=未完成订购(扫码返回)")
+            return;
+        }
+       try{
+            //上传拦截弹框显示日志
+            var p = new logCollParam();
+            p.contentType = "order";
+            p.contentEname = "qrCodeOrderExitAlertTip";
+            p.contentCname = "二维码订购页退出弹框提示";
+            p.prevPageContentType = "order";
+            p.prevPageEname = AjaxConfig.commonPageInfo.pageInfo.commPageEname;
+            p.prevPageCname = AjaxConfig.commonPageInfo.pageInfo.commPageCname;
+            xjDataLog.logCollection(p);
+       }catch(e){}
+        CT.$("tips").style.display = "block";
+        CT.$("tips").style.zIndex = "999";
+        PAGE.changeFocus("hands_x0_y0_cancel_");
+    }
+
+    (function () {
+	    var imgurl = basePageInfo.localImg;
+        CT.$("tips").style.background = "url('" + imgurl + "tips.png')";
+        buttons = [{
+            id: 'hands_x0_y0_cancel_',
+            focusType: 7,
+            up: "disable",
+            down: "disable",
+            left: "disable",
+			right:"hands_x0_y0_confirm_",
+            clickHandler: "javascript:backFunc('cancel')"
+        }, {
+            id: 'hands_x0_y0_confirm_',
+            focusType: 7,
+            up: "disable",
+            right: "disable",
+			left:"hands_x0_y0_cancel_",
+            down: "disable",
+            clickHandler: "javascript:hideTip()"
+        }]  
+        try{
+        <%
+        for(var i = 0;i < xjButton.length;i++) {
+            %>
+            buttons.push(<%-JSON.stringify(xjButton[i])%>);
+            <%
+        }
+        %>
+        } catch(e) {}
+        //判断 是不是ip盒子,如果是,就更改产品包为ip盒子的产品包
+        if(xjDataLog.isIpDevice()){
+            productCodeList = [orderJs.IpProductQR.id || "800600178027"];
+        }
+                // _productList.forEach(function(item,idx){
+                //     if(item && productCodeList.indexOf(item) < 0) {
+                //         productCodeList.push(item);
+                //     }
+                // });
+                // }
+            orderJs.initJscnAAA(function () {
+                // JscnAAA.get_order_product_list({ product_id: productCodeList.join(), vod_flag:"AOT"  }, function (p_resp) {
+                var __param = {product_id: productCodeList.join(",")};
+                if(xjDataLog.isIpDevice()) {
+                    __param  = {
+                        userCode: xjDataLog.getUserId(),
+                        loginToken: xjDataLog.getUserToken(),
+                        biz_code: (orderJs.IpProductQR && orderJs.IpProductQR.bizCode) || "BIZ_XLSE_IP_AOT",
+                        product_id: (orderJs.IpProductQR && orderJs.IpProductQR.id) || "800600178027",
+                    }
+                    window["JscnAAA"] = JscnIPAAA;
+                }
+                JscnAAA.get_order_product_list(__param, function (p_resp) {
+                    var list = {};
+                    //解决局方返回产品顺序不规则
+                    if(!p_resp || !p_resp.product_list) {
+                        CT.alertTip(JSON.stringify(p_resp||{error:"产品包异常"}));
+                        setTimeout(function(){
+                            CT.BackPortalMainPage();
+                        },3000)
+                        return;
+                    }
+                    for(var i = 0;i < p_resp.product_list.length;i++) { //把接口返回产品包信息保存在resProductMap
+                        var key = p_resp.product_list[i].id;
+                        resProductMap[key] = p_resp.product_list[i];
+                    }
+                    var btnhtml = ""
+                    var idx = 0
+                    var minIdx = -1;
+                    for (var i = 0; i < productCodeList.length && idx < 4; i++) {
+                        if(!resProductMap[productCodeList[i]]) {
+                            continue;
+                        }
+                        if(minIdx == -1) {
+                            minIdx = i;
+                        }
+                        btnhtml += '<div id="hands_x0_y0_product' + i + '_" ' + 
+                        'style="position: absolute;width:738px;height: 92px; top:' + idx * 100 + 'px;' + 
+                        'background-image: url(\'' + imgurl + orderJs.productImg[productCodeList[i]] + '\') ">' + 
+                        '<img id="product' + i + '" style="visibility: hidden;" src="' + imgurl + orderJs.productFocus[productCodeList[i]] + '">' + 
+                        '</div>';
+                        // }
+                        idx ++;
+                    }
+                    CT.$("productList").innerHTML = btnhtml;
+                    sweepCode()
+                    if(minIdx != -1) {
+                        updateCode(minIdx);
+                    }
+                });
+            });
+        // });
+        // }
+    })()
+    
+</script>
+
+</html>
