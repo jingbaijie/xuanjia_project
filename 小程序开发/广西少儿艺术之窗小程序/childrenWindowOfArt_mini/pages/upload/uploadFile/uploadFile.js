@@ -40,18 +40,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // 监听网络变化
-    wx.onNetworkStatusChange(function (res) {
-      if (!res.isConnected) {
-        // 刚刚断网了
-        wx.showLoading({
-          title: '网络重连上传中',
-          mask: true
-        })
-      }
-      // console.log(res.isConnected)
-      // console.log(res.networkType)
-    })
     // 判断学员是否登录，未登录则跳转登录页面
     if (app.globalData._loginStuCode && app.globalData._loginStuNum && app.globalData._loginStuName) {
       // 已登录
@@ -264,7 +252,7 @@ Page({
         console.log('imgInfo: ', res)
         // 图片的路径和大小
         const tempFiles = res.tempFiles;
-        if (tempFiles[0].size > 5 * 1000 * 1024) {
+        if (tempFiles[0].size > 5 * 1024 * 1024) {
           wx.showToast({
             title: '图片应小于5MB！',
             icon: 'none',

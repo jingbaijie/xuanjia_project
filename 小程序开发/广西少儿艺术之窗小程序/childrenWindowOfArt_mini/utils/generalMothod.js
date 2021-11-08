@@ -4,8 +4,6 @@ const ajaxConfig = new AJAX();
 const Multipart = require("./Multipart.min");
 const app = getApp();
 
-// 隐藏上传中弹框延时器
-let hidUploadingTipTimer = null;
 
 // 触点开始Y轴值
 let clientY_start = 0;
@@ -242,6 +240,23 @@ const getUserProfile = (params = {}) => {
  * @param {* failCallback} 失败回调
  */
 const myUploadFile = (params = {}) => {
+  // 监听网络变化
+  wx.onNetworkStatusChange(function (res) {
+    if (!res.isConnected) {
+      // // 刚刚断网了
+      // wx.showLoading({
+      //   title: '网络重连上传中',
+      //   mask: true
+      // })
+      wx.hideLoading();
+      wx.showToast({
+        title: '网络连接已断开',
+        icon: 'none'
+      })
+    }
+    // console.log(res.isConnected)
+    // console.log(res.networkType)
+  })
   var reqNo = getTimeRandom();
   // 上传接口
   let uploadUrl = params.uploadUrl;
@@ -265,12 +280,10 @@ const myUploadFile = (params = {}) => {
     fields,
     files
   }).submit(uploadUrl);
-  clearTimeout(hidUploadingTipTimer);
-  hidUploadingTipTimer = setTimeout(() => {
-    wx.hideLoading();
-  }, 20 * 1000);
   result.then((res) => {
     wx.hideLoading();
+    // 取消 监听网络变化
+    wx.offNetworkStatusChange();
     //请求结果
     console.log(res);
     if (res.statusCode == 200 && res.data.errorCode == 1000) {
@@ -334,7 +347,7 @@ const myOldStuLogin = (params = {}) => {
     data: params.data
   }
   ajaxConfig.xjRequestApi(oldStudent,(res) => {
-    if (res.data.successFlg == 1 && res.data && res.data.cartoonCode) {
+    if (res.data.successFlg == 1 && res.data && res.data.data && res.data.data.cartoonCode) {
       let callbackRes = params.callback && params.callback(res);
       if (!callbackRes) {
         // 全局记录当前登录学生学号和姓名
@@ -345,7 +358,7 @@ const myOldStuLogin = (params = {}) => {
     } else {
       let failCallbackRes = params.failCallback && params.failCallback(res);
       if (!failCallbackRes) {
-        let tipStr = '姓名或学号错误!';
+        let tipStr = ('绑定失败：' + res.data) && res.data.errorMsg;
         if (res.errorMsg) {
           tipStr = res.errorMsg;
         }
@@ -448,6 +461,8 @@ const showNetwrorkTpye = (params = {}) => {
               }
             }
           })
+        } else if (networkType == 'wifi') {
+          params.callback && params.callback();
         } else {
           params.otherCallback && params.otherCallback();
         }

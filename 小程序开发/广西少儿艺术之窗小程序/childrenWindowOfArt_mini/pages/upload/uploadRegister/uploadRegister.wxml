@@ -18,7 +18,7 @@
   <view class="studentNum" wx:if="{{userType == 0}}" >
     <view class="labelCol"></view>
     <view class="inputName">学员学号：</view>
-    <input type="text" class="inputDom" placeholder-class="input_placeholder" placeholder="请输入学号" value="{{studentNum}}" bindblur="updateInputVal" data-key_name="studentNum"></input>
+    <input type="number" class="inputDom" placeholder-class="input_placeholder" placeholder="请输入学号" value="{{studentNum}}" bindblur="updateInputVal" data-key_name="studentNum"></input>
   </view>
   <view class="inputItem">
     <view class="labelCol"></view>

@@ -65,13 +65,13 @@ globalData: {
   //默认城市
   defaultCity: {
     id: '',
-    name: '广西省',
+    name: '广西',
     ename: 'guangxi'
   },
   //选中城市
   city: {
     id: '',
-    name: '广西省',
+    name: '广西',
     ename: 'guangxi'
   },
   cityId:0,

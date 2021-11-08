@@ -36,7 +36,10 @@ Page({
     // 播放器名称前缀
     video_player_pre: 'myVideo',
   },
-
+  onTabItemTap () {
+    console.log('onTabItemTap')
+    this.onLoad();
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -393,6 +396,9 @@ Page({
    */
   touchEndEvent (e) {
     let _this = this;
+    if (true) {
+      return;
+    }
     this.setData({
       clientX_end: e.changedTouches[0].clientX,
       clientY_end: e.changedTouches[0].clientY
@@ -400,12 +406,16 @@ Page({
     let distance_X = this.data.clientX_end - this.data.clientX_start;
     let distance_Y = this.data.clientY_end - this.data.clientY_start;
     if (distance_X > 0 && Math.abs(distance_X) > 50 && Math.abs(distance_Y) < 25) {
-      // 右划左拉，显示视频
-      _this.changeShowType({show_type: 0});
+      if (_this.data.show_type == 1) {
+        // 右划左拉，显示视频
+        _this.changeShowType({show_type: 0});
+      }
     } else if (Math.abs(distance_X) > 50 && Math.abs(distance_Y) < 25) {
       // 左划右拉
-      // 右划左拉，显示图片
-      _this.changeShowType({show_type: 1});
+      if (_this.data.show_type == 0) {
+        // 右划左拉，显示图片
+        _this.changeShowType({show_type: 1});
+      }
     }
   },
   /**

@@ -17,11 +17,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var picList = [];
     for(var i=0;i<JSON.parse(options.picList).length;i++){
       var picUrl = this.data.imgUrl + JSON.parse(options.picList)[i].playUrl;
+      picList.push(picUrl);
     }
-    var picList = [];
-    picList.push(picUrl);
     this.setData({
       morePicList: JSON.parse(options.picList),
       picList:picList
@@ -85,7 +85,7 @@ Page({
     let currentUrl = e.currentTarget.dataset.src;
     wx.previewImage({
       current: currentUrl, // 当前显示图片的http链接
-      urls: this.data.picList // 需要预览的图片http链接列表
+      urls: this.data.picList// 需要预览的图片http链接列表
     })
   },
 })

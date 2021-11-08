@@ -228,6 +228,12 @@ Page({
           title: "学员登录成功！",
           icon: 'none',
         });
+        // 获取某个目标页面的page对象
+        let targetPageObj = CT.getTargetPageObj({
+          page_route: 'pages/upload/uploadFile/uploadFile',
+        });
+        // 改变上一页的老学员列表
+        targetPageObj.getStuList();
         setTimeout(() => {
           // 返回上一页
           wx.navigateBack({
@@ -357,7 +363,7 @@ Page({
         console.log('imgInfo: ', res)
         // 图片的路径和大小
         const tempFiles = res.tempFiles;
-        if (tempFiles[0].size >  5 * 1000 * 1024) {
+        if (tempFiles[0].size > 5 * 1024 * 1024) {
           wx.showToast({
             title: '图片应小于5MB！',
             icon: 'none',
@@ -403,6 +409,7 @@ Page({
    * 更新在data中记录的输入框值
   */
   updateInputVal: function (e) {
+    console.log(e)
     // 键名
     let key_name = e.currentTarget.dataset.key_name;
     // 输入框值
@@ -421,12 +428,12 @@ Page({
     // 更新验证结果
     setDataObj1[check_key_name] = tipStr;
     this.setData(setDataObj1);
-    if (tipStr) {
-      wx.showToast({
-        title: tipStr,
-        icon: 'none'
-      })
-    }
+    // if (tipStr) {
+    //   wx.showToast({
+    //     title: tipStr,
+    //     icon: 'none'
+    //   })
+    // }
   },
   /**
    * 校验输入框值

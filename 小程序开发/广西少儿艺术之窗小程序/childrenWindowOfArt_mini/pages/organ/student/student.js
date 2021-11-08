@@ -28,11 +28,11 @@ Page({
     }
     ajaxConfig.xjRequestApi(studentDetailById,(res) => {
       if(res.data.successFlg == 1 && res.data.data){
+        var picList = [];
         for(var i=0;i<res.data.data.picList.length;i++){
           var picUrl = this.data.imgUrl + res.data.data.picList[i].playUrl;
+          picList.push(picUrl);
         }
-        var picList = [];
-        picList.push(picUrl);
         this.setData({
           studentDetail:res.data.data,
           picList:picList,

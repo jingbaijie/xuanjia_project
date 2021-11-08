@@ -111,12 +111,12 @@ Page({
             var url = ajaxConfig.ipConfigLocal + "/videos/" + res.data.data.introductionList[0].playUrl + '?token=' + xjToken;
             console.log(xjToken);
           }
+          var picList = [];
           for(var i=0;i<res.data.data.picList.length;i++){
             var picUrl = _this.data.imgUrl + res.data.data.picList[i].playUrl;
+            picList.push(picUrl);
           }
-          var picList = [];
-          picList.push(picUrl);
-      
+          console.log(res.data.data)
           _this.setData({
             organDetail:res.data.data,
             cpLabel:res.data.data.CpDetail.cpLabel.split(" "),

@@ -26,29 +26,29 @@
       <view class="showUnit" wx:for="{{show_type == 0 ? dataInfo_0.records : dataInfo_1.records}}" wx:key="index">
         <!-- 图片或视频，视频名 写死的测试 {{item.playUrl}}  && curPlayDomId.match(/[0-9]+/g)[0] == index-->
         <view >
-          <video id="{{video_player_pre + index}}" wx:if="{{ show_type == 0 && item.truePlayUrl && play_status == 'yes' && curPlayDomId == video_player_pre + index }}" class="videoOrPic" controls="true" bindplay="playCurVideo" data-video_dom_id="{{video_player_pre + index}}" data-index="{{index}}" data-is_play="yes" src="{{item.truePlayUrl}}" ></video>
+          <video id="{{video_player_pre + index}}" wx:if="{{ show_type == 0 && item.truePlayUrl && play_status == 'yes' && curPlayDomId == video_player_pre + index }}" class="videoOrPic" style="z-index: 9999;" controls="true" bindplay="playCurVideo" data-video_dom_id="{{video_player_pre + index}}" data-index="{{index}}" data-is_play="yes" src="{{item.truePlayUrl}}" ></video>
           <image class="video_cover_img" wx:if="{{ show_type == 0 && (curPlayDomId != video_player_pre + index || play_status == 'no') }}" src="{{ imgUrl + item.iconPic.picPath }}"></image>
           <view class="video_cover_view"  wx:if="{{ show_type == 0 && (curPlayDomId != video_player_pre+ index || play_status == 'no') }}" >
             <image class="video_play_img"  src="/static/images/common/icon/playLabel.png" catchtap="playCurVideo" data-video_dom_id="{{video_player_pre + index}}" data-index="{{index}}"></image>
           </view>
           <!-- <image class="video_cover_img" wx:if="{{show_type == 0}}" src="{{ imgUrl + item.iconPic.picPath }}"></image> -->
-          <image wx:if="{{show_type == 1}}" mode="scaleToFill"  class="videoOrPic" src="{{imgUrl + item.playUrl}}" bindtap="previewImg" data-src="{{imgUrl + item.playUrl}}" ></image>
+          <image wx:if="{{show_type == 1}}" mode="scaleToFill"  class="videoOrPic" src="{{imgUrl + item.playUrl}}" catchtap="previewImg" data-src="{{imgUrl + item.playUrl}}" ></image>
           <view class="contentName">{{ item.videoCname }}</view>
         </view>
         <!-- 机构名和点赞收藏转发 -->
         <view class="unit_bottom">
           <view class="oganName" catchtap="toOrganPage" data-organ_id="{{item.cpId}}">{{item.cpName}}</view>
           <view class="unit_bottom_right">
-            <view class="thumbUp_wrapper">
-              <image class="interaction_img" src="/static/images/organ/{{ item.starFlag == 0 ? 'likeIcon' : 'likeIconS'}}.png" catchtap="interactClick"  data-type_value="1" data-data_index="{{index}}"></image>
+            <view class="thumbUp_wrapper" catchtap="interactClick"  data-type_value="1" data-data_index="{{index}}">
+              <image class="interaction_img" src="/static/images/organ/{{ item.starFlag == 0 ? 'likeIcon' : 'likeIconS'}}.png"></image>
               <view class="interaction_text">{{item.wechatVideoExtraInfo.star}}</view>
             </view>
-            <view class="collect_wrapper">
-              <image class="interaction_img" src="/static/images/organ/{{ item.collectionFlag == 0 ? 'collectIcon' : 'collectIconS'}}.png" catchtap="interactClick"  data-type_value="3" data-data_index="{{index}}"></image>
+            <view class="collect_wrapper" catchtap="interactClick"  data-type_value="3" data-data_index="{{index}}">
+              <image class="interaction_img" src="/static/images/organ/{{ item.collectionFlag == 0 ? 'collectIcon' : 'collectIconS'}}.png"></image>
               <view class="interaction_text">{{item.wechatVideoExtraInfo.collection}}</view>
             </view>
-            <view class="share_wrapper">
-              <button  open-type='share'  type="default" size="mini" class="mini-btn" catchtap="interactClick"  data-type_value="5" data-data_index="{{index}}">
+            <view class="share_wrapper" catchtap="interactClick"  data-type_value="5" data-data_index="{{index}}">
+              <button  open-type='share'  type="default" size="mini" class="mini-btn">
                 <!-- <image src="../../../static/images/organ/relayIcon.png"></image> catchtap="interactClick"  data-type_value="5" data-data_index="{{index}}"-->
                 <image class="interaction_img" src="/static/images/organ/relayIcon.png" ></image>
               </button>

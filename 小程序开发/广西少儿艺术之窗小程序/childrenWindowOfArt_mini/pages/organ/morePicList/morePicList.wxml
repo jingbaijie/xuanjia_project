@@ -2,7 +2,7 @@
 <view class="morePicListPage">
   <view class="recVideoPack">
     <view class="recVideoItem" wx:for="{{morePicList}}" wx:key="index">
-    <block wx:if="{{index < 3}}">
+    <block >
       <view class="recVideoImg"><image   wx:if="{{item.playUrl}}"  src="{{imgUrl + item.playUrl}}" bindtap="onPreview" data-src="{{imgUrl + item.playUrl}}"></image></view>
       <view class="recVideoName">{{item.videoCname}}</view>
     </block>
