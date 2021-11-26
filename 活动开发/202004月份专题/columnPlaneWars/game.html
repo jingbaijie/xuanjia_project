@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name = "page-view-size" content = "1280*720">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>游戏页</title>
+    <link rel="stylesheet" href="css/game.css?v=1">
+</head>
+
+<body>
+    <div id="main">
+        <!-- 我方歼击机 -->
+        <div id="hands_x0_y0_fighterFocus_" style="position: absolute;left: 550px;top: 540px;z-index: 2">
+            <img src="img/plane3.png" alt="" id="fighterFocus" style="visibility:hidden;">
+        </div>
+        <!-- 提示箭头 -->
+        <img src="img/leftArrow.png" alt="" id="leftArrow">
+        <img src="img/rightArrow.png" alt="" id="rightArrow">
+        <!-- 下落飞机 -->
+        <div id="dropPlane" style="position: absolute;left: 0px;top: 0px;z-index: 1;"></div>
+        <!-- 发射的子弹 -->
+        <div id="shootBullets"></div>
+        <!-- 弹窗 -->
+        <img src="img/empty.png" alt="" id="againTip" style="position:absolute;left:0px;top:0px;z-index:3">
+        <!-- 再来一次，继续按钮 -->
+        <div id="hands_x0_y0_againTipFocus_">
+            <img src="img/btnFocus.png" alt="" id="againTipFocus" style="visibility:hidden;">
+        </div>
+        <!-- 退出按钮 -->
+        <div id="hands_x0_y0_backBtnFocus_">
+            <img src="img/btnFocus.png" alt="" id="backBtnFocus" style="visibility:hidden;">
+        </div>
+        <!-- 加分图片 -->
+        <img id="getScores" src="img/empty.png" style="position:absolute;left:0px;top:0px;">
+        <!-- 得分显示 -->
+        <div id="totalScore">0</div>
+    </div>
+	<!-- 引入公共js开始 -->
+	<script type = "text/javascript" src = "../../../js/loadCommomJs.js?v=2019"></script>
+	<!-- 引入公共js结束 -->  
+	<script type = "text/javascript" src = "../../../js/actiComm.js"></script>
+    <script type="text/javascript">
+        var buttons = [{
+                id: "hands_x0_y0_fighterFocus_",
+                left: "disable",
+                leftEvent: "javascript:planeWarsGame.leftEvent()",
+                right: "disable",
+                rightEvent: "javascript:planeWarsGame.rightEvent()",
+                up: "disable",
+                down: "disable",
+                focusType: 7
+            }, {
+                id: "hands_x0_y0_againTipFocus_",
+                clickHandler: "javascript:planeWarsGame.continue()",
+                left: "disable",
+                right: "hands_x0_y0_backBtnFocus_",
+                up: "disable",
+                down: "disable",
+                focusType: 7
+            }, {
+                id: "hands_x0_y0_backBtnFocus_",
+                clickHandler: "javascript:backfunc()",
+                left: "hands_x0_y0_againTipFocus_",
+                right: "disable",
+                up: "disable",
+                down: "disable",
+                focusType: 7
+            }]
+            // 焦点初始化
+		PAGE.focusInit();
+		PAGE.changeFocus("hands_x0_y0_fighterFocus_");
+    </script>   
+    <script type="text/javascript" src="js/game.js?v=202003160154345"></script>
+</body>
+
+</html>

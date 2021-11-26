@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="page-view-size" content="1280*720">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>首页</title>
+		<style>
+			#main {
+				position: absolute;
+				left: 0px;
+				top: 0px;
+				width: 1280px;
+				height: 720px;
+				overflow: hidden;
+				background: url(./img/bg1.jpg) no-repeat;
+			}
+			
+			#fightBtn,
+			#hands_x0_y0_fightFocus_ {
+				position: absolute;
+				left: 500px;
+				top: 520px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="main">
+			<img src="img/fightBtn1.png" alt="" id="fightBtn">
+			<div id="hands_x0_y0_fightFocus_">
+				<img src="img/fightBtn2.png" alt="" id="fightFocus">
+			</div>
+		</div>
+		<!-- 引入公共js -->
+		<script type="text/javascript" src="../../../js/loadCommomJs.js?v=2019"></script>
+		<!-- 引入公共js结束 -->
+		<script type="text/javascript" src="../../../js/actiComm.js"></script>
+		<script type="text/javascript">
+			//var istry = CT.getCookie("tryPlay"); //试玩
+			var buttons = [{
+				id: "hands_x0_y0_fightFocus_",
+				clickHandler: "javascript:goSomeWhere()",
+				left: "disable",
+				right: "disable",
+				up: "disable",
+				down: "disable",
+				focusType: 7
+			}]
+			// 焦点初始化
+			PAGE.focusInit();
+			PAGE.changeFocus("hands_x0_y0_fightFocus_");
+			// 开始战斗跳转
+			function goSomeWhere() {
+				//				orderJs.columnGetAuth(function(data) {
+				//					if(data == 0) {
+				//						window.location.href = "game.html";
+				//					} else {
+				//						if(istry) {
+				//							CT.goPage();
+				//							orderJs.columnToOrderPage("springRecommendPage_planeWars");
+				//						} else {
+				//							CT.setCookie("tryPlay","1");
+				//							window.location.href = "game.html";
+				//						}
+				//					}
+				//				});
+				window.location.href = "game.html";
+			}
+
+			function backfunc() {
+				CT.backPage();
+			}
+		</script>
+	</body>
+
+</html>

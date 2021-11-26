@@ -1,0 +1,144 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+}
+
+#main {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: url(../img/bg2.jpg) no-repeat;
+}
+
+#leftArrow {
+    position: absolute;
+    left: 480px;
+    top: 600px;
+}
+
+#rightArrow {
+    position: absolute;
+    left: 810px;
+    top: 600px;
+}
+
+
+/* 箭头动画 */
+
+.leftArrowAni {
+    animation: leftArrowAni 300ms alternate infinite;
+    -webkit-animation: leftArrowAni 300ms alternate infinite;
+}
+
+@keyframes leftArrowAni {
+    0%,
+    100% {
+        transform: translateX(0px);
+        -webkit-transform: translateX(0px);
+    }
+    50% {
+        transform: translateX(-10px);
+        -webkit-transform: translateX(-10px);
+    }
+}
+
+@-webkit-keyframes leftArrowAni {
+    0%,
+    100% {
+        transform: translateX(0px);
+        -webkit-transform: translateX(0px);
+    }
+    50% {
+        transform: translateX(-10px);
+        -webkit-transform: translateX(-10px);
+    }
+}
+
+.rightArrowAni {
+    animation: rightArrowAni 300ms alternate infinite;
+    -webkit-animation: rightArrowAni 300ms alternate infinite;
+}
+
+@keyframes rightArrowAni {
+    0%,
+    100% {
+        transform: translateX(0px);
+        -webkit-transform: translateX(0px);
+    }
+    50% {
+        transform: translateX(10px);
+        -webkit-transform: translateX(10px);
+    }
+}
+
+@-webkit-keyframes rightArrowAni {
+    0%,
+    100% {
+        transform: translateX(0px);
+        -webkit-transform: translateX(0px);
+    }
+    50% {
+        transform: translateX(10px);
+        -webkit-transform: translateX(10px);
+    }
+}
+
+
+/* 再来一次弹窗 */
+
+#hands_x0_y0_againTipFocus_ {
+    position: absolute;
+    left: 400px;
+    top: 445px;
+    z-index: 3;
+}
+
+#hands_x0_y0_backBtnFocus_ {
+    position: absolute;
+    left: 700px;
+    top: 445px;
+    z-index: 3;
+}
+
+
+/* 加分动画 */
+
+.addScoreAni {
+    animation: 200ms addScoreAni;
+    -webkit-animation: 200ms addScoreAni;
+}
+
+@keyframes addScoreAni {
+    0% {
+        transform: translateY(0px);
+        -webkit-transform: translateY(0px);
+    }
+    100% {
+        transform: translateY(-50px);
+        -webkit-transform: translateY(-50px);
+    }
+}
+
+@-webkit-keyframes addScoreAni {
+    0% {
+        transform: translateY(0px);
+        -webkit-transform: translateY(0px);
+    }
+    100% {
+        transform: translateY(-50px);
+        -webkit-transform: translateY(-50px);
+    }
+}
+
+#totalScore {
+    position: absolute;
+    left: 270px;
+    top: 35px;
+    font-weight: bold;
+    color: #333;
+    font-size: 30px;
+}
